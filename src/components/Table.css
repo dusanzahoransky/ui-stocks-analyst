@@ -1,0 +1,20 @@
+th, td {
+    width: 100px;
+}
+
+.lightGreen {
+    background: #e5ffe3;
+}
+.lightRed {
+    background: #ffe6dc;
+}
+.green {
+    background: #acffb2;
+}
+.red {
+    background: #ff6d68;
+}
+
+.hidden {
+    display: none;
+}
