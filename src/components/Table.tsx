@@ -5,6 +5,17 @@ import './Table.css';
 
 export enum Column {
     ticker,
+    companyName,
+    price,
+    change,
+    totalCashPerShare,
+    totalDebtEquity,
+    quarterlyRevenueGrowth,
+    quarterlyEarningsGrowth,
+    dilutedEarningPerShare,
+    week52Change,
+    week52Low,
+    week52High,
     period,
     marketCap,
     enterpriseValue,
@@ -65,8 +76,8 @@ export class Table extends React.Component<TableProps, TableState> {
                 {FormattingUtils.statLabel(field)}
             </th>
         );
-        const averagesRow = header[1].map( (value, columnIndex) =>
-            <th key={value} className={this.columnClass(columnIndex)}>{FormattingUtils.format(value)}</th>
+        let averagesRow = header[1].map((value, columnIndex) =>
+            <th key={value} className={this.columnClass(columnIndex)}>{FormattingUtils.format(header[1], value, columnIndex)}</th>
         );
 
         return (
@@ -108,51 +119,102 @@ export class Table extends React.Component<TableProps, TableState> {
     renderRow(rowData: string[], rowIndex, averages: string[]) {
         const rowValues = rowData.map((value, columnIndex) =>
             <td key={columnIndex}
-                className={ this.columnClass(columnIndex) + ' ' + this.cellClass(value, averages[columnIndex], columnIndex)}>
-                {FormattingUtils.format(value)}</td>
+                className={this.dataCellClass(rowData, value, averages[columnIndex], columnIndex)}>
+                {FormattingUtils.format(rowData, value, columnIndex)}</td>
         );
         return (
             <tr key={rowIndex}>{rowValues}</tr>
         )
     }
 
-    cellClass(value: string, average: string, columnIndex: number): string {
-        const number = Number.parseFloat(value);
+    dataCellClass(rowData: string[], value: string, average: string, columnIndex: number): string {
+        let classes = [];
+        let number = Number.parseFloat(value);
         const avg = Number.parseFloat(average);
-        if (isNaN(number)) {
-            return '';
+
+        if (columnIndex === Column.companyName) {
+            classes.push('companyName');
         }
+        if (columnIndex === Column.change) {
+            classes.push('companyName');
+        }
+
+        const price = Number.parseFloat(rowData[Column.price]);
 
         switch (columnIndex) {
             case Column.ticker:
-                return '';
             case Column.period:
-                return '';
             case Column.marketCap:
-                return '';
             case Column.enterpriseValue:
-                return '';
+                classes.push('');
+                break;
+            case Column.change:
+                classes.push(value.startsWith('-') ? 'lightRed' : 'lightGreen');
+                break;
+            case Column.totalCashPerShare:
+                classes.push(number / price > 0.2 ? 'lightGreen' :  number / price < 0.01 ? 'lightRed' : '');
+                break;
+            case Column.totalDebtEquity:
+                if (number < 1) classes.push('green');
+                else if (number > 100) classes.push('red');
+                else classes.push(number > avg ? 'lightRed' : 'lightGreen');
+                break;
+            case Column.quarterlyRevenueGrowth:
+                if (number > 20) classes.push('green');
+                else if (number < 0) classes.push('red');
+                else classes.push(number < avg ? 'lightRed' : 'lightGreen');
+                break;
+            case Column.quarterlyEarningsGrowth:
+                if (number > 20) classes.push('green');
+                else if (number < 0) classes.push('red');
+                else classes.push(number < avg ? 'lightRed' : 'lightGreen');
+                break;
+            case Column.dilutedEarningPerShare:
+                //classes.push(number > avg ? 'lightRed' : 'lightGreen');
+                break;
+            case Column.week52Change:
+                classes.push(number < 0 ? 'lightRed' : 'lightGreen');
+                break;
+            case Column.week52Low:
+                number = (price - number) / price * 100;
+                classes.push(number > 100 ? 'lightRed' : number < 20 ? 'lightGreen' : '');
+                break;
+            case Column.week52High:
+                number = (number - price) / price * 100;
+                if (number > 100) classes.push('green');
+                else if (number < 10) classes.push('red');
+                classes.push(number > 50 ? 'lightGreen' : number < 20 ? 'lightRed' : '');
+                break;
             case Column.trailingPE:
-                return number > avg ? 'lightRed' : 'lightGreen';
+                classes.push(number > avg ? 'lightRed' : 'lightGreen');
+                break;
             case Column.forwardPE:
-                return number > avg ? 'lightRed' : 'lightGreen';
+                classes.push(number > avg ? 'lightRed' : 'lightGreen');
+                break;
             case Column.priceEarningGrowth:
-                if (number < 1) return 'green';
-                if (number > 2) return 'red';
-                return number > avg ? 'lightRed' : 'lightGreen';
+                if (number < 1) classes.push('green');
+                else if (number > 2) classes.push('red');
+                else classes.push(number > avg ? 'lightRed' : 'lightGreen');
+                break;
             case Column.priceSales:
-                return number > avg ? 'lightRed' : 'lightGreen';
+                classes.push(number > avg ? 'lightRed' : 'lightGreen');
+                break;
             case Column.priceBook:
-                return number > avg ? 'lightRed' : 'lightGreen';
+                classes.push(number > avg ? 'lightRed' : 'lightGreen');
+                break;
             case Column.enterpriseValueRevenue:
-                return number > avg ? 'lightRed' : 'lightGreen';
+                classes.push(number > avg ? 'lightRed' : 'lightGreen');
+                break;
             case Column.enterpriseValueEBITDA:
-                if (number < 10) return 'green';
-                if (number > 20) return 'red';
-                return number > avg ? 'lightRed' : 'lightGreen';
+                if (number < 10) classes.push('green');
+                else if (number > 20) classes.push('red');
+                else classes.push(number > avg ? 'lightRed' : 'lightGreen');
+                break;
         }
 
-        return ''
+        classes.push(this.columnClass(columnIndex));
+
+        return classes.join(' ');
     }
 
     private columnClass(columnIndex: number) {
@@ -161,7 +223,8 @@ export class Table extends React.Component<TableProps, TableState> {
             case Column.marketCap:
             case Column.period:
                 return 'hidden';
-            default: return '';
+            default:
+                return '';
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "statisticsAllPeriods": [
-    "2020-04-06",
+    "2020-04-09",
     "2020-02-29",
     "2020-01-31",
     "2019-12-31",
@@ -17,208 +17,231 @@
     "2019-01-31"
   ],
   "statisticsAverage": {
+    "companyName": "AVERAGES",
+    "price": 147.26686868686866,
+    "change": "",
+    "totalCashPerShare": 15.81367346938776,
+    "totalDebtEquity": 96.03458333333333,
+    "quarterlyRevenueGrowth": 10.87766990291262,
+    "quarterlyEarningsGrowth": 39.96091954022989,
+    "dilutedEarningPerShare": 7.193366336633657,
+    "week52Change": 0.36776699029126036,
+    "week52Low": 102.63595959595955,
+    "week52High": 190.04010101010098,
     "periodValuationMeasures": {
-      "2020-04-06": {
-        "period": "2020-04-06",
-        "marketCap": 92769116441,
-        "enterpriseValue": 96068331454,
-        "trailingPE": 27.35343137254901,
-        "forwardPE": 29.379705882352937,
-        "priceEarningGrowth": 2.22186274509804,
-        "priceSales": 4.876666666666667,
-        "priceBook": 8.057254901960784,
-        "enterpriseValueRevenue": 4.934215686274511,
-        "enterpriseValueEBITDA": 18.073333333333334
+      "2020-04-09": {
+        "period": "2020-04-09",
+        "marketCap": 100112254388,
+        "enterpriseValue": 103424020695,
+        "trailingPE": 32.36903225806451,
+        "forwardPE": 26.060309278350502,
+        "priceEarningGrowth": 2.6819999999999995,
+        "priceSales": 5.367254901960782,
+        "priceBook": 9.247113402061855,
+        "enterpriseValueRevenue": 5.414705882352939,
+        "enterpriseValueEBITDA": 24.65029411764707
       },
       "2019-12-31": {
         "period": "2019-12-31",
-        "marketCap": 94803039302,
-        "enterpriseValue": 97385391846,
-        "trailingPE": 26.946764705882345,
-        "forwardPE": 22.674803921568618,
-        "priceEarningGrowth": 1.6853921568627452,
-        "priceSales": 4.6471568627450965,
-        "priceBook": 9.835588235294116,
-        "enterpriseValueRevenue": 16.376960784313727,
-        "enterpriseValueEBITDA": 48.56656862745097
+        "marketCap": 121065875084,
+        "enterpriseValue": 124359749568,
+        "trailingPE": 38.174583333333324,
+        "forwardPE": 30.380128205128194,
+        "priceEarningGrowth": 2.3972222222222226,
+        "priceSales": 6.042999999999998,
+        "priceBook": 13.087792207792207,
+        "enterpriseValueRevenue": 21.301625,
+        "enterpriseValueEBITDA": 71.17037974683544
       },
       "2019-09-30": {
         "period": "2019-09-30",
-        "marketCap": 84136568480,
-        "enterpriseValue": 86893921219,
-        "trailingPE": 23.06411764705882,
-        "forwardPE": 20.25225490196078,
-        "priceEarningGrowth": 1.5279411764705884,
-        "priceSales": 4.280392156862748,
-        "priceBook": 8.992058823529412,
-        "enterpriseValueRevenue": 16.166274509803923,
-        "enterpriseValueEBITDA": 43.400588235294116
+        "marketCap": 107425499814,
+        "enterpriseValue": 110942499558,
+        "trailingPE": 32.67416666666666,
+        "forwardPE": 26.772025316455693,
+        "priceEarningGrowth": 2.2054929577464795,
+        "priceSales": 5.555500000000003,
+        "priceBook": 12.122105263157895,
+        "enterpriseValueRevenue": 20.943375,
+        "enterpriseValueEBITDA": 58.89
       },
       "2019-06-30": {
         "period": "2019-06-30",
-        "marketCap": 82591470039,
-        "enterpriseValue": 85670391235,
-        "trailingPE": 25.722352941176467,
-        "forwardPE": 22.307352941176468,
-        "priceEarningGrowth": 1.6799019607843138,
-        "priceSales": 4.487745098039215,
-        "priceBook": 12.555686274509803,
-        "enterpriseValueRevenue": 16.94686274509804,
-        "enterpriseValueEBITDA": 60.77186274509806
+        "marketCap": 105495874304,
+        "enterpriseValue": 109420873830,
+        "trailingPE": 35.940821917808215,
+        "forwardPE": 31.40078947368421,
+        "priceEarningGrowth": 2.5078260869565216,
+        "priceSales": 5.847249999999999,
+        "priceBook": 16.700129870129867,
+        "enterpriseValueRevenue": 22.1,
+        "enterpriseValueEBITDA": 78.46493670886079
       },
       "2019-03-31": {
         "period": "2019-03-31",
-        "marketCap": 80237450219,
-        "enterpriseValue": 82457940811,
-        "trailingPE": 28.19186274509803,
-        "forwardPE": 26.195686274509807,
-        "priceEarningGrowth": 1.7019607843137248,
-        "priceSales": 4.411666666666665,
-        "priceBook": 6.991764705882352,
-        "enterpriseValueRevenue": 16.966176470588238,
-        "enterpriseValueEBITDA": 60.49421568627451
+        "marketCap": 102500874035,
+        "enterpriseValue": 105322749376,
+        "trailingPE": 39.93847222222221,
+        "forwardPE": 35.46620253164557,
+        "priceEarningGrowth": 2.5084285714285706,
+        "priceSales": 5.756874999999998,
+        "priceBook": 9.454210526315789,
+        "enterpriseValueRevenue": 22.118125000000006,
+        "enterpriseValueEBITDA": 69.8093670886076
       },
       "2020-01-31": {
         "period": "2020-01-31",
-        "marketCap": 8851960771,
-        "enterpriseValue": 9132843289,
-        "trailingPE": 6.973921568627452,
-        "forwardPE": 4.9777450980392155,
-        "priceEarningGrowth": 0.3204901960784314,
-        "priceSales": 1.1422549019607842,
-        "priceBook": 1.6480392156862744,
-        "enterpriseValueRevenue": 4.094313725490196,
-        "enterpriseValueEBITDA": 13.099803921568627
+        "marketCap": 60193333248,
+        "enterpriseValue": 62103334365,
+        "trailingPE": 59.278333333333336,
+        "forwardPE": 33.84866666666667,
+        "priceEarningGrowth": 2.335,
+        "priceSales": 7.767333333333331,
+        "priceBook": 12.007142857142856,
+        "enterpriseValueRevenue": 27.84133333333333,
+        "enterpriseValueEBITDA": 102.78307692307693
       },
       "2019-10-31": {
         "period": "2019-10-31",
-        "marketCap": 8272254835,
-        "enterpriseValue": 8592843223,
-        "trailingPE": 9.172450980392156,
-        "forwardPE": 4.362941176470588,
-        "priceEarningGrowth": 0.3459803921568627,
-        "priceSales": 1.0237254901960784,
-        "priceBook": 1.4997058823529412,
-        "enterpriseValueRevenue": 4.004313725490196,
-        "enterpriseValueEBITDA": 18.88901960784314
+        "marketCap": 56251332881,
+        "enterpriseValue": 58431333922,
+        "trailingPE": 77.96583333333332,
+        "forwardPE": 29.668,
+        "priceEarningGrowth": 2.5207142857142855,
+        "priceSales": 6.961333333333332,
+        "priceBook": 10.926428571428572,
+        "enterpriseValueRevenue": 27.229333333333333,
+        "enterpriseValueEBITDA": 148.20615384615388
       },
       "2019-07-31": {
         "period": "2019-07-31",
-        "marketCap": 8579411656,
-        "enterpriseValue": 8880392161,
-        "trailingPE": 3.590098039215686,
-        "forwardPE": 5.476470588235293,
-        "priceEarningGrowth": 0.3408823529411764,
-        "priceSales": 1.092156862745098,
-        "priceBook": 1.56421568627451,
-        "enterpriseValueRevenue": 4.4496078431372545,
-        "enterpriseValueEBITDA": 0.26813725490196016
+        "marketCap": 58339999266,
+        "enterpriseValue": 60386666700,
+        "trailingPE": 33.29,
+        "forwardPE": 37.239999999999995,
+        "priceEarningGrowth": 2.483571428571428,
+        "priceSales": 7.426666666666666,
+        "priceBook": 11.396428571428572,
+        "enterpriseValueRevenue": 30.25733333333333,
+        "enterpriseValueEBITDA": 1.953571428571424
       },
       "2019-04-30": {
         "period": "2019-04-30",
-        "marketCap": 8723627409,
-        "enterpriseValue": 8891666622,
-        "trailingPE": 3.421078431372549,
-        "forwardPE": 5.698039215686274,
-        "priceEarningGrowth": 0.3298039215686275,
-        "priceSales": 1.1309803921568624,
-        "priceBook": 1.6147058823529414,
-        "enterpriseValueRevenue": 4.185196078431373,
-        "enterpriseValueEBITDA": 15.362549019607847
+        "marketCap": 59320666385,
+        "enterpriseValue": 60463333034,
+        "trailingPE": 31.722727272727273,
+        "forwardPE": 38.74666666666666,
+        "priceEarningGrowth": 2.402857142857143,
+        "priceSales": 7.690666666666664,
+        "priceBook": 11.764285714285716,
+        "enterpriseValueRevenue": 28.459333333333337,
+        "enterpriseValueEBITDA": 111.9271428571429
       },
       "2019-01-31": {
         "period": "2019-01-31",
-        "marketCap": 7466078388,
-        "enterpriseValue": 7415293962,
-        "trailingPE": 4.8352941176470585,
-        "forwardPE": 4.894999999999999,
-        "priceEarningGrowth": 0.2703921568627451,
-        "priceSales": 0.9919607843137256,
-        "priceBook": 1.3736274509803923,
-        "enterpriseValueRevenue": 3.4938235294117654,
-        "enterpriseValueEBITDA": 16.755392156862744
+        "marketCap": 50769333043,
+        "enterpriseValue": 50423998941,
+        "trailingPE": 41.1,
+        "forwardPE": 33.285999999999994,
+        "priceEarningGrowth": 1.9700000000000002,
+        "priceSales": 6.745333333333334,
+        "priceBook": 10.007857142857144,
+        "enterpriseValueRevenue": 23.758000000000003,
+        "enterpriseValueEBITDA": 122.075
       },
       "2020-02-29": {
         "period": "2020-02-29",
-        "marketCap": 4366470505,
-        "enterpriseValue": 4768235319,
-        "trailingPE": 1.7280392156862745,
-        "forwardPE": 1.4537254901960786,
-        "priceEarningGrowth": 0.2118627450980392,
-        "priceSales": 0.2957843137254902,
-        "priceBook": 0.457843137254902,
-        "enterpriseValueRevenue": 1.1038235294117646,
-        "enterpriseValueEBITDA": 4.165980392156864
+        "marketCap": 89075998310,
+        "enterpriseValue": 97272000512,
+        "trailingPE": 35.251999999999995,
+        "forwardPE": 29.656,
+        "priceEarningGrowth": 4.322,
+        "priceSales": 6.034,
+        "priceBook": 9.344,
+        "enterpriseValueRevenue": 22.517999999999997,
+        "enterpriseValueEBITDA": 84.98600000000002
       },
       "2019-11-30": {
         "period": "2019-11-30",
-        "marketCap": 4363039221,
-        "enterpriseValue": 4508431500,
-        "trailingPE": 1.7050980392156863,
-        "forwardPE": 1.4770588235294118,
-        "priceEarningGrowth": 0.22225490196078432,
-        "priceSales": 0.2932352941176471,
-        "priceBook": 0.4698039215686275,
-        "enterpriseValueRevenue": 1.1065686274509805,
-        "enterpriseValueEBITDA": 4.160392156862745
+        "marketCap": 89006000128,
+        "enterpriseValue": 91972002611,
+        "trailingPE": 34.784,
+        "forwardPE": 30.131999999999998,
+        "priceEarningGrowth": 4.534000000000001,
+        "priceSales": 5.982000000000001,
+        "priceBook": 9.584,
+        "enterpriseValueRevenue": 22.574,
+        "enterpriseValueEBITDA": 84.872
       },
       "2019-08-31": {
         "period": "2019-08-31",
-        "marketCap": 4119509955,
-        "enterpriseValue": 4284215677,
-        "trailingPE": 1.631470588235294,
-        "forwardPE": 1.414019607843137,
-        "priceEarningGrowth": 0.16205882352941178,
-        "priceSales": 0.2857843137254902,
-        "priceBook": 0.45490196078431366,
-        "enterpriseValueRevenue": 1.0726470588235293,
-        "enterpriseValueEBITDA": 4.073333333333333
+        "marketCap": 84038003097,
+        "enterpriseValue": 87397999820,
+        "trailingPE": 33.282,
+        "forwardPE": 28.845999999999997,
+        "priceEarningGrowth": 4.1325,
+        "priceSales": 5.83,
+        "priceBook": 9.279999999999998,
+        "enterpriseValueRevenue": 21.881999999999998,
+        "enterpriseValueEBITDA": 83.096
       },
       "2019-05-31": {
         "period": "2019-05-31",
-        "marketCap": 3640980359,
-        "enterpriseValue": 3817254912,
-        "trailingPE": 1.5055882352941172,
-        "forwardPE": 1.2973529411764704,
-        "priceEarningGrowth": 0.15382352941176472,
-        "priceSales": 0.28009803921568627,
-        "priceBook": 0.41637254901960785,
-        "enterpriseValueRevenue": 1.0408823529411766,
-        "enterpriseValueEBITDA": 4.062058823529411
+        "marketCap": 74275999334,
+        "enterpriseValue": 77872000204,
+        "trailingPE": 30.71399999999999,
+        "forwardPE": 26.465999999999998,
+        "priceEarningGrowth": 3.9225000000000003,
+        "priceSales": 5.7139999999999995,
+        "priceBook": 8.494,
+        "enterpriseValueRevenue": 21.234,
+        "enterpriseValueEBITDA": 82.86599999999999
       },
       "2019-02-28": {
         "period": "2019-02-28",
-        "marketCap": 3767450945,
-        "enterpriseValue": 3913823372,
-        "trailingPE": 1.4601960784313726,
-        "forwardPE": 1.261470588235294,
-        "priceEarningGrowth": 0.12245098039215686,
-        "priceSales": 0.2803921568627451,
-        "priceBook": 0.42617647058823527,
-        "enterpriseValueRevenue": 0.9985294117647058,
-        "enterpriseValueEBITDA": 3.735196078431373
+        "marketCap": 76855999283,
+        "enterpriseValue": 79841996800,
+        "trailingPE": 29.788,
+        "forwardPE": 25.733999999999998,
+        "priceEarningGrowth": 3.1225,
+        "priceSales": 5.720000000000001,
+        "priceBook": 8.693999999999999,
+        "enterpriseValueRevenue": 20.369999999999997,
+        "enterpriseValueEBITDA": 76.19800000000001
       }
     }
   },
   "stocks": [
     {
+      "companyName": "Microsoft Corporation (MSFT)",
       "ticker": {
         "symbol": "MSFT",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Microsoft Corporation (MSFT)",
+        "price": 165.13,
+        "change": "+1.64 (+1.00%)",
+        "totalCashPerShare": 17.65,
+        "totalDebtEquity": 79.15,
+        "quarterlyRevenueGrowth": 13.7,
+        "quarterlyEarningsGrowth": 38.3,
+        "dilutedEarningPerShare": 5.74,
+        "week52Change": 37.23,
+        "week52Low": 119.01,
+        "week52High": 190.7,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 1159999913984,
-            "enterpriseValue": 1100000002048,
-            "trailingPE": 26.5,
-            "forwardPE": 24.39,
-            "priceEarningGrowth": 2.67,
-            "priceSales": 8.75,
-            "priceBook": 10.51,
-            "enterpriseValueRevenue": 8.19,
-            "enterpriseValueEBITDA": 17.04
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 1239999971328,
+            "enterpriseValue": 1190000066560,
+            "trailingPE": 28.48,
+            "forwardPE": 26.25,
+            "priceEarningGrowth": 2.87,
+            "priceSales": 9.4,
+            "priceBook": 11.29,
+            "enterpriseValueRevenue": 8.83,
+            "enterpriseValueEBITDA": 18.39
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -272,23 +295,35 @@
       }
     },
     {
+      "companyName": "Apple Inc. (AAPL)",
       "ticker": {
         "symbol": "AAPL",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Apple Inc. (AAPL)",
+        "price": 266.07,
+        "change": "+6.64 (+2.56%)",
+        "totalCashPerShare": 24.49,
+        "totalDebtEquity": 130.4,
+        "quarterlyRevenueGrowth": 8.9,
+        "quarterlyEarningsGrowth": 11.4,
+        "dilutedEarningPerShare": 12.6,
+        "week52Change": 33.74,
+        "week52Low": 170.27,
+        "week52High": 327.85,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 1049999966208,
-            "enterpriseValue": 1059999907840,
-            "trailingPE": 18.97,
-            "forwardPE": 18.62,
-            "priceEarningGrowth": 1.5,
-            "priceSales": 4.11,
-            "priceBook": 11.77,
-            "enterpriseValueRevenue": 3.94,
-            "enterpriseValueEBITDA": 12.68
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 1140000030720,
+            "enterpriseValue": 1140000030720,
+            "trailingPE": 20.43,
+            "forwardPE": 21.79,
+            "priceEarningGrowth": 1.75,
+            "priceSales": 4.43,
+            "priceBook": 12.68,
+            "enterpriseValueRevenue": 4.24,
+            "enterpriseValueEBITDA": 13.66
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -342,23 +377,35 @@
       }
     },
     {
+      "companyName": "Amazon.com, Inc. (AMZN)",
       "ticker": {
         "symbol": "AMZN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Amazon.com, Inc. (AMZN)",
+        "price": null,
+        "change": "+31.40 (+1.56%)",
+        "totalCashPerShare": 110.53,
+        "totalDebtEquity": 124.94,
+        "quarterlyRevenueGrowth": 20.8,
+        "quarterlyEarningsGrowth": 8.0,
+        "dilutedEarningPerShare": 23.01,
+        "week52Change": 10.79,
+        "week52Low": null,
+        "week52High": null,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 949669986304,
-            "enterpriseValue": 957859954688,
-            "trailingPE": 82.91,
-            "forwardPE": 64.94,
-            "priceEarningGrowth": 1.47,
-            "priceSales": 3.43,
-            "priceBook": 15.3,
-            "enterpriseValueRevenue": 3.41,
-            "enterpriseValueEBITDA": 25.64
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 999999995904,
+            "enterpriseValue": 1010000003072,
+            "trailingPE": 87.42,
+            "forwardPE": 68.49,
+            "priceEarningGrowth": 1.55,
+            "priceSales": 3.61,
+            "priceBook": 16.14,
+            "enterpriseValueRevenue": 3.6,
+            "enterpriseValueEBITDA": 27.02
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -412,23 +459,35 @@
       }
     },
     {
+      "companyName": "Alphabet Inc. (GOOG)",
       "ticker": {
         "symbol": "GOOG",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Alphabet Inc. (GOOG)",
+        "price": null,
+        "change": "+23.77 (+2.00%)",
+        "totalCashPerShare": 174.13,
+        "totalDebtEquity": 7.93,
+        "quarterlyRevenueGrowth": 17.3,
+        "quarterlyEarningsGrowth": 19.3,
+        "dilutedEarningPerShare": 49.16,
+        "week52Change": 0.47,
+        "week52Low": null,
+        "week52High": null,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 758660005888,
-            "enterpriseValue": 654950006784,
-            "trailingPE": 22.49,
-            "forwardPE": 20.33,
-            "priceEarningGrowth": 1.24,
-            "priceSales": 4.77,
-            "priceBook": 3.77,
-            "enterpriseValueRevenue": 4.05,
-            "enterpriseValueEBITDA": 12.72
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 814099988480,
+            "enterpriseValue": 710400016384,
+            "trailingPE": 24.14,
+            "forwardPE": 21.79,
+            "priceEarningGrowth": 1.33,
+            "priceSales": 5.12,
+            "priceBook": 4.05,
+            "enterpriseValueRevenue": 4.39,
+            "enterpriseValueEBITDA": 13.79
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -482,23 +541,35 @@
       }
     },
     {
+      "companyName": "Alphabet Inc. (GOOGL)",
       "ticker": {
         "symbol": "GOOGL",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Alphabet Inc. (GOOGL)",
+        "price": null,
+        "change": "+24.44 (+2.07%)",
+        "totalCashPerShare": 174.13,
+        "totalDebtEquity": 7.93,
+        "quarterlyRevenueGrowth": 17.3,
+        "quarterlyEarningsGrowth": 19.3,
+        "dilutedEarningPerShare": 49.16,
+        "week52Change": -0.21,
+        "week52Low": null,
+        "week52High": null,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 758660005888,
-            "enterpriseValue": 654950006784,
-            "trailingPE": 22.42,
-            "forwardPE": 20.24,
-            "priceEarningGrowth": 1.24,
-            "priceSales": 4.76,
-            "priceBook": 3.76,
-            "enterpriseValueRevenue": 4.05,
-            "enterpriseValueEBITDA": 12.72
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 814099988480,
+            "enterpriseValue": 710400016384,
+            "trailingPE": 24.06,
+            "forwardPE": 21.74,
+            "priceEarningGrowth": 1.33,
+            "priceSales": 5.1,
+            "priceBook": 4.03,
+            "enterpriseValueRevenue": 4.39,
+            "enterpriseValueEBITDA": 13.79
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -552,23 +623,35 @@
       }
     },
     {
+      "companyName": "Facebook, Inc. (FB)",
       "ticker": {
         "symbol": "FB",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Facebook, Inc. (FB)",
+        "price": 174.28,
+        "change": "+5.45 (+3.23%)",
+        "totalCashPerShare": 19.24,
+        "totalDebtEquity": 10.96,
+        "quarterlyRevenueGrowth": 24.6,
+        "quarterlyEarningsGrowth": 6.8,
+        "dilutedEarningPerShare": 6.43,
+        "week52Change": -1.82,
+        "week52Low": 137.1,
+        "week52High": 224.2,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 454930006016,
-            "enterpriseValue": 411300003840,
-            "trailingPE": 24.82,
-            "forwardPE": 18.66,
-            "priceEarningGrowth": 0.77,
-            "priceSales": 6.49,
-            "priceBook": 4.5,
-            "enterpriseValueRevenue": 5.82,
-            "enterpriseValueEBITDA": 13.45
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 481239990272,
+            "enterpriseValue": 436989984768,
+            "trailingPE": 26.26,
+            "forwardPE": 19.72,
+            "priceEarningGrowth": 0.85,
+            "priceSales": 6.87,
+            "priceBook": 4.76,
+            "enterpriseValueRevenue": 6.18,
+            "enterpriseValueEBITDA": 14.29
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -609,36 +692,48 @@
           "2019-03-31": {
             "period": "2019-03-31",
             "marketCap": 475730018304,
-            "enterpriseValue": 435609993216,
+            "enterpriseValue": 435119980544,
             "trailingPE": 22.02,
             "forwardPE": 22.17,
             "priceEarningGrowth": 0.93,
             "priceSales": 8.72,
             "priceBook": 5.66,
-            "enterpriseValueRevenue": 28.89,
-            "enterpriseValueEBITDA": 93.24
+            "enterpriseValueRevenue": 28.86,
+            "enterpriseValueEBITDA": 93.13
           }
         }
       }
     },
     {
+      "companyName": "Intel Corporation (INTC)",
       "ticker": {
         "symbol": "INTC",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Intel Corporation (INTC)",
+        "price": 58.98,
+        "change": "+0.58 (+0.99%)",
+        "totalCashPerShare": 3.07,
+        "totalDebtEquity": 38.13,
+        "quarterlyRevenueGrowth": 8.3,
+        "quarterlyEarningsGrowth": 32.9,
+        "dilutedEarningPerShare": 4.71,
+        "week52Change": 5.7,
+        "week52Low": 42.86,
+        "week52High": 69.29,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 222070013952,
-            "enterpriseValue": 237949992960,
-            "trailingPE": 11.01,
-            "forwardPE": 10.68,
-            "priceEarningGrowth": 1.76,
-            "priceSales": 3.22,
-            "priceBook": 2.86,
-            "enterpriseValueRevenue": 3.31,
-            "enterpriseValueEBITDA": 6.73
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 249979994112,
+            "enterpriseValue": 265859989504,
+            "trailingPE": 12.4,
+            "forwardPE": 12.09,
+            "priceEarningGrowth": 2.07,
+            "priceSales": 3.63,
+            "priceBook": 3.22,
+            "enterpriseValueRevenue": 3.69,
+            "enterpriseValueEBITDA": 7.52
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -692,23 +787,35 @@
       }
     },
     {
+      "companyName": "PepsiCo, Inc. (PEP)",
       "ticker": {
         "symbol": "PEP",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "PepsiCo, Inc. (PEP)",
+        "price": 132.61,
+        "change": "+2.13 (+1.63%)",
+        "totalCashPerShare": 4.13,
+        "totalDebtEquity": 226.18,
+        "quarterlyRevenueGrowth": 5.7,
+        "quarterlyEarningsGrowth": -74.2,
+        "dilutedEarningPerShare": 5.2,
+        "week52Change": 8.99,
+        "week52Low": 101.42,
+        "week52High": 147.2,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 164100014080,
-            "enterpriseValue": 190429986816,
-            "trailingPE": 22.72,
-            "forwardPE": 20.0,
-            "priceEarningGrowth": 2.78,
-            "priceSales": 2.47,
-            "priceBook": 11.1,
-            "enterpriseValueRevenue": 2.84,
-            "enterpriseValueEBITDA": 14.79
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 181270003712,
+            "enterpriseValue": 207600009216,
+            "trailingPE": 25.09,
+            "forwardPE": 22.12,
+            "priceEarningGrowth": 3.07,
+            "priceSales": 2.73,
+            "priceBook": 12.26,
+            "enterpriseValueRevenue": 3.09,
+            "enterpriseValueEBITDA": 16.12
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -762,23 +869,35 @@
       }
     },
     {
+      "companyName": "Comcast Corporation (CMCSA)",
       "ticker": {
         "symbol": "CMCSA",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Comcast Corporation (CMCSA)",
+        "price": 37.68,
+        "change": "+0.74 (+2.00%)",
+        "totalCashPerShare": 1.21,
+        "totalDebtEquity": 131.37,
+        "quarterlyRevenueGrowth": 2.0,
+        "quarterlyEarningsGrowth": 25.9,
+        "dilutedEarningPerShare": 2.83,
+        "week52Change": -8.19,
+        "week52Low": 31.71,
+        "week52High": 47.74,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 147609993216,
-            "enterpriseValue": 244330004480,
-            "trailingPE": 11.46,
-            "forwardPE": 11.03,
-            "priceEarningGrowth": 0.88,
-            "priceSales": 1.37,
-            "priceBook": 1.78,
-            "enterpriseValueRevenue": 2.24,
-            "enterpriseValueEBITDA": 7.08
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 168190001152,
+            "enterpriseValue": 264909996032,
+            "trailingPE": 13.05,
+            "forwardPE": 12.56,
+            "priceEarningGrowth": 1.0,
+            "priceSales": 1.56,
+            "priceBook": 2.03,
+            "enterpriseValueRevenue": 2.43,
+            "enterpriseValueEBITDA": 7.67
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -832,23 +951,35 @@
       }
     },
     {
+      "companyName": "Cisco Systems, Inc. (CSCO)",
       "ticker": {
         "symbol": "CSCO",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Cisco Systems, Inc. (CSCO)",
+        "price": 41.74,
+        "change": "+1.10 (+2.71%)",
+        "totalCashPerShare": 6.38,
+        "totalDebtEquity": 48.04,
+        "quarterlyRevenueGrowth": -3.5,
+        "quarterlyEarningsGrowth": 2.0,
+        "dilutedEarningPerShare": 2.56,
+        "week52Change": -24.93,
+        "week52Low": 32.4,
+        "week52High": 58.26,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 162550005760,
-            "enterpriseValue": 151479992320,
-            "trailingPE": 14.91,
-            "forwardPE": 11.57,
-            "priceEarningGrowth": 2.21,
-            "priceSales": 3.2,
-            "priceBook": 4.57,
-            "enterpriseValueRevenue": 2.94,
-            "enterpriseValueEBITDA": 8.83
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 172350013440,
+            "enterpriseValue": 161280000000,
+            "trailingPE": 15.81,
+            "forwardPE": 12.29,
+            "priceEarningGrowth": 2.34,
+            "priceSales": 3.4,
+            "priceBook": 4.85,
+            "enterpriseValueRevenue": 3.13,
+            "enterpriseValueEBITDA": 9.4
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -914,23 +1045,35 @@
       }
     },
     {
+      "companyName": "Adobe Inc. (ADBE)",
       "ticker": {
         "symbol": "ADBE",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Adobe Inc. (ADBE)",
+        "price": 317.18,
+        "change": "+8.25 (+2.67%)",
+        "totalCashPerShare": 8.66,
+        "totalDebtEquity": 45.02,
+        "quarterlyRevenueGrowth": 18.8,
+        "quarterlyEarningsGrowth": 41.7,
+        "dilutedEarningPerShare": 6.6,
+        "week52Change": 16.65,
+        "week52Low": 255.13,
+        "week52High": 386.75,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 145120002048,
-            "enterpriseValue": 145660002304,
-            "trailingPE": 45.64,
-            "forwardPE": 30.58,
-            "priceEarningGrowth": 1.57,
-            "priceSales": 12.66,
-            "priceBook": 13.87,
-            "enterpriseValueRevenue": 12.49,
-            "enterpriseValueEBITDA": 33.8
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 148839989248,
+            "enterpriseValue": 149380005888,
+            "trailingPE": 46.81,
+            "forwardPE": 31.35,
+            "priceEarningGrowth": 1.61,
+            "priceSales": 12.98,
+            "priceBook": 14.22,
+            "enterpriseValueRevenue": 12.81,
+            "enterpriseValueEBITDA": 34.66
           },
           "2020-02-29": {
             "period": "2020-02-29",
@@ -996,23 +1139,35 @@
       }
     },
     {
+      "companyName": "Netflix, Inc. (NFLX)",
       "ticker": {
         "symbol": "NFLX",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Netflix, Inc. (NFLX)",
+        "price": 371.12,
+        "change": "-1.16 (-0.31%)",
+        "totalCashPerShare": 11.44,
+        "totalDebtEquity": 215.93,
+        "quarterlyRevenueGrowth": 30.6,
+        "quarterlyEarningsGrowth": 338.3,
+        "dilutedEarningPerShare": 4.13,
+        "week52Change": 0.94,
+        "week52Low": 252.28,
+        "week52High": 393.52,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 159759990784,
-            "enterpriseValue": 169500000256,
-            "trailingPE": 88.15,
-            "forwardPE": 60.61,
-            "priceEarningGrowth": 2.67,
-            "priceSales": 8.16,
-            "priceBook": 21.07,
-            "enterpriseValueRevenue": 8.41,
-            "enterpriseValueEBITDA": 14.12
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 163359997952,
+            "enterpriseValue": 173100007424,
+            "trailingPE": 90.14,
+            "forwardPE": 62.11,
+            "priceEarningGrowth": 2.73,
+            "priceSales": 8.34,
+            "priceBook": 21.55,
+            "enterpriseValueRevenue": 8.59,
+            "enterpriseValueEBITDA": 14.42
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1066,23 +1221,35 @@
       }
     },
     {
+      "companyName": "Costco Wholesale Corporation (COST)",
       "ticker": {
         "symbol": "COST",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Costco Wholesale Corporation (COST)",
+        "price": 305.97,
+        "change": "+2.34 (+0.77%)",
+        "totalCashPerShare": 19.74,
+        "totalDebtEquity": 51.62,
+        "quarterlyRevenueGrowth": 10.4,
+        "quarterlyEarningsGrowth": 4.7,
+        "dilutedEarningPerShare": 8.52,
+        "week52Change": 26.83,
+        "week52Low": 233.05,
+        "week52High": 325.26,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 126639996928,
-            "enterpriseValue": 125969997824,
-            "trailingPE": 33.66,
-            "forwardPE": 33.0,
-            "priceEarningGrowth": 4.15,
-            "priceSales": 0.8,
-            "priceBook": 7.62,
-            "enterpriseValueRevenue": 0.8,
-            "enterpriseValueEBITDA": 18.89
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 134080004096,
+            "enterpriseValue": 133410004992,
+            "trailingPE": 35.64,
+            "forwardPE": 34.97,
+            "priceEarningGrowth": 4.39,
+            "priceSales": 0.85,
+            "priceBook": 8.07,
+            "enterpriseValueRevenue": 0.84,
+            "enterpriseValueEBITDA": 20.0
           },
           "2020-02-29": {
             "period": "2020-02-29",
@@ -1148,23 +1315,35 @@
       }
     },
     {
+      "companyName": "NVIDIA Corporation (NVDA)",
       "ticker": {
         "symbol": "NVDA",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "NVIDIA Corporation (NVDA)",
+        "price": 266.95,
+        "change": "+7.92 (+3.06%)",
+        "totalCashPerShare": 17.81,
+        "totalDebtEquity": 21.66,
+        "quarterlyRevenueGrowth": 40.8,
+        "quarterlyEarningsGrowth": 68.0,
+        "dilutedEarningPerShare": 4.52,
+        "week52Change": 39.37,
+        "week52Low": 132.6,
+        "week52High": 316.32,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 148760002560,
-            "enterpriseValue": 140499992576,
-            "trailingPE": 53.78,
-            "forwardPE": 32.36,
-            "priceEarningGrowth": 3.07,
-            "priceSales": 13.76,
-            "priceBook": 12.19,
-            "enterpriseValueRevenue": 12.87,
-            "enterpriseValueEBITDA": 41.29
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 158529994752,
+            "enterpriseValue": 150270001152,
+            "trailingPE": 57.31,
+            "forwardPE": 34.48,
+            "priceEarningGrowth": 3.27,
+            "priceSales": 14.66,
+            "priceBook": 12.99,
+            "enterpriseValueRevenue": 13.76,
+            "enterpriseValueEBITDA": 44.16
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -1230,23 +1409,35 @@
       }
     },
     {
+      "companyName": "Amgen Inc. (AMGN)",
       "ticker": {
         "symbol": "AMGN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Amgen Inc. (AMGN)",
+        "price": 219.19,
+        "change": "+10.41 (+4.99%)",
+        "totalCashPerShare": 15.11,
+        "totalDebtEquity": 314.6,
+        "quarterlyRevenueGrowth": -0.5,
+        "quarterlyEarningsGrowth": -11.7,
+        "dilutedEarningPerShare": 12.88,
+        "week52Change": 14.1,
+        "week52Low": 166.3,
+        "week52High": 244.99,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 116669997056,
-            "enterpriseValue": 137660006400,
-            "trailingPE": 15.36,
-            "forwardPE": 12.74,
-            "priceEarningGrowth": 1.33,
-            "priceSales": 5.16,
-            "priceBook": 12.06,
-            "enterpriseValueRevenue": 5.89,
-            "enterpriseValueEBITDA": 10.9
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 123139997696,
+            "enterpriseValue": 144129998848,
+            "trailingPE": 16.21,
+            "forwardPE": 13.44,
+            "priceEarningGrowth": 1.43,
+            "priceSales": 5.44,
+            "priceBook": 12.73,
+            "enterpriseValueRevenue": 6.17,
+            "enterpriseValueEBITDA": 11.41
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1300,23 +1491,35 @@
       }
     },
     {
+      "companyName": "PayPal Holdings, Inc. (PYPL)",
       "ticker": {
         "symbol": "PYPL",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "PayPal Holdings, Inc. (PYPL)",
+        "price": 105.06,
+        "change": "+4.78 (+4.77%)",
+        "totalCashPerShare": 9.17,
+        "totalDebtEquity": 32.32,
+        "quarterlyRevenueGrowth": 17.4,
+        "quarterlyEarningsGrowth": -13.2,
+        "dilutedEarningPerShare": 2.07,
+        "week52Change": -1.32,
+        "week52Low": 82.07,
+        "week52High": 124.45,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 107179999232,
-            "enterpriseValue": 101390000128,
-            "trailingPE": 44.14,
-            "forwardPE": 26.67,
-            "priceEarningGrowth": 1.76,
-            "priceSales": 6.11,
-            "priceBook": 6.35,
-            "enterpriseValueRevenue": 5.7,
-            "enterpriseValueEBITDA": 25.19
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 117619998720,
+            "enterpriseValue": 111829999616,
+            "trailingPE": 48.44,
+            "forwardPE": 29.24,
+            "priceEarningGrowth": 1.93,
+            "priceSales": 6.7,
+            "priceBook": 6.97,
+            "enterpriseValueRevenue": 6.29,
+            "enterpriseValueEBITDA": 27.78
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1326,7 +1529,7 @@
             "forwardPE": 30.96,
             "priceEarningGrowth": 2.0,
             "priceSales": 7.55,
-            "priceBook": 7.71,
+            "priceBook": 7.7,
             "enterpriseValueRevenue": 24.47,
             "enterpriseValueEBITDA": 108.57
           },
@@ -1370,23 +1573,35 @@
       }
     },
     {
+      "companyName": "Gilead Sciences, Inc. (GILD)",
       "ticker": {
         "symbol": "GILD",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Gilead Sciences, Inc. (GILD)",
+        "price": 74.99,
+        "change": "+0.32 (+0.43%)",
+        "totalCashPerShare": 19.52,
+        "totalDebtEquity": 111.78,
+        "quarterlyRevenueGrowth": 1.4,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": 4.22,
+        "week52Change": 13.09,
+        "week52Low": 60.89,
+        "week52High": 85.97,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 91290001408,
-            "enterpriseValue": 91530002432,
-            "trailingPE": 17.18,
-            "forwardPE": 11.44,
-            "priceEarningGrowth": 0.5,
-            "priceSales": 4.12,
-            "priceBook": 4.05,
-            "enterpriseValueRevenue": 4.08,
-            "enterpriseValueEBITDA": 12.11
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 94009999360,
+            "enterpriseValue": 94250000384,
+            "trailingPE": 17.69,
+            "forwardPE": 11.89,
+            "priceEarningGrowth": 0.53,
+            "priceSales": 4.25,
+            "priceBook": 4.17,
+            "enterpriseValueRevenue": 4.2,
+            "enterpriseValueEBITDA": 12.47
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1440,23 +1655,35 @@
       }
     },
     {
+      "companyName": "Texas Instruments Incorporated (TXN)",
       "ticker": {
         "symbol": "TXN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Texas Instruments Incorporated (TXN)",
+        "price": 110.17,
+        "change": "+3.91 (+3.68%)",
+        "totalCashPerShare": 5.77,
+        "totalDebtEquity": 68.88,
+        "quarterlyRevenueGrowth": -9.9,
+        "quarterlyEarningsGrowth": -13.6,
+        "dilutedEarningPerShare": 5.24,
+        "week52Change": -4.1,
+        "week52Low": 93.09,
+        "week52High": 135.7,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 90459996160,
-            "enterpriseValue": 91139997696,
-            "trailingPE": 18.49,
-            "forwardPE": 18.66,
-            "priceEarningGrowth": 1.76,
-            "priceSales": 6.41,
-            "priceBook": 10.16,
-            "enterpriseValueRevenue": 6.34,
-            "enterpriseValueEBITDA": 13.12
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 99210002432,
+            "enterpriseValue": 99889995776,
+            "trailingPE": 20.28,
+            "forwardPE": 20.45,
+            "priceEarningGrowth": 1.93,
+            "priceSales": 7.03,
+            "priceBook": 11.14,
+            "enterpriseValueRevenue": 6.94,
+            "enterpriseValueEBITDA": 14.38
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1510,23 +1737,35 @@
       }
     },
     {
+      "companyName": "Charter Communications, Inc. (CHTR)",
       "ticker": {
         "symbol": "CHTR",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Charter Communications, Inc. (CHTR)",
+        "price": 463.93,
+        "change": "+12.18 (+2.70%)",
+        "totalCashPerShare": 16.59,
+        "totalDebtEquity": 206.99,
+        "quarterlyRevenueGrowth": 4.7,
+        "quarterlyEarningsGrowth": 141.2,
+        "dilutedEarningPerShare": 7.45,
+        "week52Change": 30.59,
+        "week52Low": 345.67,
+        "week52High": 546.54,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 99309993984,
-            "enterpriseValue": 176089989120,
-            "trailingPE": 56.92,
-            "forwardPE": 32.68,
-            "priceEarningGrowth": 0.8,
-            "priceSales": 2.07,
-            "priceBook": 3.16,
-            "enterpriseValueRevenue": 3.85,
-            "enterpriseValueEBITDA": 10.65
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 105799999488,
+            "enterpriseValue": 182589997056,
+            "trailingPE": 60.64,
+            "forwardPE": 34.72,
+            "priceEarningGrowth": 0.85,
+            "priceSales": 2.21,
+            "priceBook": 3.36,
+            "enterpriseValueRevenue": 3.99,
+            "enterpriseValueEBITDA": 11.04
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1580,23 +1819,35 @@
       }
     },
     {
+      "companyName": "Broadcom Inc. (AVGO)",
       "ticker": {
         "symbol": "AVGO",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Broadcom Inc. (AVGO)",
+        "price": 261.1,
+        "change": "+7.83 (+3.09%)",
+        "totalCashPerShare": 16.12,
+        "totalDebtEquity": 186.02,
+        "quarterlyRevenueGrowth": 1.2,
+        "quarterlyEarningsGrowth": -18.3,
+        "dilutedEarningPerShare": 6.05,
+        "week52Change": -15.61,
+        "week52Low": 155.67,
+        "week52High": 331.58,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 89410002944,
-            "enterpriseValue": 127709995008,
-            "trailingPE": 37.02,
-            "forwardPE": 10.15,
-            "priceEarningGrowth": 0.77,
-            "priceSales": 4.14,
-            "priceBook": 3.67,
-            "enterpriseValueRevenue": 5.63,
-            "enterpriseValueEBITDA": 12.99
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 101260001280,
+            "enterpriseValue": 139559993344,
+            "trailingPE": 41.93,
+            "forwardPE": 11.51,
+            "priceEarningGrowth": 0.87,
+            "priceSales": 4.68,
+            "priceBook": 4.16,
+            "enterpriseValueRevenue": 6.16,
+            "enterpriseValueEBITDA": 14.19
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -1662,23 +1913,35 @@
       }
     },
     {
+      "companyName": "Tesla, Inc. (TSLA)",
       "ticker": {
         "symbol": "TSLA",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Tesla, Inc. (TSLA)",
+        "price": 548.84,
+        "change": "+3.39 (+0.62%)",
+        "totalCashPerShare": 34.56,
+        "totalDebtEquity": 181.22,
+        "quarterlyRevenueGrowth": 2.2,
+        "quarterlyEarningsGrowth": -25.0,
+        "dilutedEarningPerShare": -4.92,
+        "week52Change": 104.47,
+        "week52Low": 176.99,
+        "week52High": 968.99,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 88789999616,
-            "enterpriseValue": 96899997696,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 100579999744,
+            "enterpriseValue": 108680003584,
             "trailingPE": null,
-            "forwardPE": 84.75,
-            "priceEarningGrowth": 0.96,
-            "priceSales": 3.47,
-            "priceBook": 13.42,
-            "enterpriseValueRevenue": 3.94,
-            "enterpriseValueEBITDA": 44.57
+            "forwardPE": 95.24,
+            "priceEarningGrowth": 1.09,
+            "priceSales": 3.93,
+            "priceBook": 15.2,
+            "enterpriseValueRevenue": 4.42,
+            "enterpriseValueEBITDA": 49.99
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1732,23 +1995,35 @@
       }
     },
     {
+      "companyName": "QUALCOMM Incorporated (QCOM)",
       "ticker": {
         "symbol": "QCOM",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "QUALCOMM Incorporated (QCOM)",
+        "price": 73.33,
+        "change": "+0.60 (+0.82%)",
+        "totalCashPerShare": 9.99,
+        "totalDebtEquity": 353.09,
+        "quarterlyRevenueGrowth": 4.9,
+        "quarterlyEarningsGrowth": -13.4,
+        "dilutedEarningPerShare": 3.52,
+        "week52Change": 31.18,
+        "week52Low": 55.79,
+        "week52High": 96.17,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 75330002944,
-            "enterpriseValue": 79839993856,
-            "trailingPE": 18.72,
-            "forwardPE": 15.6,
-            "priceEarningGrowth": 0.75,
-            "priceSales": 3.24,
-            "priceBook": 16.69,
-            "enterpriseValueRevenue": 3.26,
-            "enterpriseValueEBITDA": 8.08
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 83129999360,
+            "enterpriseValue": 87650000896,
+            "trailingPE": 20.66,
+            "forwardPE": 17.21,
+            "priceEarningGrowth": 0.83,
+            "priceSales": 3.57,
+            "priceBook": 18.42,
+            "enterpriseValueRevenue": 3.58,
+            "enterpriseValueEBITDA": 8.86
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1802,23 +2077,35 @@
       }
     },
     {
+      "companyName": "Starbucks Corporation (SBUX)",
       "ticker": {
         "symbol": "SBUX",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Starbucks Corporation (SBUX)",
+        "price": 71.57,
+        "change": "+2.86 (+4.16%)",
+        "totalCashPerShare": 2.65,
+        "totalDebtEquity": null,
+        "quarterlyRevenueGrowth": 7.0,
+        "quarterlyEarningsGrowth": 16.4,
+        "dilutedEarningPerShare": 3.05,
+        "week52Change": -5.67,
+        "week52Low": 50.02,
+        "week52High": 99.72,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 73500000256,
-            "enterpriseValue": 91019993088,
-            "trailingPE": 20.53,
-            "forwardPE": 22.37,
-            "priceEarningGrowth": 2.13,
-            "priceSales": 2.83,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 80640000000,
+            "enterpriseValue": 98169995264,
+            "trailingPE": 22.53,
+            "forwardPE": 24.51,
+            "priceEarningGrowth": 2.34,
+            "priceSales": 3.1,
             "priceBook": null,
-            "enterpriseValueRevenue": 3.37,
-            "enterpriseValueEBITDA": 14.09
+            "enterpriseValueRevenue": 3.64,
+            "enterpriseValueEBITDA": 15.2
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1872,23 +2159,35 @@
       }
     },
     {
+      "companyName": "T-Mobile US, Inc. (TMUS)",
       "ticker": {
         "symbol": "TMUS",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "T-Mobile US, Inc. (TMUS)",
+        "price": 86.85,
+        "change": "+0.34 (+0.39%)",
+        "totalCashPerShare": 1.78,
+        "totalDebtEquity": 151.22,
+        "quarterlyRevenueGrowth": 3.8,
+        "quarterlyEarningsGrowth": 17.3,
+        "dilutedEarningPerShare": 4.02,
+        "week52Change": 18.97,
+        "week52Low": 63.5,
+        "week52High": 101.35,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 72949997568,
-            "enterpriseValue": 97529995264,
-            "trailingPE": 21.18,
-            "forwardPE": 19.12,
-            "priceEarningGrowth": 0.99,
-            "priceSales": 1.63,
-            "priceBook": 2.53,
-            "enterpriseValueRevenue": 2.17,
-            "enterpriseValueEBITDA": 7.89
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 106920001536,
+            "enterpriseValue": 131499999232,
+            "trailingPE": 21.52,
+            "forwardPE": 19.46,
+            "priceEarningGrowth": 1.01,
+            "priceSales": 1.66,
+            "priceBook": 3.71,
+            "enterpriseValueRevenue": 2.92,
+            "enterpriseValueEBITDA": 10.64
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -1942,23 +2241,35 @@
       }
     },
     {
+      "companyName": "Mondelez International, Inc. (MDLZ)",
       "ticker": {
         "symbol": "MDLZ",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Mondelez International, Inc. (MDLZ)",
+        "price": 51.79,
+        "change": "-0.01 (-0.02%)",
+        "totalCashPerShare": 0.91,
+        "totalDebtEquity": 70.19,
+        "quarterlyRevenueGrowth": 2.1,
+        "quarterlyEarningsGrowth": -11.8,
+        "dilutedEarningPerShare": 2.65,
+        "week52Change": 4.27,
+        "week52Low": 41.19,
+        "week52High": 59.96,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 69760000000,
-            "enterpriseValue": 87290003456,
-            "trailingPE": 18.37,
-            "forwardPE": 18.38,
-            "priceEarningGrowth": 3.02,
-            "priceSales": 2.74,
-            "priceBook": 2.56,
-            "enterpriseValueRevenue": 3.37,
-            "enterpriseValueEBITDA": 17.54
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 74059997184,
+            "enterpriseValue": 91599994880,
+            "trailingPE": 19.55,
+            "forwardPE": 19.53,
+            "priceEarningGrowth": 2.83,
+            "priceSales": 2.92,
+            "priceBook": 2.72,
+            "enterpriseValueRevenue": 3.54,
+            "enterpriseValueEBITDA": 18.4
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2012,23 +2323,35 @@
       }
     },
     {
+      "companyName": "Fiserv, Inc. (FISV)",
       "ticker": {
         "symbol": "FISV",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Fiserv, Inc. (FISV)",
+        "price": 98.37,
+        "change": "+3.75 (+3.96%)",
+        "totalCashPerShare": 1.32,
+        "totalDebtEquity": 64.96,
+        "quarterlyRevenueGrowth": 160.8,
+        "quarterlyEarningsGrowth": -13.6,
+        "dilutedEarningPerShare": 1.71,
+        "week52Change": 15.0,
+        "week52Low": 73.5,
+        "week52High": 125.05,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 59769999360,
-            "enterpriseValue": 80769998848,
-            "trailingPE": 51.47,
-            "forwardPE": 17.83,
-            "priceEarningGrowth": 1.89,
-            "priceSales": 4.51,
-            "priceBook": 1.81,
-            "enterpriseValueRevenue": 7.93,
-            "enterpriseValueEBITDA": 24.89
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 63990001664,
+            "enterpriseValue": 85000003584,
+            "trailingPE": 55.33,
+            "forwardPE": 19.16,
+            "priceEarningGrowth": 2.03,
+            "priceSales": 4.85,
+            "priceBook": 1.94,
+            "enterpriseValueRevenue": 8.34,
+            "enterpriseValueEBITDA": 26.19
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2082,23 +2405,35 @@
       }
     },
     {
+      "companyName": "Intuit Inc. (INTU)",
       "ticker": {
         "symbol": "INTU",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Intuit Inc. (INTU)",
+        "price": 245.93,
+        "change": "+6.17 (+2.57%)",
+        "totalCashPerShare": 8.7,
+        "totalDebtEquity": 20.23,
+        "quarterlyRevenueGrowth": 12.9,
+        "quarterlyEarningsGrowth": 27.0,
+        "dilutedEarningPerShare": 6.18,
+        "week52Change": -5.26,
+        "week52Low": 187.68,
+        "week52High": 306.89,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 56819998720,
-            "enterpriseValue": 54840000512,
-            "trailingPE": 35.29,
-            "forwardPE": 25.71,
-            "priceEarningGrowth": 1.8,
-            "priceSales": 8.08,
-            "priceBook": 15.24,
-            "enterpriseValueRevenue": 7.7,
-            "enterpriseValueEBITDA": 24.9
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 62449999872,
+            "enterpriseValue": 60480000000,
+            "trailingPE": 38.8,
+            "forwardPE": 28.25,
+            "priceEarningGrowth": 1.98,
+            "priceSales": 8.88,
+            "priceBook": 16.76,
+            "enterpriseValueRevenue": 8.49,
+            "enterpriseValueEBITDA": 27.45
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -2164,23 +2499,35 @@
       }
     },
     {
+      "companyName": "Vertex Pharmaceuticals Incorporated (VRTX)",
       "ticker": {
         "symbol": "VRTX",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Vertex Pharmaceuticals Incorporated (VRTX)",
+        "price": 249.66,
+        "change": "+1.99 (+0.80%)",
+        "totalCashPerShare": 14.69,
+        "totalDebtEquity": 11.06,
+        "quarterlyRevenueGrowth": 62.4,
+        "quarterlyEarningsGrowth": -62.4,
+        "dilutedEarningPerShare": 4.51,
+        "week52Change": 34.86,
+        "week52Low": 163.68,
+        "week52High": 267.45,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 58460000256,
-            "enterpriseValue": 55189999616,
-            "trailingPE": 50.0,
-            "forwardPE": 30.67,
-            "priceEarningGrowth": 0.54,
-            "priceSales": 14.12,
-            "priceBook": 9.61,
-            "enterpriseValueRevenue": 13.26,
-            "enterpriseValueEBITDA": 35.37
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 64209997824,
+            "enterpriseValue": 60939997184,
+            "trailingPE": 54.92,
+            "forwardPE": 33.67,
+            "priceEarningGrowth": 0.59,
+            "priceSales": 15.51,
+            "priceBook": 10.55,
+            "enterpriseValueRevenue": 14.64,
+            "enterpriseValueEBITDA": 39.06
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2234,23 +2581,35 @@
       }
     },
     {
+      "companyName": "Regeneron Pharmaceuticals, Inc. (REGN)",
       "ticker": {
         "symbol": "REGN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Regeneron Pharmaceuticals, Inc. (REGN)",
+        "price": 512.33,
+        "change": "+10.82 (+2.16%)",
+        "totalCashPerShare": 29.53,
+        "totalDebtEquity": 6.65,
+        "quarterlyRevenueGrowth": 12.5,
+        "quarterlyEarningsGrowth": -3.5,
+        "dilutedEarningPerShare": 18.46,
+        "week52Change": 30.2,
+        "week52Low": 271.37,
+        "week52High": 518.0,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 54640001024,
-            "enterpriseValue": 52139999232,
-            "trailingPE": 26.9,
-            "forwardPE": 18.15,
-            "priceEarningGrowth": 1.83,
-            "priceSales": 7.24,
-            "priceBook": 4.93,
-            "enterpriseValueRevenue": 6.63,
-            "enterpriseValueEBITDA": 19.53
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 55180001280,
+            "enterpriseValue": 52679999488,
+            "trailingPE": 27.17,
+            "forwardPE": 18.25,
+            "priceEarningGrowth": 1.74,
+            "priceSales": 7.31,
+            "priceBook": 4.98,
+            "enterpriseValueRevenue": 6.7,
+            "enterpriseValueEBITDA": 19.73
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2304,23 +2663,35 @@
       }
     },
     {
+      "companyName": "Biogen Inc. (BIIB)",
       "ticker": {
         "symbol": "BIIB",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Biogen Inc. (BIIB)",
+        "price": 316.95,
+        "change": "+15.74 (+5.23%)",
+        "totalCashPerShare": 25.71,
+        "totalDebtEquity": 48.29,
+        "quarterlyRevenueGrowth": 4.1,
+        "quarterlyEarningsGrowth": 52.1,
+        "dilutedEarningPerShare": 31.42,
+        "week52Change": 35.55,
+        "week52Low": 215.78,
+        "week52High": 374.99,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 51050000384,
-            "enterpriseValue": 52939997184,
-            "trailingPE": 9.33,
-            "forwardPE": 9.17,
-            "priceEarningGrowth": 5.99,
-            "priceSales": 3.82,
-            "priceBook": 3.83,
-            "enterpriseValueRevenue": 3.68,
-            "enterpriseValueEBITDA": 6.62
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 52430000128,
+            "enterpriseValue": 54320001024,
+            "trailingPE": 9.59,
+            "forwardPE": 9.42,
+            "priceEarningGrowth": 9.41,
+            "priceSales": 3.93,
+            "priceBook": 3.93,
+            "enterpriseValueRevenue": 3.78,
+            "enterpriseValueEBITDA": 6.8
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2374,23 +2745,35 @@
       }
     },
     {
+      "companyName": "Automatic Data Processing, Inc. (ADP)",
       "ticker": {
         "symbol": "ADP",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Automatic Data Processing, Inc. (ADP)",
+        "price": 138.53,
+        "change": "+1.57 (+1.15%)",
+        "totalCashPerShare": 3.49,
+        "totalDebtEquity": 46.03,
+        "quarterlyRevenueGrowth": 5.1,
+        "quarterlyEarningsGrowth": 16.7,
+        "dilutedEarningPerShare": 5.66,
+        "week52Change": -14.31,
+        "week52Low": 103.11,
+        "week52High": 182.32,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 56009998336,
-            "enterpriseValue": 56860000256,
-            "trailingPE": 22.92,
-            "forwardPE": 20.96,
-            "priceEarningGrowth": 2.3,
-            "priceSales": 3.88,
-            "priceBook": 10.44,
-            "enterpriseValueRevenue": 3.91,
-            "enterpriseValueEBITDA": 15.1
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 59129999360,
+            "enterpriseValue": 59990003712,
+            "trailingPE": 24.2,
+            "forwardPE": 22.12,
+            "priceEarningGrowth": 2.43,
+            "priceSales": 4.1,
+            "priceBook": 11.02,
+            "enterpriseValueRevenue": 4.13,
+            "enterpriseValueEBITDA": 15.93
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2444,23 +2827,35 @@
       }
     },
     {
+      "companyName": "Booking Holdings Inc. (BKNG)",
       "ticker": {
         "symbol": "BKNG",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Booking Holdings Inc. (BKNG)",
+        "price": null,
+        "change": "-4.31 (-0.31%)",
+        "totalCashPerShare": 178.02,
+        "totalDebtEquity": 155.92,
+        "quarterlyRevenueGrowth": 3.9,
+        "quarterlyEarningsGrowth": 81.3,
+        "dilutedEarningPerShare": 111.82,
+        "week52Change": -24.55,
+        "week52Low": null,
+        "week52High": null,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 52220002304,
-            "enterpriseValue": 54000001024,
-            "trailingPE": 11.37,
-            "forwardPE": 18.52,
-            "priceEarningGrowth": 1.86,
-            "priceSales": 3.67,
-            "priceBook": 8.8,
-            "enterpriseValueRevenue": 3.58,
-            "enterpriseValueEBITDA": 7.87
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 56519999488,
+            "enterpriseValue": 58299998208,
+            "trailingPE": 12.31,
+            "forwardPE": 20.04,
+            "priceEarningGrowth": 2.01,
+            "priceSales": 3.97,
+            "priceBook": 9.53,
+            "enterpriseValueRevenue": 3.87,
+            "enterpriseValueEBITDA": 8.49
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2514,23 +2909,35 @@
       }
     },
     {
+      "companyName": "Intuitive Surgical, Inc. (ISRG)",
       "ticker": {
         "symbol": "ISRG",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Intuitive Surgical, Inc. (ISRG)",
+        "price": 510.5,
+        "change": "+20.51 (+4.19%)",
+        "totalCashPerShare": 27.78,
+        "totalDebtEquity": 0.92,
+        "quarterlyRevenueGrowth": 22.1,
+        "quarterlyEarningsGrowth": 22.3,
+        "dilutedEarningPerShare": 11.54,
+        "week52Change": -12.68,
+        "week52Low": 360.5,
+        "week52High": 619.0,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 53499998208,
-            "enterpriseValue": 50279997440,
-            "trailingPE": 39.71,
-            "forwardPE": 33.9,
-            "priceEarningGrowth": 3.13,
-            "priceSales": 12.23,
-            "priceBook": 6.47,
-            "enterpriseValueRevenue": 11.23,
-            "enterpriseValueEBITDA": 31.61
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 57209999360,
+            "enterpriseValue": 53980000256,
+            "trailingPE": 42.46,
+            "forwardPE": 36.36,
+            "priceEarningGrowth": 3.35,
+            "priceSales": 13.07,
+            "priceBook": 6.92,
+            "enterpriseValueRevenue": 12.05,
+            "enterpriseValueEBITDA": 33.94
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2584,23 +2991,35 @@
       }
     },
     {
+      "companyName": "Advanced Micro Devices, Inc. (AMD)",
       "ticker": {
         "symbol": "AMD",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Advanced Micro Devices, Inc. (AMD)",
+        "price": 48.79,
+        "change": "+1.23 (+2.59%)",
+        "totalCashPerShare": 1.28,
+        "totalDebtEquity": 25.75,
+        "quarterlyRevenueGrowth": 49.9,
+        "quarterlyEarningsGrowth": 347.4,
+        "dilutedEarningPerShare": 0.3,
+        "week52Change": 75.57,
+        "week52Low": 26.03,
+        "week52High": 59.27,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 51119996928,
-            "enterpriseValue": 50339999744,
-            "trailingPE": 145.53,
-            "forwardPE": 38.31,
-            "priceEarningGrowth": 1.59,
-            "priceSales": 7.26,
-            "priceBook": 18.08,
-            "enterpriseValueRevenue": 7.48,
-            "enterpriseValueEBITDA": 69.54
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 55689998336,
+            "enterpriseValue": 54910001152,
+            "trailingPE": 158.53,
+            "forwardPE": 41.67,
+            "priceEarningGrowth": 1.74,
+            "priceSales": 7.91,
+            "priceBook": 19.7,
+            "enterpriseValueRevenue": 8.16,
+            "enterpriseValueEBITDA": 75.84
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2654,23 +3073,35 @@
       }
     },
     {
+      "companyName": "Walgreens Boots Alliance, Inc. (WBA)",
       "ticker": {
         "symbol": "WBA",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Walgreens Boots Alliance, Inc. (WBA)",
+        "price": 43.09,
+        "change": "+0.28 (+0.65%)",
+        "totalCashPerShare": 0.9,
+        "totalDebtEquity": 172.29,
+        "quarterlyRevenueGrowth": 3.7,
+        "quarterlyEarningsGrowth": -18.2,
+        "dilutedEarningPerShare": 3.89,
+        "week52Change": -19.37,
+        "week52Low": 39.41,
+        "week52High": 64.5,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 35719999488,
-            "enterpriseValue": 75940003840,
-            "trailingPE": 9.88,
-            "forwardPE": 6.84,
-            "priceEarningGrowth": 12.01,
-            "priceSales": 0.27,
-            "priceBook": 1.51,
-            "enterpriseValueRevenue": 0.55,
-            "enterpriseValueEBITDA": 12.13
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 37549998080,
+            "enterpriseValue": 77610000384,
+            "trailingPE": 10.98,
+            "forwardPE": 7.46,
+            "priceEarningGrowth": null,
+            "priceSales": 0.28,
+            "priceBook": 1.58,
+            "enterpriseValueRevenue": 0.56,
+            "enterpriseValueEBITDA": 12.4
           },
           "2020-02-29": {
             "period": "2020-02-29",
@@ -2680,7 +3111,7 @@
             "forwardPE": 7.76,
             "priceEarningGrowth": 6.46,
             "priceSales": 0.3,
-            "priceBook": 1.71,
+            "priceBook": 1.7,
             "enterpriseValueRevenue": 2.25,
             "enterpriseValueEBITDA": 47.59
           },
@@ -2736,23 +3167,35 @@
       }
     },
     {
+      "companyName": "CSX Corporation (CSX)",
       "ticker": {
         "symbol": "CSX",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "CSX Corporation (CSX)",
+        "price": 63.52,
+        "change": "+2.37 (+3.88%)",
+        "totalCashPerShare": 2.53,
+        "totalDebtEquity": 141.52,
+        "quarterlyRevenueGrowth": -8.2,
+        "quarterlyEarningsGrowth": -8.5,
+        "dilutedEarningPerShare": 4.17,
+        "week52Change": -15.76,
+        "week52Low": 46.81,
+        "week52High": 80.73,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 42269999104,
-            "enterpriseValue": 57049997312,
-            "trailingPE": 13.15,
-            "forwardPE": 13.46,
-            "priceEarningGrowth": 1.75,
-            "priceSales": 3.67,
-            "priceBook": 3.57,
-            "enterpriseValueRevenue": 4.78,
-            "enterpriseValueEBITDA": 8.91
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 47130001408,
+            "enterpriseValue": 61909999616,
+            "trailingPE": 14.66,
+            "forwardPE": 15.34,
+            "priceEarningGrowth": 2.0,
+            "priceSales": 4.09,
+            "priceBook": 3.98,
+            "enterpriseValueRevenue": 5.19,
+            "enterpriseValueEBITDA": 9.67
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2806,23 +3249,35 @@
       }
     },
     {
+      "companyName": "Activision Blizzard, Inc. (ATVI)",
       "ticker": {
         "symbol": "ATVI",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Activision Blizzard, Inc. (ATVI)",
+        "price": 61.07,
+        "change": "+1.20 (+2.00%)",
+        "totalCashPerShare": 7.62,
+        "totalDebtEquity": 23.02,
+        "quarterlyRevenueGrowth": -16.6,
+        "quarterlyEarningsGrowth": -23.5,
+        "dilutedEarningPerShare": 1.95,
+        "week52Change": 29.47,
+        "week52Low": 41.84,
+        "week52High": 64.53,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 44230000640,
-            "enterpriseValue": 41109999616,
-            "trailingPE": 29.49,
-            "forwardPE": 24.1,
-            "priceEarningGrowth": 1.9,
-            "priceSales": 6.83,
-            "priceBook": 3.45,
-            "enterpriseValueRevenue": 6.34,
-            "enterpriseValueEBITDA": 18.06
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 46050000896,
+            "enterpriseValue": 42929999872,
+            "trailingPE": 30.7,
+            "forwardPE": 25.13,
+            "priceEarningGrowth": 1.98,
+            "priceSales": 7.11,
+            "priceBook": 3.6,
+            "enterpriseValueRevenue": 6.62,
+            "enterpriseValueEBITDA": 18.86
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -2876,23 +3331,35 @@
       }
     },
     {
+      "companyName": "Micron Technology, Inc. (MU)",
       "ticker": {
         "symbol": "MU",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Micron Technology, Inc. (MU)",
+        "price": 48.29,
+        "change": "+1.75 (+3.76%)",
+        "totalCashPerShare": 6.73,
+        "totalDebtEquity": 16.18,
+        "quarterlyRevenueGrowth": -17.8,
+        "quarterlyEarningsGrowth": -75.0,
+        "dilutedEarningPerShare": 2.02,
+        "week52Change": 14.21,
+        "week52Low": 31.13,
+        "week52High": 61.19,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 44369997824,
-            "enterpriseValue": 42859999232,
-            "trailingPE": 19.36,
-            "forwardPE": 18.76,
-            "priceEarningGrowth": 3.36,
-            "priceSales": 2.3,
-            "priceBook": 1.2,
-            "enterpriseValueRevenue": 2.19,
-            "enterpriseValueEBITDA": 5.39
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 51759996928,
+            "enterpriseValue": 50249998336,
+            "trailingPE": 22.59,
+            "forwardPE": 21.93,
+            "priceEarningGrowth": 3.93,
+            "priceSales": 2.68,
+            "priceBook": 1.4,
+            "enterpriseValueRevenue": 2.56,
+            "enterpriseValueEBITDA": 6.32
           },
           "2020-02-29": {
             "period": "2020-02-29",
@@ -2958,23 +3425,35 @@
       }
     },
     {
+      "companyName": "Applied Materials, Inc. (AMAT)",
       "ticker": {
         "symbol": "AMAT",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Applied Materials, Inc. (AMAT)",
+        "price": 51.46,
+        "change": "+3.90 (+8.20%)",
+        "totalCashPerShare": 4.31,
+        "totalDebtEquity": 63.21,
+        "quarterlyRevenueGrowth": 10.9,
+        "quarterlyEarningsGrowth": 15.7,
+        "dilutedEarningPerShare": 3.02,
+        "week52Change": 21.17,
+        "week52Low": 36.64,
+        "week52High": 69.44,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 39759998976,
-            "enterpriseValue": 41280000000,
-            "trailingPE": 14.34,
-            "forwardPE": 10.8,
-            "priceEarningGrowth": 0.74,
-            "priceSales": 2.7,
-            "priceBook": 4.59,
-            "enterpriseValueRevenue": 2.75,
-            "enterpriseValueEBITDA": 10.34
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 43669999616,
+            "enterpriseValue": 45190000640,
+            "trailingPE": 15.75,
+            "forwardPE": 12.22,
+            "priceEarningGrowth": 0.84,
+            "priceSales": 2.96,
+            "priceBook": 5.04,
+            "enterpriseValueRevenue": 3.01,
+            "enterpriseValueEBITDA": 11.32
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -3040,23 +3519,35 @@
       }
     },
     {
+      "companyName": "JD.com, Inc. (JD)",
       "ticker": {
         "symbol": "JD",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "JD.com, Inc. (JD)",
+        "price": 41.17,
+        "change": "-0.82 (-1.95%)",
+        "totalCashPerShare": null,
+        "totalDebtEquity": 18.65,
+        "quarterlyRevenueGrowth": 26.6,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": 0.15,
+        "week52Change": 36.32,
+        "week52Low": 25.48,
+        "week52High": 45.34,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 59740000256,
-            "enterpriseValue": 53689999360,
-            "trailingPE": 35.39,
-            "forwardPE": 33.11,
-            "priceEarningGrowth": 0.87,
-            "priceSales": 0.75,
-            "priceBook": 5.2,
-            "enterpriseValueRevenue": 0.09,
-            "enterpriseValueEBITDA": 3.72
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 61310001152,
+            "enterpriseValue": 55289999360,
+            "trailingPE": 36.23,
+            "forwardPE": 34.13,
+            "priceEarningGrowth": 0.9,
+            "priceSales": 0.77,
+            "priceBook": 5.32,
+            "enterpriseValueRevenue": 0.1,
+            "enterpriseValueEBITDA": 3.83
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3066,7 +3557,7 @@
             "forwardPE": 24.15,
             "priceEarningGrowth": 0.34,
             "priceSales": 0.66,
-            "priceBook": 4.74,
+            "priceBook": 4.75,
             "enterpriseValueRevenue": 0.3,
             "enterpriseValueEBITDA": 12.1
           },
@@ -3110,23 +3601,35 @@
       }
     },
     {
+      "companyName": "Analog Devices, Inc. (ADI)",
       "ticker": {
         "symbol": "ADI",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Analog Devices, Inc. (ADI)",
+        "price": 101.4,
+        "change": "+5.15 (+5.35%)",
+        "totalCashPerShare": 1.78,
+        "totalDebtEquity": 50.9,
+        "quarterlyRevenueGrowth": -15.4,
+        "quarterlyEarningsGrowth": -42.6,
+        "dilutedEarningPerShare": 3.25,
+        "week52Change": -9.32,
+        "week52Low": 79.08,
+        "week52High": 127.3,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 30959998976,
-            "enterpriseValue": 35799998464,
-            "trailingPE": 25.87,
-            "forwardPE": 17.45,
-            "priceEarningGrowth": 1.93,
-            "priceSales": 5.45,
-            "priceBook": 2.65,
-            "enterpriseValueRevenue": 6.22,
-            "enterpriseValueEBITDA": 15.26
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 35439996928,
+            "enterpriseValue": 40279998464,
+            "trailingPE": 29.62,
+            "forwardPE": 20.28,
+            "priceEarningGrowth": 2.25,
+            "priceSales": 6.24,
+            "priceBook": 3.03,
+            "enterpriseValueRevenue": 7.0,
+            "enterpriseValueEBITDA": 17.17
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -3192,23 +3695,35 @@
       }
     },
     {
+      "companyName": "Illumina, Inc. (ILMN)",
       "ticker": {
         "symbol": "ILMN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Illumina, Inc. (ILMN)",
+        "price": 280.99,
+        "change": "+0.35 (+0.12%)",
+        "totalCashPerShare": 23.22,
+        "totalDebtEquity": 40.78,
+        "quarterlyRevenueGrowth": 9.8,
+        "quarterlyEarningsGrowth": 13.8,
+        "dilutedEarningPerShare": 6.74,
+        "week52Change": -14.47,
+        "week52Low": 196.78,
+        "week52High": 380.76,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 37700001792,
-            "enterpriseValue": 36169998336,
-            "trailingPE": 38.05,
-            "forwardPE": 36.9,
-            "priceEarningGrowth": 2.64,
-            "priceSales": 10.79,
-            "priceBook": 8.17,
-            "enterpriseValueRevenue": 10.21,
-            "enterpriseValueEBITDA": 26.63
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 41250000896,
+            "enterpriseValue": 39720001536,
+            "trailingPE": 41.64,
+            "forwardPE": 40.32,
+            "priceEarningGrowth": 2.89,
+            "priceSales": 11.8,
+            "priceBook": 8.94,
+            "enterpriseValueRevenue": 11.21,
+            "enterpriseValueEBITDA": 29.25
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3262,23 +3777,35 @@
       }
     },
     {
+      "companyName": "Autodesk, Inc. (ADSK)",
       "ticker": {
         "symbol": "ADSK",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Autodesk, Inc. (ADSK)",
+        "price": 159.21,
+        "change": "+10.51 (+7.07%)",
+        "totalCashPerShare": 8.4,
+        "totalDebtEquity": null,
+        "quarterlyRevenueGrowth": 22.0,
+        "quarterlyEarningsGrowth": 103.7,
+        "dilutedEarningPerShare": 0.96,
+        "week52Change": -7.37,
+        "week52Low": 125.38,
+        "week52High": 211.58,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 30560000000,
-            "enterpriseValue": 31260000256,
-            "trailingPE": 145.02,
-            "forwardPE": 32.05,
-            "priceEarningGrowth": 0.79,
-            "priceSales": 9.46,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 32640000000,
+            "enterpriseValue": 33340000256,
+            "trailingPE": 154.9,
+            "forwardPE": 34.25,
+            "priceEarningGrowth": 0.84,
+            "priceSales": 10.1,
             "priceBook": null,
-            "enterpriseValueRevenue": 9.55,
-            "enterpriseValueEBITDA": 65.66
+            "enterpriseValueRevenue": 10.18,
+            "enterpriseValueEBITDA": 70.04
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -3344,23 +3871,35 @@
       }
     },
     {
+      "companyName": "Exelon Corporation (EXC)",
       "ticker": {
         "symbol": "EXC",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Exelon Corporation (EXC)",
+        "price": 37.59,
+        "change": "+1.80 (+5.03%)",
+        "totalCashPerShare": 0.6,
+        "totalDebtEquity": 113.76,
+        "quarterlyRevenueGrowth": -5.3,
+        "quarterlyEarningsGrowth": 425.2,
+        "dilutedEarningPerShare": 3.01,
+        "week52Change": -24.49,
+        "week52Low": 29.28,
+        "week52High": 51.18,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 32610000896,
-            "enterpriseValue": 69819998208,
-            "trailingPE": 11.12,
-            "forwardPE": 10.7,
-            "priceEarningGrowth": 7.23,
-            "priceSales": 0.95,
-            "priceBook": 1.01,
-            "enterpriseValueRevenue": 2.03,
-            "enterpriseValueEBITDA": 6.9
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 34859999232,
+            "enterpriseValue": 72069996544,
+            "trailingPE": 11.89,
+            "forwardPE": 11.43,
+            "priceEarningGrowth": 7.73,
+            "priceSales": 1.01,
+            "priceBook": 1.08,
+            "enterpriseValueRevenue": 2.09,
+            "enterpriseValueEBITDA": 7.12
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3414,23 +3953,35 @@
       }
     },
     {
+      "companyName": "Xcel Energy Inc. (XEL)",
       "ticker": {
         "symbol": "XEL",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Xcel Energy Inc. (XEL)",
+        "price": 62.8,
+        "change": "+3.57 (+6.03%)",
+        "totalCashPerShare": 0.52,
+        "totalDebtEquity": 155.06,
+        "quarterlyRevenueGrowth": -2.8,
+        "quarterlyEarningsGrowth": 36.4,
+        "dilutedEarningPerShare": 2.64,
+        "week52Change": 12.81,
+        "week52Low": 46.58,
+        "week52High": 72.14,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 30469998592,
-            "enterpriseValue": 50480001024,
-            "trailingPE": 22.0,
-            "forwardPE": 20.92,
-            "priceEarningGrowth": 3.74,
-            "priceSales": 2.62,
-            "priceBook": 2.3,
-            "enterpriseValueRevenue": 4.38,
-            "enterpriseValueEBITDA": 12.27
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 31079999488,
+            "enterpriseValue": 51080003584,
+            "trailingPE": 22.44,
+            "forwardPE": 21.32,
+            "priceEarningGrowth": 3.82,
+            "priceSales": 2.67,
+            "priceBook": 2.35,
+            "enterpriseValueRevenue": 4.43,
+            "enterpriseValueEBITDA": 12.42
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3484,23 +4035,35 @@
       }
     },
     {
+      "companyName": "Monster Beverage Corporation (MNST)",
       "ticker": {
         "symbol": "MNST",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Monster Beverage Corporation (MNST)",
+        "price": 60.26,
+        "change": "+1.85 (+3.17%)",
+        "totalCashPerShare": 2.48,
+        "totalDebtEquity": 0.72,
+        "quarterlyRevenueGrowth": 10.1,
+        "quarterlyEarningsGrowth": 6.6,
+        "dilutedEarningPerShare": 2.03,
+        "week52Change": 10.06,
+        "week52Low": 50.06,
+        "week52High": 70.52,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 28510001152,
-            "enterpriseValue": 27180001280,
-            "trailingPE": 26.16,
-            "forwardPE": 23.92,
-            "priceEarningGrowth": 2.12,
-            "priceSales": 6.91,
-            "priceBook": 6.83,
-            "enterpriseValueRevenue": 6.47,
-            "enterpriseValueEBITDA": 18.52
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 31360000000,
+            "enterpriseValue": 30030000128,
+            "trailingPE": 28.77,
+            "forwardPE": 26.32,
+            "priceEarningGrowth": 2.34,
+            "priceSales": 7.6,
+            "priceBook": 7.52,
+            "enterpriseValueRevenue": 7.15,
+            "enterpriseValueEBITDA": 20.46
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3554,23 +4117,35 @@
       }
     },
     {
+      "companyName": "Lam Research Corporation (LRCX)",
       "ticker": {
         "symbol": "LRCX",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Lam Research Corporation (LRCX)",
+        "price": 266.75,
+        "change": "+10.53 (+4.11%)",
+        "totalCashPerShare": 32.18,
+        "totalDebtEquity": 103.39,
+        "quarterlyRevenueGrowth": 2.4,
+        "quarterlyEarningsGrowth": -9.6,
+        "dilutedEarningPerShare": 13.5,
+        "week52Change": 39.43,
+        "week52Low": 171.04,
+        "week52High": 344.32,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 32509999104,
-            "enterpriseValue": 32240001024,
-            "trailingPE": 16.56,
-            "forwardPE": 11.68,
-            "priceEarningGrowth": 1.36,
-            "priceSales": 3.58,
-            "priceBook": 7.36,
-            "enterpriseValueRevenue": 3.38,
-            "enterpriseValueEBITDA": 11.38
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 37290000384,
+            "enterpriseValue": 37029998592,
+            "trailingPE": 18.99,
+            "forwardPE": 13.5,
+            "priceEarningGrowth": 1.57,
+            "priceSales": 4.11,
+            "priceBook": 8.44,
+            "enterpriseValueRevenue": 3.88,
+            "enterpriseValueEBITDA": 13.07
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3624,23 +4199,35 @@
       }
     },
     {
+      "companyName": "The Kraft Heinz Company (KHC)",
       "ticker": {
         "symbol": "KHC",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "The Kraft Heinz Company (KHC)",
+        "price": 27.32,
+        "change": "+0.71 (+2.67%)",
+        "totalCashPerShare": 1.87,
+        "totalDebtEquity": 57.67,
+        "quarterlyRevenueGrowth": -5.2,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": 1.58,
+        "week52Change": -17.19,
+        "week52Low": 19.99,
+        "week52High": 33.78,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 28930000896,
-            "enterpriseValue": 55900000256,
-            "trailingPE": 14.99,
-            "forwardPE": 10.65,
-            "priceEarningGrowth": 2.34,
-            "priceSales": 1.16,
-            "priceBook": 0.56,
-            "enterpriseValueRevenue": 2.24,
-            "enterpriseValueEBITDA": 11.14
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 32509999104,
+            "enterpriseValue": 59479998464,
+            "trailingPE": 16.84,
+            "forwardPE": 11.96,
+            "priceEarningGrowth": 2.63,
+            "priceSales": 1.3,
+            "priceBook": 0.63,
+            "enterpriseValueRevenue": 2.38,
+            "enterpriseValueEBITDA": 11.86
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3694,23 +4281,35 @@
       }
     },
     {
+      "companyName": "Electronic Arts Inc. (EA)",
       "ticker": {
         "symbol": "EA",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Electronic Arts Inc. (EA)",
+        "price": 106.8,
+        "change": "+0.48 (+0.45%)",
+        "totalCashPerShare": 19.34,
+        "totalDebtEquity": 17.11,
+        "quarterlyRevenueGrowth": 23.6,
+        "quarterlyEarningsGrowth": 32.1,
+        "dilutedEarningPerShare": 9.5,
+        "week52Change": 6.18,
+        "week52Low": 85.69,
+        "week52High": 114.13,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 28249999360,
-            "enterpriseValue": 23719999488,
-            "trailingPE": 10.22,
-            "forwardPE": 20.12,
-            "priceEarningGrowth": 1.62,
-            "priceSales": 5.39,
-            "priceBook": 3.9,
-            "enterpriseValueRevenue": 4.4,
-            "enterpriseValueEBITDA": 15.78
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 30799998976,
+            "enterpriseValue": 26270001152,
+            "trailingPE": 11.14,
+            "forwardPE": 21.93,
+            "priceEarningGrowth": 1.76,
+            "priceSales": 5.88,
+            "priceBook": 4.26,
+            "enterpriseValueRevenue": 4.87,
+            "enterpriseValueEBITDA": 17.48
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3764,23 +4363,35 @@
       }
     },
     {
+      "companyName": "Cognizant Technology Solutions Corporation (CTSH)",
       "ticker": {
         "symbol": "CTSH",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Cognizant Technology Solutions Corporation (CTSH)",
+        "price": 51.39,
+        "change": "+3.59 (+7.51%)",
+        "totalCashPerShare": 6.24,
+        "totalDebtEquity": 15.52,
+        "quarterlyRevenueGrowth": 3.8,
+        "quarterlyEarningsGrowth": -39.0,
+        "dilutedEarningPerShare": 3.29,
+        "week52Change": -30.73,
+        "week52Low": 40.01,
+        "week52High": 74.78,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 23320000512,
-            "enterpriseValue": 21579999232,
-            "trailingPE": 12.92,
-            "forwardPE": 10.39,
-            "priceEarningGrowth": 1.24,
-            "priceSales": 1.42,
-            "priceBook": 2.12,
-            "enterpriseValueRevenue": 1.29,
-            "enterpriseValueEBITDA": 6.97
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 26219999232,
+            "enterpriseValue": 24490000384,
+            "trailingPE": 14.53,
+            "forwardPE": 11.68,
+            "priceEarningGrowth": 1.4,
+            "priceSales": 1.59,
+            "priceBook": 2.38,
+            "enterpriseValueRevenue": 1.46,
+            "enterpriseValueEBITDA": 7.91
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3834,23 +4445,35 @@
       }
     },
     {
+      "companyName": "Baidu, Inc. (BIDU)",
       "ticker": {
         "symbol": "BIDU",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Baidu, Inc. (BIDU)",
+        "price": 97.33,
+        "change": "-4.46 (-4.38%)",
+        "totalCashPerShare": null,
+        "totalDebtEquity": 42.55,
+        "quarterlyRevenueGrowth": 6.2,
+        "quarterlyEarningsGrowth": 204.9,
+        "dilutedEarningPerShare": 12.83,
+        "week52Change": -43.15,
+        "week52Low": 82.0,
+        "week52High": 186.22,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 33779998720,
-            "enterpriseValue": 23499999232,
-            "trailingPE": 124.11,
-            "forwardPE": 13.66,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 35200000000,
+            "enterpriseValue": 24950001664,
+            "trailingPE": 129.03,
+            "forwardPE": 14.2,
             "priceEarningGrowth": 2.31,
-            "priceSales": 2.26,
-            "priceBook": 1.47,
-            "enterpriseValueRevenue": 0.22,
-            "enterpriseValueEBITDA": 0.95
+            "priceSales": 2.34,
+            "priceBook": 1.53,
+            "enterpriseValueRevenue": 0.23,
+            "enterpriseValueEBITDA": 1.01
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3904,23 +4527,35 @@
       }
     },
     {
+      "companyName": "eBay Inc. (EBAY)",
       "ticker": {
         "symbol": "EBAY",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "eBay Inc. (EBAY)",
+        "price": 33.01,
+        "change": "+1.39 (+4.40%)",
+        "totalCashPerShare": 3.55,
+        "totalDebtEquity": 293.45,
+        "quarterlyRevenueGrowth": -1.9,
+        "quarterlyEarningsGrowth": -26.8,
+        "dilutedEarningPerShare": 2.09,
+        "week52Change": -9.11,
+        "week52Low": 26.02,
+        "week52High": 42.0,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 22909999104,
-            "enterpriseValue": 28340000768,
-            "trailingPE": 13.7,
-            "forwardPE": 9.53,
-            "priceEarningGrowth": 1.43,
-            "priceSales": 2.28,
-            "priceBook": 7.98,
-            "enterpriseValueRevenue": 2.62,
-            "enterpriseValueEBITDA": 8.86
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 25169999872,
+            "enterpriseValue": 30599999488,
+            "trailingPE": 15.06,
+            "forwardPE": 10.47,
+            "priceEarningGrowth": 1.57,
+            "priceSales": 2.51,
+            "priceBook": 8.77,
+            "enterpriseValueRevenue": 2.83,
+            "enterpriseValueEBITDA": 9.57
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -3974,23 +4609,35 @@
       }
     },
     {
+      "companyName": "Ross Stores, Inc. (ROST)",
       "ticker": {
         "symbol": "ROST",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Ross Stores, Inc. (ROST)",
+        "price": 89.05,
+        "change": "+4.24 (+5.00%)",
+        "totalCashPerShare": 3.8,
+        "totalDebtEquity": 103.83,
+        "quarterlyRevenueGrowth": 7.5,
+        "quarterlyEarningsGrowth": 3.3,
+        "dilutedEarningPerShare": 4.6,
+        "week52Change": -8.79,
+        "week52Low": 56.3,
+        "week52High": 124.16,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 28860000256,
-            "enterpriseValue": 31000000512,
-            "trailingPE": 17.63,
-            "forwardPE": 16.34,
-            "priceEarningGrowth": 1.72,
-            "priceSales": 1.83,
-            "priceBook": 8.59,
-            "enterpriseValueRevenue": 1.93,
-            "enterpriseValueEBITDA": 12.28
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 30179999744,
+            "enterpriseValue": 32320000000,
+            "trailingPE": 18.44,
+            "forwardPE": 17.09,
+            "priceEarningGrowth": 1.8,
+            "priceSales": 1.91,
+            "priceBook": 8.99,
+            "enterpriseValueRevenue": 2.02,
+            "enterpriseValueEBITDA": 12.8
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -4056,23 +4703,35 @@
       }
     },
     {
+      "companyName": "MercadoLibre, Inc. (MELI)",
       "ticker": {
         "symbol": "MELI",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "MercadoLibre, Inc. (MELI)",
+        "price": 544.0,
+        "change": "+18.33 (+3.49%)",
+        "totalCashPerShare": 49.47,
+        "totalDebtEquity": 48.87,
+        "quarterlyRevenueGrowth": 57.5,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": -3.71,
+        "week52Change": 7.99,
+        "week52Low": 422.22,
+        "week52High": 756.48,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 22240000000,
-            "enterpriseValue": 20369999872,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 26129999872,
+            "enterpriseValue": 24270000128,
             "trailingPE": null,
             "forwardPE": null,
             "priceEarningGrowth": null,
-            "priceSales": 9.49,
-            "priceBook": 11.21,
-            "enterpriseValueRevenue": 8.87,
-            "enterpriseValueEBITDA": 637.61
+            "priceSales": 11.15,
+            "priceBook": 13.18,
+            "enterpriseValueRevenue": 10.57,
+            "enterpriseValueEBITDA": 759.48
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4126,23 +4785,35 @@
       }
     },
     {
+      "companyName": "Verisk Analytics, Inc. (VRSK)",
       "ticker": {
         "symbol": "VRSK",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Verisk Analytics, Inc. (VRSK)",
+        "price": 148.7,
+        "change": "+1.53 (+1.04%)",
+        "totalCashPerShare": 1.15,
+        "totalDebtEquity": 150.38,
+        "quarterlyRevenueGrowth": 10.2,
+        "quarterlyEarningsGrowth": -9.6,
+        "dilutedEarningPerShare": 2.7,
+        "week52Change": 9.51,
+        "week52Low": 116.61,
+        "week52High": 171.73,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 22959998976,
-            "enterpriseValue": 26169999360,
-            "trailingPE": 52.14,
-            "forwardPE": 28.9,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 23910000640,
+            "enterpriseValue": 27120001024,
+            "trailingPE": 54.51,
+            "forwardPE": 30.21,
             "priceEarningGrowth": null,
-            "priceSales": 8.99,
-            "priceBook": 10.15,
-            "enterpriseValueRevenue": 10.04,
-            "enterpriseValueEBITDA": 25.69
+            "priceSales": 9.4,
+            "priceBook": 10.58,
+            "enterpriseValueRevenue": 10.4,
+            "enterpriseValueEBITDA": 26.62
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4152,7 +4823,7 @@
             "forwardPE": 31.45,
             "priceEarningGrowth": null,
             "priceSales": 9.79,
-            "priceBook": 11.86,
+            "priceBook": 11.81,
             "enterpriseValueRevenue": 39.89,
             "enterpriseValueEBITDA": 92.85
           },
@@ -4196,23 +4867,35 @@
       }
     },
     {
+      "companyName": "O'Reilly Automotive, Inc. (ORLY)",
       "ticker": {
         "symbol": "ORLY",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "O'Reilly Automotive, Inc. (ORLY)",
+        "price": 340.03,
+        "change": "+3.76 (+1.12%)",
+        "totalCashPerShare": 0.54,
+        "totalDebtEquity": null,
+        "quarterlyRevenueGrowth": 7.3,
+        "quarterlyEarningsGrowth": 8.2,
+        "dilutedEarningPerShare": 17.88,
+        "week52Change": -16.63,
+        "week52Low": 251.52,
+        "week52High": 454.31,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 21329999872,
-            "enterpriseValue": 27150000128,
-            "trailingPE": 16.07,
-            "forwardPE": 15.58,
-            "priceEarningGrowth": 1.08,
-            "priceSales": 2.2,
-            "priceBook": 53.68,
-            "enterpriseValueRevenue": 2.67,
-            "enterpriseValueEBITDA": 12.33
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 24969998336,
+            "enterpriseValue": 30790000640,
+            "trailingPE": 18.81,
+            "forwardPE": 19.23,
+            "priceEarningGrowth": 1.33,
+            "priceSales": 2.58,
+            "priceBook": 62.84,
+            "enterpriseValueRevenue": 3.03,
+            "enterpriseValueEBITDA": 13.99
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4266,23 +4949,35 @@
       }
     },
     {
+      "companyName": "Marriott International, Inc. (MAR)",
       "ticker": {
         "symbol": "MAR",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Marriott International, Inc. (MAR)",
+        "price": 82.53,
+        "change": "+8.71 (+11.80%)",
+        "totalCashPerShare": 0.69,
+        "totalDebtEquity": null,
+        "quarterlyRevenueGrowth": 6.0,
+        "quarterlyEarningsGrowth": -12.0,
+        "dilutedEarningPerShare": 3.8,
+        "week52Change": -38.06,
+        "week52Low": 46.56,
+        "week52High": 153.39,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 22420000768,
-            "enterpriseValue": 34019999744,
-            "trailingPE": 18.2,
-            "forwardPE": 15.34,
-            "priceEarningGrowth": 1.57,
-            "priceSales": 1.11,
-            "priceBook": 31.89,
-            "enterpriseValueRevenue": 1.62,
-            "enterpriseValueEBITDA": 14.2
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 23929999360,
+            "enterpriseValue": 35529998336,
+            "trailingPE": 19.43,
+            "forwardPE": 16.39,
+            "priceEarningGrowth": 1.67,
+            "priceSales": 1.18,
+            "priceBook": 34.04,
+            "enterpriseValueRevenue": 1.69,
+            "enterpriseValueEBITDA": 14.83
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4336,23 +5031,35 @@
       }
     },
     {
+      "companyName": "NetEase, Inc. (NTES)",
       "ticker": {
         "symbol": "NTES",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "NetEase, Inc. (NTES)",
+        "price": 325.32,
+        "change": "-1.65 (-0.50%)",
+        "totalCashPerShare": null,
+        "totalDebtEquity": 23.68,
+        "quarterlyRevenueGrowth": -20.7,
+        "quarterlyEarningsGrowth": 79.9,
+        "dilutedEarningPerShare": null,
+        "week52Change": 18.9,
+        "week52Low": 209.01,
+        "week52High": 361.0,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 41379999744,
-            "enterpriseValue": 33580001280,
-            "trailingPE": 22.54,
-            "forwardPE": 19.12,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 41840001024,
+            "enterpriseValue": 34069999616,
+            "trailingPE": 22.74,
+            "forwardPE": 19.27,
             "priceEarningGrowth": null,
-            "priceSales": 5.05,
-            "priceBook": 4.79,
-            "enterpriseValueRevenue": 0.57,
-            "enterpriseValueEBITDA": 2.05
+            "priceSales": 5.09,
+            "priceBook": 4.83,
+            "enterpriseValueRevenue": 0.58,
+            "enterpriseValueEBITDA": 2.08
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4406,35 +5113,47 @@
       }
     },
     {
+      "companyName": "NXP Semiconductors N.V. (NXPI)",
       "ticker": {
         "symbol": "NXPI",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "NXP Semiconductors N.V. (NXPI)",
+        "price": 91.58,
+        "change": "+7.30 (+8.66%)",
+        "totalCashPerShare": 3.73,
+        "totalDebtEquity": 79.01,
+        "quarterlyRevenueGrowth": -4.2,
+        "quarterlyEarningsGrowth": -58.7,
+        "dilutedEarningPerShare": 0.85,
+        "week52Change": -6.22,
+        "week52Low": 58.41,
+        "week52High": 139.59,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 20910000128,
-            "enterpriseValue": 27229999104,
-            "trailingPE": 87.92,
-            "forwardPE": 9.06,
-            "priceEarningGrowth": 0.79,
-            "priceSales": 2.41,
-            "priceBook": 2.21,
-            "enterpriseValueRevenue": 3.07,
-            "enterpriseValueEBITDA": 10.05
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 23580000256,
+            "enterpriseValue": 29899999232,
+            "trailingPE": 99.15,
+            "forwardPE": 10.21,
+            "priceEarningGrowth": 0.9,
+            "priceSales": 2.71,
+            "priceBook": 2.5,
+            "enterpriseValueRevenue": 3.37,
+            "enterpriseValueEBITDA": 11.04
           },
           "2019-12-31": {
             "period": "2019-12-31",
-            "marketCap": 35569999872,
-            "enterpriseValue": 40540000256,
+            "marketCap": 35819999232,
+            "enterpriseValue": 40779997184,
             "trailingPE": 85.99,
             "forwardPE": 15.5,
             "priceEarningGrowth": 5.08,
             "priceSales": 4.08,
-            "priceBook": 3.79,
-            "enterpriseValueRevenue": 17.62,
-            "enterpriseValueEBITDA": 56.15
+            "priceBook": 3.81,
+            "enterpriseValueRevenue": 17.72,
+            "enterpriseValueEBITDA": 56.49
           },
           "2019-09-30": {
             "period": "2019-09-30",
@@ -4476,23 +5195,35 @@
       }
     },
     {
+      "companyName": "Sirius XM Holdings Inc. (SIRI)",
       "ticker": {
         "symbol": "SIRI",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Sirius XM Holdings Inc. (SIRI)",
+        "price": 5.17,
+        "change": "+0.26 (+5.30%)",
+        "totalCashPerShare": 0.02,
+        "totalDebtEquity": null,
+        "quarterlyRevenueGrowth": 37.8,
+        "quarterlyEarningsGrowth": -3.2,
+        "dilutedEarningPerShare": 0.2,
+        "week52Change": -14.55,
+        "week52Low": 4.11,
+        "week52High": 7.4,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 20480000000,
-            "enterpriseValue": 28719998976,
-            "trailingPE": 23.2,
-            "forwardPE": 20.16,
-            "priceEarningGrowth": 1.25,
-            "priceSales": 2.75,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 21670000640,
+            "enterpriseValue": 29909999616,
+            "trailingPE": 24.55,
+            "forwardPE": 21.37,
+            "priceEarningGrowth": 1.32,
+            "priceSales": 2.91,
             "priceBook": null,
-            "enterpriseValueRevenue": 3.68,
-            "enterpriseValueEBITDA": 13.98
+            "enterpriseValueRevenue": 3.84,
+            "enterpriseValueEBITDA": 14.56
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4546,23 +5277,35 @@
       }
     },
     {
+      "companyName": "Workday, Inc. (WDAY)",
       "ticker": {
         "symbol": "WDAY",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Workday, Inc. (WDAY)",
+        "price": 142.11,
+        "change": "+10.31 (+7.82%)",
+        "totalCashPerShare": 8.38,
+        "totalDebtEquity": 63.13,
+        "quarterlyRevenueGrowth": 23.8,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": -2.12,
+        "week52Change": -27.45,
+        "week52Low": 107.75,
+        "week52High": 226.83,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 29299998720,
-            "enterpriseValue": 28920000512,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 30580000768,
+            "enterpriseValue": 30200000512,
             "trailingPE": null,
-            "forwardPE": 55.87,
-            "priceEarningGrowth": 1.76,
-            "priceSales": 7.91,
-            "priceBook": 11.78,
-            "enterpriseValueRevenue": 7.97,
-            "enterpriseValueEBITDA": -196.1
+            "forwardPE": 59.88,
+            "priceEarningGrowth": 1.93,
+            "priceSales": 8.26,
+            "priceBook": 12.3,
+            "enterpriseValueRevenue": 8.33,
+            "enterpriseValueEBITDA": -204.79
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -4628,23 +5371,35 @@
       }
     },
     {
+      "companyName": "Paychex, Inc. (PAYX)",
       "ticker": {
         "symbol": "PAYX",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Paychex, Inc. (PAYX)",
+        "price": 65.06,
+        "change": "+0.24 (+0.37%)",
+        "totalCashPerShare": 2.38,
+        "totalDebtEquity": 35.89,
+        "quarterlyRevenueGrowth": 6.8,
+        "quarterlyEarningsGrowth": 9.2,
+        "dilutedEarningPerShare": 3.07,
+        "week52Change": -20.02,
+        "week52Low": 47.87,
+        "week52High": 90.54,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 21739999232,
-            "enterpriseValue": 21840001024,
-            "trailingPE": 19.74,
-            "forwardPE": 20.79,
-            "priceEarningGrowth": 3.36,
-            "priceSales": 5.33,
-            "priceBook": 7.88,
-            "enterpriseValueRevenue": 5.32,
-            "enterpriseValueEBITDA": 12.78
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 23249999872,
+            "enterpriseValue": 23349999616,
+            "trailingPE": 21.11,
+            "forwardPE": 22.22,
+            "priceEarningGrowth": 3.59,
+            "priceSales": 5.71,
+            "priceBook": 8.43,
+            "enterpriseValueRevenue": 5.69,
+            "enterpriseValueEBITDA": 13.67
           },
           "2020-02-29": {
             "period": "2020-02-29",
@@ -4710,23 +5465,35 @@
       }
     },
     {
+      "companyName": "CoStar Group, Inc. (CSGP)",
       "ticker": {
         "symbol": "CSGP",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "CoStar Group, Inc. (CSGP)",
+        "price": 614.61,
+        "change": "+24.97 (+4.23%)",
+        "totalCashPerShare": 29.22,
+        "totalDebtEquity": 4.4,
+        "quarterlyRevenueGrowth": 18.7,
+        "quarterlyEarningsGrowth": 5.3,
+        "dilutedEarningPerShare": 8.6,
+        "week52Change": 27.62,
+        "week52Low": 473.91,
+        "week52High": 746.7,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 19770001408,
-            "enterpriseValue": 18870001664,
-            "trailingPE": 62.74,
-            "forwardPE": 72.46,
-            "priceEarningGrowth": 3.59,
-            "priceSales": 14.12,
-            "priceBook": 5.81,
-            "enterpriseValueRevenue": 13.48,
-            "enterpriseValueEBITDA": 39.74
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 21610000384,
+            "enterpriseValue": 20700000256,
+            "trailingPE": 68.56,
+            "forwardPE": 151.52,
+            "priceEarningGrowth": 7.86,
+            "priceSales": 15.43,
+            "priceBook": 6.34,
+            "enterpriseValueRevenue": 14.79,
+            "enterpriseValueEBITDA": 43.6
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4780,23 +5547,35 @@
       }
     },
     {
+      "companyName": "KLA Corporation (KLAC)",
       "ticker": {
         "symbol": "KLAC",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "KLA Corporation (KLAC)",
+        "price": 152.37,
+        "change": "+5.10 (+3.46%)",
+        "totalCashPerShare": 10.7,
+        "totalDebtEquity": 130.3,
+        "quarterlyRevenueGrowth": 34.8,
+        "quarterlyEarningsGrowth": 3.1,
+        "dilutedEarningPerShare": 7.13,
+        "week52Change": 23.97,
+        "week52Low": 101.34,
+        "week52High": 184.5,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 20629999616,
-            "enterpriseValue": 22459998208,
-            "trailingPE": 18.56,
-            "forwardPE": 11.67,
-            "priceEarningGrowth": 1.01,
-            "priceSales": 3.97,
-            "priceBook": 7.73,
-            "enterpriseValueRevenue": 4.25,
-            "enterpriseValueEBITDA": 12.55
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 23089999872,
+            "enterpriseValue": 24910000128,
+            "trailingPE": 20.77,
+            "forwardPE": 13.05,
+            "priceEarningGrowth": 1.13,
+            "priceSales": 4.45,
+            "priceBook": 8.65,
+            "enterpriseValueRevenue": 4.72,
+            "enterpriseValueEBITDA": 13.92
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4850,23 +5629,35 @@
       }
     },
     {
+      "companyName": "Willis Towers Watson Public Limited Company (WLTW)",
       "ticker": {
         "symbol": "WLTW",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Willis Towers Watson Public Limited Company (WLTW)",
+        "price": 190.05,
+        "change": "+11.36 (+6.36%)",
+        "totalCashPerShare": 6.89,
+        "totalDebtEquity": 65.29,
+        "quarterlyRevenueGrowth": 13.4,
+        "quarterlyEarningsGrowth": 43.9,
+        "dilutedEarningPerShare": 8.02,
+        "week52Change": 5.72,
+        "week52Low": 143.34,
+        "week52High": 220.97,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 20099999744,
-            "enterpriseValue": 25980000256,
-            "trailingPE": 19.48,
-            "forwardPE": 12.89,
-            "priceEarningGrowth": 0.67,
-            "priceSales": 2.25,
-            "priceBook": 1.96,
-            "enterpriseValueRevenue": 2.87,
-            "enterpriseValueEBITDA": 11.37
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 23000000512,
+            "enterpriseValue": 28879998976,
+            "trailingPE": 22.28,
+            "forwardPE": 14.75,
+            "priceEarningGrowth": 0.76,
+            "priceSales": 2.57,
+            "priceBook": 2.24,
+            "enterpriseValueRevenue": 3.2,
+            "enterpriseValueEBITDA": 12.64
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4920,23 +5711,35 @@
       }
     },
     {
+      "companyName": "PACCAR Inc (PCAR)",
       "ticker": {
         "symbol": "PCAR",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "PACCAR Inc (PCAR)",
+        "price": 66.46,
+        "change": "+0.93 (+1.42%)",
+        "totalCashPerShare": 14.93,
+        "totalDebtEquity": 116.35,
+        "quarterlyRevenueGrowth": -2.6,
+        "quarterlyEarningsGrowth": -8.1,
+        "dilutedEarningPerShare": 6.87,
+        "week52Change": -4.66,
+        "week52Low": 49.11,
+        "week52High": 83.41,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 20829999104,
-            "enterpriseValue": 26709999616,
-            "trailingPE": 8.75,
-            "forwardPE": 11.51,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 22700001280,
+            "enterpriseValue": 28579999744,
+            "trailingPE": 9.54,
+            "forwardPE": 12.55,
             "priceEarningGrowth": null,
-            "priceSales": 0.82,
-            "priceBook": 2.15,
-            "enterpriseValueRevenue": 1.04,
-            "enterpriseValueEBITDA": 6.59
+            "priceSales": 0.89,
+            "priceBook": 2.34,
+            "enterpriseValueRevenue": 1.12,
+            "enterpriseValueEBITDA": 7.05
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -4990,23 +5793,35 @@
       }
     },
     {
+      "companyName": "VeriSign, Inc. (VRSN)",
       "ticker": {
         "symbol": "VRSN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "VeriSign, Inc. (VRSN)",
+        "price": 193.2,
+        "change": "+2.25 (+1.18%)",
+        "totalCashPerShare": 10.46,
+        "totalDebtEquity": null,
+        "quarterlyRevenueGrowth": 1.0,
+        "quarterlyEarningsGrowth": -18.6,
+        "dilutedEarningPerShare": 5.15,
+        "week52Change": 1.94,
+        "week52Low": 148.77,
+        "week52High": 221.78,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 20430000128,
-            "enterpriseValue": 20999999488,
-            "trailingPE": 34.07,
-            "forwardPE": 28.41,
-            "priceEarningGrowth": 7.09,
-            "priceSales": 16.95,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 22229999616,
+            "enterpriseValue": 22799998976,
+            "trailingPE": 37.08,
+            "forwardPE": 30.96,
+            "priceEarningGrowth": 7.72,
+            "priceSales": 18.44,
             "priceBook": null,
-            "enterpriseValueRevenue": 17.05,
-            "enterpriseValueEBITDA": 23.44
+            "enterpriseValueRevenue": 18.51,
+            "enterpriseValueEBITDA": 25.45
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -5060,23 +5875,35 @@
       }
     },
     {
+      "companyName": "Lululemon Athletica Inc. (LULU)",
       "ticker": {
         "symbol": "LULU",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Lululemon Athletica Inc. (LULU)",
+        "price": 196.01,
+        "change": "+1.09 (+0.56%)",
+        "totalCashPerShare": 8.4,
+        "totalDebtEquity": 37.9,
+        "quarterlyRevenueGrowth": 19.7,
+        "quarterlyEarningsGrowth": 36.4,
+        "dilutedEarningPerShare": 4.93,
+        "week52Change": 16.67,
+        "week52Low": 128.85,
+        "week52High": 266.2,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 23889999872,
-            "enterpriseValue": 23530000384,
-            "trailingPE": 37.22,
-            "forwardPE": 40.49,
-            "priceEarningGrowth": 2.31,
-            "priceSales": 6.04,
-            "priceBook": 12.23,
-            "enterpriseValueRevenue": 5.91,
-            "enterpriseValueEBITDA": 22.39
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 25370001408,
+            "enterpriseValue": 25020000256,
+            "trailingPE": 39.54,
+            "forwardPE": 43.1,
+            "priceEarningGrowth": 2.45,
+            "priceSales": 6.41,
+            "priceBook": 13.0,
+            "enterpriseValueRevenue": 6.29,
+            "enterpriseValueEBITDA": 23.8
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -5142,23 +5969,35 @@
       }
     },
     {
+      "companyName": "Xilinx, Inc. (XLNX)",
       "ticker": {
         "symbol": "XLNX",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Xilinx, Inc. (XLNX)",
+        "price": 84.5,
+        "change": "+0.55 (+0.66%)",
+        "totalCashPerShare": 9.75,
+        "totalDebtEquity": 49.41,
+        "quarterlyRevenueGrowth": -9.6,
+        "quarterlyEarningsGrowth": -32.3,
+        "dilutedEarningPerShare": 3.41,
+        "week52Change": -36.02,
+        "week52Low": 67.68,
+        "week52High": 141.6,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 19079999488,
-            "enterpriseValue": 17899999232,
-            "trailingPE": 22.49,
-            "forwardPE": 21.93,
-            "priceEarningGrowth": 2.3,
-            "priceSales": 6.09,
-            "priceBook": 7.23,
-            "enterpriseValueRevenue": 5.53,
-            "enterpriseValueEBITDA": 16.5
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 20889999360,
+            "enterpriseValue": 19709999104,
+            "trailingPE": 24.62,
+            "forwardPE": 24.04,
+            "priceEarningGrowth": 2.51,
+            "priceSales": 6.67,
+            "priceBook": 7.91,
+            "enterpriseValueRevenue": 6.09,
+            "enterpriseValueEBITDA": 18.17
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -5212,23 +6051,35 @@
       }
     },
     {
+      "companyName": "Cintas Corporation (CTAS)",
       "ticker": {
         "symbol": "CTAS",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Cintas Corporation (CTAS)",
+        "price": 192.41,
+        "change": "+6.51 (+3.50%)",
+        "totalCashPerShare": 2.25,
+        "totalDebtEquity": 91.05,
+        "quarterlyRevenueGrowth": 7.6,
+        "quarterlyEarningsGrowth": 15.3,
+        "dilutedEarningPerShare": 8.81,
+        "week52Change": -6.36,
+        "week52Low": 154.33,
+        "week52High": 304.81,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 16929999872,
-            "enterpriseValue": 19600001024,
-            "trailingPE": 18.45,
-            "forwardPE": 20.66,
-            "priceEarningGrowth": 2.01,
-            "priceSales": 2.42,
-            "priceBook": 5.09,
-            "enterpriseValueRevenue": 2.7,
-            "enterpriseValueEBITDA": 11.9
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 19339999232,
+            "enterpriseValue": 22019999744,
+            "trailingPE": 21.08,
+            "forwardPE": 23.58,
+            "priceEarningGrowth": 2.3,
+            "priceSales": 2.76,
+            "priceBook": 5.82,
+            "enterpriseValueRevenue": 3.03,
+            "enterpriseValueEBITDA": 13.37
           },
           "2020-02-29": {
             "period": "2020-02-29",
@@ -5238,7 +6089,7 @@
             "forwardPE": 27.86,
             "priceEarningGrowth": 2.72,
             "priceSales": 4.04,
-            "priceBook": 8.91,
+            "priceBook": 8.94,
             "enterpriseValueRevenue": 16.77,
             "enterpriseValueEBITDA": 73.84
           },
@@ -5294,23 +6145,35 @@
       }
     },
     {
+      "companyName": "Cerner Corporation (CERN)",
       "ticker": {
         "symbol": "CERN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Cerner Corporation (CERN)",
+        "price": 66.41,
+        "change": "+2.15 (+3.35%)",
+        "totalCashPerShare": 1.74,
+        "totalDebtEquity": 27.55,
+        "quarterlyRevenueGrowth": 5.6,
+        "quarterlyEarningsGrowth": 17.5,
+        "dilutedEarningPerShare": 1.65,
+        "week52Change": 6.77,
+        "week52Low": 53.08,
+        "week52High": 80.9,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 18940000256,
-            "enterpriseValue": 19430000640,
-            "trailingPE": 36.79,
-            "forwardPE": 19.27,
-            "priceEarningGrowth": 2.04,
-            "priceSales": 3.43,
-            "priceBook": 4.39,
-            "enterpriseValueRevenue": 3.41,
-            "enterpriseValueEBITDA": 14.32
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 20049999872,
+            "enterpriseValue": 20540000256,
+            "trailingPE": 38.95,
+            "forwardPE": 20.41,
+            "priceEarningGrowth": 2.16,
+            "priceSales": 3.63,
+            "priceBook": 4.64,
+            "enterpriseValueRevenue": 3.61,
+            "enterpriseValueEBITDA": 15.14
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -5364,23 +6227,35 @@
       }
     },
     {
+      "companyName": "ANSYS, Inc. (ANSS)",
       "ticker": {
         "symbol": "ANSS",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "ANSYS, Inc. (ANSS)",
+        "price": 244.37,
+        "change": "+4.72 (+1.97%)",
+        "totalCashPerShare": 10.15,
+        "totalDebtEquity": 17.62,
+        "quarterlyRevenueGrowth": 17.0,
+        "quarterlyEarningsGrowth": 8.3,
+        "dilutedEarningPerShare": 5.25,
+        "week52Change": 29.58,
+        "week52Low": 174.25,
+        "week52High": 299.06,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 18080000000,
-            "enterpriseValue": 17799999488,
-            "trailingPE": 40.24,
-            "forwardPE": 32.79,
-            "priceEarningGrowth": 3.04,
-            "priceSales": 11.97,
-            "priceBook": 5.24,
-            "enterpriseValueRevenue": 11.74,
-            "enterpriseValueEBITDA": 29.42
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 20510001152,
+            "enterpriseValue": 20229998592,
+            "trailingPE": 45.65,
+            "forwardPE": 37.17,
+            "priceEarningGrowth": 3.45,
+            "priceSales": 13.58,
+            "priceBook": 5.94,
+            "enterpriseValueRevenue": 13.34,
+            "enterpriseValueEBITDA": 33.43
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -5434,23 +6309,35 @@
       }
     },
     {
+      "companyName": "Fastenal Company (FAST)",
       "ticker": {
         "symbol": "FAST",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Fastenal Company (FAST)",
+        "price": 32.49,
+        "change": "+0.48 (+1.50%)",
+        "totalCashPerShare": 0.31,
+        "totalDebtEquity": 22.16,
+        "quarterlyRevenueGrowth": 3.7,
+        "quarterlyEarningsGrowth": 5.9,
+        "dilutedEarningPerShare": 1.38,
+        "week52Change": -5.11,
+        "week52Low": 26.72,
+        "week52High": 39.31,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 17579999232,
-            "enterpriseValue": 17999998976,
-            "trailingPE": 22.18,
-            "forwardPE": 20.96,
-            "priceEarningGrowth": 2.21,
-            "priceSales": 3.3,
-            "priceBook": 6.6,
-            "enterpriseValueRevenue": 3.37,
-            "enterpriseValueEBITDA": 14.92
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 18389999616,
+            "enterpriseValue": 18799998976,
+            "trailingPE": 23.2,
+            "forwardPE": 21.93,
+            "priceEarningGrowth": 2.31,
+            "priceSales": 3.45,
+            "priceBook": 6.9,
+            "enterpriseValueRevenue": 3.53,
+            "enterpriseValueEBITDA": 15.59
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -5504,23 +6391,35 @@
       }
     },
     {
+      "companyName": "Alexion Pharmaceuticals, Inc. (ALXN)",
       "ticker": {
         "symbol": "ALXN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Alexion Pharmaceuticals, Inc. (ALXN)",
+        "price": 98.56,
+        "change": "+3.84 (+4.05%)",
+        "totalCashPerShare": 12.42,
+        "totalDebtEquity": 25.06,
+        "quarterlyRevenueGrowth": 22.6,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": 10.7,
+        "week52Change": -28.28,
+        "week52Low": 72.67,
+        "week52High": 141.59,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 19969998848,
-            "enterpriseValue": 19889999872,
-            "trailingPE": 8.4,
-            "forwardPE": 8.35,
-            "priceEarningGrowth": 0.64,
-            "priceSales": 4.05,
-            "priceBook": 1.77,
-            "enterpriseValueRevenue": 3.99,
-            "enterpriseValueEBITDA": 7.55
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 21040001024,
+            "enterpriseValue": 20950001664,
+            "trailingPE": 8.85,
+            "forwardPE": 8.8,
+            "priceEarningGrowth": 0.67,
+            "priceSales": 4.27,
+            "priceBook": 1.87,
+            "enterpriseValueRevenue": 4.2,
+            "enterpriseValueEBITDA": 7.96
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -5574,23 +6473,35 @@
       }
     },
     {
+      "companyName": "Synopsys, Inc. (SNPS)",
       "ticker": {
         "symbol": "SNPS",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Synopsys, Inc. (SNPS)",
+        "price": 138.85,
+        "change": "+3.34 (+2.46%)",
+        "totalCashPerShare": 4.66,
+        "totalDebtEquity": 20.66,
+        "quarterlyRevenueGrowth": 1.7,
+        "quarterlyEarningsGrowth": -32.2,
+        "dilutedEarningPerShare": 3.11,
+        "week52Change": 17.91,
+        "week52Low": 104.9,
+        "week52High": 166.87,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 18919999488,
-            "enterpriseValue": 19079999488,
-            "trailingPE": 40.5,
-            "forwardPE": 24.21,
-            "priceEarningGrowth": 1.92,
-            "priceSales": 5.77,
-            "priceBook": 4.56,
-            "enterpriseValueRevenue": 5.65,
-            "enterpriseValueEBITDA": 26.92
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 20360001536,
+            "enterpriseValue": 20519999488,
+            "trailingPE": 43.57,
+            "forwardPE": 26.04,
+            "priceEarningGrowth": 2.07,
+            "priceSales": 6.21,
+            "priceBook": 4.91,
+            "enterpriseValueRevenue": 6.08,
+            "enterpriseValueEBITDA": 28.94
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -5656,23 +6567,35 @@
       }
     },
     {
+      "companyName": "Seattle Genetics, Inc. (SGEN)",
       "ticker": {
         "symbol": "SGEN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Seattle Genetics, Inc. (SGEN)",
+        "price": 119.68,
+        "change": "-2.19 (-1.80%)",
+        "totalCashPerShare": 4.71,
+        "totalDebtEquity": 4.11,
+        "quarterlyRevenueGrowth": 66.1,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": -0.96,
+        "week52Change": 52.83,
+        "week52Low": 62.9,
+        "week52High": 128.0,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 19160000512,
-            "enterpriseValue": 18290001920,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 21030000640,
+            "enterpriseValue": 20170000384,
             "trailingPE": null,
             "forwardPE": null,
             "priceEarningGrowth": null,
-            "priceSales": 20.08,
-            "priceBook": 10.21,
-            "enterpriseValueRevenue": 19.96,
-            "enterpriseValueEBITDA": -97.81
+            "priceSales": 22.0,
+            "priceBook": 11.21,
+            "enterpriseValueRevenue": 22.0,
+            "enterpriseValueEBITDA": -107.82
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -5726,23 +6649,35 @@
       }
     },
     {
+      "companyName": "Dollar Tree, Inc. (DLTR)",
       "ticker": {
         "symbol": "DLTR",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Dollar Tree, Inc. (DLTR)",
+        "price": 79.22,
+        "change": "+2.98 (+3.91%)",
+        "totalCashPerShare": 2.28,
+        "totalDebtEquity": 160.37,
+        "quarterlyRevenueGrowth": 1.8,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": 3.47,
+        "week52Change": -24.3,
+        "week52Low": 60.2,
+        "week52High": 119.71,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 17269999616,
-            "enterpriseValue": 27069999104,
-            "trailingPE": 21.02,
-            "forwardPE": 14.35,
-            "priceEarningGrowth": 1.61,
-            "priceSales": 0.74,
-            "priceBook": 2.76,
-            "enterpriseValueRevenue": 1.15,
-            "enterpriseValueEBITDA": 12.19
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 18049998848,
+            "enterpriseValue": 27850000384,
+            "trailingPE": 21.97,
+            "forwardPE": 15.58,
+            "priceEarningGrowth": 1.75,
+            "priceSales": 0.77,
+            "priceBook": 2.89,
+            "enterpriseValueRevenue": 1.18,
+            "enterpriseValueEBITDA": 12.54
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -5808,23 +6743,35 @@
       }
     },
     {
+      "companyName": "IDEXX Laboratories, Inc. (IDXX)",
       "ticker": {
         "symbol": "IDXX",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "IDEXX Laboratories, Inc. (IDXX)",
+        "price": 254.73,
+        "change": "+2.99 (+1.19%)",
+        "totalCashPerShare": 1.06,
+        "totalDebtEquity": 602.01,
+        "quarterlyRevenueGrowth": 10.2,
+        "quarterlyEarningsGrowth": 5.7,
+        "dilutedEarningPerShare": 4.89,
+        "week52Change": 13.84,
+        "week52Low": 168.65,
+        "week52High": 296.25,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 19659999232,
-            "enterpriseValue": 20640000000,
-            "trailingPE": 47.17,
-            "forwardPE": 42.02,
-            "priceEarningGrowth": 3.43,
-            "priceSales": 8.39,
-            "priceBook": 110.77,
-            "enterpriseValueRevenue": 8.57,
-            "enterpriseValueEBITDA": 32.18
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 21450000384,
+            "enterpriseValue": 22430001152,
+            "trailingPE": 51.48,
+            "forwardPE": 45.87,
+            "priceEarningGrowth": 3.74,
+            "priceSales": 9.16,
+            "priceBook": 120.89,
+            "enterpriseValueRevenue": 9.32,
+            "enterpriseValueEBITDA": 34.98
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -5878,23 +6825,35 @@
       }
     },
     {
+      "companyName": "Citrix Systems, Inc. (CTXS)",
       "ticker": {
         "symbol": "CTXS",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Citrix Systems, Inc. (CTXS)",
+        "price": 146.82,
+        "change": "+1.02 (+0.70%)",
+        "totalCashPerShare": 4.81,
+        "totalDebtEquity": 119.3,
+        "quarterlyRevenueGrowth": 1.0,
+        "quarterlyEarningsGrowth": 25.0,
+        "dilutedEarningPerShare": 5.03,
+        "week52Change": 44.07,
+        "week52Low": 90.28,
+        "week52High": 150.33,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 17020000256,
-            "enterpriseValue": 17390000128,
-            "trailingPE": 27.66,
-            "forwardPE": 26.11,
-            "priceEarningGrowth": 2.55,
-            "priceSales": 6.26,
-            "priceBook": 20.32,
-            "enterpriseValueRevenue": 5.78,
-            "enterpriseValueEBITDA": 23.34
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 17840001024,
+            "enterpriseValue": 18200000512,
+            "trailingPE": 28.99,
+            "forwardPE": 27.32,
+            "priceEarningGrowth": 2.67,
+            "priceSales": 6.56,
+            "priceBook": 21.3,
+            "enterpriseValueRevenue": 6.05,
+            "enterpriseValueEBITDA": 24.44
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -5948,23 +6907,35 @@
       }
     },
     {
+      "companyName": "Copart, Inc. (CPRT)",
       "ticker": {
         "symbol": "CPRT",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Copart, Inc. (CPRT)",
+        "price": 71.98,
+        "change": "+2.08 (+2.98%)",
+        "totalCashPerShare": 0.4,
+        "totalDebtEquity": 24.44,
+        "quarterlyRevenueGrowth": 18.6,
+        "quarterlyEarningsGrowth": 28.4,
+        "dilutedEarningPerShare": 3.07,
+        "week52Change": 10.93,
+        "week52Low": 55.69,
+        "week52High": 104.88,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 15140000768,
-            "enterpriseValue": 15569999872,
-            "trailingPE": 21.1,
-            "forwardPE": 22.37,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 16339999744,
+            "enterpriseValue": 16760000512,
+            "trailingPE": 22.77,
+            "forwardPE": 24.15,
             "priceEarningGrowth": null,
-            "priceSales": 6.94,
-            "priceBook": 7.13,
-            "enterpriseValueRevenue": 7.0,
-            "enterpriseValueEBITDA": 17.13
+            "priceSales": 7.49,
+            "priceBook": 7.69,
+            "enterpriseValueRevenue": 7.53,
+            "enterpriseValueEBITDA": 18.44
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -6030,23 +7001,35 @@
       }
     },
     {
+      "companyName": "Splunk Inc. (SPLK)",
       "ticker": {
         "symbol": "SPLK",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Splunk Inc. (SPLK)",
+        "price": 125.05,
+        "change": "+4.83 (+4.02%)",
+        "totalCashPerShare": 11.06,
+        "totalDebtEquity": 99.78,
+        "quarterlyRevenueGrowth": 27.2,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": -2.22,
+        "week52Change": -7.63,
+        "week52Low": 93.92,
+        "week52High": 176.31,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 17400000512,
-            "enterpriseValue": 17589999616,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 19069999104,
+            "enterpriseValue": 19260000256,
             "trailingPE": null,
             "forwardPE": null,
-            "priceEarningGrowth": 32.26,
-            "priceSales": 7.07,
-            "priceBook": 8.7,
-            "enterpriseValueRevenue": 7.46,
-            "enterpriseValueEBITDA": -104.89
+            "priceEarningGrowth": 35.35,
+            "priceSales": 7.74,
+            "priceBook": 9.54,
+            "enterpriseValueRevenue": 8.17,
+            "enterpriseValueEBITDA": -114.85
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -6112,23 +7095,35 @@
       }
     },
     {
+      "companyName": "ASML Holding N.V. (ASML)",
       "ticker": {
         "symbol": "ASML",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "ASML Holding N.V. (ASML)",
+        "price": 278.58,
+        "change": "+5.99 (+2.20%)",
+        "totalCashPerShare": null,
+        "totalDebtEquity": 26.42,
+        "quarterlyRevenueGrowth": 28.4,
+        "quarterlyEarningsGrowth": 44.0,
+        "dilutedEarningPerShare": 6.96,
+        "week52Change": 40.76,
+        "week52Low": 186.31,
+        "week52High": 319.22,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 110059995136,
-            "enterpriseValue": 108279996416,
-            "trailingPE": 36.71,
-            "forwardPE": 31.85,
-            "priceEarningGrowth": 1.71,
-            "priceSales": 8.05,
-            "priceBook": 7.63,
-            "enterpriseValueRevenue": 9.16,
-            "enterpriseValueEBITDA": 33.43
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 115879993344,
+            "enterpriseValue": 114139996160,
+            "trailingPE": 41.02,
+            "forwardPE": 37.31,
+            "priceEarningGrowth": 2.0,
+            "priceSales": 9.0,
+            "priceBook": 8.53,
+            "enterpriseValueRevenue": 9.66,
+            "enterpriseValueEBITDA": 35.24
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6182,23 +7177,35 @@
       }
     },
     {
+      "companyName": "Cadence Design Systems, Inc. (CDNS)",
       "ticker": {
         "symbol": "CDNS",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Cadence Design Systems, Inc. (CDNS)",
+        "price": 71.84,
+        "change": "+2.79 (+4.04%)",
+        "totalCashPerShare": 2.53,
+        "totalDebtEquity": 21.7,
+        "quarterlyRevenueGrowth": 5.2,
+        "quarterlyEarningsGrowth": 570.2,
+        "dilutedEarningPerShare": 3.53,
+        "week52Change": 11.26,
+        "week52Low": 51.39,
+        "week52High": 80.4,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 18319998976,
-            "enterpriseValue": 18049998848,
-            "trailingPE": 18.48,
-            "forwardPE": 26.67,
-            "priceEarningGrowth": 2.49,
-            "priceSales": 7.83,
-            "priceBook": 8.71,
-            "enterpriseValueRevenue": 7.72,
-            "enterpriseValueEBITDA": 29.05
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 19389999104,
+            "enterpriseValue": 19120001024,
+            "trailingPE": 19.56,
+            "forwardPE": 28.25,
+            "priceEarningGrowth": 2.63,
+            "priceSales": 8.29,
+            "priceBook": 9.22,
+            "enterpriseValueRevenue": 8.18,
+            "enterpriseValueEBITDA": 30.78
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6252,23 +7259,35 @@
       }
     },
     {
+      "companyName": "Microchip Technology Incorporated (MCHP)",
       "ticker": {
         "symbol": "MCHP",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Microchip Technology Incorporated (MCHP)",
+        "price": 79.52,
+        "change": "+6.18 (+8.43%)",
+        "totalCashPerShare": 1.68,
+        "totalDebtEquity": 173.32,
+        "quarterlyRevenueGrowth": -6.4,
+        "quarterlyEarningsGrowth": 532.3,
+        "dilutedEarningPerShare": 2.53,
+        "week52Change": -15.38,
+        "week52Low": 53.15,
+        "week52High": 112.47,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 15360000000,
-            "enterpriseValue": 24700000256,
-            "trailingPE": 24.82,
-            "forwardPE": 10.05,
-            "priceEarningGrowth": 1.54,
-            "priceSales": 3.03,
-            "priceBook": 2.74,
-            "enterpriseValueRevenue": 4.68,
-            "enterpriseValueEBITDA": 12.88
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 17950001152,
+            "enterpriseValue": 27280001024,
+            "trailingPE": 28.99,
+            "forwardPE": 11.74,
+            "priceEarningGrowth": 1.8,
+            "priceSales": 3.54,
+            "priceBook": 3.2,
+            "enterpriseValueRevenue": 5.17,
+            "enterpriseValueEBITDA": 14.23
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6322,23 +7341,35 @@
       }
     },
     {
+      "companyName": "Incyte Corporation (INCY)",
       "ticker": {
         "symbol": "INCY",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Incyte Corporation (INCY)",
+        "price": 87.75,
+        "change": "+1.09 (+1.26%)",
+        "totalCashPerShare": 9.77,
+        "totalDebtEquity": 2.77,
+        "quarterlyRevenueGrowth": 9.6,
+        "quarterlyEarningsGrowth": 60.7,
+        "dilutedEarningPerShare": 2.05,
+        "week52Change": 8.25,
+        "week52Low": 62.48,
+        "week52High": 96.79,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 16080000000,
-            "enterpriseValue": 14010000384,
-            "trailingPE": 36.19,
-            "forwardPE": 24.21,
-            "priceEarningGrowth": 0.49,
-            "priceSales": 7.48,
-            "priceBook": 6.19,
-            "enterpriseValueRevenue": 6.49,
-            "enterpriseValueEBITDA": 25.8
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 18790000640,
+            "enterpriseValue": 16719998976,
+            "trailingPE": 42.27,
+            "forwardPE": 28.33,
+            "priceEarningGrowth": 0.57,
+            "priceSales": 8.74,
+            "priceBook": 7.23,
+            "enterpriseValueRevenue": 7.74,
+            "enterpriseValueEBITDA": 30.78
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6392,23 +7423,35 @@
       }
     },
     {
+      "companyName": "Check Point Software Technologies Ltd. (CHKP)",
       "ticker": {
         "symbol": "CHKP",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Check Point Software Technologies Ltd. (CHKP)",
+        "price": 107.04,
+        "change": "+1.90 (+1.81%)",
+        "totalCashPerShare": 10.86,
+        "totalDebtEquity": 0.82,
+        "quarterlyRevenueGrowth": 3.5,
+        "quarterlyEarningsGrowth": 14.3,
+        "dilutedEarningPerShare": 5.43,
+        "week52Change": -14.92,
+        "week52Low": 80.06,
+        "week52High": 132.76,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 15270000640,
-            "enterpriseValue": 13689999360,
-            "trailingPE": 18.1,
-            "forwardPE": 15.24,
-            "priceEarningGrowth": 2.73,
-            "priceSales": 7.49,
-            "priceBook": 4.28,
-            "enterpriseValueRevenue": 6.86,
-            "enterpriseValueEBITDA": 15.11
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 15029999616,
+            "enterpriseValue": 13449999360,
+            "trailingPE": 19.36,
+            "forwardPE": 16.31,
+            "priceEarningGrowth": 2.92,
+            "priceSales": 8.02,
+            "priceBook": 4.21,
+            "enterpriseValueRevenue": 6.74,
+            "enterpriseValueEBITDA": 13.61
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6418,9 +7461,9 @@
             "forwardPE": 17.04,
             "priceEarningGrowth": 1.99,
             "priceSales": 8.67,
-            "priceBook": 4.81,
-            "enterpriseValueRevenue": 28.61,
-            "enterpriseValueEBITDA": 60.74
+            "priceBook": 4.5,
+            "enterpriseValueRevenue": 28.6,
+            "enterpriseValueEBITDA": 45.86
           },
           "2019-09-30": {
             "period": "2019-09-30",
@@ -6462,23 +7505,117 @@
       }
     },
     {
+      "companyName": "BioMarin Pharmaceutical Inc. (BMRN)",
+      "ticker": {
+        "symbol": "BMRN",
+        "exchange": "NASDAQ"
+      },
+      "statistics": {
+        "companyName": "BioMarin Pharmaceutical Inc. (BMRN)",
+        "price": 79.6,
+        "change": "-0.23 (-0.29%)",
+        "totalCashPerShare": 4.19,
+        "totalDebtEquity": 29.13,
+        "quarterlyRevenueGrowth": 28.7,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": -0.13,
+        "week52Change": -10.39,
+        "week52Low": 62.88,
+        "week52High": 97.1,
+        "periodValuationMeasures": {
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 14359999488,
+            "enterpriseValue": 14470000640,
+            "trailingPE": null,
+            "forwardPE": 49.26,
+            "priceEarningGrowth": 0.74,
+            "priceSales": 8.39,
+            "priceBook": 4.6,
+            "enterpriseValueRevenue": 8.49,
+            "enterpriseValueEBITDA": 453.3
+          },
+          "2019-12-31": {
+            "period": "2019-12-31",
+            "marketCap": 15210000384,
+            "enterpriseValue": 15340000256,
+            "trailingPE": null,
+            "forwardPE": 56.82,
+            "priceEarningGrowth": 0.69,
+            "priceSales": 9.43,
+            "priceBook": 4.95,
+            "enterpriseValueRevenue": 33.75,
+            "enterpriseValueEBITDA": 683.83
+          },
+          "2019-09-30": {
+            "period": "2019-09-30",
+            "marketCap": 12110000128,
+            "enterpriseValue": 12220000256,
+            "trailingPE": null,
+            "forwardPE": 49.26,
+            "priceEarningGrowth": 0.74,
+            "priceSales": 7.84,
+            "priceBook": 4.09,
+            "enterpriseValueRevenue": 26.51,
+            "enterpriseValueEBITDA": 284.34
+          },
+          "2019-06-30": {
+            "period": "2019-06-30",
+            "marketCap": 15340000256,
+            "enterpriseValue": 15290000384,
+            "trailingPE": null,
+            "forwardPE": 111.11,
+            "priceEarningGrowth": 1.69,
+            "priceSales": 10.03,
+            "priceBook": 5.23,
+            "enterpriseValueRevenue": 39.42,
+            "enterpriseValueEBITDA": null
+          },
+          "2019-03-31": {
+            "period": "2019-03-31",
+            "marketCap": 15850000384,
+            "enterpriseValue": 15600000000,
+            "trailingPE": null,
+            "forwardPE": 129.87,
+            "priceEarningGrowth": 1.99,
+            "priceSales": 10.56,
+            "priceBook": 5.36,
+            "enterpriseValueRevenue": 38.93,
+            "enterpriseValueEBITDA": -655.36
+          }
+        }
+      }
+    },
+    {
+      "companyName": "Skyworks Solutions, Inc. (SWKS)",
       "ticker": {
         "symbol": "SWKS",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Skyworks Solutions, Inc. (SWKS)",
+        "price": 93.0,
+        "change": "+3.07 (+3.41%)",
+        "totalCashPerShare": 7.0,
+        "totalDebtEquity": 3.75,
+        "quarterlyRevenueGrowth": -7.8,
+        "quarterlyEarningsGrowth": -9.8,
+        "dilutedEarningPerShare": 4.78,
+        "week52Change": 5.39,
+        "week52Low": 66.29,
+        "week52High": 128.48,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 13979999232,
-            "enterpriseValue": 12939999232,
-            "trailingPE": 17.21,
-            "forwardPE": 13.18,
-            "priceEarningGrowth": 1.0,
-            "priceSales": 4.32,
-            "priceBook": 3.28,
-            "enterpriseValueRevenue": 3.92,
-            "enterpriseValueEBITDA": 10.06
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 15249999872,
+            "enterpriseValue": 14209999872,
+            "trailingPE": 18.77,
+            "forwardPE": 14.37,
+            "priceEarningGrowth": 1.09,
+            "priceSales": 4.71,
+            "priceBook": 3.57,
+            "enterpriseValueRevenue": 4.3,
+            "enterpriseValueEBITDA": 11.05
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6532,23 +7669,35 @@
       }
     },
     {
+      "companyName": "CDW Corporation (CDW)",
       "ticker": {
         "symbol": "CDW",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "CDW Corporation (CDW)",
+        "price": 102.27,
+        "change": "+3.64 (+3.69%)",
+        "totalCashPerShare": 1.08,
+        "totalDebtEquity": 407.0,
+        "quarterlyRevenueGrowth": 11.3,
+        "quarterlyEarningsGrowth": 16.5,
+        "dilutedEarningPerShare": 4.99,
+        "week52Change": -4.15,
+        "week52Low": 73.39,
+        "week52High": 146.09,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 12680000512,
-            "enterpriseValue": 15979999232,
-            "trailingPE": 17.8,
-            "forwardPE": 13.12,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 14080000000,
+            "enterpriseValue": 17379999744,
+            "trailingPE": 19.77,
+            "forwardPE": 14.58,
             "priceEarningGrowth": null,
-            "priceSales": 0.73,
-            "priceBook": 13.21,
-            "enterpriseValueRevenue": 0.89,
-            "enterpriseValueEBITDA": 11.41
+            "priceSales": 0.81,
+            "priceBook": 14.66,
+            "enterpriseValueRevenue": 0.96,
+            "enterpriseValueEBITDA": 12.41
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6602,23 +7751,35 @@
       }
     },
     {
+      "companyName": "Maxim Integrated Products, Inc. (MXIM)",
       "ticker": {
         "symbol": "MXIM",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Maxim Integrated Products, Inc. (MXIM)",
+        "price": 53.32,
+        "change": "+1.55 (+2.99%)",
+        "totalCashPerShare": 6.62,
+        "totalDebtEquity": 61.06,
+        "quarterlyRevenueGrowth": -4.5,
+        "quarterlyEarningsGrowth": 10.7,
+        "dilutedEarningPerShare": 2.85,
+        "week52Change": -8.02,
+        "week52Low": 41.93,
+        "week52High": 65.73,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 12400000000,
-            "enterpriseValue": 11609999360,
-            "trailingPE": 16.2,
-            "forwardPE": 17.12,
-            "priceEarningGrowth": 2.33,
-            "priceSales": 5.8,
-            "priceBook": 7.18,
-            "enterpriseValueRevenue": 5.32,
-            "enterpriseValueEBITDA": 14.35
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 13950000128,
+            "enterpriseValue": 13159999488,
+            "trailingPE": 18.23,
+            "forwardPE": 19.23,
+            "priceEarningGrowth": 2.62,
+            "priceSales": 6.52,
+            "priceBook": 8.08,
+            "enterpriseValueRevenue": 6.03,
+            "enterpriseValueEBITDA": 16.27
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6672,23 +7833,35 @@
       }
     },
     {
+      "companyName": "Take-Two Interactive Software, Inc. (TTWO)",
       "ticker": {
         "symbol": "TTWO",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Take-Two Interactive Software, Inc. (TTWO)",
+        "price": 119.1,
+        "change": "-0.96 (-0.80%)",
+        "totalCashPerShare": 18.48,
+        "totalDebtEquity": 7.31,
+        "quarterlyRevenueGrowth": -25.5,
+        "quarterlyEarningsGrowth": -9.1,
+        "dilutedEarningPerShare": 2.96,
+        "week52Change": 25.01,
+        "week52Low": 87.97,
+        "week52High": 135.7,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 13189999616,
-            "enterpriseValue": 11390000128,
-            "trailingPE": 39.3,
-            "forwardPE": 23.42,
-            "priceEarningGrowth": 2.47,
-            "priceSales": 4.65,
-            "priceBook": 5.49,
-            "enterpriseValueRevenue": 3.97,
-            "enterpriseValueEBITDA": 18.15
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 13619999744,
+            "enterpriseValue": 11810000896,
+            "trailingPE": 40.56,
+            "forwardPE": 24.21,
+            "priceEarningGrowth": 2.55,
+            "priceSales": 4.79,
+            "priceBook": 5.67,
+            "enterpriseValueRevenue": 4.12,
+            "enterpriseValueEBITDA": 18.82
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6742,23 +7915,35 @@
       }
     },
     {
+      "companyName": "Trip.com Group Limited (TCOM)",
       "ticker": {
         "symbol": "TCOM",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Trip.com Group Limited (TCOM)",
+        "price": 24.51,
+        "change": "+0.08 (+0.33%)",
+        "totalCashPerShare": null,
+        "totalDebtEquity": 47.55,
+        "quarterlyRevenueGrowth": 10.3,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": null,
+        "week52Change": -44.67,
+        "week52Low": 20.1,
+        "week52High": 46.5,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 13029999616,
-            "enterpriseValue": 14140000256,
-            "trailingPE": 13.69,
-            "forwardPE": 126.58,
-            "priceEarningGrowth": 8.99,
-            "priceSales": 2.83,
-            "priceBook": 0.9,
-            "enterpriseValueRevenue": 0.4,
-            "enterpriseValueEBITDA": 1.31
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 14380000256,
+            "enterpriseValue": 15479999488,
+            "trailingPE": 15.07,
+            "forwardPE": 138.89,
+            "priceEarningGrowth": 9.89,
+            "priceSales": 3.12,
+            "priceBook": 0.99,
+            "enterpriseValueRevenue": 0.43,
+            "enterpriseValueEBITDA": 1.44
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6812,35 +7997,47 @@
       }
     },
     {
+      "companyName": "Align Technology, Inc. (ALGN)",
       "ticker": {
         "symbol": "ALGN",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Align Technology, Inc. (ALGN)",
+        "price": 184.41,
+        "change": "+9.86 (+5.65%)",
+        "totalCashPerShare": 11.03,
+        "totalDebtEquity": 4.4,
+        "quarterlyRevenueGrowth": 21.7,
+        "quarterlyEarningsGrowth": 24.5,
+        "dilutedEarningPerShare": 5.53,
+        "week52Change": -36.34,
+        "week52Low": 127.88,
+        "week52High": 334.64,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 12380000256,
-            "enterpriseValue": 11569999872,
-            "trailingPE": 28.43,
-            "forwardPE": 23.64,
-            "priceEarningGrowth": 1.36,
-            "priceSales": 5.23,
-            "priceBook": 9.2,
-            "enterpriseValueRevenue": 4.81,
-            "enterpriseValueEBITDA": 19.5
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 13749999616,
+            "enterpriseValue": 12939999232,
+            "trailingPE": 31.56,
+            "forwardPE": 27.47,
+            "priceEarningGrowth": 1.6,
+            "priceSales": 5.81,
+            "priceBook": 10.21,
+            "enterpriseValueRevenue": 5.38,
+            "enterpriseValueEBITDA": 21.8
           },
           "2019-12-31": {
             "period": "2019-12-31",
-            "marketCap": 21990000640,
-            "enterpriseValue": 21269999616,
+            "marketCap": 21889998848,
+            "enterpriseValue": 21159999488,
             "trailingPE": 53.56,
             "forwardPE": 42.19,
             "priceEarningGrowth": 2.44,
             "priceSales": 9.8,
             "priceBook": 16.76,
-            "enterpriseValueRevenue": 32.73,
-            "enterpriseValueEBITDA": 122.97
+            "enterpriseValueRevenue": 32.57,
+            "enterpriseValueEBITDA": 122.35
           },
           "2019-09-30": {
             "period": "2019-09-30",
@@ -6882,23 +8079,35 @@
       }
     },
     {
+      "companyName": "Western Digital Corporation (WDC)",
       "ticker": {
         "symbol": "WDC",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Western Digital Corporation (WDC)",
+        "price": 45.34,
+        "change": "+2.48 (+5.79%)",
+        "totalCashPerShare": 10.49,
+        "totalDebtEquity": 107.59,
+        "quarterlyRevenueGrowth": 0.0,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": -4.04,
+        "week52Change": -10.8,
+        "week52Low": 27.4,
+        "week52High": 72.0,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 11560000512,
-            "enterpriseValue": 18260000768,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 12810000384,
+            "enterpriseValue": 19509999616,
             "trailingPE": null,
-            "forwardPE": 5.52,
-            "priceEarningGrowth": 0.31,
-            "priceSales": 0.73,
-            "priceBook": 1.23,
-            "enterpriseValueRevenue": 1.17,
-            "enterpriseValueEBITDA": 20.31
+            "forwardPE": 6.12,
+            "priceEarningGrowth": 0.34,
+            "priceSales": 0.81,
+            "priceBook": 1.37,
+            "enterpriseValueRevenue": 1.25,
+            "enterpriseValueEBITDA": 21.7
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -6952,23 +8161,35 @@
       }
     },
     {
+      "companyName": "NetApp, Inc. (NTAP)",
       "ticker": {
         "symbol": "NTAP",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "NetApp, Inc. (NTAP)",
+        "price": 40.98,
+        "change": "+1.25 (+3.15%)",
+        "totalCashPerShare": 13.64,
+        "totalDebtEquity": 704.97,
+        "quarterlyRevenueGrowth": -10.2,
+        "quarterlyEarningsGrowth": 11.2,
+        "dilutedEarningPerShare": 4.26,
+        "week52Change": -45.71,
+        "week52Low": 34.66,
+        "week52High": 78.35,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 8849999872,
-            "enterpriseValue": 7830000128,
-            "trailingPE": 9.5,
-            "forwardPE": 8.64,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 8789999616,
+            "enterpriseValue": 7769999872,
+            "trailingPE": 9.44,
+            "forwardPE": 8.58,
             "priceEarningGrowth": 1.04,
-            "priceSales": 1.7,
-            "priceBook": 31.38,
-            "enterpriseValueRevenue": 1.4,
-            "enterpriseValueEBITDA": 5.9
+            "priceSales": 1.69,
+            "priceBook": 31.16,
+            "enterpriseValueRevenue": 1.39,
+            "enterpriseValueEBITDA": 5.85
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -7034,23 +8255,35 @@
       }
     },
     {
+      "companyName": "Ulta Beauty, Inc. (ULTA)",
       "ticker": {
         "symbol": "ULTA",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Ulta Beauty, Inc. (ULTA)",
+        "price": 200.57,
+        "change": "+13.02 (+6.94%)",
+        "totalCashPerShare": 8.92,
+        "totalDebtEquity": 101.91,
+        "quarterlyRevenueGrowth": 8.5,
+        "quarterlyEarningsGrowth": 3.7,
+        "dilutedEarningPerShare": 12.15,
+        "week52Change": -42.73,
+        "week52Low": 124.05,
+        "week52High": 368.83,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 9089999872,
-            "enterpriseValue": 10529999872,
-            "trailingPE": 13.29,
-            "forwardPE": 13.14,
-            "priceEarningGrowth": 1.27,
-            "priceSales": 1.27,
-            "priceBook": 4.78,
-            "enterpriseValueRevenue": 1.42,
-            "enterpriseValueEBITDA": 8.8
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 10560000000,
+            "enterpriseValue": 12000000000,
+            "trailingPE": 15.44,
+            "forwardPE": 15.27,
+            "priceEarningGrowth": 1.47,
+            "priceSales": 1.47,
+            "priceBook": 5.55,
+            "enterpriseValueRevenue": 1.62,
+            "enterpriseValueEBITDA": 10.03
           },
           "2020-01-31": {
             "period": "2020-01-31",
@@ -7116,23 +8349,35 @@
       }
     },
     {
+      "companyName": "Fox Corporation (FOXA)",
       "ticker": {
         "symbol": "FOXA",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Fox Corporation (FOXA)",
+        "price": 26.3,
+        "change": "+0.81 (+3.18%)",
+        "totalCashPerShare": 3.28,
+        "totalDebtEquity": 69.3,
+        "quarterlyRevenueGrowth": 5.4,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": 2.86,
+        "week52Change": -29.09,
+        "week52Low": 19.81,
+        "week52High": 39.74,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 13350000640,
-            "enterpriseValue": 18690000896,
-            "trailingPE": 7.65,
-            "forwardPE": 8.06,
-            "priceEarningGrowth": 2.41,
-            "priceSales": 1.16,
-            "priceBook": 1.31,
-            "enterpriseValueRevenue": 1.6,
-            "enterpriseValueEBITDA": 6.11
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 15329999872,
+            "enterpriseValue": 20660000768,
+            "trailingPE": 8.73,
+            "forwardPE": 9.2,
+            "priceEarningGrowth": 2.74,
+            "priceSales": 1.33,
+            "priceBook": 1.5,
+            "enterpriseValueRevenue": 1.76,
+            "enterpriseValueEBITDA": 6.76
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -7142,7 +8387,7 @@
             "forwardPE": 15.48,
             "priceEarningGrowth": 4.62,
             "priceSales": 2.0,
-            "priceBook": 2.23,
+            "priceBook": 2.19,
             "enterpriseValueRevenue": 7.01,
             "enterpriseValueEBITDA": 46.77
           },
@@ -7186,23 +8431,35 @@
       }
     },
     {
+      "companyName": "Liberty Global plc (LBTYK)",
       "ticker": {
         "symbol": "LBTYK",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Liberty Global plc (LBTYK)",
+        "price": 17.3,
+        "change": "+1.05 (+6.46%)",
+        "totalCashPerShare": 13.3,
+        "totalDebtEquity": 229.64,
+        "quarterlyRevenueGrowth": 1.1,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": 16.32,
+        "week52Change": -34.57,
+        "week52Low": 14.36,
+        "week52High": 27.84,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 9760000000,
-            "enterpriseValue": 29799999488,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 10480000000,
+            "enterpriseValue": 30520000512,
             "trailingPE": null,
-            "forwardPE": 384.62,
+            "forwardPE": null,
             "priceEarningGrowth": null,
-            "priceSales": 0.92,
-            "priceBook": 0.7,
-            "enterpriseValueRevenue": 2.58,
-            "enterpriseValueEBITDA": 7.68
+            "priceSales": 0.99,
+            "priceBook": 0.76,
+            "enterpriseValueRevenue": 2.64,
+            "enterpriseValueEBITDA": 7.86
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -7256,23 +8513,35 @@
       }
     },
     {
+      "companyName": "Expedia Group, Inc. (EXPE)",
       "ticker": {
         "symbol": "EXPE",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Expedia Group, Inc. (EXPE)",
+        "price": 60.55,
+        "change": "+4.04 (+7.15%)",
+        "totalCashPerShare": 27.44,
+        "totalDebtEquity": 100.68,
+        "quarterlyRevenueGrowth": 7.3,
+        "quarterlyEarningsGrowth": 347.1,
+        "dilutedEarningPerShare": 3.77,
+        "week52Change": -51.4,
+        "week52Low": 40.76,
+        "week52High": 144.0,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 7280000000,
-            "enterpriseValue": 8910000128,
-            "trailingPE": 13.79,
-            "forwardPE": 12.87,
-            "priceEarningGrowth": 0.9,
-            "priceSales": 0.65,
-            "priceBook": 1.83,
-            "enterpriseValueRevenue": 0.74,
-            "enterpriseValueEBITDA": 4.79
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 7909999616,
+            "enterpriseValue": 9539999744,
+            "trailingPE": 14.99,
+            "forwardPE": 20.2,
+            "priceEarningGrowth": 1.41,
+            "priceSales": 0.7,
+            "priceBook": 1.99,
+            "enterpriseValueRevenue": 0.79,
+            "enterpriseValueEBITDA": 5.13
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -7326,23 +8595,35 @@
       }
     },
     {
+      "companyName": "Fox Corporation (FOX)",
       "ticker": {
         "symbol": "FOX",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Fox Corporation (FOX)",
+        "price": 25.82,
+        "change": "+0.85 (+3.40%)",
+        "totalCashPerShare": 3.28,
+        "totalDebtEquity": 69.3,
+        "quarterlyRevenueGrowth": 5.4,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": 2.86,
+        "week52Change": -29.09,
+        "week52Low": 19.13,
+        "week52High": 38.91,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 13350000640,
-            "enterpriseValue": 18690000896,
-            "trailingPE": 7.39,
-            "forwardPE": 7.78,
-            "priceEarningGrowth": 2.32,
-            "priceSales": 1.12,
-            "priceBook": 1.27,
-            "enterpriseValueRevenue": 1.6,
-            "enterpriseValueEBITDA": 6.11
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 15329999872,
+            "enterpriseValue": 20660000768,
+            "trailingPE": 8.55,
+            "forwardPE": 9.01,
+            "priceEarningGrowth": 2.69,
+            "priceSales": 1.3,
+            "priceBook": 1.47,
+            "enterpriseValueRevenue": 1.76,
+            "enterpriseValueEBITDA": 6.76
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -7352,7 +8633,7 @@
             "forwardPE": 15.2,
             "priceEarningGrowth": 4.54,
             "priceSales": 1.96,
-            "priceBook": 2.19,
+            "priceBook": 2.15,
             "enterpriseValueRevenue": 7.01,
             "enterpriseValueEBITDA": 46.77
           },
@@ -7396,23 +8677,35 @@
       }
     },
     {
+      "companyName": "United Airlines Holdings, Inc. (UAL)",
       "ticker": {
         "symbol": "UAL",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "United Airlines Holdings, Inc. (UAL)",
+        "price": 29.92,
+        "change": "+2.41 (+8.77%)",
+        "totalCashPerShare": 19.94,
+        "totalDebtEquity": 177.35,
+        "quarterlyRevenueGrowth": 3.8,
+        "quarterlyEarningsGrowth": 39.0,
+        "dilutedEarningPerShare": 11.58,
+        "week52Change": -67.92,
+        "week52Low": 17.8,
+        "week52High": 96.03,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 6360000000,
-            "enterpriseValue": 21870000128,
-            "trailingPE": 2.22,
-            "forwardPE": 4.16,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 6070000128,
+            "enterpriseValue": 21579999232,
+            "trailingPE": 2.11,
+            "forwardPE": 3.97,
             "priceEarningGrowth": null,
             "priceSales": 0.15,
-            "priceBook": 0.55,
-            "enterpriseValueRevenue": 0.51,
-            "enterpriseValueEBITDA": 3.19
+            "priceBook": 0.53,
+            "enterpriseValueRevenue": 0.5,
+            "enterpriseValueEBITDA": 3.15
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -7466,23 +8759,35 @@
       }
     },
     {
+      "companyName": "American Airlines Group Inc. (AAL)",
       "ticker": {
         "symbol": "AAL",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "American Airlines Group Inc. (AAL)",
+        "price": 12.63,
+        "change": "+1.30 (+11.47%)",
+        "totalCashPerShare": 8.98,
+        "totalDebtEquity": null,
+        "quarterlyRevenueGrowth": 3.4,
+        "quarterlyEarningsGrowth": 27.8,
+        "dilutedEarningPerShare": 3.79,
+        "week52Change": -67.45,
+        "week52Low": 9.09,
+        "week52High": 35.24,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 4550000128,
-            "enterpriseValue": 34169997312,
-            "trailingPE": 2.82,
-            "forwardPE": 7.42,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 4350000128,
+            "enterpriseValue": 33970001920,
+            "trailingPE": 2.7,
+            "forwardPE": 7.1,
             "priceEarningGrowth": null,
             "priceSales": 0.1,
             "priceBook": null,
-            "enterpriseValueRevenue": 0.75,
-            "enterpriseValueEBITDA": 6.03
+            "enterpriseValueRevenue": 0.74,
+            "enterpriseValueEBITDA": 5.99
           },
           "2019-12-31": {
             "period": "2019-12-31",
@@ -7536,23 +8841,35 @@
       }
     },
     {
+      "companyName": "Liberty Global plc (LBTYA)",
       "ticker": {
         "symbol": "LBTYA",
         "exchange": "NASDAQ"
       },
       "statistics": {
+        "companyName": "Liberty Global plc (LBTYA)",
+        "price": 18.71,
+        "change": "+0.44 (+2.41%)",
+        "totalCashPerShare": 13.3,
+        "totalDebtEquity": 229.64,
+        "quarterlyRevenueGrowth": 1.1,
+        "quarterlyEarningsGrowth": null,
+        "dilutedEarningPerShare": 16.32,
+        "week52Change": -32.93,
+        "week52Low": 15.24,
+        "week52High": 28.62,
         "periodValuationMeasures": {
-          "2020-04-06": {
-            "period": "2020-04-06",
-            "marketCap": 9760000000,
-            "enterpriseValue": 29799999488,
+          "2020-04-09": {
+            "period": "2020-04-09",
+            "marketCap": 10480000000,
+            "enterpriseValue": 30520000512,
             "trailingPE": null,
-            "forwardPE": 400.0,
+            "forwardPE": null,
             "priceEarningGrowth": null,
-            "priceSales": 0.98,
-            "priceBook": 0.75,
-            "enterpriseValueRevenue": 2.58,
-            "enterpriseValueEBITDA": 7.68
+            "priceSales": 1.06,
+            "priceBook": 0.8,
+            "enterpriseValueRevenue": 2.64,
+            "enterpriseValueEBITDA": 7.86
           },
           "2019-12-31": {
             "period": "2019-12-31",

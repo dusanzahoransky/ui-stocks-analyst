@@ -1,16 +1,43 @@
+table, td, th {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
 th, td {
-    width: 100px;
+    width: 60px;
+}
+
+table {
+    position: relative;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: white;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+.companyName {
+    width: 180px;
+}
+
+.change {
+    width: 120px;
 }
 
 .lightGreen {
     background: #e5ffe3;
 }
+
 .lightRed {
     background: #ffe6dc;
 }
+
 .green {
     background: #acffb2;
 }
+
 .red {
     background: #ff6d68;
 }

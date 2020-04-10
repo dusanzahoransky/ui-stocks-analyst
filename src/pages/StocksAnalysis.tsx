@@ -54,21 +54,40 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     toHeaderData(period: string, result: AnalysisResult): any[][] {
         const periodAverage = result.statisticsAverage.periodValuationMeasures[period];
 
-        const headersRow = Object.keys(periodAverage).map(field => FormattingUtils.statLabel(field));
+        let headersRow = Object.keys(result.statisticsAverage)
+            .filter(key => key !== 'periodValuationMeasures')
+            .map(field => FormattingUtils.statLabel(field));
+        headersRow = headersRow.concat(Object.keys(periodAverage)
+            .map(field => FormattingUtils.statLabel(field)));
+
+
+        let averagesRow = Object.keys(result.statisticsAverage)
+            .filter(key => key !== 'periodValuationMeasures')
+            .map(key => result.statisticsAverage[key]);
+        averagesRow = averagesRow.concat(Object.keys(periodAverage)
+            .map(key => periodAverage[key]));
 
         return [
             ['Ticker', ...headersRow],
-            ['', ...Object.values(periodAverage)]
+            ['', ...averagesRow]
         ]
     }
 
     toTableData(period: string, result: AnalysisResult): any[][] {
         let rows = [];
         for (const stock of result.stocks) {
+            let rowValues = [stock.ticker.symbol];
+            rowValues = rowValues.concat(
+                Object.keys(stock.statistics)
+                    .filter(key => key !== 'periodValuationMeasures')
+                    .map(key => stock.statistics[key] ? stock.statistics[key] : ''));
             let periodMeasure = stock.statistics.periodValuationMeasures[period];
             if (periodMeasure) {
-                rows.push(this.toRowData(stock, periodMeasure));
+                rowValues = rowValues.concat(
+                    Object.keys(periodMeasure)
+                        .map(key => periodMeasure[key] ? periodMeasure[key] : ''));
             }
+            rows.push(rowValues);
         }
         return rows;
     }
