@@ -13,20 +13,29 @@ export interface StocksAnalysisProps {
 
 export interface StocksAnalysisState {
     error?: string
-    result?: AnalysisResult
+    results?: Map<string, AnalysisResult>
 }
 
 export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksAnalysisState> {
 
+    private readonly stockAnalystService: StockAnalystService;
+
     constructor(props: Readonly<StocksAnalysisProps>) {
         super(props);
-        this.state = {error: undefined, result: undefined}
+        this.state = {error: undefined, results: undefined}
+        this.stockAnalystService = new StockAnalystService();
     }
 
     componentDidMount() {
-        let result = new StockAnalystService().loadAnalysis();
+        let results = new Map();
+        results.set('AUD', this.stockAnalystService.loadAudAnalysis());
+        results.set('CHF', this.stockAnalystService.loadChfAnalysis());
+        results.set('EUR', this.stockAnalystService.loadEurAnalysis());
+        results.set('GBP', this.stockAnalystService.loadGbpAnalysis());
+        results.set('USD', this.stockAnalystService.loadUsdAnalysis());
+        results.set('NASDAQ100', this.stockAnalystService.loadNasdaq100Analysis());
         this.setState({
-            result
+            results
         })
     }
 
@@ -35,18 +44,31 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             return <div>Error</div>;
         }
 
-        if (!this.state.result) {
+        if (!this.state.results) {
             return <div>Loading analysis result...</div>;
         }
 
-        const result: AnalysisResult = this.state.result;
-        const currentPeriod = result.statisticsAllPeriods[0];
+        const tables = []
+        this.state.results.forEach( (result: AnalysisResult, watchlist: string) => {
+            const currentPeriod = result.statisticsAllPeriods[0];
 
-        const headers = this.toHeaderData(currentPeriod, result);
-        const data = this.toTableData(currentPeriod, result);
+            const headers = this.toHeaderData(currentPeriod, result);
+            let data = this.toTableData(currentPeriod, result);
+
+            headers[1] = this.stockAnalystService.transformData(headers[1]);
+            data = data.map(rowData => this.stockAnalystService.transformData(rowData));
+            tables.push(
+                <div className="Table">
+                    <h2 className="watchlist">{watchlist}</h2>
+                    <Table data={data} headers={headers}/>
+                </div>
+            )
+        });
+
+
         return (
             <div className='StocksAnalysis'>
-                <Table data={data} headers={headers}/>
+                {tables}
             </div>
         )
     };
@@ -76,7 +98,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     toTableData(period: string, result: AnalysisResult): any[][] {
         let rows = [];
         for (const stock of result.stocks) {
-            let rowValues = [stock.ticker.symbol];
+            let rowValues = [stock.symbol];
             rowValues = rowValues.concat(
                 Object.keys(stock.statistics)
                     .filter(key => key !== 'periodValuationMeasures')
@@ -93,7 +115,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     }
 
     toRowData(stock: StockInfo, measure: PeriodMeasure): string[] {
-        const stockName = stock.ticker.symbol;
+        const stockName = stock.symbol;
         return [stockName, ...Object.values(measure)];
     }
 

@@ -1,19 +1,11 @@
-import {Column} from "../components/Table";
+import {TableColumn} from "../model/TableColumn";
 
 export class FormattingUtils {
 
-    static format(rowValue: any[], value: any, columnIndex: Column): string {
-        if(columnIndex === Column.companyName){
+    static format(rowValue: any[], value: any, columnIndex: TableColumn): string {
+        if(columnIndex === TableColumn.companyName){
             const companyName = value as string;
-            return companyName.substr(0, companyName.indexOf('('));
-        }
-        if(columnIndex === Column.week52Low){
-            const price = rowValue[Column.price];
-            value = (price - value) / price * 100;
-        }
-        if(columnIndex === Column.week52High){
-            const price = rowValue[Column.price];
-            value = (value - price) / price * 100;
+            return companyName ? companyName.substr(0, companyName.indexOf('(')): '';
         }
         if (value && !isNaN(value)) {
             const num = value as number;
@@ -27,7 +19,7 @@ export class FormattingUtils {
             }
             return num.toLocaleString(undefined, {maximumFractionDigits: 2});
         }
-        return value ? value.toString() : '';
+        return value ? value : '';
     }
 
     static statLabel(fieldName: string): string {
@@ -45,11 +37,11 @@ export class FormattingUtils {
             case 'enterpriseValue' :
                 return 'Enterprise Value';
             case 'trailingPE' :
-                return 'Trailing P/E';
+                return 'Trailing Price/Earnings';
             case 'forwardPE' :
-                return 'Forward P/E';
+                return 'Forward Price/Earnings';
             case 'priceEarningGrowth' :
-                return 'PEG Ratio';
+                return 'Price/Earnings to Growth Ratio';
             case 'priceSales' :
                 return 'Price/Sales';
             case 'priceBook' :
@@ -61,7 +53,7 @@ export class FormattingUtils {
             case 'totalCashPerShare':
                 return 'Total Cash Per Share';
             case 'totalDebtEquity':
-                return 'Total Debt Equity';
+                return 'Total Debt/Equity';
             case 'quarterlyRevenueGrowth':
                 return 'Quarterly Revenue Growth';
             case 'quarterlyEarningsGrowth':

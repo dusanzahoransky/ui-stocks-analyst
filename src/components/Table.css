@@ -38,8 +38,16 @@ th {
     background: #acffb2;
 }
 
+.greenText {
+    color: #128408;
+}
+
 .red {
     background: #ff6d68;
+}
+
+.redText {
+    color: #970008;
 }
 
 .hidden {

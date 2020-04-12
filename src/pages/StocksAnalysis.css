@@ -1,3 +1,13 @@
 .StocksAnalysis {
     width: 3000px;
 }
+
+.watchlist{
+    text-align: left;
+}
+
+.Table{
+
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
