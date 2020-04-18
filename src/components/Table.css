@@ -9,6 +9,7 @@ th, td {
 
 table {
     position: relative;
+    /*width:1200px;*/
 }
 
 th {
@@ -19,7 +20,7 @@ th {
 }
 
 .companyName {
-    width: 180px;
+    width: 250px;
 }
 
 .change {
