@@ -1,73 +1,117 @@
 import {TableColumn} from "../model/TableColumn";
+import moment from "moment";
 
 export class FormattingUtils {
 
-    static format(rowValue: any[], value: any, columnIndex: TableColumn): string {
-        if(columnIndex === TableColumn.companyName){
-            const companyName = value as string;
-            return companyName ? companyName.substr(0, companyName.indexOf('(')): '';
+    static format(rowValue: any[], value: number | string, columnIndex: TableColumn): string {
+        if(!value){
+            return ''
         }
-        if (value && !isNaN(value)) {
-            const num = value as number;
-            if (num > 1000000000) {
-                const bil = num / 1000000000;
-                return `${bil.toFixed(0)}B`;
+        if (typeof value === 'string') {
+            if(columnIndex === TableColumn.exDividendDate){
+                let diff = moment().diff( value, 'days');
+                return diff < 0 ? `in ${-diff} days` : value;
             }
-            if (num > 1000000) {
-                const mil = num / 1000000;
-                return `${mil.toFixed(0)}M`;
-            }
-            return num.toLocaleString(undefined, {maximumFractionDigits: 2});
+            return value
         }
-        return value ? value : '';
+        if(!value || isNaN(value)){
+            return value ? value.toFixed(1) : '';
+        }
+        if (value > 1000000000000) {
+            const bil = value / 1000000000000;
+            return `${bil.toFixed(1)}T`;
+        }
+        if (value > 1000000000) {
+            const bil = value / 1000000000;
+            return `${bil.toFixed(1)}B`;
+        }
+        if (value > 1000000) {
+            const mil = value / 1000000;
+            return `${mil.toFixed(1)}M`;
+        }
+        return value.toLocaleString(undefined, {maximumFractionDigits: 1});
     }
 
-    static statLabel(fieldName: string): string {
-        switch (fieldName) {
-            case 'companyName' :
-                return 'Company Name';
-            case 'price' :
-                return 'Price';
-            case 'change' :
-                return 'Change';
-            case 'period' :
-                return 'Date';
-            case 'marketCap' :
-                return 'Market Cap';
-            case 'enterpriseValue' :
-                return 'Enterprise Value';
-            case 'trailingPE' :
-                return 'Trailing Price/Earnings';
-            case 'forwardPE' :
-                return 'Forward Price/Earnings';
-            case 'priceEarningGrowth' :
-                return 'Price/Earnings to Growth Ratio';
-            case 'priceSales' :
-                return 'Price/Sales';
-            case 'priceBook' :
-                return 'Price/Book';
-            case 'enterpriseValueRevenue' :
-                return 'Enterprise Value/Revenue';
-            case 'enterpriseValueEBITDA' :
-                return 'Enterprise Value/EBITDA';
-            case 'totalCashPerShare':
-                return 'Total Cash Per Share';
-            case 'totalDebtEquity':
-                return 'Total Debt/Equity';
-            case 'quarterlyRevenueGrowth':
-                return 'Quarterly Revenue Growth';
-            case 'quarterlyEarningsGrowth':
-                return 'Quarterly Earnings Growth';
-            case 'dilutedEarningPerShare':
-                return 'Diluted Earning Per Share';
-            case 'week52Change925436893203884':
-                return '52 Week Change';
-            case 'week52Low':
-                return '% Above 52 Low';
-            case 'week52High':
-                return '% Below 52 High';
+    static toFieldLabel(field: string) {
+        switch (field) {
+            case "id":
+                return "Id"
+            case "date":
+                return "Date"
+            case "symbol":
+                return "Symbol"
+            case "exchange":
+                return "Exchange"
+            case "companyName":
+                return "Company name"
+            case "price":
+                return "Price"
+            case "change":
+                return "Change"
+            case "enterpriseValue":
+                return "EV"
+            case "totalCashPerShare":
+                return "Cash /Share"
+            case "totalCashPerSharePercent":
+                return "Cash /Share %"
+            case "totalDebtEquity":
+                return "Debt /Equity"
+            case "trailingPE":
+                return "(Trl) P/E"
+            case "forwardPE":
+                return "(Fwd) P/E"
+            case "priceToSalesTrailing12Months":
+                return "(TTM) P/S"
+            case "priceBook":
+                return "Price book"
+            case "enterpriseValueRevenue":
+                return "EV /R"
+            case "enterpriseValueEBITDA":
+                return "EV /EBITDA"
+            case "yoyQuarterlyRevenueGrowthPercent":
+                return "(YOY) Q. revenue growth"
+            case "earningsGrowthPercent":
+                return "Earnings Growth %?"
+            case "quarterlyRevenueGrowth":
+                return "Q. revenue growth"
+            case "yoyQuarterlyEarningsGrowthPercent":
+                return "(YOY) Q. earnings growth"
+            case "priceEarningGrowth":
+                return "PEG"
+            case "trailingPriceEarningGrowth":
+                return "(Trl) PEG"
+            case "week52Change":
+                return "52W change"
+            case "week52Low":
+                return "52W low"
+            case "week52AboveLowPercent":
+                return "52W above low %"
+            case "week52High":
+                return "52W high"
+            case "week52BelowHighPercent":
+                return "52W below high %"
+            case "exDividendDate":
+                return "Ex div date"
+            case "fiveYearAvgDividendYield":
+                return "5y avg div yield"
+            case "trailingAnnualDividendYield":
+                return "(Trl) A. div yield"
+            case "targetLowPrice":
+                return "Target Low Price"
+            case "belowTargetLowPricePercent":
+                return "Below target low price %"
+            case "belowTargetMedianPricePercent":
+                return "Below target median price %"
+            case "heldByInsiders":
+                return "Held by insiders %"
+            case "heldByInstitutions":
+                return "Held by institutions %"
+            case "shortToFloat":
+                return "Short to Float %"
+            case "sharesShortPrevMonthCompare":
+                return "Short comp to prev month %"
             default:
-                return fieldName;
+                return field;
         }
     }
 }

@@ -9,21 +9,23 @@ th, td {
 
 table {
     position: relative;
+    width:1880px;
 }
 
 th {
     position: sticky;
-    top: 0;
-    background: white;
+    top: 150px;
+    background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
-.companyName {
-    width: 180px;
+.label {
+    top: 0;
 }
 
-.change {
+.companyName {
     width: 120px;
+    font-size: x-small;
 }
 
 .lightGreen {
@@ -52,4 +54,15 @@ th {
 
 .hidden {
     display: none;
+}
+
+.fa-sort {
+    margin-right: 3px;
+    color: lightgray;
+}
+
+.score {
+    vertical-align: top;
+    font-size: x-small;
+    margin-left: 2px;
 }

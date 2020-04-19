@@ -1,11 +1,8 @@
 import React from "react";
 import {StockAnalystService} from "../services/StockAnalystService";
 import {AnalysisResult} from "../model/AnalysisResult";
-import {StockInfo} from "../model/StockInfo";
-import {PeriodMeasure} from "../model/PeriodMeasure";
 import './StocksAnalysis.css';
 import {Table} from "../components/Table";
-import {FormattingUtils} from "../utils/FormattingUtils";
 
 export interface StocksAnalysisProps {
 
@@ -28,12 +25,13 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     componentDidMount() {
         let results = new Map();
-        results.set('AUD', this.stockAnalystService.loadAudAnalysis());
-        results.set('CHF', this.stockAnalystService.loadChfAnalysis());
-        results.set('EUR', this.stockAnalystService.loadEurAnalysis());
-        results.set('GBP', this.stockAnalystService.loadGbpAnalysis());
+        results.set('TEST', this.stockAnalystService.loadTestAnalysis());
+        // results.set('AUD', this.stockAnalystService.loadAudAnalysis());
+        // results.set('CHF', this.stockAnalystService.loadChfAnalysis());
+        // results.set('EUR', this.stockAnalystService.loadEurAnalysis());
+        // results.set('GBP', this.stockAnalystService.loadGbpAnalysis());
         results.set('USD', this.stockAnalystService.loadUsdAnalysis());
-        results.set('NASDAQ100', this.stockAnalystService.loadNasdaq100Analysis());
+        // results.set('NASDAQ100', this.stockAnalystService.loadNasdaq100Analysis());
         this.setState({
             results
         })
@@ -49,18 +47,15 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         }
 
         const tables = []
-        this.state.results.forEach( (result: AnalysisResult, watchlist: string) => {
-            const currentPeriod = result.statisticsAllPeriods[0];
+        this.state.results.forEach((result: AnalysisResult, watchlist: string) => {
+            const headers = this.toHeaderData(result);
+            let data = this.toTableData(result);
 
-            const headers = this.toHeaderData(currentPeriod, result);
-            let data = this.toTableData(currentPeriod, result);
-
-            headers[1] = this.stockAnalystService.transformData(headers[1]);
-            data = data.map(rowData => this.stockAnalystService.transformData(rowData));
+            const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))
             tables.push(
-                <div className="Table">
+                <div className="Table" key={watchlist}>
                     <h2 className="watchlist">{watchlist}</h2>
-                    <Table data={data} headers={headers}/>
+                    <Table data={scoredData} headerLabels={headers[0]} headerAverages={headers[1]}/>
                 </div>
             )
         });
@@ -73,50 +68,31 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         )
     };
 
-    toHeaderData(period: string, result: AnalysisResult): any[][] {
-        const periodAverage = result.statisticsAverage.periodValuationMeasures[period];
-
-        let headersRow = Object.keys(result.statisticsAverage)
+    toHeaderData(result: AnalysisResult): any[][] {
+        const headersRow = Object.keys(result.averages)
             .filter(key => key !== 'periodValuationMeasures')
-            .map(field => FormattingUtils.statLabel(field));
-        headersRow = headersRow.concat(Object.keys(periodAverage)
-            .map(field => FormattingUtils.statLabel(field)));
+            .concat('Score')
 
-
-        let averagesRow = Object.keys(result.statisticsAverage)
+        const averagesRow = Object.keys(result.averages)
             .filter(key => key !== 'periodValuationMeasures')
-            .map(key => result.statisticsAverage[key]);
-        averagesRow = averagesRow.concat(Object.keys(periodAverage)
-            .map(key => periodAverage[key]));
+            .map(key => result.averages[key])
+            .concat(0)
 
         return [
-            ['Ticker', ...headersRow],
-            ['', ...averagesRow]
+            headersRow,
+            averagesRow
         ]
     }
 
-    toTableData(period: string, result: AnalysisResult): any[][] {
+    toTableData(result: AnalysisResult): any[][] {
         let rows = [];
         for (const stock of result.stocks) {
-            let rowValues = [stock.symbol];
-            rowValues = rowValues.concat(
-                Object.keys(stock.statistics)
-                    .filter(key => key !== 'periodValuationMeasures')
-                    .map(key => stock.statistics[key] ? stock.statistics[key] : ''));
-            let periodMeasure = stock.statistics.periodValuationMeasures[period];
-            if (periodMeasure) {
-                rowValues = rowValues.concat(
-                    Object.keys(periodMeasure)
-                        .map(key => periodMeasure[key] ? periodMeasure[key] : ''));
-            }
+            const rowValues = Object.keys(stock)
+                .filter(key => key !== 'periodValuationMeasures')
+                .map(key => stock[key] ? stock[key] : '')
             rows.push(rowValues);
         }
         return rows;
-    }
-
-    toRowData(stock: StockInfo, measure: PeriodMeasure): string[] {
-        const stockName = stock.symbol;
-        return [stockName, ...Object.values(measure)];
     }
 
 
