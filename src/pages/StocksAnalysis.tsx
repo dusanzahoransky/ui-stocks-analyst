@@ -1,11 +1,8 @@
 import React from "react";
 import {StockAnalystService} from "../services/StockAnalystService";
 import {AnalysisResult} from "../model/AnalysisResult";
-import {StockInfo} from "../model/StockInfo";
 import './StocksAnalysis.css';
 import {Table} from "../components/Table";
-import {FormattingUtils} from "../utils/FormattingUtils";
-import {CellData} from "../model/CellData";
 
 export interface StocksAnalysisProps {
 
@@ -28,6 +25,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     componentDidMount() {
         let results = new Map();
+        results.set('TEST', this.stockAnalystService.loadTestAnalysis());
         // results.set('AUD', this.stockAnalystService.loadAudAnalysis());
         // results.set('CHF', this.stockAnalystService.loadChfAnalysis());
         // results.set('EUR', this.stockAnalystService.loadEurAnalysis());
@@ -49,13 +47,13 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         }
 
         const tables = []
-        this.state.results.forEach( (result: AnalysisResult, watchlist: string) => {
+        this.state.results.forEach((result: AnalysisResult, watchlist: string) => {
             const headers = this.toHeaderData(result);
             let data = this.toTableData(result);
 
-            const scoredData = data.map( row => this.stockAnalystService.scoreData(headers[1], row))
+            const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))
             tables.push(
-                <div className="Table">
+                <div className="Table" key={watchlist}>
                     <h2 className="watchlist">{watchlist}</h2>
                     <Table data={scoredData} headerLabels={headers[0]} headerAverages={headers[1]}/>
                 </div>
@@ -71,12 +69,14 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     };
 
     toHeaderData(result: AnalysisResult): any[][] {
-        let headersRow = Object.keys(result.averages)
-            .filter(key => key !== 'periodValuationMeasures');
-
-        let averagesRow = Object.keys(result.averages)
+        const headersRow = Object.keys(result.averages)
             .filter(key => key !== 'periodValuationMeasures')
-            .map(key => result.averages[key]);
+            .concat('Score')
+
+        const averagesRow = Object.keys(result.averages)
+            .filter(key => key !== 'periodValuationMeasures')
+            .map(key => result.averages[key])
+            .concat(0)
 
         return [
             headersRow,
@@ -87,9 +87,9 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     toTableData(result: AnalysisResult): any[][] {
         let rows = [];
         for (const stock of result.stocks) {
-            let rowValues = Object.keys(stock)
-                    .filter(key => key !== 'periodValuationMeasures')
-                    .map(key => stock[key] ? stock[key] : '');
+            const rowValues = Object.keys(stock)
+                .filter(key => key !== 'periodValuationMeasures')
+                .map(key => stock[key] ? stock[key] : '')
             rows.push(rowValues);
         }
         return rows;

@@ -1,9 +1,17 @@
 import {TableColumn} from "../model/TableColumn";
+import moment from "moment";
 
 export class FormattingUtils {
 
     static format(rowValue: any[], value: number | string, columnIndex: TableColumn): string {
+        if(!value){
+            return ''
+        }
         if (typeof value === 'string') {
+            if(columnIndex === TableColumn.exDividendDate){
+                let diff = moment().diff( value, 'days');
+                return diff < 0 ? `in ${-diff} days` : value;
+            }
             return value
         }
         if(!value || isNaN(value)){
@@ -43,49 +51,65 @@ export class FormattingUtils {
             case "enterpriseValue":
                 return "EV"
             case "totalCashPerShare":
-                return "Total cash / share"
+                return "Cash /Share"
             case "totalCashPerSharePercent":
-                return "Total cash / share %"
+                return "Cash /Share %"
             case "totalDebtEquity":
-                return "Total debt / equity"
+                return "Debt /Equity"
             case "trailingPE":
-                return "Tra pe"
+                return "(Trl) P/E"
             case "forwardPE":
-                return "Fwd pe"
+                return "(Fwd) P/E"
             case "priceToSalesTrailing12Months":
-                return "PS tra 12 months"
+                return "(TTM) P/S"
             case "priceBook":
                 return "Price book"
             case "enterpriseValueRevenue":
-                return "EV revenue"
+                return "EV /R"
             case "enterpriseValueEBITDA":
-                return "EV ebitda"
+                return "EV /EBITDA"
+            case "yoyQuarterlyRevenueGrowthPercent":
+                return "(YOY) Q. revenue growth"
+            case "earningsGrowthPercent":
+                return "Earnings Growth %?"
             case "quarterlyRevenueGrowth":
-                return "Qua revenue growth"
-            case "quarterlyEarningsGrowth":
-                return "Qua earnings growth"
+                return "Q. revenue growth"
+            case "yoyQuarterlyEarningsGrowthPercent":
+                return "(YOY) Q. earnings growth"
             case "priceEarningGrowth":
                 return "PEG"
             case "trailingPriceEarningGrowth":
-                return "Trailing PEG"
+                return "(Trl) PEG"
             case "week52Change":
-                return "Week 52 change"
+                return "52W change"
             case "week52Low":
-                return "Week 52 low"
+                return "52W low"
             case "week52AboveLowPercent":
-                return "Week 52 above low %"
+                return "52W above low %"
             case "week52High":
-                return "Week 52 high"
+                return "52W high"
             case "week52BelowHighPercent":
-                return "Week 52 below high %"
+                return "52W below high %"
             case "exDividendDate":
-                return "Ex dividend date"
+                return "Ex div date"
             case "fiveYearAvgDividendYield":
-                return "5 year avg dividend yield"
+                return "5y avg div yield"
             case "trailingAnnualDividendYield":
-                return "Tr annual dividend yield"
-            case "periodValuationMeasures":
-                return "Period valuation measures"
+                return "(Trl) A. div yield"
+            case "targetLowPrice":
+                return "Target Low Price"
+            case "belowTargetLowPricePercent":
+                return "Below target low price %"
+            case "belowTargetMedianPricePercent":
+                return "Below target median price %"
+            case "heldByInsiders":
+                return "Held by insiders %"
+            case "heldByInstitutions":
+                return "Held by institutions %"
+            case "shortToFloat":
+                return "Short to Float %"
+            case "sharesShortPrevMonthCompare":
+                return "Short comp to prev month %"
             default:
                 return field;
         }
