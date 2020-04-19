@@ -1,5 +1,9 @@
 import {AnalysisResult} from "../model/AnalysisResult";
 import resultUsd from "./Result-usd-2020-04-18.json"
+import resultEur from "./Result-eur-2020-04-19.json"
+import resultChf from "./Result-chf-2020-04-19.json"
+import resultAud from "./Result-aud-2020-04-19.json"
+import resultGbp from "./Result-gbp-2020-04-19.json"
 import resultTest from "./Result-test.json"
 import {CellData} from "../model/CellData";
 import {TableColumn} from "../model/TableColumn";
@@ -10,19 +14,18 @@ export class StockAnalystService {
     loadTestAnalysis(): AnalysisResult {
         return resultTest as unknown as AnalysisResult
     }
-
-    // loadAudAnalysis(): AnalysisResult {
-    //     return resultAud as unknown as AnalysisResult
-    // }
-    // loadChfAnalysis(): AnalysisResult {
-    //     return resultChf as unknown as AnalysisResult
-    // }
-    // loadEurAnalysis(): AnalysisResult {
-    //     return resultEur as unknown as AnalysisResult
-    // }
-    // loadGbpAnalysis(): AnalysisResult {
-    //     return resultGbp as unknown as AnalysisResult
-    // }
+    loadAudAnalysis(): AnalysisResult {
+        return resultAud as unknown as AnalysisResult
+    }
+    loadChfAnalysis(): AnalysisResult {
+        return resultChf as unknown as AnalysisResult
+    }
+    loadEurAnalysis(): AnalysisResult {
+        return resultEur as unknown as AnalysisResult
+    }
+    loadGbpAnalysis(): AnalysisResult {
+        return resultGbp as unknown as AnalysisResult
+    }
     loadUsdAnalysis(): AnalysisResult {
         return resultUsd as unknown as AnalysisResult
     }

@@ -26,10 +26,10 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     componentDidMount() {
         let results = new Map();
         results.set('TEST', this.stockAnalystService.loadTestAnalysis());
-        // results.set('AUD', this.stockAnalystService.loadAudAnalysis());
-        // results.set('CHF', this.stockAnalystService.loadChfAnalysis());
-        // results.set('EUR', this.stockAnalystService.loadEurAnalysis());
-        // results.set('GBP', this.stockAnalystService.loadGbpAnalysis());
+        results.set('AUD', this.stockAnalystService.loadAudAnalysis());
+        results.set('CHF', this.stockAnalystService.loadChfAnalysis());
+        results.set('EUR', this.stockAnalystService.loadEurAnalysis());
+        results.set('GBP', this.stockAnalystService.loadGbpAnalysis());
         results.set('USD', this.stockAnalystService.loadUsdAnalysis());
         // results.set('NASDAQ100', this.stockAnalystService.loadNasdaq100Analysis());
         this.setState({
