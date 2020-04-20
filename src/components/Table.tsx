@@ -161,6 +161,8 @@ export class Table extends React.Component<TableProps, TableState> {
             case TableColumn.quarterlyRevenueGrowth:
             case TableColumn.targetMedianPrice:
             case TableColumn.targetLowPrice:
+            case TableColumn.currency:
+            case TableColumn.financialCurrency:
                 return 'hidden';
             default:
                 return '';

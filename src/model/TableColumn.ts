@@ -5,6 +5,8 @@ export enum TableColumn {
     exchange,
     companyName,
     price,
+    currency,
+    financialCurrency,
     change,
     enterpriseValue,
 

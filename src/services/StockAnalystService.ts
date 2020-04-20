@@ -126,9 +126,9 @@ export class StockAnalystService {
                 score *= 5
                 break;
             case TableColumn.exDividendDate:
-                const daysToExDivident = moment().diff(string, 'days')
+                const daysToExDivident = - moment().diff(string, 'days')
                 const lastDivYield = rowValues[TableColumn.trailingAnnualDividendYield] as number
-                score = daysToExDivident < 30 ? Math.pow(lastDivYield, 2) : 0
+                score = daysToExDivident > 0 && daysToExDivident < 30 ? Math.pow(lastDivYield, 2) : 0
                 break;
             case TableColumn.fiveYearAvgDividendYield:
                 score = number
