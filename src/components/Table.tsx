@@ -158,11 +158,30 @@ export class Table extends React.Component<TableProps, TableState> {
             case TableColumn.priceBook:
             case TableColumn.week52Low:
             case TableColumn.week52High:
-            case TableColumn.quarterlyRevenueGrowth:
             case TableColumn.targetMedianPrice:
             case TableColumn.targetLowPrice:
             case TableColumn.currency:
             case TableColumn.financialCurrency:
+            case TableColumn.cashLastYear:
+            case TableColumn.inventoryLastYear:
+            case TableColumn.totalShareholdersEquityLastYear:
+            case TableColumn.stockRepurchasedLastYear:
+            case TableColumn.stockLastYear:
+            case TableColumn.stockLastQuarter:
+            case TableColumn.currentLiabilitiesLastQuarter:
+            case TableColumn.totalDebtEquity:
+            case TableColumn.currentLiabilitiesGrowthLastQuarter:
+            case TableColumn.currentLiabilitiesLastYear:
+            case TableColumn.currentLiabilitiesGrowthLastYear:
+            case TableColumn.currentLiabilitiesGrowthLast3Years:
+            case TableColumn.totalLiabilitiesLastQuarter:
+            case TableColumn.totalLiabilitiesGrowthLastQuarter:
+            case TableColumn.totalLiabilitiesLastYear:
+            case TableColumn.totalLiabilitiesGrowthLastYear:
+            case TableColumn.totalLiabilitiesGrowthLast3Years:
+            case TableColumn.inventoryGrowthLast3Years:
+            case TableColumn.cashGrowthLast3Years:
+            case TableColumn.totalShareholdersEquityGrowthLast3Years:
                 return 'hidden';
             default:
                 return '';

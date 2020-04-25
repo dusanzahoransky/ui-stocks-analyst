@@ -14,18 +14,23 @@ export class StockAnalystService {
     loadTestAnalysis(): AnalysisResult {
         return resultTest as unknown as AnalysisResult
     }
+
     loadAudAnalysis(): AnalysisResult {
         return resultAud as unknown as AnalysisResult
     }
+
     loadChfAnalysis(): AnalysisResult {
         return resultChf as unknown as AnalysisResult
     }
+
     loadEurAnalysis(): AnalysisResult {
         return resultEur as unknown as AnalysisResult
     }
+
     loadGbpAnalysis(): AnalysisResult {
         return resultGbp as unknown as AnalysisResult
     }
+
     loadUsdAnalysis(): AnalysisResult {
         return resultUsd as unknown as AnalysisResult
     }
@@ -56,7 +61,7 @@ export class StockAnalystService {
 
     private static scoreData(value: number | string, colIndex: number, rowValues: number[] | string[], averages: number[]): number {
 
-        if(!value){
+        if (!value) {
             return 0
         }
         const number: number = value as number
@@ -65,23 +70,6 @@ export class StockAnalystService {
         let score
 
         switch (colIndex) {
-
-            case TableColumn.id:
-            case TableColumn.date:
-            case TableColumn.symbol:
-            case TableColumn.exchange:
-            case TableColumn.companyName:
-            case TableColumn.enterpriseValue:
-            case TableColumn.totalCashPerShare:
-            case TableColumn.week52High:
-            case TableColumn.week52Low:
-            case TableColumn.week52Change:
-            case TableColumn.week52AboveLowPercent:
-            case TableColumn.week52BelowHighPercent:
-            case TableColumn.price:
-            case TableColumn.priceBook:
-                break;
-
             case TableColumn.change: {
                 score = number > 10 || number < -10 ? number - 10 : 0
                 break
@@ -89,44 +77,47 @@ export class StockAnalystService {
             case TableColumn.totalCashPerSharePercent:
                 score = number * 0.1
                 break
-            case TableColumn.totalDebtEquity:
-                score = -number
-                break;
             case TableColumn.trailingPE:
-                score = 20 - number
+                score = 20 - number + (1 / Math.log1p(number))
+                score *= 10
                 break;
             case TableColumn.forwardPE:
-                score = 20 - number
+                score = 20 - number + (1 / Math.log1p(number))
+                score *= 10
                 break;
             case TableColumn.priceToSalesTrailing12Months:
-                score = 20 - number
-                score *= 0.1
+                score = 0;
                 break;
             case TableColumn.enterpriseValueRevenue:
-                score = 10 - number
-                score *= 0.1
+                score = 5 - number
+                score *= 1
                 break;
             case TableColumn.enterpriseValueEBITDA:
-                score = 20 - number
-                score *= 0.2
-                break;
-            case TableColumn.yoyQuarterlyEarningsGrowthPercent:
-                score = number
+                score = 10 - number
+                score *= 2
                 break;
             case TableColumn.yoyQuarterlyRevenueGrowthPercent:
                 score = number
-                score *= 1
+                score *= 2
                 break;
             case TableColumn.priceEarningGrowth:
                 score = 5 - number
-                score *= 10
+                score *= 2
                 break;
             case TableColumn.trailingPriceEarningGrowth:
                 score = 5 - number
+                score *= 1
+                break;
+            case TableColumn.belowTargetLowPricePercent:
+                score = number
+                score *= 5
+                break;
+            case TableColumn.belowTargetMedianPricePercent:
+                score = number
                 score *= 5
                 break;
             case TableColumn.exDividendDate:
-                const daysToExDivident = - moment().diff(string, 'days')
+                const daysToExDivident = -moment().diff(string, 'days')
                 const lastDivYield = rowValues[TableColumn.trailingAnnualDividendYield] as number
                 score = daysToExDivident > 0 && daysToExDivident < 30 ? Math.pow(lastDivYield, 2) : 0
                 break;
@@ -138,20 +129,13 @@ export class StockAnalystService {
                 score = number
                 score *= 5
                 break;
-            case TableColumn.belowTargetLowPricePercent:
-                score = number
-                score *= 5
-                break;
-            case TableColumn.belowTargetMedianPricePercent:
-                score = number
-                score *= 10
-                break;
             case TableColumn.heldByInsiders:
                 score = number
+                score *= 0.5
                 break;
             case TableColumn.heldByInstitutions:
                 score = -number
-                score *= 0.1
+                score *= 0.05
                 break;
             case TableColumn.shortToFloat:
                 score = 10 - number
@@ -160,8 +144,102 @@ export class StockAnalystService {
                 score = 100 - number
                 score *= 0.3
                 break;
-
+            case TableColumn.netIncomeGrowthLastQuarter:
+                score = number
+                break;
+            case TableColumn.netIncomeGrowthLastYear:
+                score = number
+                break;
+            case TableColumn.netIncomeGrowthLast3Years:
+                score = number
+                score *= 0.5
+                break;
+             case TableColumn.revenueGrowthLastQuarter:
+                score = number
+                score *= 0.3
+                break;
+           case TableColumn.revenueGrowthLastYear:
+                score = number
+                score *= 0.3
+                break;
+            case TableColumn.revenueGrowthLast3Years:
+                score = number
+                score *= 0.1
+                break;
+            case TableColumn.cashGrowthLastQuarter:
+                score = number
+                score *= 0.2
+                break;
+            case TableColumn.inventoryGrowthLastQuarter:
+                score = number
+                score *= -0.1
+                break;
+            case TableColumn.totalShareholdersEquityGrowthLastQuarter:
+                score = number
+                score *= 0.1
+                break;
+            case TableColumn.totalShareholdersEquityGrowthLastYear:
+                score = number
+                score *= 0.1
+                break;
+            case TableColumn.totalShareholdersEquityGrowthLast3Years:
+                score = number
+                score *= 0.1
+                break;
+            case TableColumn.currentLiabilitiesToEquityLastQuarter:
+                score = 0.5 - number
+                score *= 1
+                break;
+            case TableColumn.currentLiabilitiesToEquityGrowthLastQuarter:
+                score = -number
+                score *= 1
+                break;
+            case TableColumn.totalLiabilitiesToEquityLastQuarter:
+                score = 1 - number
+                score *= 1
+                break;
+            case TableColumn.totalLiabilitiesToEquityGrowthLastQuarter:
+                score = -number
+                score *= 0.1
+                break;
+            case TableColumn.stockGrowthLastQuarter:
+                score = number
+                score *= -0.1
+                break;
+            case TableColumn.stockGrowthLastYear:
+                score = number
+                score *= -0.1
+                break;
+            case TableColumn.stockGrowthLast3Years:
+                score = number
+                score *= -0.1
+                break;
+            case TableColumn.epsGrowthLastQuarter:
+                score = number
+                score *= 1
+                break;
+            case TableColumn.epsGrowthLast2Quarters:
+                score = number
+                score *= 0.5
+                break;
+            case TableColumn.epsGrowthLast3Quarters:
+                score = number
+                score *= 0.5
+                break;
+            case TableColumn.epsGrowthEstimateLastQuarter:
+                score = number
+                score *= 1
+                break;
         }
         return score;
+    }
+
+    /**
+     * Number to the exponent power, keeping the sign.
+     * E.g. signPow(-2, 2) == -4
+     */
+    private static signPow(number: number, exponent: number) {
+        let absPow = Math.pow(Math.abs(number), 1.3);
+        return absPow * Math.sign(number);
     }
 }
