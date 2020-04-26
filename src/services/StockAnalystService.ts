@@ -8,8 +8,6 @@ import resultTest from "./Result-test.json"
 import {CellData} from "../model/CellData";
 import {TableColumn} from "../model/TableColumn";
 import moment from "moment";
-import {PriceEpsData} from "../model/PriceEpsData";
-import {StockInfo} from "../model/StockInfo";
 
 export class StockAnalystService {
 
@@ -156,11 +154,11 @@ export class StockAnalystService {
                 score = number
                 score *= 0.5
                 break;
-             case TableColumn.revenueGrowthLastQuarter:
+            case TableColumn.revenueGrowthLastQuarter:
                 score = number
                 score *= 0.3
                 break;
-           case TableColumn.revenueGrowthLastYear:
+            case TableColumn.revenueGrowthLastYear:
                 score = number
                 score *= 0.3
                 break;

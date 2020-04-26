@@ -7,18 +7,7 @@ export interface PriceEpsChartProps {
     data: PriceEpsData[];
 }
 
-export interface PriceEpsChartState {
-}
-
-export class PriceEpsChart extends React.Component<PriceEpsChartProps, PriceEpsChartState> {
-
-    constructor(props: Readonly<PriceEpsChartProps>) {
-        super(props);
-    }
-
-    componentDidMount() {
-
-    }
+export class PriceEpsChart extends React.Component<PriceEpsChartProps> {
 
     render() {
         let chartData = this.props.data;
