@@ -1,7 +1,7 @@
 {
   "averages": {
     "id": null,
-    "date": "2020-04-24",
+    "date": "2020-04-26",
     "symbol": "AVERAGES",
     "exchange": null,
     "companyName": null,
@@ -15,7 +15,7 @@
     "totalDebtEquity": 0.369669681595695,
     "trailingPE": 25.576757,
     "forwardPE": 21.983042,
-    "priceToSalesTrailing12Months": 2.6760468499999996,
+    "priceToSalesTrailing12Months": 10.7041874,
     "priceBook": 4.296688,
     "enterpriseValueRevenue": 4.699,
     "enterpriseValueEBITDA": 15.8,
@@ -104,12 +104,14 @@
     "epsGrowthLastQuarter": null,
     "epsGrowthLast2Quarters": null,
     "epsGrowthLast3Quarters": null,
-    "epsGrowthEstimateLastQuarter": null
+    "epsGrowthEstimateLastQuarter": null,
+    "quarters": null,
+    "chartData": []
   },
   "stocks": [
     {
-      "id": "5ea2f034e0256e01c850f6f7",
-      "date": "2020-04-24",
+      "id": "5ea44a1bc440a82376e3d438",
+      "date": "2020-04-26",
       "symbol": "GOOGL",
       "exchange": "NASDAQ",
       "companyName": "Alphabet Inc.",
@@ -212,328 +214,540 @@
       "epsGrowthLastQuarter": 51.67984189723322,
       "epsGrowthLast2Quarters": 8.022519352568604,
       "epsGrowthLast3Quarters": 61.57894736842104,
-      "epsGrowthEstimateLastQuarter": -29.25081433224756
-    },
-    {
-      "id": "5ea2f034e0256e01c850f6f8",
-      "date": "2020-04-24",
-      "symbol": "LTM",
-      "exchange": "NASDAQ",
-      "companyName": "Alphabet Inc.",
-      "price": 1257.43,
-      "currency": "USD",
-      "financialCurrency": "USD",
-      "change": 0.0103400045,
-      "enterpriseValue": 7.60506155008E11,
-      "totalCashPerShare": 174.127,
-      "totalCashPerSharePercent": 13.847848389174747,
-      "totalDebtEquity": 0.369669681595695,
-      "trailingPE": 25.576757,
-      "forwardPE": 21.983042,
-      "priceToSalesTrailing12Months": 5.3520937,
-      "priceBook": 4.296688,
-      "enterpriseValueRevenue": 4.699,
-      "enterpriseValueEBITDA": 15.8,
-      "yoyQuarterlyRevenueGrowthPercent": 17.299999999999997,
-      "priceEarningGrowth": 5.59,
-      "trailingPriceEarningGrowth": 0.520244024978134,
-      "week52Change": 0.29271840000000005,
-      "week52Low": 1008.87,
-      "week52AboveLowPercent": 19.76730315007595,
-      "week52High": 1530.74,
-      "week52BelowHighPercent": 21.735603572365854,
-      "targetLowPrice": 1250.0,
-      "belowTargetLowPricePercent": -0.5908877631359252,
-      "targetMedianPrice": 1490.0,
-      "belowTargetMedianPricePercent": 18.495661786341977,
-      "heldByInsiders": 0.14200001,
-      "heldByInstitutions": 82.055,
-      "shortToFloat": 1.35,
-      "sharesShortPrevMonthCompare": 74.08211811965998,
-      "exDividendDate": null,
-      "fiveYearAvgDividendYield": null,
-      "trailingAnnualDividendYield": null,
-      "netIncomeLastQuarter": 10671000000,
-      "netIncome2QuartersAgo": 7068000000,
-      "netIncomeLastYear": 34343000000,
-      "netIncome2YearAgo": 30736000000,
-      "netIncome3YearAgo": 12662000000,
-      "netIncomeGrowthLastQuarter": 50.97623089983022,
-      "netIncomeGrowthLastYear": 11.735424258198854,
-      "netIncomeGrowthLast3Years": 171.2288737956089,
-      "revenueLastQuarter": 46075000000,
-      "revenueGrowthLastQuarter": 13.768241191140524,
-      "revenueLastYear": 161857000000,
-      "revenueGrowthLastYear": 18.30008989979462,
-      "revenueGrowthLast3Years": 46.007848089847094,
-      "cashLastQuarter": 18498000000,
-      "cashGrowthLastQuarter": 15.381736526946108,
-      "cashLastYear": 18498000000,
-      "cashGrowthLastYear": 10.759834740434703,
-      "cashGrowthLast3Years": 72.63649090060663,
-      "inventoryLastQuarter": 999000000,
-      "inventoryGrowthLastQuarter": -28.693790149892934,
-      "inventoryLastYear": 999000000,
-      "inventoryGrowthLastYear": -9.75609756097561,
-      "inventoryGrowthLast3Years": 33.37783711615487,
-      "currentLiabilitiesLastQuarter": 45221000000,
-      "currentLiabilitiesGrowthLastQuarter": 15.289108708953702,
-      "currentLiabilitiesLastYear": 45221000000,
-      "currentLiabilitiesGrowthLastYear": 30.6210283073368,
-      "currentLiabilitiesGrowthLast3Years": 86.9949964851342,
-      "totalLiabilitiesLastQuarter": 74467000000,
-      "totalLiabilitiesGrowthLastQuarter": 9.389643775247889,
-      "totalLiabilitiesLastYear": 74467000000,
-      "totalLiabilitiesGrowthLastYear": 34.992023783627005,
-      "totalLiabilitiesGrowthLast3Years": 66.2469582300806,
-      "totalShareholdersEquityLastQuarter": 201442000000,
-      "totalShareholdersEquityGrowthLastQuarter": 3.320014976739892,
-      "totalShareholdersEquityLastYear": 201442000000,
-      "totalShareholdersEquityGrowthLastYear": 13.406670119575741,
-      "totalShareholdersEquityGrowthLast3Years": 32.09138240809957,
-      "currentLiabilitiesToEquityLastQuarter": 0.22448645267620457,
-      "currentLiabilitiesToEquityLastYear": 0.22448645267620457,
-      "currentLiabilitiesToEquityGrowthLastQuarter": null,
-      "currentLiabilitiesToEquityGrowthLastYear": null,
-      "currentLiabilitiesToEquityGrowthLast3Years": null,
-      "totalLiabilitiesToEquityLastQuarter": 0.369669681595695,
-      "totalLiabilitiesToEquityLastYear": 0.369669681595695,
-      "totalLiabilitiesToEquityGrowthLastQuarter": null,
-      "totalLiabilitiesToEquityGrowthLastYear": null,
-      "totalLiabilitiesToEquityGrowthLast3Years": null,
-      "stockRepurchasedLastQuarter": -6098000000,
-      "stockRepurchasedGrowthLastQuarter": null,
-      "stockRepurchasedLastYear": -18396000000,
-      "stockRepurchasedGrowthLastYear": null,
-      "stockRepurchasedGrowthLast3Years": null,
-      "stockLastQuarter": 50552000000,
-      "stockGrowthLastQuarter": 3.0831973898858074,
-      "stockLastYear": 50552000000,
-      "stockGrowthLastYear": 12.21558747142001,
-      "stockGrowthLast3Years": 25.60439287400303,
-      "epsCurrentQuarterEstimate": 10.86,
-      "epsLastQuarter": 15.35,
-      "eps2QuartersAgo": 10.12,
-      "eps3QuartersAgo": 14.21,
-      "eps4QuartersAgo": 9.5,
-      "epsGrowthLastQuarter": 51.67984189723322,
-      "epsGrowthLast2Quarters": 8.022519352568604,
-      "epsGrowthLast3Quarters": 61.57894736842104,
-      "epsGrowthEstimateLastQuarter": -29.25081433224756
-    },
-    {
-      "id": "5ea2f034e0256e01c850f6f9",
-      "date": "2020-04-24",
-      "symbol": "GRPN",
-      "exchange": "NASDAQ",
-      "companyName": "Alphabet Inc.",
-      "price": 1257.43,
-      "currency": "USD",
-      "financialCurrency": "USD",
-      "change": 0.0103400045,
-      "enterpriseValue": 7.60506155008E11,
-      "totalCashPerShare": 174.127,
-      "totalCashPerSharePercent": 13.847848389174747,
-      "totalDebtEquity": 0.369669681595695,
-      "trailingPE": 25.576757,
-      "forwardPE": 21.983042,
-      "priceToSalesTrailing12Months": 5.3520937,
-      "priceBook": 4.296688,
-      "enterpriseValueRevenue": 4.699,
-      "enterpriseValueEBITDA": 15.8,
-      "yoyQuarterlyRevenueGrowthPercent": 17.299999999999997,
-      "priceEarningGrowth": 5.59,
-      "trailingPriceEarningGrowth": 0.520244024978134,
-      "week52Change": 0.29271840000000005,
-      "week52Low": 1008.87,
-      "week52AboveLowPercent": 19.76730315007595,
-      "week52High": 1530.74,
-      "week52BelowHighPercent": 21.735603572365854,
-      "targetLowPrice": 1250.0,
-      "belowTargetLowPricePercent": -0.5908877631359252,
-      "targetMedianPrice": 1490.0,
-      "belowTargetMedianPricePercent": 18.495661786341977,
-      "heldByInsiders": 0.14200001,
-      "heldByInstitutions": 82.055,
-      "shortToFloat": 1.35,
-      "sharesShortPrevMonthCompare": 74.08211811965998,
-      "exDividendDate": null,
-      "fiveYearAvgDividendYield": null,
-      "trailingAnnualDividendYield": null,
-      "netIncomeLastQuarter": 10671000000,
-      "netIncome2QuartersAgo": 7068000000,
-      "netIncomeLastYear": 34343000000,
-      "netIncome2YearAgo": 30736000000,
-      "netIncome3YearAgo": 12662000000,
-      "netIncomeGrowthLastQuarter": 50.97623089983022,
-      "netIncomeGrowthLastYear": 11.735424258198854,
-      "netIncomeGrowthLast3Years": 171.2288737956089,
-      "revenueLastQuarter": 46075000000,
-      "revenueGrowthLastQuarter": 13.768241191140524,
-      "revenueLastYear": 161857000000,
-      "revenueGrowthLastYear": 18.30008989979462,
-      "revenueGrowthLast3Years": 46.007848089847094,
-      "cashLastQuarter": 18498000000,
-      "cashGrowthLastQuarter": 15.381736526946108,
-      "cashLastYear": 18498000000,
-      "cashGrowthLastYear": 10.759834740434703,
-      "cashGrowthLast3Years": 72.63649090060663,
-      "inventoryLastQuarter": 999000000,
-      "inventoryGrowthLastQuarter": -28.693790149892934,
-      "inventoryLastYear": 999000000,
-      "inventoryGrowthLastYear": -9.75609756097561,
-      "inventoryGrowthLast3Years": 33.37783711615487,
-      "currentLiabilitiesLastQuarter": 45221000000,
-      "currentLiabilitiesGrowthLastQuarter": 15.289108708953702,
-      "currentLiabilitiesLastYear": 45221000000,
-      "currentLiabilitiesGrowthLastYear": 30.6210283073368,
-      "currentLiabilitiesGrowthLast3Years": 86.9949964851342,
-      "totalLiabilitiesLastQuarter": 74467000000,
-      "totalLiabilitiesGrowthLastQuarter": 9.389643775247889,
-      "totalLiabilitiesLastYear": 74467000000,
-      "totalLiabilitiesGrowthLastYear": 34.992023783627005,
-      "totalLiabilitiesGrowthLast3Years": 66.2469582300806,
-      "totalShareholdersEquityLastQuarter": 201442000000,
-      "totalShareholdersEquityGrowthLastQuarter": 3.320014976739892,
-      "totalShareholdersEquityLastYear": 201442000000,
-      "totalShareholdersEquityGrowthLastYear": 13.406670119575741,
-      "totalShareholdersEquityGrowthLast3Years": 32.09138240809957,
-      "currentLiabilitiesToEquityLastQuarter": 0.22448645267620457,
-      "currentLiabilitiesToEquityLastYear": 0.22448645267620457,
-      "currentLiabilitiesToEquityGrowthLastQuarter": null,
-      "currentLiabilitiesToEquityGrowthLastYear": null,
-      "currentLiabilitiesToEquityGrowthLast3Years": null,
-      "totalLiabilitiesToEquityLastQuarter": 0.369669681595695,
-      "totalLiabilitiesToEquityLastYear": 0.369669681595695,
-      "totalLiabilitiesToEquityGrowthLastQuarter": null,
-      "totalLiabilitiesToEquityGrowthLastYear": null,
-      "totalLiabilitiesToEquityGrowthLast3Years": null,
-      "stockRepurchasedLastQuarter": -6098000000,
-      "stockRepurchasedGrowthLastQuarter": null,
-      "stockRepurchasedLastYear": -18396000000,
-      "stockRepurchasedGrowthLastYear": null,
-      "stockRepurchasedGrowthLast3Years": null,
-      "stockLastQuarter": 50552000000,
-      "stockGrowthLastQuarter": 3.0831973898858074,
-      "stockLastYear": 50552000000,
-      "stockGrowthLastYear": 12.21558747142001,
-      "stockGrowthLast3Years": 25.60439287400303,
-      "epsCurrentQuarterEstimate": 10.86,
-      "epsLastQuarter": 15.35,
-      "eps2QuartersAgo": 10.12,
-      "eps3QuartersAgo": 14.21,
-      "eps4QuartersAgo": 9.5,
-      "epsGrowthLastQuarter": 51.67984189723322,
-      "epsGrowthLast2Quarters": 8.022519352568604,
-      "epsGrowthLast3Quarters": 61.57894736842104,
-      "epsGrowthEstimateLastQuarter": -29.25081433224756
-    },
-    {
-      "id": "5ea2f034e0256e01c850f6fa",
-      "date": "2020-04-24",
-      "symbol": "UAL",
-      "exchange": "NASDAQ",
-      "companyName": "Alphabet Inc.",
-      "price": 1257.43,
-      "currency": "USD",
-      "financialCurrency": "USD",
-      "change": 0.0103400045,
-      "enterpriseValue": 7.60506155008E11,
-      "totalCashPerShare": 174.127,
-      "totalCashPerSharePercent": 13.847848389174747,
-      "totalDebtEquity": 0.369669681595695,
-      "trailingPE": 25.576757,
-      "forwardPE": 21.983042,
-      "priceToSalesTrailing12Months": 5.3520937,
-      "priceBook": 4.296688,
-      "enterpriseValueRevenue": 4.699,
-      "enterpriseValueEBITDA": 15.8,
-      "yoyQuarterlyRevenueGrowthPercent": 17.299999999999997,
-      "priceEarningGrowth": 5.59,
-      "trailingPriceEarningGrowth": 0.520244024978134,
-      "week52Change": 0.29271840000000005,
-      "week52Low": 1008.87,
-      "week52AboveLowPercent": 19.76730315007595,
-      "week52High": 1530.74,
-      "week52BelowHighPercent": 21.735603572365854,
-      "targetLowPrice": 1250.0,
-      "belowTargetLowPricePercent": -0.5908877631359252,
-      "targetMedianPrice": 1490.0,
-      "belowTargetMedianPricePercent": 18.495661786341977,
-      "heldByInsiders": 0.14200001,
-      "heldByInstitutions": 82.055,
-      "shortToFloat": 1.35,
-      "sharesShortPrevMonthCompare": 74.08211811965998,
-      "exDividendDate": null,
-      "fiveYearAvgDividendYield": null,
-      "trailingAnnualDividendYield": null,
-      "netIncomeLastQuarter": 10671000000,
-      "netIncome2QuartersAgo": 7068000000,
-      "netIncomeLastYear": 34343000000,
-      "netIncome2YearAgo": 30736000000,
-      "netIncome3YearAgo": 12662000000,
-      "netIncomeGrowthLastQuarter": 50.97623089983022,
-      "netIncomeGrowthLastYear": 11.735424258198854,
-      "netIncomeGrowthLast3Years": 171.2288737956089,
-      "revenueLastQuarter": 46075000000,
-      "revenueGrowthLastQuarter": 13.768241191140524,
-      "revenueLastYear": 161857000000,
-      "revenueGrowthLastYear": 18.30008989979462,
-      "revenueGrowthLast3Years": 46.007848089847094,
-      "cashLastQuarter": 18498000000,
-      "cashGrowthLastQuarter": 15.381736526946108,
-      "cashLastYear": 18498000000,
-      "cashGrowthLastYear": 10.759834740434703,
-      "cashGrowthLast3Years": 72.63649090060663,
-      "inventoryLastQuarter": 999000000,
-      "inventoryGrowthLastQuarter": -28.693790149892934,
-      "inventoryLastYear": 999000000,
-      "inventoryGrowthLastYear": -9.75609756097561,
-      "inventoryGrowthLast3Years": 33.37783711615487,
-      "currentLiabilitiesLastQuarter": 45221000000,
-      "currentLiabilitiesGrowthLastQuarter": 15.289108708953702,
-      "currentLiabilitiesLastYear": 45221000000,
-      "currentLiabilitiesGrowthLastYear": 30.6210283073368,
-      "currentLiabilitiesGrowthLast3Years": 86.9949964851342,
-      "totalLiabilitiesLastQuarter": 74467000000,
-      "totalLiabilitiesGrowthLastQuarter": 9.389643775247889,
-      "totalLiabilitiesLastYear": 74467000000,
-      "totalLiabilitiesGrowthLastYear": 34.992023783627005,
-      "totalLiabilitiesGrowthLast3Years": 66.2469582300806,
-      "totalShareholdersEquityLastQuarter": 201442000000,
-      "totalShareholdersEquityGrowthLastQuarter": 3.320014976739892,
-      "totalShareholdersEquityLastYear": 201442000000,
-      "totalShareholdersEquityGrowthLastYear": 13.406670119575741,
-      "totalShareholdersEquityGrowthLast3Years": 32.09138240809957,
-      "currentLiabilitiesToEquityLastQuarter": 0.22448645267620457,
-      "currentLiabilitiesToEquityLastYear": 0.22448645267620457,
-      "currentLiabilitiesToEquityGrowthLastQuarter": null,
-      "currentLiabilitiesToEquityGrowthLastYear": null,
-      "currentLiabilitiesToEquityGrowthLast3Years": null,
-      "totalLiabilitiesToEquityLastQuarter": 0.369669681595695,
-      "totalLiabilitiesToEquityLastYear": 0.369669681595695,
-      "totalLiabilitiesToEquityGrowthLastQuarter": null,
-      "totalLiabilitiesToEquityGrowthLastYear": null,
-      "totalLiabilitiesToEquityGrowthLast3Years": null,
-      "stockRepurchasedLastQuarter": -6098000000,
-      "stockRepurchasedGrowthLastQuarter": null,
-      "stockRepurchasedLastYear": -18396000000,
-      "stockRepurchasedGrowthLastYear": null,
-      "stockRepurchasedGrowthLast3Years": null,
-      "stockLastQuarter": 50552000000,
-      "stockGrowthLastQuarter": 3.0831973898858074,
-      "stockLastYear": 50552000000,
-      "stockGrowthLastYear": 12.21558747142001,
-      "stockGrowthLast3Years": 25.60439287400303,
-      "epsCurrentQuarterEstimate": 10.86,
-      "epsLastQuarter": 15.35,
-      "eps2QuartersAgo": 10.12,
-      "eps3QuartersAgo": 14.21,
-      "eps4QuartersAgo": 9.5,
-      "epsGrowthLastQuarter": 51.67984189723322,
-      "epsGrowthLast2Quarters": 8.022519352568604,
-      "epsGrowthLast3Quarters": 61.57894736842104,
-      "epsGrowthEstimateLastQuarter": -29.25081433224756
+      "epsGrowthEstimateLastQuarter": -29.25081433224756,
+      "quarters": [
+        1577750400,
+        1569801600,
+        1561852800,
+        1553990400
+      ],
+      "chartData": [
+        {
+          "date": 1524614400,
+          "price": 1022.989990234375,
+          "eps": null
+        },
+        {
+          "date": 1525219200,
+          "price": 1026.050048828125,
+          "eps": null
+        },
+        {
+          "date": 1525824000,
+          "price": 1088.949951171875,
+          "eps": null
+        },
+        {
+          "date": 1526428800,
+          "price": 1084.0899658203125,
+          "eps": null
+        },
+        {
+          "date": 1527033600,
+          "price": 1085.9599609375,
+          "eps": null
+        },
+        {
+          "date": 1527638400,
+          "price": 1077.469970703125,
+          "eps": null
+        },
+        {
+          "date": 1528243200,
+          "price": 1146.949951171875,
+          "eps": null
+        },
+        {
+          "date": 1528848000,
+          "price": 1144.22998046875,
+          "eps": null
+        },
+        {
+          "date": 1529452800,
+          "price": 1184.0699462890625,
+          "eps": null
+        },
+        {
+          "date": 1530057600,
+          "price": 1116.93994140625,
+          "eps": null
+        },
+        {
+          "date": 1530662400,
+          "price": 1141.2900390625,
+          "eps": null
+        },
+        {
+          "date": 1531267200,
+          "price": 1171.4599609375,
+          "eps": null
+        },
+        {
+          "date": 1531872000,
+          "price": 1212.9100341796875,
+          "eps": null
+        },
+        {
+          "date": 1532476800,
+          "price": 1275.93994140625,
+          "eps": null
+        },
+        {
+          "date": 1533081600,
+          "price": 1232.989990234375,
+          "eps": null
+        },
+        {
+          "date": 1533686400,
+          "price": 1261.3299560546875,
+          "eps": null
+        },
+        {
+          "date": 1534291200,
+          "price": 1232.219970703125,
+          "eps": null
+        },
+        {
+          "date": 1534896000,
+          "price": 1221.75,
+          "eps": null
+        },
+        {
+          "date": 1535500800,
+          "price": 1264.6500244140625,
+          "eps": null
+        },
+        {
+          "date": 1536105600,
+          "price": 1199.0999755859375,
+          "eps": null
+        },
+        {
+          "date": 1536710400,
+          "price": 1171.5999755859375,
+          "eps": null
+        },
+        {
+          "date": 1537315200,
+          "price": 1174.27001953125,
+          "eps": null
+        },
+        {
+          "date": 1537920000,
+          "price": 1194.06005859375,
+          "eps": null
+        },
+        {
+          "date": 1538524800,
+          "price": 1211.530029296875,
+          "eps": null
+        },
+        {
+          "date": 1539129600,
+          "price": 1092.1600341796875,
+          "eps": null
+        },
+        {
+          "date": 1539734400,
+          "price": 1127.5899658203125,
+          "eps": null
+        },
+        {
+          "date": 1540339200,
+          "price": 1057.1199951171875,
+          "eps": null
+        },
+        {
+          "date": 1540944000,
+          "price": 1090.5799560546875,
+          "eps": null
+        },
+        {
+          "date": 1541548800,
+          "price": 1108.239990234375,
+          "eps": null
+        },
+        {
+          "date": 1542153600,
+          "price": 1054.5799560546875,
+          "eps": null
+        },
+        {
+          "date": 1542758400,
+          "price": 1043.4300537109375,
+          "eps": null
+        },
+        {
+          "date": 1543363200,
+          "price": 1091.7900390625,
+          "eps": null
+        },
+        {
+          "date": 1543968000,
+          "price": 1078.0799560546875,
+          "eps": null
+        },
+        {
+          "date": 1544572800,
+          "price": 1073.72998046875,
+          "eps": null
+        },
+        {
+          "date": 1545177600,
+          "price": 1035.4599609375,
+          "eps": null
+        },
+        {
+          "date": 1545782400,
+          "price": 1047.8499755859375,
+          "eps": null
+        },
+        {
+          "date": 1546387200,
+          "price": 1054.6800537109375,
+          "eps": null
+        },
+        {
+          "date": 1546992000,
+          "price": 1081.6500244140625,
+          "eps": null
+        },
+        {
+          "date": 1547596800,
+          "price": 1089.510009765625,
+          "eps": null
+        },
+        {
+          "date": 1548201600,
+          "price": 1084.4100341796875,
+          "eps": null
+        },
+        {
+          "date": 1548806400,
+          "price": 1097.989990234375,
+          "eps": null
+        },
+        {
+          "date": 1549411200,
+          "price": 1122.8900146484375,
+          "eps": null
+        },
+        {
+          "date": 1550016000,
+          "price": 1128.6300048828125,
+          "eps": null
+        },
+        {
+          "date": 1550620800,
+          "price": 1120.5899658203125,
+          "eps": null
+        },
+        {
+          "date": 1551225600,
+          "price": 1122.8900146484375,
+          "eps": null
+        },
+        {
+          "date": 1551830400,
+          "price": 1164.93994140625,
+          "eps": null
+        },
+        {
+          "date": 1552435200,
+          "price": 1199.06005859375,
+          "eps": null
+        },
+        {
+          "date": 1553040000,
+          "price": 1226.4300537109375,
+          "eps": null
+        },
+        {
+          "date": 1553644800,
+          "price": 1178.010009765625,
+          "eps": 9.5
+        },
+        {
+          "date": 1554249600,
+          "price": 1210.81005859375,
+          "eps": null
+        },
+        {
+          "date": 1554854400,
+          "price": 1206.449951171875,
+          "eps": null
+        },
+        {
+          "date": 1555459200,
+          "price": 1240.1400146484375,
+          "eps": null
+        },
+        {
+          "date": 1556064000,
+          "price": 1260.050048828125,
+          "eps": null
+        },
+        {
+          "date": 1556668800,
+          "price": 1173.3199462890625,
+          "eps": null
+        },
+        {
+          "date": 1557273600,
+          "price": 1170.780029296875,
+          "eps": null
+        },
+        {
+          "date": 1557878400,
+          "price": 1170.800048828125,
+          "eps": null
+        },
+        {
+          "date": 1558483200,
+          "price": 1155.8499755859375,
+          "eps": null
+        },
+        {
+          "date": 1559088000,
+          "price": 1119.93994140625,
+          "eps": null
+        },
+        {
+          "date": 1559692800,
+          "price": 1044.6400146484375,
+          "eps": null
+        },
+        {
+          "date": 1560297600,
+          "price": 1079.0999755859375,
+          "eps": null
+        },
+        {
+          "date": 1560902400,
+          "price": 1104.510009765625,
+          "eps": null
+        },
+        {
+          "date": 1561507200,
+          "price": 1080.3199462890625,
+          "eps": 14.21
+        },
+        {
+          "date": 1562112000,
+          "price": 1122.989990234375,
+          "eps": null
+        },
+        {
+          "date": 1562716800,
+          "price": 1140.9100341796875,
+          "eps": null
+        },
+        {
+          "date": 1563321600,
+          "price": 1146.739990234375,
+          "eps": null
+        },
+        {
+          "date": 1563926400,
+          "price": 1139.72998046875,
+          "eps": null
+        },
+        {
+          "date": 1564531200,
+          "price": 1218.199951171875,
+          "eps": null
+        },
+        {
+          "date": 1565136000,
+          "price": 1175.9100341796875,
+          "eps": null
+        },
+        {
+          "date": 1565740800,
+          "price": 1164.25,
+          "eps": null
+        },
+        {
+          "date": 1566345600,
+          "price": 1191.5799560546875,
+          "eps": null
+        },
+        {
+          "date": 1566950400,
+          "price": 1173.75,
+          "eps": null
+        },
+        {
+          "date": 1567555200,
+          "price": 1182.27001953125,
+          "eps": null
+        },
+        {
+          "date": 1568160000,
+          "price": 1220.0,
+          "eps": null
+        },
+        {
+          "date": 1568764800,
+          "price": 1232.6500244140625,
+          "eps": null
+        },
+        {
+          "date": 1569369600,
+          "price": 1245.93994140625,
+          "eps": 10.12
+        },
+        {
+          "date": 1569974400,
+          "price": 1177.9200439453125,
+          "eps": null
+        },
+        {
+          "date": 1570579200,
+          "price": 1202.4000244140625,
+          "eps": null
+        },
+        {
+          "date": 1571184000,
+          "price": 1243.0,
+          "eps": null
+        },
+        {
+          "date": 1571788800,
+          "price": 1257.6300048828125,
+          "eps": null
+        },
+        {
+          "date": 1572393600,
+          "price": 1260.699951171875,
+          "eps": null
+        },
+        {
+          "date": 1572998400,
+          "price": 1291.010009765625,
+          "eps": null
+        },
+        {
+          "date": 1573603200,
+          "price": 1296.1800537109375,
+          "eps": null
+        },
+        {
+          "date": 1574208000,
+          "price": 1301.8599853515625,
+          "eps": null
+        },
+        {
+          "date": 1574812800,
+          "price": 1312.1300048828125,
+          "eps": null
+        },
+        {
+          "date": 1575417600,
+          "price": 1318.93994140625,
+          "eps": null
+        },
+        {
+          "date": 1576022400,
+          "price": 1344.25,
+          "eps": null
+        },
+        {
+          "date": 1576627200,
+          "price": 1351.9100341796875,
+          "eps": null
+        },
+        {
+          "date": 1577232000,
+          "price": 1362.469970703125,
+          "eps": 15.35
+        },
+        {
+          "date": 1577836800,
+          "price": 1368.6800537109375,
+          "eps": null
+        },
+        {
+          "date": 1578441600,
+          "price": 1405.0400390625,
+          "eps": null
+        },
+        {
+          "date": 1579046400,
+          "price": 1439.199951171875,
+          "eps": null
+        },
+        {
+          "date": 1579651200,
+          "price": 1483.8699951171875,
+          "eps": null
+        },
+        {
+          "date": 1580256000,
+          "price": 1456.699951171875,
+          "eps": null
+        },
+        {
+          "date": 1580860800,
+          "price": 1446.050048828125,
+          "eps": null
+        },
+        {
+          "date": 1581465600,
+          "price": 1518.6300048828125,
+          "eps": null
+        },
+        {
+          "date": 1582070400,
+          "price": 1524.8699951171875,
+          "eps": null
+        },
+        {
+          "date": 1582675200,
+          "price": 1390.469970703125,
+          "eps": null
+        },
+        {
+          "date": 1583280000,
+          "price": 1381.5999755859375,
+          "eps": null
+        },
+        {
+          "date": 1583884800,
+          "price": 1210.9000244140625,
+          "eps": null
+        },
+        {
+          "date": 1584489600,
+          "price": 1091.18994140625,
+          "eps": null
+        },
+        {
+          "date": 1585094400,
+          "price": 1101.6199951171875,
+          "eps": null
+        },
+        {
+          "date": 1585699200,
+          "price": 1102.0999755859375,
+          "eps": null
+        },
+        {
+          "date": 1586304000,
+          "price": 1207.0,
+          "eps": null
+        },
+        {
+          "date": 1586908800,
+          "price": 1257.300048828125,
+          "eps": null
+        },
+        {
+          "date": 1587513600,
+          "price": 1258.4100341796875,
+          "eps": null
+        }
+      ]
     }
   ]
 }

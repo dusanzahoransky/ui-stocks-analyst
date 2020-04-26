@@ -104,5 +104,6 @@ export enum TableColumn {
     epsGrowthLast2Quarters,
     epsGrowthLast3Quarters,
     epsGrowthEstimateLastQuarter,
+    chartData,
     score,
 }

@@ -1,3 +1,6 @@
+import {PriceEpsData} from "./PriceEpsData";
+import {PriceEpsDataRaw} from "./PriceEpsDataRaw";
+
 export interface StockInfo {
     id?: String,
     date?: String,
@@ -29,4 +32,5 @@ export interface StockInfo {
     fiveYearAvgDividendYield?: String,
     trailingAnnualDividendYield?: String,
     periodValuationMeasures?: String,
+    chartData?: PriceEpsDataRaw[],
 }

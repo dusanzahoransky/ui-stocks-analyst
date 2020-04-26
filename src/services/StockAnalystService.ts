@@ -8,6 +8,8 @@ import resultTest from "./Result-test.json"
 import {CellData} from "../model/CellData";
 import {TableColumn} from "../model/TableColumn";
 import moment from "moment";
+import {PriceEpsData} from "../model/PriceEpsData";
+import {StockInfo} from "../model/StockInfo";
 
 export class StockAnalystService {
 

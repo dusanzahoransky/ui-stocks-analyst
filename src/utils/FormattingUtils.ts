@@ -7,6 +7,9 @@ export class FormattingUtils {
         if (!value) {
             return ''
         }
+        if(typeof value === 'object'){
+            return JSON.stringify(value).substring(0, 10)
+        }
         if (typeof value === 'string') {
             if (columnIndex === TableColumn.exDividendDate) {
                 let diff = moment().diff(value, 'days');

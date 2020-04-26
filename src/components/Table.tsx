@@ -182,6 +182,7 @@ export class Table extends React.Component<TableProps, TableState> {
             case TableColumn.inventoryGrowthLast3Years:
             case TableColumn.cashGrowthLast3Years:
             case TableColumn.totalShareholdersEquityGrowthLast3Years:
+            case TableColumn.chartData:
                 return 'hidden';
             default:
                 return '';

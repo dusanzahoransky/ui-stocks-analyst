@@ -3,6 +3,10 @@ import {StockAnalystService} from "../services/StockAnalystService";
 import {AnalysisResult} from "../model/AnalysisResult";
 import './StocksAnalysis.css';
 import {Table} from "../components/Table";
+import {PriceEpsChart} from "../components/PriceEps";
+import {PriceEpsData} from "../model/PriceEpsData";
+import {PriceEpsDataRaw} from "../model/PriceEpsDataRaw";
+import moment from "moment";
 
 export interface StocksAnalysisProps {
 
@@ -11,6 +15,8 @@ export interface StocksAnalysisProps {
 export interface StocksAnalysisState {
     error?: string
     results?: Map<string, AnalysisResult>
+    peRation: number
+    priceEpsData?: PriceEpsDataRaw[]
 }
 
 export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksAnalysisState> {
@@ -19,12 +25,17 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     constructor(props: Readonly<StocksAnalysisProps>) {
         super(props);
-        this.state = {error: undefined, results: undefined}
+        this.state = {
+            error: undefined,
+            results: undefined,
+            peRation: 15,
+            priceEpsData: undefined
+        }
         this.stockAnalystService = new StockAnalystService();
     }
 
     componentDidMount() {
-        let results = new Map();
+        const results = new Map();
         results.set('TEST', this.stockAnalystService.loadTestAnalysis());
         results.set('AUD', this.stockAnalystService.loadAudAnalysis());
         results.set('CHF', this.stockAnalystService.loadChfAnalysis());
@@ -32,8 +43,10 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         results.set('GBP', this.stockAnalystService.loadGbpAnalysis());
         results.set('USD', this.stockAnalystService.loadUsdAnalysis());
         // results.set('NASDAQ100', this.stockAnalystService.loadNasdaq100Analysis());
+        const priceEpsData = results.get('TEST').stocks[0].chartData;
         this.setState({
-            results
+            results,
+            priceEpsData
         })
     }
 
@@ -60,13 +73,31 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             )
         });
 
+        const peRation = this.state.peRation
+        const priceEpsData = this.prepareEpsChartData(this.state.priceEpsData, peRation);
+        //TODO input to scale PE ration
+        const epsChart = <div>
+            <p>PE scale {peRation}</p>
+            <PriceEpsChart data={priceEpsData}/>
+        </div>;
 
         return (
             <div className='StocksAnalysis'>
-                {tables}
+                <div className={'PriceEpsChart'}>{epsChart}</div>
+                <div className={'Watchlists'}>{tables}</div>
             </div>
         )
     };
+
+    private prepareEpsChartData(priceEpsData: PriceEpsDataRaw[], peRatio: number): PriceEpsData[] {
+        return priceEpsData.map(data => {
+            return {
+                date: moment(data.date * 1000).format('YYYY-MM-DD'),
+                price: Math.round(data.price * 10) / 10,
+                eps: data.eps ? Math.round(data.eps * peRatio * 4 * 10) / 10  : undefined
+            }
+        })
+    }
 
     toHeaderData(result: AnalysisResult): any[][] {
         const headersRow = Object.keys(result.averages)
