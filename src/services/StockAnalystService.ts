@@ -230,6 +230,18 @@ export class StockAnalystService {
                 score = number
                 score *= 1
                 break;
+            case TableColumn.epsGrowthLastYear:
+                score = number
+                score *= 0.3
+                break;
+            case TableColumn.epsGrowthLast2Years:
+                score = number
+                score *= 0.2
+                break;
+            case TableColumn.epsGrowthLast3Years:
+                score = number
+                score *= 0.2
+                break;
         }
         return score;
     }

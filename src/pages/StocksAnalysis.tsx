@@ -2,11 +2,7 @@ import React from "react";
 import {StockAnalystService} from "../services/StockAnalystService";
 import {AnalysisResult} from "../model/AnalysisResult";
 import './StocksAnalysis.css';
-import {Table} from "../components/Table";
-import {PriceEpsChart} from "../components/PriceEps";
-import {PriceEpsData} from "../model/PriceEpsData";
-import {PriceEpsDataRaw} from "../model/PriceEpsDataRaw";
-import moment from "moment";
+import {Watchlist} from "../components/Watchlist";
 
 export interface StocksAnalysisProps {
 
@@ -15,8 +11,6 @@ export interface StocksAnalysisProps {
 export interface StocksAnalysisState {
     error?: string
     results?: Map<string, AnalysisResult>
-    peRation: number
-    priceEpsData?: PriceEpsDataRaw[]
 }
 
 export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksAnalysisState> {
@@ -27,9 +21,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         super(props);
         this.state = {
             error: undefined,
-            results: undefined,
-            peRation: 15,
-            priceEpsData: undefined
+            results: undefined
         }
         this.stockAnalystService = new StockAnalystService();
     }
@@ -43,10 +35,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         results.set('GBP', this.stockAnalystService.loadGbpAnalysis());
         results.set('USD', this.stockAnalystService.loadUsdAnalysis());
         // results.set('NASDAQ100', this.stockAnalystService.loadNasdaq100Analysis());
-        const priceEpsData = results.get('TEST').stocks[0].chartData;
         this.setState({
-            results,
-            priceEpsData
+            results
         })
     }
 
@@ -59,72 +49,26 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             return <div>Loading analysis result...</div>;
         }
 
-        const tables = []
-        this.state.results.forEach((result: AnalysisResult, watchlist: string) => {
-            const headers = this.toHeaderData(result);
-            let data = this.toTableData(result);
+        //TODO input to scale PE ration
 
-            const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))
-            tables.push(
-                <div className="Table" key={watchlist}>
-                    <h2 className="watchlist">{watchlist}</h2>
-                    <Table data={scoredData} headerLabels={headers[0]} headerAverages={headers[1]}/>
-                </div>
+        const watchlists = []
+        this.state.results.forEach((result: AnalysisResult, watchlist: string) => {
+            watchlists.push(
+                <Watchlist
+                    key={watchlist}
+                    result={result}
+                    watchlist={watchlist}
+                    peRatio={15}
+                />
             )
         });
 
-        const peRation = this.state.peRation
-        const priceEpsData = this.prepareEpsChartData(this.state.priceEpsData, peRation);
-        //TODO input to scale PE ration
-        const epsChart = <div>
-            <p>PE scale {peRation}</p>
-            <PriceEpsChart data={priceEpsData}/>
-        </div>;
-
         return (
             <div className='StocksAnalysis'>
-                <div className={'PriceEpsChart'}>{epsChart}</div>
-                <div className={'Watchlists'}>{tables}</div>
+                <div className={'Watchlists'}>{watchlists}</div>
             </div>
         )
     };
-
-    private prepareEpsChartData(priceEpsData: PriceEpsDataRaw[], peRatio: number): PriceEpsData[] {
-        return priceEpsData.map(data => {
-            return {
-                date: moment(data.date * 1000).format('YYYY-MM-DD'),
-                price: Math.round(data.price * 10) / 10,
-                eps: data.eps ? Math.round(data.eps * peRatio * 4 * 10) / 10  : undefined
-            }
-        })
-    }
-
-    toHeaderData(result: AnalysisResult): any[][] {
-        const headersRow = Object.keys(result.averages)
-            .filter(key => key !== 'periodValuationMeasures')
-            .concat('Score')
-
-        const averagesRow = Object.keys(result.averages)
-            .filter(key => key !== 'periodValuationMeasures')
-            .map(key => result.averages[key])
-            .concat(0)
-
-        return [
-            headersRow,
-            averagesRow
-        ]
-    }
-
-    toTableData(result: AnalysisResult): any[][] {
-        let rows = [];
-        for (const stock of result.stocks) {
-            const rowValues = Object.keys(stock)
-                .filter(key => key !== 'periodValuationMeasures')
-                .map(key => stock[key] ? stock[key] : '')
-            rows.push(rowValues);
-        }
-        return rows;
-    }
 
 
 }

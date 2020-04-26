@@ -7,7 +7,7 @@ export class FormattingUtils {
         if (!value) {
             return ''
         }
-        if(typeof value === 'object'){
+        if (typeof value === 'object') {
             return JSON.stringify(value).substring(0, 10)
         }
         if (typeof value === 'string') {
@@ -247,6 +247,20 @@ export class FormattingUtils {
                 return "EPS growth (L3Q)"
             case "epsGrowthEstimateLastQuarter" :
                 return "EPS growth LQ to Estimate"
+            case "epsLastYear":
+                return "eps (LY)"
+            case "eps2YearsAgo":
+                return "eps (L2Y)"
+            case "eps3YearsAgo":
+                return "eps (L3Y)"
+            case "eps4YearsAgo":
+                return "eps (L4Y)"
+            case "epsGrowthLastYear":
+                return "Eps growth (LY)"
+            case "epsGrowthLast2Years":
+                return "Eps growth (L2Y)"
+            case "epsGrowthLast3Years":
+                return "Eps growth (L3Y)"
             default:
                 return field;
         }

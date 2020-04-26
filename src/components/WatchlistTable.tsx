@@ -1,7 +1,7 @@
 import React from "react";
 import 'font-awesome/css/font-awesome.min.css';
 import {FormattingUtils} from "../utils/FormattingUtils";
-import './Table.css';
+import './WatchlistTable.css';
 import {TableColumn} from "../model/TableColumn";
 import {CellData} from "../model/CellData";
 
@@ -10,6 +10,7 @@ export interface TableProps {
     headerAverages: number[];
     data: CellData[][];
     sortField?: TableColumn;
+    onStockClickHandler?: (rowData: CellData[], rowIndex: number, columnIndex: number) => void
 }
 
 export interface TableState {
@@ -18,7 +19,7 @@ export interface TableState {
     sortedData: CellData[][];
 }
 
-export class Table extends React.Component<TableProps, TableState> {
+export class WatchlistTable extends React.Component<TableProps, TableState> {
 
     constructor(props: Readonly<TableProps>) {
         super(props);
@@ -78,11 +79,11 @@ export class Table extends React.Component<TableProps, TableState> {
             let cell1 = row1[column];
             let cell2 = row2[column];
 
-            if(!cell1){
+            if (!cell1) {
                 return this.state.sortAsc ? -1 : 1
             }
 
-            if(!cell2){
+            if (!cell2) {
                 return this.state.sortAsc ? 1 : -1
             }
 
@@ -110,7 +111,7 @@ export class Table extends React.Component<TableProps, TableState> {
 
     renderRow(rowData: CellData[], rowIndex, averages: any[]) {
         const rowValues = rowData.map((data, columnIndex) =>
-            <td key={columnIndex}
+            <td key={columnIndex} onClick={() => this.props.onStockClickHandler(rowData, rowIndex, columnIndex)}
                 className={this.dataCellClass(rowData, data, averages[columnIndex], columnIndex)}>
                 <span>{FormattingUtils.format(rowData, data.value, columnIndex)}</span>
                 <span className={"score"}>{data.score ? data.score.toFixed(0) : ''}</span>
@@ -183,6 +184,8 @@ export class Table extends React.Component<TableProps, TableState> {
             case TableColumn.cashGrowthLast3Years:
             case TableColumn.totalShareholdersEquityGrowthLast3Years:
             case TableColumn.chartData:
+            case TableColumn.quarterEnds:
+            case TableColumn.yearEnds:
                 return 'hidden';
             default:
                 return '';

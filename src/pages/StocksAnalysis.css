@@ -1,4 +1,8 @@
 .StocksAnalysis {
     text-align: left;
     width: 10000px;
+    color: #003795;
+}
+.Watchlist {
+    margin-bottom: 5px;
 }

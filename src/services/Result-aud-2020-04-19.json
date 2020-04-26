@@ -1,7 +1,7 @@
 {
   "averages": {
     "id": null,
-    "date": "2020-04-25",
+    "date": "2020-04-26",
     "symbol": "AVERAGES",
     "exchange": null,
     "companyName": null,
@@ -9,28 +9,28 @@
     "currency": null,
     "financialCurrency": null,
     "change": 0.24375960153846152,
-    "enterpriseValue": 6.049993611523077E10,
+    "enterpriseValue": 6.053428198092308E10,
     "totalCashPerShare": 18.95475,
     "totalCashPerSharePercent": 111.62462125580045,
     "totalDebtEquity": 8.289467541160054,
     "trailingPE": 20.474909966666665,
-    "forwardPE": 46.61919316666667,
+    "forwardPE": 42.45580328,
     "priceToSalesTrailing12Months": 0.9832199355555554,
     "priceBook": 3.4326306872727277,
-    "enterpriseValueRevenue": 8.895416666666668,
-    "enterpriseValueEBITDA": -29.921624999999995,
+    "enterpriseValueRevenue": 8.899416666666665,
+    "enterpriseValueEBITDA": -29.68525,
     "yoyQuarterlyRevenueGrowthPercent": 26.96153846153846,
     "priceEarningGrowth": null,
     "trailingPriceEarningGrowth": 64.5122399426228,
-    "week52Change": -23.463220846153845,
+    "week52Change": -24.528271353846154,
     "week52Low": 14.328846153846154,
     "week52AboveLowPercent": 29.90435981144936,
     "week52High": 31.037692307692307,
     "week52BelowHighPercent": 90.45854009648909,
     "targetLowPrice": null,
-    "belowTargetLowPricePercent": 8.296121442085251,
+    "belowTargetLowPricePercent": 8.292612630020363,
     "targetMedianPrice": null,
-    "belowTargetMedianPricePercent": 31.40333436773133,
+    "belowTargetMedianPricePercent": 31.398636569635304,
     "heldByInsiders": null,
     "heldByInstitutions": null,
     "shortToFloat": null,
@@ -104,12 +104,22 @@
     "epsGrowthLastQuarter": null,
     "epsGrowthLast2Quarters": null,
     "epsGrowthLast3Quarters": null,
-    "epsGrowthEstimateLastQuarter": null
+    "epsGrowthEstimateLastQuarter": null,
+    "epsLastYear": null,
+    "eps2YearsAgo": null,
+    "eps3YearsAgo": null,
+    "eps4YearsAgo": null,
+    "epsGrowthLastYear": null,
+    "epsGrowthLast2Years": null,
+    "epsGrowthLast3Years": null,
+    "quarterEnds": null,
+    "yearEnds": null,
+    "chartData": []
   },
   "stocks": [
     {
-      "id": "5ea2f5dbe0256e01c850f6fe",
-      "date": "2020-04-25",
+      "id": "5ea58acc0a9e4168c6ac7e11",
+      "date": "2020-04-26",
       "symbol": "ANZ",
       "exchange": "ASX",
       "companyName": "ANZ BANK FPO",
@@ -117,7 +127,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": 0.06246239,
-      "enterpriseValue": 6.2389702656E10,
+      "enterpriseValue": 6.2418051072E10,
       "totalCashPerShare": 86.594,
       "totalCashPerSharePercent": 540.5368289637952,
       "totalDebtEquity": 15.141454024974088,
@@ -125,12 +135,12 @@
       "forwardPE": 6.4858303,
       "priceToSalesTrailing12Months": 2.525463,
       "priceBook": 0.74709696,
-      "enterpriseValueRevenue": 3.468,
+      "enterpriseValueRevenue": 3.469,
       "enterpriseValueEBITDA": null,
       "yoyQuarterlyRevenueGrowthPercent": -3.1,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": 3.9299758791480928,
-      "week52Change": -41.56934,
+      "week52Change": -41.383094,
       "week52Low": 14.1,
       "week52AboveLowPercent": 11.985018726591761,
       "week52High": 29.3,
@@ -212,11 +222,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": null,
+      "eps2YearsAgo": 2.121,
+      "eps3YearsAgo": 2.108,
+      "eps4YearsAgo": 1.893,
+      "epsGrowthLastYear": null,
+      "epsGrowthLast2Years": null,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1569801600,
+        1561852800,
+        1553990400,
+        1546214400
+      ],
+      "yearEnds": [
+        1569801600,
+        1538265600,
+        1506729600,
+        1475193600
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 16.020000457763672,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f5dfe0256e01c850f6ff",
-      "date": "2020-04-25",
+      "id": "5ea58ad20a9e4168c6ac7e12",
+      "date": "2020-04-26",
       "symbol": "CBA",
       "exchange": "ASX",
       "companyName": "CWLTH BANK FPO",
@@ -224,7 +260,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": 0.08498934999999999,
-      "enterpriseValue": 2.71228141568E11,
+      "enterpriseValue": 2.71316615168E11,
       "totalCashPerShare": 46.937,
       "totalCashPerSharePercent": 79.71637228260869,
       "totalDebtEquity": 12.780442181654525,
@@ -232,12 +268,12 @@
       "forwardPE": 10.6281595,
       "priceToSalesTrailing12Months": 4.519239,
       "priceBook": 1.4652599,
-      "enterpriseValueRevenue": 11.76,
+      "enterpriseValueRevenue": 11.764,
       "enterpriseValueEBITDA": null,
       "yoyQuarterlyRevenueGrowthPercent": 1.7999999999999998,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": 1.936574900253899,
-      "week52Change": -22.027826,
+      "week52Change": -21.608305,
       "week52Low": 53.44,
       "week52AboveLowPercent": 9.239130434782616,
       "week52High": 91.05,
@@ -319,11 +355,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": 4.686,
+      "eps2YearsAgo": 5.177,
+      "eps3YearsAgo": 5.591,
+      "eps4YearsAgo": 5.295,
+      "epsGrowthLastYear": -9.484257291867872,
+      "epsGrowthLast2Years": -16.186728671078523,
+      "epsGrowthLast3Years": -11.501416430594901,
+      "quarterEnds": [
+        1577750400,
+        1569801600,
+        1561852800,
+        1553990400
+      ],
+      "yearEnds": [
+        1561852800,
+        1530316800,
+        1498780800,
+        1467244800
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 58.880001068115234,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f5e5e0256e01c850f700",
-      "date": "2020-04-25",
+      "id": "5ea58ad70a9e4168c6ac7e13",
+      "date": "2020-04-26",
       "symbol": "ING",
       "exchange": "ASX",
       "companyName": "INGHAMS FPO",
@@ -331,7 +393,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": -0.5899769699999999,
-      "enterpriseValue": 3.292493824E9,
+      "enterpriseValue": 3.285060352E9,
       "totalCashPerShare": 0.202,
       "totalCashPerSharePercent": 5.99406528189911,
       "totalDebtEquity": 17.350586611456176,
@@ -339,12 +401,12 @@
       "forwardPE": 11.620689,
       "priceToSalesTrailing12Months": 0.49385384,
       "priceBook": 8.641026,
-      "enterpriseValueRevenue": 1.298,
-      "enterpriseValueEBITDA": 10.975,
+      "enterpriseValueRevenue": 1.295,
+      "enterpriseValueEBITDA": 10.95,
       "yoyQuarterlyRevenueGrowthPercent": 3.6999999999999997,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": 102.86620994475139,
-      "week52Change": -25.330395,
+      "week52Change": -25.111115,
       "week52Low": 2.89,
       "week52AboveLowPercent": 14.243323442136496,
       "week52High": 4.57,
@@ -426,11 +488,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": 0.3322,
+      "eps2YearsAgo": 0.3044,
+      "eps3YearsAgo": 0.1657,
+      "eps4YearsAgo": 0.0,
+      "epsGrowthLastYear": 9.132720105124832,
+      "epsGrowthLast2Years": 100.48280024140013,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1577491200,
+        1569628800,
+        1561766400,
+        1553817600
+      ],
+      "yearEnds": [
+        1561852800,
+        1530316800,
+        1498780800,
+        1467244800
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 3.369999885559082,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f5eae0256e01c850f701",
-      "date": "2020-04-25",
+      "id": "5ea58add0a9e4168c6ac7e14",
+      "date": "2020-04-26",
       "symbol": "WBC",
       "exchange": "ASX",
       "companyName": "WESTPAC FPO",
@@ -438,7 +526,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": 0.32722638,
-      "enterpriseValue": 2.17301696512E11,
+      "enterpriseValue": 2.17475874816E11,
       "totalCashPerShare": 22.668,
       "totalCashPerSharePercent": 147.866927592955,
       "totalDebtEquity": 12.850536254468787,
@@ -446,12 +534,12 @@
       "forwardPE": 6.360996,
       "priceToSalesTrailing12Months": 2.694567,
       "priceBook": 0.81585944,
-      "enterpriseValueRevenue": 10.944,
+      "enterpriseValueRevenue": 10.953,
       "enterpriseValueEBITDA": null,
       "yoyQuarterlyRevenueGrowthPercent": -3.8,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": 4.2689762532981534,
-      "week52Change": -44.91709,
+      "week52Change": -44.416243,
       "week52Low": 13.47,
       "week52AboveLowPercent": 12.133072407045006,
       "week52High": 30.05,
@@ -533,11 +621,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": null,
+      "eps2YearsAgo": 2.301,
+      "eps3YearsAgo": 2.293,
+      "eps4YearsAgo": 2.178,
+      "epsGrowthLastYear": null,
+      "epsGrowthLast2Years": null,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1569801600,
+        1561852800,
+        1553990400,
+        1546214400
+      ],
+      "yearEnds": [
+        1569801600,
+        1538265600,
+        1506729600,
+        1475193600
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 15.329999923706055,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f5f0e0256e01c850f702",
-      "date": "2020-04-25",
+      "id": "5ea58ae30a9e4168c6ac7e15",
+      "date": "2020-04-26",
       "symbol": "NAB",
       "exchange": "ASX",
       "companyName": "NAT. BANK FPO",
@@ -545,7 +659,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": 0.25445267,
-      "enterpriseValue": 1.67603781632E11,
+      "enterpriseValue": 1.67718797312E11,
       "totalCashPerShare": 65.185,
       "totalCashPerSharePercent": 413.6104060913706,
       "totalDebtEquity": 14.236995467299806,
@@ -553,12 +667,12 @@
       "forwardPE": 6.4855967,
       "priceToSalesTrailing12Months": 2.6651397,
       "priceBook": 0.81514436,
-      "enterpriseValueRevenue": 9.857,
+      "enterpriseValueRevenue": 9.863,
       "enterpriseValueEBITDA": null,
       "yoyQuarterlyRevenueGrowthPercent": -8.6,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": 5.831127737226277,
-      "week52Change": -38.7612,
+      "week52Change": -38.050318,
       "week52Low": 13.195,
       "week52AboveLowPercent": 16.275380710659896,
       "week52High": 30.0,
@@ -640,11 +754,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": null,
+      "eps2YearsAgo": 1.94,
+      "eps3YearsAgo": 1.891,
+      "eps4YearsAgo": 0.0878,
+      "epsGrowthLastYear": null,
+      "epsGrowthLast2Years": null,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1569801600,
+        1561852800,
+        1553990400,
+        1546214400
+      ],
+      "yearEnds": [
+        1569801600,
+        1538265600,
+        1506729600,
+        1475193600
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 15.760000228881836,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f5f3e0256e01c850f703",
-      "date": "2020-04-25",
+      "id": "5ea58aea0a9e4168c6ac7e16",
+      "date": "2020-04-26",
       "symbol": "QAN",
       "exchange": "ASX",
       "companyName": "QANTAS FPO",
@@ -652,20 +792,20 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": 1.4970118,
-      "enterpriseValue": 1.0712620032E10,
+      "enterpriseValue": 1.078977024E10,
       "totalCashPerShare": 1.131,
       "totalCashPerSharePercent": 33.36283185840708,
       "totalDebtEquity": 6.446761800219539,
       "trailingPE": 6.1301994,
-      "forwardPE": null,
+      "forwardPE": 4.9852943,
       "priceToSalesTrailing12Months": 0.27731442,
       "priceBook": 1.9141728,
-      "enterpriseValueRevenue": 0.588,
-      "enterpriseValueEBITDA": 3.891,
+      "enterpriseValueRevenue": 0.592,
+      "enterpriseValueEBITDA": 3.919,
       "yoyQuarterlyRevenueGrowthPercent": 2.8000000000000003,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": 11.085351537070524,
-      "week52Change": -40.25045,
+      "week52Change": -39.13824,
       "week52Low": 2.03,
       "week52AboveLowPercent": 40.11799410029499,
       "week52High": 7.46,
@@ -747,11 +887,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": 0.544,
+      "eps2YearsAgo": 0.56,
+      "eps3YearsAgo": 0.46,
+      "eps4YearsAgo": 0.494,
+      "epsGrowthLastYear": -2.8571428571428594,
+      "epsGrowthLast2Years": 18.260869565217394,
+      "epsGrowthLast3Years": 10.121457489878551,
+      "quarterEnds": [
+        1577750400,
+        1569801600,
+        1561852800,
+        1553990400
+      ],
+      "yearEnds": [
+        1561852800,
+        1530316800,
+        1498780800,
+        1467244800
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 3.390000104904175,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f5f9e0256e01c850f704",
-      "date": "2020-04-25",
+      "id": "5ea58af10a9e4168c6ac7e17",
+      "date": "2020-04-26",
       "symbol": "SYD",
       "exchange": "ASX",
       "companyName": "SYDAIRPORT STAPLED",
@@ -772,7 +938,7 @@
       "yoyQuarterlyRevenueGrowthPercent": 3.5000000000000004,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": 173.21556983240222,
-      "week52Change": -27.356016999999998,
+      "week52Change": -27.069646000000002,
       "week52Low": 4.37,
       "week52AboveLowPercent": 21.261261261261257,
       "week52High": 9.3,
@@ -854,11 +1020,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": null,
+      "eps2YearsAgo": 0.1653,
+      "eps3YearsAgo": 0.1554,
+      "eps4YearsAgo": 0.1434,
+      "epsGrowthLastYear": null,
+      "epsGrowthLast2Years": null,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1514678400,
+        1506729600,
+        1498780800,
+        1490918400
+      ],
+      "yearEnds": [
+        1577750400,
+        1546214400,
+        1514678400,
+        1483142400
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 5.550000190734863,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f5fde0256e01c850f705",
-      "date": "2020-04-25",
+      "id": "5ea58af90a9e4168c6ac7e18",
+      "date": "2020-04-26",
       "symbol": "SEK",
       "exchange": "ASX",
       "companyName": "SEEK FPO",
@@ -866,7 +1058,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": -1.7587922999999999,
-      "enterpriseValue": 7.286336512E9,
+      "enterpriseValue": 7.187871232E9,
       "totalCashPerShare": 1.469,
       "totalCashPerSharePercent": 9.392583120204604,
       "totalDebtEquity": 2.0701716428674457,
@@ -874,12 +1066,12 @@
       "forwardPE": 23.0,
       "priceToSalesTrailing12Months": 3.2884915,
       "priceBook": 3.966523,
-      "enterpriseValueRevenue": 4.352,
-      "enterpriseValueEBITDA": 18.906,
+      "enterpriseValueRevenue": 4.293,
+      "enterpriseValueEBITDA": 18.65,
       "yoyQuarterlyRevenueGrowthPercent": 15.299999999999999,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": 83.03426267281107,
-      "week52Change": -14.50054,
+      "week52Change": -14.67539,
       "week52Low": 11.23,
       "week52AboveLowPercent": 28.19693094629156,
       "week52High": 24.09,
@@ -961,11 +1153,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": 0.501,
+      "eps2YearsAgo": 0.141,
+      "eps3YearsAgo": 0.966,
+      "eps4YearsAgo": 1.017,
+      "epsGrowthLastYear": 255.31914893617022,
+      "epsGrowthLast2Years": -48.13664596273291,
+      "epsGrowthLast3Years": -50.73746312684365,
+      "quarterEnds": [
+        1577750400,
+        1569801600,
+        1561852800,
+        1553990400
+      ],
+      "yearEnds": [
+        1561852800,
+        1530316800,
+        1498780800,
+        1467244800
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 15.640000343322754,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f602e0256e01c850f706",
-      "date": "2020-04-25",
+      "id": "5ea58afe0a9e4168c6ac7e19",
+      "date": "2020-04-26",
       "symbol": "WTC",
       "exchange": "ASX",
       "companyName": "WISETECH FPO",
@@ -973,7 +1191,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": 1.0578723,
-      "enterpriseValue": 4.940043776E9,
+      "enterpriseValue": 4.994308096E9,
       "totalCashPerShare": 0.73,
       "totalCashPerSharePercent": 4.495073891625616,
       "totalDebtEquity": 0.4525960727623178,
@@ -981,12 +1199,12 @@
       "forwardPE": 108.26666,
       "priceToSalesTrailing12Months": 13.001284,
       "priceBook": 6.243752,
-      "enterpriseValueRevenue": 12.429,
-      "enterpriseValueEBITDA": 46.668,
+      "enterpriseValueRevenue": 12.565,
+      "enterpriseValueEBITDA": 47.18,
       "yoyQuarterlyRevenueGrowthPercent": 31.4,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": 194.44211072664362,
-      "week52Change": -29.30048,
+      "week52Change": -29.69697,
       "week52Low": 9.97,
       "week52AboveLowPercent": 38.60837438423644,
       "week52High": 38.8,
@@ -1068,11 +1286,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": 0.177,
+      "eps2YearsAgo": 0.139,
+      "eps3YearsAgo": 0.109,
+      "eps4YearsAgo": 0.008,
+      "epsGrowthLastYear": 27.338129496402857,
+      "epsGrowthLast2Years": 62.38532110091742,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1577750400,
+        1569801600,
+        1561852800,
+        1553990400
+      ],
+      "yearEnds": [
+        1561852800,
+        1530316800,
+        1498780800,
+        1467244800
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 16.239999771118164,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f607e0256e01c850f707",
-      "date": "2020-04-25",
+      "id": "5ea58b050a9e4168c6ac7e1a",
+      "date": "2020-04-26",
       "symbol": "XRO",
       "exchange": "ASX",
       "companyName": "XERO FPO",
@@ -1080,7 +1324,7 @@
       "currency": "AUD",
       "financialCurrency": "NZD",
       "change": 0.5281842,
-      "enterpriseValue": 1.0670130176E10,
+      "enterpriseValue": 1.0726489088E10,
       "totalCashPerShare": null,
       "totalCashPerSharePercent": null,
       "totalDebtEquity": 1.7913288694511953,
@@ -1093,15 +1337,15 @@
       "yoyQuarterlyRevenueGrowthPercent": 32.0,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": null,
-      "week52Change": 40.370715000000004,
+      "week52Change": 39.53445,
       "week52Low": 52.2,
       "week52AboveLowPercent": 31.43307500328385,
       "week52High": 90.22,
       "week52BelowHighPercent": 18.50781557861553,
-      "targetLowPrice": 32.993257927,
-      "belowTargetLowPricePercent": -56.66194939314331,
-      "targetMedianPrice": 44.173259041692,
-      "belowTargetMedianPricePercent": -41.97654138750558,
+      "targetLowPrice": 32.9612028235,
+      "belowTargetLowPricePercent": -56.70405513792197,
+      "targetMedianPrice": 44.130341837406,
+      "belowTargetMedianPricePercent": -42.03291496465782,
       "heldByInsiders": null,
       "heldByInstitutions": null,
       "shortToFloat": null,
@@ -1175,11 +1419,36 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": null,
+      "eps2YearsAgo": -0.182,
+      "eps3YearsAgo": -0.1879,
+      "eps4YearsAgo": -0.4566,
+      "epsGrowthLastYear": null,
+      "epsGrowthLast2Years": null,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1569801600,
+        1561852800,
+        1553990400,
+        1546214400
+      ],
+      "yearEnds": [
+        1553990400,
+        1522454400,
+        1490918400
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 76.12999725341797,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f60be0256e01c850f708",
-      "date": "2020-04-25",
+      "id": "5ea58b0c0a9e4168c6ac7e1b",
+      "date": "2020-04-26",
       "symbol": "Z1P",
       "exchange": "ASX",
       "companyName": "ZIPCOLTD FPO",
@@ -1187,7 +1456,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": -1.0309329,
-      "enterpriseValue": 1.651170944E9,
+      "enterpriseValue": 1.6433632E9,
       "totalCashPerShare": 0.104,
       "totalCashPerSharePercent": 5.416666666666667,
       "totalDebtEquity": 5.214497904333924,
@@ -1195,12 +1464,12 @@
       "forwardPE": null,
       "priceToSalesTrailing12Months": 6.3515882,
       "priceBook": 4.050633,
-      "enterpriseValueRevenue": 13.992,
-      "enterpriseValueEBITDA": -55.189,
+      "enterpriseValueRevenue": 13.926,
+      "enterpriseValueEBITDA": -54.928,
       "yoyQuarterlyRevenueGrowthPercent": 104.4,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": null,
-      "week52Change": -21.774189999999997,
+      "week52Change": -33.56402,
       "week52Low": 1.05,
       "week52AboveLowPercent": 45.31249999999999,
       "week52High": 5.86,
@@ -1282,11 +1551,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": -0.0352,
+      "eps2YearsAgo": -0.0784,
+      "eps3YearsAgo": -0.0858,
+      "eps4YearsAgo": -0.0488,
+      "epsGrowthLastYear": null,
+      "epsGrowthLast2Years": null,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1577750400,
+        1569801600,
+        1561852800,
+        1553990400
+      ],
+      "yearEnds": [
+        1561852800,
+        1530316800,
+        1498780800,
+        1467244800
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 1.9199999570846558,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f610e0256e01c850f709",
-      "date": "2020-04-25",
+      "id": "5ea58b130a9e4168c6ac7e1c",
+      "date": "2020-04-26",
       "symbol": "APT",
       "exchange": "ASX",
       "companyName": "AFTERPAY FPO",
@@ -1294,7 +1589,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": -0.5156515,
-      "enterpriseValue": 6.891088896E9,
+      "enterpriseValue": 6.85562624E9,
       "totalCashPerShare": 1.6,
       "totalCashPerSharePercent": 5.923731951129212,
       "totalDebtEquity": 0.6242747814802092,
@@ -1302,12 +1597,12 @@
       "forwardPE": null,
       "priceToSalesTrailing12Months": 23.20229,
       "priceBook": 8.160121,
-      "enterpriseValueRevenue": 22.117,
-      "enterpriseValueEBITDA": -280.251,
+      "enterpriseValueRevenue": 22.003,
+      "enterpriseValueEBITDA": -278.809,
       "yoyQuarterlyRevenueGrowthPercent": 99.5,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": null,
-      "week52Change": 13.979852000000001,
+      "week52Change": 8.3868384,
       "week52Low": 8.01,
       "week52AboveLowPercent": 70.34431691965938,
       "week52High": 41.14,
@@ -1389,11 +1684,37 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": -0.18,
+      "eps2YearsAgo": -0.04,
+      "eps3YearsAgo": -0.0548,
+      "eps4YearsAgo": 0.0,
+      "epsGrowthLastYear": null,
+      "epsGrowthLast2Years": null,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1577750400,
+        1569801600,
+        1561852800,
+        1553990400
+      ],
+      "yearEnds": [
+        1561852800,
+        1530316800,
+        1498780800,
+        1483142400
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 27.010000228881836,
+          "eps": null
+        }
+      ]
     },
     {
-      "id": "5ea2f616e0256e01c850f70a",
-      "date": "2020-04-25",
+      "id": "5ea58b180a9e4168c6ac7e1d",
+      "date": "2020-04-26",
       "symbol": "OPY",
       "exchange": "ASX",
       "companyName": "OPENPAY FPO",
@@ -1401,7 +1722,7 @@
       "currency": "AUD",
       "financialCurrency": "AUD",
       "change": 3.2520293999999996,
-      "enterpriseValue": 3.2026714E7,
+      "enterpriseValue": 3.390268E7,
       "totalCashPerShare": 0.56,
       "totalCashPerSharePercent": 88.18897637795277,
       "totalDebtEquity": 0.5618593904048381,
@@ -1409,12 +1730,12 @@
       "forwardPE": null,
       "priceToSalesTrailing12Months": 4.123143,
       "priceBook": 0.9393491,
-      "enterpriseValueRevenue": 2.217,
-      "enterpriseValueEBITDA": -1.212,
+      "enterpriseValueRevenue": 2.347,
+      "enterpriseValueEBITDA": -1.283,
       "yoyQuarterlyRevenueGrowthPercent": 71.6,
       "priceEarningGrowth": null,
       "trailingPriceEarningGrowth": null,
-      "week52Change": -53.584909999999994,
+      "week52Change": -52.075475000000004,
       "week52Low": 0.32,
       "week52AboveLowPercent": 49.60629921259843,
       "week52High": 1.65,
@@ -1496,7 +1817,30 @@
       "epsGrowthLastQuarter": null,
       "epsGrowthLast2Quarters": null,
       "epsGrowthLast3Quarters": null,
-      "epsGrowthEstimateLastQuarter": null
+      "epsGrowthEstimateLastQuarter": null,
+      "epsLastYear": null,
+      "eps2YearsAgo": null,
+      "eps3YearsAgo": null,
+      "eps4YearsAgo": null,
+      "epsGrowthLastYear": null,
+      "epsGrowthLast2Years": null,
+      "epsGrowthLast3Years": null,
+      "quarterEnds": [
+        1577750400,
+        1569801600,
+        1546214400,
+        1538265600
+      ],
+      "yearEnds": [
+        1561852800
+      ],
+      "chartData": [
+        {
+          "date": 1587686400,
+          "price": 0.6349999904632568,
+          "eps": null
+        }
+      ]
     }
   ]
 }
