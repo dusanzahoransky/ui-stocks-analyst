@@ -1,16 +1,16 @@
 table, td, th {
     text-align: center;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
 }
 
 th, td {
     width: 60px;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 table {
     position: relative;
     width:1880px;
-    border-radius: 5px;
 }
 
 th {
@@ -18,21 +18,29 @@ th {
     top: 130px;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-    border-radius: 5px;
 }
 
 .label {
     top: 0;
 }
 
-.companyName {
+.companyName{
     width: 120px;
     font-size: x-small;
+}
+
+.symbol {
     position: sticky;
     left: 0;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-    border-radius: 5px;
+}
+
+.price {
+    position: sticky;
+    left: 85px;
+    background: #f0f3ff;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 .lightGreen {

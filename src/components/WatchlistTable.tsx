@@ -128,6 +128,12 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         if (columnIndex === TableColumn.companyName) {
             classes.push('companyName');
         }
+        if (columnIndex === TableColumn.symbol) {
+            classes.push('symbol');
+        }
+        if (columnIndex === TableColumn.price) {
+            classes.push('price');
+        }
         if (columnIndex === TableColumn.change) {
             classes.push('change');
         }
@@ -169,13 +175,11 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             case TableColumn.stockRepurchasedLastYear:
             case TableColumn.stockLastYear:
             case TableColumn.stockLastQuarter:
-            case TableColumn.currentLiabilitiesLastQuarter:
             case TableColumn.totalDebtEquity:
             case TableColumn.currentLiabilitiesGrowthLastQuarter:
             case TableColumn.currentLiabilitiesLastYear:
             case TableColumn.currentLiabilitiesGrowthLastYear:
             case TableColumn.currentLiabilitiesGrowthLast3Years:
-            case TableColumn.totalLiabilitiesLastQuarter:
             case TableColumn.totalLiabilitiesGrowthLastQuarter:
             case TableColumn.totalLiabilitiesLastYear:
             case TableColumn.totalLiabilitiesGrowthLastYear:

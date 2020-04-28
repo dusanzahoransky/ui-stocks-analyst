@@ -3,6 +3,7 @@ import {StockAnalystService} from "../services/StockAnalystService";
 import {AnalysisResult} from "../model/AnalysisResult";
 import './StocksAnalysis.css';
 import {Watchlist} from "../components/Watchlist";
+import {BackendError} from "../model/BackendError";
 
 export interface StocksAnalysisProps {
 
@@ -10,7 +11,12 @@ export interface StocksAnalysisProps {
 
 export interface StocksAnalysisState {
     error?: string
-    results?: Map<string, AnalysisResult>
+    results?: WatchlistResult[]
+}
+
+interface WatchlistResult {
+    watchlist: string,
+    analysisResult: AnalysisResult
 }
 
 export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksAnalysisState> {
@@ -21,23 +27,35 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         super(props);
         this.state = {
             error: undefined,
-            results: undefined
+            results: []
         }
         this.stockAnalystService = new StockAnalystService();
     }
 
-    componentDidMount() {
-        const results = new Map();
-        results.set('TEST', this.stockAnalystService.loadTestAnalysis());
-        results.set('AUD', this.stockAnalystService.loadAudAnalysis());
-        results.set('CHF', this.stockAnalystService.loadChfAnalysis());
-        results.set('EUR', this.stockAnalystService.loadEurAnalysis());
-        results.set('GBP', this.stockAnalystService.loadGbpAnalysis());
-        results.set('USD', this.stockAnalystService.loadUsdAnalysis());
-        // results.set('NASDAQ100', this.stockAnalystService.loadNasdaq100Analysis());
+    async componentDidMount() {
+        ['TEST', 'AUD', 'CHF', 'EUR', 'GBP', 'USD', 'USD_TECH']
+            .map(watchlist => this.loadWatchlist(watchlist, false, false))
+    }
+
+    private async loadWatchlist(watchlist: string, forceRefresh: boolean, mockData: boolean) {
+        const analysisResult = await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, mockData)
+        const error = analysisResult as BackendError;
+        if(error.error){
+            console.error(`Failed to load ${watchlist}: ${error.message}`)
+            return
+        }
+        let mergedResults = this.mergeResults(this.state.results, watchlist, analysisResult as AnalysisResult);
         this.setState({
-            results
+            results: mergedResults
         })
+
+    }
+
+    private mergeResults(results: WatchlistResult[], watchlist: string, analysisResult: AnalysisResult) {
+        return results
+            .filter(r => r.watchlist !== watchlist)
+            .concat({watchlist, analysisResult})
+            .sort((r1, r2) => r1.watchlist.localeCompare(r2.watchlist));
     }
 
     render = () => {
@@ -52,13 +70,15 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         //TODO input to scale PE ration
 
         const watchlists = []
-        this.state.results.forEach((result: AnalysisResult, watchlist: string) => {
+        this.state.results.forEach((watchlistResults) => {
+            const onRefreshClickHandler = (watchlist) => this.loadWatchlist(watchlist, true, false);
             watchlists.push(
                 <Watchlist
-                    key={watchlist}
-                    result={result}
-                    watchlist={watchlist}
+                    key={watchlistResults.watchlist}
+                    result={watchlistResults.analysisResult}
+                    watchlist={watchlistResults.watchlist}
                     peRatio={15}
+                    onRefreshClickHandler={onRefreshClickHandler}
                 />
             )
         });

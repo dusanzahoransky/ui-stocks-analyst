@@ -15,3 +15,8 @@
 .PriceEpsChart{
     margin-bottom: 10px;
 }
+
+.fa-refresh {
+    margin-left: 10px;
+    color: darkred;
+}

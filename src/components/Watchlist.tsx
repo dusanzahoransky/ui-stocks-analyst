@@ -6,17 +6,21 @@ import {PriceEpsChart} from "./PriceEpsChart";
 import {PriceEpsDataRaw} from "../model/PriceEpsDataRaw";
 import {PriceEpsData} from "../model/PriceEpsData";
 import "./Watchlist.css";
+import 'font-awesome/css/font-awesome.min.css';
 import moment from "moment";
 import {CellData} from "../model/CellData";
+
 
 export interface WatchlistProps {
     watchlist: string
     result: AnalysisResult,
-    peRatio: number
+    peRatio: number,
+    onRefreshClickHandler?: (watchlist: string) => void
 }
 
 export interface WatchlistState {
     priceEpsData?: PriceEpsDataRaw[]
+    chartLabel?: string
 }
 
 export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
@@ -42,12 +46,12 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const epsChart = <div className={!chartData ? 'hidden' : ''}>
             <PriceEpsChart
                 data={chartData}
-                description={`Price and earnings line of ${result.stocks[0].companyName}. with EPS scale of ${peRatio}`}/>
+                description={`Price and earnings line of ${this.state.chartLabel}. with EPS scale of ${peRatio}`}/>
         </div>;
 
 
         return <div className="Watchlist" key={watchlist}>
-            <h2 className="WatchlistName">Watchlist: {watchlist}</h2>
+            <h2 className="WatchlistName">Watchlist: {watchlist} <i className="fa fa-refresh" onClick={() => this.props.onRefreshClickHandler(watchlist)}/></h2>
             {epsChart}
             <WatchlistTable
                 data={scoredData}
@@ -72,7 +76,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             })
         } else {
             this.setState({
-                priceEpsData
+                priceEpsData,
+                chartLabel: stockSymbol as string
             })
         }
     }

@@ -1,43 +1,15 @@
 import {AnalysisResult} from "../model/AnalysisResult";
-import resultUsd from "./Result-usd-2020-04-18.json"
-import resultEur from "./Result-eur-2020-04-19.json"
-import resultChf from "./Result-chf-2020-04-19.json"
-import resultAud from "./Result-aud-2020-04-19.json"
-import resultGbp from "./Result-gbp-2020-04-19.json"
-import resultTest from "./Result-test.json"
 import {CellData} from "../model/CellData";
 import {TableColumn} from "../model/TableColumn";
 import moment from "moment";
+import {BackendError} from "../model/BackendError";
 
 export class StockAnalystService {
 
-    loadTestAnalysis(): AnalysisResult {
-        return resultTest as unknown as AnalysisResult
+    async loadAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<AnalysisResult | BackendError> {
+        return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
+            .then(r => r.json() as unknown as AnalysisResult);
     }
-
-    loadAudAnalysis(): AnalysisResult {
-        return resultAud as unknown as AnalysisResult
-    }
-
-    loadChfAnalysis(): AnalysisResult {
-        return resultChf as unknown as AnalysisResult
-    }
-
-    loadEurAnalysis(): AnalysisResult {
-        return resultEur as unknown as AnalysisResult
-    }
-
-    loadGbpAnalysis(): AnalysisResult {
-        return resultGbp as unknown as AnalysisResult
-    }
-
-    loadUsdAnalysis(): AnalysisResult {
-        return resultUsd as unknown as AnalysisResult
-    }
-
-    // loadNasdaq100Analysis(): AnalysisResult {
-    //     return result100Nasdaq as unknown as AnalysisResult
-    // }
 
     scoreRow(averages: number[], rowValues: number[] | string[]): CellData[] {
         const cellData: CellData[] = []
