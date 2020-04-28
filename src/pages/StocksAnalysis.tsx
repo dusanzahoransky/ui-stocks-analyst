@@ -2,7 +2,8 @@ import React from "react";
 import {StockAnalystService} from "../services/StockAnalystService";
 import {AnalysisResult} from "../model/AnalysisResult";
 import './StocksAnalysis.css';
-import {Table} from "../components/Table";
+import {Watchlist} from "../components/Watchlist";
+import {BackendError} from "../model/BackendError";
 
 export interface StocksAnalysisProps {
 
@@ -10,7 +11,12 @@ export interface StocksAnalysisProps {
 
 export interface StocksAnalysisState {
     error?: string
-    results?: Map<string, AnalysisResult>
+    results?: WatchlistResult[]
+}
+
+interface WatchlistResult {
+    watchlist: string,
+    analysisResult: AnalysisResult
 }
 
 export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksAnalysisState> {
@@ -19,22 +25,37 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     constructor(props: Readonly<StocksAnalysisProps>) {
         super(props);
-        this.state = {error: undefined, results: undefined}
+        this.state = {
+            error: undefined,
+            results: []
+        }
         this.stockAnalystService = new StockAnalystService();
     }
 
-    componentDidMount() {
-        let results = new Map();
-        results.set('TEST', this.stockAnalystService.loadTestAnalysis());
-        results.set('AUD', this.stockAnalystService.loadAudAnalysis());
-        results.set('CHF', this.stockAnalystService.loadChfAnalysis());
-        results.set('EUR', this.stockAnalystService.loadEurAnalysis());
-        results.set('GBP', this.stockAnalystService.loadGbpAnalysis());
-        results.set('USD', this.stockAnalystService.loadUsdAnalysis());
-        // results.set('NASDAQ100', this.stockAnalystService.loadNasdaq100Analysis());
+    async componentDidMount() {
+        ['TEST', 'AUD', 'CHF', 'EUR', 'GBP', 'USD', 'USD_TECH']
+            .map(watchlist => this.loadWatchlist(watchlist, false, false))
+    }
+
+    private async loadWatchlist(watchlist: string, forceRefresh: boolean, mockData: boolean) {
+        const analysisResult = await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, mockData)
+        const error = analysisResult as BackendError;
+        if(error.error){
+            console.error(`Failed to load ${watchlist}: ${error.message}`)
+            return
+        }
+        let mergedResults = this.mergeResults(this.state.results, watchlist, analysisResult as AnalysisResult);
         this.setState({
-            results
+            results: mergedResults
         })
+
+    }
+
+    private mergeResults(results: WatchlistResult[], watchlist: string, analysisResult: AnalysisResult) {
+        return results
+            .filter(r => r.watchlist !== watchlist)
+            .concat({watchlist, analysisResult})
+            .sort((r1, r2) => r1.watchlist.localeCompare(r2.watchlist));
     }
 
     render = () => {
@@ -46,54 +67,28 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             return <div>Loading analysis result...</div>;
         }
 
-        const tables = []
-        this.state.results.forEach((result: AnalysisResult, watchlist: string) => {
-            const headers = this.toHeaderData(result);
-            let data = this.toTableData(result);
+        //TODO input to scale PE ration
 
-            const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))
-            tables.push(
-                <div className="Table" key={watchlist}>
-                    <h2 className="watchlist">{watchlist}</h2>
-                    <Table data={scoredData} headerLabels={headers[0]} headerAverages={headers[1]}/>
-                </div>
+        const watchlists = []
+        this.state.results.forEach((watchlistResults) => {
+            const onRefreshClickHandler = (watchlist) => this.loadWatchlist(watchlist, true, false);
+            watchlists.push(
+                <Watchlist
+                    key={watchlistResults.watchlist}
+                    result={watchlistResults.analysisResult}
+                    watchlist={watchlistResults.watchlist}
+                    peRatio={15}
+                    onRefreshClickHandler={onRefreshClickHandler}
+                />
             )
         });
 
-
         return (
             <div className='StocksAnalysis'>
-                {tables}
+                <div className={'Watchlists'}>{watchlists}</div>
             </div>
         )
     };
-
-    toHeaderData(result: AnalysisResult): any[][] {
-        const headersRow = Object.keys(result.averages)
-            .filter(key => key !== 'periodValuationMeasures')
-            .concat('Score')
-
-        const averagesRow = Object.keys(result.averages)
-            .filter(key => key !== 'periodValuationMeasures')
-            .map(key => result.averages[key])
-            .concat(0)
-
-        return [
-            headersRow,
-            averagesRow
-        ]
-    }
-
-    toTableData(result: AnalysisResult): any[][] {
-        let rows = [];
-        for (const stock of result.stocks) {
-            const rowValues = Object.keys(stock)
-                .filter(key => key !== 'periodValuationMeasures')
-                .map(key => stock[key] ? stock[key] : '')
-            rows.push(rowValues);
-        }
-        return rows;
-    }
 
 
 }

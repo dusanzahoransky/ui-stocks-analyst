@@ -1,10 +1,11 @@
 table, td, th {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
+    text-align: center;
+    border-radius: 5px;
 }
 
 th, td {
     width: 60px;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 table {
@@ -23,9 +24,23 @@ th {
     top: 0;
 }
 
-.companyName {
+.companyName{
     width: 120px;
     font-size: x-small;
+}
+
+.symbol {
+    position: sticky;
+    left: 0;
+    background: #f0f3ff;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+.price {
+    position: sticky;
+    left: 85px;
+    background: #f0f3ff;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 .lightGreen {
@@ -44,16 +59,16 @@ th {
     color: #128408;
 }
 
+.blueText {
+    color: #003795;
+}
+
 .red {
     background: #ff6d68;
 }
 
 .redText {
     color: #970008;
-}
-
-.hidden {
-    display: none;
 }
 
 .fa-sort {

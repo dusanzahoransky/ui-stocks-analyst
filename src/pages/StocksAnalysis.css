@@ -1,13 +1,8 @@
 .StocksAnalysis {
-    width: 10000px;
-}
-
-.watchlist{
     text-align: left;
+    width: 10000px;
+    color: #003795;
 }
-
-.Table{
-
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
+.Watchlist {
+    margin-bottom: 5px;
 }
