@@ -5,6 +5,7 @@ import moment from "moment";
 import {BackendError} from "../model/BackendError";
 import {StockInfo} from "../model/StockInfo";
 import resultTest from "./Result-test.json"
+import symbolTest from "./Symbols-test.json"
 
 export class StockAnalystService {
 
@@ -14,6 +15,15 @@ export class StockAnalystService {
         } else {
             return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
                 .then(r => r.json() as unknown as AnalysisResult);
+        }
+    }
+
+    async loadStock(symbol: string, forceRefresh: boolean, mockData: boolean): Promise<StockInfo | BackendError> {
+        if(symbol.startsWith('TEST')){
+            return Promise.resolve(symbolTest)
+        } else {
+            return fetch(`http://localhost:3000/stocks/watchlist?symbol=${symbol}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
+                .then(r => r.json() as unknown as StockInfo);
         }
     }
 

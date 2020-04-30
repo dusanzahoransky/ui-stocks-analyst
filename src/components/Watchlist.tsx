@@ -16,7 +16,8 @@ export interface WatchlistProps {
     watchlist: string
     result: AnalysisResult,
     peRatio: number,
-    onRefreshClickHandler?: (watchlist: string) => void
+    onRefreshClickHandler?: (watchlist: string) => void,
+    preset: boolean
 }
 
 export interface WatchlistState {
@@ -43,17 +44,17 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         let data = this.toTableData(result.stocks);
         const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))
 
-
         const chartData = this.prepareEpsChartData(this.state.priceEpsData, peRatio);
         const epsChart = <div className={!chartData ? 'hidden' : ''}>
             <PriceEpsChart
                 data={chartData}
                 description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
         </div>;
-
-
-        return <div className="Watchlist" key={watchlist}>
-            <h2 className="WatchlistName">Watchlist: {watchlist} <i className="fa fa-refresh" onClick={() => this.props.onRefreshClickHandler(watchlist)}/></h2>
+        const refreshLink = this.props.preset ?
+            <i className="fa fa-refresh" onClick={() => this.props.onRefreshClickHandler(watchlist)}/> : ''
+        return <div
+            className="Watchlist" key={watchlist}>
+            <h2 className="WatchlistName">Watchlist: {watchlist}{refreshLink}</h2>
             {epsChart}
             <WatchlistTable
                 data={scoredData}

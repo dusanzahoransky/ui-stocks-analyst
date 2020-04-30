@@ -12,6 +12,7 @@ export interface StocksAnalysisProps {
 export interface StocksAnalysisState {
     error?: string
     results?: WatchlistResult[]
+    customResults?: WatchlistResult[]
 }
 
 interface WatchlistResult {
@@ -27,7 +28,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         super(props);
         this.state = {
             error: undefined,
-            results: []
+            results: [],
+            customResults: []
         }
         this.stockAnalystService = new StockAnalystService();
     }
@@ -38,13 +40,15 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     }
 
     private async loadWatchlist(watchlist: string, forceRefresh: boolean, mockData: boolean) {
-        const analysisResult = await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, mockData)
-        const error = analysisResult as BackendError;
+        const response = await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, mockData)
+        const error = response as BackendError;
         if(error.error){
             console.error(`Failed to load ${watchlist}: ${error.message}`)
             return
         }
-        let mergedResults = this.mergeResults(this.state.results, watchlist, analysisResult as AnalysisResult);
+        const analysisResult = response as AnalysisResult;
+        analysisResult.preset = true
+        let mergedResults = this.mergeResults(this.state.results, watchlist, analysisResult);
         this.setState({
             results: mergedResults
         })
@@ -69,8 +73,12 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         //TODO input to scale PE ration
 
+        const allResults = this.state.results.concat(this.state.customResults);
         const watchlists = []
-        this.state.results.forEach((watchlistResults) => {
+
+        allResults
+            .sort((w1, w2) => w1.watchlist.localeCompare(w2.watchlist))
+            .forEach((watchlistResults) => {
             const onRefreshClickHandler = (watchlist) => this.loadWatchlist(watchlist, true, false);
             watchlists.push(
                 <Watchlist
@@ -79,6 +87,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                     watchlist={watchlistResults.watchlist}
                     peRatio={15}
                     onRefreshClickHandler={onRefreshClickHandler}
+                    preset={true}
                 />
             )
         });
