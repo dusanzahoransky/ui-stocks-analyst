@@ -3,12 +3,18 @@ import {CellData} from "../model/CellData";
 import {TableColumn} from "../model/TableColumn";
 import moment from "moment";
 import {BackendError} from "../model/BackendError";
+import {StockInfo} from "../model/StockInfo";
+import resultTest from "./Result-test.json"
 
 export class StockAnalystService {
 
     async loadAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<AnalysisResult | BackendError> {
-        return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
-            .then(r => r.json() as unknown as AnalysisResult);
+        if(watchlist === 'TEST'){
+            return Promise.resolve(resultTest)
+        } else {
+            return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
+                .then(r => r.json() as unknown as AnalysisResult);
+        }
     }
 
     scoreRow(averages: number[], rowValues: number[] | string[]): CellData[] {
@@ -50,11 +56,19 @@ export class StockAnalystService {
                 score = number * 0.1
                 break
             case TableColumn.trailingPE:
-                score = 20 - number + (1 / Math.log1p(number))
+                if(number > 0) {
+                    score = 20 - number + (1 / Math.log1p(number))
+                } else {
+                    score = number
+                }
                 score *= 10
                 break;
             case TableColumn.forwardPE:
-                score = 20 - number + (1 / Math.log1p(number))
+                if(number > 0) {
+                    score = 20 - number + (1 / Math.log1p(number))
+                } else {
+                    score = number
+                }
                 score *= 10
                 break;
             case TableColumn.priceToSalesTrailing12Months:
@@ -68,13 +82,9 @@ export class StockAnalystService {
                 score = 10 - number
                 score *= 2
                 break;
-            case TableColumn.yoyQuarterlyRevenueGrowthPercent:
-                score = number
-                score *= 2
-                break;
             case TableColumn.priceEarningGrowth:
                 score = 5 - number
-                score *= 2
+                score *= 1
                 break;
             case TableColumn.trailingPriceEarningGrowth:
                 score = 5 - number
@@ -82,11 +92,11 @@ export class StockAnalystService {
                 break;
             case TableColumn.belowTargetLowPricePercent:
                 score = number
-                score *= 5
+                score *= 2
                 break;
             case TableColumn.belowTargetMedianPricePercent:
                 score = number
-                score *= 5
+                score *= 2
                 break;
             case TableColumn.exDividendDate:
                 const daysToExDivident = -moment().diff(string, 'days')
@@ -119,7 +129,7 @@ export class StockAnalystService {
             case TableColumn.netIncomeGrowthLastQuarter:
                 score = number
                 break;
-            case TableColumn.netIncomeGrowthLastYear:
+            case TableColumn.netIncomeGrowthLast2Quarters:
                 score = number
                 break;
             case TableColumn.netIncomeGrowthLast3Years:
@@ -130,7 +140,7 @@ export class StockAnalystService {
                 score = number
                 score *= 0.3
                 break;
-            case TableColumn.revenueGrowthLastYear:
+            case TableColumn.revenueGrowthLast2Quarters:
                 score = number
                 score *= 0.3
                 break;
@@ -214,6 +224,19 @@ export class StockAnalystService {
                 score = number
                 score *= 0.2
                 break;
+            case TableColumn.peGrowthLastQuarter:
+                score = -number
+                score *= 1
+                break;
+            case TableColumn.peGrowthLast2Quarters:
+                score = -number
+                score *= 1
+                break;
+            case TableColumn.peGrowthLast3Quarters:
+                score = -number
+                score *= 0.75
+                break;
+
         }
         return score;
     }
@@ -225,5 +248,26 @@ export class StockAnalystService {
     private static signPow(number: number, exponent: number) {
         let absPow = Math.pow(Math.abs(number), 1.3);
         return absPow * Math.sign(number);
+    }
+
+    filterDisplayableStats(stockInfo: StockInfo): StockInfo {
+        const colNames = StockAnalystService.getTableColumnNames();
+
+        for (const statName of Object.keys(stockInfo)) {
+            if (!colNames.find(colName => colName === statName)) {
+                delete stockInfo[statName]
+            }
+        }
+        return stockInfo
+    }
+
+    private static getTableColumnNames(): string[] {
+        const enumNames = []
+        for (const enumMember in TableColumn) {
+            if (Number.isNaN(Number.parseInt(enumMember))) {
+                enumNames.push(enumMember)
+            }
+        }
+        return enumNames
     }
 }

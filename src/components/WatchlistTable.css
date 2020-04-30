@@ -10,7 +10,7 @@ th, td {
 
 table {
     position: relative;
-    width:1880px;
+    /*width:1880px;*/
 }
 
 th {
@@ -20,25 +20,80 @@ th {
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
-.label {
+th.stat {
+    background: #f0f3ef;
+}
+
+th.currentPriceStat{
+    background: #f0f3ff;
+}
+
+th.stock {
+    background: #f0e8ff;
+}
+
+th.short {
+    background: #f0f3f3;
+}
+
+th.dividents {
+    background: #f4f4ff;
+}
+th.income {
+    background: #e0e3ef;
+}
+th.revenue {
+    background: #f0f3ef;
+}
+th.pe {
+    background: #f0f3ef;
+}
+th.eps {
+    background: #d0f3ff;
+}
+th.cash {
+    background: #e0e3ef;
+}
+th.inventory {
+    background: #f0f3ef;
+}
+th.liabilities {
+    background: #f0f3ef;
+}
+th.equity {
+    background: #d0f3ff;
+}
+th.liabilitiesToEquity {
+    background: #f4f4ff;
+}
+th.label {
     top: 0;
 }
 
 .companyName{
-    width: 120px;
+    width: 100px;
+}
+td.companyName{
     font-size: x-small;
 }
 
-.symbol {
+.date{
+    width: 55px;
+}
+td.date{
+    font-size: x-small;
+}
+
+td.symbol {
     position: sticky;
     left: 0;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
-.price {
+td.price {
     position: sticky;
-    left: 85px;
+    left: 65px;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
@@ -78,6 +133,6 @@ th {
 
 .score {
     vertical-align: top;
-    font-size: x-small;
+    font-size: 9px;
     margin-left: 2px;
 }

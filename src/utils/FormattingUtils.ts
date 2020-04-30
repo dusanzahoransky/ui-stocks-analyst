@@ -40,7 +40,9 @@ export class FormattingUtils {
             case "id":
                 return "Id"
             case "date":
-                return "Date"
+                return "Refresh date"
+            case "lastReportedQuarter":
+                return "Last Quarter"
             case "symbol":
                 return "Symbol"
             case "exchange":
@@ -71,14 +73,10 @@ export class FormattingUtils {
                 return "EV /R"
             case "enterpriseValueEBITDA":
                 return "EV /EBITDA"
-            case "yoyQuarterlyRevenueGrowthPercent":
-                return "(YOY) Q. revenue growth"
             case "earningsGrowthPercent":
                 return "Earnings Growth %?"
             case "quarterlyRevenueGrowth":
                 return "Q. revenue growth"
-            case "yoyQuarterlyEarningsGrowthPercent":
-                return "(YOY) Q. earnings growth"
             case "priceEarningGrowth":
                 return "PEG"
             case "trailingPriceEarningGrowth":
@@ -208,7 +206,7 @@ export class FormattingUtils {
             case "totalLiabilitiesToEquityGrowthLastYear":
                 return "Total liabilities to equity growth (LY)"
             case "totalLiabilitiesToEquityGrowthLast3Years":
-                return "Total liabilities to equity growth last 3 year"
+                return "Total liabilities to equity growth (L3Y)"
             case "stockRepurchasedLastQuarter":
                 return "Stock repurchase (LQ)"
             case "stockRepurchasedGrowthLastQuarter":
@@ -248,19 +246,45 @@ export class FormattingUtils {
             case "epsGrowthEstimateLastQuarter" :
                 return "EPS growth LQ to Estimate"
             case "epsLastYear":
-                return "eps (LY)"
+                return "EPS (LY)"
             case "eps2YearsAgo":
-                return "eps (L2Y)"
+                return "EPS (L2Y)"
             case "eps3YearsAgo":
-                return "eps (L3Y)"
+                return "EPS (L3Y)"
             case "eps4YearsAgo":
-                return "eps (L4Y)"
+                return "EPS (L4Y)"
             case "epsGrowthLastYear":
                 return "Eps growth (LY)"
             case "epsGrowthLast2Years":
                 return "Eps growth (L2Y)"
             case "epsGrowthLast3Years":
                 return "Eps growth (L3Y)"
+            case "netIncome3QuartersAgo":
+                return "Net income (L3Q)"
+            case "netIncome3YearsAgo":
+                return "Net income (L3Y)"
+            case "peLastQuarter":
+                return "P/E (LQ)"
+            case "pe2QuartersAgo":
+                return "P/E (L2Q)"
+            case "pe3QuartersAgo":
+                return "P/E (L3Q)"
+            case "pe4QuartersAgo":
+                return "P/E (L4Q)"
+            case "peGrowthLastQuarter":
+                return "P/E growth (LQ)"
+            case "peGrowthLast2Quarters":
+                return "P/E growth (L2Q)"
+            case "peGrowthLast3Quarters":
+                return "P/E growth (L3Q)"
+            case "netIncomeGrowthLast2Quarters":
+                return "Net income growth (L2Q)"
+            case "revenue2QuartersAgo":
+                return "Revenue (L2Q)"
+            case "revenue3QuartersAgo":
+                return "Revenue (L3Q)"
+            case "revenueGrowthLast2Quarters":
+                return "Revenue growth (L2Q)"
             default:
                 return field;
         }

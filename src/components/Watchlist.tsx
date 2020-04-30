@@ -9,6 +9,7 @@ import "./Watchlist.css";
 import 'font-awesome/css/font-awesome.min.css';
 import moment from "moment";
 import {CellData} from "../model/CellData";
+import {StockInfo} from "../model/StockInfo";
 
 
 export interface WatchlistProps {
@@ -37,8 +38,9 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     render() {
         const {watchlist, result, peRatio} = this.props;
-        const headers = this.toHeaderData(result);
-        let data = this.toTableData(result);
+
+        const headers = this.toHeaderData(result.averages);
+        let data = this.toTableData(result.stocks);
         const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))
 
 
@@ -46,7 +48,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const epsChart = <div className={!chartData ? 'hidden' : ''}>
             <PriceEpsChart
                 data={chartData}
-                description={`Price and earnings line of ${this.state.chartLabel}. with EPS scale of ${peRatio}`}/>
+                description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
         </div>;
 
 
@@ -82,14 +84,15 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         }
     }
 
-    toHeaderData(result: AnalysisResult): any[][] {
-        const headersRow = Object.keys(result.averages)
+    toHeaderData(averages: StockInfo): any[][] {
+        averages = this.stockAnalystService.filterDisplayableStats(averages)
+        const headersRow = Object.keys(averages)
             .filter(key => key !== 'periodValuationMeasures')
             .concat('Score')
 
-        const averagesRow = Object.keys(result.averages)
+        const averagesRow = Object.keys(averages)
             .filter(key => key !== 'periodValuationMeasures')
-            .map(key => result.averages[key])
+            .map(key => averages[key])
             .concat(0)
 
         return [
@@ -98,9 +101,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         ]
     }
 
-    toTableData(result: AnalysisResult): any[][] {
+    toTableData(stocks: StockInfo[]): any[][] {
         let rows = [];
-        for (const stock of result.stocks) {
+        for (let stock of stocks) {
+            stock = this.stockAnalystService.filterDisplayableStats(stock)
             const rowValues = Object.keys(stock)
                 .filter(key => key !== 'periodValuationMeasures')
                 .map(key => stock[key] ? stock[key] : '')
