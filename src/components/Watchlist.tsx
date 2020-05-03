@@ -14,9 +14,10 @@ import {StockInfo} from "../model/StockInfo";
 
 export interface WatchlistProps {
     watchlist: string
-    result: AnalysisResult,
+    result?: AnalysisResult,
     peRatio: number,
     onRefreshClickHandler?: (watchlist: string) => void,
+    onShowClickHandler?: (watchlist: string) => void,
     preset: boolean
 }
 
@@ -40,29 +41,50 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     render() {
         const {watchlist, result, peRatio} = this.props;
 
-        const headers = this.toHeaderData(result.averages);
-        let data = this.toTableData(result.stocks);
-        const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))
+        const table = this.renderTable(result)
+        const epsChart = this.renderEpsChart(peRatio, this.state.priceEpsData)
 
-        const chartData = this.prepareEpsChartData(this.state.priceEpsData, peRatio);
-        const epsChart = <div className={!chartData ? 'hidden' : ''}>
-            <PriceEpsChart
-                data={chartData}
-                description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
-        </div>;
         const refreshLink = this.props.preset ?
             <i className="fa fa-refresh" onClick={() => this.props.onRefreshClickHandler(watchlist)}/> : ''
+
+        const showLink = this.props.preset ?
+            <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(watchlist)}/> : ''
+
         return <div
             className="Watchlist" key={watchlist}>
-            <h2 className="WatchlistName">Watchlist: {watchlist}{refreshLink}</h2>
+            <h2 className="WatchlistName">{showLink} Watchlist: {watchlist}{refreshLink}</h2>
             {epsChart}
-            <WatchlistTable
+            {table}
+        </div>
+    }
+
+    renderEpsChart(peRatio: number, priceEpsData?: PriceEpsDataRaw[]) {
+        if(!priceEpsData){
+            return ''
+        }else {
+            const chartData = this.prepareEpsChartData(this.state.priceEpsData, peRatio);
+            return <div className={!chartData ? 'hidden' : ''}>
+                <PriceEpsChart
+                    data={chartData}
+                    description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
+            </div>
+        }
+    }
+
+    renderTable(result?: AnalysisResult) {
+        if(!result){
+            return ''
+        }else {
+            const headers = this.toHeaderData(result.averages);
+            let data = this.toTableData(result.stocks);
+            const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))
+            return <WatchlistTable
                 data={scoredData}
                 headerLabels={headers[0]}
                 headerAverages={headers[1]}
                 onStockClickHandler={this.stockOnClickHandler}
             />
-        </div>
+        }
     }
 
     stockOnClickHandler = (rowData: CellData[], rowIndex: number, columnIndex: number) => {

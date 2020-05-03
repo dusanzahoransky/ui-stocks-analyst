@@ -16,6 +16,8 @@ export interface StocksAnalysisState {
 }
 
 interface WatchlistResult {
+    isLoaded: boolean,
+    isPreset: boolean,
     watchlist: string,
     analysisResult: AnalysisResult
 }
@@ -34,32 +36,79 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         this.stockAnalystService = new StockAnalystService();
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         ['TEST', 'AUD', 'CHF', 'EUR', 'GBP', 'USD', 'USD_TECH']
-            .map(watchlist => this.loadWatchlist(watchlist, false, false))
+            .forEach(watchlist => this.createEmptyWatchlist(watchlist))
     }
 
-    private async loadWatchlist(watchlist: string, forceRefresh: boolean, mockData: boolean) {
+    private async loadWatchlistData(watchlist: string,
+                                    forceRefresh: boolean = false,
+                                    mockData: boolean = false) {
         const response = await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, mockData)
         const error = response as BackendError;
-        if(error.error){
+        if (error.error) {
             console.error(`Failed to load ${watchlist}: ${error.message}`)
             return
         }
         const analysisResult = response as AnalysisResult;
-        analysisResult.preset = true
-        let mergedResults = this.mergeResults(this.state.results, watchlist, analysisResult);
-        this.setState({
-            results: mergedResults
-        })
 
+        const watchlistResult: WatchlistResult = {
+            isLoaded: true,
+            isPreset: true,
+            watchlist,
+            analysisResult
+        }
+
+        this.setState((state) => {
+            return {results: this.mergeResult(state.results, watchlistResult)}
+        })
     }
 
-    private mergeResults(results: WatchlistResult[], watchlist: string, analysisResult: AnalysisResult) {
+    private createEmptyWatchlist(watchlist: string) {
+        const watchlistResult: WatchlistResult = {
+            isLoaded: false,
+            isPreset: true,
+            watchlist,
+            analysisResult: undefined
+        }
+
+        this.setState((state) => {
+            return {results: this.mergeResult(state.results, watchlistResult)}
+        })
+    }
+
+    private unloadWatchlistData(watchlist: string) {
+        this.setState((state) => {
+            return {results: this.unloadResult(state.results, watchlist)}
+        })
+    }
+
+    private mergeResult(results: WatchlistResult[], newResult: WatchlistResult) {
         return results
-            .filter(r => r.watchlist !== watchlist)
-            .concat({watchlist, analysisResult})
+            .filter(r => r.watchlist !== newResult.watchlist)
+            .concat(newResult)
             .sort((r1, r2) => r1.watchlist.localeCompare(r2.watchlist));
+    }
+
+    private unloadResult(results: WatchlistResult[], watchlist: string) {
+        return results
+            .map(r => {
+                    if (r.watchlist === watchlist) {
+                        r.isLoaded = false
+                        r.analysisResult = undefined
+                        return r
+                    } else {
+                        return r
+                    }
+                }
+            )
+    }
+
+    private containWatchlistData(watchlist: string): boolean {
+        const watchlistResult = this.state.results
+            .find(r => r.watchlist === watchlist);
+
+        return watchlistResult && watchlistResult.isLoaded
     }
 
     render = () => {
@@ -78,19 +127,27 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         allResults
             .sort((w1, w2) => w1.watchlist.localeCompare(w2.watchlist))
-            .forEach((watchlistResults) => {
-            const onRefreshClickHandler = (watchlist) => this.loadWatchlist(watchlist, true, false);
-            watchlists.push(
-                <Watchlist
-                    key={watchlistResults.watchlist}
-                    result={watchlistResults.analysisResult}
-                    watchlist={watchlistResults.watchlist}
-                    peRatio={15}
-                    onRefreshClickHandler={onRefreshClickHandler}
-                    preset={true}
-                />
-            )
-        });
+            .forEach((watchlistResult) => {
+                const onRefreshClickHandler = (watchlist) => this.loadWatchlistData(watchlist, true, false);
+                const onShowClickHandler = (watchlist) => {
+                    if (this.containWatchlistData(watchlist)) {
+                        this.unloadWatchlistData(watchlist)
+                    } else {
+                        this.loadWatchlistData(watchlist, false, false);
+                    }
+                }
+                watchlists.push(
+                    <Watchlist
+                        key={watchlistResult.watchlist}
+                        result={watchlistResult.analysisResult}
+                        watchlist={watchlistResult.watchlist}
+                        peRatio={15}
+                        onRefreshClickHandler={onRefreshClickHandler}
+                        onShowClickHandler={onShowClickHandler}
+                        preset={watchlistResult.isPreset}
+                    />
+                )
+            });
 
         return (
             <div className='StocksAnalysis'>
