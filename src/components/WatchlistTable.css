@@ -87,14 +87,20 @@ td.date{
 
 td.symbol {
     position: sticky;
-    left: 0;
+    left: 60px;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 td.price {
     position: sticky;
-    left: 65px;
+    left: 125px;
+    background: #f0f3ff;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+td.lastReport {
+    position: sticky;
+    left: 0px;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }

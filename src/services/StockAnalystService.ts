@@ -66,20 +66,10 @@ export class StockAnalystService {
                 score = number * 0.1
                 break
             case TableColumn.trailingPE:
-                if(number > 0) {
-                    score = 20 - number + (1 / Math.log1p(number))
-                } else {
-                    score = number
-                }
-                score *= 10
+                score = this.peScore(number) * 0.2;
                 break;
             case TableColumn.forwardPE:
-                if(number > 0) {
-                    score = 20 - number + (1 / Math.log1p(number))
-                } else {
-                    score = number
-                }
-                score *= 10
+                score = this.peScore(number) * 0.2;
                 break;
             case TableColumn.priceToSalesTrailing12Months:
                 score = 0;
@@ -195,16 +185,15 @@ export class StockAnalystService {
                 score *= 0.1
                 break;
             case TableColumn.stockGrowthLastQuarter:
-                score = number
-                score *= -0.1
+                score = number > 10 ? - 10 : 0
                 break;
             case TableColumn.stockGrowthLastYear:
-                score = number
-                score *= -0.1
+                score = number > 10 ? - 10 : 0
+                score *= 0.5
                 break;
             case TableColumn.stockGrowthLast3Years:
-                score = number
-                score *= -0.1
+                score = number > 10 ? - 10 : 0
+                score *= 0.5
                 break;
             case TableColumn.epsGrowthLastQuarter:
                 score = number
@@ -246,6 +235,28 @@ export class StockAnalystService {
                 score = -number
                 score *= 0.75
                 break;
+            case TableColumn.peLastQuarter:
+                score = this.peScore(number);
+                break;
+
+
+        }
+        return score;
+    }
+
+    static peScore(number?: number) {
+        let score: number
+        if(number > 0){
+
+            if(number < 200){
+                score = (20 - number - 25) + (1 / Math.log2(1+number) * 100)
+            }else{
+                score = -200
+            }
+
+        }
+        else {
+            score = (number - 300) + (-1 / Math.log1p(-number) * 100)
 
         }
         return score;

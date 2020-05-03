@@ -52,7 +52,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     componentDidMount() {
         this.PRESET_WATCHLISTS
-            .forEach(watchlist => this.loadWatchlistData(watchlist))
+            .forEach(watchlist => this.createEmptyWatchlist(watchlist))
     }
 
     private async loadWatchlistData(watchlist: string,

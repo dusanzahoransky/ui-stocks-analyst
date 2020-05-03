@@ -33,9 +33,9 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
         this.state = {
-            // priceEpsData: undefined
+            priceEpsData: undefined
             //uncomment to render chart of the first stock on load
-            priceEpsData: props.result.stocks[0].chartData
+            // priceEpsData: props.result.stocks[0].chartData
         }
         this.stockAnalystService = new StockAnalystService();
 

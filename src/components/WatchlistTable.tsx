@@ -162,7 +162,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             case TableColumn.date:
                 return 'date'
             case TableColumn.lastReportedQuarter:
-                return 'date'
+                return 'date lastReport'
             case TableColumn.exDividendDate:
                 return 'date dividents'
             case TableColumn.symbol:
