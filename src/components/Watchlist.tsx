@@ -18,7 +18,8 @@ export interface WatchlistProps {
     peRatio: number,
     onRefreshClickHandler?: (watchlist: string) => void,
     onShowClickHandler?: (watchlist: string) => void,
-    preset: boolean
+    isPreset: boolean
+    isLoaded: boolean
 }
 
 export interface WatchlistState {
@@ -44,10 +45,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const table = this.renderTable(result)
         const epsChart = this.renderEpsChart(peRatio, this.state.priceEpsData)
 
-        const refreshLink = this.props.preset ?
+        const refreshLink = this.props.isPreset && this.props.isLoaded ?
             <i className="fa fa-refresh" onClick={() => this.props.onRefreshClickHandler(watchlist)}/> : ''
 
-        const showLink = this.props.preset ?
+        const showLink = this.props.isPreset ?
             <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(watchlist)}/> : ''
 
         return <div
@@ -59,9 +60,9 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderEpsChart(peRatio: number, priceEpsData?: PriceEpsDataRaw[]) {
-        if(!priceEpsData){
+        if (!this.props.isLoaded) {
             return ''
-        }else {
+        } else {
             const chartData = this.prepareEpsChartData(this.state.priceEpsData, peRatio);
             return <div className={!chartData ? 'hidden' : ''}>
                 <PriceEpsChart
@@ -72,9 +73,9 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderTable(result?: AnalysisResult) {
-        if(!result){
+        if (!this.props.isLoaded) {
             return ''
-        }else {
+        } else {
             const headers = this.toHeaderData(result.averages);
             let data = this.toTableData(result.stocks);
             const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))

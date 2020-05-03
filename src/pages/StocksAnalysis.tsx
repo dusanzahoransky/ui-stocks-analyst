@@ -95,7 +95,6 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             .map(r => {
                     if (r.watchlist === watchlist) {
                         r.isLoaded = false
-                        r.analysisResult = undefined
                         return r
                     } else {
                         return r
@@ -144,7 +143,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                         peRatio={15}
                         onRefreshClickHandler={onRefreshClickHandler}
                         onShowClickHandler={onShowClickHandler}
-                        preset={watchlistResult.isPreset}
+                        isPreset={watchlistResult.isPreset}
+                        isLoaded={watchlistResult.isLoaded}
                     />
                 )
             });

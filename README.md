@@ -11,6 +11,9 @@ The UI provides a convenient view to compare fundamental stock stats for pre-sel
  * Stock holders stats and repurchase
  * EPS and it's growth
  
+![Example gif](./Peek 2020-05-03 19-50.gif)
+ 
 It also renders a famous Peter Lynch's chart for price and earnings line.
-
 ![Example screenshot](./Selection_032.png)
+
+
