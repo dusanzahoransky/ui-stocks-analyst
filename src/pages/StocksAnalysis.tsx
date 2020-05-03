@@ -36,9 +36,23 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         this.stockAnalystService = new StockAnalystService();
     }
 
+    private readonly PRESET_WATCHLISTS = [
+        'TEST',
+        'AUD',
+        'CHF',
+        'EUR',
+        'GBP',
+        'USD',
+        'USD_TECH',
+        /*'NASDAQ_100',*/
+/*        'TRADING_212_US',
+        'TRADING_212_EUR',
+        'TRADING_212_GBP'*/
+    ];
+
     componentDidMount() {
-        ['TEST', 'AUD', 'CHF', 'EUR', 'GBP', 'USD', 'USD_TECH']
-            .forEach(watchlist => this.createEmptyWatchlist(watchlist))
+        this.PRESET_WATCHLISTS
+            .forEach(watchlist => this.loadWatchlistData(watchlist))
     }
 
     private async loadWatchlistData(watchlist: string,
@@ -87,7 +101,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         return results
             .filter(r => r.watchlist !== newResult.watchlist)
             .concat(newResult)
-            .sort((r1, r2) => r1.watchlist.localeCompare(r2.watchlist));
+            .sort((r1, r2) =>
+                this.PRESET_WATCHLISTS.indexOf(r1.watchlist) < this.PRESET_WATCHLISTS.indexOf(r2.watchlist) ? -1 : 1);
     }
 
     private unloadResult(results: WatchlistResult[], watchlist: string) {
@@ -125,7 +140,6 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         const watchlists = []
 
         allResults
-            .sort((w1, w2) => w1.watchlist.localeCompare(w2.watchlist))
             .forEach((watchlistResult) => {
                 const onRefreshClickHandler = (watchlist) => this.loadWatchlistData(watchlist, true, false);
                 const onShowClickHandler = (watchlist) => {

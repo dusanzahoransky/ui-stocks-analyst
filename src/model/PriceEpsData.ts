@@ -1,5 +1,6 @@
 export interface PriceEpsData {
     date: string;
     price: number,
-    eps?: number
+    eps?: number,
+    PE?: number
 }

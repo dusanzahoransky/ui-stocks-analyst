@@ -10,7 +10,7 @@ export interface TableProps {
     headerAverages: number[];
     data: CellData[][];
     sortField?: TableColumn;
-    onStockClickHandler?: (rowData: CellData[], rowIndex: number, columnIndex: number) => void
+    onStockClickHandler?: (stockSymbol: string) => void
 }
 
 export interface TableState {
@@ -21,10 +21,12 @@ export interface TableState {
 
 export class WatchlistTable extends React.Component<TableProps, TableState> {
 
+    private SORT_DEFAULT_ASC = true
+
     constructor(props: Readonly<TableProps>) {
         super(props);
         this.state = {
-            sortAsc: true,
+            sortAsc: this.SORT_DEFAULT_ASC,
             sortedBy: undefined,
             sortedData: props.data
         }
@@ -70,34 +72,34 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     setSortedField(column: TableColumn) {
-        if (this.state.sortedBy === column) {
-            this.setState({sortAsc: !this.state.sortAsc})
+        this.setState(state => {
+            const sortAsc = state.sortedBy === column ? !state.sortAsc : this.SORT_DEFAULT_ASC
+            return {
+                sortAsc: sortAsc,
+                sortedBy: column,
+                sortedData: state.sortedData
+                    .sort((row1, row2) => WatchlistTable.sortData(row1, row2, column, sortAsc))
+            }
+        })
+    }
+
+    private static sortData(row1: CellData[], row2: CellData[], column: TableColumn, asc: boolean) : number{
+        let cell1 = row1[column];
+        let cell2 = row2[column];
+
+        if (!cell1) {
+            return asc ? -1 : 1
         }
-        this.setState({sortedBy: column});
-        const sortedData = this.state.sortedData.sort((row1, row2) => {
-
-            let cell1 = row1[column];
-            let cell2 = row2[column];
-
-            if (!cell1) {
-                return this.state.sortAsc ? -1 : 1
-            }
-
-            if (!cell2) {
-                return this.state.sortAsc ? 1 : -1
-            }
-
-            if (cell1.value > cell2.value) {
-                return this.state.sortAsc ? 1 : -1
-            }
-            if (cell1.value < cell2.value) {
-                return this.state.sortAsc ? -1 : 1
-            }
-            return 0;
-        });
-        this.setState(
-            {sortedData}
-        )
+        if (!cell2) {
+            return asc ? 1 : -1
+        }
+        if (cell1.value > cell2.value) {
+            return asc ? 1 : -1
+        }
+        if (cell1.value < cell2.value) {
+            return asc ? -1 : 1
+        }
+        return 0;
     }
 
     renderBody(data: CellData[][], averages: any[]) {
@@ -111,7 +113,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
 
     renderRow(rowData: CellData[], rowIndex, averages: any[]) {
         const rowValues = rowData.map((data, columnIndex) =>
-            <td key={columnIndex} onClick={() => this.props.onStockClickHandler(rowData, rowIndex, columnIndex)}
+            <td key={columnIndex} onClick={() => this.props.onStockClickHandler(rowData[TableColumn.symbol].value as string)}
                 className={this.dataCellClass(rowData, data, averages[columnIndex], columnIndex)}>
                 <span>{FormattingUtils.format(rowData, data.value, columnIndex)}</span>
                 <span className={"score"}>{data.score ? data.score.toFixed(0) : ''}</span>

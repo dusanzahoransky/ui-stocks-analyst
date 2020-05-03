@@ -8,7 +8,6 @@ import {PriceEpsData} from "../model/PriceEpsData";
 import "./Watchlist.css";
 import 'font-awesome/css/font-awesome.min.css';
 import moment from "moment";
-import {CellData} from "../model/CellData";
 import {StockInfo} from "../model/StockInfo";
 
 
@@ -34,9 +33,12 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
         this.state = {
-            priceEpsData: undefined
+            // priceEpsData: undefined
+            //uncomment to render chart of the first stock on load
+            priceEpsData: props.result.stocks[0].chartData
         }
         this.stockAnalystService = new StockAnalystService();
+
     }
 
     render() {
@@ -63,7 +65,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         if (!this.props.isLoaded) {
             return ''
         } else {
-            const chartData = this.prepareEpsChartData(this.state.priceEpsData, peRatio);
+            const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
             return <div className={!chartData ? 'hidden' : ''}>
                 <PriceEpsChart
                     data={chartData}
@@ -88,22 +90,24 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         }
     }
 
-    stockOnClickHandler = (rowData: CellData[], rowIndex: number, columnIndex: number) => {
-        const stockSymbol = rowData[columnIndex].value;
-
+    stockOnClickHandler = (stockSymbol: string) => {
         const priceEpsData = this.props.result.stocks
             .filter(stock => stock.symbol === stockSymbol)
             .map(stock => stock.chartData)[0]
 
         //close the graph on a second click
         if (this.state.priceEpsData === priceEpsData) {
-            this.setState({
-                priceEpsData: undefined
+            this.setState(state => {
+                return {
+                    priceEpsData: undefined
+                }
             })
         } else {
-            this.setState({
-                priceEpsData,
-                chartLabel: stockSymbol as string
+            this.setState(state => {
+                return {
+                    priceEpsData,
+                    chartLabel: stockSymbol as string
+                }
             })
         }
     }
@@ -140,10 +144,14 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     private prepareEpsChartData(priceEpsData: PriceEpsDataRaw[], peRatio: number): PriceEpsData[] | undefined {
         if (!priceEpsData) return undefined
         return priceEpsData.map(data => {
+            const price = Math.round(data.price * 10) / 10;
+            const eps = data.eps ? Math.round(data.eps * peRatio * 4 * 10) / 10 : undefined;
+            const pe = eps ?  Math.round(price / (eps / peRatio) * 100) / 100 : undefined;
             return {
                 date: moment(data.date * 1000).format('YYYY-MM-DD'),
-                price: Math.round(data.price * 10) / 10,
-                eps: data.eps ? Math.round(data.eps * peRatio * 4 * 10) / 10 : undefined
+                price,
+                eps,
+                PE: pe
             }
         })
     }
