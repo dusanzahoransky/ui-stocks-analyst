@@ -1,14 +1,7 @@
 {
   "averages": {
-    "id": null,
-    "date": "2020-04-30",
-    "lastReportedQuarter": null,
+    "date": "2020-05-04",
     "symbol": "Avg.",
-    "exchange": null,
-    "companyName": null,
-    "price": null,
-    "currency": null,
-    "financialCurrency": null,
     "change": 0.0103400045,
     "enterpriseValue": 7.60506155008E11,
     "totalCashPerShare": 174.127,
@@ -17,7 +10,6 @@
     "trailingPE": 25.576757,
     "forwardPE": 21.983042,
     "priceToSalesTrailing12Months": 5.3520937,
-    "priceBook": null,
     "enterpriseValueRevenue": 4.699,
     "enterpriseValueEBITDA": 15.8,
     "yoyQuarterlyRevenueGrowthPercent": 17.299999999999997,
@@ -36,9 +28,6 @@
     "heldByInstitutions": 82.055,
     "shortToFloat": 1.35,
     "sharesShortPrevMonthCompare": 74.08211811965998,
-    "exDividendDate": null,
-    "fiveYearAvgDividendYield": null,
-    "trailingAnnualDividendYield": null,
     "netIncomeLastQuarter": 6836000000,
     "netIncome2QuartersAgo": 10671000000,
     "netIncome3QuartersAgo": 7068000000,
@@ -92,9 +81,6 @@
     "totalLiabilitiesToEquityGrowthLast3Years": 133.1198188095219,
     "stockRepurchasedLastQuarter": -8496000000,
     "stockRepurchasedLastYear": -18396000000,
-    "stockRepurchasedGrowthLastQuarter": null,
-    "stockRepurchasedGrowthLastYear": null,
-    "stockRepurchasedGrowthLast3Years": null,
     "stockLastQuarter": 53688000000,
     "stockLastYear": 50552000000,
     "stockGrowthLastQuarter": 6.203513214116158,
@@ -105,7 +91,6 @@
     "eps2QuartersAgo": 15.35,
     "eps3QuartersAgo": 10.12,
     "eps4QuartersAgo": 14.21,
-    "epsLastYear": null,
     "eps2YearsAgo": 43.7,
     "eps3YearsAgo": 18.0,
     "eps4YearsAgo": 27.85,
@@ -113,9 +98,6 @@
     "epsGrowthLast2Quarters": -2.470355731225297,
     "epsGrowthLast3Quarters": -30.541871921182274,
     "epsGrowthEstimateLastQuarter": -18.338399189463008,
-    "epsGrowthLastYear": null,
-    "epsGrowthLast2Years": null,
-    "epsGrowthLast3Years": null,
     "priceLastQuarter": 1161.949951171875,
     "price2QuartersAgo": 1339.3900146484375,
     "price3QuartersAgo": 1221.1400146484375,
@@ -130,14 +112,12 @@
     "peGrowthLastQuarter": 34.91852738738966,
     "peGrowthLast2Quarters": -2.436961094299121,
     "peGrowthLast3Quarters": 52.07984531778895,
-    "quarterEnds": null,
-    "yearEnds": null,
     "chartData": []
   },
   "stocks": [
     {
-      "id": "5eaacf82afa5c44afb2cabe2",
-      "date": "2020-04-30",
+      "id": "5eafeb583f2f8a6f5737a4fa",
+      "date": "2020-05-04",
       "lastReportedQuarter": "2020-03-31",
       "symbol": "GOOGL",
       "exchange": "NASDAQ",
@@ -153,7 +133,6 @@
       "trailingPE": 25.576757,
       "forwardPE": 21.983042,
       "priceToSalesTrailing12Months": 5.3520937,
-      "priceBook": null,
       "enterpriseValueRevenue": 4.699,
       "enterpriseValueEBITDA": 15.8,
       "yoyQuarterlyRevenueGrowthPercent": 17.299999999999997,
@@ -172,9 +151,6 @@
       "heldByInstitutions": 82.055,
       "shortToFloat": 1.35,
       "sharesShortPrevMonthCompare": 74.08211811965998,
-      "exDividendDate": null,
-      "fiveYearAvgDividendYield": null,
-      "trailingAnnualDividendYield": null,
       "netIncomeLastQuarter": 6836000000,
       "netIncome2QuartersAgo": 10671000000,
       "netIncome3QuartersAgo": 7068000000,
@@ -228,9 +204,6 @@
       "totalLiabilitiesToEquityGrowthLast3Years": 133.1198188095219,
       "stockRepurchasedLastQuarter": -8496000000,
       "stockRepurchasedLastYear": -18396000000,
-      "stockRepurchasedGrowthLastQuarter": null,
-      "stockRepurchasedGrowthLastYear": null,
-      "stockRepurchasedGrowthLast3Years": null,
       "stockLastQuarter": 53688000000,
       "stockLastYear": 50552000000,
       "stockGrowthLastQuarter": 6.203513214116158,
@@ -241,7 +214,6 @@
       "eps2QuartersAgo": 15.35,
       "eps3QuartersAgo": 10.12,
       "eps4QuartersAgo": 14.21,
-      "epsLastYear": null,
       "eps2YearsAgo": 43.7,
       "eps3YearsAgo": 18.0,
       "eps4YearsAgo": 27.85,
@@ -249,9 +221,6 @@
       "epsGrowthLast2Quarters": -2.470355731225297,
       "epsGrowthLast3Quarters": -30.541871921182274,
       "epsGrowthEstimateLastQuarter": -18.338399189463008,
-      "epsGrowthLastYear": null,
-      "epsGrowthLast2Years": null,
-      "epsGrowthLast3Years": null,
       "priceLastQuarter": 1161.949951171875,
       "price2QuartersAgo": 1339.3900146484375,
       "price3QuartersAgo": 1221.1400146484375,
@@ -281,1313 +250,1065 @@
       "chartData": [
         {
           "date": 1430092800,
-          "price": 566.1199951171875,
-          "eps": null
+          "price": 566.1199951171875
         },
         {
           "date": 1430697600,
-          "price": 552.8400268554688,
-          "eps": null
+          "price": 552.8400268554688
         },
         {
           "date": 1431302400,
-          "price": 545.780029296875,
-          "eps": null
+          "price": 545.780029296875
         },
         {
           "date": 1431907200,
-          "price": 546.6699829101562,
-          "eps": null
+          "price": 546.6699829101562
         },
         {
           "date": 1432512000,
-          "price": 547.1900024414062,
-          "eps": null
+          "price": 547.1900024414062
         },
         {
           "date": 1433116800,
-          "price": 549.2100219726562,
-          "eps": null
+          "price": 549.2100219726562
         },
         {
           "date": 1433721600,
-          "price": 543.47998046875,
-          "eps": null
+          "price": 543.47998046875
         },
         {
           "date": 1434326400,
-          "price": 543.0,
-          "eps": null
+          "price": 543.0
         },
         {
           "date": 1434931200,
-          "price": 559.6799926757812,
-          "eps": null
+          "price": 559.6799926757812
         },
         {
           "date": 1435536000,
-          "price": 541.25,
-          "eps": null
+          "price": 541.25
         },
         {
           "date": 1436140800,
-          "price": 545.6199951171875,
-          "eps": null
+          "price": 545.6199951171875
         },
         {
           "date": 1436745600,
-          "price": 571.72998046875,
-          "eps": null
+          "price": 571.72998046875
         },
         {
           "date": 1437350400,
-          "price": 692.8400268554688,
-          "eps": null
+          "price": 692.8400268554688
         },
         {
           "date": 1437955200,
-          "price": 658.27001953125,
-          "eps": null
+          "price": 658.27001953125
         },
         {
           "date": 1438560000,
-          "price": 664.719970703125,
-          "eps": null
+          "price": 664.719970703125
         },
         {
           "date": 1439164800,
-          "price": 663.1400146484375,
-          "eps": null
+          "price": 663.1400146484375
         },
         {
           "date": 1439769600,
-          "price": 694.1099853515625,
-          "eps": null
+          "price": 694.1099853515625
         },
         {
           "date": 1440374400,
-          "price": 618.1099853515625,
-          "eps": null
+          "price": 618.1099853515625
         },
         {
           "date": 1440979200,
-          "price": 647.8200073242188,
-          "eps": null
+          "price": 647.8200073242188
         },
         {
           "date": 1441584000,
-          "price": 643.8800048828125,
-          "eps": null
+          "price": 643.8800048828125
         },
         {
           "date": 1442188800,
-          "price": 652.469970703125,
-          "eps": null
+          "price": 652.469970703125
         },
         {
           "date": 1442793600,
-          "price": 666.97998046875,
-          "eps": null
+          "price": 666.97998046875
         },
         {
           "date": 1443398400,
-          "price": 624.25,
-          "eps": null
+          "price": 624.25
         },
         {
           "date": 1444003200,
-          "price": 671.6799926757812,
-          "eps": null
+          "price": 671.6799926757812
         },
         {
           "date": 1444608000,
-          "price": 676.4299926757812,
-          "eps": null
+          "price": 676.4299926757812
         },
         {
           "date": 1445212800,
-          "price": 699.9500122070312,
-          "eps": null
+          "price": 699.9500122070312
         },
         {
           "date": 1445817600,
-          "price": 731.1199951171875,
-          "eps": null
+          "price": 731.1199951171875
         },
         {
           "date": 1446422400,
-          "price": 747.739990234375,
-          "eps": null
+          "price": 747.739990234375
         },
         {
           "date": 1447027200,
-          "price": 754.77001953125,
-          "eps": null
+          "price": 754.77001953125
         },
         {
           "date": 1447632000,
-          "price": 750.4199829101562,
-          "eps": null
+          "price": 750.4199829101562
         },
         {
           "date": 1448236800,
-          "price": 776.7000122070312,
-          "eps": null
+          "price": 776.7000122070312
         },
         {
           "date": 1448841600,
-          "price": 762.8499755859375,
-          "eps": null
+          "price": 762.8499755859375
         },
         {
           "date": 1449446400,
-          "price": 772.989990234375,
-          "eps": null
+          "price": 772.989990234375
         },
         {
           "date": 1450051200,
-          "price": 762.5399780273438,
-          "eps": null
+          "price": 762.5399780273438
         },
         {
           "date": 1450656000,
-          "price": 760.7999877929688,
-          "eps": null
+          "price": 760.7999877929688
         },
         {
           "date": 1451260800,
-          "price": 782.239990234375,
-          "eps": null
+          "price": 782.239990234375
         },
         {
           "date": 1451865600,
-          "price": 759.4400024414062,
-          "eps": null
+          "price": 759.4400024414062
         },
         {
           "date": 1452470400,
-          "price": 733.0700073242188,
-          "eps": null
+          "price": 733.0700073242188
         },
         {
           "date": 1453075200,
-          "price": 719.0800170898438,
-          "eps": null
+          "price": 719.0800170898438
         },
         {
           "date": 1453680000,
-          "price": 733.6199951171875,
-          "eps": null
+          "price": 733.6199951171875
         },
         {
           "date": 1454284800,
-          "price": 770.77001953125,
-          "eps": null
+          "price": 770.77001953125
         },
         {
           "date": 1454889600,
-          "price": 704.1599731445312,
-          "eps": null
+          "price": 704.1599731445312
         },
         {
           "date": 1455494400,
-          "price": 717.6400146484375,
-          "eps": null
+          "price": 717.6400146484375
         },
         {
           "date": 1456099200,
-          "price": 729.0499877929688,
-          "eps": null
+          "price": 729.0499877929688
         },
         {
           "date": 1456704000,
-          "price": 717.219970703125,
-          "eps": null
+          "price": 717.219970703125
         },
         {
           "date": 1457308800,
-          "price": 712.7999877929688,
-          "eps": null
+          "price": 712.7999877929688
         },
         {
           "date": 1457913600,
-          "price": 750.239990234375,
-          "eps": null
+          "price": 750.239990234375
         },
         {
           "date": 1458518400,
-          "price": 762.1599731445312,
-          "eps": null
+          "price": 762.1599731445312
         },
         {
           "date": 1459123200,
-          "price": 753.280029296875,
-          "eps": null
+          "price": 753.280029296875
         },
         {
           "date": 1459728000,
-          "price": 765.1199951171875,
-          "eps": null
+          "price": 765.1199951171875
         },
         {
           "date": 1460332800,
-          "price": 757.5399780273438,
-          "eps": null
+          "price": 757.5399780273438
         },
         {
           "date": 1460937600,
-          "price": 787.6799926757812,
-          "eps": null
+          "price": 787.6799926757812
         },
         {
           "date": 1461542400,
-          "price": 742.2100219726562,
-          "eps": null
+          "price": 742.2100219726562
         },
         {
           "date": 1462147200,
-          "price": 714.4099731445312,
-          "eps": null
+          "price": 714.4099731445312
         },
         {
           "date": 1462752000,
-          "price": 729.1300048828125,
-          "eps": null
+          "price": 729.1300048828125
         },
         {
           "date": 1463356800,
-          "price": 730.2999877929688,
-          "eps": null
+          "price": 730.2999877929688
         },
         {
           "date": 1463961600,
-          "price": 717.25,
-          "eps": null
+          "price": 717.25
         },
         {
           "date": 1464566400,
-          "price": 748.8499755859375,
-          "eps": null
+          "price": 748.8499755859375
         },
         {
           "date": 1465171200,
-          "price": 730.0599975585938,
-          "eps": null
+          "price": 730.0599975585938
         },
         {
           "date": 1465776000,
-          "price": 731.8800048828125,
-          "eps": null
+          "price": 731.8800048828125
         },
         {
           "date": 1466380800,
-          "price": 706.1300048828125,
-          "eps": null
+          "price": 706.1300048828125
         },
         {
           "date": 1466985600,
-          "price": 681.1400146484375,
-          "eps": null
+          "price": 681.1400146484375
         },
         {
           "date": 1467590400,
-          "price": 704.8900146484375,
-          "eps": null
+          "price": 704.8900146484375
         },
         {
           "date": 1468195200,
-          "price": 727.2000122070312,
-          "eps": null
+          "price": 727.2000122070312
         },
         {
           "date": 1468800000,
-          "price": 753.2000122070312,
-          "eps": null
+          "price": 753.2000122070312
         },
         {
           "date": 1469404800,
-          "price": 757.52001953125,
-          "eps": null
+          "price": 757.52001953125
         },
         {
           "date": 1470009600,
-          "price": 800.9400024414062,
-          "eps": null
+          "price": 800.9400024414062
         },
         {
           "date": 1470614400,
-          "price": 805.22998046875,
-          "eps": null
+          "price": 805.22998046875
         },
         {
           "date": 1471219200,
-          "price": 805.9600219726562,
-          "eps": null
+          "price": 805.9600219726562
         },
         {
           "date": 1471824000,
-          "price": 796.9500122070312,
-          "eps": null
+          "price": 796.9500122070312
         },
         {
           "date": 1472428800,
-          "price": 795.8200073242188,
-          "eps": null
+          "price": 795.8200073242188
         },
         {
           "date": 1473033600,
-          "price": 808.02001953125,
-          "eps": null
+          "price": 808.02001953125
         },
         {
           "date": 1473638400,
-          "price": 798.8200073242188,
-          "eps": null
+          "price": 798.8200073242188
         },
         {
           "date": 1474243200,
-          "price": 795.3900146484375,
-          "eps": null
+          "price": 795.3900146484375
         },
         {
           "date": 1474848000,
-          "price": 802.6500244140625,
-          "eps": null
+          "price": 802.6500244140625
         },
         {
           "date": 1475452800,
-          "price": 800.3800048828125,
-          "eps": null
+          "price": 800.3800048828125
         },
         {
           "date": 1476057600,
-          "price": 814.1699829101562,
-          "eps": null
+          "price": 814.1699829101562
         },
         {
           "date": 1476662400,
-          "price": 806.8400268554688,
-          "eps": null
+          "price": 806.8400268554688
         },
         {
           "date": 1477267200,
-          "price": 835.739990234375,
-          "eps": null
+          "price": 835.739990234375
         },
         {
           "date": 1477872000,
-          "price": 809.9000244140625,
-          "eps": null
+          "price": 809.9000244140625
         },
         {
           "date": 1478476800,
-          "price": 802.030029296875,
-          "eps": null
+          "price": 802.030029296875
         },
         {
           "date": 1479081600,
-          "price": 753.219970703125,
-          "eps": null
+          "price": 753.219970703125
         },
         {
           "date": 1479686400,
-          "price": 784.7999877929688,
-          "eps": null
+          "price": 784.7999877929688
         },
         {
           "date": 1480291200,
-          "price": 785.7899780273438,
-          "eps": null
+          "price": 785.7899780273438
         },
         {
           "date": 1480896000,
-          "price": 778.219970703125,
-          "eps": null
+          "price": 778.219970703125
         },
         {
           "date": 1481500800,
-          "price": 807.9000244140625,
-          "eps": null
+          "price": 807.9000244140625
         },
         {
           "date": 1482105600,
-          "price": 812.5,
-          "eps": null
+          "price": 812.5
         },
         {
           "date": 1482710400,
           "price": 809.9299926757812,
-          "eps": 6.9625
+          "epsAnnually": 27.85,
+          "peAnnually": 29.081866882433797
         },
         {
           "date": 1483315200,
-          "price": 808.010009765625,
-          "eps": null
+          "price": 808.010009765625
         },
         {
           "date": 1483920000,
-          "price": 827.1799926757812,
-          "eps": null
+          "price": 827.1799926757812
         },
         {
           "date": 1484524800,
-          "price": 827.4600219726562,
-          "eps": null
+          "price": 827.4600219726562
         },
         {
           "date": 1485129600,
-          "price": 844.4299926757812,
-          "eps": null
+          "price": 844.4299926757812
         },
         {
           "date": 1485734400,
-          "price": 823.8300170898438,
-          "eps": null
+          "price": 823.8300170898438
         },
         {
           "date": 1486339200,
-          "price": 821.6199951171875,
-          "eps": null
+          "price": 821.6199951171875
         },
         {
           "date": 1486944000,
-          "price": 838.9600219726562,
-          "eps": null
+          "price": 838.9600219726562
         },
         {
           "date": 1487548800,
-          "price": 849.27001953125,
-          "eps": null
+          "price": 849.27001953125
         },
         {
           "date": 1488153600,
-          "price": 849.6699829101562,
-          "eps": null
+          "price": 849.6699829101562
         },
         {
           "date": 1488758400,
-          "price": 847.27001953125,
-          "eps": null
+          "price": 847.27001953125
         },
         {
           "date": 1489363200,
-          "price": 864.5800170898438,
-          "eps": null
+          "price": 864.5800170898438
         },
         {
           "date": 1489968000,
-          "price": 867.9099731445312,
-          "eps": null
+          "price": 867.9099731445312
         },
         {
           "date": 1490572800,
-          "price": 838.510009765625,
-          "eps": null
+          "price": 838.510009765625
         },
         {
           "date": 1491177600,
-          "price": 856.75,
-          "eps": null
+          "price": 856.75
         },
         {
           "date": 1491782400,
-          "price": 841.7000122070312,
-          "eps": null
+          "price": 841.7000122070312
         },
         {
           "date": 1492387200,
-          "price": 855.1300048828125,
-          "eps": null
+          "price": 855.1300048828125
         },
         {
           "date": 1492992000,
-          "price": 878.9299926757812,
-          "eps": null
+          "price": 878.9299926757812
         },
         {
           "date": 1493596800,
-          "price": 932.8200073242188,
-          "eps": null
+          "price": 932.8200073242188
         },
         {
           "date": 1494201600,
-          "price": 958.6900024414062,
-          "eps": null
+          "price": 958.6900024414062
         },
         {
           "date": 1494806400,
-          "price": 959.219970703125,
-          "eps": null
+          "price": 959.219970703125
         },
         {
           "date": 1495411200,
-          "price": 964.0700073242188,
-          "eps": null
+          "price": 964.0700073242188
         },
         {
           "date": 1496016000,
-          "price": 996.1699829101562,
-          "eps": null
+          "price": 996.1699829101562
         },
         {
           "date": 1496620800,
-          "price": 1003.8800048828125,
-          "eps": null
+          "price": 1003.8800048828125
         },
         {
           "date": 1497225600,
-          "price": 961.8099975585938,
-          "eps": null
+          "price": 961.8099975585938
         },
         {
           "date": 1497830400,
-          "price": 975.219970703125,
-          "eps": null
+          "price": 975.219970703125
         },
         {
           "date": 1498435200,
-          "price": 972.0900268554688,
-          "eps": null
+          "price": 972.0900268554688
         },
         {
           "date": 1499040000,
-          "price": 919.4600219726562,
-          "eps": null
+          "price": 919.4600219726562
         },
         {
           "date": 1499644800,
-          "price": 951.0,
-          "eps": null
+          "price": 951.0
         },
         {
           "date": 1500249600,
-          "price": 975.9600219726562,
-          "eps": null
+          "price": 975.9600219726562
         },
         {
           "date": 1500854400,
-          "price": 998.3099975585938,
-          "eps": null
+          "price": 998.3099975585938
         },
         {
           "date": 1501459200,
-          "price": 945.5,
-          "eps": null
+          "price": 945.5
         },
         {
           "date": 1502064000,
-          "price": 945.75,
-          "eps": null
+          "price": 945.75
         },
         {
           "date": 1502668800,
-          "price": 938.9299926757812,
-          "eps": null
+          "price": 938.9299926757812
         },
         {
           "date": 1503273600,
-          "price": 920.8699951171875,
-          "eps": null
+          "price": 920.8699951171875
         },
         {
           "date": 1503878400,
-          "price": 928.1300048828125,
-          "eps": null
+          "price": 928.1300048828125
         },
         {
           "date": 1504483200,
-          "price": 941.47998046875,
-          "eps": null
+          "price": 941.47998046875
         },
         {
           "date": 1505088000,
-          "price": 943.2899780273438,
-          "eps": null
+          "price": 943.2899780273438
         },
         {
           "date": 1505692800,
-          "price": 929.75,
-          "eps": null
+          "price": 929.75
         },
         {
           "date": 1506297600,
-          "price": 934.280029296875,
-          "eps": null
+          "price": 934.280029296875
         },
         {
           "date": 1506902400,
-          "price": 967.469970703125,
-          "eps": null
+          "price": 967.469970703125
         },
         {
           "date": 1507507200,
-          "price": 992.3099975585938,
-          "eps": null
+          "price": 992.3099975585938
         },
         {
           "date": 1508112000,
-          "price": 1009.3499755859375,
-          "eps": null
+          "price": 1009.3499755859375
         },
         {
           "date": 1508716800,
-          "price": 985.5399780273438,
-          "eps": null
+          "price": 985.5399780273438
         },
         {
           "date": 1509321600,
-          "price": 1033.1300048828125,
-          "eps": null
+          "price": 1033.1300048828125
         },
         {
           "date": 1509926400,
-          "price": 1042.6800537109375,
-          "eps": null
+          "price": 1042.6800537109375
         },
         {
           "date": 1510531200,
-          "price": 1041.199951171875,
-          "eps": null
+          "price": 1041.199951171875
         },
         {
           "date": 1511136000,
-          "price": 1034.6600341796875,
-          "eps": null
+          "price": 1034.6600341796875
         },
         {
           "date": 1511740800,
-          "price": 1072.010009765625,
-          "eps": null
+          "price": 1072.010009765625
         },
         {
           "date": 1512345600,
-          "price": 1011.8699951171875,
-          "eps": null
+          "price": 1011.8699951171875
         },
         {
           "date": 1512950400,
-          "price": 1051.969970703125,
-          "eps": null
+          "price": 1051.969970703125
         },
         {
           "date": 1513555200,
-          "price": 1085.0899658203125,
-          "eps": null
+          "price": 1085.0899658203125
         },
         {
           "date": 1514160000,
           "price": 1065.8499755859375,
-          "eps": 4.5
+          "epsAnnually": 18.0,
+          "peAnnually": 59.213887532552086
         },
         {
           "date": 1514764800,
-          "price": 1073.2099609375,
-          "eps": null
+          "price": 1073.2099609375
         },
         {
           "date": 1515369600,
-          "price": 1114.2099609375,
-          "eps": null
+          "price": 1114.2099609375
         },
         {
           "date": 1515974400,
-          "price": 1130.699951171875,
-          "eps": null
+          "price": 1130.699951171875
         },
         {
           "date": 1516579200,
-          "price": 1164.1600341796875,
-          "eps": null
+          "price": 1164.1600341796875
         },
         {
           "date": 1517184000,
-          "price": 1186.47998046875,
-          "eps": null
+          "price": 1186.47998046875
         },
         {
           "date": 1517788800,
-          "price": 1062.3900146484375,
-          "eps": null
+          "price": 1062.3900146484375
         },
         {
           "date": 1518393600,
-          "price": 1054.56005859375,
-          "eps": null
+          "price": 1054.56005859375
         },
         {
           "date": 1518998400,
-          "price": 1103.5899658203125,
-          "eps": null
+          "price": 1103.5899658203125
         },
         {
           "date": 1519603200,
-          "price": 1143.699951171875,
-          "eps": null
+          "price": 1143.699951171875
         },
         {
           "date": 1520208000,
-          "price": 1094.760009765625,
-          "eps": null
+          "price": 1094.760009765625
         },
         {
           "date": 1520812800,
-          "price": 1165.9300537109375,
-          "eps": null
+          "price": 1165.9300537109375
         },
         {
           "date": 1521417600,
-          "price": 1100.0699462890625,
-          "eps": null
+          "price": 1100.0699462890625
         },
         {
           "date": 1522022400,
-          "price": 1054.0899658203125,
-          "eps": null
+          "price": 1054.0899658203125
         },
         {
           "date": 1522627200,
-          "price": 1012.6300048828125,
-          "eps": null
+          "price": 1012.6300048828125
         },
         {
           "date": 1523232000,
-          "price": 1020.0900268554688,
-          "eps": null
+          "price": 1020.0900268554688
         },
         {
           "date": 1523836800,
-          "price": 1046.0999755859375,
-          "eps": null
+          "price": 1046.0999755859375
         },
         {
           "date": 1524441600,
-          "price": 1073.81005859375,
-          "eps": null
+          "price": 1073.81005859375
         },
         {
           "date": 1525046400,
-          "price": 1018.5800170898438,
-          "eps": null
+          "price": 1018.5800170898438
         },
         {
           "date": 1525651200,
-          "price": 1059.4599609375,
-          "eps": null
+          "price": 1059.4599609375
         },
         {
           "date": 1526256000,
-          "price": 1106.5999755859375,
-          "eps": null
+          "price": 1106.5999755859375
         },
         {
           "date": 1526860800,
-          "price": 1084.010009765625,
-          "eps": null
+          "price": 1084.010009765625
         },
         {
           "date": 1527465600,
-          "price": 1068.0699462890625,
-          "eps": null
+          "price": 1068.0699462890625
         },
         {
           "date": 1528070400,
-          "price": 1153.0400390625,
-          "eps": null
+          "price": 1153.0400390625
         },
         {
           "date": 1528675200,
-          "price": 1140.9000244140625,
-          "eps": null
+          "price": 1140.9000244140625
         },
         {
           "date": 1529280000,
-          "price": 1183.5799560546875,
-          "eps": null
+          "price": 1183.5799560546875
         },
         {
           "date": 1529884800,
-          "price": 1139.280029296875,
-          "eps": null
+          "price": 1139.280029296875
         },
         {
           "date": 1530489600,
-          "price": 1142.1099853515625,
-          "eps": null
+          "price": 1142.1099853515625
         },
         {
           "date": 1531094400,
-          "price": 1167.280029296875,
-          "eps": null
+          "price": 1167.280029296875
         },
         {
           "date": 1531699200,
-          "price": 1196.510009765625,
-          "eps": null
+          "price": 1196.510009765625
         },
         {
           "date": 1532304000,
-          "price": 1211.0,
-          "eps": null
+          "price": 1211.0
         },
         {
           "date": 1532908800,
-          "price": 1230.0400390625,
-          "eps": null
+          "price": 1230.0400390625
         },
         {
           "date": 1533513600,
-          "price": 1237.6700439453125,
-          "eps": null
+          "price": 1237.6700439453125
         },
         {
           "date": 1534118400,
-          "price": 1248.6400146484375,
-          "eps": null
+          "price": 1248.6400146484375
         },
         {
           "date": 1534723200,
-          "price": 1221.949951171875,
-          "eps": null
+          "price": 1221.949951171875
         },
         {
           "date": 1535328000,
-          "price": 1256.27001953125,
-          "eps": null
+          "price": 1256.27001953125
         },
         {
           "date": 1535932800,
-          "price": 1211.31005859375,
-          "eps": null
+          "price": 1211.31005859375
         },
         {
           "date": 1536537600,
-          "price": 1175.06005859375,
-          "eps": null
+          "price": 1175.06005859375
         },
         {
           "date": 1537142400,
-          "price": 1159.8299560546875,
-          "eps": null
+          "price": 1159.8299560546875
         },
         {
           "date": 1537747200,
-          "price": 1179.56005859375,
-          "eps": null
+          "price": 1179.56005859375
         },
         {
           "date": 1538352000,
-          "price": 1208.530029296875,
-          "eps": null
+          "price": 1208.530029296875
         },
         {
           "date": 1538956800,
-          "price": 1155.9200439453125,
-          "eps": null
+          "price": 1155.9200439453125
         },
         {
           "date": 1539561600,
-          "price": 1102.43994140625,
-          "eps": null
+          "price": 1102.43994140625
         },
         {
           "date": 1540166400,
-          "price": 1111.3699951171875,
-          "eps": null
+          "price": 1111.3699951171875
         },
         {
           "date": 1540771200,
-          "price": 1034.72998046875,
-          "eps": null
+          "price": 1034.72998046875
         },
         {
           "date": 1541376000,
-          "price": 1055.72998046875,
-          "eps": null
+          "price": 1055.72998046875
         },
         {
           "date": 1541980800,
-          "price": 1049.3599853515625,
-          "eps": null
+          "price": 1049.3599853515625
         },
         {
           "date": 1542585600,
-          "price": 1027.4200439453125,
-          "eps": null
+          "price": 1027.4200439453125
         },
         {
           "date": 1543190400,
-          "price": 1055.93994140625,
-          "eps": null
+          "price": 1055.93994140625
         },
         {
           "date": 1543795200,
-          "price": 1116.3599853515625,
-          "eps": null
+          "price": 1116.3599853515625
         },
         {
           "date": 1544400000,
-          "price": 1053.1800537109375,
-          "eps": null
+          "price": 1053.1800537109375
         },
         {
           "date": 1545004800,
-          "price": 1025.6500244140625,
-          "eps": null
+          "price": 1025.6500244140625
         },
         {
           "date": 1545609600,
           "price": 984.6699829101562,
-          "eps": 10.925
+          "epsAnnually": 43.7,
+          "peAnnually": 22.53249388810426
         },
         {
           "date": 1546214400,
-          "price": 1044.9599609375,
-          "eps": null
+          "price": 1044.9599609375
         },
         {
           "date": 1546819200,
-          "price": 1075.9200439453125,
-          "eps": null
+          "price": 1075.9200439453125
         },
         {
           "date": 1547424000,
-          "price": 1051.510009765625,
-          "eps": null
+          "price": 1051.510009765625
         },
         {
           "date": 1548028800,
-          "price": 1078.6300048828125,
-          "eps": null
+          "price": 1078.6300048828125
         },
         {
           "date": 1548633600,
-          "price": 1079.8599853515625,
-          "eps": null
+          "price": 1079.8599853515625
         },
         {
           "date": 1549238400,
-          "price": 1141.4200439453125,
-          "eps": null
+          "price": 1141.4200439453125
         },
         {
           "date": 1549843200,
-          "price": 1102.1199951171875,
-          "eps": null
+          "price": 1102.1199951171875
         },
         {
           "date": 1550448000,
-          "price": 1126.510009765625,
-          "eps": null
+          "price": 1126.510009765625
         },
         {
           "date": 1551052800,
-          "price": 1117.3299560546875,
-          "eps": null
+          "price": 1117.3299560546875
         },
         {
           "date": 1551657600,
-          "price": 1153.4200439453125,
-          "eps": null
+          "price": 1153.4200439453125
         },
         {
           "date": 1552262400,
-          "price": 1179.260009765625,
-          "eps": null
+          "price": 1179.260009765625
         },
         {
           "date": 1552867200,
-          "price": 1188.550048828125,
-          "eps": null
+          "price": 1188.550048828125
         },
         {
           "date": 1553472000,
-          "price": 1197.3800048828125,
-          "eps": null
+          "price": 1197.3800048828125
         },
         {
           "date": 1554076800,
-          "price": 1198.97998046875,
-          "eps": null
+          "price": 1198.97998046875
         },
         {
           "date": 1554681600,
-          "price": 1208.280029296875,
-          "eps": null
+          "price": 1208.280029296875
         },
         {
           "date": 1555286400,
-          "price": 1226.530029296875,
-          "eps": null
+          "price": 1226.530029296875
         },
         {
           "date": 1555891200,
-          "price": 1253.760009765625,
-          "eps": null
+          "price": 1253.760009765625
         },
         {
           "date": 1556496000,
-          "price": 1296.199951171875,
-          "eps": null
+          "price": 1296.199951171875
         },
         {
           "date": 1557100800,
-          "price": 1193.4599609375,
-          "eps": null
+          "price": 1193.4599609375
         },
         {
           "date": 1557705600,
-          "price": 1136.5899658203125,
-          "eps": null
+          "price": 1136.5899658203125
         },
         {
           "date": 1558310400,
-          "price": 1144.6600341796875,
-          "eps": null
+          "price": 1144.6600341796875
         },
         {
           "date": 1558915200,
-          "price": 1139.56005859375,
-          "eps": null
+          "price": 1139.56005859375
         },
         {
           "date": 1559520000,
-          "price": 1038.739990234375,
-          "eps": null
+          "price": 1038.739990234375
         },
         {
           "date": 1560124800,
-          "price": 1082.760009765625,
-          "eps": null
+          "price": 1082.760009765625
         },
         {
           "date": 1560729600,
-          "price": 1093.8900146484375,
-          "eps": null
+          "price": 1093.8900146484375
         },
         {
           "date": 1561334400,
           "price": 1116.699951171875,
-          "eps": 14.21
+          "epsQuarterly": 14.21,
+          "peQuarterly": 19.64637493265086
         },
         {
           "date": 1561939200,
-          "price": 1100.0,
-          "eps": null
+          "price": 1100.0
         },
         {
           "date": 1562544000,
-          "price": 1116.7900390625,
-          "eps": null
+          "price": 1116.7900390625
         },
         {
           "date": 1563148800,
-          "price": 1150.510009765625,
-          "eps": null
+          "price": 1150.510009765625
         },
         {
           "date": 1563753600,
-          "price": 1139.2099609375,
-          "eps": null
+          "price": 1139.2099609375
         },
         {
           "date": 1564358400,
-          "price": 1241.8399658203125,
-          "eps": null
+          "price": 1241.8399658203125
         },
         {
           "date": 1564963200,
-          "price": 1154.75,
-          "eps": null
+          "price": 1154.75
         },
         {
           "date": 1565568000,
-          "price": 1174.5,
-          "eps": null
+          "price": 1174.5
         },
         {
           "date": 1566172800,
-          "price": 1200.43994140625,
-          "eps": null
+          "price": 1200.43994140625
         },
         {
           "date": 1566777600,
-          "price": 1171.1800537109375,
-          "eps": null
+          "price": 1171.1800537109375
         },
         {
           "date": 1567382400,
-          "price": 1169.550048828125,
-          "eps": null
+          "price": 1169.550048828125
         },
         {
           "date": 1567987200,
-          "price": 1205.27001953125,
-          "eps": null
+          "price": 1205.27001953125
         },
         {
           "date": 1568592000,
-          "price": 1231.6300048828125,
-          "eps": null
+          "price": 1231.6300048828125
         },
         {
           "date": 1569196800,
           "price": 1234.68994140625,
-          "eps": 10.12
+          "epsQuarterly": 10.12,
+          "peQuarterly": 30.501233730391554
         },
         {
           "date": 1569801600,
-          "price": 1221.1400146484375,
-          "eps": null
+          "price": 1221.1400146484375
         },
         {
           "date": 1570406400,
-          "price": 1208.25,
-          "eps": null
+          "price": 1208.25
         },
         {
           "date": 1571011200,
-          "price": 1217.77001953125,
-          "eps": null
+          "price": 1217.77001953125
         },
         {
           "date": 1571616000,
-          "price": 1244.280029296875,
-          "eps": null
+          "price": 1244.280029296875
         },
         {
           "date": 1572220800,
-          "price": 1288.97998046875,
-          "eps": null
+          "price": 1288.97998046875
         },
         {
           "date": 1572825600,
-          "price": 1289.6099853515625,
-          "eps": null
+          "price": 1289.6099853515625
         },
         {
           "date": 1573430400,
-          "price": 1298.280029296875,
-          "eps": null
+          "price": 1298.280029296875
         },
         {
           "date": 1574035200,
-          "price": 1319.8399658203125,
-          "eps": null
+          "price": 1319.8399658203125
         },
         {
           "date": 1574640000,
-          "price": 1305.6400146484375,
-          "eps": null
+          "price": 1305.6400146484375
         },
         {
           "date": 1575244800,
-          "price": 1288.8599853515625,
-          "eps": null
+          "price": 1288.8599853515625
         },
         {
           "date": 1575849600,
-          "price": 1342.989990234375,
-          "eps": null
+          "price": 1342.989990234375
         },
         {
           "date": 1576454400,
-          "price": 1360.699951171875,
-          "eps": null
+          "price": 1360.699951171875
         },
         {
           "date": 1577059200,
-          "price": 1350.6300048828125,
-          "eps": null
+          "price": 1350.6300048828125
         },
         {
           "date": 1577664000,
           "price": 1339.7099609375,
-          "eps": 15.35
+          "epsQuarterly": 15.35,
+          "peQuarterly": 21.81938047129479
         },
         {
           "date": 1578268800,
-          "price": 1397.81005859375,
-          "eps": null
+          "price": 1397.81005859375
         },
         {
           "date": 1578873600,
-          "price": 1440.030029296875,
-          "eps": null
+          "price": 1440.030029296875
         },
         {
           "date": 1579478400,
-          "price": 1482.25,
-          "eps": null
+          "price": 1482.25
         },
         {
           "date": 1580083200,
-          "price": 1431.72998046875,
-          "eps": null
+          "price": 1431.72998046875
         },
         {
           "date": 1580688000,
-          "price": 1482.5999755859375,
-          "eps": null
+          "price": 1482.5999755859375
         },
         {
           "date": 1581292800,
-          "price": 1508.6600341796875,
-          "eps": null
+          "price": 1508.6600341796875
         },
         {
           "date": 1581897600,
-          "price": 1519.43994140625,
-          "eps": null
+          "price": 1519.43994140625
         },
         {
           "date": 1582502400,
-          "price": 1419.8599853515625,
-          "eps": null
+          "price": 1419.8599853515625
         },
         {
           "date": 1583107200,
-          "price": 1386.3199462890625,
-          "eps": null
+          "price": 1386.3199462890625
         },
         {
           "date": 1583712000,
-          "price": 1215.7900390625,
-          "eps": null
+          "price": 1215.7900390625
         },
         {
           "date": 1584316800,
-          "price": 1073.0,
-          "eps": null
+          "price": 1073.0
         },
         {
           "date": 1584921600,
-          "price": 1054.1300048828125,
-          "eps": null
+          "price": 1054.1300048828125
         },
         {
           "date": 1585526400,
           "price": 1146.31005859375,
-          "eps": 9.87
+          "epsQuarterly": 9.87,
+          "peQuarterly": 29.03520918423886
         },
         {
           "date": 1586131200,
-          "price": 1183.18994140625,
-          "eps": null
+          "price": 1183.18994140625
         },
         {
           "date": 1586736000,
-          "price": 1210.4100341796875,
-          "eps": null
+          "price": 1210.4100341796875
         },
         {
           "date": 1587340800,
-          "price": 1261.1500244140625,
-          "eps": null
+          "price": 1261.1500244140625
         },
         {
           "date": 1587686400,
-          "price": 1276.5999755859375,
-          "eps": null
+          "price": 1276.5999755859375
         }
       ]
     }

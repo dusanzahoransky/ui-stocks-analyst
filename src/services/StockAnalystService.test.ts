@@ -31,3 +31,40 @@ it('pe negative numbers calc', async () => {
 
 });
 
+it('ratio positive numbers calc', async () => {
+    expect(StockAnalystService.ratioScore(1, 75)).toBe(-1)
+    expect(StockAnalystService.ratioScore(75, 75)).toBe(-75)
+    expect(StockAnalystService.ratioScore(76, 75)).toBe(-150)
+});
+
+it('ratio negative numbers calc', async () => {
+    expect(StockAnalystService.ratioScore(-0.01, 75))
+        .toBeLessThan(StockAnalystService.ratioScore(1000, 75))
+
+    expect(StockAnalystService.ratioScore(-10, 75))
+        .toBeGreaterThan(StockAnalystService.ratioScore(-1, 75))
+
+    expect(StockAnalystService.ratioScore(-1000, 75))
+        .toBeGreaterThan(StockAnalystService.ratioScore(-1, 75))
+});
+
+it('ratio with positive limit, positive numbers calc', async () => {
+    expect(StockAnalystService.ratioBatterThan(1, 5, 75)).toBe(4)
+    expect(StockAnalystService.ratioBatterThan(5, 5, 75)).toBe(0)
+    expect(StockAnalystService.ratioBatterThan(6, 5, 75)).toBe(-1)
+    expect(StockAnalystService.ratioBatterThan(75, 5, 75)).toBe(-70)
+    expect(StockAnalystService.ratioBatterThan(80, 5, 75)).toBe(-75)
+    expect(StockAnalystService.ratioBatterThan(81, 5, 75)).toBe(-150)
+});
+
+it('ratio with positive limit, negative numbers calc', async () => {
+    expect(StockAnalystService.ratioBatterThan(-0.01, 5, 75))
+        .toBeLessThan(StockAnalystService.ratioBatterThan(1000, 5, 75))
+
+    expect(StockAnalystService.ratioBatterThan(-10, 5, 75))
+        .toBeGreaterThan(StockAnalystService.ratioBatterThan(-1, 5, 75))
+
+    expect(StockAnalystService.ratioBatterThan(-1000, 5, 75))
+        .toBeGreaterThan(StockAnalystService.ratioBatterThan(-1, 5, 75))
+});
+

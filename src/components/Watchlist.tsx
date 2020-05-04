@@ -35,7 +35,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         this.state = {
             priceEpsData: undefined
             //uncomment to render chart of the first stock on load
-            // priceEpsData: props.result.stocks[0].chartData
+            // priceEpsData: props.result ? props.result.stocks[0].chartData : undefined
         }
         this.stockAnalystService = new StockAnalystService();
 
@@ -143,16 +143,25 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     private prepareEpsChartData(priceEpsData: PriceEpsDataRaw[], peRatio: number): PriceEpsData[] | undefined {
         if (!priceEpsData) return undefined
+
+        const round1Dec = (value?: number)  =>  value ? Math.round(value * 10) / 10 : undefined;
+        const round2Dec = (value?: number)  =>  value ? Math.round(value * 10) / 10 : undefined;
+
         return priceEpsData.map(data => {
-            const price = Math.round(data.price * 10) / 10;
-            const eps = data.eps ? Math.round(data.eps * peRatio * 4 * 10) / 10 : undefined;
-            const pe = eps ?  Math.round(price / (eps / peRatio) * 100) / 100 : undefined;
-            return {
+            const price = round1Dec(data.price);
+            const epsQuarterly = round1Dec(data.epsQuarterly * peRatio * 4);
+            const epsAnnually = round1Dec(data.epsAnnually * peRatio);
+            const peQuarterly = round2Dec(data.peQuarterly);
+            const peAnnually = round2Dec(data.peAnnually);
+            const processedData: PriceEpsData = {
                 date: moment(data.date * 1000).format('YYYY-MM-DD'),
                 price,
-                eps,
-                PE: pe
+                epsQuarterly,
+                epsAnnually,
+                peQuarterly,
+                peAnnually,
             }
+            return processedData
         })
     }
 }

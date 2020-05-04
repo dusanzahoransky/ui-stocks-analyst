@@ -1,6 +1,8 @@
 export interface PriceEpsData {
     date: string;
     price: number,
-    eps?: number,
-    PE?: number
+    epsQuarterly?: number,
+    peQuarterly?: number,
+    epsAnnually?: number,
+    peAnnually?: number
 }

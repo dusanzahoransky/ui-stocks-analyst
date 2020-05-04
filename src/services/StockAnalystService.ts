@@ -10,7 +10,7 @@ import symbolTest from "./Symbols-test.json"
 export class StockAnalystService {
 
     async loadAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<AnalysisResult | BackendError> {
-        if(watchlist === 'TEST'){
+        if (watchlist === 'TEST') {
             return Promise.resolve(resultTest)
         } else {
             return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
@@ -19,7 +19,7 @@ export class StockAnalystService {
     }
 
     async loadStock(symbol: string, forceRefresh: boolean, mockData: boolean): Promise<StockInfo | BackendError> {
-        if(symbol.startsWith('TEST')){
+        if (symbol.startsWith('TEST')) {
             return Promise.resolve(symbolTest)
         } else {
             return fetch(`http://localhost:3000/stocks/watchlist?symbol=${symbol}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
@@ -79,24 +79,24 @@ export class StockAnalystService {
                 score *= 1
                 break;
             case TableColumn.enterpriseValueEBITDA:
-                score = 10 - number
-                score *= 2
+                score = this.ratioBatterThan(number, 10, 20)
+                score *= 3
                 break;
             case TableColumn.priceEarningGrowth:
-                score = 5 - number
-                score *= 1
+                score = this.ratioBatterThan(number, 5, 10)
+                score *= 2
                 break;
             case TableColumn.trailingPriceEarningGrowth:
-                score = 5 - number
-                score *= 1
+                score = this.ratioBatterThan(number, 5, 10)
+                score *= 2
                 break;
             case TableColumn.belowTargetLowPricePercent:
                 score = number
-                score *= 2
+                score *= 1
                 break;
             case TableColumn.belowTargetMedianPricePercent:
                 score = number
-                score *= 2
+                score *= 1
                 break;
             case TableColumn.exDividendDate:
                 const daysToExDivident = -moment().diff(string, 'days')
@@ -131,6 +131,7 @@ export class StockAnalystService {
                 break;
             case TableColumn.netIncomeGrowthLast2Quarters:
                 score = number
+                score *= 0.5
                 break;
             case TableColumn.netIncomeGrowthLast3Years:
                 score = number
@@ -177,7 +178,7 @@ export class StockAnalystService {
                 score *= 1
                 break;
             case TableColumn.totalLiabilitiesToEquityLastQuarter:
-                score = 1 - number
+                score = StockAnalystService.ratioScore(number)
                 score *= 1
                 break;
             case TableColumn.totalLiabilitiesToEquityGrowthLastQuarter:
@@ -185,14 +186,14 @@ export class StockAnalystService {
                 score *= 0.1
                 break;
             case TableColumn.stockGrowthLastQuarter:
-                score = number > 10 ? - 10 : 0
+                score = number > 10 ? -10 : 0
                 break;
             case TableColumn.stockGrowthLastYear:
-                score = number > 10 ? - 10 : 0
+                score = number > 10 ? -10 : 0
                 score *= 0.5
                 break;
             case TableColumn.stockGrowthLast3Years:
-                score = number > 10 ? - 10 : 0
+                score = number > 10 ? -10 : 0
                 score *= 0.5
                 break;
             case TableColumn.epsGrowthLastQuarter:
@@ -244,18 +245,49 @@ export class StockAnalystService {
         return score;
     }
 
+    static ratioBatterThan(number?: number, positiveLimit?: number, maxThreshold: number = 50) {
+        let score: number
+        if (number > 0) {
+
+            if (number <= positiveLimit + maxThreshold) {
+                score = positiveLimit - number
+            } else {
+                score = - maxThreshold * 2
+            }
+
+        } else {
+            score = - maxThreshold * 3 + ((1 / number) * 100)
+        }
+        return score;
+    }
+
+    static ratioScore(number?: number, maxThreshold: number = 50) {
+        let score: number
+        if (number > 0) {
+
+            if (number <= maxThreshold) {
+                score = -number
+            } else {
+                score = - maxThreshold * 2
+            }
+
+        } else {
+            score = - maxThreshold * 3 + ((1 / number) * 100)
+        }
+        return score;
+    }
+
     static peScore(number?: number) {
         let score: number
-        if(number > 0){
+        if (number > 0) {
 
-            if(number < 200){
-                score = (20 - number - 25) + (1 / Math.log2(1+number) * 100)
-            }else{
+            if (number < 200) {
+                score = (20 - number - 25) + (1 / Math.log2(1 + number) * 100)
+            } else {
                 score = -200
             }
 
-        }
-        else {
+        } else {
             score = (number - 300) + (-1 / Math.log1p(-number) * 100)
 
         }
