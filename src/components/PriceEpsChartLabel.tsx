@@ -18,7 +18,8 @@ export class PriceEpsChartLabel extends React.Component<PriceEpsChartLabelProps>
         let label
         if (value) {
             let priceEps = data[index]
-            let lastEps = data.filter(d => d.epsQuarterly).pop().epsQuarterly;
+            const epsQuarterly = data.filter(d => d ? d.epsQuarterly : undefined);
+            let lastEps = epsQuarterly.length > 0 ? epsQuarterly.pop().epsQuarterly : undefined;
             let diff = `${(value - priceEps.price).toFixed(1)}`;
             //only print diff with current value for the last eps, buggy if 2 eps are the same
             if (lastEps === value) {
