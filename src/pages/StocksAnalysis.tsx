@@ -11,6 +11,7 @@ export interface StocksAnalysisProps {
 
 export interface StocksAnalysisState {
     error?: string
+    indicesResults?: WatchlistResult[]
     results?: WatchlistResult[]
     customResults?: WatchlistResult[]
 }
@@ -18,6 +19,7 @@ export interface StocksAnalysisState {
 interface WatchlistResult {
     isLoaded: boolean,
     isPreset: boolean,
+    isIndex: boolean,
     watchlist: string,
     analysisResult: AnalysisResult
 }
@@ -30,6 +32,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         super(props);
         this.state = {
             error: undefined,
+            indicesResults: [],
             results: [],
             customResults: []
         }
@@ -45,21 +48,33 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         'USD',
         'USD_TECH',
         /*'NASDAQ_100',*/
-/*        'TRADING_212_US',
-        'TRADING_212_EUR',
-        'TRADING_212_GBP'*/
+        /*        'TRADING_212_US',
+                'TRADING_212_EUR',
+                'TRADING_212_GBP'*/
+    ];
+
+    private readonly PRESET_INDICES_WATCHLISTS = [
+        'TEST_INDICES',
+   /*     'AUD_INDICES',
+         'GBP_INDICES'*/
     ];
 
     componentDidMount() {
+        this.PRESET_INDICES_WATCHLISTS
+            .forEach(watchlist => this.loadWatchlistData(watchlist, true, false, false))
+        // .forEach(watchlist => this.createEmptyWatchlist(watchlist, true))
         this.PRESET_WATCHLISTS
-            .forEach(watchlist => this.loadWatchlistData(watchlist))
-            // .forEach(watchlist => this.createEmptyWatchlist(watchlist))
+            // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
+            .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
     }
 
     private async loadWatchlistData(watchlist: string,
+                                    isIndex: boolean,
                                     forceRefresh: boolean = false,
                                     mockData: boolean = false) {
-        const response = await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, mockData)
+        const response = isIndex ?
+            await this.stockAnalystService.loadIndicesAnalysis(watchlist, forceRefresh, mockData)
+            : await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, mockData)
         const error = response as BackendError;
         if (error.error) {
             console.error(`Failed to load ${watchlist}: ${error.message}`)
@@ -70,40 +85,57 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         const watchlistResult: WatchlistResult = {
             isLoaded: true,
             isPreset: true,
+            isIndex,
             watchlist,
             analysisResult
         }
 
         this.setState((state) => {
-            return {results: this.mergeResult(state.results, watchlistResult)}
+            if (isIndex) {
+                return {indicesResults: this.mergeResult(state.indicesResults, watchlistResult, isIndex)}
+            } else {
+                return {results: this.mergeResult(state.results, watchlistResult, isIndex)}
+            }
         })
     }
 
-    private createEmptyWatchlist(watchlist: string) {
+    private createEmptyWatchlist(watchlist: string, isIndex: boolean) {
         const watchlistResult: WatchlistResult = {
             isLoaded: false,
             isPreset: true,
+            isIndex,
             watchlist,
             analysisResult: undefined
         }
 
         this.setState((state) => {
-            return {results: this.mergeResult(state.results, watchlistResult)}
+            if (isIndex) {
+                return {indicesResults: this.mergeResult(state.indicesResults, watchlistResult, isIndex)}
+            } else {
+                return {results: this.mergeResult(state.results, watchlistResult, isIndex)}
+            }
         })
     }
 
-    private unloadWatchlistData(watchlist: string) {
+    private unloadWatchlistData(watchlist: string, isIndex: boolean) {
         this.setState((state) => {
-            return {results: this.unloadResult(state.results, watchlist)}
+            if (isIndex) {
+                return {indicesResults: this.unloadResult(state.indicesResults, watchlist)}
+            } else {
+                return {results: this.unloadResult(state.results, watchlist)}
+            }
         })
     }
 
-    private mergeResult(results: WatchlistResult[], newResult: WatchlistResult) {
+    private mergeResult(results: WatchlistResult[], newResult: WatchlistResult, isIndex: boolean) {
         return results
             .filter(r => r.watchlist !== newResult.watchlist)
             .concat(newResult)
             .sort((r1, r2) =>
-                this.PRESET_WATCHLISTS.indexOf(r1.watchlist) < this.PRESET_WATCHLISTS.indexOf(r2.watchlist) ? -1 : 1);
+                isIndex ?
+                    this.PRESET_INDICES_WATCHLISTS.indexOf(r1.watchlist) < this.PRESET_INDICES_WATCHLISTS.indexOf(r2.watchlist) ? -1 : 1
+                    : this.PRESET_WATCHLISTS.indexOf(r1.watchlist) < this.PRESET_WATCHLISTS.indexOf(r2.watchlist) ? -1 : 1
+            );
     }
 
     private unloadResult(results: WatchlistResult[], watchlist: string) {
@@ -119,8 +151,9 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             )
     }
 
-    private containWatchlistData(watchlist: string): boolean {
-        const watchlistResult = this.state.results
+    private containWatchlistData(watchlist: string, isIndex: boolean): boolean {
+        const results = isIndex ? this.state.indicesResults : this.state.results;
+        const watchlistResult = results
             .find(r => r.watchlist === watchlist);
 
         return watchlistResult && watchlistResult.isLoaded
@@ -137,17 +170,17 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         //TODO input to scale PE ration
 
-        const allResults = this.state.results.concat(this.state.customResults);
+        const allResults = this.state.indicesResults.concat(this.state.results.concat(this.state.customResults));
         const watchlists = []
 
         allResults
             .forEach((watchlistResult) => {
-                const onRefreshClickHandler = (watchlist) => this.loadWatchlistData(watchlist, true, false);
+                const onRefreshClickHandler = (watchlist) => this.loadWatchlistData(watchlist, watchlistResult.isIndex, true, false);
                 const onShowClickHandler = (watchlist) => {
-                    if (this.containWatchlistData(watchlist)) {
-                        this.unloadWatchlistData(watchlist)
+                    if (this.containWatchlistData(watchlist, watchlistResult.isIndex)) {
+                        this.unloadWatchlistData(watchlist, watchlistResult.isIndex)
                     } else {
-                        this.loadWatchlistData(watchlist, false, false);
+                        this.loadWatchlistData(watchlist, watchlistResult.isIndex, false, false);
                     }
                 }
                 watchlists.push(
@@ -159,6 +192,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                         onRefreshClickHandler={onRefreshClickHandler}
                         onShowClickHandler={onShowClickHandler}
                         isPreset={watchlistResult.isPreset}
+                        isIndex={watchlistResult.isIndex}
                         isLoaded={watchlistResult.isLoaded}
                     />
                 )

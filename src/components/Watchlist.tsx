@@ -9,6 +9,9 @@ import "./Watchlist.css";
 import 'font-awesome/css/font-awesome.min.css';
 import moment from "moment";
 import {StockInfo} from "../model/StockInfo";
+import {IndicesChartData} from "../model/IndicesChartData";
+import {IndexChartDataRaw} from "../model/IndexChartDataRaw";
+import {IndicesPriceChart} from "./IndicesPriceChart";
 
 
 export interface WatchlistProps {
@@ -18,6 +21,7 @@ export interface WatchlistProps {
     onRefreshClickHandler?: (watchlist: string) => void,
     onShowClickHandler?: (watchlist: string) => void,
     isPreset: boolean
+    isIndex: boolean
     isLoaded: boolean
 }
 
@@ -65,12 +69,22 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         if (!this.props.isLoaded) {
             return ''
         } else {
-            const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
-            return <div className={!chartData ? 'hidden' : ''}>
-                <PriceEpsChart
-                    data={chartData}
-                    description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
-            </div>
+            if (this.props.isIndex) {
+                const chartData = this.prepareIndicesChartData(this.props.result.stocks);
+                return <div className={!chartData ? 'hidden' : ''}>
+                    <IndicesPriceChart
+                        data={chartData}
+                        symbols={this.props.result.stocks.map(s => s.symbol)}
+                        description={`Performance of all indices in the watchlist`}/>
+                </div>
+            } else {
+                const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
+                return <div className={!chartData ? 'hidden' : ''}>
+                    <PriceEpsChart
+                        data={chartData}
+                        description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
+                </div>
+            }
         }
     }
 
@@ -80,9 +94,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         } else {
             const headers = this.toHeaderData(result.averages);
             let data = this.toTableData(result.stocks);
-            const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row))
+            const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isIndex))
             return <WatchlistTable
                 data={scoredData}
+                isIndex={this.props.isIndex}
                 headerLabels={headers[0]}
                 headerAverages={headers[1]}
                 onStockClickHandler={this.stockOnClickHandler}
@@ -113,7 +128,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     toHeaderData(averages: StockInfo): any[][] {
-        averages = this.stockAnalystService.filterDisplayableStats(averages)
+        averages = this.stockAnalystService.filterDisplayableStats(averages, this.props.isIndex)
         const headersRow = Object.keys(averages)
             .filter(key => key !== 'periodValuationMeasures')
             .concat('Score')
@@ -132,7 +147,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     toTableData(stocks: StockInfo[]): any[][] {
         let rows = [];
         for (let stock of stocks) {
-            stock = this.stockAnalystService.filterDisplayableStats(stock)
+            stock = this.stockAnalystService.filterDisplayableStats(stock, this.props.isIndex)
             const rowValues = Object.keys(stock)
                 .filter(key => key !== 'periodValuationMeasures')
                 .map(key => stock[key] ? stock[key] : '')
@@ -141,11 +156,31 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return rows;
     }
 
+    private prepareIndicesChartData(stocks: StockInfo[]): IndicesChartData[] | undefined {
+
+        const allDates = Array.from(new Set(stocks.flatMap(s => s.chartData.map(d => d.date))))
+
+        const chartData = new Array(allDates.length)
+        for(let i = 0; i < allDates.length; i++){
+            const date = allDates[i]
+            const dataPoint: IndicesChartData = {
+                date: moment(allDates[i] * 1000).format('YYYY-MM-DD')
+            }
+            for(const stock of stocks){
+                let chartDataAtDate = stock.chartData.filter(d => d.date === date)[0];
+                if(chartDataAtDate){
+                    dataPoint[stock.symbol] = chartDataAtDate.price
+                }
+            }
+            chartData[i] = dataPoint
+        }
+        return chartData
+    }
     private prepareEpsChartData(priceEpsData: PriceEpsDataRaw[], peRatio: number): PriceEpsData[] | undefined {
         if (!priceEpsData) return undefined
 
-        const round1Dec = (value?: number)  =>  value ? Math.round(value * 10) / 10 : undefined;
-        const round2Dec = (value?: number)  =>  value ? Math.round(value * 10) / 10 : undefined;
+        const round1Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined;
+        const round2Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined;
 
         return priceEpsData.map(data => {
             const price = round1Dec(data.price);

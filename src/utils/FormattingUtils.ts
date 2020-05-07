@@ -1,9 +1,22 @@
-import {TableColumn} from "../model/TableColumn";
+import {StockTableColumn} from "../model/StockTableColumn";
 import moment from "moment";
+import {IndexTableColumn} from "../model/IndexTableColumn";
 
 export class FormattingUtils {
 
-    static format(rowValue: any[], value: number | string, columnIndex: TableColumn): string {
+    static formatStock(rowValue: any[], value: number | string, columnIndex: StockTableColumn): string {
+        if (typeof value === 'string' && columnIndex === StockTableColumn.exDividendDate) {
+            let diff = moment().diff(value, 'days');
+            return diff < 0 ? `in ${-diff} days` : value;
+        }
+        return this.format(rowValue, value)
+    }
+
+    static formatIndex(rowValue: any[], value: number | string, columnIndex: IndexTableColumn): string {
+        return this.format(rowValue, value)
+    }
+
+    static format(rowValue: any[], value: number | string): string {
         if (!value) {
             return ''
         }
@@ -11,10 +24,6 @@ export class FormattingUtils {
             return JSON.stringify(value).substring(0, 10)
         }
         if (typeof value === 'string') {
-            if (columnIndex === TableColumn.exDividendDate) {
-                let diff = moment().diff(value, 'days');
-                return diff < 0 ? `in ${-diff} days` : value;
-            }
             return value
         }
         if (!value || isNaN(value)) {
@@ -285,6 +294,74 @@ export class FormattingUtils {
                 return "Revenue (L3Q)"
             case "revenueGrowthLast2Quarters":
                 return "Revenue growth (L2Q)"
+            //index cols
+            case "totalAssets":
+                return "Total assets"
+            case "yield":
+                return "Yield"
+
+            case "ytdReturn":
+                return "Ytd return"
+            case "threeYearAverageReturn":
+                return "3Y avg return"
+            case "fiveYearAverageReturn":
+                return "5Y avg return"
+
+            case "priceToEarnings":
+                return "PE"
+            case "priceToBook":
+                return "PB"
+            case "priceToCashflow":
+                return "P/CashF"
+            case "priceToSales":
+                return "PS"
+
+            case "fiftyTwoWeekLow":
+                return "52 low"
+            case "fiftyTwoWeekHigh":
+                return "52 high"
+
+            case "fiftyTwoAboveLowPercent":
+                return "52 above low"
+            case "fiftyTwoBelowHighPercent":
+                return "52 below high"
+
+            case "asOfDate":
+                return "As of date"
+
+            case "oneMonth":
+                return "1M"
+            case "threeMonth":
+                return "3M"
+            case "oneYear":
+                return "1Y"
+            case "threeYear":
+                return "3Y"
+            case "ytd":
+                return "Ytd"
+            case "fiveYear":
+                return "5Y"
+            case "tenYear":
+                return "10Y"
+
+            case "lastBearMkt":
+                return "Last bear mkt"
+            case "lastBullMkt":
+                return "Last bull mkt"
+
+
+            case "annualHoldingsTurnover":
+                return "Annual holdings turnover"
+            case "annualReportExpenseRatio":
+                return "Annual report expense ratio"
+
+            case "averageDailyVolume3Month":
+                return "Avg daily volume 3M"
+            case "averageDailyVolume10Day":
+                return "Avg daily volume 10D"
+
+            case "fundInceptionDate":
+                return "Inception date"
             default:
                 return field;
         }
