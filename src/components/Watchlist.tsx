@@ -27,6 +27,7 @@ export interface WatchlistProps {
 
 export interface WatchlistState {
     priceEpsData?: PriceEpsDataRaw[]
+    indicesChartSymbols?: string[]
     chartLabel?: string
 }
 
@@ -37,9 +38,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
         this.state = {
-            priceEpsData: undefined
+            priceEpsData: undefined,
             //uncomment to render chart of the first stock on load
             // priceEpsData: props.result ? props.result.stocks[0].chartData : undefined
+            indicesChartSymbols: []
         }
         this.stockAnalystService = new StockAnalystService();
 
@@ -69,12 +71,12 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         if (!this.props.isLoaded) {
             return ''
         } else {
-            if (this.props.isIndex) {
+            if (this.props.isIndex && this.state.indicesChartSymbols.length > 0) {
                 const chartData = this.prepareIndicesChartData(this.props.result.stocks);
                 return <div className={!chartData ? 'hidden' : ''}>
                     <IndicesPriceChart
                         data={chartData}
-                        symbols={this.props.result.stocks.map(s => s.symbol)}
+                        symbols={this.state.indicesChartSymbols}
                         description={`Performance of all indices in the watchlist`}/>
                 </div>
             } else {
@@ -106,24 +108,38 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     stockOnClickHandler = (stockSymbol: string) => {
-        const priceEpsData = this.props.result.stocks
-            .filter(stock => stock.symbol === stockSymbol)
-            .map(stock => stock.chartData)[0]
-
-        //close the graph on a second click
-        if (this.state.priceEpsData === priceEpsData) {
+        if(this.props.isIndex){
+            let updatedSymbols;
+            if(this.state.indicesChartSymbols.includes(stockSymbol)){
+                updatedSymbols = this.state.indicesChartSymbols.filter( s => s !== stockSymbol)
+            } else{
+                updatedSymbols = this.state.indicesChartSymbols.concat(stockSymbol)
+            }
             this.setState(state => {
                 return {
-                    priceEpsData: undefined
+                    indicesChartSymbols: updatedSymbols
                 }
             })
         } else {
-            this.setState(state => {
-                return {
-                    priceEpsData,
-                    chartLabel: stockSymbol as string
-                }
-            })
+            const priceEpsData = this.props.result.stocks
+                .filter(stock => stock.symbol === stockSymbol)
+                .map(stock => stock.chartData)[0]
+
+            //close the graph on a second click
+            if (this.state.priceEpsData === priceEpsData) {
+                this.setState(state => {
+                    return {
+                        priceEpsData: undefined
+                    }
+                })
+            } else {
+                this.setState(state => {
+                    return {
+                        priceEpsData,
+                        chartLabel: stockSymbol as string
+                    }
+                })
+            }
         }
     }
 
@@ -158,7 +174,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     private prepareIndicesChartData(stocks: StockInfo[]): IndicesChartData[] | undefined {
 
-        const allDates = Array.from(new Set(stocks.flatMap(s => s.chartData.map(d => d.date))))
+        const chartStocks = stocks.filter(s => this.state.indicesChartSymbols.includes(s.symbol))
+
+        const allDates = Array.from(new Set(chartStocks.flatMap(s => s.chartData.map(d => d.date))))
+            .sort()
 
         const chartData = new Array(allDates.length)
         for(let i = 0; i < allDates.length; i++){
@@ -166,7 +185,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             const dataPoint: IndicesChartData = {
                 date: moment(allDates[i] * 1000).format('YYYY-MM-DD')
             }
-            for(const stock of stocks){
+            for(const stock of chartStocks){
                 let chartDataAtDate = stock.chartData.filter(d => d.date === date)[0];
                 if(chartDataAtDate){
                     dataPoint[stock.symbol] = chartDataAtDate.price

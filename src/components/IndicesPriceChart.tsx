@@ -17,7 +17,8 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps> {
         const chartLabel = label ? <h3>{label}</h3> : ''
         const chartDescription = description ? <p>{description}</p> : ''
         const lines = this.props.symbols.map(s => {
-            return <Line key={s} type="monotone" dataKey={s} stroke="#003795" dot={false} legendType={"plainline"}/>
+            return <Line key={s} type="monotone" dataKey={s} stroke="#003795" dot={false} legendType={"plainline"}
+                         isAnimationActive={false} connectNulls={true}/>
         })
         return (
             <div className={'IndicesPriceChart'}>

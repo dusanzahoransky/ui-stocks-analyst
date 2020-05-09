@@ -13,7 +13,9 @@ The UI provides a convenient view to compare fundamental stock stats for pre-sel
  
 ![Example gif](./Peek 2020-05-03 19-50.gif)
  
-It also renders a famous Peter Lynch's chart for price and earnings line.
+It also renders price and earnings line.
 ![Example screenshot](./Selection_038.png)
 
+For indices, it provides basic ratios such as PE, PB, PS, etc. and their performance over different periods. Also, renders a chart for comparison of their historical performance.
 
+![Example screenshot](./Selection_055.png)

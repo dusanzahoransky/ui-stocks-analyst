@@ -115,16 +115,6 @@ export class StockAnalystService {
                 score *= 3
                 break;
             }
-            case IndexTableColumn.fiftyTwoAboveLowPercent: {
-                score = 10 - number
-                score *= 0.1
-                break;
-            }
-            case IndexTableColumn.fiftyTwoBelowHighPercent: {
-                score = number - 10
-                score *= 1
-                break;
-            }
             case IndexTableColumn.oneMonth: {
                 score = number - avg
                 score *= 1
@@ -183,12 +173,12 @@ export class StockAnalystService {
             }
             case IndexTableColumn.averageDailyVolume3Month: {
                 score = number - avg
-                score *= 0.00001
+                score *= 0.000001
                 break;
             }
             case IndexTableColumn.averageDailyVolume10Day: {
                 score = number - avg
-                score *= 0.00001
+                score *= 0.000001
                 break;
             }
         }
