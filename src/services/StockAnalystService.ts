@@ -77,27 +77,27 @@ export class StockAnalystService {
             }
             case IndexTableColumn.yield: {
                 score = number - avg
-                score *= 5
+                score *= 10
                 break;
             }
             case IndexTableColumn.ytdReturn: {
                 score = number - avg
-                score *= 3
+                score *= 1
                 break;
             }
             case IndexTableColumn.threeYearAverageReturn: {
                 score = number - avg
-                score *= 2
+                score *= 3
                 break;
             }
             case IndexTableColumn.fiveYearAverageReturn: {
                 score = number - avg
-                score *= 2
+                score *= 3
                 break;
             }
             case IndexTableColumn.priceToEarnings: {
                 score = avg - number
-                score *= 20
+                score *= 15
                 break;
             }
             case IndexTableColumn.priceToBook: {
@@ -122,27 +122,27 @@ export class StockAnalystService {
             }
             case IndexTableColumn.threeMonth: {
                 score = number - avg
-                score *= 2
+                score *= 1
                 break;
             }
             case IndexTableColumn.oneYear: {
                 score = number - avg
-                score *= 3
+                score *= 1
                 break;
             }
             case IndexTableColumn.threeYear: {
                 score = number - avg
-                score *= 5
+                score *= 10
                 break;
             }
             case IndexTableColumn.ytd: {
                 score = number - avg
-                score *= 3
+                score *= 2
                 break;
             }
             case IndexTableColumn.fiveYear: {
                 score = number - avg
-                score *= 1
+                score *= 5
                 break;
             }
             case IndexTableColumn.tenYear: {
@@ -238,9 +238,9 @@ export class StockAnalystService {
                 score *= 1
                 break;
             case StockTableColumn.exDividendDate:
-                const daysToExDivident = -moment().diff(string, 'days')
+                const daysToExDividend = -moment().diff(string, 'days')
                 const lastDivYield = rowValues[StockTableColumn.trailingAnnualDividendYield] as number
-                score = daysToExDivident > 0 && daysToExDivident < 30 ? Math.pow(lastDivYield, 2) : 0
+                score = daysToExDividend > 0 && daysToExDividend < 30 ? Math.pow(lastDivYield, 2) : 0
                 break;
             case StockTableColumn.fiveYearAvgDividendYield:
                 score = number
@@ -267,26 +267,27 @@ export class StockAnalystService {
                 break;
             case StockTableColumn.netIncomeGrowthLastQuarter:
                 score = number
+                score *= 2
                 break;
             case StockTableColumn.netIncomeGrowthLast2Quarters:
                 score = number
-                score *= 0.5
+                score *= 1
                 break;
             case StockTableColumn.netIncomeGrowthLast3Years:
                 score = number
-                score *= 0.5
+                score *= 1
                 break;
             case StockTableColumn.revenueGrowthLastQuarter:
                 score = number
-                score *= 0.3
+                score *= 1
                 break;
             case StockTableColumn.revenueGrowthLast2Quarters:
                 score = number
-                score *= 0.3
+                score *= 1
                 break;
             case StockTableColumn.revenueGrowthLast3Years:
                 score = number
-                score *= 0.1
+                score *= 1
                 break;
             case StockTableColumn.cashGrowthLastQuarter:
                 score = number
