@@ -21,6 +21,10 @@ th {
     font-weight: normal;
 }
 
+th.label {
+    height: 125px;
+}
+
 th.stat {
     background: #f0f3ef;
 }

@@ -2,20 +2,22 @@ import React from "react";
 import 'font-awesome/css/font-awesome.min.css';
 import {FormattingUtils} from "../utils/FormattingUtils";
 import './WatchlistTable.css';
-import {TableColumn} from "../model/TableColumn";
+import {StockTableColumn} from "../model/StockTableColumn";
 import {CellData} from "../model/CellData";
+import {IndexTableColumn} from "../model/IndexTableColumn";
 
 export interface TableProps {
     headerLabels: string[];
     headerAverages: number[];
     data: CellData[][];
-    sortField?: TableColumn;
+    isIndex: boolean;
+    sortField?: number;
     onStockClickHandler?: (stockSymbol: string) => void
 }
 
 export interface TableState {
     sortAsc: boolean;
-    sortedBy: TableColumn;
+    sortedBy: number;
     sortedData: CellData[][];
 }
 
@@ -52,15 +54,20 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
 
     renderHeader(headerLabels: string[], headerAverages: number[]) {
         const labelsRow = headerLabels.map((field, columnIndex) =>
-            <th key={columnIndex} className={'label ' + this.columnTypeClass(columnIndex)}
+            <th key={columnIndex} className={'label ' + this.columnTypeClass(columnIndex, this.props.isIndex)}
                 onClick={() => this.setSortedField(columnIndex)}>
                 <i className="fa fa-sort"/>
                 {FormattingUtils.toFieldLabel(field)}
             </th>
         );
-        let averagesRow = headerAverages.map((value, columnIndex) =>
+        const averagesRow = headerAverages.map((value, columnIndex) =>
             <th key={columnIndex}
-                className={this.columnTypeClass(columnIndex)}>{FormattingUtils.format(headerAverages, value, columnIndex)}</th>
+                className={this.columnTypeClass(columnIndex, this.props.isIndex)}>
+                {
+                    this.props.isIndex ?
+                        FormattingUtils.formatIndex(headerAverages, value, columnIndex)
+                        : FormattingUtils.formatStock(headerAverages, value, columnIndex)
+                }</th>
         );
 
         return (
@@ -71,7 +78,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         )
     }
 
-    setSortedField(column: TableColumn) {
+    setSortedField(column: number) {
         this.setState(state => {
             const sortAsc = state.sortedBy === column ? !state.sortAsc : this.SORT_DEFAULT_ASC
             return {
@@ -83,7 +90,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         })
     }
 
-    private static sortData(row1: CellData[], row2: CellData[], column: TableColumn, asc: boolean) : number{
+    private static sortData(row1: CellData[], row2: CellData[], column: number, asc: boolean): number {
         let cell1 = row1[column];
         let cell2 = row2[column];
 
@@ -113,9 +120,14 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
 
     renderRow(rowData: CellData[], rowIndex, averages: any[]) {
         const rowValues = rowData.map((data, columnIndex) =>
-            <td key={columnIndex} onClick={() => this.props.onStockClickHandler(rowData[TableColumn.symbol].value as string)}
+            <td key={columnIndex}
+                onClick={() => this.props.onStockClickHandler(rowData[StockTableColumn.symbol].value as string)}
                 className={this.dataCellClass(rowData, data, averages[columnIndex], columnIndex)}>
-                <span>{FormattingUtils.format(rowData, data.value, columnIndex)}</span>
+                <span>{
+                    this.props.isIndex ?
+                        FormattingUtils.formatIndex(rowData, data.value, columnIndex)
+                        : FormattingUtils.formatStock(rowData, data.value, columnIndex)
+                }</span>
                 <span className={"score"}>{data.score ? data.score.toFixed(0) : ''}</span>
             </td>
         );
@@ -140,7 +152,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             }
         }
 
-        if (columnIndex === TableColumn.change) {
+        const changeColumn = this.props.isIndex ? IndexTableColumn.change : StockTableColumn.change;
+        if (columnIndex === changeColumn) {
             if (data.value < 0) {
                 classes.push('redText')
             } else {
@@ -148,243 +161,264 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             }
         }
 
-        classes.push(this.columnTypeClass(columnIndex));
+        classes.push(this.columnTypeClass(columnIndex, this.props.isIndex));
 
         return classes.join(' ');
     }
 
-    columnTypeClass(columnIndex: number) {
-        switch (columnIndex) {
-            case TableColumn.chartData:
-                return 'hidden'
-            case TableColumn.companyName:
-                return 'companyName'
-            case TableColumn.date:
-                return 'date'
-            case TableColumn.lastReportedQuarter:
-                return 'date lastReport'
-            case TableColumn.exDividendDate:
-                return 'date dividents'
-            case TableColumn.symbol:
-                return 'symbol'
-            case TableColumn.price:
-                return 'price'
-            case TableColumn.change:
-                return 'change'
+    columnTypeClass(columnIndex: number, isIndex: boolean) {
+        if (isIndex) {
+            switch (columnIndex) {
+                case IndexTableColumn.chartData:
+                    return 'hidden'
+                case IndexTableColumn.companyName:
+                    return 'companyName'
+                case IndexTableColumn.date:
+                    return 'date'
+                case IndexTableColumn.symbol:
+                    return 'symbol'
+                case IndexTableColumn.price:
+                    return 'price'
+                case IndexTableColumn.change:
+                    return 'change'
+                case IndexTableColumn.asOfDate:
+                    return 'date'
+                case IndexTableColumn.fundInceptionDate:
+                    return 'date'
+            }
+        } else {
+            switch (columnIndex) {
+                case StockTableColumn.chartData:
+                    return 'hidden'
+                case StockTableColumn.companyName:
+                    return 'companyName'
+                case StockTableColumn.date:
+                    return 'date'
+                case StockTableColumn.symbol:
+                    return 'symbol'
+                case StockTableColumn.price:
+                    return 'price'
+                case StockTableColumn.change:
+                    return 'change'
 
-            case TableColumn.totalCashPerSharePercent:
-                return "stat"
-            case TableColumn.totalDebtEquity:
-                return "stat"
+                case StockTableColumn.lastReportedQuarter:
+                    return 'date lastReport'
+                case StockTableColumn.exDividendDate:
+                    return 'date dividents'
 
-            case TableColumn.trailingPE:
-                return "stat"
-            case TableColumn.forwardPE:
-                return "stat"
-            case TableColumn.priceToSalesTrailing12Months:
-                return "stat"
-            case TableColumn.enterpriseValueRevenue:
-                return "stat"
-            case TableColumn.enterpriseValueEBITDA:
-                return "stat"
-            case TableColumn.priceEarningGrowth:
-                return "stat"
-            case TableColumn.trailingPriceEarningGrowth:
-                return "stat"
+                case StockTableColumn.totalCashPerSharePercent:
+                    return "stat"
+                case StockTableColumn.totalDebtEquity:
+                    return "stat"
 
-            case TableColumn.week52Change:
-                return "currentPriceStat"
-            case TableColumn.week52AboveLowPercent:
-                return "currentPriceStat"
-            case TableColumn.week52BelowHighPercent:
-                return "currentPriceStat"
-            case TableColumn.belowTargetLowPricePercent:
-                return "currentPriceStat"
-            case TableColumn.belowTargetMedianPricePercent:
-                return "currentPriceStat"
+                case StockTableColumn.trailingPE:
+                    return "stat"
+                case StockTableColumn.forwardPE:
+                    return "stat"
+                case StockTableColumn.priceToSalesTrailing12Months:
+                    return "stat"
+                case StockTableColumn.enterpriseValueRevenue:
+                    return "stat"
+                case StockTableColumn.enterpriseValueEBITDA:
+                    return "stat"
+                case StockTableColumn.priceEarningGrowth:
+                    return "stat"
+                case StockTableColumn.trailingPriceEarningGrowth:
+                    return "stat"
 
-            case TableColumn.heldByInsiders:
-                return "stock"
-            case TableColumn.heldByInstitutions:
-                return "stock"
-            case TableColumn.shortToFloat:
-                return "short"
-            case TableColumn.sharesShortPrevMonthCompare:
-                return "short"
+                case StockTableColumn.week52Change:
+                    return "currentPriceStat"
+                case StockTableColumn.week52AboveLowPercent:
+                    return "currentPriceStat"
+                case StockTableColumn.week52BelowHighPercent:
+                    return "currentPriceStat"
+                case StockTableColumn.belowTargetLowPricePercent:
+                    return "currentPriceStat"
+                case StockTableColumn.belowTargetMedianPricePercent:
+                    return "currentPriceStat"
 
-            case TableColumn.fiveYearAvgDividendYield:
-                return "dividents"
-            case TableColumn.trailingAnnualDividendYield:
-                return "dividents"
+                case StockTableColumn.heldByInsiders:
+                    return "stock"
+                case StockTableColumn.heldByInstitutions:
+                    return "stock"
+                case StockTableColumn.shortToFloat:
+                    return "short"
+                case StockTableColumn.sharesShortPrevMonthCompare:
+                    return "short"
 
-            case TableColumn.netIncomeLastQuarter:
-                return "income"
-            case TableColumn.netIncome2QuartersAgo:
-                return "income"
-            case TableColumn.netIncome3QuartersAgo:
-                return "income"
-            case TableColumn.netIncomeLastYear:
-                return "income"
-            case TableColumn.netIncome3YearsAgo:
-                return "income"
-            case TableColumn.netIncomeGrowthLastQuarter:
-                return "income"
-            case TableColumn.netIncomeGrowthLast2Quarters:
-                return "income"
-            case TableColumn.netIncomeGrowthLast3Years:
-                return "income"
+                case StockTableColumn.fiveYearAvgDividendYield:
+                    return "dividents"
+                case StockTableColumn.trailingAnnualDividendYield:
+                    return "dividents"
 
-            case TableColumn.revenueLastQuarter:
-                return "revenue"
-            case TableColumn.revenue2QuartersAgo:
-                return "revenue"
-            case TableColumn.revenue3QuartersAgo:
-                return "revenue"
-            case TableColumn.revenueLastYear:
-                return "revenue"
-            case TableColumn.revenueGrowthLastQuarter:
-                return "revenue"
-            case TableColumn.revenueGrowthLast2Quarters:
-                return "revenue"
-            case TableColumn.revenueGrowthLastYear:
-                return "revenue"
-            case TableColumn.revenueGrowthLast3Years:
-                return "revenue"
+                case StockTableColumn.netIncomeLastQuarter:
+                    return "income"
+                case StockTableColumn.netIncome2QuartersAgo:
+                    return "income"
+                case StockTableColumn.netIncome3QuartersAgo:
+                    return "income"
+                case StockTableColumn.netIncomeLastYear:
+                    return "income"
+                case StockTableColumn.netIncome3YearsAgo:
+                    return "income"
+                case StockTableColumn.netIncomeGrowthLastQuarter:
+                    return "income"
+                case StockTableColumn.netIncomeGrowthLast2Quarters:
+                    return "income"
+                case StockTableColumn.netIncomeGrowthLast3Years:
+                    return "income"
 
-            case TableColumn.cashLastQuarter:
-                return "cash"
-            case TableColumn.cashLastYear:
-                return "cash"
-            case TableColumn.cashGrowthLastQuarter:
-                return "cash"
-            case TableColumn.cashGrowthLastYear:
-                return "cash"
-            case TableColumn.cashGrowthLast3Years:
-                return "cash"
+                case StockTableColumn.revenueLastQuarter:
+                    return "revenue"
+                case StockTableColumn.revenue2QuartersAgo:
+                    return "revenue"
+                case StockTableColumn.revenue3QuartersAgo:
+                    return "revenue"
+                case StockTableColumn.revenueLastYear:
+                    return "revenue"
+                case StockTableColumn.revenueGrowthLastQuarter:
+                    return "revenue"
+                case StockTableColumn.revenueGrowthLast2Quarters:
+                    return "revenue"
+                case StockTableColumn.revenueGrowthLastYear:
+                    return "revenue"
+                case StockTableColumn.revenueGrowthLast3Years:
+                    return "revenue"
 
-            case TableColumn.inventoryLastQuarter:
-                return "inventory"
-            case TableColumn.inventoryLastYear:
-                return "inventory"
-            case TableColumn.inventoryGrowthLastQuarter:
-                return "inventory"
-            case TableColumn.inventoryGrowthLastYear:
-                return "inventory"
-            case TableColumn.inventoryGrowthLast3Years:
-                return "inventory"
+                case StockTableColumn.cashLastQuarter:
+                    return "cash"
+                case StockTableColumn.cashLastYear:
+                    return "cash"
+                case StockTableColumn.cashGrowthLastQuarter:
+                    return "cash"
+                case StockTableColumn.cashGrowthLastYear:
+                    return "cash"
+                case StockTableColumn.cashGrowthLast3Years:
+                    return "cash"
 
-            case TableColumn.currentLiabilitiesLastQuarter:
-                return "liabilities"
-            case TableColumn.currentLiabilitiesLastYear:
-                return "liabilities"
-            case TableColumn.totalLiabilitiesLastQuarter:
-                return "liabilities"
-            case TableColumn.totalLiabilitiesLastYear:
-                return "liabilities"
+                case StockTableColumn.inventoryLastQuarter:
+                    return "inventory"
+                case StockTableColumn.inventoryLastYear:
+                    return "inventory"
+                case StockTableColumn.inventoryGrowthLastQuarter:
+                    return "inventory"
+                case StockTableColumn.inventoryGrowthLastYear:
+                    return "inventory"
+                case StockTableColumn.inventoryGrowthLast3Years:
+                    return "inventory"
 
-            case TableColumn.totalShareholdersEquityLastQuarter:
-                return "equity"
-            case TableColumn.totalShareholdersEquityLastYear:
-                return "equity"
-            case TableColumn.totalShareholdersEquityGrowthLastQuarter:
-                return "equity"
-            case TableColumn.totalShareholdersEquityGrowthLastYear:
-                return "equity"
-            case TableColumn.totalShareholdersEquityGrowthLast3Years:
-                return "equity"
+                case StockTableColumn.currentLiabilitiesLastQuarter:
+                    return "liabilities"
+                case StockTableColumn.currentLiabilitiesLastYear:
+                    return "liabilities"
+                case StockTableColumn.totalLiabilitiesLastQuarter:
+                    return "liabilities"
+                case StockTableColumn.totalLiabilitiesLastYear:
+                    return "liabilities"
 
-            case TableColumn.currentLiabilitiesToEquityLastQuarter:
-                return "liabilitiesToEquity"
-            case TableColumn.currentLiabilitiesToEquityLastYear:
-                return "liabilitiesToEquity"
-            case TableColumn.currentLiabilitiesToEquityGrowthLastQuarter:
-                return "liabilitiesToEquity"
-            case TableColumn.currentLiabilitiesToEquityGrowthLastYear:
-                return "liabilitiesToEquity"
-            case TableColumn.currentLiabilitiesToEquityGrowthLast3Years:
-                return "liabilitiesToEquity"
+                case StockTableColumn.totalShareholdersEquityLastQuarter:
+                    return "equity"
+                case StockTableColumn.totalShareholdersEquityLastYear:
+                    return "equity"
+                case StockTableColumn.totalShareholdersEquityGrowthLastQuarter:
+                    return "equity"
+                case StockTableColumn.totalShareholdersEquityGrowthLastYear:
+                    return "equity"
+                case StockTableColumn.totalShareholdersEquityGrowthLast3Years:
+                    return "equity"
 
-            case TableColumn.totalLiabilitiesToEquityLastQuarter:
-                return "liabilitiesToEquity"
-            case TableColumn.totalLiabilitiesToEquityLastYear:
-                return "liabilitiesToEquity"
-            case TableColumn.totalLiabilitiesToEquityGrowthLastQuarter:
-                return "liabilitiesToEquity"
-            case TableColumn.totalLiabilitiesToEquityGrowthLastYear:
-                return "liabilitiesToEquity"
-            case TableColumn.totalLiabilitiesToEquityGrowthLast3Years:
-                return "liabilitiesToEquity"
+                case StockTableColumn.currentLiabilitiesToEquityLastQuarter:
+                    return "liabilitiesToEquity"
+                case StockTableColumn.currentLiabilitiesToEquityLastYear:
+                    return "liabilitiesToEquity"
+                case StockTableColumn.currentLiabilitiesToEquityGrowthLastQuarter:
+                    return "liabilitiesToEquity"
+                case StockTableColumn.currentLiabilitiesToEquityGrowthLastYear:
+                    return "liabilitiesToEquity"
+                case StockTableColumn.currentLiabilitiesToEquityGrowthLast3Years:
+                    return "liabilitiesToEquity"
 
-            case TableColumn.stockRepurchasedLastQuarter:
-                return "stock"
-            case TableColumn.stockRepurchasedLastYear:
-                return "stock"
-            case TableColumn.stockRepurchasedGrowthLastQuarter:
-                return "stock"
-            case TableColumn.stockRepurchasedGrowthLastYear:
-                return "stock"
-            case TableColumn.stockRepurchasedGrowthLast3Years:
-                return "stock"
+                case StockTableColumn.totalLiabilitiesToEquityLastQuarter:
+                    return "liabilitiesToEquity"
+                case StockTableColumn.totalLiabilitiesToEquityLastYear:
+                    return "liabilitiesToEquity"
+                case StockTableColumn.totalLiabilitiesToEquityGrowthLastQuarter:
+                    return "liabilitiesToEquity"
+                case StockTableColumn.totalLiabilitiesToEquityGrowthLastYear:
+                    return "liabilitiesToEquity"
+                case StockTableColumn.totalLiabilitiesToEquityGrowthLast3Years:
+                    return "liabilitiesToEquity"
 
-            case TableColumn.stockLastQuarter:
-                return "stock"
-            case TableColumn.stockLastYear:
-                return "stock"
-            case TableColumn.stockGrowthLastQuarter:
-                return "stock"
-            case TableColumn.stockGrowthLastYear:
-                return "stock"
-            case TableColumn.stockGrowthLast3Years:
-                return "stock"
+                case StockTableColumn.stockRepurchasedLastQuarter:
+                    return "stock"
+                case StockTableColumn.stockRepurchasedLastYear:
+                    return "stock"
+                case StockTableColumn.stockRepurchasedGrowthLastQuarter:
+                    return "stock"
+                case StockTableColumn.stockRepurchasedGrowthLastYear:
+                    return "stock"
+                case StockTableColumn.stockRepurchasedGrowthLast3Years:
+                    return "stock"
 
-            case TableColumn.epsCurrentQuarterEstimate:
-                return "eps"
-            case TableColumn.epsLastQuarter:
-                return "eps"
-            case TableColumn.eps2QuartersAgo:
-                return "eps"
-            case TableColumn.eps3QuartersAgo:
-                return "eps"
-            case TableColumn.eps4QuartersAgo:
-                return "eps"
-            case TableColumn.epsLastYear:
-                return "eps"
-            case TableColumn.eps2YearsAgo:
-                return "eps"
-            case TableColumn.eps3YearsAgo:
-                return "eps"
-            case TableColumn.eps4YearsAgo:
-                return "eps"
-            case TableColumn.epsGrowthLastQuarter:
-                return "eps"
-            case TableColumn.epsGrowthLast2Quarters:
-                return "eps"
-            case TableColumn.epsGrowthLast3Quarters:
-                return "eps"
-            case TableColumn.epsGrowthEstimateLastQuarter:
-                return "eps"
-            case TableColumn.epsGrowthLastYear:
-                return "eps"
-            case TableColumn.epsGrowthLast2Years:
-                return "eps"
-            case TableColumn.epsGrowthLast3Years:
-                return "eps"
+                case StockTableColumn.stockLastQuarter:
+                    return "stock"
+                case StockTableColumn.stockLastYear:
+                    return "stock"
+                case StockTableColumn.stockGrowthLastQuarter:
+                    return "stock"
+                case StockTableColumn.stockGrowthLastYear:
+                    return "stock"
+                case StockTableColumn.stockGrowthLast3Years:
+                    return "stock"
 
-            case TableColumn.peLastQuarter:
-                return "pe"
-            case TableColumn.pe2QuartersAgo:
-                return "pe"
-            case TableColumn.pe3QuartersAgo:
-                return "pe"
-            case TableColumn.pe4QuartersAgo:
-                return "pe"
-            case TableColumn.peGrowthLastQuarter:
-                return "pe"
-            case TableColumn.peGrowthLast2Quarters:
-                return "pe"
-            case TableColumn.peGrowthLast3Quarters:
-                return "pe"
+                case StockTableColumn.epsCurrentQuarterEstimate:
+                    return "eps"
+                case StockTableColumn.epsLastQuarter:
+                    return "eps"
+                case StockTableColumn.eps2QuartersAgo:
+                    return "eps"
+                case StockTableColumn.eps3QuartersAgo:
+                    return "eps"
+                case StockTableColumn.eps4QuartersAgo:
+                    return "eps"
+                case StockTableColumn.epsLastYear:
+                    return "eps"
+                case StockTableColumn.eps2YearsAgo:
+                    return "eps"
+                case StockTableColumn.eps3YearsAgo:
+                    return "eps"
+                case StockTableColumn.eps4YearsAgo:
+                    return "eps"
+                case StockTableColumn.epsGrowthLastQuarter:
+                    return "eps"
+                case StockTableColumn.epsGrowthLast2Quarters:
+                    return "eps"
+                case StockTableColumn.epsGrowthLast3Quarters:
+                    return "eps"
+                case StockTableColumn.epsGrowthEstimateLastQuarter:
+                    return "eps"
+                case StockTableColumn.epsGrowthLastYear:
+                    return "eps"
+                case StockTableColumn.epsGrowthLast2Years:
+                    return "eps"
+                case StockTableColumn.epsGrowthLast3Years:
+                    return "eps"
+
+                case StockTableColumn.peLastQuarter:
+                    return "pe"
+                case StockTableColumn.pe2QuartersAgo:
+                    return "pe"
+                case StockTableColumn.pe3QuartersAgo:
+                    return "pe"
+                case StockTableColumn.pe4QuartersAgo:
+                    return "pe"
+                case StockTableColumn.peGrowthLastQuarter:
+                    return "pe"
+                case StockTableColumn.peGrowthLast2Quarters:
+                    return "pe"
+                case StockTableColumn.peGrowthLast3Quarters:
+                    return "pe"
+            }
         }
-
     }
 }
