@@ -10,7 +10,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import moment from "moment";
 import {StockInfo} from "../model/StockInfo";
 import {IndicesChartData} from "../model/IndicesChartData";
-import {IndexChartDataRaw} from "../model/IndexChartDataRaw";
 import {IndicesPriceChart} from "./IndicesPriceChart";
 
 

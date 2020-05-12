@@ -66,7 +66,6 @@ export class StockAnalystService {
             return 0
         }
         const number: number = value as number
-        const string: string = value as string
         const avg = averages[colIndex] as number
         let score
 
