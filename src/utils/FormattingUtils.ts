@@ -241,11 +241,11 @@ export class FormattingUtils {
             case "epsLastQuarter" :
                 return "EPS (LQ)"
             case "eps2QuartersAgo" :
-                return "EPS (L2Q)"
+                return "EPS (-2Q)"
             case "eps3QuartersAgo" :
-                return "EPS (L3Q)"
+                return "EPS (-3Q)"
             case "eps4QuartersAgo" :
-                return "EPS (L4Q)"
+                return "EPS (-4Q)"
             case "epsGrowthLastQuarter" :
                 return "EPS growth (LQ)"
             case "epsGrowthLast2Quarters" :
@@ -257,11 +257,11 @@ export class FormattingUtils {
             case "epsLastYear":
                 return "EPS (LY)"
             case "eps2YearsAgo":
-                return "EPS (L2Y)"
+                return "EPS (-2Y)"
             case "eps3YearsAgo":
-                return "EPS (L3Y)"
+                return "EPS (-3Y)"
             case "eps4YearsAgo":
-                return "EPS (L4Y)"
+                return "EPS (-4Y)"
             case "epsGrowthLastYear":
                 return "Eps growth (LY)"
             case "epsGrowthLast2Years":
@@ -269,17 +269,17 @@ export class FormattingUtils {
             case "epsGrowthLast3Years":
                 return "Eps growth (L3Y)"
             case "netIncome3QuartersAgo":
-                return "Net income (L3Q)"
+                return "Net income (-3Q)"
             case "netIncome3YearsAgo":
-                return "Net income (L3Y)"
+                return "Net income (-3Y)"
             case "peLastQuarter":
                 return "P/E (LQ)"
             case "pe2QuartersAgo":
-                return "P/E (L2Q)"
+                return "P/E (-2Q)"
             case "pe3QuartersAgo":
-                return "P/E (L3Q)"
+                return "P/E (-3Q)"
             case "pe4QuartersAgo":
-                return "P/E (L4Q)"
+                return "P/E (-4Q)"
             case "peGrowthLastQuarter":
                 return "P/E growth (LQ)"
             case "peGrowthLast2Quarters":
@@ -289,9 +289,9 @@ export class FormattingUtils {
             case "netIncomeGrowthLast2Quarters":
                 return "Net income growth (L2Q)"
             case "revenue2QuartersAgo":
-                return "Revenue (L2Q)"
+                return "Revenue (-2Q)"
             case "revenue3QuartersAgo":
-                return "Revenue (L3Q)"
+                return "Revenue (-3Q)"
             case "revenueGrowthLast2Quarters":
                 return "Revenue growth (L2Q)"
             //index cols
@@ -362,6 +362,35 @@ export class FormattingUtils {
 
             case "fundInceptionDate":
                 return "Inception date"
+
+            case "payoutRatio":
+                return "Payout ratio"
+            case "currentAssetsLastQuarter":
+                return "Current assets (LQ)"
+            case "currentAssetsLastYear":
+                return "Current assets (LY)"
+            case "currentAssetsGrowthLastQuarter":
+                return "Current assets growth (LQ)"
+            case "currentAssetsGrowthLastYear":
+                return "Current assets growth (LY)"
+            case "currentAssetsGrowthLast3Years":
+                return "Current assets growth (L3Y)"
+            case "grossIncomeLastQuarter":
+                return "Gross income (LQ)"
+            case "grossIncome2QuartersAgo":
+                return "Gross income (-2Q)"
+            case "grossIncome3QuartersAgo":
+                return "Gross income (-3Q)"
+            case "grossIncomeLastYear":
+                return "Gross income (LY)"
+            case "grossIncome3YearsAgo":
+                return "Gross income (-3Y)"
+            case "grossIncomeGrowthLastQuarter":
+                return "Gross income growth (LQ)"
+            case "grossIncomeGrowthLast2Quarters":
+                return "Gross income growth (L2Q)"
+            case "grossIncomeGrowthLast3Years":
+                return "Gross income growth (L3Y)"
             default:
                 return field;
         }

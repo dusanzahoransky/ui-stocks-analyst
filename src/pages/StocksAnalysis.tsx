@@ -62,12 +62,12 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     ];
 
     componentDidMount() {
+        this.PRESET_WATCHLISTS
+            .forEach(watchlist => this.loadWatchlistData(watchlist, false))
+            // .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
         this.PRESET_INDICES_WATCHLISTS
             // .forEach(watchlist => this.loadWatchlistData(watchlist, true, false, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, true))
-        this.PRESET_WATCHLISTS
-            // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
-            .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
     }
 
     private async loadWatchlistData(watchlist: string,

@@ -41,6 +41,7 @@ export enum StockTableColumn {
     exDividendDate,
     fiveYearAvgDividendYield,
     trailingAnnualDividendYield,
+    payoutRatio,
 
     netIncomeLastQuarter,
     netIncome2QuartersAgo,
@@ -50,6 +51,15 @@ export enum StockTableColumn {
     netIncomeGrowthLastQuarter,
     netIncomeGrowthLast2Quarters,
     netIncomeGrowthLast3Years,
+
+    grossIncomeLastQuarter,
+    grossIncome2QuartersAgo,
+    grossIncome3QuartersAgo,
+    grossIncomeLastYear,
+    grossIncome3YearsAgo,
+    grossIncomeGrowthLastQuarter,
+    grossIncomeGrowthLast2Quarters,
+    grossIncomeGrowthLast3Years,
 
     revenueLastQuarter,
     revenue2QuartersAgo,
@@ -72,17 +82,23 @@ export enum StockTableColumn {
     inventoryGrowthLastYear,
     inventoryGrowthLast3Years,
 
+    currentAssetsLastQuarter,
+    currentAssetsLastYear,
+    currentAssetsGrowthLastQuarter,
+    currentAssetsGrowthLastYear,
+    currentAssetsGrowthLast3Years,
+
     currentLiabilitiesLastQuarter,
     currentLiabilitiesLastYear,
-    // currentLiabilitiesGrowthLastQuarter,
-    // currentLiabilitiesGrowthLastYear,
-    // currentLiabilitiesGrowthLast3Years,
+    currentLiabilitiesGrowthLastQuarter,
+    currentLiabilitiesGrowthLastYear,
+    currentLiabilitiesGrowthLast3Years,
 
     totalLiabilitiesLastQuarter,
     totalLiabilitiesLastYear,
-    // totalLiabilitiesGrowthLastQuarter,
-    // totalLiabilitiesGrowthLastYear,
-    // totalLiabilitiesGrowthLast3Years,
+    totalLiabilitiesGrowthLastQuarter,
+    totalLiabilitiesGrowthLastYear,
+    totalLiabilitiesGrowthLast3Years,
 
     totalShareholdersEquityLastQuarter,
     totalShareholdersEquityLastYear,

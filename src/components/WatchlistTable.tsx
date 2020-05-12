@@ -134,12 +134,13 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             </td>
         );
         return (
-            <tr key={rowIndex} className={this.rowClass(rowIndex)} onClick={() => this.setSelectedRow(rowIndex)}>{rowValues}</tr>
+            <tr key={rowIndex} className={this.rowClass(rowIndex)}
+                onClick={() => this.setSelectedRow(rowIndex)}>{rowValues}</tr>
         )
     }
 
     rowClass(rowIndex: number): string {
-        return rowIndex === this.state.selectedRow? 'selected' : ''
+        return rowIndex === this.state.selectedRow ? 'selected' : ''
     }
 
     dataCellClass(rowData: any[], data: CellData, average: any, columnIndex: number): string {
@@ -256,6 +257,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                     return "dividents"
                 case StockTableColumn.trailingAnnualDividendYield:
                     return "dividents"
+                case StockTableColumn.payoutRatio:
+                    return "dividents"
 
                 case StockTableColumn.netIncomeLastQuarter:
                     return "income"
@@ -317,9 +320,21 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                     return "liabilities"
                 case StockTableColumn.currentLiabilitiesLastYear:
                     return "liabilities"
+                case StockTableColumn.currentLiabilitiesGrowthLastQuarter:
+                    return "liabilities"
+                case StockTableColumn.currentLiabilitiesGrowthLastYear:
+                    return "liabilities"
+                case StockTableColumn.currentLiabilitiesGrowthLast3Years:
+                    return "liabilities"
                 case StockTableColumn.totalLiabilitiesLastQuarter:
                     return "liabilities"
                 case StockTableColumn.totalLiabilitiesLastYear:
+                    return "liabilities"
+                case StockTableColumn.totalLiabilitiesGrowthLastQuarter:
+                    return "liabilities"
+                case StockTableColumn.totalLiabilitiesGrowthLastYear:
+                    return "liabilities"
+                case StockTableColumn.totalLiabilitiesGrowthLast3Years:
                     return "liabilities"
 
                 case StockTableColumn.totalShareholdersEquityLastQuarter:
@@ -431,7 +446,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     private setSelectedRow(rowIndex: number) {
         this.setState(state => {
             return {
-                selectedRow : state.selectedRow === rowIndex ? undefined : rowIndex
+                selectedRow: state.selectedRow === rowIndex ? undefined : rowIndex
             }
         })
     }

@@ -239,8 +239,8 @@ export class StockAnalystService {
                 break;
             case StockTableColumn.exDividendDate:
                 const daysToExDividend = -moment().diff(string, 'days')
-                const lastDivYield = rowValues[StockTableColumn.trailingAnnualDividendYield] as number
-                score = daysToExDividend > 0 && daysToExDividend < 30 ? Math.pow(lastDivYield, 2) : 0
+                const fiveYearAvgDividendYield = rowValues[StockTableColumn.fiveYearAvgDividendYield] as number
+                score = daysToExDividend > 0 && daysToExDividend < 30 ? fiveYearAvgDividendYield : 0
                 break;
             case StockTableColumn.fiveYearAvgDividendYield:
                 score = number
@@ -249,6 +249,11 @@ export class StockAnalystService {
             case StockTableColumn.trailingAnnualDividendYield:
                 score = number
                 score *= 5
+                break;
+            case StockTableColumn.payoutRatio:
+                score = 100 - number
+                const trailingAnnualDividendYield = rowValues[StockTableColumn.trailingAnnualDividendYield] as number
+                score *= trailingAnnualDividendYield
                 break;
             case StockTableColumn.heldByInsiders:
                 score = number
@@ -277,6 +282,18 @@ export class StockAnalystService {
                 score = number
                 score *= 1
                 break;
+            case StockTableColumn.grossIncomeGrowthLastQuarter:
+                score = number
+                score *= 1
+                break;
+            case StockTableColumn.grossIncomeGrowthLast2Quarters:
+                score = number
+                score *= 1
+                break;
+            case StockTableColumn.grossIncomeGrowthLast3Years:
+                score = number
+                score *= 1
+                break;
             case StockTableColumn.revenueGrowthLastQuarter:
                 score = number
                 score *= 1
@@ -292,6 +309,42 @@ export class StockAnalystService {
             case StockTableColumn.cashGrowthLastQuarter:
                 score = number
                 score *= 0.2
+                break;
+            case StockTableColumn.currentAssetsGrowthLastQuarter:
+                score = number
+                score *= 0.05
+                break;
+            case StockTableColumn.currentAssetsGrowthLastYear:
+                score = number
+                score *= 0.02
+                break;
+            case StockTableColumn.currentAssetsGrowthLast3Years:
+                score = number
+                score *= 0.02
+                break;
+            case StockTableColumn.currentLiabilitiesGrowthLastQuarter:
+                score = -number
+                score *= 0.05
+                break;
+            case StockTableColumn.currentLiabilitiesGrowthLastYear:
+                score = -number
+                score *= 0.02
+                break;
+            case StockTableColumn.currentLiabilitiesGrowthLast3Years:
+                score = -number
+                score *= 0.02
+                break;
+            case StockTableColumn.totalLiabilitiesGrowthLastQuarter:
+                score = -number
+                score *= 0.05
+                break;
+            case StockTableColumn.totalLiabilitiesGrowthLastYear:
+                score = -number
+                score *= 0.02
+                break;
+            case StockTableColumn.totalLiabilitiesGrowthLast3Years:
+                score = -number
+                score *= 0.02
                 break;
             case StockTableColumn.inventoryGrowthLastQuarter:
                 score = number
@@ -313,17 +366,41 @@ export class StockAnalystService {
                 score = StockAnalystService.ratioScore(number)
                 score *= 1
                 break;
+            case StockTableColumn.currentLiabilitiesToEquityLastYear:
+                score = StockAnalystService.ratioScore(number)
+                score *= 0.5
+                break;
             case StockTableColumn.currentLiabilitiesToEquityGrowthLastQuarter:
                 score = -number
                 score *= 1
+                break;
+            case StockTableColumn.currentLiabilitiesToEquityGrowthLastYear:
+                score = -number
+                score *= 0.5
+                break;
+            case StockTableColumn.currentLiabilitiesToEquityGrowthLast3Years:
+                score = -number
+                score *= 0.5
                 break;
             case StockTableColumn.totalLiabilitiesToEquityLastQuarter:
                 score = StockAnalystService.ratioScore(number)
                 score *= 1
                 break;
+            case StockTableColumn.totalLiabilitiesToEquityLastYear:
+                score = StockAnalystService.ratioScore(number)
+                score *= 0.5
+                break;
             case StockTableColumn.totalLiabilitiesToEquityGrowthLastQuarter:
                 score = -number
                 score *= 0.1
+                break;
+            case StockTableColumn.totalLiabilitiesToEquityGrowthLastYear:
+                score = -number
+                score *= 0.05
+                break;
+            case StockTableColumn.totalLiabilitiesToEquityGrowthLast3Years:
+                score = -number
+                score *= 0.05
                 break;
             case StockTableColumn.stockGrowthLastQuarter:
                 score = number > 10 ? -10 : 0
