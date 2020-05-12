@@ -13,6 +13,11 @@ table {
     /*width:1880px;*/
 }
 
+tr.selected{
+    box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to top, #FFFFFF, #e0e3ef);
+}
+
 th {
     position: sticky;
     top: 130px;

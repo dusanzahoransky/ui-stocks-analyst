@@ -310,7 +310,7 @@ export class StockAnalystService {
                 score *= 0.1
                 break;
             case StockTableColumn.currentLiabilitiesToEquityLastQuarter:
-                score = 0.5 - number
+                score = StockAnalystService.ratioScore(number)
                 score *= 1
                 break;
             case StockTableColumn.currentLiabilitiesToEquityGrowthLastQuarter:

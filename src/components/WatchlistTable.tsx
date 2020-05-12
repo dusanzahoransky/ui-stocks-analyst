@@ -16,6 +16,7 @@ export interface TableProps {
 }
 
 export interface TableState {
+    selectedRow: number;
     sortAsc: boolean;
     sortedBy: number;
     sortedData: CellData[][];
@@ -28,6 +29,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     constructor(props: Readonly<TableProps>) {
         super(props);
         this.state = {
+            selectedRow: undefined,
             sortAsc: this.SORT_DEFAULT_ASC,
             sortedBy: undefined,
             sortedData: props.data
@@ -132,8 +134,12 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             </td>
         );
         return (
-            <tr key={rowIndex}>{rowValues}</tr>
+            <tr key={rowIndex} className={this.rowClass(rowIndex)} onClick={() => this.setSelectedRow(rowIndex)}>{rowValues}</tr>
         )
+    }
+
+    rowClass(rowIndex: number): string {
+        return rowIndex === this.state.selectedRow? 'selected' : ''
     }
 
     dataCellClass(rowData: any[], data: CellData, average: any, columnIndex: number): string {
@@ -420,5 +426,13 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                     return "pe"
             }
         }
+    }
+
+    private setSelectedRow(rowIndex: number) {
+        this.setState(state => {
+            return {
+                selectedRow : state.selectedRow === rowIndex ? undefined : rowIndex
+            }
+        })
     }
 }

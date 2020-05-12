@@ -48,6 +48,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         'USD',
         'USD_TECH',
         'USD_DIVIDENDS',
+        'AIRLINES',
         /*'NASDAQ_100',*/
         /*        'TRADING_212_US',
                 'TRADING_212_EUR',
