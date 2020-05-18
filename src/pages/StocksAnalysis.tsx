@@ -58,8 +58,11 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     private readonly PRESET_INDICES_WATCHLISTS = [
         /*'TEST_INDICES',*/
+        'AUD_INDICES_INVESTED',
         'AUD_INDICES',
-         'GBP_INDICES'
+         'GBP_INDICES_INVESTED',
+         'GBP_INDICES',
+         'INDICES'
     ];
 
     componentDidMount() {
