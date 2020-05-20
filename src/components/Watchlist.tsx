@@ -26,6 +26,10 @@ export interface WatchlistProps {
 
 export interface WatchlistState {
     priceEpsData?: PriceEpsDataRaw[]
+    /**
+     * Remove outliers which would otherwise deform the chart, e.g. an EP which is extremely high in a single quarter
+     */
+    priceEpsChartRemoveOutliers?: boolean
     indicesChartSymbols?: string[]
     chartLabel?: string
 }
@@ -40,7 +44,9 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             priceEpsData: undefined,
             //uncomment to render chart of the first stock on load
             // priceEpsData: props.result ? props.result.stocks[0].chartData : undefined
-            indicesChartSymbols: []
+            // indicesChartSymbols: ['VTS', 'VUSA'],
+            indicesChartSymbols: [],
+            priceEpsChartRemoveOutliers: true
         }
         this.stockAnalystService = new StockAnalystService();
 
@@ -107,11 +113,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     stockOnClickHandler = (stockSymbol: string) => {
-        if(this.props.isIndex){
+        if (this.props.isIndex) {
             let updatedSymbols;
-            if(this.state.indicesChartSymbols.includes(stockSymbol)){
-                updatedSymbols = this.state.indicesChartSymbols.filter( s => s !== stockSymbol)
-            } else{
+            if (this.state.indicesChartSymbols.includes(stockSymbol)) {
+                updatedSymbols = this.state.indicesChartSymbols.filter(s => s !== stockSymbol)
+            } else {
                 updatedSymbols = this.state.indicesChartSymbols.concat(stockSymbol)
             }
             this.setState(state => {
@@ -178,22 +184,24 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const allDates = Array.from(new Set(chartStocks.flatMap(s => s.chartData.map(d => d.date))))
             .sort()
 
-        const chartData = new Array(allDates.length)
-        for(let i = 0; i < allDates.length; i++){
+        const chartData = new Array<IndicesChartData>(allDates.length)
+        for (let i = 0; i < allDates.length; i++) {
             const date = allDates[i]
             const dataPoint: IndicesChartData = {
                 date: moment(allDates[i] * 1000).format('YYYY-MM-DD')
             }
-            for(const stock of chartStocks){
+            for (const stock of chartStocks) {
                 let chartDataAtDate = stock.chartData.filter(d => d.date === date)[0];
-                if(chartDataAtDate){
+                if (chartDataAtDate) {
                     dataPoint[stock.symbol] = chartDataAtDate.price
                 }
             }
             chartData[i] = dataPoint
         }
+
         return chartData
     }
+
     private prepareEpsChartData(priceEpsData: PriceEpsDataRaw[], peRatio: number): PriceEpsData[] | undefined {
         if (!priceEpsData) return undefined
 
@@ -217,5 +225,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             return processedData
         })
     }
+
+
 }
 

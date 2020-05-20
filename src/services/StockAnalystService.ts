@@ -204,10 +204,10 @@ export class StockAnalystService {
                 score = number * 0.1
                 break
             case StockTableColumn.trailingPE:
-                score = this.peScore(number) * 0.2;
+                score = this.peScore(number) * 0.5;
                 break;
             case StockTableColumn.forwardPE:
-                score = this.peScore(number) * 0.2;
+                score = this.peScore(number) * 0.5;
                 break;
             case StockTableColumn.priceToSalesTrailing12Months:
                 score = 0;
@@ -250,9 +250,10 @@ export class StockAnalystService {
                 score *= 5
                 break;
             case StockTableColumn.payoutRatio:
-                score = 100 - number
+                score = 70 - number
                 const trailingAnnualDividendYield = rowValues[StockTableColumn.trailingAnnualDividendYield] as number
-                score *= trailingAnnualDividendYield
+                score *= trailingAnnualDividendYield / 3
+                score = Math.max(score, 0)
                 break;
             case StockTableColumn.heldByInsiders:
                 score = number
@@ -323,15 +324,15 @@ export class StockAnalystService {
                 break;
             case StockTableColumn.currentLiabilitiesGrowthLastQuarter:
                 score = -number
-                score *= 0.05
+                score *= 0.02
                 break;
             case StockTableColumn.currentLiabilitiesGrowthLastYear:
                 score = -number
-                score *= 0.02
+                score *= 0.01
                 break;
             case StockTableColumn.currentLiabilitiesGrowthLast3Years:
                 score = -number
-                score *= 0.02
+                score *= 0.01
                 break;
             case StockTableColumn.totalLiabilitiesGrowthLastQuarter:
                 score = -number
@@ -363,35 +364,35 @@ export class StockAnalystService {
                 break;
             case StockTableColumn.currentLiabilitiesToEquityLastQuarter:
                 score = StockAnalystService.ratioScore(number)
-                score *= 1
+                score *= 0.5
                 break;
             case StockTableColumn.currentLiabilitiesToEquityLastYear:
                 score = StockAnalystService.ratioScore(number)
-                score *= 0.5
+                score *= 0.2
                 break;
             case StockTableColumn.currentLiabilitiesToEquityGrowthLastQuarter:
                 score = -number
-                score *= 1
+                score *= 0.05
                 break;
             case StockTableColumn.currentLiabilitiesToEquityGrowthLastYear:
                 score = -number
-                score *= 0.5
+                score *= 0.02
                 break;
             case StockTableColumn.currentLiabilitiesToEquityGrowthLast3Years:
                 score = -number
-                score *= 0.5
+                score *= 0.02
                 break;
             case StockTableColumn.totalLiabilitiesToEquityLastQuarter:
                 score = StockAnalystService.ratioScore(number)
-                score *= 1
+                score *= 20
                 break;
             case StockTableColumn.totalLiabilitiesToEquityLastYear:
                 score = StockAnalystService.ratioScore(number)
-                score *= 0.5
+                score *= 20
                 break;
             case StockTableColumn.totalLiabilitiesToEquityGrowthLastQuarter:
                 score = -number
-                score *= 0.1
+                score *= 0.01
                 break;
             case StockTableColumn.totalLiabilitiesToEquityGrowthLastYear:
                 score = -number
