@@ -42,6 +42,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     private readonly PRESET_WATCHLISTS = [
         'TEST',
         'TO_INVEST',
+        'INVESTED_IN_USD_TECH',
+        'INVESTED_IN_USD',
         'AUD',
         'CHF',
         'EUR',
@@ -57,15 +59,15 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     ];
 
     private readonly PRESET_INDICES_WATCHLISTS = [
-       /* 'TEST_INDICES',*/
+        /* 'TEST_INDICES',*/
+        'INVESTED_IN_AUD_INDICES',
+        'INVESTED_IN_GBP_INDICES',
         'AUD_INDICES_AU',
         'AUD_INDICES_ASIA',
         'AUD_INDICES_US',
-        'AUD_INDICES_INVESTED',
         'AUD_INDICES',
-         'GBP_INDICES_INVESTED',
-         'GBP_INDICES',
-         'INDICES'
+        'GBP_INDICES',
+        'INDICES'
     ];
 
     componentDidMount() {

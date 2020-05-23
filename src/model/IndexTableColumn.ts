@@ -24,9 +24,9 @@ export enum IndexTableColumn {
 
     oneMonth,
     threeMonth,
+    ytd,
     oneYear,
     threeYear,
-    ytd,
     fiveYear,
     tenYear,
 

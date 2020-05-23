@@ -65,8 +65,9 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(watchlist)}/> : ''
 
         return <div
-            className="Watchlist" key={watchlist}>
-            <h2 className="WatchlistName">{showLink} Watchlist: {watchlist}{refreshLink}</h2>
+            className="Watchlist"
+            key={watchlist}>
+            <h2 className={"WatchlistName " + (this.props.isIndex ? "Index" : "Stock")} >{showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}</h2>
             {epsChart}
             {table}
         </div>
@@ -227,5 +228,23 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
 
+    private static toWatchlistLabel(watchlist: string) {
+        return watchlist
+            .replace(/[a-zA-Z]+/g, function (g) {
+                switch (g) {
+                    case 'AUD':
+                    case 'EUR':
+                    case 'USD':
+                    case 'AU':
+                    case 'US':
+                    case 'CHF':
+                    case 'GBP':
+                        return g;
+                    default: return g[0].toUpperCase().concat(g.substr(1).toLowerCase());
+                }
+
+            })
+            .replace(/_/g, ' ')
+    }
 }
 

@@ -40,7 +40,7 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, I
         return (
             <div className={'IndicesPriceChart'}>
                 {chartLabel}
-                Consolidate price: <input
+                Consolidate latest price: <input
                 name="consolidatePrice"
                 type="checkbox"
                 checked={this.state.consolidatePrice}
