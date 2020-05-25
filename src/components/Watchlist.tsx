@@ -12,6 +12,10 @@ import moment from "moment";
 import {StockInfo} from "../model/StockInfo";
 import {IndicesChartData} from "../model/IndicesChartData";
 import {IndicesPriceChart} from "./IndicesPriceChart";
+import {StockRatiosPeriods} from "../model/StockRatiosPeriods";
+import {RatioChart} from "./RatioChart";
+import {RatioChartData} from "../model/RatioChartData";
+import {ChartRatios} from "../model/ChartRatios";
 
 
 export interface WatchlistProps {
@@ -27,7 +31,7 @@ export interface WatchlistProps {
 
 export interface WatchlistState {
     priceEpsData?: PriceEpsDataRaw[]
-    ratiosData?: PriceEpsDataRaw[]
+    ratiosData?: StockRatiosPeriods
     /**
      * Remove outliers which would otherwise deform the chart, e.g. an EP which is extremely high in a single quarter
      */
@@ -45,8 +49,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         this.state = {
             // priceEpsData: undefined,
             //uncomment to render chart of the first stock on load
-            priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
-            ratiosData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
+            //priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
+            ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
             // indicesChartSymbols: ['VTS', 'VUSA'],
             indicesChartSymbols: [],
             priceEpsChartRemoveOutliers: true
@@ -77,10 +81,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderIndicesChart() {
-        if (!this.props.isLoaded || this.state.indicesChartSymbols.length == 0) {
+        if (!this.props.isLoaded || this.state.indicesChartSymbols.length === 0) {
             return ''
         }
-         const chartData = this.prepareIndicesChartData(this.props.result.stocks);
+        const chartData = this.prepareIndicesChartData(this.props.result.stocks);
         return <div className={!chartData ? 'hidden' : ''}>
             <IndicesPriceChart
                 data={chartData}
@@ -89,18 +93,45 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         </div>
     }
 
-    renderCompanyCharts(peRatio: number, priceEpsData?: PriceEpsDataRaw[], ratiosData?:PriceEpsDataRaw[]) {
+    renderCompanyCharts(peRatio: number, priceEpsData?: PriceEpsDataRaw[], ratiosData?: StockRatiosPeriods) {
         if (!this.props.isLoaded) {
             return ''
-        } else {
-            const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
-            return <div className={!chartData ? 'hidden' : ''}>
-                {/*<RatioChart></RatioChart>*/}
-                <PriceEpsChart
-                    data={chartData}
-                    description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
-            </div>
         }
+        const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
+        const priceEpsChart = <PriceEpsChart
+            data={chartData}
+            description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>;
+
+        const periods = Object.keys(ratiosData);
+        const ratiosCharts = this.getChartRatios().map(ratio => {
+            const chartData: RatioChartData[] = periods.map(period => {
+                return {
+                    date: period,
+                    value: ratiosData[period][ratio] as number
+                }
+            });
+            return <RatioChart
+                key={ratio}
+                data={chartData}
+                label={`${ChartRatios[ratio]}`}/>;
+        })
+        return <div>
+            <div className={!ratiosData ? 'hidden' : ''}>{ratiosCharts}</div>
+            <div className={!chartData ? 'hidden' : ''}>{priceEpsChart}</div>
+        </div>
+
+    }
+
+    private getChartRatios(): string[] {
+        const enumNames = []
+
+        for (const enumMember in ChartRatios) {
+            if (Number.isNaN(Number.parseInt(enumMember))) {
+                enumNames.push(enumMember)
+            }
+        }
+
+        return enumNames
     }
 
     getStockInfo(result: StockAnalysisResult | IndicesAnalysisResult, isIndex: boolean): StockInfo[] {

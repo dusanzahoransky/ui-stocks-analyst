@@ -1,4 +1,4 @@
-import {Ratios} from "./Ratios";
+import {StockRatiosPeriods} from "./StockRatiosPeriods";
 
 export interface StockRatiosTimeline {
     id: string,
@@ -6,5 +6,5 @@ export interface StockRatiosTimeline {
     mic: string,
     exchange: string,
     date: string,
-    periods: {[period: string]: Ratios}
+    periods: StockRatiosPeriods
 }

@@ -395,4 +395,32 @@ export class FormattingUtils {
                 return field;
         }
     }
+
+
+    static scaleFactor(value: number): number {
+        if (value > 1000000000000 || value < -1000000000000) {
+             return 1000000000000;
+        }
+        if (value > 1000000000 || value < -1000000000) {
+            return 1000000000;
+        }
+        if (value > 1000000 || value < -1000000) {
+            return 1000000;
+        }
+        return 1;
+    }
+
+    static scaleFactorLabel(value: number): string {
+        if (value > 1000000000000 || value < -1000000000000) {
+             return "T";
+        }
+        if (value > 1000000000 || value < -1000000000) {
+            return "B";
+        }
+        if (value > 1000000 || value < -1000000) {
+            return "M";
+        }
+        return "";
+    }
+
 }
