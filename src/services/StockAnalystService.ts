@@ -1,4 +1,5 @@
-import {AnalysisResult} from "../model/AnalysisResult";
+import {StockAnalysisResult} from "../model/StockAnalysisResult";
+import {IndicesAnalysisResult} from "../model/IndicesAnalysisResult";
 import {CellData} from "../model/CellData";
 import {StockTableColumn} from "../model/StockTableColumn";
 import moment from "moment";
@@ -11,21 +12,21 @@ import {IndexTableColumn} from "../model/IndexTableColumn";
 
 export class StockAnalystService {
 
-    async loadAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<AnalysisResult | BackendError> {
+    async loadAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<StockAnalysisResult | BackendError> {
         if (watchlist === 'TEST') {
             return Promise.resolve(resultTest)
         } else {
             return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
-                .then(r => r.json() as unknown as AnalysisResult);
+                .then(r => r.json() as unknown as StockAnalysisResult);
         }
     }
 
-    async loadIndicesAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<AnalysisResult | BackendError> {
+    async loadIndicesAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<IndicesAnalysisResult | BackendError> {
         if (watchlist === 'TEST_INDICES') {
             return Promise.resolve(indicesTest)
         } else {
             return fetch(`http://localhost:3000/stocks/indicesWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
-                .then(r => r.json() as unknown as AnalysisResult);
+                .then(r => r.json() as unknown as IndicesAnalysisResult);
         }
     }
 
