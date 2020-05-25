@@ -47,7 +47,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
         this.state = {
-            // priceEpsData: undefined,
+            priceEpsData: undefined,
+            // ratiosData: undefined,
             //uncomment to render chart of the first stock on load
             //priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
             ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
@@ -103,7 +104,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>;
 
         const periods = Object.keys(ratiosData);
-        const ratiosCharts = this.getChartRatios().map(ratio => {
+        const ratiosCharts = Watchlist.getChartRatios().map(ratio => {
             const chartData: RatioChartData[] = periods.map(period => {
                 return {
                     date: period,
@@ -115,14 +116,15 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 data={chartData}
                 label={`${ChartRatios[ratio]}`}/>;
         })
+
         return <div>
-            <div className={!ratiosData ? 'hidden' : ''}>{ratiosCharts}</div>
+            <div className={!ratiosData ? 'hidden' : ''}>{ratiosCharts}</div>;
             <div className={!chartData ? 'hidden' : ''}>{priceEpsChart}</div>
         </div>
 
     }
 
-    private getChartRatios(): string[] {
+    private static getChartRatios(): string[] {
         const enumNames = []
 
         for (const enumMember in ChartRatios) {
