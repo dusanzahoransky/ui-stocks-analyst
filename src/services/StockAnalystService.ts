@@ -41,6 +41,7 @@ export class StockAnalystService {
 
     scoreRow(averages: number[], rowValues: number[] | string[], isIndex: boolean): CellData[] {
         const cellData: CellData[] = []
+
         rowValues.forEach((value, colIndex) => {
             const score = isIndex ?
                 StockAnalystService.scoreIndexData(value, colIndex, rowValues, averages) :
@@ -52,11 +53,21 @@ export class StockAnalystService {
         })
 
         const totalScore = cellData.map(data => data.score)
+            .filter((score, index) => index < StockTableColumn.roic1Y)
+            .filter(score => score && !Number.isNaN(score))
+            .reduce((prev, curr) => prev + curr, 0);
+
+        const rule1Score = cellData.map(data => data.score)
+            .filter((score, index) => index >= StockTableColumn.roic1Y)
             .filter(score => score && !Number.isNaN(score))
             .reduce((prev, curr) => prev + curr, 0);
 
         cellData.push({
             value: totalScore
+        })
+
+        cellData.push({
+            value: rule1Score
         })
 
         return cellData
@@ -457,8 +468,78 @@ export class StockAnalystService {
             case StockTableColumn.peLastQuarter:
                 score = this.peScore(number);
                 break;
-
-
+            case StockTableColumn.roic1Y:
+                score = number - 10
+                score *= 5
+                break;
+            case StockTableColumn.roic2Y:
+                score = number - 10
+                score *= 3
+                break;
+            case StockTableColumn.revenue1Y:
+                score = number - 10
+                score *= 3
+                break;
+            case StockTableColumn.revenue3Y:
+                score = number - 10
+                score *= 2
+                break;
+            case StockTableColumn.revenue5Y:
+                score = number - 10
+                score *= 1
+                break;
+            case StockTableColumn.revenue9Y:
+                score = number - 10
+                score *= 1
+                break;
+            case StockTableColumn.eps1Y:
+                score = number - 10
+                score *= 3
+                break;
+            case StockTableColumn.eps3Y:
+                score = number - 10
+                score *= 2
+                break;
+            case StockTableColumn.eps5Y:
+                score = number - 10
+                score *= 1
+                break;
+            case StockTableColumn.eps9Y:
+                score = number - 10
+                score *= 1
+                break;
+            case StockTableColumn.bps1Y:
+                score = number - 10
+                score *= 1
+                break;
+            case StockTableColumn.bps3Y:
+                score = number - 10
+                score *= 1
+                break;
+            case StockTableColumn.bps5Y:
+                score = number - 10
+                score *= 0.5
+                break;
+            case StockTableColumn.bps9Y:
+                score = number - 10
+                score *= 0.5
+                break;
+            case StockTableColumn.cash1Y:
+                score = number - 10
+                score *= 1
+                break;
+            case StockTableColumn.cash3Y:
+                score = number - 10
+                score *= 1
+                break;
+            case StockTableColumn.cash5Y:
+                score = number - 10
+                score *= 0.5
+                break;
+            case StockTableColumn.cash9Y:
+                score = number - 10
+                score *= 0.5
+                break;
         }
         return score;
     }

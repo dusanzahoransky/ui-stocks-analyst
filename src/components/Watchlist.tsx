@@ -47,10 +47,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
         this.state = {
-            priceEpsData: undefined,
+            // priceEpsData: undefined,
             // ratiosData: undefined,
             //uncomment to render chart of the first stock on load
-            //priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
+            priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
             ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
             // indicesChartSymbols: ['VTS', 'VUSA'],
             indicesChartSymbols: [],
@@ -95,7 +95,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderCompanyCharts(peRatio: number, priceEpsData?: PriceEpsDataRaw[], ratiosData?: StockRatiosPeriods) {
-        if (!this.props.isLoaded) {
+        if (!this.props.isLoaded || !priceEpsData) {
             return ''
         }
         const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
@@ -114,7 +114,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             return <RatioChart
                 key={ratio}
                 data={chartData}
-                label={`${ChartRatios[ratio]}`}/>;
+                label={`${ChartRatios[ratio]}`}/>
         })
 
         return <div>
@@ -174,9 +174,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 }
             })
         } else {
-            const priceEpsData = this.getStockInfo(this.props.result, this.props.isIndex)
-                .filter(stock => stock.symbol === stockSymbol)
-                .map(stock => stock.chartData)[0]
+            let clickedStockWithRatios = this.props.result.stocks
+                .filter(stock => stock.stockInfo.symbol === stockSymbol)[0];
+            const priceEpsData = clickedStockWithRatios.stockInfo.chartData
+            const ratiosData = clickedStockWithRatios.stockRatiosTimeline.periods
 
             //close the graph on a second click
             if (this.state.priceEpsData === priceEpsData) {
@@ -189,6 +190,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 this.setState(state => {
                     return {
                         priceEpsData,
+                        ratiosData,
                         chartLabel: stockSymbol as string
                     }
                 })
@@ -199,13 +201,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     toHeaderData(averages: StockInfo): any[][] {
         averages = this.stockAnalystService.filterDisplayableStats(averages, this.props.isIndex)
         const headersRow = Object.keys(averages)
-            .filter(key => key !== 'periodValuationMeasures')
-            .concat('Score')
+            .concat('Score', 'Rule 1 Score')
 
         const averagesRow = Object.keys(averages)
-            .filter(key => key !== 'periodValuationMeasures')
             .map(key => averages[key])
-            .concat(0)
+            .concat(0, 0)
 
         return [
             headersRow,
@@ -218,7 +218,6 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         for (let stock of stocks) {
             stock = this.stockAnalystService.filterDisplayableStats(stock, this.props.isIndex)
             const rowValues = Object.keys(stock)
-                .filter(key => key !== 'periodValuationMeasures')
                 .map(key => stock[key] ? stock[key] : '')
             rows.push(rowValues);
         }

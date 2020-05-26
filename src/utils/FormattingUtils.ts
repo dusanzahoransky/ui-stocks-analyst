@@ -103,9 +103,9 @@ export class FormattingUtils {
             case "exDividendDate":
                 return "Ex div date"
             case "fiveYearAvgDividendYield":
-                return "5y avg div yield"
+                return "5y avg (dYvyield)"
             case "trailingAnnualDividendYield":
-                return "(Trl) A. div yield"
+                return "(Trl) A. (dYvyield)"
             case "targetLowPrice":
                 return "Target Low Price"
             case "belowTargetLowPricePercent":
@@ -391,6 +391,42 @@ export class FormattingUtils {
                 return "Gross income growth (L2Q)"
             case "grossIncomeGrowthLast3Years":
                 return "Gross income growth (L3Y)"
+            case "roic1Y":
+                return "Roic (1Y) cg."
+            case "roic2Y":
+                return "Roic (2Y) cg."
+            case "revenue1Y":
+                return "Revenue (1Y) cg."
+            case "revenue3Y":
+                return "Revenue (3Y) cg."
+            case "revenue5Y":
+                return "Revenue (5Y) cg."
+            case "revenue9Y":
+                return "Revenue (9Y) cg."
+            case "eps1Y":
+                return "Eps (1Y) cg."
+            case "eps3Y":
+                return "Eps (3Y) cg."
+            case "eps5Y":
+                return "Eps (5Y) cg."
+            case "eps9Y":
+                return "Eps (9Y) cg."
+            case "bps1Y":
+                return "Bps (1Y) cg."
+            case "bps3Y":
+                return "Bps (3Y) cg."
+            case "bps5Y":
+                return "Bps (5Y) cg."
+            case "bps9Y":
+                return "Bps (9Y) cg."
+            case "cash1Y":
+                return "Cash (1Y) cg."
+            case "cash3Y":
+                return "Cash (3Y) cg."
+            case "cash5Y":
+                return "Cash (5Y) cg."
+            case "cash9Y":
+                return "Cash (9Y) cg."
             default:
                 return field;
         }
