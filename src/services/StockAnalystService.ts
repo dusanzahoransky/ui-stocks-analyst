@@ -216,13 +216,17 @@ export class StockAnalystService {
                 score = number * 0.1
                 break
             case StockTableColumn.trailingPE:
-                score = this.peScore(number) * 0.5;
+                score = this.peScore(number);
                 break;
             case StockTableColumn.forwardPE:
-                score = this.peScore(number) * 0.5;
+                score = this.peScore(number);
                 break;
             case StockTableColumn.priceToSalesTrailing12Months:
-                score = 0;
+                score = 10 - number;
+                score *= 2
+                break;
+            case StockTableColumn.priceBook:
+                score = 2 - number;
                 break;
             case StockTableColumn.enterpriseValueRevenue:
                 score = 5 - number
@@ -469,81 +473,69 @@ export class StockAnalystService {
                 score = this.peScore(number);
                 break;
             case StockTableColumn.roic1Y:
-                score = number - 10
-                score *= 5
+                score = StockAnalystService.rule1Score(number, 5)
                 break;
-            case StockTableColumn.roic2Y:
-                score = number - 10
-                score *= 3
+            case StockTableColumn.roic3Y:
+                score = StockAnalystService.rule1Score(number, 3)
                 break;
             case StockTableColumn.revenue1Y:
-                score = number - 10
-                score *= 3
+                score = StockAnalystService.rule1Score(number, 3)
                 break;
             case StockTableColumn.revenue3Y:
-                score = number - 10
-                score *= 2
+                score = StockAnalystService.rule1Score(number, 2)
                 break;
             case StockTableColumn.revenue5Y:
-                score = number - 10
-                score *= 1
+                score = StockAnalystService.rule1Score(number, 1)
                 break;
             case StockTableColumn.revenue9Y:
-                score = number - 10
-                score *= 1
+                score = StockAnalystService.rule1Score(number, 0.5)
                 break;
             case StockTableColumn.eps1Y:
-                score = number - 10
-                score *= 3
+                score = StockAnalystService.rule1Score(number, 3)
                 break;
             case StockTableColumn.eps3Y:
-                score = number - 10
-                score *= 2
+                score = StockAnalystService.rule1Score(number, 2)
                 break;
             case StockTableColumn.eps5Y:
-                score = number - 10
-                score *= 1
+                score = StockAnalystService.rule1Score(number, 1)
                 break;
             case StockTableColumn.eps9Y:
-                score = number - 10
-                score *= 1
+                score = StockAnalystService.rule1Score(number, 0.5)
                 break;
             case StockTableColumn.bps1Y:
-                score = number - 10
-                score *= 1
+                score = StockAnalystService.rule1Score(number, 1)
                 break;
             case StockTableColumn.bps3Y:
-                score = number - 10
-                score *= 1
+                score = StockAnalystService.rule1Score(number, 0.7)
                 break;
             case StockTableColumn.bps5Y:
-                score = number - 10
-                score *= 0.5
+                score = StockAnalystService.rule1Score(number, 0.5)
                 break;
             case StockTableColumn.bps9Y:
-                score = number - 10
-                score *= 0.5
+                score = StockAnalystService.rule1Score(number, 0.25)
                 break;
             case StockTableColumn.cash1Y:
-                score = number - 10
-                score *= 1
+                score = StockAnalystService.rule1Score(number, 1)
                 break;
             case StockTableColumn.cash3Y:
-                score = number - 10
-                score *= 1
+                score = StockAnalystService.rule1Score(number, 0.7)
                 break;
             case StockTableColumn.cash5Y:
-                score = number - 10
-                score *= 0.5
+                score = StockAnalystService.rule1Score(number, 0.5)
                 break;
             case StockTableColumn.cash9Y:
-                score = number - 10
-                score *= 0.5
+                score = StockAnalystService.rule1Score(number, 0.25)
                 break;
         }
         return score;
     }
 
+    static rule1Score(number?: number, weight?: number) {
+        let minusExpectedGrowth = number - 10;
+        minusExpectedGrowth = Math.max(-50, minusExpectedGrowth)
+        minusExpectedGrowth = Math.min(50, minusExpectedGrowth)
+        return minusExpectedGrowth * weight;
+    }
     static ratioBatterThan(number?: number, positiveLimit?: number, maxThreshold: number = 50) {
         let score: number
         if (number > 0) {

@@ -7,7 +7,7 @@ export interface StockRatiosTimeline {
     exchange: string,
     date: string,
     roic1Y?: number,
-    roic2Y?: number,
+    roic3Y?: number,
 
     revenue1Y?: number,
     revenue3Y?: number,

@@ -14,6 +14,7 @@ export enum StockTableColumn {
     trailingPE,
     forwardPE,
     priceToSalesTrailing12Months,
+    priceBook,
     enterpriseValueRevenue,
     enterpriseValueEBITDA,
 
@@ -166,7 +167,7 @@ export enum StockTableColumn {
     //Rule 1 calc
 
     roic1Y,
-    roic2Y,
+    roic3Y,
 
     revenue1Y,
     revenue3Y,

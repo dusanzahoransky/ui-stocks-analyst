@@ -76,8 +76,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             className="Watchlist"
             key={watchlist}>
             <h2 className={"WatchlistName " + (this.props.isIndex ? "Index" : "Stock")}>{showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}</h2>
-            {charts}
             {table}
+            {charts}
         </div>
     }
 
@@ -118,8 +118,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         })
 
         return <div>
-            <div className={!ratiosData ? 'hidden' : ''}>{ratiosCharts}</div>;
             <div className={!chartData ? 'hidden' : ''}>{priceEpsChart}</div>
+            <div className={!ratiosData ? 'hidden' : ''}>{ratiosCharts}</div>
         </div>
 
     }

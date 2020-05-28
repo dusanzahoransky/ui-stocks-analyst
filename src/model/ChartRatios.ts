@@ -1,13 +1,16 @@
 export enum ChartRatios {
+    revenue = "Revenue",
     earningsPerShare = "Earnings per share",
     bookValuePerShare = "Book value per share",
-    freeCashFlowPerShare = "Free cash flow per share",
+    freeCashFlow = "Free cash flow",
     price = "Price",
     dividends = "Dividends",
     payoutRatio = "Payout ratio",
 
 
-    /*    freeCashFlow?: number,
+    /*
+        freeCashFlowPerShare = "Free cash flow per share",
+    freeCashFlow?: number,
         grossMargin?: number,
         netIncome?: number,
         operatingCashFlow?: number,

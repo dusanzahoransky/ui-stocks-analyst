@@ -28,12 +28,12 @@ export class RatioChart extends React.Component<RatioChartProps> {
             <div className={'RatioChart'}>
                 <h3>{chartLabel}</h3>
                 <div className={'ChartWrapper'}>
-                    <LineChart width={800} height={120} data={normalisedData}>
+                    <LineChart width={800} height={100} data={normalisedData}>
                         <Line type="monotone" dataKey="value" stroke="#003795" legendType={"plainline"}
                               isAnimationActive={false}/>
                         {/*                    <Line type="monotone" dataKey="epsQuarterly" stroke="#128408" connectNulls={true}
                           label={<RatioChartLabel data={data}/>} isAnimationActive={false}/>*/}
-                        <XAxis dataKey="date" tickSize={3} tick={{fontSize: 10}} height={10}/>
+                        {/*<XAxis dataKey="date" tickSize={3} tick={{fontSize: 10}} height={10}/>*/}
                         <YAxis tick={{fontSize: 10}} width={20}/>
                         <Tooltip/>
                     </LineChart>

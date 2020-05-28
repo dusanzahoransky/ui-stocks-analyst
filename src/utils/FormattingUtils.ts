@@ -77,7 +77,7 @@ export class FormattingUtils {
             case "priceToSalesTrailing12Months":
                 return "(TTM) P/S"
             case "priceBook":
-                return "Price book"
+                return "P/B"
             case "enterpriseValueRevenue":
                 return "EV /R"
             case "enterpriseValueEBITDA":
@@ -393,8 +393,8 @@ export class FormattingUtils {
                 return "Gross income growth (L3Y)"
             case "roic1Y":
                 return "Roic (1Y) cg."
-            case "roic2Y":
-                return "Roic (2Y) cg."
+            case "roic3Y":
+                return "Roic (3Y) cg."
             case "revenue1Y":
                 return "Revenue (1Y) cg."
             case "revenue3Y":

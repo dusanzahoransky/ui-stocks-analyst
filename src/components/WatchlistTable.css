@@ -4,13 +4,13 @@ table, td, th {
 }
 
 th, td {
-    width: 60px;
+    width: 80px;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 table {
     position: relative;
-    /*width:1880px;*/
+    width:100%;
 }
 
 tr.selected{
@@ -76,12 +76,33 @@ th.equity {
 th.liabilitiesToEquity {
     background: #f4f4ff;
 }
+
+th.cg-roic {
+    background: #f0e8ff;
+}
+
+th.cg-revenue{
+    background: #f0f3ff;
+}
+
+th.cg-eps {
+    background: #f0e8ff;
+}
+
+th.cg-bps {
+    background: #f0f3f3;
+}
+
+th.cg-cash {
+    background: #f4f4ff;
+}
+
 th.label {
     top: 0;
 }
 
 .companyName{
-    width: 100px;
+    width: 160px;
 }
 td.companyName{
     font-size: x-small;
