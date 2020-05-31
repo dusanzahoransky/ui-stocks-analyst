@@ -14,5 +14,6 @@ export interface Ratios {
     revenue?: number,
     shares?: number,
     workingCapital?: number,
-    price?: number
+    price?: number,
+    pe?: number
 }

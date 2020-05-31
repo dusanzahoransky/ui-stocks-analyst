@@ -190,6 +190,11 @@ export enum StockTableColumn {
     cash5Y,
     cash9Y,
 
+    pe1Y,
+    pe3Y,
+    pe5Y,
+    pe9Y,
+
     chartData,
 
     score,
