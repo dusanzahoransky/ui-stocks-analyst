@@ -1,7 +1,7 @@
 {
   "averages": {
     "id": null,
-    "date": "2020-05-28",
+    "date": "2020-06-02",
     "lastReportedQuarter": null,
     "symbol": "Avg.",
     "exchange": "NASDAQ",
@@ -178,6 +178,7 @@
     "peGrowthLastQuarter": 33.07073141896532,
     "peGrowthLast2Quarters": -4.806443434751764,
     "peGrowthLast3Quarters": 47.78914320720018,
+    "growthEstimate5y": 4.8,
     "roic1Y": null,
     "roic3Y": null,
     "revenue1Y": 18.300089899794614,
@@ -200,6 +201,19 @@
     "pe3Y": -2.1429295786977276,
     "pe5Y": null,
     "pe9Y": null,
+    "rule1GrowthRate": 4.8,
+    "defaultPE": 32.86431489591513,
+    "historicalPE": 26.288798050021366,
+    "rule1PE": 26.288798050021366,
+    "currentEps": 39.48,
+    "futureEPS10Years": 180.76177306883923,
+    "futurePrice10Years": 4752.0097473705055,
+    "stickerPrice15pcGrowth": 1174.6241328920205,
+    "stickerPrice10pcGrowth": 1832.1054694024212,
+    "stickerPrice5pcGrowth": 2917.3217648656278,
+    "belowStickerPrice15pc": -6.585326189766394,
+    "belowStickerPrice10pc": 45.702382590078265,
+    "belowStickerPrice5pc": 132.00669340365886,
     "quarterEnds": null,
     "yearEnds": null,
     "chartData": []
@@ -207,8 +221,8 @@
   "stocks": [
     {
       "stockInfo": {
-        "id": "5ecfa4adbd41ee77c67f62dc",
-        "date": "2020-05-28",
+        "id": null,
+        "date": "2020-06-02",
         "lastReportedQuarter": "2020-03-31",
         "symbol": "GOOGL",
         "exchange": "NASDAQ",
@@ -385,6 +399,7 @@
         "peGrowthLastQuarter": 33.07073141896532,
         "peGrowthLast2Quarters": -4.806443434751764,
         "peGrowthLast3Quarters": 47.78914320720018,
+        "growthEstimate5y": 4.8,
         "roic1Y": null,
         "roic3Y": null,
         "revenue1Y": 18.300089899794614,
@@ -407,6 +422,19 @@
         "pe3Y": -2.1429295786977276,
         "pe5Y": null,
         "pe9Y": null,
+        "rule1GrowthRate": 4.8,
+        "defaultPE": 32.86431489591513,
+        "historicalPE": 26.288798050021366,
+        "rule1PE": 26.288798050021366,
+        "currentEps": 39.48,
+        "futureEPS10Years": 180.76177306883923,
+        "futurePrice10Years": 4752.0097473705055,
+        "stickerPrice15pcGrowth": 1174.6241328920205,
+        "stickerPrice10pcGrowth": 1832.1054694024212,
+        "stickerPrice5pcGrowth": 2917.3217648656278,
+        "belowStickerPrice15pc": -6.585326189766394,
+        "belowStickerPrice10pc": 45.702382590078265,
+        "belowStickerPrice5pc": 132.00669340365886,
         "quarterEnds": [
           1585612800,
           1577750400,
@@ -2519,11 +2547,11 @@
         ]
       },
       "stockRatiosTimeline": {
-        "id": "5ecfa236bd41ee77c67f62d8",
+        "id": "5ed608e5638b8a4ed023d09c",
         "symbol": "GOOGL",
         "mic": "NASDAQ",
         "exchange": "NASDAQ",
-        "date": "2020-05-28",
+        "date": "2020-06-02",
         "periods": {
           "2010-12-31": {
             "bookValuePerShare": 72.03,

@@ -164,6 +164,8 @@ export enum StockTableColumn {
     peGrowthLast2Quarters,
     peGrowthLast3Quarters,
 
+    growthEstimate5y,
+
     //Rule 1 calc
 
     roic1Y,
@@ -194,6 +196,22 @@ export enum StockTableColumn {
     pe3Y,
     pe5Y,
     pe9Y,
+
+    rule1GrowthRate,
+    defaultPE,
+    historicalPE,
+    rule1PE,
+    currentEps,
+    futureEPS10Years,
+    futurePrice10Years,
+
+    stickerPrice15pcGrowth,
+    stickerPrice10pcGrowth,
+    stickerPrice5pcGrowth,
+
+    belowStickerPrice15pc,
+    belowStickerPrice10pc,
+    belowStickerPrice5pc,
 
     chartData,
 

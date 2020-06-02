@@ -442,6 +442,9 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                 case StockTableColumn.peGrowthLast3Quarters:
                     return "pe"
 
+                case StockTableColumn.growthEstimate5y:
+                    return "growth"
+
                 case StockTableColumn.roic1Y:
                     return "cg-roic"
                 case StockTableColumn.roic3Y:

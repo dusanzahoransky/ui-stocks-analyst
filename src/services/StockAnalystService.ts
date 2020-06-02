@@ -472,7 +472,10 @@ export class StockAnalystService {
             case StockTableColumn.peLastQuarter:
                 score = this.peScore(number);
                 break;
-            case StockTableColumn.roic1Y:
+            case StockTableColumn.growthEstimate5y:
+                score = this.signPow(number, 2)
+                break;
+           case StockTableColumn.roic1Y:
                 score = StockAnalystService.rule1Score(number, 5)
                 break;
             case StockTableColumn.roic3Y:
@@ -525,6 +528,15 @@ export class StockAnalystService {
                 break;
             case StockTableColumn.cash9Y:
                 score = StockAnalystService.rule1Score(number, 0.25)
+                break;
+            case StockTableColumn.belowStickerPrice15pc:
+                score = number * 10
+                break;
+            case StockTableColumn.belowStickerPrice10pc:
+                score = number * 5
+                break;
+            case StockTableColumn.belowStickerPrice5pc:
+                score = number
                 break;
         }
         return score;

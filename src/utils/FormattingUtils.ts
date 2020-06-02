@@ -391,6 +391,8 @@ export class FormattingUtils {
                 return "Gross income growth (L2Q)"
             case "grossIncomeGrowthLast3Years":
                 return "Gross income growth (L3Y)"
+            case "growthEstimate5y":
+                return "Growth est (5Y)"
             case "roic1Y":
                 return "Roic (1Y) cg."
             case "roic3Y":
@@ -427,6 +429,40 @@ export class FormattingUtils {
                 return "Cash (5Y) cg."
             case "cash9Y":
                 return "Cash (9Y) cg."
+            case "pe1Y":
+                return "Pe (1Y) cg."
+            case "pe3Y":
+                return "Pe (3Y) cg."
+            case "pe5Y":
+                return "Pe (5Y) cg."
+            case "pe9Y":
+                return "Pe (9Y) cg."
+            case "rule1GrowthRate":
+                return "Rule 1 growth rate"
+            case "defaultPE":
+                return "Default pe"
+            case "historicalPE":
+                return "Historical pe"
+            case "rule1PE":
+                return "Rule 1 pe"
+            case "currentEps":
+                return "Current eps"
+            case "futureEPS10Years":
+                return "Future eps 10Y"
+            case "futurePrice10Years":
+                return "Future price 10Y"
+            case "stickerPrice15pcGrowth":
+                return "Sticker price 15%"
+            case "stickerPrice10pcGrowth":
+                return "Sticker price 10%"
+            case "stickerPrice5pcGrowth":
+                return "Sticker price 5%"
+            case "belowStickerPrice15pc":
+                return "Below sticker price 15%"
+            case "belowStickerPrice10pc":
+                return "Below sticker price 10%"
+            case "belowStickerPrice5pc":
+                return "Below sticker price 5%"
             default:
                 return field;
         }
@@ -435,7 +471,7 @@ export class FormattingUtils {
 
     static scaleFactor(value: number): number {
         if (value > 1000000000000 || value < -1000000000000) {
-             return 1000000000000;
+            return 1000000000000;
         }
         if (value > 1000000000 || value < -1000000000) {
             return 1000000000;
@@ -448,7 +484,7 @@ export class FormattingUtils {
 
     static scaleFactorLabel(value: number): string {
         if (value > 1000000000000 || value < -1000000000000) {
-             return "T";
+            return "T";
         }
         if (value > 1000000000 || value < -1000000000) {
             return "B";

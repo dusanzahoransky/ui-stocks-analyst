@@ -124,7 +124,7 @@ td.symbol {
 
 td.price {
     position: sticky;
-    left: 125px;
+    left: 120px;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
