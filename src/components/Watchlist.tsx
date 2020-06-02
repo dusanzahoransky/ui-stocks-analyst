@@ -1,6 +1,7 @@
 import React from "react";
 import {WatchlistTable} from "./WatchlistTable";
-import {AnalysisResult} from "../model/AnalysisResult";
+import {StockAnalysisResult} from "../model/StockAnalysisResult";
+import {IndicesAnalysisResult} from "../model/IndicesAnalysisResult";
 import {StockAnalystService} from "../services/StockAnalystService";
 import {PriceEpsChart} from "./PriceEpsChart";
 import {PriceEpsDataRaw} from "../model/PriceEpsDataRaw";
@@ -11,11 +12,15 @@ import moment from "moment";
 import {StockInfo} from "../model/StockInfo";
 import {IndicesChartData} from "../model/IndicesChartData";
 import {IndicesPriceChart} from "./IndicesPriceChart";
+import {StockRatiosPeriods} from "../model/StockRatiosPeriods";
+import {RatioChart} from "./RatioChart";
+import {RatioChartData} from "../model/RatioChartData";
+import {ChartRatios} from "../model/ChartRatios";
 
 
 export interface WatchlistProps {
     watchlist: string
-    result?: AnalysisResult,
+    result?: StockAnalysisResult | IndicesAnalysisResult,
     peRatio: number,
     onRefreshClickHandler?: (watchlist: string) => void,
     onShowClickHandler?: (watchlist: string) => void,
@@ -26,6 +31,7 @@ export interface WatchlistProps {
 
 export interface WatchlistState {
     priceEpsData?: PriceEpsDataRaw[]
+    ratiosData?: StockRatiosPeriods
     /**
      * Remove outliers which would otherwise deform the chart, e.g. an EP which is extremely high in a single quarter
      */
@@ -41,9 +47,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
         this.state = {
-            priceEpsData: undefined,
+            // priceEpsData: undefined,
+            // ratiosData: undefined,
             //uncomment to render chart of the first stock on load
-            // priceEpsData: props.result ? props.result.stocks[0].chartData : undefined
+            priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
+            ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
             // indicesChartSymbols: ['VTS', 'VUSA'],
             indicesChartSymbols: [],
             priceEpsChartRemoveOutliers: true
@@ -56,7 +64,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const {watchlist, result, peRatio} = this.props;
 
         const table = this.renderTable(result)
-        const epsChart = this.renderEpsChart(peRatio, this.state.priceEpsData)
+        const charts = this.props.isIndex ? this.renderIndicesChart() : this.renderCompanyCharts(peRatio, this.state.priceEpsData, this.state.ratiosData)
 
         const refreshLink = this.props.isPreset && this.props.isLoaded ?
             <i className="fa fa-refresh" onClick={() => this.props.onRefreshClickHandler(watchlist)}/> : ''
@@ -65,42 +73,82 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(watchlist)}/> : ''
 
         return <div
-            className="Watchlist" key={watchlist}>
-            <h2 className="WatchlistName">{showLink} Watchlist: {watchlist}{refreshLink}</h2>
-            {epsChart}
+            className="Watchlist"
+            key={watchlist}>
+            <h2 className={"WatchlistName " + (this.props.isIndex ? "Index" : "Stock")}>{showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}</h2>
             {table}
+            {charts}
         </div>
     }
 
-    renderEpsChart(peRatio: number, priceEpsData?: PriceEpsDataRaw[]) {
-        if (!this.props.isLoaded) {
+    renderIndicesChart() {
+        if (!this.props.isLoaded || this.state.indicesChartSymbols.length === 0) {
             return ''
-        } else {
-            if (this.props.isIndex && this.state.indicesChartSymbols.length > 0) {
-                const chartData = this.prepareIndicesChartData(this.props.result.stocks);
-                return <div className={!chartData ? 'hidden' : ''}>
-                    <IndicesPriceChart
-                        data={chartData}
-                        symbols={this.state.indicesChartSymbols}
-                        description={`Performance of all indices in the watchlist`}/>
-                </div>
-            } else {
-                const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
-                return <div className={!chartData ? 'hidden' : ''}>
-                    <PriceEpsChart
-                        data={chartData}
-                        description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
-                </div>
-            }
         }
+        const chartData = this.prepareIndicesChartData(this.props.result.stocks);
+        return <div className={!chartData ? 'hidden' : ''}>
+            <IndicesPriceChart
+                data={chartData}
+                symbols={this.state.indicesChartSymbols}
+                description={`Performance of all indices in the watchlist`}/>
+        </div>
     }
 
-    renderTable(result?: AnalysisResult) {
+    renderCompanyCharts(peRatio: number, priceEpsData?: PriceEpsDataRaw[], ratiosData?: StockRatiosPeriods) {
+        if (!this.props.isLoaded || !priceEpsData) {
+            return ''
+        }
+        const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
+        const priceEpsChart = <PriceEpsChart
+            data={chartData}
+            description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>;
+
+        const periods = Object.keys(ratiosData);
+        const ratiosCharts = Watchlist.getChartRatios().map(ratio => {
+            const chartData: RatioChartData[] = periods.map(period => {
+                return {
+                    date: period,
+                    value: ratiosData[period][ratio] as number
+                }
+            });
+            return <RatioChart
+                key={ratio}
+                data={chartData}
+                label={`${ChartRatios[ratio]}`}/>
+        })
+
+        return <div>
+            <div className={!chartData ? 'hidden' : ''}>{priceEpsChart}</div>
+            <div className={!ratiosData ? 'hidden' : ''}>{ratiosCharts}</div>
+        </div>
+
+    }
+
+    private static getChartRatios(): string[] {
+        const enumNames = []
+
+        for (const enumMember in ChartRatios) {
+            if (Number.isNaN(Number.parseInt(enumMember))) {
+                enumNames.push(enumMember)
+            }
+        }
+
+        return enumNames
+    }
+
+    getStockInfo(result: StockAnalysisResult | IndicesAnalysisResult, isIndex: boolean): StockInfo[] {
+        return this.props.isIndex ?
+            (result as IndicesAnalysisResult).stocks :
+            (result as StockAnalysisResult).stocks.map(s => s.stockInfo)
+    }
+
+    renderTable(result?: StockAnalysisResult | IndicesAnalysisResult) {
         if (!this.props.isLoaded) {
             return ''
         } else {
+            const stocksInfo: StockInfo[] = this.getStockInfo(result, this.props.isIndex)    //one more level of nesting
             const headers = this.toHeaderData(result.averages);
-            let data = this.toTableData(result.stocks);
+            let data = this.toTableData(stocksInfo);
             const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isIndex))
             return <WatchlistTable
                 data={scoredData}
@@ -126,9 +174,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 }
             })
         } else {
-            const priceEpsData = this.props.result.stocks
-                .filter(stock => stock.symbol === stockSymbol)
-                .map(stock => stock.chartData)[0]
+            let clickedStockWithRatios = this.props.result.stocks
+                .filter(stock => stock.stockInfo.symbol === stockSymbol)[0];
+            const priceEpsData = clickedStockWithRatios.stockInfo.chartData
+            const ratiosData = clickedStockWithRatios.stockRatiosTimeline.periods
 
             //close the graph on a second click
             if (this.state.priceEpsData === priceEpsData) {
@@ -141,6 +190,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 this.setState(state => {
                     return {
                         priceEpsData,
+                        ratiosData,
                         chartLabel: stockSymbol as string
                     }
                 })
@@ -151,13 +201,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     toHeaderData(averages: StockInfo): any[][] {
         averages = this.stockAnalystService.filterDisplayableStats(averages, this.props.isIndex)
         const headersRow = Object.keys(averages)
-            .filter(key => key !== 'periodValuationMeasures')
-            .concat('Score')
+            .concat('Score', 'Rule 1 Score')
 
         const averagesRow = Object.keys(averages)
-            .filter(key => key !== 'periodValuationMeasures')
             .map(key => averages[key])
-            .concat(0)
+            .concat(0, 0)
 
         return [
             headersRow,
@@ -170,7 +218,6 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         for (let stock of stocks) {
             stock = this.stockAnalystService.filterDisplayableStats(stock, this.props.isIndex)
             const rowValues = Object.keys(stock)
-                .filter(key => key !== 'periodValuationMeasures')
                 .map(key => stock[key] ? stock[key] : '')
             rows.push(rowValues);
         }
@@ -227,5 +274,24 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
 
+    private static toWatchlistLabel(watchlist: string) {
+        return watchlist
+            .replace(/[a-zA-Z]+/g, function (g) {
+                switch (g) {
+                    case 'AUD':
+                    case 'EUR':
+                    case 'USD':
+                    case 'AU':
+                    case 'US':
+                    case 'CHF':
+                    case 'GBP':
+                        return g;
+                    default:
+                        return g[0].toUpperCase().concat(g.substr(1).toLowerCase());
+                }
+
+            })
+            .replace(/_/g, ' ')
+    }
 }
 

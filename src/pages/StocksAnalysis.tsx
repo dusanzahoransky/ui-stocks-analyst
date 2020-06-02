@@ -1,9 +1,10 @@
 import React from "react";
 import {StockAnalystService} from "../services/StockAnalystService";
-import {AnalysisResult} from "../model/AnalysisResult";
+import {StockAnalysisResult} from "../model/StockAnalysisResult";
 import './StocksAnalysis.css';
 import {Watchlist} from "../components/Watchlist";
 import {BackendError} from "../model/BackendError";
+import {IndicesAnalysisResult} from "../model/IndicesAnalysisResult";
 
 export interface StocksAnalysisProps {
 
@@ -21,7 +22,7 @@ interface WatchlistResult {
     isPreset: boolean,
     isIndex: boolean,
     watchlist: string,
-    analysisResult: AnalysisResult
+    analysisResult: StockAnalysisResult | IndicesAnalysisResult
 }
 
 export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksAnalysisState> {
@@ -40,8 +41,9 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     }
 
     private readonly PRESET_WATCHLISTS = [
-        'TEST',
         'TO_INVEST',
+        'INVESTED_IN_USD_TECH',
+        'INVESTED_IN_USD',
         'AUD',
         'CHF',
         'EUR',
@@ -57,18 +59,19 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     ];
 
     private readonly PRESET_INDICES_WATCHLISTS = [
-       /* 'TEST_INDICES',*/
+        /* 'TEST_INDICES',*/
+        'INVESTED_IN_AUD_INDICES',
+        'INVESTED_IN_GBP_INDICES',
         'AUD_INDICES_AU',
         'AUD_INDICES_ASIA',
         'AUD_INDICES_US',
-        'AUD_INDICES_INVESTED',
         'AUD_INDICES',
-         'GBP_INDICES_INVESTED',
-         'GBP_INDICES',
-         'INDICES'
+        'GBP_INDICES',
+        'INDICES'
     ];
 
     componentDidMount() {
+        this.loadWatchlistData("TEST", false)
         this.PRESET_WATCHLISTS
             // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
@@ -89,7 +92,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             console.error(`Failed to load ${watchlist}: ${error.message}`)
             return
         }
-        const analysisResult = response as AnalysisResult;
+        const analysisResult = response as StockAnalysisResult | IndicesAnalysisResult;
 
         const watchlistResult: WatchlistResult = {
             isLoaded: true,
@@ -184,7 +187,9 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         allResults
             .forEach((watchlistResult) => {
-                const onRefreshClickHandler = (watchlist) => this.loadWatchlistData(watchlist, watchlistResult.isIndex, true, false);
+                const onRefreshClickHandler = (watchlist) => {
+                    this.loadWatchlistData(watchlist, watchlistResult.isIndex, true, false);
+                }
                 const onShowClickHandler = (watchlist) => {
                     if (this.containWatchlistData(watchlist, watchlistResult.isIndex)) {
                         this.unloadWatchlistData(watchlist, watchlistResult.isIndex)

@@ -1,4 +1,5 @@
-import {AnalysisResult} from "../model/AnalysisResult";
+import {StockAnalysisResult} from "../model/StockAnalysisResult";
+import {IndicesAnalysisResult} from "../model/IndicesAnalysisResult";
 import {CellData} from "../model/CellData";
 import {StockTableColumn} from "../model/StockTableColumn";
 import moment from "moment";
@@ -11,21 +12,21 @@ import {IndexTableColumn} from "../model/IndexTableColumn";
 
 export class StockAnalystService {
 
-    async loadAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<AnalysisResult | BackendError> {
+    async loadAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<StockAnalysisResult | BackendError> {
         if (watchlist === 'TEST') {
             return Promise.resolve(resultTest)
         } else {
             return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
-                .then(r => r.json() as unknown as AnalysisResult);
+                .then(r => r.json() as unknown as StockAnalysisResult);
         }
     }
 
-    async loadIndicesAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<AnalysisResult | BackendError> {
+    async loadIndicesAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<IndicesAnalysisResult | BackendError> {
         if (watchlist === 'TEST_INDICES') {
             return Promise.resolve(indicesTest)
         } else {
             return fetch(`http://localhost:3000/stocks/indicesWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
-                .then(r => r.json() as unknown as AnalysisResult);
+                .then(r => r.json() as unknown as IndicesAnalysisResult);
         }
     }
 
@@ -40,6 +41,7 @@ export class StockAnalystService {
 
     scoreRow(averages: number[], rowValues: number[] | string[], isIndex: boolean): CellData[] {
         const cellData: CellData[] = []
+
         rowValues.forEach((value, colIndex) => {
             const score = isIndex ?
                 StockAnalystService.scoreIndexData(value, colIndex, rowValues, averages) :
@@ -51,11 +53,21 @@ export class StockAnalystService {
         })
 
         const totalScore = cellData.map(data => data.score)
+            .filter((score, index) => index < StockTableColumn.roic1Y)
+            .filter(score => score && !Number.isNaN(score))
+            .reduce((prev, curr) => prev + curr, 0);
+
+        const rule1Score = cellData.map(data => data.score)
+            .filter((score, index) => index >= StockTableColumn.roic1Y)
             .filter(score => score && !Number.isNaN(score))
             .reduce((prev, curr) => prev + curr, 0);
 
         cellData.push({
             value: totalScore
+        })
+
+        cellData.push({
+            value: rule1Score
         })
 
         return cellData
@@ -204,13 +216,17 @@ export class StockAnalystService {
                 score = number * 0.1
                 break
             case StockTableColumn.trailingPE:
-                score = this.peScore(number) * 0.5;
+                score = this.peScore(number);
                 break;
             case StockTableColumn.forwardPE:
-                score = this.peScore(number) * 0.5;
+                score = this.peScore(number);
                 break;
             case StockTableColumn.priceToSalesTrailing12Months:
-                score = 0;
+                score = 10 - number;
+                score *= 2
+                break;
+            case StockTableColumn.priceBook:
+                score = 2 - number;
                 break;
             case StockTableColumn.enterpriseValueRevenue:
                 score = 5 - number
@@ -456,12 +472,82 @@ export class StockAnalystService {
             case StockTableColumn.peLastQuarter:
                 score = this.peScore(number);
                 break;
-
-
+            case StockTableColumn.growthEstimate5y:
+                score = this.signPow(number, 2)
+                break;
+           case StockTableColumn.roic1Y:
+                score = StockAnalystService.rule1Score(number, 5)
+                break;
+            case StockTableColumn.roic3Y:
+                score = StockAnalystService.rule1Score(number, 3)
+                break;
+            case StockTableColumn.revenue1Y:
+                score = StockAnalystService.rule1Score(number, 3)
+                break;
+            case StockTableColumn.revenue3Y:
+                score = StockAnalystService.rule1Score(number, 2)
+                break;
+            case StockTableColumn.revenue5Y:
+                score = StockAnalystService.rule1Score(number, 1)
+                break;
+            case StockTableColumn.revenue9Y:
+                score = StockAnalystService.rule1Score(number, 0.5)
+                break;
+            case StockTableColumn.eps1Y:
+                score = StockAnalystService.rule1Score(number, 3)
+                break;
+            case StockTableColumn.eps3Y:
+                score = StockAnalystService.rule1Score(number, 2)
+                break;
+            case StockTableColumn.eps5Y:
+                score = StockAnalystService.rule1Score(number, 1)
+                break;
+            case StockTableColumn.eps9Y:
+                score = StockAnalystService.rule1Score(number, 0.5)
+                break;
+            case StockTableColumn.bps1Y:
+                score = StockAnalystService.rule1Score(number, 1)
+                break;
+            case StockTableColumn.bps3Y:
+                score = StockAnalystService.rule1Score(number, 0.7)
+                break;
+            case StockTableColumn.bps5Y:
+                score = StockAnalystService.rule1Score(number, 0.5)
+                break;
+            case StockTableColumn.bps9Y:
+                score = StockAnalystService.rule1Score(number, 0.25)
+                break;
+            case StockTableColumn.cash1Y:
+                score = StockAnalystService.rule1Score(number, 1)
+                break;
+            case StockTableColumn.cash3Y:
+                score = StockAnalystService.rule1Score(number, 0.7)
+                break;
+            case StockTableColumn.cash5Y:
+                score = StockAnalystService.rule1Score(number, 0.5)
+                break;
+            case StockTableColumn.cash9Y:
+                score = StockAnalystService.rule1Score(number, 0.25)
+                break;
+            case StockTableColumn.belowStickerPrice15pc:
+                score = number * 10
+                break;
+            case StockTableColumn.belowStickerPrice10pc:
+                score = number * 5
+                break;
+            case StockTableColumn.belowStickerPrice5pc:
+                score = number
+                break;
         }
         return score;
     }
 
+    static rule1Score(number?: number, weight?: number) {
+        let minusExpectedGrowth = number - 10;
+        minusExpectedGrowth = Math.max(-50, minusExpectedGrowth)
+        minusExpectedGrowth = Math.min(50, minusExpectedGrowth)
+        return minusExpectedGrowth * weight;
+    }
     static ratioBatterThan(number?: number, positiveLimit?: number, maxThreshold: number = 50) {
         let score: number
         if (number > 0) {

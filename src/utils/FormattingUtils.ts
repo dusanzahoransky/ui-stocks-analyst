@@ -77,7 +77,7 @@ export class FormattingUtils {
             case "priceToSalesTrailing12Months":
                 return "(TTM) P/S"
             case "priceBook":
-                return "Price book"
+                return "P/B"
             case "enterpriseValueRevenue":
                 return "EV /R"
             case "enterpriseValueEBITDA":
@@ -103,9 +103,9 @@ export class FormattingUtils {
             case "exDividendDate":
                 return "Ex div date"
             case "fiveYearAvgDividendYield":
-                return "5y avg div yield"
+                return "5y avg (dYvyield)"
             case "trailingAnnualDividendYield":
-                return "(Trl) A. div yield"
+                return "(Trl) A. (dYvyield)"
             case "targetLowPrice":
                 return "Target Low Price"
             case "belowTargetLowPricePercent":
@@ -391,8 +391,108 @@ export class FormattingUtils {
                 return "Gross income growth (L2Q)"
             case "grossIncomeGrowthLast3Years":
                 return "Gross income growth (L3Y)"
+            case "growthEstimate5y":
+                return "Growth est (5Y)"
+            case "roic1Y":
+                return "Roic (1Y) cg."
+            case "roic3Y":
+                return "Roic (3Y) cg."
+            case "revenue1Y":
+                return "Revenue (1Y) cg."
+            case "revenue3Y":
+                return "Revenue (3Y) cg."
+            case "revenue5Y":
+                return "Revenue (5Y) cg."
+            case "revenue9Y":
+                return "Revenue (9Y) cg."
+            case "eps1Y":
+                return "Eps (1Y) cg."
+            case "eps3Y":
+                return "Eps (3Y) cg."
+            case "eps5Y":
+                return "Eps (5Y) cg."
+            case "eps9Y":
+                return "Eps (9Y) cg."
+            case "bps1Y":
+                return "Bps (1Y) cg."
+            case "bps3Y":
+                return "Bps (3Y) cg."
+            case "bps5Y":
+                return "Bps (5Y) cg."
+            case "bps9Y":
+                return "Bps (9Y) cg."
+            case "cash1Y":
+                return "Cash (1Y) cg."
+            case "cash3Y":
+                return "Cash (3Y) cg."
+            case "cash5Y":
+                return "Cash (5Y) cg."
+            case "cash9Y":
+                return "Cash (9Y) cg."
+            case "pe1Y":
+                return "Pe (1Y) cg."
+            case "pe3Y":
+                return "Pe (3Y) cg."
+            case "pe5Y":
+                return "Pe (5Y) cg."
+            case "pe9Y":
+                return "Pe (9Y) cg."
+            case "rule1GrowthRate":
+                return "Rule 1 growth rate"
+            case "defaultPE":
+                return "Default pe"
+            case "historicalPE":
+                return "Historical pe"
+            case "rule1PE":
+                return "Rule 1 pe"
+            case "currentEps":
+                return "Current eps"
+            case "futureEPS10Years":
+                return "Future eps 10Y"
+            case "futurePrice10Years":
+                return "Future price 10Y"
+            case "stickerPrice15pcGrowth":
+                return "Sticker price 15%"
+            case "stickerPrice10pcGrowth":
+                return "Sticker price 10%"
+            case "stickerPrice5pcGrowth":
+                return "Sticker price 5%"
+            case "belowStickerPrice15pc":
+                return "Below sticker price 15%"
+            case "belowStickerPrice10pc":
+                return "Below sticker price 10%"
+            case "belowStickerPrice5pc":
+                return "Below sticker price 5%"
             default:
                 return field;
         }
     }
+
+
+    static scaleFactor(value: number): number {
+        if (value > 1000000000000 || value < -1000000000000) {
+            return 1000000000000;
+        }
+        if (value > 1000000000 || value < -1000000000) {
+            return 1000000000;
+        }
+        if (value > 1000000 || value < -1000000) {
+            return 1000000;
+        }
+        return 1;
+    }
+
+    static scaleFactorLabel(value: number): string {
+        if (value > 1000000000000 || value < -1000000000000) {
+            return "T";
+        }
+        if (value > 1000000000 || value < -1000000000) {
+            return "B";
+        }
+        if (value > 1000000 || value < -1000000) {
+            return "M";
+        }
+        return "";
+    }
+
 }

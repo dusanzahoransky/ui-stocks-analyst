@@ -224,6 +224,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                     return "stat"
                 case StockTableColumn.priceToSalesTrailing12Months:
                     return "stat"
+                case StockTableColumn.priceBook:
+                    return "stat"
                 case StockTableColumn.enterpriseValueRevenue:
                     return "stat"
                 case StockTableColumn.enterpriseValueEBITDA:
@@ -439,6 +441,50 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                     return "pe"
                 case StockTableColumn.peGrowthLast3Quarters:
                     return "pe"
+
+                case StockTableColumn.growthEstimate5y:
+                    return "growth"
+
+                case StockTableColumn.roic1Y:
+                    return "cg-roic"
+                case StockTableColumn.roic3Y:
+                    return "cg-roic"
+
+                case StockTableColumn.revenue1Y:
+                    return "cg-revenue"
+                case StockTableColumn.revenue3Y:
+                    return "cg-revenue"
+                case StockTableColumn.revenue5Y:
+                    return "cg-revenue"
+                case StockTableColumn.revenue9Y:
+                    return "cg-revenue"
+
+                case StockTableColumn.eps1Y:
+                    return "cg-eps"
+                case StockTableColumn.eps3Y:
+                    return "cg-eps"
+                case StockTableColumn.eps5Y:
+                    return "cg-eps"
+                case StockTableColumn.eps9Y:
+                    return "cg-eps"
+
+                case StockTableColumn.bps1Y:
+                    return "cg-bps"
+                case StockTableColumn.bps3Y:
+                    return "cg-bps"
+                case StockTableColumn.bps5Y:
+                    return "cg-bps"
+                case StockTableColumn.bps9Y:
+                    return "cg-bps"
+
+                case StockTableColumn.cash1Y:
+                    return "cg-cash"
+                case StockTableColumn.cash3Y:
+                    return "cg-cash"
+                case StockTableColumn.cash5Y:
+                    return "cg-cash"
+                case StockTableColumn.cash9Y:
+                    return "cg-cash"
             }
         }
     }

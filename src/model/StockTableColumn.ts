@@ -5,8 +5,8 @@ export enum StockTableColumn {
     companyName,
     price,
     change,
-    enterpriseValue,
 
+    enterpriseValue,
     // totalCashPerShare,
     totalCashPerSharePercent,
     totalDebtEquity,
@@ -14,6 +14,7 @@ export enum StockTableColumn {
     trailingPE,
     forwardPE,
     priceToSalesTrailing12Months,
+    priceBook,
     enterpriseValueRevenue,
     enterpriseValueEBITDA,
 
@@ -163,5 +164,57 @@ export enum StockTableColumn {
     peGrowthLast2Quarters,
     peGrowthLast3Quarters,
 
-    chartData
+    growthEstimate5y,
+
+    //Rule 1 calc
+
+    roic1Y,
+    roic3Y,
+
+    revenue1Y,
+    revenue3Y,
+    revenue5Y,
+    revenue9Y,
+
+    eps1Y,
+    eps3Y,
+    eps5Y,
+    eps9Y,
+
+    bps1Y,
+    bps3Y,
+    bps5Y,
+    bps9Y,
+
+    //free cash flow
+    cash1Y,
+    cash3Y,
+    cash5Y,
+    cash9Y,
+
+    pe1Y,
+    pe3Y,
+    pe5Y,
+    pe9Y,
+
+    rule1GrowthRate,
+    defaultPE,
+    historicalPE,
+    rule1PE,
+    currentEps,
+    futureEPS10Years,
+    futurePrice10Years,
+
+    stickerPrice15pcGrowth,
+    stickerPrice10pcGrowth,
+    stickerPrice5pcGrowth,
+
+    belowStickerPrice15pc,
+    belowStickerPrice10pc,
+    belowStickerPrice5pc,
+
+    chartData,
+
+    score,
+    rule1score,
 }
