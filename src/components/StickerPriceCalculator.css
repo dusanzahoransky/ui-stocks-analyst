@@ -1,0 +1,12 @@
+.StickerPriceCalculator{
+    margin: 5px;
+}
+.StickerPriceCalculator input {
+    width: 35px;
+    margin-right: 10px;
+    margin-left: 3px;
+    font-size: smaller;
+}
+.StickerPriceCalculator label {
+    font-size: smaller;
+}

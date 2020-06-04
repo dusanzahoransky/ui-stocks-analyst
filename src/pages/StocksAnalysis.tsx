@@ -5,6 +5,7 @@ import './StocksAnalysis.css';
 import {Watchlist} from "../components/Watchlist";
 import {BackendError} from "../model/BackendError";
 import {IndicesAnalysisResult} from "../model/IndicesAnalysisResult";
+import {StickerPriceCalculator} from "../components/StickerPriceCalculator";
 
 export interface StocksAnalysisProps {
 
@@ -219,6 +220,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         return (
             <div className='StocksAnalysis'>
+                <div className='StickerPrice'><StickerPriceCalculator/></div>
                 <div className={'Watchlists'}>{watchlists}</div>
             </div>
         )

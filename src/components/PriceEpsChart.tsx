@@ -3,7 +3,6 @@ import {Legend, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
 import {PriceEpsData} from "../model/PriceEpsData";
 import {PriceEpsChartLabel} from "./PriceEpsChartLabel";
 import "./PriceEpsChart.css"
-import {PEChartLabel} from "./PEChartLabel";
 
 export interface PriceEpsChartProps {
     data: PriceEpsData[];

@@ -265,6 +265,13 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const round1Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined;
         const round2Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined;
 
+        //remove outliers, sometime a price jumps from 10 to 1000, e.g. RYA stock and that messes up the chart scale
+        for(let i = 1; i < priceEpsData.length; i++){
+            if(priceEpsData[i].price > priceEpsData[i-1].price * 20){
+                priceEpsData[i].price = undefined
+            }
+        }
+
         return priceEpsData.map(data => {
             const price = round1Dec(data.price);
             const epsQuarterly = round1Dec(data.epsQuarterly * peRatio * 4);
