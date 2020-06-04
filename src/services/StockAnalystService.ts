@@ -12,11 +12,11 @@ import {IndexTableColumn} from "../model/IndexTableColumn";
 
 export class StockAnalystService {
 
-    async loadAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<StockAnalysisResult | BackendError> {
+    async loadAnalysis(watchlist: string, forceRefresh: boolean, forceRefreshRatios: boolean, mockData: boolean): Promise<StockAnalysisResult | BackendError> {
         if (watchlist === 'TEST') {
             return Promise.resolve(resultTest)
         } else {
-            return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
+            return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&forceRefreshRatios=${forceRefreshRatios}&mockData=${mockData}`)
                 .then(r => r.json() as unknown as StockAnalysisResult);
         }
     }

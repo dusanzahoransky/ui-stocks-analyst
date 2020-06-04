@@ -23,6 +23,7 @@ export interface WatchlistProps {
     result?: StockAnalysisResult | IndicesAnalysisResult,
     peRatio: number,
     onRefreshClickHandler?: (watchlist: string) => void,
+    onRefreshRatiosClickHandler?: (watchlist: string) => void,
     onShowClickHandler?: (watchlist: string) => void,
     isPreset: boolean
     isIndex: boolean
@@ -67,7 +68,15 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const charts = this.props.isIndex ? this.renderIndicesChart() : this.renderCompanyCharts(peRatio, this.state.priceEpsData, this.state.ratiosData)
 
         const refreshLink = this.props.isPreset && this.props.isLoaded ?
-            <i className="fa fa-refresh" onClick={() => this.props.onRefreshClickHandler(watchlist)}/> : ''
+            <span className="refresh">
+                <i className="fa fa-refresh" onClick={() => this.props.onRefreshClickHandler(watchlist)}/> Yahoo
+            </span> : ''
+
+        const refreshRatiosLink = this.props.isPreset && this.props.isLoaded ?
+            <span className="refresh">
+                <i className="fa fa-refresh refreshRatios"
+                   onClick={() => this.props.onRefreshRatiosClickHandler(watchlist)}/> MorningStar
+            </span> : ''
 
         const showLink = this.props.isPreset ?
             <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(watchlist)}/> : ''
@@ -75,7 +84,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return <div
             className="Watchlist"
             key={watchlist}>
-            <h2 className={"WatchlistName " + (this.props.isIndex ? "Index" : "Stock")}>{showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}</h2>
+            <h2 className={"WatchlistName " + (this.props.isIndex ? "Index" : "Stock")}>
+                {showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}{refreshRatiosLink}</h2>
             {table}
             {charts}
         </div>

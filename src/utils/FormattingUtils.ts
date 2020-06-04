@@ -49,7 +49,7 @@ export class FormattingUtils {
             case "id":
                 return "Id"
             case "date":
-                return "Refresh date"
+                return "Refresh date Yahoo"
             case "lastReportedQuarter":
                 return "Last Quarter"
             case "symbol":

@@ -20,7 +20,15 @@
     margin-bottom: 10px;
 }
 
+.refresh {
+    font-weight: normal;
+    font-size: small;
+}
 .fa-refresh {
+    margin-left: 15px;
+    color: darkred;
+}
+.fa-refresh.refreshRatios {
     margin-left: 15px;
     color: darkred;
 }

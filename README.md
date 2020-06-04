@@ -19,6 +19,9 @@ The UI provides a convenient view to compare fundamental stock stats for pre-sel
 It also renders price and earnings line.
 ![Example screenshot 3](./Selection_038.png)
 
+Charts with historical ratios
+![Example screenshot 4](./Selection_090.png)
+
 For indices, it provides basic ratios such as PE, PB, PS, etc. and their performance over different periods. Also, renders a chart for comparison of their historical performance.
 
-![Example screenshot 4](./Selection_055.png)
+![Example screenshot 5](./Selection_055.png)

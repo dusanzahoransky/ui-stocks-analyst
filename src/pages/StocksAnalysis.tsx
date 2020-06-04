@@ -71,7 +71,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     ];
 
     componentDidMount() {
-        this.loadWatchlistData("TEST", false)
+        // this.loadWatchlistData("TEST", false)
         this.PRESET_WATCHLISTS
             // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
@@ -83,10 +83,11 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     private async loadWatchlistData(watchlist: string,
                                     isIndex: boolean,
                                     forceRefresh: boolean = false,
+                                    forceRefreshRatios: boolean = false,
                                     mockData: boolean = false) {
         const response = isIndex ?
             await this.stockAnalystService.loadIndicesAnalysis(watchlist, forceRefresh, mockData)
-            : await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, mockData)
+            : await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, forceRefreshRatios, mockData)
         const error = response as BackendError;
         if (error.error) {
             console.error(`Failed to load ${watchlist}: ${error.message}`)
@@ -188,7 +189,10 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         allResults
             .forEach((watchlistResult) => {
                 const onRefreshClickHandler = (watchlist) => {
-                    this.loadWatchlistData(watchlist, watchlistResult.isIndex, true, false);
+                    this.loadWatchlistData(watchlist, watchlistResult.isIndex, true, false, false);
+                }
+                const onRefreshRatiosClickHandler = (watchlist) => {
+                    this.loadWatchlistData(watchlist, watchlistResult.isIndex, false, true, false);
                 }
                 const onShowClickHandler = (watchlist) => {
                     if (this.containWatchlistData(watchlist, watchlistResult.isIndex)) {
@@ -204,6 +208,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                         watchlist={watchlistResult.watchlist}
                         peRatio={15}
                         onRefreshClickHandler={onRefreshClickHandler}
+                        onRefreshRatiosClickHandler={onRefreshRatiosClickHandler}
                         onShowClickHandler={onShowClickHandler}
                         isPreset={watchlistResult.isPreset}
                         isIndex={watchlistResult.isIndex}
