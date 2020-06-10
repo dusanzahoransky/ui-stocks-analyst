@@ -105,6 +105,10 @@ th.label {
 }
 td.companyName{
     font-size: x-small;
+    position: sticky;
+    left: 60px;
+    background: #f0f3ff;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 .date{
@@ -114,16 +118,9 @@ td.date{
     font-size: x-small;
 }
 
-td.symbol {
-    position: sticky;
-    left: 60px;
-    background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-}
-
 td.price {
     position: sticky;
-    left: 120px;
+    left: 200px;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
