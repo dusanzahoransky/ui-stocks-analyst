@@ -35,7 +35,7 @@ export class StickerPriceCalculator extends React.Component<StickerPriceCalculat
     }
 
     handleChange(event) {
-        let updatedState = {...this.state, [event.target.name]: Number.parseFloat(event.target.value)}
+        let updatedState = {...this.state, [event.target.name]: event.target.value}
         updatedState = this.recalculateValues(updatedState)
         this.setState(updatedState);
     }

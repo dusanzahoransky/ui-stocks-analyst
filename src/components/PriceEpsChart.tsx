@@ -25,9 +25,9 @@ export class PriceEpsChart extends React.Component<PriceEpsChartProps> {
                           isAnimationActive={false}/>
                     <Line type="monotone" dataKey="epsQuarterly" stroke="#128408" connectNulls={true}
                           label={<PriceEpsChartLabel data={data}/>} isAnimationActive={false}/>
-                    <Line type="monotone" dataKey="epsAnnually" stroke="#128408" connectNulls={true}
-                          label={<PriceEpsChartLabel data={data}/>} isAnimationActive={false} />
- {/*                   <Line type="monotone" dataKey="peQuarterly" stroke="#970008" connectNulls={true}
+        {/*            <Line type="monotone" dataKey="epsAnnually" stroke="#128408" connectNulls={true}
+                           label={<PriceEpsChartLabel data={data}/>} isAnimationActive={false}/>*/}
+                    {/*                   <Line type="monotone" dataKey="peQuarterly" stroke="#970008" connectNulls={true}
                           isAnimationActive={false} label={<PEChartLabel data={data}/>}/>
                     <Line type="monotone" dataKey="peAnnually" stroke="#970008" connectNulls={true}
                           isAnimationActive={false} label={<PEChartLabel data={data}/>}/>*/}
