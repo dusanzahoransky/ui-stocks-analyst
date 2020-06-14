@@ -66,8 +66,11 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         'AUD_INDICES_AU',
         'AUD_INDICES_ASIA',
         'AUD_INDICES_US',
+        'AUD_INDICES_BOND',
         'AUD_INDICES',
         'GBP_INDICES',
+        'EUR_INDICES',
+        'EUR_INDICES_BOND',
         'INDICES'
     ];
 
