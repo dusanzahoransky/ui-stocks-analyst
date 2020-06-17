@@ -319,13 +319,12 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return watchlist
             .replace(/[a-zA-Z]+/g, function (g) {
                 switch (g) {
-                    case 'AUD':
-                    case 'EUR':
-                    case 'USD':
-                    case 'AU':
+                    case 'EU':
                     case 'US':
+                    case 'AU':
+                    case 'GB':
                     case 'CHF':
-                    case 'GBP':
+                    case 'ETF':
                         return g;
                     default:
                         return g[0].toUpperCase().concat(g.substr(1).toLowerCase());
