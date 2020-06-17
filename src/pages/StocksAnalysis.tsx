@@ -4,7 +4,7 @@ import {StockAnalysisResult} from "../model/StockAnalysisResult";
 import './StocksAnalysis.css';
 import {Watchlist} from "../components/Watchlist";
 import {BackendError} from "../model/BackendError";
-import {IndicesAnalysisResult} from "../model/IndicesAnalysisResult";
+import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {StickerPriceCalculator} from "../components/StickerPriceCalculator";
 
 export interface StocksAnalysisProps {
@@ -21,9 +21,9 @@ export interface StocksAnalysisState {
 interface WatchlistResult {
     isLoaded: boolean,
     isPreset: boolean,
-    isIndex: boolean,
+    isEtf: boolean,
     watchlist: string,
-    analysisResult: StockAnalysisResult | IndicesAnalysisResult
+    analysisResult: StockAnalysisResult | EtfsAnalysisResult
 }
 
 export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksAnalysisState> {
@@ -41,7 +41,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         this.stockAnalystService = new StockAnalystService();
     }
 
-    private readonly PRESET_WATCHLISTS = [
+    private readonly STOCK_WATCHLISTS = [
         /* 'TEST',
         'TO_CHECK',*/
         'ALL_INVESTED',
@@ -64,7 +64,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         'DIVIDENDS',
     ];
 
-    private readonly PRESET_INDICES_WATCHLISTS = [
+    private readonly ETF_WATCHLISTS = [
         /* 'TEST_INDICES',*/
         'ETF_ALL',
 
@@ -83,67 +83,67 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     componentDidMount() {
         // this.loadWatchlistData("TEST", false)
-        this.PRESET_WATCHLISTS
+        this.STOCK_WATCHLISTS
             // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
-        this.PRESET_INDICES_WATCHLISTS
+        this.ETF_WATCHLISTS
             // .forEach(watchlist => this.loadWatchlistData(watchlist, true, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, true))
     }
 
     private async loadWatchlistData(watchlist: string,
-                                    isIndex: boolean,
+                                    isEtf: boolean,
                                     forceRefresh: boolean = false,
                                     forceRefreshRatios: boolean = false,
                                     mockData: boolean = false) {
-        const response = isIndex ?
-            await this.stockAnalystService.loadIndicesAnalysis(watchlist, forceRefresh, mockData)
+        const response = isEtf ?
+            await this.stockAnalystService.loadEtfsAnalysis(watchlist, forceRefresh, mockData)
             : await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, forceRefreshRatios, mockData)
         const error = response as BackendError;
         if (error.error) {
             console.error(`Failed to load ${watchlist}: ${error.message}`)
             return
         }
-        const analysisResult = response as StockAnalysisResult | IndicesAnalysisResult;
+        const analysisResult = response as StockAnalysisResult | EtfsAnalysisResult;
 
         const watchlistResult: WatchlistResult = {
             isLoaded: true,
             isPreset: true,
-            isIndex,
+            isEtf,
             watchlist,
             analysisResult
         }
 
         this.setState((state) => {
-            if (isIndex) {
-                return {indicesResults: this.mergeResult(state.indicesResults, watchlistResult, isIndex)}
+            if (isEtf) {
+                return {indicesResults: this.mergeResult(state.indicesResults, watchlistResult, isEtf)}
             } else {
-                return {results: this.mergeResult(state.results, watchlistResult, isIndex)}
+                return {results: this.mergeResult(state.results, watchlistResult, isEtf)}
             }
         })
     }
 
-    private createEmptyWatchlist(watchlist: string, isIndex: boolean) {
+    private createEmptyWatchlist(watchlist: string, isEtf: boolean) {
         const watchlistResult: WatchlistResult = {
             isLoaded: false,
             isPreset: true,
-            isIndex,
+            isEtf,
             watchlist,
             analysisResult: undefined
         }
 
         this.setState((state) => {
-            if (isIndex) {
-                return {indicesResults: this.mergeResult(state.indicesResults, watchlistResult, isIndex)}
+            if (isEtf) {
+                return {indicesResults: this.mergeResult(state.indicesResults, watchlistResult, isEtf)}
             } else {
-                return {results: this.mergeResult(state.results, watchlistResult, isIndex)}
+                return {results: this.mergeResult(state.results, watchlistResult, isEtf)}
             }
         })
     }
 
-    private unloadWatchlistData(watchlist: string, isIndex: boolean) {
+    private unloadWatchlistData(watchlist: string, isEtf: boolean) {
         this.setState((state) => {
-            if (isIndex) {
+            if (isEtf) {
                 return {indicesResults: this.unloadResult(state.indicesResults, watchlist)}
             } else {
                 return {results: this.unloadResult(state.results, watchlist)}
@@ -151,14 +151,14 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         })
     }
 
-    private mergeResult(results: WatchlistResult[], newResult: WatchlistResult, isIndex: boolean) {
+    private mergeResult(results: WatchlistResult[], newResult: WatchlistResult, isEtf: boolean) {
         return results
             .filter(r => r.watchlist !== newResult.watchlist)
             .concat(newResult)
             .sort((r1, r2) =>
-                isIndex ?
-                    this.PRESET_INDICES_WATCHLISTS.indexOf(r1.watchlist) < this.PRESET_INDICES_WATCHLISTS.indexOf(r2.watchlist) ? -1 : 1
-                    : this.PRESET_WATCHLISTS.indexOf(r1.watchlist) < this.PRESET_WATCHLISTS.indexOf(r2.watchlist) ? -1 : 1
+                isEtf ?
+                    this.ETF_WATCHLISTS.indexOf(r1.watchlist) < this.ETF_WATCHLISTS.indexOf(r2.watchlist) ? -1 : 1
+                    : this.STOCK_WATCHLISTS.indexOf(r1.watchlist) < this.STOCK_WATCHLISTS.indexOf(r2.watchlist) ? -1 : 1
             );
     }
 
@@ -175,8 +175,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             )
     }
 
-    private containWatchlistData(watchlist: string, isIndex: boolean): boolean {
-        const results = isIndex ? this.state.indicesResults : this.state.results;
+    private containWatchlistData(watchlist: string, isEtf: boolean): boolean {
+        const results = isEtf ? this.state.indicesResults : this.state.results;
         const watchlistResult = results
             .find(r => r.watchlist === watchlist);
 
@@ -200,16 +200,16 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         allResults
             .forEach((watchlistResult) => {
                 const onRefreshClickHandler = (watchlist) => {
-                    this.loadWatchlistData(watchlist, watchlistResult.isIndex, true, false, false);
+                    this.loadWatchlistData(watchlist, watchlistResult.isEtf, true, false, false);
                 }
                 const onRefreshRatiosClickHandler = (watchlist) => {
-                    this.loadWatchlistData(watchlist, watchlistResult.isIndex, false, true, false);
+                    this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, true, false);
                 }
                 const onShowClickHandler = (watchlist) => {
-                    if (this.containWatchlistData(watchlist, watchlistResult.isIndex)) {
-                        this.unloadWatchlistData(watchlist, watchlistResult.isIndex)
+                    if (this.containWatchlistData(watchlist, watchlistResult.isEtf)) {
+                        this.unloadWatchlistData(watchlist, watchlistResult.isEtf)
                     } else {
-                        this.loadWatchlistData(watchlist, watchlistResult.isIndex, false, false);
+                        this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, false);
                     }
                 }
                 watchlists.push(
@@ -221,7 +221,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                         onRefreshMorningstarClickHandler={onRefreshRatiosClickHandler}
                         onShowClickHandler={onShowClickHandler}
                         isPreset={watchlistResult.isPreset}
-                        isIndex={watchlistResult.isIndex}
+                        isEtf={watchlistResult.isEtf}
                         isExpanded={watchlistResult.isLoaded}
                     />
                 )

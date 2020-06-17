@@ -4,13 +4,13 @@ import {FormattingUtils} from "../utils/FormattingUtils";
 import './WatchlistTable.css';
 import {StockTableColumn} from "../model/StockTableColumn";
 import {CellData} from "../model/CellData";
-import {IndexTableColumn} from "../model/IndexTableColumn";
+import {EtfTableColumn} from "../model/EtfTableColumn";
 
 export interface TableProps {
     headerLabels: string[];
     headerAverages: number[];
     data: CellData[][];
-    isIndex: boolean;
+    isEtf: boolean;
     sortField?: number;
     onStockClickHandler?: (stockSymbol: string) => void
 }
@@ -55,20 +55,20 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     renderHeader(headerLabels: string[], headerAverages: number[]) {
-        const labelsRow = headerLabels.map((field, columnIndex) =>
-            <th key={columnIndex} className={'label ' + this.columnTypeClass(columnIndex, this.props.isIndex)}
-                onClick={() => this.setSortedField(columnIndex)}>
+        const labelsRow = headerLabels.map((field, column) =>
+            <th key={column} className={'label ' + this.columnTypeClass(column, this.props.isEtf)}
+                onClick={() => this.setSortedField(column)}>
                 <i className="fa fa-sort"/>
                 {FormattingUtils.toFieldLabel(field)}
             </th>
         );
-        const averagesRow = headerAverages.map((value, columnIndex) =>
-            <th key={columnIndex}
-                className={this.columnTypeClass(columnIndex, this.props.isIndex)}>
+        const averagesRow = headerAverages.map((value, column) =>
+            <th key={column}
+                className={this.columnTypeClass(column, this.props.isEtf)}>
                 {
-                    this.props.isIndex ?
-                        FormattingUtils.formatIndex(headerAverages, value, columnIndex)
-                        : FormattingUtils.formatStock(headerAverages, value, columnIndex)
+                    this.props.isEtf ?
+                        FormattingUtils.formatEtf(headerAverages, value, column)
+                        : FormattingUtils.formatStock(headerAverages, value, column)
                 }</th>
         );
 
@@ -112,38 +112,38 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     renderBody(data: CellData[][], averages: any[]) {
-        const rows = data.map((rowData, rowsIndex) =>
-            this.renderRow(rowData, rowsIndex, averages)
+        const rows = data.map((rowData, rowsEtf) =>
+            this.renderRow(rowData, rowsEtf, averages)
         );
         return (
             <tbody>{rows}</tbody>
         )
     }
 
-    renderRow(rowData: CellData[], rowIndex, averages: any[]) {
-        const rowValues = rowData.map((data, columnIndex) =>
-            <td key={columnIndex}
+    renderRow(rowData: CellData[], row, averages: any[]) {
+        const rowValues = rowData.map((data, column) =>
+            <td key={column}
                 onClick={() => this.props.onStockClickHandler(rowData[StockTableColumn.symbol].value as string)}
-                className={this.dataCellClass(rowData, data, averages[columnIndex], columnIndex)}>
+                className={this.dataCellClass(rowData, data, averages[column], column)}>
                 <span>{
-                    this.props.isIndex ?
-                        FormattingUtils.formatIndex(rowData, data.value, columnIndex)
-                        : FormattingUtils.formatStock(rowData, data.value, columnIndex)
+                    this.props.isEtf ?
+                        FormattingUtils.formatEtf(rowData, data.value, column)
+                        : FormattingUtils.formatStock(rowData, data.value, column)
                 }</span>
                 <span className={"score"}>{data.score ? data.score.toFixed(0) : ''}</span>
             </td>
         );
         return (
-            <tr key={rowIndex} className={this.rowClass(rowIndex)}
-                onClick={() => this.setSelectedRow(rowIndex)}>{rowValues}</tr>
+            <tr key={row} className={this.rowClass(row)}
+                onClick={() => this.setSelectedRow(row)}>{rowValues}</tr>
         )
     }
 
-    rowClass(rowIndex: number): string {
-        return rowIndex === this.state.selectedRow ? 'selected' : ''
+    rowClass(row: number): string {
+        return row === this.state.selectedRow ? 'selected' : ''
     }
 
-    dataCellClass(rowData: any[], data: CellData, average: any, columnIndex: number): string {
+    dataCellClass(rowData: any[], data: CellData, average: any, column: number): string {
         let classes = [];
 
         let score = Number.isNaN(data.score) ? 0 : data.score;
@@ -159,8 +159,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             }
         }
 
-        const changeColumn = this.props.isIndex ? IndexTableColumn.change : StockTableColumn.change;
-        if (columnIndex === changeColumn) {
+        const changeColumn = this.props.isEtf ? EtfTableColumn.change : StockTableColumn.change;
+        if (column === changeColumn) {
             if (data.value < 0) {
                 classes.push('redText')
             } else {
@@ -168,31 +168,31 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             }
         }
 
-        classes.push(this.columnTypeClass(columnIndex, this.props.isIndex));
+        classes.push(this.columnTypeClass(column, this.props.isEtf));
 
         return classes.join(' ');
     }
 
-    columnTypeClass(columnIndex: number, isIndex: boolean) {
-        if (isIndex) {
-            switch (columnIndex) {
-                case IndexTableColumn.chartData:
+    columnTypeClass(column: number, isEtf: boolean) {
+        if (isEtf) {
+            switch (column) {
+                case EtfTableColumn.chartData:
                     return 'hidden'
-                case IndexTableColumn.companyName:
+                case EtfTableColumn.companyName:
                     return 'companyName'
-                case IndexTableColumn.date:
+                case EtfTableColumn.date:
                     return 'date'
-                case IndexTableColumn.symbol:
+                case EtfTableColumn.symbol:
                     return 'symbol'
-                case IndexTableColumn.price:
+                case EtfTableColumn.price:
                     return 'price'
-                case IndexTableColumn.change:
+                case EtfTableColumn.change:
                     return 'change'
-                case IndexTableColumn.asOfDate:
+                case EtfTableColumn.asOfDate:
                     return 'date lastReport'
             }
         } else {
-            switch (columnIndex) {
+            switch (column) {
                 case StockTableColumn.chartData:
                     return 'hidden'
                 case StockTableColumn.companyName:
@@ -487,10 +487,10 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         }
     }
 
-    private setSelectedRow(rowIndex: number) {
+    private setSelectedRow(row: number) {
         this.setState(state => {
             return {
-                selectedRow: state.selectedRow === rowIndex ? undefined : rowIndex
+                selectedRow: state.selectedRow === row ? undefined : row
             }
         })
     }

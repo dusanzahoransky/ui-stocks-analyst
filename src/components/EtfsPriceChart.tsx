@@ -1,25 +1,25 @@
 import React from "react";
 import {Legend, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
-import "./IndicesPriceChart.css"
-import {IndicesChartData} from "../model/IndicesChartData";
+import "./EtfsPriceChart.css"
+import {EtfsChartData} from "../model/EtfsChartData";
 
-export interface IndicesPriceChartProps {
-    data: IndicesChartData[];
+export interface EtfsPriceChartProps {
+    data: EtfsChartData[];
     symbols: string[];
     label?: string;
     description?: string;
 }
 
-export interface IndicesPriceChartState {
+export interface EtfsPriceChartState {
     /**
      * A singe symbol latest price will be chosen and all other symbols, all prices will be multiplied by a constant number,so their latest price will match the chosen symbol latest price. Which will allow growth over the time comparison.
      */
     consolidatePrice?: boolean
 }
 
-export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, IndicesPriceChartState> {
+export class EtfsPriceChart extends React.Component<EtfsPriceChartProps, EtfsPriceChartState> {
 
-    constructor(props: Readonly<IndicesPriceChartProps>) {
+    constructor(props: Readonly<EtfsPriceChartProps>) {
         super(props);
         this.state = {
             consolidatePrice: false
@@ -31,7 +31,7 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, I
         const chartLabel = label ? <h3>{label}</h3> : ''
         const chartDescription = description ? <p>{description}</p> : ''
         const lines = this.props.symbols.map((s, index) => {
-            return <Line key={s} type="monotone" dataKey={s} stroke={this.getColorForIndex(index)} dot={false}
+            return <Line key={s} type="monotone" dataKey={s} stroke={this.getColorForEtf(index)} dot={false}
                          legendType={"plainline"}
                          isAnimationActive={false} connectNulls={true}/>
         })
@@ -43,7 +43,7 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, I
             checked={this.state.consolidatePrice}
             onChange={this.onConsolidatePriceClickHandler}/></>;
         return (
-            <div className={'IndicesPriceChart'}>
+            <div className={'EtfsPriceChart'}>
                 {chartLabel}
                 {chartDescription}
                 {consolidatePriceCheckbox}
@@ -62,7 +62,7 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, I
     /**
      * Consolidate price to the latest price point of all rendered indices, in order to see from what initial value would they achieve the same end result - the current price
      */
-    private consolidatePrice(data: IndicesChartData[]) {
+    private consolidatePrice(data: EtfsChartData[]) {
         let symbols = this.props.symbols;
         if (symbols.length < 2) {
             return data
@@ -98,7 +98,7 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, I
         this.setState({consolidatePrice: value})
     }
 
-    getColorForIndex(index: number) {
+    getColorForEtf(index: number) {
         switch (index % 10) {
             case 0:
                 return '#0000FF'

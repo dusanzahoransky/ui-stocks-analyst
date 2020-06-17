@@ -1,14 +1,14 @@
 import {StockAnalysisResult} from "../model/StockAnalysisResult";
-import {IndicesAnalysisResult} from "../model/IndicesAnalysisResult";
+import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {CellData} from "../model/CellData";
 import {StockTableColumn} from "../model/StockTableColumn";
 import moment from "moment";
 import {BackendError} from "../model/BackendError";
 import {StockInfo} from "../model/StockInfo";
 import resultTest from "./Result-test.json"
-import indicesTest from "./Indices-test.json"
+import indicesTest from "./Etfs-test.json"
 import symbolTest from "./Symbols-test.json"
-import {IndexTableColumn} from "../model/IndexTableColumn";
+import {EtfTableColumn} from "../model/EtfTableColumn";
 
 export class StockAnalystService {
 
@@ -21,12 +21,12 @@ export class StockAnalystService {
         }
     }
 
-    async loadIndicesAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<IndicesAnalysisResult | BackendError> {
+    async loadEtfsAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<EtfsAnalysisResult | BackendError> {
         if (watchlist === 'TEST_INDICES') {
             return Promise.resolve(indicesTest)
         } else {
             return fetch(`http://localhost:3000/stocks/indicesWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
-                .then(r => r.json() as unknown as IndicesAnalysisResult);
+                .then(r => r.json() as unknown as EtfsAnalysisResult);
         }
     }
 
@@ -39,13 +39,13 @@ export class StockAnalystService {
         }
     }
 
-    scoreRow(averages: number[], rowValues: number[] | string[], isIndex: boolean): CellData[] {
+    scoreRow(averages: number[], rowValues: number[] | string[], isEtf: boolean): CellData[] {
         const cellData: CellData[] = []
 
-        rowValues.forEach((value, colIndex) => {
-            const score = isIndex ?
-                StockAnalystService.scoreIndexData(value, colIndex, rowValues, averages) :
-                StockAnalystService.scoreStockData(value, colIndex, rowValues, averages);
+        rowValues.forEach((value, colEtf) => {
+            const score = isEtf ?
+                StockAnalystService.scoreEtfData(value, colEtf, rowValues, averages) :
+                StockAnalystService.scoreStockData(value, colEtf, rowValues, averages);
             cellData.push({
                 value,
                 score: score
@@ -61,7 +61,7 @@ export class StockAnalystService {
             value: totalScore
         })
 
-        if(!isIndex) {
+        if(!isEtf) {
             const rule1Score = cellData.map(data => data.score)
                 .filter((score, index) => index >= StockTableColumn.roic1Y)
                 .filter(score => score && !Number.isNaN(score))
@@ -75,99 +75,99 @@ export class StockAnalystService {
         return cellData
     }
 
-    private static scoreIndexData(value: number | string, colIndex: number, rowValues: number[] | string[], averages: number[]): number {
+    private static scoreEtfData(value: number | string, colEtf: number, rowValues: number[] | string[], averages: number[]): number {
         if (!value) {
             return 0
         }
         const number: number = value as number
-        const avg = averages[colIndex] as number
+        const avg = averages[colEtf] as number
         let score
 
-        switch (colIndex) {
-            case IndexTableColumn.change: {
+        switch (colEtf) {
+            case EtfTableColumn.change: {
                 score = number > 5 || number < -5 ? number - 10 : 0
                 break
             }
-            case IndexTableColumn.yield: {
+            case EtfTableColumn.yield: {
                 //dividends are already included in the returns
                 //dividends are tax deductible, including foreign taxes, which makes them a worse option than gain growth
                 score = number
                 score *= -1
                 break;
             }
-            case IndexTableColumn.ytdReturn: {
+            case EtfTableColumn.ytdReturn: {
                 score = number - avg
                 score *= 1
                 break;
             }
-            case IndexTableColumn.threeYearAverageReturn: {
+            case EtfTableColumn.threeYearAverageReturn: {
                 score = number - avg
                 score *= 5
                 break;
             }
-            case IndexTableColumn.fiveYearAverageReturn: {
+            case EtfTableColumn.fiveYearAverageReturn: {
                 score = number - avg
                 score *= 10
                 break;
             }
-            case IndexTableColumn.priceToEarnings: {
+            case EtfTableColumn.priceToEarnings: {
                 score = avg - number
                 score *= 10
                 break;
             }
-            case IndexTableColumn.priceToBook: {
+            case EtfTableColumn.priceToBook: {
                 score = avg - number
                 score *= 5
                 break;
             }
-            case IndexTableColumn.priceToCashflow: {
+            case EtfTableColumn.priceToCashflow: {
                 score = avg - number
                 score *= 3
                 break;
             }
-            case IndexTableColumn.priceToSales: {
+            case EtfTableColumn.priceToSales: {
                 score = avg - number
                 score *= 3
                 break;
             }
-            case IndexTableColumn.oneMonth: {
+            case EtfTableColumn.oneMonth: {
                 score = number - avg
                 score *= 1
                 break;
             }
-            case IndexTableColumn.threeMonth: {
+            case EtfTableColumn.threeMonth: {
                 score = number - avg
                 score *= 1
                 break;
             }
-            case IndexTableColumn.oneYear: {
+            case EtfTableColumn.oneYear: {
                 score = number - avg
                 score *= 1
                 break;
             }
-            case IndexTableColumn.threeYear: {
+            case EtfTableColumn.threeYear: {
                 score = number - avg
                 score *= 10
                 break;
             }
-             case IndexTableColumn.fiveYear: {
+             case EtfTableColumn.fiveYear: {
                 score = number - avg
                 score *= 10
                 break;
             }
-            case IndexTableColumn.tenYear: {
+            case EtfTableColumn.tenYear: {
                 score = number - avg
                 score *= 10
                 break;
             }
 
 
-            case IndexTableColumn.averageDailyVolume3Month: {
+            case EtfTableColumn.averageDailyVolume3Month: {
                 score = number - avg
                 score *= 0.00001
                 break;
             }
-            case IndexTableColumn.averageDailyVolume10Day: {
+            case EtfTableColumn.averageDailyVolume10Day: {
                 score = number - avg
                 score *= 0.00001
                 break;
@@ -177,7 +177,7 @@ export class StockAnalystService {
         return score
     }
 
-    private static scoreStockData(value: number | string, colIndex: number, rowValues: number[] | string[], averages: number[]): number {
+    private static scoreStockData(value: number | string, colEtf: number, rowValues: number[] | string[], averages: number[]): number {
 
         if (!value) {
             return 0
@@ -187,7 +187,7 @@ export class StockAnalystService {
 
         let score
 
-        switch (colIndex) {
+        switch (colEtf) {
             case StockTableColumn.change: {
                 score = number > 10 || number < -10 ? number - 10 : 0
                 break
@@ -583,8 +583,8 @@ export class StockAnalystService {
         return absPow * Math.sign(number);
     }
 
-    filterDisplayableStats(stockInfo: StockInfo, isIndex: boolean): StockInfo {
-        const colNames = StockAnalystService.getTableColumnNames(isIndex);
+    filterDisplayableStats(stockInfo: StockInfo, isEtf: boolean): StockInfo {
+        const colNames = StockAnalystService.getTableColumnNames(isEtf);
 
         for (const statName of Object.keys(stockInfo)) {
             if (!colNames.find(colName => colName === statName)) {
@@ -594,10 +594,10 @@ export class StockAnalystService {
         return stockInfo
     }
 
-    private static getTableColumnNames(isIndex: boolean): string[] {
+    private static getTableColumnNames(isEtf: boolean): string[] {
         const enumNames = []
-        if (isIndex) {
-            for (const enumMember in IndexTableColumn) {
+        if (isEtf) {
+            for (const enumMember in EtfTableColumn) {
                 if (Number.isNaN(Number.parseInt(enumMember))) {
                     enumNames.push(enumMember)
                 }

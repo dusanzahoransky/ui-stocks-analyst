@@ -1,18 +1,18 @@
 import {StockTableColumn} from "../model/StockTableColumn";
 import moment from "moment";
-import {IndexTableColumn} from "../model/IndexTableColumn";
+import {EtfTableColumn} from "../model/EtfTableColumn";
 
 export class FormattingUtils {
 
-    static formatStock(rowValue: any[], value: number | string, columnIndex: StockTableColumn): string {
-        if (typeof value === 'string' && columnIndex === StockTableColumn.exDividendDate) {
+    static formatStock(rowValue: any[], value: number | string, column: StockTableColumn): string {
+        if (typeof value === 'string' && column === StockTableColumn.exDividendDate) {
             let diff = moment().diff(value, 'days');
             return diff < 0 ? `in ${-diff} days` : value;
         }
         return this.format(rowValue, value)
     }
 
-    static formatIndex(rowValue: any[], value: number | string, columnIndex: IndexTableColumn): string {
+    static formatEtf(rowValue: any[], value: number | string, column: EtfTableColumn): string {
         return this.format(rowValue, value)
     }
 
