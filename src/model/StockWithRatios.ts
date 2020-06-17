@@ -1,7 +1,7 @@
-import {StockInfo} from "./StockInfo";
+import {Stock} from "./Stock";
 import {StockRatiosTimeline} from "./StockRatiosTimeline";
 
-export interface StockInfoWithRatios {
-    stockInfo: StockInfo,
+export interface StockWithRatios {
+    stockInfo: Stock,
     stockRatiosTimeline: StockRatiosTimeline,
 }

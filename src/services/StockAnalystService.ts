@@ -4,7 +4,7 @@ import {CellData} from "../model/CellData";
 import {StockTableColumn} from "../model/StockTableColumn";
 import moment from "moment";
 import {BackendError} from "../model/BackendError";
-import {StockInfo} from "../model/StockInfo";
+import {Stock} from "../model/Stock";
 import resultTest from "./Result-test.json"
 import indicesTest from "./Etfs-test.json"
 import symbolTest from "./Symbols-test.json"
@@ -30,12 +30,12 @@ export class StockAnalystService {
         }
     }
 
-    async loadStock(symbol: string, forceRefresh: boolean, mockData: boolean): Promise<StockInfo | BackendError> {
+    async loadStock(symbol: string, forceRefresh: boolean, mockData: boolean): Promise<Stock | BackendError> {
         if (symbol.startsWith('TEST')) {
             return Promise.resolve(symbolTest)
         } else {
             return fetch(`http://localhost:3000/stocks/watchlist?symbol=${symbol}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
-                .then(r => r.json() as unknown as StockInfo);
+                .then(r => r.json() as unknown as Stock);
         }
     }
 
@@ -583,7 +583,7 @@ export class StockAnalystService {
         return absPow * Math.sign(number);
     }
 
-    filterDisplayableStats(stockInfo: StockInfo, isEtf: boolean): StockInfo {
+    filterDisplayableStats(stockInfo: Stock, isEtf: boolean): Stock {
         const colNames = StockAnalystService.getTableColumnNames(isEtf);
 
         for (const statName of Object.keys(stockInfo)) {

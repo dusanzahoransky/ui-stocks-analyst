@@ -9,7 +9,7 @@ import {PriceEpsData} from "../model/PriceEpsData";
 import "./Watchlist.css";
 import 'font-awesome/css/font-awesome.min.css';
 import moment from "moment";
-import {StockInfo} from "../model/StockInfo";
+import {Stock} from "../model/Stock";
 import {EtfsChartData} from "../model/EtfsChartData";
 import {EtfsPriceChart} from "./EtfsPriceChart";
 import {StockRatiosPeriods} from "../model/StockRatiosPeriods";
@@ -158,7 +158,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return enumNames
     }
 
-    getStockInfo(result: StockAnalysisResult | EtfsAnalysisResult, isEtf: boolean): StockInfo[] {
+    getStock(result: StockAnalysisResult | EtfsAnalysisResult, isEtf: boolean): Stock[] {
         return this.props.isEtf ?
             (result as EtfsAnalysisResult).stocks :
             (result as StockAnalysisResult).stocks.map(s => s.stockInfo)
@@ -168,7 +168,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         if (!this.props.isExpanded) {
             return ''
         } else {
-            const stocksInfo: StockInfo[] = this.getStockInfo(result, this.props.isEtf)    //one more level of nesting
+            const stocksInfo: Stock[] = this.getStock(result, this.props.isEtf)    //one more level of nesting
             const headers = this.toHeaderData(result.averages, this.props.isEtf);
             let data = this.toTableData(stocksInfo);
             const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isEtf))
@@ -220,7 +220,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         }
     }
 
-    toHeaderData(averages: StockInfo, isEtf: boolean): any[][] {
+    toHeaderData(averages: Stock, isEtf: boolean): any[][] {
         averages = this.stockAnalystService.filterDisplayableStats(averages, isEtf)
 
         const headersRow = Object.keys(averages)
@@ -247,7 +247,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         averagesRow.push(0)
     }
 
-    toTableData(stocks: StockInfo[]): any[][] {
+    toTableData(stocks: Stock[]): any[][] {
         let rows = [];
         for (let stock of stocks) {
             stock = this.stockAnalystService.filterDisplayableStats(stock, this.props.isEtf)
@@ -258,7 +258,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return rows;
     }
 
-    private prepareEtfsChartData(stocks: StockInfo[]): EtfsChartData[] | undefined {
+    private prepareEtfsChartData(stocks: Stock[]): EtfsChartData[] | undefined {
 
         const chartStocks = stocks.filter(s => this.state.indicesChartSymbols.includes(s.symbol))
 

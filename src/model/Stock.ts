@@ -1,3 +1,3 @@
-export interface StockInfo {
+export interface Stock {
     [statName: string]: any
 }

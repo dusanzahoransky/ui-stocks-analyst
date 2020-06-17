@@ -1,7 +1,7 @@
-import {StockInfoWithRatios} from "./StockInfoWithRatios";
-import {StockInfo} from "./StockInfo";
+import {StockWithRatios} from "./StockWithRatios";
+import {Stock} from "./Stock";
 
 export interface StockAnalysisResult {
-    averages: StockInfo;
-    stocks: StockInfoWithRatios[];
+    averages: Stock;
+    stocks: StockWithRatios[];
 }
