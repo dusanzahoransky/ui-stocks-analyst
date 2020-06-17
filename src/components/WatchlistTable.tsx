@@ -190,8 +190,6 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                     return 'change'
                 case IndexTableColumn.asOfDate:
                     return 'date lastReport'
-                case IndexTableColumn.fundInceptionDate:
-                    return 'date'
             }
         } else {
             switch (columnIndex) {

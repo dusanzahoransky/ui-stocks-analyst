@@ -46,7 +46,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         'INVESTED_IN_USD_TECH',
         'INVESTED_IN_USD',
         'AUD',
-        'CHF',
+        // 'CHF',
         'EUR',
         'GBP',
         'USD',
@@ -62,15 +62,14 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     private readonly PRESET_INDICES_WATCHLISTS = [
         /* 'TEST_INDICES',*/
         'INVESTED_IN_AUD_INDICES',
-        'INVESTED_IN_GBP_INDICES',
         'AUD_INDICES_AU',
         'AUD_INDICES_ASIA',
         'AUD_INDICES_US',
-        'AUD_INDICES_BOND',
         'AUD_INDICES',
+        'INVESTED_IN_GBP_INDICES',
         'GBP_INDICES',
+        'INVESTED_IN_EUR_INDICES',
         'EUR_INDICES',
-        'EUR_INDICES_BOND',
         'INDICES'
     ];
 
@@ -80,7 +79,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
         this.PRESET_INDICES_WATCHLISTS
-            // .forEach(watchlist => this.loadWatchlistData(watchlist, true, false, false))
+            // .forEach(watchlist => this.loadWatchlistData(watchlist, true, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, true))
     }
 
@@ -210,13 +209,12 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                         key={watchlistResult.watchlist}
                         result={watchlistResult.analysisResult}
                         watchlist={watchlistResult.watchlist}
-                        peRatio={15}
-                        onRefreshClickHandler={onRefreshClickHandler}
-                        onRefreshRatiosClickHandler={onRefreshRatiosClickHandler}
+                        onRefreshYahooHandler={onRefreshClickHandler}
+                        onRefreshMorningstarClickHandler={onRefreshRatiosClickHandler}
                         onShowClickHandler={onShowClickHandler}
                         isPreset={watchlistResult.isPreset}
                         isIndex={watchlistResult.isIndex}
-                        isLoaded={watchlistResult.isLoaded}
+                        isExpanded={watchlistResult.isLoaded}
                     />
                 )
             });

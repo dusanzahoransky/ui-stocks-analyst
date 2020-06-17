@@ -26,7 +26,7 @@ export class RatioChart extends React.Component<RatioChartProps> {
         });
         return (
             <div className={'RatioChart'}>
-                <h3>{chartLabel}</h3>
+                <h3 className={'RatioChartLabel'}>{chartLabel}</h3>
                 <div className={'ChartWrapper'}>
                     <LineChart width={800} height={100} data={normalisedData}>
                         <Line type="monotone" dataKey="value" stroke="#003795" legendType={"plainline"}

@@ -202,15 +202,15 @@ export enum StockTableColumn {
     historicalPE,
     rule1PE,
     currentEps,
-    futureEPS10Years,
+    // futureEPS10Years,
     futurePrice10Years,
 
     stickerPrice15pcGrowth,
-    stickerPrice10pcGrowth,
+    // stickerPrice10pcGrowth,
     stickerPrice5pcGrowth,
 
     belowStickerPrice15pc,
-    belowStickerPrice10pc,
+    // belowStickerPrice10pc,
     belowStickerPrice5pc,
 
     chartData,

@@ -37,19 +37,20 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, I
         })
         const chartData = this.state.consolidatePrice ? this.consolidatePrice(data) : data
 
+        let consolidatePriceCheckbox = <>Consolidate to latest price: <input
+            name="consolidatePrice"
+            type="checkbox"
+            checked={this.state.consolidatePrice}
+            onChange={this.onConsolidatePriceClickHandler}/></>;
         return (
             <div className={'IndicesPriceChart'}>
                 {chartLabel}
-                Consolidate latest price: <input
-                name="consolidatePrice"
-                type="checkbox"
-                checked={this.state.consolidatePrice}
-                onChange={this.onConsolidatePriceClickHandler}/>
                 {chartDescription}
-                <LineChart width={1800} height={400} data={chartData}>
+                {consolidatePriceCheckbox}
+                <LineChart width={1860} height={400} data={chartData}>
                     {lines}
-                    <XAxis dataKey="date"/>
-                    <YAxis/>
+                    <XAxis dataKey="date" tick={{fontSize: 10}}/>
+                    <YAxis  tick={{fontSize: 10}} width={20}/>
                     <Tooltip/>
                     <Legend/>
                 </LineChart>
@@ -58,6 +59,9 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, I
     }
 
 
+    /**
+     * Consolidate price to the latest price point of all rendered indices, in order to see from what initial value would they achieve the same end result - the current price
+     */
     private consolidatePrice(data: IndicesChartData[]) {
         let symbols = this.props.symbols;
         if (symbols.length < 2) {
@@ -91,10 +95,7 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, I
     onConsolidatePriceClickHandler = (event) => {
         const target = event.target;
         const value = target.name === 'consolidatePrice' ? target.checked : this.state.consolidatePrice;
-        this.setState({
-                consolidatePrice: value
-            }
-        )
+        this.setState({consolidatePrice: value})
     }
 
     getColorForIndex(index: number) {
@@ -106,19 +107,19 @@ export class IndicesPriceChart extends React.Component<IndicesPriceChartProps, I
             case 2:
                 return '#FF0000'
             case 3:
-                return '#000080'
-            case 4:
-                return '#008080'
-            case 5:
-                return '#FFFF00'
-            case 6:
-                return '#800000'
-            case 7:
-                return '#008080'
-            case 8:
-                return '#00FFFF'
-            case 9:
                 return '#FF00FF'
+            case 4:
+                return '#00FFFF'
+            case 5:
+                return '#000000'
+            case 6:
+                return '#FFFF00'
+            case 7:
+                return '#800000'
+            case 8:
+                return '#FF5100'
+            case 9:
+                return '#008080'
         }
     }
 

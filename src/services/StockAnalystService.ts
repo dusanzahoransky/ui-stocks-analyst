@@ -57,18 +57,20 @@ export class StockAnalystService {
             .filter(score => score && !Number.isNaN(score))
             .reduce((prev, curr) => prev + curr, 0);
 
-        const rule1Score = cellData.map(data => data.score)
-            .filter((score, index) => index >= StockTableColumn.roic1Y)
-            .filter(score => score && !Number.isNaN(score))
-            .reduce((prev, curr) => prev + curr, 0);
-
         cellData.push({
             value: totalScore
         })
 
-        cellData.push({
-            value: rule1Score
-        })
+        if(!isIndex) {
+            const rule1Score = cellData.map(data => data.score)
+                .filter((score, index) => index >= StockTableColumn.roic1Y)
+                .filter(score => score && !Number.isNaN(score))
+                .reduce((prev, curr) => prev + curr, 0);
+
+            cellData.push({
+                value: rule1Score
+            })
+        }
 
         return cellData
     }
@@ -87,8 +89,10 @@ export class StockAnalystService {
                 break
             }
             case IndexTableColumn.yield: {
-                score = number - avg
-                score *= 10
+                //dividends are already included in the returns
+                //dividends are tax deductible, including foreign taxes, which makes them a worse option than gain growth
+                score = number
+                score *= -1
                 break;
             }
             case IndexTableColumn.ytdReturn: {
@@ -98,22 +102,22 @@ export class StockAnalystService {
             }
             case IndexTableColumn.threeYearAverageReturn: {
                 score = number - avg
-                score *= 3
+                score *= 5
                 break;
             }
             case IndexTableColumn.fiveYearAverageReturn: {
                 score = number - avg
-                score *= 3
+                score *= 10
                 break;
             }
             case IndexTableColumn.priceToEarnings: {
                 score = avg - number
-                score *= 15
+                score *= 10
                 break;
             }
             case IndexTableColumn.priceToBook: {
                 score = avg - number
-                score *= 1
+                score *= 5
                 break;
             }
             case IndexTableColumn.priceToCashflow: {
@@ -146,50 +150,26 @@ export class StockAnalystService {
                 score *= 10
                 break;
             }
-            case IndexTableColumn.ytd: {
+             case IndexTableColumn.fiveYear: {
                 score = number - avg
-                score *= 2
-                break;
-            }
-            case IndexTableColumn.fiveYear: {
-                score = number - avg
-                score *= 5
+                score *= 10
                 break;
             }
             case IndexTableColumn.tenYear: {
                 score = number - avg
-                score *= 1
-                break;
-            }
-
-            case IndexTableColumn.lastBearMkt: {
-                score = number - avg
-                score *= 5
-                break;
-            }
-            case IndexTableColumn.lastBullMkt: {
-                score = number - avg
-                score *= 5
-                break;
-            }
-            case IndexTableColumn.annualHoldingsTurnover: {
-                score = avg - number
-                score *= 5
-                break;
-            }
-            case IndexTableColumn.annualReportExpenseRatio: {
-                score = avg - number
                 score *= 10
                 break;
             }
+
+
             case IndexTableColumn.averageDailyVolume3Month: {
                 score = number - avg
-                score *= 0.000001
+                score *= 0.00001
                 break;
             }
             case IndexTableColumn.averageDailyVolume10Day: {
                 score = number - avg
-                score *= 0.000001
+                score *= 0.00001
                 break;
             }
         }
@@ -531,9 +511,6 @@ export class StockAnalystService {
                 break;
             case StockTableColumn.belowStickerPrice15pc:
                 score = number * 10
-                break;
-            case StockTableColumn.belowStickerPrice10pc:
-                score = number * 5
                 break;
             case StockTableColumn.belowStickerPrice5pc:
                 score = number

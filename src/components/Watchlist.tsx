@@ -21,13 +21,24 @@ import {ChartRatios} from "../model/ChartRatios";
 export interface WatchlistProps {
     watchlist: string
     result?: StockAnalysisResult | IndicesAnalysisResult,
-    peRatio: number,
-    onRefreshClickHandler?: (watchlist: string) => void,
-    onRefreshRatiosClickHandler?: (watchlist: string) => void,
+    onRefreshYahooHandler?: (watchlist: string) => void,
+    onRefreshMorningstarClickHandler?: (watchlist: string) => void,
+    /**
+     * On show/hide click
+     */
     onShowClickHandler?: (watchlist: string) => void,
+    /**
+     * preset watchlist stored in DB or a custom on the fly created watchlist
+     */
     isPreset: boolean
+    /**
+     * an ETF index or normal stock
+     */
     isIndex: boolean
-    isLoaded: boolean
+    /**
+     * show the watchlist - render it as expanded, showing all the stocks
+     */
+    isExpanded: boolean
 }
 
 export interface WatchlistState {
@@ -51,8 +62,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             // priceEpsData: undefined,
             // ratiosData: undefined,
             //uncomment to render chart of the first stock on load
-            priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
-            ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
+            // priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
+            // ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
             // indicesChartSymbols: ['VTS', 'VUSA'],
             indicesChartSymbols: [],
             priceEpsChartRemoveOutliers: true
@@ -62,20 +73,20 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     render() {
-        const {watchlist, result, peRatio} = this.props;
+        const {watchlist, result} = this.props;
 
         const table = this.renderTable(result)
-        const charts = this.props.isIndex ? this.renderIndicesChart() : this.renderCompanyCharts(peRatio, this.state.priceEpsData, this.state.ratiosData)
+        const charts = this.props.isIndex ? this.renderIndicesChart() : this.renderCompanyCharts(this.state.priceEpsData, this.state.ratiosData)
 
-        const refreshLink = this.props.isPreset && this.props.isLoaded ?
+        const refreshLink = this.props.isPreset && this.props.isExpanded ?
             <span className="refresh">
-                <i className="fa fa-refresh" onClick={() => this.props.onRefreshClickHandler(watchlist)}/> Yahoo
+                <i className="fa fa-refresh" onClick={() => this.props.onRefreshYahooHandler(watchlist)}/> Yahoo
             </span> : ''
 
-        const refreshRatiosLink = this.props.isPreset && this.props.isLoaded ?
+        const refreshRatiosLink = this.props.isPreset && this.props.isExpanded ?
             <span className="refresh">
                 <i className="fa fa-refresh refreshRatios"
-                   onClick={() => this.props.onRefreshRatiosClickHandler(watchlist)}/> MorningStar
+                   onClick={() => this.props.onRefreshMorningstarClickHandler(watchlist)}/> MorningStar
             </span> : ''
 
         const showLink = this.props.isPreset ?
@@ -92,7 +103,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderIndicesChart() {
-        if (!this.props.isLoaded || this.state.indicesChartSymbols.length === 0) {
+        if (!this.props.isExpanded || this.state.indicesChartSymbols.length === 0) {
             return ''
         }
         const chartData = this.prepareIndicesChartData(this.props.result.stocks);
@@ -100,14 +111,15 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             <IndicesPriceChart
                 data={chartData}
                 symbols={this.state.indicesChartSymbols}
-                description={`Performance of all indices in the watchlist`}/>
+                label={`Index price chart`}/>
         </div>
     }
 
-    renderCompanyCharts(peRatio: number, priceEpsData?: PriceEpsDataRaw[], ratiosData?: StockRatiosPeriods) {
-        if (!this.props.isLoaded || !priceEpsData) {
+    renderCompanyCharts(priceEpsData?: PriceEpsDataRaw[], ratiosData?: StockRatiosPeriods) {
+        if (!this.props.isExpanded || !priceEpsData) {
             return ''
         }
+        const peRatio = 15
         const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
         const priceEpsChart = <PriceEpsChart
             data={chartData}
@@ -153,11 +165,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderTable(result?: StockAnalysisResult | IndicesAnalysisResult) {
-        if (!this.props.isLoaded) {
+        if (!this.props.isExpanded) {
             return ''
         } else {
             const stocksInfo: StockInfo[] = this.getStockInfo(result, this.props.isIndex)    //one more level of nesting
-            const headers = this.toHeaderData(result.averages);
+            const headers = this.toHeaderData(result.averages, this.props.isIndex);
             let data = this.toTableData(stocksInfo);
             const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isIndex))
             return <WatchlistTable
@@ -208,19 +220,31 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         }
     }
 
-    toHeaderData(averages: StockInfo): any[][] {
-        averages = this.stockAnalystService.filterDisplayableStats(averages, this.props.isIndex)
-        const headersRow = Object.keys(averages)
-            .concat('Score', 'Rule 1 Score')
+    toHeaderData(averages: StockInfo, isIndex: boolean): any[][] {
+        averages = this.stockAnalystService.filterDisplayableStats(averages, isIndex)
 
-        const averagesRow = Object.keys(averages)
-            .map(key => averages[key])
-            .concat(0, 0)
+        const headersRow = Object.keys(averages)
+        const averagesRow = Object.keys(averages).map(key => averages[key])
+
+        this.addScoreHeader(headersRow, averagesRow)
+        if (!isIndex) {
+            this.addRule1Header(headersRow, averagesRow)
+        }
 
         return [
             headersRow,
             averagesRow
         ]
+    }
+
+    addScoreHeader(headersRow: string[], averagesRow: number[]) {
+        headersRow.push('Score')
+        averagesRow.push(0)
+    }
+
+    addRule1Header(headersRow: string[], averagesRow: number[]) {
+        headersRow.push('Rule 1 Score')
+        averagesRow.push(0)
     }
 
     toTableData(stocks: StockInfo[]): any[][] {
@@ -266,8 +290,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const round2Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined;
 
         //remove outliers, sometime a price jumps from 10 to 1000, e.g. RYA stock and that messes up the chart scale
-        for(let i = 1; i < priceEpsData.length; i++){
-            if(priceEpsData[i].price > priceEpsData[i-1].price * 20){
+        for (let i = 1; i < priceEpsData.length; i++) {
+            if (priceEpsData[i].price > priceEpsData[i - 1].price * 20) {
                 priceEpsData[i].price = undefined
             }
         }

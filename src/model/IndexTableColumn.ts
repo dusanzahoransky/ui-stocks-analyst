@@ -24,23 +24,22 @@ export enum IndexTableColumn {
 
     oneMonth,
     threeMonth,
-    ytd,
     oneYear,
     threeYear,
     fiveYear,
     tenYear,
 
-    lastBearMkt,
+   /* lastBearMkt,
     lastBullMkt,
 
 
     annualHoldingsTurnover,
-    annualReportExpenseRatio,
+    annualReportExpenseRatio,*/
 
     averageDailyVolume3Month,
     averageDailyVolume10Day,
 
-    fundInceptionDate,
+    /*fundInceptionDate,*/
 
     chartData
 }

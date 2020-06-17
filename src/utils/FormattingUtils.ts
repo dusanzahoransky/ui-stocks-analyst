@@ -49,7 +49,7 @@ export class FormattingUtils {
             case "id":
                 return "Id"
             case "date":
-                return "Refresh date Yahoo"
+                return "Refreshed Yahoo"
             case "lastReportedQuarter":
                 return "Last Quarter"
             case "symbol":
@@ -57,7 +57,7 @@ export class FormattingUtils {
             case "exchange":
                 return "Exchange"
             case "companyName":
-                return "Company name"
+                return "Name"
             case "price":
                 return "Price"
             case "change":
@@ -109,17 +109,17 @@ export class FormattingUtils {
             case "targetLowPrice":
                 return "Target Low Price"
             case "belowTargetLowPricePercent":
-                return "Below target low price %"
+                return "Below low price %"
             case "belowTargetMedianPricePercent":
-                return "Below target median price %"
+                return "Below median price %"
             case "heldByInsiders":
-                return "Held by insiders %"
+                return "Held by insdr %"
             case "heldByInstitutions":
-                return "Held by institutions %"
+                return "Held by inst %"
             case "shortToFloat":
-                return "Short to Float %"
+                return "Short vs Float %"
             case "sharesShortPrevMonthCompare":
-                return "Short comp to prev month %"
+                return "Short vs prev month %"
             case "netIncomeLastQuarter":
                 return "Net income (LQ)"
             case "netIncome2QuartersAgo":
@@ -167,25 +167,25 @@ export class FormattingUtils {
             case "inventoryGrowthLast3Years":
                 return "Inventory growth (L3Y)"
             case "currentLiabilitiesLastQuarter":
-                return "Current liabilities (LQ)"
+                return "Current liab (LQ)"
             case "currentLiabilitiesGrowthLastQuarter":
-                return "Current liabilities growth (LQ)"
+                return "Current liab growth (LQ)"
             case "currentLiabilitiesLastYear":
-                return "Current liabilities (LY)"
+                return "Current liab (LY)"
             case "currentLiabilitiesGrowthLastYear":
-                return "Current liabilities growth (LY)"
+                return "Current liab growth (LY)"
             case "currentLiabilitiesGrowthLast3Years":
-                return "Current liabilities growth (L3Y)"
+                return "Current liab growth (L3Y)"
             case "totalLiabilitiesLastQuarter":
-                return "Total liabilities (LQ)"
+                return "Total liab (LQ)"
             case "totalLiabilitiesGrowthLastQuarter":
-                return "Total liabilities growth (LQ)"
+                return "Total liab growth (LQ)"
             case "totalLiabilitiesLastYear":
-                return "Total liabilities (LY)"
+                return "Total liab (LY)"
             case "totalLiabilitiesGrowthLastYear":
-                return "Total liabilities growth (LY)"
+                return "Total liab growth (LY)"
             case "totalLiabilitiesGrowthLast3Years":
-                return "Total liabilities growth (L3Y)"
+                return "Total liab growth (L3Y)"
             case "totalShareholdersEquityLastQuarter":
                 return "Total shrd equity (LQ)"
             case "totalShareholdersEquityGrowthLastQuarter":
@@ -197,35 +197,35 @@ export class FormattingUtils {
             case "totalShareholdersEquityGrowthLast3Years":
                 return "Total shrd equity growth (L3Y)"
             case "currentLiabilitiesToEquityLastQuarter":
-                return "Current liabilities to equity (LQ)"
+                return "Current liab to equity (LQ)"
             case "currentLiabilitiesToEquityLastYear":
-                return "Current liabilities to equity (LY)"
+                return "Current liab to equity (LY)"
             case "currentLiabilitiesToEquityGrowthLastQuarter":
-                return "Current liabilities to equity growth (LQ)"
+                return "Current liab to equity growth (LQ)"
             case "currentLiabilitiesToEquityGrowthLastYear":
-                return "Current liabilities to equity growth (LY)"
+                return "Current liab to equity growth (LY)"
             case "currentLiabilitiesToEquityGrowthLast3Years":
-                return "Current liabilities to equity growth (L3Y)"
+                return "Current liab to equity growth (L3Y)"
             case "totalLiabilitiesToEquityLastQuarter":
-                return "Total liabilities to equity (LQ)"
+                return "Total liab to equity (LQ)"
             case "totalLiabilitiesToEquityLastYear":
-                return "Total liabilities to equity (LY)"
+                return "Total liab to equity (LY)"
             case "totalLiabilitiesToEquityGrowthLastQuarter":
-                return "Total liabilities to equity growth (LQ)"
+                return "Total liab to equity growth (LQ)"
             case "totalLiabilitiesToEquityGrowthLastYear":
-                return "Total liabilities to equity growth (LY)"
+                return "Total liab to equity growth (LY)"
             case "totalLiabilitiesToEquityGrowthLast3Years":
-                return "Total liabilities to equity growth (L3Y)"
+                return "Total liab to equity growth (L3Y)"
             case "stockRepurchasedLastQuarter":
                 return "Stock repurchase (LQ)"
             case "stockRepurchasedGrowthLastQuarter":
-                return "Stock repurchase growth (LQ)"
+                return "Stock repurch growth (LQ)"
             case "stockRepurchasedLastYear":
-                return "Stock repurchase (LY)"
+                return "Stock repurch (LY)"
             case "stockRepurchasedGrowthLastYear":
-                return "Stock repurchase growth (LY)"
+                return "Stock repurch growth (LY)"
             case "stockRepurchasedGrowthLast3Years":
-                return "Stock repurchase growth (L3Y)"
+                return "Stock repurch growth (L3Y)"
             case "stockLastQuarter":
                 return "Stock (LQ)"
             case "stockGrowthLastQuarter":
@@ -301,11 +301,11 @@ export class FormattingUtils {
                 return "Yield"
 
             case "ytdReturn":
-                return "Ytd return"
+                return "Ytd"
             case "threeYearAverageReturn":
-                return "3Y avg return"
+                return "3Y avg"
             case "fiveYearAverageReturn":
-                return "5Y avg return"
+                return "5Y avg"
 
             case "priceToEarnings":
                 return "PE"
@@ -356,9 +356,9 @@ export class FormattingUtils {
                 return "Annual report expense ratio"
 
             case "averageDailyVolume3Month":
-                return "Avg daily volume 3M"
+                return "Volume 3M"
             case "averageDailyVolume10Day":
-                return "Avg daily volume 10D"
+                return "Volume 10D"
 
             case "fundInceptionDate":
                 return "Inception date"
