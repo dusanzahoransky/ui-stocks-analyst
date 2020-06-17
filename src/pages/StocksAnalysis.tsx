@@ -42,35 +42,43 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     }
 
     private readonly PRESET_WATCHLISTS = [
-        'TO_INVEST',
-        'INVESTED_IN_USD_TECH',
-        'INVESTED_IN_USD',
-        'AUD',
-        // 'CHF',
-        'EUR',
-        'GBP',
-        'USD',
-        'USD_TECH',
-        'USD_DIVIDENDS',
+        /* 'TEST',
+        'TO_CHECK',*/
+        'ALL_INVESTED',
+
+        'US_ALL',
+        'US_INVESTED_IN',
+
+        'EU_ALL',
+        'EU_INVESTED_IN',
+
+        'GB_ALL',
+        'GB_INVESTED_IN',
+
+        'AU_ALL',
+        'AU_WATCHLIST',
+
         'AIRLINES',
+        'TECH',
         'NASDAQ_100',
-        /*        'TRADING_212_US',
-                'TRADING_212_EUR',
-                'TRADING_212_GBP'*/
+        'DIVIDENDS',
     ];
 
     private readonly PRESET_INDICES_WATCHLISTS = [
         /* 'TEST_INDICES',*/
-        'INVESTED_IN_AUD_INDICES',
-        'AUD_INDICES_AU',
-        'AUD_INDICES_ASIA',
-        'AUD_INDICES_US',
-        'AUD_INDICES',
-        'INVESTED_IN_GBP_INDICES',
-        'GBP_INDICES',
-        'INVESTED_IN_EUR_INDICES',
-        'EUR_INDICES',
-        'INDICES'
+        'ETF_ALL',
+
+        'AU_ETF_ALL',
+        'AU_ETF_AU',
+        'AU_ETF_US',
+        'AU_ETF_ASIA',
+        'AU_ETF_INVESTED_IN',
+
+        'GB_ETF_ALL',
+        'GB_ETF_INVESTED_IN',
+
+        'EU_ETF_ALL',
+        'EU_ETF_INVESTED_IN'
     ];
 
     componentDidMount() {
