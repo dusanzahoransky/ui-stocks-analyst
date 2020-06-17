@@ -583,15 +583,15 @@ export class StockAnalystService {
         return absPow * Math.sign(number);
     }
 
-    filterDisplayableStats(stockInfo: Stock, isEtf: boolean): Stock {
+    filterDisplayableStats(stock: Stock, isEtf: boolean): Stock {
         const colNames = StockAnalystService.getTableColumnNames(isEtf);
 
-        for (const statName of Object.keys(stockInfo)) {
+        for (const statName of Object.keys(stock)) {
             if (!colNames.find(colName => colName === statName)) {
-                delete stockInfo[statName]
+                delete stock[statName]
             }
         }
-        return stockInfo
+        return stock
     }
 
     private static getTableColumnNames(isEtf: boolean): string[] {

@@ -62,7 +62,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             // priceEpsData: undefined,
             // ratiosData: undefined,
             //uncomment to render chart of the first stock on load
-            // priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
+            // priceEpsData: props.result ? props.result.stocks[0].stock.chartData : undefined,
             // ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
             // indicesChartSymbols: ['VTS', 'VUSA'],
             indicesChartSymbols: [],
@@ -161,7 +161,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     getStock(result: StockAnalysisResult | EtfsAnalysisResult, isEtf: boolean): Stock[] {
         return this.props.isEtf ?
             (result as EtfsAnalysisResult).stocks :
-            (result as StockAnalysisResult).stocks.map(s => s.stockInfo)
+            (result as StockAnalysisResult).stocks.map(s => s.stock)
     }
 
     renderTable(result?: StockAnalysisResult | EtfsAnalysisResult) {
@@ -197,8 +197,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             })
         } else {
             let clickedStockWithRatios = this.props.result.stocks
-                .filter(stock => stock.stockInfo.symbol === stockSymbol)[0];
-            const priceEpsData = clickedStockWithRatios.stockInfo.chartData
+                .filter(stock => stock.stock.symbol === stockSymbol)[0];
+            const priceEpsData = clickedStockWithRatios.stock.chartData
             const ratiosData = clickedStockWithRatios.stockRatiosTimeline.periods
 
             //close the graph on a second click

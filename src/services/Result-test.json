@@ -220,7 +220,7 @@
   },
   "stocks": [
     {
-      "stockInfo": {
+      "stock": {
         "id": null,
         "date": "2020-06-02",
         "lastReportedQuarter": "2020-03-31",
