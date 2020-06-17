@@ -60,7 +60,7 @@ export class EtfsPriceChart extends React.Component<EtfsPriceChartProps, EtfsPri
 
 
     /**
-     * Consolidate price to the latest price point of all rendered indices, in order to see from what initial value would they achieve the same end result - the current price
+     * Consolidate price to the latest price point of all rendered etfs, in order to see from what initial value would they achieve the same end result - the current price
      */
     private consolidatePrice(data: EtfsChartData[]) {
         let symbols = this.props.symbols;

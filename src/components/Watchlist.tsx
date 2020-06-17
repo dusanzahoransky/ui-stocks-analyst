@@ -48,7 +48,7 @@ export interface WatchlistState {
      * Remove outliers which would otherwise deform the chart, e.g. an EP which is extremely high in a single quarter
      */
     priceEpsChartRemoveOutliers?: boolean
-    indicesChartSymbols?: string[]
+    etfsChartSymbols?: string[]
     chartLabel?: string
 }
 
@@ -64,8 +64,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             //uncomment to render chart of the first stock on load
             // priceEpsData: props.result ? props.result.stocks[0].stock.chartData : undefined,
             // ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
-            // indicesChartSymbols: ['VTS', 'VUSA'],
-            indicesChartSymbols: [],
+            // etfsChartSymbols: ['VTS', 'VUSA'],
+            etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true
         }
         this.stockAnalystService = new StockAnalystService();
@@ -103,14 +103,14 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderEtfsChart() {
-        if (!this.props.isExpanded || this.state.indicesChartSymbols.length === 0) {
+        if (!this.props.isExpanded || this.state.etfsChartSymbols.length === 0) {
             return ''
         }
         const chartData = this.prepareEtfsChartData(this.props.result.stocks);
         return <div className={!chartData ? 'hidden' : ''}>
             <EtfsPriceChart
                 data={chartData}
-                symbols={this.state.indicesChartSymbols}
+                symbols={this.state.etfsChartSymbols}
                 label={`Etf price chart`}/>
         </div>
     }
@@ -185,14 +185,14 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     stockOnClickHandler = (stockSymbol: string) => {
         if (this.props.isEtf) {
             let updatedSymbols;
-            if (this.state.indicesChartSymbols.includes(stockSymbol)) {
-                updatedSymbols = this.state.indicesChartSymbols.filter(s => s !== stockSymbol)
+            if (this.state.etfsChartSymbols.includes(stockSymbol)) {
+                updatedSymbols = this.state.etfsChartSymbols.filter(s => s !== stockSymbol)
             } else {
-                updatedSymbols = this.state.indicesChartSymbols.concat(stockSymbol)
+                updatedSymbols = this.state.etfsChartSymbols.concat(stockSymbol)
             }
             this.setState(state => {
                 return {
-                    indicesChartSymbols: updatedSymbols
+                    etfsChartSymbols: updatedSymbols
                 }
             })
         } else {
@@ -260,7 +260,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     private prepareEtfsChartData(stocks: Stock[]): EtfsChartData[] | undefined {
 
-        const chartStocks = stocks.filter(s => this.state.indicesChartSymbols.includes(s.symbol))
+        const chartStocks = stocks.filter(s => this.state.etfsChartSymbols.includes(s.symbol))
 
         const allDates = Array.from(new Set(chartStocks.flatMap(s => s.chartData.map(d => d.date))))
             .sort()

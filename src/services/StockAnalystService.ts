@@ -6,7 +6,7 @@ import moment from "moment";
 import {BackendError} from "../model/BackendError";
 import {Stock} from "../model/Stock";
 import resultTest from "./Result-test.json"
-import indicesTest from "./Etfs-test.json"
+import etfsTest from "./Etfs-test.json"
 import symbolTest from "./Symbols-test.json"
 import {EtfTableColumn} from "../model/EtfTableColumn";
 
@@ -23,9 +23,9 @@ export class StockAnalystService {
 
     async loadEtfsAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<EtfsAnalysisResult | BackendError> {
         if (watchlist === 'TEST_INDICES') {
-            return Promise.resolve(indicesTest)
+            return Promise.resolve(etfsTest)
         } else {
-            return fetch(`http://localhost:3000/stocks/indicesWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
+            return fetch(`http://localhost:3000/stocks/etfWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
                 .then(r => r.json() as unknown as EtfsAnalysisResult);
         }
     }

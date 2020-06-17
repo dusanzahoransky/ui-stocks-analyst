@@ -13,7 +13,7 @@ export interface StocksAnalysisProps {
 
 export interface StocksAnalysisState {
     error?: string
-    indicesResults?: WatchlistResult[]
+    etfsResults?: WatchlistResult[]
     results?: WatchlistResult[]
     customResults?: WatchlistResult[]
 }
@@ -34,7 +34,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         super(props);
         this.state = {
             error: undefined,
-            indicesResults: [],
+            etfsResults: [],
             results: [],
             customResults: []
         }
@@ -116,7 +116,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         this.setState((state) => {
             if (isEtf) {
-                return {indicesResults: this.mergeResult(state.indicesResults, watchlistResult, isEtf)}
+                return {etfsResults: this.mergeResult(state.etfsResults, watchlistResult, isEtf)}
             } else {
                 return {results: this.mergeResult(state.results, watchlistResult, isEtf)}
             }
@@ -134,7 +134,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         this.setState((state) => {
             if (isEtf) {
-                return {indicesResults: this.mergeResult(state.indicesResults, watchlistResult, isEtf)}
+                return {etfsResults: this.mergeResult(state.etfsResults, watchlistResult, isEtf)}
             } else {
                 return {results: this.mergeResult(state.results, watchlistResult, isEtf)}
             }
@@ -144,7 +144,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     private unloadWatchlistData(watchlist: string, isEtf: boolean) {
         this.setState((state) => {
             if (isEtf) {
-                return {indicesResults: this.unloadResult(state.indicesResults, watchlist)}
+                return {etfsResults: this.unloadResult(state.etfsResults, watchlist)}
             } else {
                 return {results: this.unloadResult(state.results, watchlist)}
             }
@@ -176,7 +176,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     }
 
     private containWatchlistData(watchlist: string, isEtf: boolean): boolean {
-        const results = isEtf ? this.state.indicesResults : this.state.results;
+        const results = isEtf ? this.state.etfsResults : this.state.results;
         const watchlistResult = results
             .find(r => r.watchlist === watchlist);
 
@@ -194,7 +194,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         //TODO input to scale PE ration
 
-        const allResults = this.state.indicesResults.concat(this.state.results.concat(this.state.customResults));
+        const allResults = this.state.etfsResults.concat(this.state.results.concat(this.state.customResults));
         const watchlists = []
 
         allResults
