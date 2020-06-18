@@ -78,7 +78,9 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         'GB_ETF_INVESTED_IN',
 
         'EU_ETF_ALL',
-        'EU_ETF_INVESTED_IN'
+        'EU_ETF_INVESTED_IN',
+
+        'ETF_TRADING_212_INVESTED_IN'
     ];
 
     componentDidMount() {
