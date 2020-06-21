@@ -16,6 +16,7 @@ import {StockRatiosPeriods} from "../model/StockRatiosPeriods";
 import {RatioChart} from "./RatioChart";
 import {RatioChartData} from "../model/RatioChartData";
 import {ChartRatios} from "../model/ChartRatios";
+import {StockTaggingService} from "../services/StockTaggingService";
 
 
 export interface WatchlistProps {
@@ -55,6 +56,7 @@ export interface WatchlistState {
 export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     private readonly stockAnalystService: StockAnalystService;
+    private readonly stockTaggingService: StockTaggingService;
 
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
@@ -69,6 +71,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             priceEpsChartRemoveOutliers: true
         }
         this.stockAnalystService = new StockAnalystService();
+        this.stockTaggingService = new StockTaggingService();
 
     }
 
@@ -172,8 +175,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             const headers = this.toHeaderData(result.averages, this.props.isEtf);
             let data = this.toTableData(stocksInfo);
             const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isEtf))
+            const taggedData = scoredData.map(row => this.stockTaggingService.tagRow(row, this.props.isEtf))
+
             return <WatchlistTable
-                data={scoredData}
+                data={taggedData}
                 isEtf={this.props.isEtf}
                 headerLabels={headers[0]}
                 headerAverages={headers[1]}

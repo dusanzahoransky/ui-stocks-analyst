@@ -8,6 +8,7 @@ import {Stock} from "../model/Stock";
 import resultTest from "./Stocks-test.json"
 import etfsTest from "./Etfs-test.json"
 import {EtfTableColumn} from "../model/EtfTableColumn";
+import {ScoreAdditionalInfo} from "../model/ScoreAdditionalInfo";
 
 export class StockAnalystService {
 
@@ -32,14 +33,12 @@ export class StockAnalystService {
     scoreRow(averages: number[], rowValues: number[] | string[], isEtf: boolean): CellData[] {
         const cellData: CellData[] = []
 
-        rowValues.forEach((value, colEtf) => {
-            const score = isEtf ?
-                StockAnalystService.scoreEtfData(value, colEtf, rowValues, averages) :
-                StockAnalystService.scoreStockData(value, colEtf, rowValues, averages);
-            cellData.push({
-                value,
-                score: score
-            })
+        rowValues.forEach((value, column) => {
+            const toScore: CellData = {value}
+            const scoredData = isEtf ?
+                StockAnalystService.scoreEtfData(toScore, column, rowValues, averages) :
+                StockAnalystService.scoreStockData(toScore, column, rowValues, averages);
+            cellData.push(scoredData)
         })
 
         const totalScore = cellData.map(data => data.score)
@@ -51,7 +50,7 @@ export class StockAnalystService {
             value: totalScore
         })
 
-        if(!isEtf) {
+        if (!isEtf) {
             const rule1Score = cellData.map(data => data.score)
                 .filter((score, index) => index >= StockFields.roic1Y)
                 .filter(score => score && !Number.isNaN(score))
@@ -65,17 +64,19 @@ export class StockAnalystService {
         return cellData
     }
 
-    private static scoreEtfData(value: number | string, colEtf: number, rowValues: number[] | string[], averages: number[]): number {
-        if (!value) {
-            return 0
+    private static scoreEtfData(dataToScore: CellData, colEtf: number, rowValues: number[] | string[], averages: number[]): CellData {
+        if (!dataToScore.value) {
+            return dataToScore
         }
-        const number: number = value as number
+        const number: number = dataToScore.value as number
         const avg = averages[colEtf] as number
         let score
 
         switch (colEtf) {
             case EtfTableColumn.change: {
-                score = number > 5 || number < -5 ? number - 10 : 0
+                if (number > 5 || number < -5) {
+                    dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
+                }
                 break
             }
             case EtfTableColumn.yield: {
@@ -97,7 +98,7 @@ export class StockAnalystService {
             }
             case EtfTableColumn.fiveYearAverageReturn: {
                 score = number - avg
-                score *= 10
+                score *= 5
                 break;
             }
             case EtfTableColumn.priceToEarnings: {
@@ -132,7 +133,7 @@ export class StockAnalystService {
             }
             case EtfTableColumn.oneYear: {
                 score = number - avg
-                score *= 1
+                score *= 5
                 break;
             }
             case EtfTableColumn.threeYear: {
@@ -140,7 +141,7 @@ export class StockAnalystService {
                 score *= 10
                 break;
             }
-             case EtfTableColumn.fiveYear: {
+            case EtfTableColumn.fiveYear: {
                 score = number - avg
                 score *= 10
                 break;
@@ -163,52 +164,57 @@ export class StockAnalystService {
                 break;
             }
         }
-
-        return score
+        dataToScore.score = score
+        return dataToScore
     }
 
-    private static scoreStockData(value: number | string, colEtf: number, rowValues: number[] | string[], averages: number[]): number {
+    private static scoreStockData(dataToScore: CellData, colEtf: number, rowValues: number[] | string[], averages: number[]): CellData {
 
-        if (!value) {
-            return 0
+        if (!dataToScore.value) {
+            return dataToScore
         }
-        const number: number = value as number
-        const string: string = value as string
+        const number: number = dataToScore.value as number
+        const string: string = dataToScore.value as string
 
         let score
 
         switch (colEtf) {
             case StockFields.change: {
-                score = number > 10 || number < -10 ? number - 10 : 0
+                if (number > 5 || number < -5) {
+                    dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
+                }
                 break
             }
             case StockFields.totalCashPerSharePercent:
                 score = number * 0.1
                 break
             case StockFields.trailingPE:
-                score = this.peScore(number);
+                score = this.ratioBatterThan(number, 20, 100);
+                score *= 10
                 break;
             case StockFields.forwardPE:
-                score = this.peScore(number);
+                score = this.ratioBatterThan(number, 20, 100);
+                score *= 8
                 break;
             case StockFields.priceToSalesTrailing12Months:
                 score = 10 - number;
-                score *= 2
+                score *= 5
                 break;
             case StockFields.priceBook:
-                score = 2 - number;
+                score = this.ratioBatterThan(number, 2, 20)
+                score *= 5
                 break;
             case StockFields.enterpriseValueRevenue:
-                score = 5 - number
+                score = this.ratioBatterThan(number, 5, 10)
                 score *= 1
                 break;
             case StockFields.enterpriseValueEBITDA:
-                score = this.ratioBatterThan(number, 10, 20)
+                score = this.ratioBatterThan(number, 20, 20)
                 score *= 3
                 break;
             case StockFields.priceEarningGrowth:
                 score = this.ratioBatterThan(number, 5, 10)
-                score *= 2
+                score *= 10
                 break;
             case StockFields.trailingPriceEarningGrowth:
                 score = this.ratioBatterThan(number, 5, 10)
@@ -216,11 +222,11 @@ export class StockAnalystService {
                 break;
             case StockFields.belowTargetLowPricePercent:
                 score = number
-                score *= 1
+                score *= 0.1
                 break;
             case StockFields.belowTargetMedianPricePercent:
                 score = number
-                score *= 1
+                score *= 5
                 break;
             case StockFields.exDividendDate:
                 const daysToExDividend = -moment().diff(string, 'days')
@@ -233,10 +239,10 @@ export class StockAnalystService {
                 break;
             case StockFields.trailingAnnualDividendYield:
                 score = number
-                score *= 5
+                score *= 10
                 break;
             case StockFields.payoutRatio:
-                score = 70 - number
+                score = 60 - number
                 const trailingAnnualDividendYield = rowValues[StockFields.trailingAnnualDividendYield] as number
                 score *= trailingAnnualDividendYield / 3
                 score = Math.max(score, 0)
@@ -253,8 +259,9 @@ export class StockAnalystService {
                 score = 10 - number
                 break;
             case StockFields.sharesShortPrevMonthCompare:
-                score = 100 - number
-                score *= 0.3
+                if (number > 100) {
+                    dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
+                }
                 break;
             case StockFields.netIncomeGrowthLastQuarter:
                 score = number
@@ -372,24 +379,25 @@ export class StockAnalystService {
                 score *= 0.2
                 break;
             case StockFields.peGrowthLastQuarter:
-                score = -number
+                score = number
                 score *= 1
                 break;
             case StockFields.peGrowthLast2Quarters:
-                score = -number
+                score = number
                 score *= 1
                 break;
             case StockFields.peGrowthLast3Quarters:
-                score = -number
+                score = number
                 score *= 0.75
                 break;
             case StockFields.peLastQuarter:
-                score = this.peScore(number);
+                score = this.ratioBatterThan(number, 20, 100);
+                score *= 10
                 break;
             case StockFields.growthEstimate5y:
                 score = this.signPow(number, 2)
                 break;
-           case StockFields.roic1Y:
+            case StockFields.roic1Y:
                 score = StockAnalystService.rule1Score(number, 5)
                 break;
             case StockFields.roic3Y:
@@ -450,7 +458,9 @@ export class StockAnalystService {
                 score = number
                 break;
         }
-        return score;
+
+        dataToScore.score = score
+        return dataToScore
     }
 
     static rule1Score(number?: number, weight?: number) {
@@ -459,6 +469,7 @@ export class StockAnalystService {
         minusExpectedGrowth = Math.min(50, minusExpectedGrowth)
         return minusExpectedGrowth * weight;
     }
+
     static ratioBatterThan(number?: number, positiveLimit?: number, maxThreshold: number = 50) {
         let score: number
         if (number > 0) {
@@ -487,23 +498,6 @@ export class StockAnalystService {
 
         } else {
             score = -maxThreshold * 3 + ((1 / number) * 100)
-        }
-        return score;
-    }
-
-    static peScore(number?: number) {
-        let score: number
-        if (number > 0) {
-
-            if (number < 200) {
-                score = (20 - number - 25) + (1 / Math.log2(1 + number) * 100)
-            } else {
-                score = -200
-            }
-
-        } else {
-            score = (number - 300) + (-1 / Math.log1p(-number) * 100)
-
         }
         return score;
     }
@@ -545,4 +539,5 @@ export class StockAnalystService {
         }
         return enumNames
     }
+
 }

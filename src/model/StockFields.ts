@@ -137,7 +137,6 @@ export enum StockFields {
     totalLiabilities3QuartersAgo,
     totalLiabilitiesLastYear,
     totalLiabilities2YearsAgo,
-    totalLiabilities3YearsAgo,
     totalLiabilities4YearsAgo,
 
     totalLiabilitiesGrowthLastQuarter,
@@ -279,6 +278,8 @@ export enum StockFields {
     // belowStickerPrice10pc,
     belowStickerPrice5pc,
 
+    quarterEnds,
+    yearEnds,
     chartData,
 
     score,

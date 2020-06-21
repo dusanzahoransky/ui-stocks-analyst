@@ -42,26 +42,26 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     }
 
     private readonly STOCK_WATCHLISTS = [
-        'TEST',/*
+        'TEST',
         'TO_CHECK',
-        'ALL_INVESTED',
+        /* 'ALL_INVESTED',
 
-        'US_ALL',
-        'US_INVESTED_IN',
+         'US_ALL',
+         'US_INVESTED_IN',
 
-        'EU_ALL',
-        'EU_INVESTED_IN',
+         'EU_ALL',
+         'EU_INVESTED_IN',
 
-        'GB_ALL',
-        'GB_INVESTED_IN',
+         'GB_ALL',
+         'GB_INVESTED_IN',
 
-        'AU_ALL',
-        'AU_INVESTED_IN',
+         'AU_ALL',
+         'AU_INVESTED_IN',
 
-        'AIRLINES',
-        'TECH',
-        'NASDAQ_100',
-        'DIVIDENDS',*/
+         'AIRLINES',
+         'TECH',
+         'NASDAQ_100',
+         'DIVIDENDS',*/
     ];
 
     private readonly ETF_WATCHLISTS = [

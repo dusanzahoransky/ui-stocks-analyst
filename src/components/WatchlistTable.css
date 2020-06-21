@@ -165,6 +165,14 @@ td.lastReport {
     background: #ff6d68;
 }
 
+.additionalInfo {
+    background: yellow;
+    border-style: solid;
+    border-color: #ff792d;
+    border-width: 2px;
+    font-weight: bold;
+}
+
 .redText {
     color: #970008;
 }
