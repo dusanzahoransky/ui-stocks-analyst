@@ -67,8 +67,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                 className={this.columnTypeClass(column, this.props.isEtf)}>
                 {
                     this.props.isEtf ?
-                        FormattingUtils.formatEtf(headerAverages, value, column)
-                        : FormattingUtils.formatStock(headerAverages, value, column)
+                        FormattingUtils.formatEtf(headerAverages, value, column) :
+                        FormattingUtils.formatStock(headerAverages, value, column)
                 }</th>
         );
 
@@ -159,12 +159,35 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             }
         }
 
-        const changeColumn = this.props.isEtf ? EtfTableColumn.change : StockFields.change;
-        if (column === changeColumn) {
-            if (data.value < 0) {
-                classes.push('redText')
-            } else {
-                classes.push('greenText')
+        if (this.props.isEtf) {
+            if (column === EtfTableColumn.change) {
+                if (data.value < 0) {
+                    classes.push('redText')
+                } else {
+                    classes.push('greenText')
+                }
+            } else if (column === EtfTableColumn.score) {   //Score
+                if (data.value < 0) {
+                    classes.push('redText')
+                } else {
+                    classes.push('greenText')
+                }
+            }
+        } else {
+            if (column === StockFields.change) {
+                if (data.value < 0) {
+                    classes.push('redText')
+                } else {
+                    classes.push('greenText')
+                }
+            } else if (column === StockFields.score || column === StockFields.rule1score) {   //Score
+                if (data.value < 0) {
+                    classes.push('redText')
+                    classes.push('boldText')
+                } else {
+                    classes.push('greenText')
+                    classes.push('boldText')
+                }
             }
         }
 
@@ -260,143 +283,283 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                 case StockFields.payoutRatio:
                     return "dividents"
 
-                case StockFields.netIncomeLastQuarter:
-                    return "income"
-                case StockFields.netIncome2QuartersAgo:
-                    return "income"
-                case StockFields.netIncome3QuartersAgo:
-                    return "income"
-                case StockFields.netIncomeLastYear:
-                    return "income"
-                case StockFields.netIncome4YearsAgo:
-                    return "income"
-                case StockFields.netIncomeGrowthLastQuarter:
-                    return "income"
-                case StockFields.netIncomeGrowthLast2Quarters:
-                    return "income"
-                case StockFields.netIncomeGrowthLast4Years:
-                    return "income"
-
                 case StockFields.revenueLastQuarter:
-                    return "revenue"
+                    return "financials revenue"
                 case StockFields.revenue2QuartersAgo:
-                    return "revenue"
+                    return "financials revenue"
                 case StockFields.revenue3QuartersAgo:
-                    return "revenue"
+                    return "financials revenue"
                 case StockFields.revenueLastYear:
-                    return "revenue"
+                    return "financials revenue"
+                case StockFields.revenue2YearsAgo:
+                    return "financials revenue"
+                case StockFields.revenue4YearsAgo:
+                    return "financials revenue"
+
                 case StockFields.revenueGrowthLastQuarter:
-                    return "revenue"
+                    return "financials revenue"
                 case StockFields.revenueGrowthLast2Quarters:
-                    return "revenue"
+                    return "financials revenue"
                 case StockFields.revenueGrowthLastYear:
-                    return "revenue"
+                    return "financials revenue"
                 case StockFields.revenueGrowthLast4Years:
-                    return "revenue"
+                    return "financials revenue"
+
+
+                case StockFields.grossIncomeLastQuarter:
+                    return "financials grossIncome"
+                case StockFields.grossIncome2QuartersAgo:
+                    return "financials grossIncome"
+                case StockFields.grossIncome3QuartersAgo:
+                    return "financials grossIncome"
+                case StockFields.grossIncomeLastYear:
+                    return "financials grossIncome"
+                case StockFields.grossIncome2YearsAgo:
+                    return "financials grossIncome"
+                case StockFields.grossIncome4YearsAgo:
+                    return "financials grossIncome"
+
+                case StockFields.grossIncomeGrowthLastQuarter:
+                    return "financials grossIncome"
+                case StockFields.grossIncomeGrowthLast2Quarters:
+                    return "financials grossIncome"
+                case StockFields.grossIncomeGrowthLastYear:
+                    return "financials grossIncome"
+                case StockFields.grossIncomeGrowthLast4Years:
+                    return "financials grossIncome"
+
+
+                case StockFields.ebitLastQuarter:
+                    return "financials ebit"
+                case StockFields.ebit2QuartersAgo:
+                    return "financials ebit"
+                case StockFields.ebit3QuartersAgo:
+                    return "financials ebit"
+                case StockFields.ebitLastYear:
+                    return "financials ebit"
+                case StockFields.ebit2YearsAgo:
+                    return "financials ebit"
+                case StockFields.ebit4YearsAgo:
+                    return "financials ebit"
+
+                case StockFields.ebitGrowthLastQuarter:
+                    return "financials ebit"
+                case StockFields.ebitGrowthLast2Quarters:
+                    return "financials ebit"
+                case StockFields.ebitGrowthLastYear:
+                    return "financials ebit"
+                case StockFields.ebitGrowthLast4Years:
+                    return "financials ebit"
+
+
+                case StockFields.netIncomeLastQuarter:
+                    return "financials netIncome"
+                case StockFields.netIncome2QuartersAgo:
+                    return "financials netIncome"
+                case StockFields.netIncome3QuartersAgo:
+                    return "financials netIncome"
+                case StockFields.netIncomeLastYear:
+                    return "financials netIncome"
+                case StockFields.netIncome2YearsAgo:
+                    return "financials netIncome"
+                case StockFields.netIncome4YearsAgo:
+                    return "financials netIncome"
+
+                case StockFields.netIncomeGrowthLastQuarter:
+                    return "financials netIncome"
+                case StockFields.netIncomeGrowthLast2Quarters:
+                    return "financials netIncome"
+                case StockFields.netIncomeGrowthLastYear:
+                    return "financials netIncome"
+                case StockFields.netIncomeGrowthLast4Years:
+                    return "financials netIncome"
+
+
+                case StockFields.freeCashFlowLastQuarter:
+                    return "financials freeCashFlow"
+                case StockFields.freeCashFlow2QuartersAgo:
+                    return "financials freeCashFlow"
+                case StockFields.freeCashFlow3QuartersAgo:
+                    return "financials freeCashFlow"
+                case StockFields.freeCashFlowLastYear:
+                    return "financials freeCashFlow"
+                case StockFields.freeCashFlow2YearsAgo:
+                    return "financials freeCashFlow"
+                case StockFields.freeCashFlow4YearsAgo:
+                    return "financials freeCashFlow"
+
+                case StockFields.freeCashFlowGrowthLastQuarter:
+                    return "financials freeCashFlow"
+                case StockFields.freeCashFlowGrowthLast2Quarters:
+                    return "financials freeCashFlow"
+                case StockFields.freeCashFlowGrowthLastYear:
+                    return "financials freeCashFlow"
+                case StockFields.freeCashFlowGrowthLast4Years:
+                    return "financials freeCashFlow"
 
                 case StockFields.cashLastQuarter:
-                    return "cash"
+                    return "balanceSheet cash"
+                case StockFields.cash2QuartersAgo:
+                    return "balanceSheet cash"
+                case StockFields.cash3QuartersAgo:
+                    return "balanceSheet cash"
                 case StockFields.cashLastYear:
-                    return "cash"
+                    return "balanceSheet cash"
+                case StockFields.cash2YearsAgo:
+                    return "balanceSheet cash"
+                case StockFields.cash4YearsAgo:
+                    return "balanceSheet cash"
                 case StockFields.cashGrowthLastQuarter:
-                    return "cash"
+                    return "balanceSheet cash"
+                case StockFields.cashGrowthLast2Quarters:
+                    return "balanceSheet cash"
                 case StockFields.cashGrowthLastYear:
-                    return "cash"
+                    return "balanceSheet cash"
                 case StockFields.cashGrowthLast4Years:
-                    return "cash"
+                    return "balanceSheet cash"
 
                 case StockFields.inventoryLastQuarter:
-                    return "inventory"
+                    return "balanceSheet inventory"
+                case StockFields.inventory2QuartersAgo:
+                    return "balanceSheet inventory"
+                case StockFields.inventory3QuartersAgo:
+                    return "balanceSheet inventory"
                 case StockFields.inventoryLastYear:
-                    return "inventory"
+                    return "balanceSheet inventory"
+                case StockFields.inventory2YearsAgo:
+                    return "balanceSheet inventory"
+                case StockFields.inventory4YearsAgo:
+                    return "balanceSheet inventory"
                 case StockFields.inventoryGrowthLastQuarter:
-                    return "inventory"
+                    return "balanceSheet inventory"
+                case StockFields.inventoryGrowthLast2Quarters:
+                    return "balanceSheet inventory"
                 case StockFields.inventoryGrowthLastYear:
-                    return "inventory"
+                    return "balanceSheet inventory"
                 case StockFields.inventoryGrowthLast4Years:
-                    return "inventory"
+                    return "balanceSheet inventory"
 
                 case StockFields.totalLiabilitiesLastQuarter:
-                    return "liabilities"
+                    return "balanceSheet liabilities"
+                case StockFields.totalLiabilities2QuartersAgo:
+                    return "balanceSheet liabilities"
+                case StockFields.totalLiabilities3QuartersAgo:
+                    return "balanceSheet liabilities"
                 case StockFields.totalLiabilitiesLastYear:
-                    return "liabilities"
+                    return "balanceSheet liabilities"
+                case StockFields.totalLiabilities2YearsAgo:
+                    return "balanceSheet liabilities"
+                case StockFields.totalLiabilities4YearsAgo:
+                    return "balanceSheet liabilities"
                 case StockFields.totalLiabilitiesGrowthLastQuarter:
-                    return "liabilities"
+                    return "balanceSheet liabilities"
+                case StockFields.totalLiabilitiesGrowthLast2Quarters:
+                    return "balanceSheet liabilities"
                 case StockFields.totalLiabilitiesGrowthLastYear:
-                    return "liabilities"
+                    return "balanceSheet liabilities"
                 case StockFields.totalLiabilitiesGrowthLast4Years:
-                    return "liabilities"
+                    return "balanceSheet liabilities"
 
                 case StockFields.totalShareholdersEquityLastQuarter:
-                    return "equity"
+                    return "balanceSheet equity"
+                case StockFields.totalShareholdersEquity2QuartersAgo:
+                    return "balanceSheet equity"
+                case StockFields.totalShareholdersEquity3QuartersAgo:
+                    return "balanceSheet equity"
                 case StockFields.totalShareholdersEquityLastYear:
-                    return "equity"
+                    return "balanceSheet equity"
+                case StockFields.totalShareholdersEquity2YearsAgo:
+                    return "balanceSheet equity"
+                case StockFields.totalShareholdersEquity4YearsAgo:
+                    return "balanceSheet equity"
                 case StockFields.totalShareholdersEquityGrowthLastQuarter:
-                    return "equity"
+                    return "balanceSheet equity"
+                case StockFields.totalShareholdersEquityGrowthLast2Quarters:
+                    return "balanceSheet equity"
                 case StockFields.totalShareholdersEquityGrowthLastYear:
-                    return "equity"
+                    return "balanceSheet equity"
                 case StockFields.totalShareholdersEquityGrowthLast4Years:
-                    return "equity"
+                    return "balanceSheet equity"
 
                 case StockFields.totalLiabilitiesToEquityLastQuarter:
-                    return "liabilitiesToEquity"
+                    return "balanceSheet liabilitiesToEquity"
                 case StockFields.totalLiabilitiesToEquityLastYear:
-                    return "liabilitiesToEquity"
+                    return "balanceSheet liabilitiesToEquity"
                 case StockFields.totalLiabilitiesToEquityGrowthLastQuarter:
-                    return "liabilitiesToEquity"
+                    return "balanceSheet liabilitiesToEquity"
                 case StockFields.totalLiabilitiesToEquityGrowthLastYear:
-                    return "liabilitiesToEquity"
+                    return "balanceSheet liabilitiesToEquity"
                 case StockFields.totalLiabilitiesToEquityGrowthLast4Years:
-                    return "liabilitiesToEquity"
+                    return "balanceSheet liabilitiesToEquity"
 
                 case StockFields.stockRepurchasedLastQuarter:
-                    return "stock"
+                    return "balanceSheet stock"
+                case StockFields.stockRepurchased2QuartersAgo:
+                    return "balanceSheet stock"
+                case StockFields.stockRepurchased3QuartersAgo:
+                    return "balanceSheet stock"
                 case StockFields.stockRepurchasedLastYear:
-                    return "stock"
+                    return "balanceSheet stock"
+                case StockFields.stockRepurchased2YearsAgo:
+                    return "balanceSheet stock"
+                case StockFields.stockRepurchased4YearsAgo:
+                    return "balanceSheet stock"
                 case StockFields.stockRepurchasedGrowthLastQuarter:
-                    return "stock"
+                    return "balanceSheet stock"
+                case StockFields.stockRepurchasedGrowthLast2Quarters:
+                    return "balanceSheet stock"
                 case StockFields.stockRepurchasedGrowthLastYear:
-                    return "stock"
+                    return "balanceSheet stock"
                 case StockFields.stockRepurchasedGrowthLast4Years:
-                    return "stock"
+                    return "balanceSheet stock"
 
                 case StockFields.stockLastQuarter:
-                    return "stock"
+                    return "balanceSheet stock"
+                case StockFields.stock2QuartersAgo:
+                    return "balanceSheet stock"
+                case StockFields.stock3QuartersAgo:
+                    return "balanceSheet stock"
                 case StockFields.stockLastYear:
-                    return "stock"
+                    return "balanceSheet stock"
+                case StockFields.stock2YearsAgo:
+                    return "balanceSheet stock"
+                case StockFields.stock4YearsAgo:
+                    return "balanceSheet stock"
                 case StockFields.stockGrowthLastQuarter:
-                    return "stock"
+                    return "balanceSheet stock"
+                case StockFields.stockGrowthLast2Quarters:
+                    return "balanceSheet stock"
                 case StockFields.stockGrowthLastYear:
-                    return "stock"
+                    return "balanceSheet stock"
                 case StockFields.stockGrowthLast4Years:
-                    return "stock"
+                    return "balanceSheet stock"
 
                 case StockFields.epsCurrentQuarterEstimate:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.epsLastQuarter:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.eps2QuartersAgo:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.eps3QuartersAgo:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.eps4QuartersAgo:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.epsLastYear:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.eps2YearsAgo:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.eps3YearsAgo:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.eps4YearsAgo:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.epsGrowthLastQuarter:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.epsGrowthLast2Quarters:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.epsGrowthLastYear:
-                    return "eps"
+                    return "balanceSheet eps"
                 case StockFields.epsGrowthLast4Years:
-                    return "eps"
+                    return "balanceSheet eps"
 
                 case StockFields.peLastQuarter:
                     return "pe"
@@ -456,6 +619,11 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                     return "cg-cash"
                 case StockFields.cash9Y:
                     return "cg-cash"
+
+                case StockFields.score:
+                    return "totalScore"
+                case StockFields.rule1score:
+                    return "totalScore"
             }
         }
     }

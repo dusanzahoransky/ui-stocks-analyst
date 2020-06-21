@@ -41,5 +41,6 @@ export enum EtfTableColumn {
 
     /*fundInceptionDate,*/
 
-    chartData
+    chartData,
+    score
 }

@@ -225,6 +225,7 @@ export enum StockFields {
     pe2QuartersAgo,
     pe3QuartersAgo,
     pe4QuartersAgo,
+
     peGrowthLastQuarter,
     peGrowthLast2Quarters,
     peGrowthLast3Quarters,

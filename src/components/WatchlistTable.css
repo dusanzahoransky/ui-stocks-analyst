@@ -97,6 +97,9 @@ th.cg-bps {
 th.cg-cash {
     background: #f4f4ff;
 }
+th.totalScore {
+    background: #d6ffde;
+}
 
 th.label {
     top: 0;
@@ -152,6 +155,10 @@ td.lastReport {
 
 .blueText {
     color: #003795;
+}
+
+.boldText {
+    font-weight: bold;
 }
 
 .red {
