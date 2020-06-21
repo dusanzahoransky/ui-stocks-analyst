@@ -1,13 +1,12 @@
 import {StockAnalysisResult} from "../model/StockAnalysisResult";
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {CellData} from "../model/CellData";
-import {StockTableColumn} from "../model/StockTableColumn";
+import {StockFields} from "../model/StockFields";
 import moment from "moment";
 import {BackendError} from "../model/BackendError";
 import {Stock} from "../model/Stock";
-import resultTest from "./Result-test.json"
+import resultTest from "./Stocks-test.json"
 import etfsTest from "./Etfs-test.json"
-import symbolTest from "./Symbols-test.json"
 import {EtfTableColumn} from "../model/EtfTableColumn";
 
 export class StockAnalystService {
@@ -30,15 +29,6 @@ export class StockAnalystService {
         }
     }
 
-    async loadStock(symbol: string, forceRefresh: boolean, mockData: boolean): Promise<Stock | BackendError> {
-        if (symbol.startsWith('TEST')) {
-            return Promise.resolve(symbolTest)
-        } else {
-            return fetch(`http://localhost:3000/stocks/watchlist?symbol=${symbol}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
-                .then(r => r.json() as unknown as Stock);
-        }
-    }
-
     scoreRow(averages: number[], rowValues: number[] | string[], isEtf: boolean): CellData[] {
         const cellData: CellData[] = []
 
@@ -53,7 +43,7 @@ export class StockAnalystService {
         })
 
         const totalScore = cellData.map(data => data.score)
-            .filter((score, index) => index < StockTableColumn.roic1Y)
+            .filter((score, index) => index < StockFields.roic1Y)
             .filter(score => score && !Number.isNaN(score))
             .reduce((prev, curr) => prev + curr, 0);
 
@@ -63,7 +53,7 @@ export class StockAnalystService {
 
         if(!isEtf) {
             const rule1Score = cellData.map(data => data.score)
-                .filter((score, index) => index >= StockTableColumn.roic1Y)
+                .filter((score, index) => index >= StockFields.roic1Y)
                 .filter(score => score && !Number.isNaN(score))
                 .reduce((prev, curr) => prev + curr, 0);
 
@@ -188,331 +178,275 @@ export class StockAnalystService {
         let score
 
         switch (colEtf) {
-            case StockTableColumn.change: {
+            case StockFields.change: {
                 score = number > 10 || number < -10 ? number - 10 : 0
                 break
             }
-            case StockTableColumn.totalCashPerSharePercent:
+            case StockFields.totalCashPerSharePercent:
                 score = number * 0.1
                 break
-            case StockTableColumn.trailingPE:
+            case StockFields.trailingPE:
                 score = this.peScore(number);
                 break;
-            case StockTableColumn.forwardPE:
+            case StockFields.forwardPE:
                 score = this.peScore(number);
                 break;
-            case StockTableColumn.priceToSalesTrailing12Months:
+            case StockFields.priceToSalesTrailing12Months:
                 score = 10 - number;
                 score *= 2
                 break;
-            case StockTableColumn.priceBook:
+            case StockFields.priceBook:
                 score = 2 - number;
                 break;
-            case StockTableColumn.enterpriseValueRevenue:
+            case StockFields.enterpriseValueRevenue:
                 score = 5 - number
                 score *= 1
                 break;
-            case StockTableColumn.enterpriseValueEBITDA:
+            case StockFields.enterpriseValueEBITDA:
                 score = this.ratioBatterThan(number, 10, 20)
                 score *= 3
                 break;
-            case StockTableColumn.priceEarningGrowth:
+            case StockFields.priceEarningGrowth:
                 score = this.ratioBatterThan(number, 5, 10)
                 score *= 2
                 break;
-            case StockTableColumn.trailingPriceEarningGrowth:
+            case StockFields.trailingPriceEarningGrowth:
                 score = this.ratioBatterThan(number, 5, 10)
                 score *= 2
                 break;
-            case StockTableColumn.belowTargetLowPricePercent:
+            case StockFields.belowTargetLowPricePercent:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.belowTargetMedianPricePercent:
+            case StockFields.belowTargetMedianPricePercent:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.exDividendDate:
+            case StockFields.exDividendDate:
                 const daysToExDividend = -moment().diff(string, 'days')
-                const fiveYearAvgDividendYield = rowValues[StockTableColumn.fiveYearAvgDividendYield] as number
+                const fiveYearAvgDividendYield = rowValues[StockFields.fiveYearAvgDividendYield] as number
                 score = daysToExDividend > 0 && daysToExDividend < 30 ? fiveYearAvgDividendYield : 0
                 break;
-            case StockTableColumn.fiveYearAvgDividendYield:
+            case StockFields.fiveYearAvgDividendYield:
                 score = number
                 score *= 5
                 break;
-            case StockTableColumn.trailingAnnualDividendYield:
+            case StockFields.trailingAnnualDividendYield:
                 score = number
                 score *= 5
                 break;
-            case StockTableColumn.payoutRatio:
+            case StockFields.payoutRatio:
                 score = 70 - number
-                const trailingAnnualDividendYield = rowValues[StockTableColumn.trailingAnnualDividendYield] as number
+                const trailingAnnualDividendYield = rowValues[StockFields.trailingAnnualDividendYield] as number
                 score *= trailingAnnualDividendYield / 3
                 score = Math.max(score, 0)
                 break;
-            case StockTableColumn.heldByInsiders:
+            case StockFields.heldByInsiders:
                 score = number
                 score *= 0.5
                 break;
-            case StockTableColumn.heldByInstitutions:
+            case StockFields.heldByInstitutions:
                 score = -number
                 score *= 0.05
                 break;
-            case StockTableColumn.shortToFloat:
+            case StockFields.shortToFloat:
                 score = 10 - number
                 break;
-            case StockTableColumn.sharesShortPrevMonthCompare:
+            case StockFields.sharesShortPrevMonthCompare:
                 score = 100 - number
                 score *= 0.3
                 break;
-            case StockTableColumn.netIncomeGrowthLastQuarter:
+            case StockFields.netIncomeGrowthLastQuarter:
                 score = number
                 score *= 2
                 break;
-            case StockTableColumn.netIncomeGrowthLast2Quarters:
+            case StockFields.netIncomeGrowthLast2Quarters:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.netIncomeGrowthLast3Years:
+            case StockFields.netIncomeGrowthLast4Years:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.grossIncomeGrowthLastQuarter:
+            case StockFields.grossIncomeGrowthLastQuarter:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.grossIncomeGrowthLast2Quarters:
+            case StockFields.grossIncomeGrowthLast2Quarters:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.grossIncomeGrowthLast3Years:
+            case StockFields.grossIncomeGrowthLast4Years:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.revenueGrowthLastQuarter:
+            case StockFields.revenueGrowthLastQuarter:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.revenueGrowthLast2Quarters:
+            case StockFields.revenueGrowthLast2Quarters:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.revenueGrowthLast3Years:
+            case StockFields.revenueGrowthLast4Years:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.cashGrowthLastQuarter:
+            case StockFields.cashGrowthLastQuarter:
                 score = number
                 score *= 0.2
                 break;
-            case StockTableColumn.currentAssetsGrowthLastQuarter:
-                score = number
-                score *= 0.05
-                break;
-            case StockTableColumn.currentAssetsGrowthLastYear:
-                score = number
-                score *= 0.02
-                break;
-            case StockTableColumn.currentAssetsGrowthLast3Years:
-                score = number
-                score *= 0.02
-                break;
-            case StockTableColumn.currentLiabilitiesGrowthLastQuarter:
-                score = -number
-                score *= 0.02
-                break;
-            case StockTableColumn.currentLiabilitiesGrowthLastYear:
-                score = -number
-                score *= 0.01
-                break;
-            case StockTableColumn.currentLiabilitiesGrowthLast3Years:
-                score = -number
-                score *= 0.01
-                break;
-            case StockTableColumn.totalLiabilitiesGrowthLastQuarter:
+            case StockFields.totalLiabilitiesGrowthLastQuarter:
                 score = -number
                 score *= 0.05
                 break;
-            case StockTableColumn.totalLiabilitiesGrowthLastYear:
+            case StockFields.totalLiabilitiesGrowthLastYear:
                 score = -number
                 score *= 0.02
                 break;
-            case StockTableColumn.totalLiabilitiesGrowthLast3Years:
+            case StockFields.totalLiabilitiesGrowthLast4Years:
                 score = -number
                 score *= 0.02
                 break;
-            case StockTableColumn.inventoryGrowthLastQuarter:
+            case StockFields.inventoryGrowthLastQuarter:
                 score = number
                 score *= -0.1
                 break;
-            case StockTableColumn.totalShareholdersEquityGrowthLastQuarter:
+            case StockFields.totalShareholdersEquityGrowthLastQuarter:
                 score = number
                 score *= 0.1
                 break;
-            case StockTableColumn.totalShareholdersEquityGrowthLastYear:
+            case StockFields.totalShareholdersEquityGrowthLastYear:
                 score = number
                 score *= 0.1
                 break;
-            case StockTableColumn.totalShareholdersEquityGrowthLast3Years:
+            case StockFields.totalShareholdersEquityGrowthLast4Years:
                 score = number
                 score *= 0.1
                 break;
-            case StockTableColumn.currentLiabilitiesToEquityLastQuarter:
-                score = StockAnalystService.ratioScore(number)
-                score *= 0.5
-                break;
-            case StockTableColumn.currentLiabilitiesToEquityLastYear:
-                score = StockAnalystService.ratioScore(number)
-                score *= 0.2
-                break;
-            case StockTableColumn.currentLiabilitiesToEquityGrowthLastQuarter:
-                score = -number
-                score *= 0.05
-                break;
-            case StockTableColumn.currentLiabilitiesToEquityGrowthLastYear:
-                score = -number
-                score *= 0.02
-                break;
-            case StockTableColumn.currentLiabilitiesToEquityGrowthLast3Years:
-                score = -number
-                score *= 0.02
-                break;
-            case StockTableColumn.totalLiabilitiesToEquityLastQuarter:
+            case StockFields.totalLiabilitiesToEquityLastQuarter:
                 score = StockAnalystService.ratioScore(number)
                 score *= 20
                 break;
-            case StockTableColumn.totalLiabilitiesToEquityLastYear:
+            case StockFields.totalLiabilitiesToEquityLastYear:
                 score = StockAnalystService.ratioScore(number)
                 score *= 20
                 break;
-            case StockTableColumn.totalLiabilitiesToEquityGrowthLastQuarter:
+            case StockFields.totalLiabilitiesToEquityGrowthLastQuarter:
                 score = -number
                 score *= 0.01
                 break;
-            case StockTableColumn.totalLiabilitiesToEquityGrowthLastYear:
+            case StockFields.totalLiabilitiesToEquityGrowthLastYear:
                 score = -number
                 score *= 0.05
                 break;
-            case StockTableColumn.totalLiabilitiesToEquityGrowthLast3Years:
+            case StockFields.totalLiabilitiesToEquityGrowthLast4Years:
                 score = -number
                 score *= 0.05
                 break;
-            case StockTableColumn.stockGrowthLastQuarter:
+            case StockFields.stockGrowthLastQuarter:
                 score = number > 10 ? -10 : 0
                 break;
-            case StockTableColumn.stockGrowthLastYear:
-                score = number > 10 ? -10 : 0
-                score *= 0.5
-                break;
-            case StockTableColumn.stockGrowthLast3Years:
+            case StockFields.stockGrowthLastYear:
                 score = number > 10 ? -10 : 0
                 score *= 0.5
                 break;
-            case StockTableColumn.epsGrowthLastQuarter:
+            case StockFields.stockGrowthLast4Years:
+                score = number > 10 ? -10 : 0
+                score *= 0.5
+                break;
+            case StockFields.epsGrowthLastQuarter:
                 score = number
                 score *= 1
                 break;
-            case StockTableColumn.epsGrowthLast2Quarters:
+            case StockFields.epsGrowthLast2Quarters:
                 score = number
                 score *= 0.5
                 break;
-            case StockTableColumn.epsGrowthLast3Quarters:
-                score = number
-                score *= 0.5
-                break;
-            case StockTableColumn.epsGrowthEstimateLastQuarter:
-                score = number
-                score *= 1
-                break;
-            case StockTableColumn.epsGrowthLastYear:
+            case StockFields.epsGrowthLastYear:
                 score = number
                 score *= 0.3
                 break;
-            case StockTableColumn.epsGrowthLast2Years:
+            case StockFields.epsGrowthLast4Years:
                 score = number
                 score *= 0.2
                 break;
-            case StockTableColumn.epsGrowthLast3Years:
-                score = number
-                score *= 0.2
-                break;
-            case StockTableColumn.peGrowthLastQuarter:
+            case StockFields.peGrowthLastQuarter:
                 score = -number
                 score *= 1
                 break;
-            case StockTableColumn.peGrowthLast2Quarters:
+            case StockFields.peGrowthLast2Quarters:
                 score = -number
                 score *= 1
                 break;
-            case StockTableColumn.peGrowthLast3Quarters:
+            case StockFields.peGrowthLast3Quarters:
                 score = -number
                 score *= 0.75
                 break;
-            case StockTableColumn.peLastQuarter:
+            case StockFields.peLastQuarter:
                 score = this.peScore(number);
                 break;
-            case StockTableColumn.growthEstimate5y:
+            case StockFields.growthEstimate5y:
                 score = this.signPow(number, 2)
                 break;
-           case StockTableColumn.roic1Y:
+           case StockFields.roic1Y:
                 score = StockAnalystService.rule1Score(number, 5)
                 break;
-            case StockTableColumn.roic3Y:
+            case StockFields.roic3Y:
                 score = StockAnalystService.rule1Score(number, 3)
                 break;
-            case StockTableColumn.revenue1Y:
+            case StockFields.revenue1Y:
                 score = StockAnalystService.rule1Score(number, 3)
                 break;
-            case StockTableColumn.revenue3Y:
+            case StockFields.revenue3Y:
                 score = StockAnalystService.rule1Score(number, 2)
                 break;
-            case StockTableColumn.revenue5Y:
+            case StockFields.revenue5Y:
                 score = StockAnalystService.rule1Score(number, 1)
                 break;
-            case StockTableColumn.revenue9Y:
+            case StockFields.revenue9Y:
                 score = StockAnalystService.rule1Score(number, 0.5)
                 break;
-            case StockTableColumn.eps1Y:
+            case StockFields.eps1Y:
                 score = StockAnalystService.rule1Score(number, 3)
                 break;
-            case StockTableColumn.eps3Y:
+            case StockFields.eps3Y:
                 score = StockAnalystService.rule1Score(number, 2)
                 break;
-            case StockTableColumn.eps5Y:
+            case StockFields.eps5Y:
                 score = StockAnalystService.rule1Score(number, 1)
                 break;
-            case StockTableColumn.eps9Y:
+            case StockFields.eps9Y:
                 score = StockAnalystService.rule1Score(number, 0.5)
                 break;
-            case StockTableColumn.bps1Y:
+            case StockFields.bps1Y:
                 score = StockAnalystService.rule1Score(number, 1)
                 break;
-            case StockTableColumn.bps3Y:
+            case StockFields.bps3Y:
                 score = StockAnalystService.rule1Score(number, 0.7)
                 break;
-            case StockTableColumn.bps5Y:
+            case StockFields.bps5Y:
                 score = StockAnalystService.rule1Score(number, 0.5)
                 break;
-            case StockTableColumn.bps9Y:
+            case StockFields.bps9Y:
                 score = StockAnalystService.rule1Score(number, 0.25)
                 break;
-            case StockTableColumn.cash1Y:
+            case StockFields.cash1Y:
                 score = StockAnalystService.rule1Score(number, 1)
                 break;
-            case StockTableColumn.cash3Y:
+            case StockFields.cash3Y:
                 score = StockAnalystService.rule1Score(number, 0.7)
                 break;
-            case StockTableColumn.cash5Y:
+            case StockFields.cash5Y:
                 score = StockAnalystService.rule1Score(number, 0.5)
                 break;
-            case StockTableColumn.cash9Y:
+            case StockFields.cash9Y:
                 score = StockAnalystService.rule1Score(number, 0.25)
                 break;
-            case StockTableColumn.belowStickerPrice15pc:
+            case StockFields.belowStickerPrice15pc:
                 score = number * 10
                 break;
-            case StockTableColumn.belowStickerPrice5pc:
+            case StockFields.belowStickerPrice5pc:
                 score = number
                 break;
         }
@@ -603,7 +537,7 @@ export class StockAnalystService {
                 }
             }
         } else {
-            for (const enumMember in StockTableColumn) {
+            for (const enumMember in StockFields) {
                 if (Number.isNaN(Number.parseInt(enumMember))) {
                     enumNames.push(enumMember)
                 }

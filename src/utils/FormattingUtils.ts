@@ -1,11 +1,11 @@
-import {StockTableColumn} from "../model/StockTableColumn";
+import {StockFields} from "../model/StockFields";
 import moment from "moment";
 import {EtfTableColumn} from "../model/EtfTableColumn";
 
 export class FormattingUtils {
 
-    static formatStock(rowValue: any[], value: number | string, column: StockTableColumn): string {
-        if (typeof value === 'string' && column === StockTableColumn.exDividendDate) {
+    static formatStock(rowValue: any[], value: number | string, column: StockFields): string {
+        if (typeof value === 'string' && column === StockFields.exDividendDate) {
             let diff = moment().diff(value, 'days');
             return diff < 0 ? `in ${-diff} days` : value;
         }
@@ -128,24 +128,28 @@ export class FormattingUtils {
                 return "Net income growth (LQ)"
             case "netIncomeLastYear":
                 return "Net income (LY)"
-            case "netIncome2YearAgo":
+            case "netIncome2YearsAgo":
                 return "Net income (-2Y)"
             case "netIncome3YearAgo":
-                return "Net income (-3Y)"
+                return "Net income (-4Y)"
             case "netIncomeGrowthLastYear":
                 return "Net income growth (LY)"
-            case "netIncomeGrowthLast3Years":
-                return "Net income growth (L3Y)"
+            case "netIncomeGrowthLast4Years":
+                return "Net income growth (L4Y)"
             case "revenueLastQuarter":
                 return "Revenue (LQ)"
             case "revenueGrowthLastQuarter":
                 return "Revenue growth (LQ)"
             case "revenueLastYear":
                 return "Revenue (LY)"
+            case "revenue2YearsAgo":
+                return "Revenue (-2Y)"
+            case "revenue4YearsAgo":
+                return "Revenue (-4Y)"
             case "revenueGrowthLastYear":
                 return "Revenue growth (LY)"
-            case "revenueGrowthLast3Years":
-                return "Revenue growth (L3Y)"
+            case "revenueGrowthLast4Years":
+                return "Revenue growth (L4Y)"
             case "cashLastQuarter":
                 return "Cash (LQ)"
             case "cashGrowthLastQuarter":
@@ -154,8 +158,8 @@ export class FormattingUtils {
                 return "Cash (LY)"
             case "cashGrowthLastYear":
                 return "Cash growth (LY)"
-            case "cashGrowthLast3Years":
-                return "Cash growth (L3Y)"
+            case "cashGrowthLast4Years":
+                return "Cash growth (L4Y)"
             case "inventoryLastQuarter":
                 return "Inventory (LQ)"
             case "inventoryGrowthLastQuarter":
@@ -164,8 +168,8 @@ export class FormattingUtils {
                 return "Inventory (LY)"
             case "inventoryGrowthLastYear":
                 return "Inventory growth (LY)"
-            case "inventoryGrowthLast3Years":
-                return "Inventory growth (L3Y)"
+            case "inventoryGrowthLast4Years":
+                return "Inventory growth (L4Y)"
             case "currentLiabilitiesLastQuarter":
                 return "Current liab (LQ)"
             case "currentLiabilitiesGrowthLastQuarter":
@@ -174,8 +178,8 @@ export class FormattingUtils {
                 return "Current liab (LY)"
             case "currentLiabilitiesGrowthLastYear":
                 return "Current liab growth (LY)"
-            case "currentLiabilitiesGrowthLast3Years":
-                return "Current liab growth (L3Y)"
+            case "currentLiabilitiesGrowthLast4Years":
+                return "Current liab growth (L4Y)"
             case "totalLiabilitiesLastQuarter":
                 return "Total liab (LQ)"
             case "totalLiabilitiesGrowthLastQuarter":
@@ -184,8 +188,8 @@ export class FormattingUtils {
                 return "Total liab (LY)"
             case "totalLiabilitiesGrowthLastYear":
                 return "Total liab growth (LY)"
-            case "totalLiabilitiesGrowthLast3Years":
-                return "Total liab growth (L3Y)"
+            case "totalLiabilitiesGrowthLast4Years":
+                return "Total liab growth (L4Y)"
             case "totalShareholdersEquityLastQuarter":
                 return "Total shrd equity (LQ)"
             case "totalShareholdersEquityGrowthLastQuarter":
@@ -194,8 +198,8 @@ export class FormattingUtils {
                 return "Total shrd equity (LY)"
             case "totalShareholdersEquityGrowthLastYear":
                 return "Total shrd equity growth (LY)"
-            case "totalShareholdersEquityGrowthLast3Years":
-                return "Total shrd equity growth (L3Y)"
+            case "totalShareholdersEquityGrowthLast4Years":
+                return "Total shrd equity growth (L4Y)"
             case "currentLiabilitiesToEquityLastQuarter":
                 return "Current liab to equity (LQ)"
             case "currentLiabilitiesToEquityLastYear":
@@ -204,8 +208,8 @@ export class FormattingUtils {
                 return "Current liab to equity growth (LQ)"
             case "currentLiabilitiesToEquityGrowthLastYear":
                 return "Current liab to equity growth (LY)"
-            case "currentLiabilitiesToEquityGrowthLast3Years":
-                return "Current liab to equity growth (L3Y)"
+            case "currentLiabilitiesToEquityGrowthLast4Years":
+                return "Current liab to equity growth (L4Y)"
             case "totalLiabilitiesToEquityLastQuarter":
                 return "Total liab to equity (LQ)"
             case "totalLiabilitiesToEquityLastYear":
@@ -214,8 +218,8 @@ export class FormattingUtils {
                 return "Total liab to equity growth (LQ)"
             case "totalLiabilitiesToEquityGrowthLastYear":
                 return "Total liab to equity growth (LY)"
-            case "totalLiabilitiesToEquityGrowthLast3Years":
-                return "Total liab to equity growth (L3Y)"
+            case "totalLiabilitiesToEquityGrowthLast4Years":
+                return "Total liab to equity growth (L4Y)"
             case "stockRepurchasedLastQuarter":
                 return "Stock repurchase (LQ)"
             case "stockRepurchasedGrowthLastQuarter":
@@ -224,8 +228,8 @@ export class FormattingUtils {
                 return "Stock repurch (LY)"
             case "stockRepurchasedGrowthLastYear":
                 return "Stock repurch growth (LY)"
-            case "stockRepurchasedGrowthLast3Years":
-                return "Stock repurch growth (L3Y)"
+            case "stockRepurchasedGrowthLast4Years":
+                return "Stock repurch growth (L4Y)"
             case "stockLastQuarter":
                 return "Stock (LQ)"
             case "stockGrowthLastQuarter":
@@ -234,8 +238,8 @@ export class FormattingUtils {
                 return "Stock (LY)"
             case "stockGrowthLastYear":
                 return "Stock growth (LY)"
-            case "stockGrowthLast3Years":
-                return "Stock growth (L3Y)"
+            case "stockGrowthLast4Years":
+                return "Stock growth (L4Y)"
             case "epsCurrentQuarterEstimate" :
                 return "EPS current Q estimate"
             case "epsLastQuarter" :
@@ -266,12 +270,12 @@ export class FormattingUtils {
                 return "Eps growth (LY)"
             case "epsGrowthLast2Years":
                 return "Eps growth (L2Y)"
-            case "epsGrowthLast3Years":
-                return "Eps growth (L3Y)"
+            case "epsGrowthLast4Years":
+                return "Eps growth (L4Y)"
             case "netIncome3QuartersAgo":
                 return "Net income (-3Q)"
-            case "netIncome3YearsAgo":
-                return "Net income (-3Y)"
+            case "netIncome4YearsAgo":
+                return "Net income (-4Y)"
             case "peLastQuarter":
                 return "P/E (LQ)"
             case "pe2QuartersAgo":
@@ -373,8 +377,8 @@ export class FormattingUtils {
                 return "Current assets growth (LQ)"
             case "currentAssetsGrowthLastYear":
                 return "Current assets growth (LY)"
-            case "currentAssetsGrowthLast3Years":
-                return "Current assets growth (L3Y)"
+            case "currentAssetsGrowthLast4Years":
+                return "Current assets growth (L4Y)"
             case "grossIncomeLastQuarter":
                 return "Gross income (LQ)"
             case "grossIncome2QuartersAgo":
@@ -383,14 +387,18 @@ export class FormattingUtils {
                 return "Gross income (-3Q)"
             case "grossIncomeLastYear":
                 return "Gross income (LY)"
-            case "grossIncome3YearsAgo":
-                return "Gross income (-3Y)"
+            case "grossIncome2YearsAgo":
+                return "Gross income (-2Y)"
+            case "grossIncome4YearsAgo":
+                return "Gross income (-4Y)"
             case "grossIncomeGrowthLastQuarter":
                 return "Gross income growth (LQ)"
             case "grossIncomeGrowthLast2Quarters":
                 return "Gross income growth (L2Q)"
-            case "grossIncomeGrowthLast3Years":
-                return "Gross income growth (L3Y)"
+            case "grossIncomeGrowthLastYear":
+                return "Gross income growth (LY)"
+            case "grossIncomeGrowthLast4Years":
+                return "Gross income growth (L4Y)"
             case "growthEstimate5y":
                 return "Growth est (5Y)"
             case "roic1Y":
@@ -463,6 +471,118 @@ export class FormattingUtils {
                 return "Below sticker price 10%"
             case "belowStickerPrice5pc":
                 return "Below sticker price 5%"
+            case "ebitLastQuarter":
+                return "EBIT (LQ)"
+            case "ebit2QuartersAgo":
+                return "EBIT (-2Q)"
+            case "ebit3QuartersAgo":
+                return "EBIT (-3Q)"
+            case "ebitLastYear":
+                return "EBIT (LY)"
+            case "ebit2YearsAgo":
+                return "EBIT (-2Y)"
+            case "ebit4YearsAgo":
+                return "EBIT (-4Y)"
+            case "ebitGrowthLastQuarter":
+                return "EBIT growth (LQ)"
+            case "ebitGrowthLast2Quarters":
+                return "EBIT growth (L2Q)"
+            case "ebitGrowthLastYear":
+                return "EBIT growth (LY)"
+            case "ebitGrowthLast4Years":
+                return "EBIT growth (L4Y)"
+            case "freeCashFlowLastQuarter":
+                return "Free cash flow (LQ)"
+            case "freeCashFlow2QuartersAgo":
+                return "Free cash flow (-2Q)"
+            case "freeCashFlow3QuartersAgo":
+                return "Free cash flow (-3Q)"
+            case "freeCashFlowLastYear":
+                return "Free cash flow (LY)"
+            case "freeCashFlow4YearsAgo":
+                return "Free cash flow (-4Y)"
+            case "freeCashFlowGrowthLastQuarter":
+                return "Free cash flow growth (LQ)"
+            case "freeCashFlowGrowthLast2Quarters":
+                return "Free cash flow growth (-2Q)"
+            case "freeCashFlowGrowthLast4Years":
+                return "Free cash flow growth (-4Y)"
+            case "freeCashFlow2YearsAgo":
+                return "Free cash flow (-2Y)"
+            case "freeCashFlowGrowthLastYear":
+                return "Free cash flow growth (LY)"
+            case "cash2QuartersAgo":
+                return "Cash (-2Q)"
+            case "cash3QuartersAgo":
+                return "Cash (-3Q)"
+            case "cash2YearsAgo":
+                return "Cash (-2Y)"
+            case "cash4YearsAgo":
+                return "Cash (-4Y)"
+            case "cashGrowthLast2Quarters":
+                return "Cash growth (L2Q)"
+            case "inventory2QuartersAgo":
+                return "Inventory (-2Q)"
+            case "inventory3QuartersAgo":
+                return "Inventory (-3Q)"
+            case "inventory2YearsAgo":
+                return "Inventory (-2Y)"
+            case "inventory4YearsAgo":
+                return "Inventory (-4Y)"
+            case "inventoryGrowthLast2Quarters":
+                return "Inventory growth (L2Q)"
+            case "totalLiabilities2QuartersAgo":
+                return "Total liabilities (-2Q)"
+            case "totalLiabilities3QuartersAgo":
+                return "Total liabilities (-3Q)"
+            case "totalLiabilities2YearsAgo":
+                return "Total liabilities (-2Y)"
+            case "totalLiabilities3YearsAgo":
+                return "Total liabilities (-3Y)"
+            case "totalLiabilities4YearsAgo":
+                return "Total liabilities (-4Y)"
+            case "totalLiabilitiesGrowthLast2Quarters":
+                return "Total liabilities growth (L2Q)"
+            case "totalShareholdersEquity2QuartersAgo":
+                return "Total shareholders equity (-2Q)"
+            case "totalShareholdersEquity3QuartersAgo":
+                return "Total shareholders equity (-3Q)"
+            case "totalShareholdersEquity2YearsAgo":
+                return "Total shareholders equity (-2Y)"
+            case "totalShareholdersEquity4YearsAgo":
+                return "Total shareholders equity (-4Y)"
+            case "totalShareholdersEquityGrowthLast2Quarters":
+                return "Total shareholders equity growth (L2Q)"
+            case "totalLiabilitiesToEquity2QuartersAgo":
+                return "Total liabilities to equity (-2Q)"
+            case "totalLiabilitiesToEquity3QuartersAgo":
+                return "Total liabilities to equity (-3Q)"
+            case "totalLiabilitiesToEquity2YearsAgo":
+                return "Total liabilities to equity (-2Y)"
+            case "totalLiabilitiesToEquity4YearsAgo":
+                return "Total liabilities to equity (-4Y)"
+            case "totalLiabilitiesToEquityGrowthLast2Quarters":
+                return "Total liabilities to equity growth (L2Q)"
+            case "stockRepurchased2QuartersAgo":
+                return "Stock repurchased (-2Q)"
+            case "stockRepurchased3QuartersAgo":
+                return "Stock repurchased (-3Q)"
+            case "stockRepurchased2YearsAgo":
+                return "Stock repurchased (-2Y)"
+            case "stockRepurchased4YearsAgo":
+                return "Stock repurchased (-4Y)"
+            case "stockRepurchasedGrowthLast2Quarters":
+                return "Stock repurchased growth (L2Q)"
+            case "stock2QuartersAgo":
+                return "Stock (-2Q)"
+            case "stock3QuartersAgo":
+                return "Stock (-3Q)"
+            case "stock2YearsAgo":
+                return "Stock (-2Y)"
+            case "stock4YearsAgo":
+                return "Stock (-4Y)"
+            case "stockGrowthLast2Quarters":
+                return "Stock growth (L2Q)"
             default:
                 return field;
         }

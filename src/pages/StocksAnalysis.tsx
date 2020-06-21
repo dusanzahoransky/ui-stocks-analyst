@@ -42,8 +42,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     }
 
     private readonly STOCK_WATCHLISTS = [
-        /* 'TEST',
-        'TO_CHECK',*/
+        'TEST',
+        'TO_CHECK',
         'ALL_INVESTED',
 
         'US_ALL',

@@ -1,4 +1,4 @@
-export enum StockTableColumn {
+export enum StockFields {
     date,
     lastReportedQuarter,
     symbol,
@@ -17,8 +17,6 @@ export enum StockTableColumn {
     priceBook,
     enterpriseValueRevenue,
     enterpriseValueEBITDA,
-
-    // yoyQuarterlyRevenueGrowthPercent,
 
     priceEarningGrowth,
     trailingPriceEarningGrowth,
@@ -44,92 +42,161 @@ export enum StockTableColumn {
     trailingAnnualDividendYield,
     payoutRatio,
 
-    netIncomeLastQuarter,
-    netIncome2QuartersAgo,
-    netIncome3QuartersAgo,
-    netIncomeLastYear,
-    netIncome3YearsAgo,
-    netIncomeGrowthLastQuarter,
-    netIncomeGrowthLast2Quarters,
-    netIncomeGrowthLast3Years,
+    revenueLastQuarter,
+    revenue2QuartersAgo,
+    revenue3QuartersAgo,
+    revenueLastYear,
+    revenue2YearsAgo,
+    revenue4YearsAgo,
+
+    revenueGrowthLastQuarter,
+    revenueGrowthLast2Quarters,
+    revenueGrowthLastYear,
+    revenueGrowthLast4Years,
+
 
     grossIncomeLastQuarter,
     grossIncome2QuartersAgo,
     grossIncome3QuartersAgo,
     grossIncomeLastYear,
-    grossIncome3YearsAgo,
+    grossIncome2YearsAgo,
+    grossIncome4YearsAgo,
+
     grossIncomeGrowthLastQuarter,
     grossIncomeGrowthLast2Quarters,
-    grossIncomeGrowthLast3Years,
+    grossIncomeGrowthLastYear,
+    grossIncomeGrowthLast4Years,
 
-    revenueLastQuarter,
-    revenue2QuartersAgo,
-    revenue3QuartersAgo,
-    revenueLastYear,
-    revenueGrowthLastQuarter,
-    revenueGrowthLast2Quarters,
-    revenueGrowthLastYear,
-    revenueGrowthLast3Years,
+
+    ebitLastQuarter,
+    ebit2QuartersAgo,
+    ebit3QuartersAgo,
+    ebitLastYear,
+    ebit2YearsAgo,
+    ebit4YearsAgo,
+
+    ebitGrowthLastQuarter,
+    ebitGrowthLast2Quarters,
+    ebitGrowthLastYear,
+    ebitGrowthLast4Years,
+
+
+    netIncomeLastQuarter,
+    netIncome2QuartersAgo,
+    netIncome3QuartersAgo,
+    netIncomeLastYear,
+    netIncome2YearsAgo,
+    netIncome4YearsAgo,
+
+    netIncomeGrowthLastQuarter,
+    netIncomeGrowthLast2Quarters,
+    netIncomeGrowthLastYear,
+    netIncomeGrowthLast4Years,
+
+
+    freeCashFlowLastQuarter,
+    freeCashFlow2QuartersAgo,
+    freeCashFlow3QuartersAgo,
+    freeCashFlowLastYear,
+    freeCashFlow2YearsAgo,
+    freeCashFlow4YearsAgo,
+
+    freeCashFlowGrowthLastQuarter,
+    freeCashFlowGrowthLast2Quarters,
+    freeCashFlowGrowthLastYear,
+    freeCashFlowGrowthLast4Years,
+
 
     cashLastQuarter,
+    cash2QuartersAgo,
+    cash3QuartersAgo,
     cashLastYear,
+    cash2YearsAgo,
+    cash4YearsAgo,
+
     cashGrowthLastQuarter,
+    cashGrowthLast2Quarters,
     cashGrowthLastYear,
-    cashGrowthLast3Years,
+    cashGrowthLast4Years,
 
     inventoryLastQuarter,
+    inventory2QuartersAgo,
+    inventory3QuartersAgo,
     inventoryLastYear,
+    inventory2YearsAgo,
+    inventory4YearsAgo,
+
     inventoryGrowthLastQuarter,
+    inventoryGrowthLast2Quarters,
     inventoryGrowthLastYear,
-    inventoryGrowthLast3Years,
+    inventoryGrowthLast4Years,
 
-    currentAssetsLastQuarter,
-    currentAssetsLastYear,
-    currentAssetsGrowthLastQuarter,
-    currentAssetsGrowthLastYear,
-    currentAssetsGrowthLast3Years,
-
-    currentLiabilitiesLastQuarter,
-    currentLiabilitiesLastYear,
-    currentLiabilitiesGrowthLastQuarter,
-    currentLiabilitiesGrowthLastYear,
-    currentLiabilitiesGrowthLast3Years,
 
     totalLiabilitiesLastQuarter,
+    totalLiabilities2QuartersAgo,
+    totalLiabilities3QuartersAgo,
     totalLiabilitiesLastYear,
+    totalLiabilities2YearsAgo,
+    totalLiabilities3YearsAgo,
+    totalLiabilities4YearsAgo,
+
     totalLiabilitiesGrowthLastQuarter,
+    totalLiabilitiesGrowthLast2Quarters,
     totalLiabilitiesGrowthLastYear,
-    totalLiabilitiesGrowthLast3Years,
+    totalLiabilitiesGrowthLast4Years,
+
 
     totalShareholdersEquityLastQuarter,
+    totalShareholdersEquity2QuartersAgo,
+    totalShareholdersEquity3QuartersAgo,
     totalShareholdersEquityLastYear,
-    totalShareholdersEquityGrowthLastQuarter,
-    totalShareholdersEquityGrowthLastYear,
-    totalShareholdersEquityGrowthLast3Years,
+    totalShareholdersEquity2YearsAgo,
+    totalShareholdersEquity4YearsAgo,
 
-    currentLiabilitiesToEquityLastQuarter,
-    currentLiabilitiesToEquityLastYear,
-    currentLiabilitiesToEquityGrowthLastQuarter,
-    currentLiabilitiesToEquityGrowthLastYear,
-    currentLiabilitiesToEquityGrowthLast3Years,
+    totalShareholdersEquityGrowthLastQuarter,
+    totalShareholdersEquityGrowthLast2Quarters,
+    totalShareholdersEquityGrowthLastYear,
+    totalShareholdersEquityGrowthLast4Years,
+
 
     totalLiabilitiesToEquityLastQuarter,
+    totalLiabilitiesToEquity2QuartersAgo,
+    totalLiabilitiesToEquity3QuartersAgo,
     totalLiabilitiesToEquityLastYear,
+    totalLiabilitiesToEquity2YearsAgo,
+    totalLiabilitiesToEquity4YearsAgo,
+
     totalLiabilitiesToEquityGrowthLastQuarter,
+    totalLiabilitiesToEquityGrowthLast2Quarters,
     totalLiabilitiesToEquityGrowthLastYear,
-    totalLiabilitiesToEquityGrowthLast3Years,
+    totalLiabilitiesToEquityGrowthLast4Years,
+
 
     stockRepurchasedLastQuarter,
+    stockRepurchased2QuartersAgo,
+    stockRepurchased3QuartersAgo,
     stockRepurchasedLastYear,
+    stockRepurchased2YearsAgo,
+    stockRepurchased4YearsAgo,
+
     stockRepurchasedGrowthLastQuarter,
+    stockRepurchasedGrowthLast2Quarters,
     stockRepurchasedGrowthLastYear,
-    stockRepurchasedGrowthLast3Years,
+    stockRepurchasedGrowthLast4Years,
+
 
     stockLastQuarter,
+    stock2QuartersAgo,
+    stock3QuartersAgo,
     stockLastYear,
+    stock2YearsAgo,
+    stock4YearsAgo,
+
     stockGrowthLastQuarter,
+    stockGrowthLast2Quarters,
     stockGrowthLastYear,
-    stockGrowthLast3Years,
+    stockGrowthLast4Years,
+
 
     epsCurrentQuarterEstimate,
     epsLastQuarter,
@@ -140,13 +207,11 @@ export enum StockTableColumn {
     eps2YearsAgo,
     eps3YearsAgo,
     eps4YearsAgo,
+
     epsGrowthLastQuarter,
     epsGrowthLast2Quarters,
-    epsGrowthLast3Quarters,
-    epsGrowthEstimateLastQuarter,
     epsGrowthLastYear,
-    epsGrowthLast2Years,
-    epsGrowthLast3Years,
+    epsGrowthLast4Years,
 
     // priceLastQuarter,
     // price2QuartersAgo,
