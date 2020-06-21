@@ -355,8 +355,6 @@ export class StockTaggingService {
             case StockFields.stockGrowthLast4Years:
                 return [CellTag.balanceSheet, CellTag.stock]
 
-            case StockFields.epsCurrentQuarterEstimate:
-                return [CellTag.balanceSheet, CellTag.eps]
             case StockFields.epsLastQuarter:
                 return [CellTag.balanceSheet, CellTag.eps]
             case StockFields.eps2QuartersAgo:

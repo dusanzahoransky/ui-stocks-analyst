@@ -176,6 +176,32 @@ export class StockAnalystService {
         const number: number = dataToScore.value as number
         const string: string = dataToScore.value as string
 
+        const lastQuarterCoefficient = 3
+        const last2QuartersCoefficient = 2
+        const lastYearCoefficient = 5
+        const last4YearCoefficient = 1
+
+        const revenueGrowthCoefficient = 0.5
+        const grossIncomeGrowthCoefficient = 0.1
+        const netIncomeGrowthCoefficient = 0.3
+        const ebitGrowthCoefficient = 0.2
+        const freeCashFlowGrowthCoefficient = 1
+
+        const cashGrowthCoefficient = 0.1
+        const inventoryGrowthCoefficient = 0.1
+
+        const totalLiabilitiesGrowthCoefficient = 0.3
+        const totalShareholdersEquityGrowthCoefficient = 0.3
+        const totalLiabilitiesToEquityGrowthCoefficient = 0.5
+
+        const totalLiabilitiesToEquityCoefficient = 10
+
+        const stockGrowthCoefficient = 0.5
+        const stockRepurchaseGrowthCoefficient = 0.5
+
+        const epsGrowthCoefficient = 10
+        const peGrowthCoefficient = 10
+
         let score
 
         switch (colEtf) {
@@ -221,12 +247,10 @@ export class StockAnalystService {
                 score *= 2
                 break;
             case StockFields.belowTargetLowPricePercent:
-                score = number
-                score *= 0.1
+                score = number * 0.1
                 break;
             case StockFields.belowTargetMedianPricePercent:
-                score = number
-                score *= 5
+                score = number * 5
                 break;
             case StockFields.exDividendDate:
                 const daysToExDividend = -moment().diff(string, 'days')
@@ -234,12 +258,10 @@ export class StockAnalystService {
                 score = daysToExDividend > 0 && daysToExDividend < 30 ? fiveYearAvgDividendYield : 0
                 break;
             case StockFields.fiveYearAvgDividendYield:
-                score = number
-                score *= 5
+                score = number * 5
                 break;
             case StockFields.trailingAnnualDividendYield:
-                score = number
-                score *= 10
+                score = number * 10
                 break;
             case StockFields.payoutRatio:
                 score = 60 - number
@@ -248,12 +270,10 @@ export class StockAnalystService {
                 score = Math.max(score, 0)
                 break;
             case StockFields.heldByInsiders:
-                score = number
-                score *= 0.5
+                score = number * 0.5
                 break;
             case StockFields.heldByInstitutions:
-                score = -number
-                score *= 0.05
+                score = -number * 0.05
                 break;
             case StockFields.shortToFloat:
                 score = 10 - number
@@ -263,132 +283,176 @@ export class StockAnalystService {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
-            case StockFields.netIncomeGrowthLastQuarter:
-                score = number
-                score *= 2
-                break;
-            case StockFields.netIncomeGrowthLast2Quarters:
-                score = number
-                score *= 1
-                break;
-            case StockFields.netIncomeGrowthLast4Years:
-                score = number
-                score *= 1
-                break;
-            case StockFields.grossIncomeGrowthLastQuarter:
-                score = number
-                score *= 1
-                break;
-            case StockFields.grossIncomeGrowthLast2Quarters:
-                score = number
-                score *= 1
-                break;
-            case StockFields.grossIncomeGrowthLast4Years:
-                score = number
-                score *= 1
-                break;
+
             case StockFields.revenueGrowthLastQuarter:
-                score = number
-                score *= 1
-                break;
+                score = number * revenueGrowthCoefficient * lastQuarterCoefficient
+                break
             case StockFields.revenueGrowthLast2Quarters:
-                score = number
-                score *= 1
-                break;
+                score = number * revenueGrowthCoefficient * last2QuartersCoefficient
+                break
+            case StockFields.revenueGrowthLastYear:
+                score = number * revenueGrowthCoefficient * lastYearCoefficient
+                break
             case StockFields.revenueGrowthLast4Years:
-                score = number
-                score *= 1
-                break;
+                score = number * revenueGrowthCoefficient * last4YearCoefficient
+                break
+            case StockFields.grossIncomeGrowthLastQuarter:
+                score = number * grossIncomeGrowthCoefficient * lastQuarterCoefficient
+                break
+            case StockFields.grossIncomeGrowthLast2Quarters:
+                score = number * grossIncomeGrowthCoefficient * last2QuartersCoefficient
+                break
+            case StockFields.grossIncomeGrowthLastYear:
+                score = number * grossIncomeGrowthCoefficient * lastYearCoefficient
+                break
+            case StockFields.grossIncomeGrowthLast4Years:
+                score = number * grossIncomeGrowthCoefficient * last4YearCoefficient
+                break
+            case StockFields.ebitGrowthLastQuarter:
+                score = number * ebitGrowthCoefficient * lastQuarterCoefficient
+                break
+            case StockFields.ebitGrowthLast2Quarters:
+                score = number * ebitGrowthCoefficient * last2QuartersCoefficient
+                break
+            case StockFields.ebitGrowthLastYear:
+                score = number * ebitGrowthCoefficient * lastYearCoefficient
+                break
+            case StockFields.ebitGrowthLast4Years:
+                score = number * ebitGrowthCoefficient * last4YearCoefficient
+                break
+            case StockFields.netIncomeGrowthLastQuarter:
+                score = number * netIncomeGrowthCoefficient * lastQuarterCoefficient
+                break
+            case StockFields.netIncomeGrowthLast2Quarters:
+                score = number * netIncomeGrowthCoefficient * last2QuartersCoefficient
+                break
+            case StockFields.netIncomeGrowthLastYear:
+                score = number * netIncomeGrowthCoefficient * lastYearCoefficient
+                break
+            case StockFields.netIncomeGrowthLast4Years:
+                score = number * netIncomeGrowthCoefficient * last4YearCoefficient
+                break
+            case StockFields.freeCashFlowGrowthLastQuarter:
+                score = number * freeCashFlowGrowthCoefficient * lastQuarterCoefficient
+                break
+            case StockFields.freeCashFlowGrowthLast2Quarters:
+                score = number * freeCashFlowGrowthCoefficient * last2QuartersCoefficient
+                break
+            case StockFields.freeCashFlowGrowthLastYear:
+                score = number * freeCashFlowGrowthCoefficient * lastYearCoefficient
+                break
+            case StockFields.freeCashFlowGrowthLast4Years:
+                score = number * freeCashFlowGrowthCoefficient * last4YearCoefficient
+                break
+
             case StockFields.cashGrowthLastQuarter:
-                score = number
-                score *= 0.2
+                score = number * cashGrowthCoefficient * lastQuarterCoefficient
                 break;
+
             case StockFields.totalLiabilitiesGrowthLastQuarter:
-                score = -number
-                score *= 0.05
+                score = -number * lastQuarterCoefficient * totalLiabilitiesGrowthCoefficient
+                break;
+            case StockFields.totalLiabilitiesGrowthLast2Quarters:
+                score = -number * last2QuartersCoefficient * totalLiabilitiesGrowthCoefficient
                 break;
             case StockFields.totalLiabilitiesGrowthLastYear:
-                score = -number
-                score *= 0.02
+                score = -number * lastYearCoefficient * totalLiabilitiesGrowthCoefficient
                 break;
             case StockFields.totalLiabilitiesGrowthLast4Years:
-                score = -number
-                score *= 0.02
+                score = -number * last4YearCoefficient * totalLiabilitiesGrowthCoefficient
                 break;
             case StockFields.inventoryGrowthLastQuarter:
-                score = number
-                score *= -0.1
+                score = number * lastQuarterCoefficient * inventoryGrowthCoefficient
                 break;
             case StockFields.totalShareholdersEquityGrowthLastQuarter:
-                score = number
-                score *= 0.1
+                score = number * lastQuarterCoefficient * totalShareholdersEquityGrowthCoefficient
+                break;
+            case StockFields.totalShareholdersEquityGrowthLast2Quarters:
+                score = number * last2QuartersCoefficient * totalShareholdersEquityGrowthCoefficient
                 break;
             case StockFields.totalShareholdersEquityGrowthLastYear:
-                score = number
-                score *= 0.1
+                score = number * lastYearCoefficient * totalShareholdersEquityGrowthCoefficient
                 break;
             case StockFields.totalShareholdersEquityGrowthLast4Years:
-                score = number
-                score *= 0.1
+                score = number * last4YearCoefficient* totalShareholdersEquityGrowthCoefficient
                 break;
+
             case StockFields.totalLiabilitiesToEquityLastQuarter:
-                score = StockAnalystService.ratioScore(number)
-                score *= 20
+                score = StockAnalystService.ratioScore(number) * lastQuarterCoefficient * totalLiabilitiesToEquityCoefficient
                 break;
             case StockFields.totalLiabilitiesToEquityLastYear:
-                score = StockAnalystService.ratioScore(number)
-                score *= 20
+                score = StockAnalystService.ratioScore(number)* lastYearCoefficient * totalLiabilitiesToEquityCoefficient
                 break;
+
             case StockFields.totalLiabilitiesToEquityGrowthLastQuarter:
-                score = -number
-                score *= 0.01
+                score = -number * lastQuarterCoefficient * totalLiabilitiesToEquityGrowthCoefficient
+                break;
+            case StockFields.totalLiabilitiesToEquityGrowthLast2Quarters:
+                score = -number * last2QuartersCoefficient * totalLiabilitiesToEquityGrowthCoefficient
                 break;
             case StockFields.totalLiabilitiesToEquityGrowthLastYear:
-                score = -number
-                score *= 0.05
+                score = -number * lastYearCoefficient * totalLiabilitiesToEquityGrowthCoefficient
                 break;
             case StockFields.totalLiabilitiesToEquityGrowthLast4Years:
-                score = -number
-                score *= 0.05
+                score = -number * last4YearCoefficient * totalLiabilitiesToEquityGrowthCoefficient
                 break;
             case StockFields.stockGrowthLastQuarter:
                 score = number > 10 ? -10 : 0
+                score *= lastQuarterCoefficient * stockGrowthCoefficient
+                break;
+            case StockFields.stockGrowthLast2Quarters:
+                score = number > 10 ? -10 : 0
+                score *= last2QuartersCoefficient * stockGrowthCoefficient
                 break;
             case StockFields.stockGrowthLastYear:
                 score = number > 10 ? -10 : 0
-                score *= 0.5
+                score *= 0.5 * lastYearCoefficient * stockGrowthCoefficient
                 break;
             case StockFields.stockGrowthLast4Years:
                 score = number > 10 ? -10 : 0
-                score *= 0.5
+                score *= 0.5 * last4YearCoefficient * stockGrowthCoefficient
+                break;
+            case StockFields.stockRepurchasedGrowthLastQuarter:
+                score = number * lastQuarterCoefficient * stockRepurchaseGrowthCoefficient
+                if(number > 50){
+                    dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
+                }
+                break;
+            case StockFields.stockRepurchasedGrowthLast2Quarters:
+                score = number * last2QuartersCoefficient * stockRepurchaseGrowthCoefficient
+                if(number > 50){
+                    dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
+                }
+                break;
+            case StockFields.stockRepurchasedGrowthLastYear:
+                score = number * lastYearCoefficient * stockRepurchaseGrowthCoefficient
+                if(number > 50){
+                    dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
+                }
+                break;
+            case StockFields.stockRepurchasedGrowthLast4Years:
+                score = number * last4YearCoefficient * stockRepurchaseGrowthCoefficient
                 break;
             case StockFields.epsGrowthLastQuarter:
-                score = number
-                score *= 1
+                score = number * lastQuarterCoefficient * epsGrowthCoefficient
                 break;
             case StockFields.epsGrowthLast2Quarters:
-                score = number
-                score *= 0.5
+                score = number * last2QuartersCoefficient * epsGrowthCoefficient
                 break;
             case StockFields.epsGrowthLastYear:
-                score = number
-                score *= 0.3
+                score = number * lastYearCoefficient * epsGrowthCoefficient
                 break;
             case StockFields.epsGrowthLast4Years:
-                score = number
-                score *= 0.2
+                score = number * last4YearCoefficient * epsGrowthCoefficient
                 break;
             case StockFields.peGrowthLastQuarter:
-                score = number
-                score *= 1
+                score = number * lastQuarterCoefficient * peGrowthCoefficient
                 break;
             case StockFields.peGrowthLast2Quarters:
-                score = number
-                score *= 1
+                score = number * last2QuartersCoefficient * peGrowthCoefficient
                 break;
             case StockFields.peGrowthLast3Quarters:
-                score = number
-                score *= 0.75
+                score = number * 0.75 * peGrowthCoefficient
                 break;
             case StockFields.peLastQuarter:
                 score = this.ratioBatterThan(number, 20, 100);
@@ -487,19 +551,7 @@ export class StockAnalystService {
     }
 
     static ratioScore(number?: number, maxThreshold: number = 50) {
-        let score: number
-        if (number > 0) {
-
-            if (number <= maxThreshold) {
-                score = -number
-            } else {
-                score = -maxThreshold * 2
-            }
-
-        } else {
-            score = -maxThreshold * 3 + ((1 / number) * 100)
-        }
-        return score;
+        return this.ratioBatterThan(number, 0, maxThreshold)
     }
 
     /**

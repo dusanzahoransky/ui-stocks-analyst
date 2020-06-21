@@ -197,7 +197,7 @@ export enum StockFields {
     stockGrowthLast4Years,
 
 
-    epsCurrentQuarterEstimate,
+    // epsCurrentQuarterEstimate,
     epsLastQuarter,
     eps2QuartersAgo,
     eps3QuartersAgo,
