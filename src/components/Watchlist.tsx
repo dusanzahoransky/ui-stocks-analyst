@@ -17,6 +17,7 @@ import {RatioChart} from "./RatioChart";
 import {RatioChartData} from "../model/RatioChartData";
 import {ChartRatios} from "../model/ChartRatios";
 import {StockTaggingService} from "../services/StockTaggingService";
+import {CellData} from "../model/CellData";
 
 
 export interface WatchlistProps {
@@ -173,12 +174,15 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         } else {
             const stocksInfo: Stock[] = this.getStock(result, this.props.isEtf)    //one more level of nesting
             const headers = this.toHeaderData(result.averages, this.props.isEtf);
-            let data = this.toTableData(stocksInfo);
+            const rawTableData = this.toTableData(stocksInfo);
+            const data: CellData[][] = rawTableData
+                .map(  row => row.map(cell => {return {value: cell}}))
+
+            const taggedData = data.map(row => this.stockTaggingService.tagRow(row, this.props.isEtf))
             const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isEtf))
-            const taggedData = scoredData.map(row => this.stockTaggingService.tagRow(row, this.props.isEtf))
 
             return <WatchlistTable
-                data={taggedData}
+                data={scoredData}
                 isEtf={this.props.isEtf}
                 headerLabels={headers[0]}
                 headerAverages={headers[1]}
@@ -231,9 +235,17 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const headersRow = Object.keys(averages)
         const averagesRow = Object.keys(averages).map(key => averages[key])
 
-        this.addScoreHeader(headersRow, averagesRow)
+        this.addHeader(headersRow, averagesRow, 'Score')
         if (!isEtf) {
-            this.addRule1Header(headersRow, averagesRow)
+            this.addHeader(headersRow, averagesRow, '1Q Score')
+            this.addHeader(headersRow, averagesRow, '2Q Score')
+            this.addHeader(headersRow, averagesRow, '1Y Score')
+            this.addHeader(headersRow, averagesRow, '4Y Score')
+            this.addHeader(headersRow, averagesRow, 'Ratios Score')
+            this.addHeader(headersRow, averagesRow, 'Stocks Score')
+            this.addHeader(headersRow, averagesRow, 'Dividends Score')
+            this.addHeader(headersRow, averagesRow, 'Analysts Score')
+            this.addHeader(headersRow, averagesRow, 'Rule 1 Score')
         }
 
         return [
@@ -242,13 +254,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         ]
     }
 
-    addScoreHeader(headersRow: string[], averagesRow: number[]) {
-        headersRow.push('Score')
-        averagesRow.push(0)
-    }
-
-    addRule1Header(headersRow: string[], averagesRow: number[]) {
-        headersRow.push('Rule 1 Score')
+    addHeader(headersRow: string[], averagesRow: number[],  label: string) {
+        headersRow.push(label)
         averagesRow.push(0)
     }
 

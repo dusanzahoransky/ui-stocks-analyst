@@ -9,6 +9,7 @@ import resultTest from "./Stocks-test.json"
 import etfsTest from "./Etfs-test.json"
 import {EtfTableColumn} from "../model/EtfTableColumn";
 import {ScoreAdditionalInfo} from "../model/ScoreAdditionalInfo";
+import {CellTag} from "../model/CellTag";
 
 export class StockAnalystService {
 
@@ -30,25 +31,35 @@ export class StockAnalystService {
         }
     }
 
-    scoreRow(averages: number[], rowValues: number[] | string[], isEtf: boolean): CellData[] {
+    scoreRow(averages: number[], rowValues: CellData[] | string[], isEtf: boolean): CellData[] {
         const cellData: CellData[] = []
 
-        rowValues.forEach((value, column) => {
-            const toScore: CellData = {value}
+        rowValues.forEach((toScore, column) => {
             const scoredData = isEtf ?
                 StockAnalystService.scoreEtfData(toScore, column, rowValues, averages) :
                 StockAnalystService.scoreStockData(toScore, column, rowValues, averages);
             cellData.push(scoredData)
         })
 
-        const totalScore = cellData.map(data => data.score)
-            .filter((score, index) => index < StockFields.roic1Y)
-            .filter(score => score && !Number.isNaN(score))
-            .reduce((prev, curr) => prev + curr, 0);
+        const dataToScore = cellData
+            .filter((data, index) => index < StockFields.roic1Y)
+            .filter(data => data.score && !Number.isNaN(data.score));
 
-        cellData.push({
-            value: totalScore
-        })
+        const totalScore = dataToScore.map(data => data.score)
+            .reduce((prev, curr) => prev + curr, 0);
+        cellData.push({value: totalScore})
+
+        const taggedDataToScore = dataToScore.filter(data => data.tags)
+
+        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.LastQuarter)})
+        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Last2Quarters)})
+        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.LastYear)})
+        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Last4Years)})
+        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.ratios)})
+        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.stock)})
+        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.dividends)})
+        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.analysts)})
+
 
         if (!isEtf) {
             const rule1Score = cellData.map(data => data.score)
@@ -64,7 +75,14 @@ export class StockAnalystService {
         return cellData
     }
 
-    private static scoreEtfData(dataToScore: CellData, colEtf: number, rowValues: number[] | string[], averages: number[]): CellData {
+    private static calcTotal(data: CellData[], filterTag: CellTag): number {
+        return data
+            .filter(data => data.tags.includes(filterTag))
+            .map(data => data.score)
+            .reduce((prev, curr) => prev + curr, 0)
+    }
+
+    private static scoreEtfData(dataToScore: CellData, colEtf: number, rowValues: CellData[] | string[], averages: number[]): CellData {
         if (!dataToScore.value) {
             return dataToScore
         }
@@ -168,7 +186,7 @@ export class StockAnalystService {
         return dataToScore
     }
 
-    private static scoreStockData(dataToScore: CellData, colEtf: number, rowValues: number[] | string[], averages: number[]): CellData {
+    private static scoreStockData(dataToScore: CellData, colEtf: number, rowValues: CellData[] | string[], averages: number[]): CellData {
 
         if (!dataToScore.value) {
             return dataToScore
@@ -200,7 +218,6 @@ export class StockAnalystService {
         const stockRepurchaseGrowthCoefficient = 0.5
 
         const epsGrowthCoefficient = 10
-        const peGrowthCoefficient = 10
 
         let score
 
@@ -374,14 +391,14 @@ export class StockAnalystService {
                 score = number * lastYearCoefficient * totalShareholdersEquityGrowthCoefficient
                 break;
             case StockFields.totalShareholdersEquityGrowthLast4Years:
-                score = number * last4YearCoefficient* totalShareholdersEquityGrowthCoefficient
+                score = number * last4YearCoefficient * totalShareholdersEquityGrowthCoefficient
                 break;
 
             case StockFields.totalLiabilitiesToEquityLastQuarter:
                 score = StockAnalystService.ratioScore(number) * lastQuarterCoefficient * totalLiabilitiesToEquityCoefficient
                 break;
             case StockFields.totalLiabilitiesToEquityLastYear:
-                score = StockAnalystService.ratioScore(number)* lastYearCoefficient * totalLiabilitiesToEquityCoefficient
+                score = StockAnalystService.ratioScore(number) * lastYearCoefficient * totalLiabilitiesToEquityCoefficient
                 break;
 
             case StockFields.totalLiabilitiesToEquityGrowthLastQuarter:
@@ -414,19 +431,19 @@ export class StockAnalystService {
                 break;
             case StockFields.stockRepurchasedGrowthLastQuarter:
                 score = number * lastQuarterCoefficient * stockRepurchaseGrowthCoefficient
-                if(number > 50){
+                if (number > 50) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
             case StockFields.stockRepurchasedGrowthLast2Quarters:
                 score = number * last2QuartersCoefficient * stockRepurchaseGrowthCoefficient
-                if(number > 50){
+                if (number > 50) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
             case StockFields.stockRepurchasedGrowthLastYear:
                 score = number * lastYearCoefficient * stockRepurchaseGrowthCoefficient
-                if(number > 50){
+                if (number > 50) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
@@ -444,15 +461,6 @@ export class StockAnalystService {
                 break;
             case StockFields.epsGrowthLast4Years:
                 score = number * last4YearCoefficient * epsGrowthCoefficient
-                break;
-            case StockFields.peGrowthLastQuarter:
-                score = number * lastQuarterCoefficient * peGrowthCoefficient
-                break;
-            case StockFields.peGrowthLast2Quarters:
-                score = number * last2QuartersCoefficient * peGrowthCoefficient
-                break;
-            case StockFields.peGrowthLast3Quarters:
-                score = number * 0.75 * peGrowthCoefficient
                 break;
             case StockFields.peLastQuarter:
                 score = this.ratioBatterThan(number, 20, 100);

@@ -148,7 +148,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     dataCellClass(rowData: any[], data: CellData, average: any, column: number): string {
         let classes = [];
 
-        if(data.additionalInfo != undefined){
+        if(data.additionalInfo !== undefined){
             classes.push('additionalInfo')
         }
 
@@ -188,7 +188,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                 } else {
                     classes.push('greenText')
                 }
-            } else if (column === StockFields.score || column === StockFields.rule1score) {   //Score
+            } else if (column >= StockFields.score && column <= StockFields.rule1score) {   //Score
                 if (data.value < 0) {
                     classes.push('redText')
                     classes.push('boldText')
@@ -213,6 +213,6 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     private toClasses(cellTags: CellTag[]): string {
-        return cellTags.map(tag => CellTag[tag]).join(' ')
+        return cellTags ? cellTags.map(tag => CellTag[tag]).join(' ') : ''
     }
 }

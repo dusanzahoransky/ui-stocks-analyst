@@ -34,6 +34,8 @@ export enum StockFields {
 
     heldByInsiders,
     heldByInstitutions,
+    buyPercentInsiderShares,
+    sellPercentInsiderShares,
     shortToFloat,
     sharesShortPrevMonthCompare,
 
@@ -216,18 +218,29 @@ export enum StockFields {
     // price2QuartersAgo,
     // price3QuartersAgo,
     // price4QuartersAgo,
+    // priceLastYear,
+    // price2YearsAgo,
+    // price3YearsAgo,
+    // price4YearsAgo,
+    //
     // priceGrowthLastQuarter,
     // priceGrowthLast2Quarters,
-    // priceGrowthLast3Quarters,
+    // priceGrowthLastYear,
+    // priceGrowthLast4Years,
 
     peLastQuarter,
     pe2QuartersAgo,
     pe3QuartersAgo,
     pe4QuartersAgo,
+    peLastYear,
+    pe2YearsAgo,
+    pe3YearsAgo,
+    pe4YearsAgo,
 
     peGrowthLastQuarter,
     peGrowthLast2Quarters,
-    peGrowthLast3Quarters,
+    peGrowthLastYear,
+    peGrowthLast4Years,
 
     growthEstimate5y,
 
@@ -283,5 +296,13 @@ export enum StockFields {
     chartData,
 
     score,
+    score1Q,
+    score2Q,
+    score1Y,
+    score4Y,
+    scoreRatios,
+    scoreStock,
+    scoreDividends,
+    scoreAnalysts,
     rule1score,
 }
