@@ -124,7 +124,7 @@ td.companyName{
     font-size: unset;
 }
 
-td.price {
+td.currentPrice {
     position: sticky;
     left: 215px;
     background: #f0f3ff;
