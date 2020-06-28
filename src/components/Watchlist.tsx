@@ -15,9 +15,11 @@ import {EtfsPriceChart} from "./EtfsPriceChart";
 import {StockRatiosPeriods} from "../model/StockRatiosPeriods";
 import {RatioChart} from "./RatioChart";
 import {RatioChartData} from "../model/RatioChartData";
-import {ChartRatios} from "../model/ChartRatios";
+import {FinancialChartRatios} from "../model/FinancialChartRatios";
 import {StockTaggingService} from "../services/StockTaggingService";
 import {CellData} from "../model/CellData";
+import {OtherChartRatios} from "../model/OtherChartRatios";
+import {CellTag} from "../model/CellTag";
 
 
 export interface WatchlistProps {
@@ -52,12 +54,15 @@ export interface WatchlistState {
     priceEpsChartRemoveOutliers?: boolean
     etfsChartSymbols?: string[]
     chartLabel?: string
+    hiddenTags: CellTag[]
 }
 
 export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     private readonly stockAnalystService: StockAnalystService;
     private readonly stockTaggingService: StockTaggingService;
+
+    private readonly HIDEABLE_TAGS = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.financials, CellTag.growth, CellTag.rule1]
 
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
@@ -69,7 +74,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             // ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
             // etfsChartSymbols: ['VTS', 'VUSA'],
             etfsChartSymbols: [],
-            priceEpsChartRemoveOutliers: true
+            priceEpsChartRemoveOutliers: true,
+            hiddenTags: []
         }
         this.stockAnalystService = new StockAnalystService();
         this.stockTaggingService = new StockTaggingService();
@@ -96,14 +102,42 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const showLink = this.props.isPreset ?
             <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(watchlist)}/> : ''
 
+        let checkboxesSpan
+        if(this.props.isExpanded) {
+            const hidableTags = this.HIDEABLE_TAGS.map(tag => this.toHideableTagCheckbox(tag))
+            checkboxesSpan = <span className="HideableTags">Hide: {hidableTags}</span>;
+        }
+
         return <div
             className="Watchlist"
             key={watchlist}>
             <h2 className={"WatchlistName " + (this.props.isEtf ? "Etf" : "Stock")}>
-                {showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}{refreshRatiosLink}</h2>
+                {showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}{refreshRatiosLink} {checkboxesSpan}</h2>
             {table}
             {charts}
         </div>
+    }
+
+    private toHideableTagCheckbox(tag: CellTag) {
+        let tagName = CellTag[tag];
+        const checkbox =
+            <span className="HideableTag">{tagName} <input
+                name={tagName}
+                type="checkbox"
+                checked={this.state.hiddenTags.includes(tag)}
+                onChange={() => {
+                    this.setState((prevState) => {
+                        let newHiddenTags
+                        if (prevState.hiddenTags.includes(tag)) {
+                            newHiddenTags = prevState.hiddenTags.filter(hiddenTag => hiddenTag !== tag)
+                        } else {
+                            newHiddenTags = prevState.hiddenTags.concat(tag)
+                        }
+                        return {hiddenTags: newHiddenTags}
+                    })
+                }}/>
+            </span>;
+        return checkbox;
     }
 
     renderEtfsChart() {
@@ -120,7 +154,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderCompanyCharts(priceEpsData?: PriceEpsDataRaw[], ratiosData?: StockRatiosPeriods) {
-        if (!this.props.isExpanded || !priceEpsData) {
+        if (!this.props.isExpanded) {
             return ''
         }
         const peRatio = 15
@@ -129,31 +163,66 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             data={chartData}
             description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>;
 
-        const periods = Object.keys(ratiosData);
-        const ratiosCharts = Watchlist.getChartRatios().map(ratio => {
-            const chartData: RatioChartData[] = periods.map(period => {
-                return {
-                    date: period,
-                    value: ratiosData[period][ratio] as number
-                }
-            });
-            return <RatioChart
-                key={ratio}
-                data={chartData}
-                label={`${ChartRatios[ratio]}`}/>
-        })
+        let financialRatiosCharts
+        let otherRatiosCharts
+        if(ratiosData) {
+            const periods = Object.keys(ratiosData);
+
+            financialRatiosCharts = Watchlist.getChartFinancialRatios().map(ratio => {
+                const chartData: RatioChartData[] = periods.map(period => {
+                    return {
+                        date: period,
+                        value: ratiosData[period][ratio] as number
+                    }
+                });
+                return <RatioChart
+                    key={ratio}
+                    data={chartData}
+                    label={`${FinancialChartRatios[ratio]}`}/>
+            })
+
+            otherRatiosCharts = Watchlist.getChartOtherRatios().map(ratio => {
+                const chartData: RatioChartData[] = periods.map(period => {
+                    return {
+                        date: period,
+                        value: ratiosData[period][ratio] as number
+                    }
+                });
+                return <RatioChart
+                    key={ratio}
+                    data={chartData}
+                    label={`${OtherChartRatios[ratio]}`}/>
+            })
+        }
+
+
 
         return <div>
             <div className={!chartData ? 'hidden' : ''}>{priceEpsChart}</div>
-            <div className={!ratiosData ? 'hidden' : ''}>{ratiosCharts}</div>
+            <div className={"RatiosCharts"}>
+                <div className={!ratiosData ? 'hidden' : 'RatiosChartsColumn'}>{financialRatiosCharts}</div>
+                <div className={!ratiosData ? 'hidden' : 'RatiosChartsColumn'}>{otherRatiosCharts}</div>
+            </div>
         </div>
 
     }
 
-    private static getChartRatios(): string[] {
+    private static getChartFinancialRatios(): string[] {
         const enumNames = []
 
-        for (const enumMember in ChartRatios) {
+        for (const enumMember in FinancialChartRatios) {
+            if (Number.isNaN(Number.parseInt(enumMember))) {
+                enumNames.push(enumMember)
+            }
+        }
+
+        return enumNames
+    }
+
+    private static getChartOtherRatios(): string[] {
+        const enumNames = []
+
+        for (const enumMember in OtherChartRatios) {
             if (Number.isNaN(Number.parseInt(enumMember))) {
                 enumNames.push(enumMember)
             }
@@ -176,16 +245,19 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             const headers = this.toHeaderData(result.averages, this.props.isEtf);
             const rawTableData = this.toTableData(stocksInfo);
             const data: CellData[][] = rawTableData
-                .map(  row => row.map(cell => {return {value: cell}}))
+                .map(row => row.map(cell => {
+                    return {value: cell}
+                }))
 
             const taggedData = data.map(row => this.stockTaggingService.tagRow(row, this.props.isEtf))
-            const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isEtf))
+            const scoredData = taggedData.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isEtf))
 
             return <WatchlistTable
                 data={scoredData}
                 isEtf={this.props.isEtf}
                 headerLabels={headers[0]}
                 headerAverages={headers[1]}
+                hiddenTags={this.state.hiddenTags}
                 onStockClickHandler={this.stockOnClickHandler}
             />
         }
@@ -254,7 +326,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         ]
     }
 
-    addHeader(headersRow: string[], averagesRow: number[],  label: string) {
+    addHeader(headersRow: string[], averagesRow: number[], label: string) {
         headersRow.push(label)
         averagesRow.push(0)
     }
@@ -345,5 +417,6 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             })
             .replace(/_/g, ' ')
     }
+
 }
 

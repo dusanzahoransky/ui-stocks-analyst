@@ -44,4 +44,11 @@ export enum CellTag {
     Last2Years,
     Last3Years,
     Last4Years,
+
+    currentRatio,
+    currentLiabilities,
+    currentAssets,
+    profitMargin,
+
+    growth,
 }

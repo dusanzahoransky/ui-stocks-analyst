@@ -57,17 +57,17 @@ export enum StockFields {
     revenueGrowthLast4Years,
 
 
-    grossIncomeLastQuarter,
-    grossIncome2QuartersAgo,
-    grossIncome3QuartersAgo,
-    grossIncomeLastYear,
-    grossIncome2YearsAgo,
-    grossIncome4YearsAgo,
-
-    grossIncomeGrowthLastQuarter,
-    grossIncomeGrowthLast2Quarters,
-    grossIncomeGrowthLastYear,
-    grossIncomeGrowthLast4Years,
+    // grossIncomeLastQuarter,
+    // grossIncome2QuartersAgo,
+    // grossIncome3QuartersAgo,
+    // grossIncomeLastYear,
+    // grossIncome2YearsAgo,
+    // grossIncome4YearsAgo,
+    //
+    // grossIncomeGrowthLastQuarter,
+    // grossIncomeGrowthLast2Quarters,
+    // grossIncomeGrowthLastYear,
+    // grossIncomeGrowthLast4Years,
 
 
     ebitLastQuarter,
@@ -95,6 +95,17 @@ export enum StockFields {
     netIncomeGrowthLastYear,
     netIncomeGrowthLast4Years,
 
+    profitMarginLastQuarter,
+    profitMargin2QuartersAgo,
+    profitMargin3QuartersAgo,
+    profitMarginLastYear,
+    profitMargin2YearsAgo,
+    profitMargin4YearsAgo,
+
+    profitMarginGrowthLastQuarter,
+    profitMarginGrowthLast2Quarters,
+    profitMarginGrowthLastYear,
+    profitMarginGrowthLast4Years,
 
     freeCashFlowLastQuarter,
     freeCashFlow2QuartersAgo,
@@ -133,6 +144,31 @@ export enum StockFields {
     inventoryGrowthLastYear,
     inventoryGrowthLast4Years,
 
+    currentAssetsLastQuarter,
+    currentAssets2QuartersAgo,
+    currentAssets3QuartersAgo,
+    currentAssetsLastYear,
+    currentAssets2YearsAgo,
+    currentAssets4YearsAgo,
+
+    currentLiabilitiesLastQuarter,
+    currentLiabilities2QuartersAgo,
+    currentLiabilities3QuartersAgo,
+    currentLiabilitiesLastYear,
+    currentLiabilities2YearsAgo,
+    currentLiabilities4YearsAgo,
+
+    currentRatioLastQuarter,
+    currentRatio2QuartersAgo,
+    currentRatio3QuartersAgo,
+    currentRatioLastYear,
+    currentRatio2YearsAgo,
+    currentRatio4YearsAgo,
+
+    currentRatioGrowthLastQuarter,
+    currentRatioGrowthLast2Quarters,
+    currentRatioGrowthLastYear,
+    currentRatioGrowthLast4Years,
 
     totalLiabilitiesLastQuarter,
     totalLiabilities2QuartersAgo,
@@ -158,7 +194,6 @@ export enum StockFields {
     totalShareholdersEquityGrowthLast2Quarters,
     totalShareholdersEquityGrowthLastYear,
     totalShareholdersEquityGrowthLast4Years,
-
 
     totalLiabilitiesToEquityLastQuarter,
     totalLiabilitiesToEquity2QuartersAgo,
@@ -245,6 +280,10 @@ export enum StockFields {
     growthEstimate5y,
 
     //Rule 1 calc
+
+    roicLastYear,
+    roicLast2YearsAgo,
+    roicLast4YearsAgo,
 
     roic1Y,
     roic3Y,

@@ -9,19 +9,20 @@ import {StockTaggingService} from "../services/StockTaggingService";
 import {CellTag} from "../model/CellTag";
 
 export interface TableProps {
-    headerLabels: string[];
-    headerAverages: number[];
-    data: CellData[][];
-    isEtf: boolean;
-    sortField?: number;
+    headerLabels: string[]
+    headerAverages: number[]
+    data: CellData[][]
+    isEtf: boolean
+    sortField?: number
+    hiddenTags: CellTag[]
     onStockClickHandler?: (stockSymbol: string) => void
 }
 
 export interface TableState {
-    selectedRow: number;
-    sortAsc: boolean;
-    sortedBy: number;
-    sortedData: CellData[][];
+    selectedRow: number
+    sortAsc: boolean
+    sortedBy: number
+    sortedData: CellData[][]
 }
 
 export class WatchlistTable extends React.Component<TableProps, TableState> {
@@ -57,21 +58,26 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     renderHeader(headerLabels: string[], headerAverages: number[]) {
-        const labelsRow = headerLabels.map((field, column) =>
-            <th key={column} className={'label ' + this.toClasses(StockTaggingService.tagColumn(column, this.props.isEtf))}
-                onClick={() => this.setSortedField(column)}>
-                <i className="fa fa-sort"/>
-                {FormattingUtils.toFieldLabel(field)}
-            </th>
+        const labelsRow = headerLabels.map((field, column) => {
+                let cellTags = StockTaggingService.tagColumn(column, this.props.isEtf);
+                return <th key={column}
+                           className={'label ' + this.toClasses(cellTags, column, this.props.isEtf)}
+                           onClick={() => this.setSortedField(column)}>
+                    <i className="fa fa-sort"/>
+                    {FormattingUtils.toFieldLabel(field)}
+                </th>;
+            }
         );
-        const averagesRow = headerAverages.map((value, column) =>
-            <th key={column}
-                className={this.toClasses(StockTaggingService.tagColumn(column, this.props.isEtf))}>
-                {
-                    this.props.isEtf ?
-                        FormattingUtils.formatEtf(headerAverages, value, column) :
-                        FormattingUtils.formatStock(headerAverages, value, column)
-                }</th>
+        const averagesRow = headerAverages.map((value, column) => {
+                let cellTags = StockTaggingService.tagColumn(column, this.props.isEtf);
+                return <th key={column}
+                           className={this.toClasses(cellTags, column, this.props.isEtf)}>
+                    {
+                        this.props.isEtf ?
+                            FormattingUtils.formatEtf(headerAverages, value, column) :
+                            FormattingUtils.formatStock(headerAverages, value, column)
+                    }</th>;
+            }
         );
 
         return (
@@ -132,7 +138,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                         FormattingUtils.formatEtf(rowData, data.value, column)
                         : FormattingUtils.formatStock(rowData, data.value, column)
                 }</span>
-                <span className={"score"}>{data.score && typeof data.score === 'number' ? data.score.toFixed(0) : ''}</span>
+                <span
+                    className={"score"}>{data.score && typeof data.score === 'number' ? data.score.toFixed(0) : ''}</span>
             </td>
         );
         return (
@@ -148,7 +155,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     dataCellClass(rowData: any[], data: CellData, average: any, column: number): string {
         let classes = [];
 
-        if(data.additionalInfo !== undefined){
+        if (data.additionalInfo !== undefined) {
             classes.push('additionalInfo')
         }
 
@@ -165,7 +172,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             }
         }
 
-        classes.push(this.toClasses(data.tags))
+        classes.push(this.toClasses(data.tags, column, this.props.isEtf))
 
         if (this.props.isEtf) {
             if (column === EtfTableColumn.change) {
@@ -202,8 +209,6 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         return classes.join(' ');
     }
 
-
-
     private setSelectedRow(row: number) {
         this.setState(state => {
             return {
@@ -212,7 +217,18 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         })
     }
 
-    private toClasses(cellTags: CellTag[]): string {
-        return cellTags ? cellTags.map(tag => CellTag[tag]).join(' ') : ''
+    private toClasses(cellTags: CellTag[], column: number, isEtf: boolean): string {
+        if(!cellTags){
+            return ''
+        }
+        if(this.isHidden(column, isEtf)){
+            cellTags = cellTags.concat(CellTag.hidden)
+        }
+        return cellTags.map(tag => CellTag[tag]).join(' ');
+    }
+
+    private isHidden(column: number, isEtf: boolean): boolean {
+        const colTags = isEtf ? StockTaggingService.tagEtfColumn(column) : StockTaggingService.tagStockColumn(column)
+        return this.props.hiddenTags.some(hiddenTag => colTags.includes(hiddenTag))
     }
 }

@@ -44,7 +44,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     private readonly STOCK_WATCHLISTS = [
         /* 'TEST',*/
         'TO_CHECK',
-        'ALL_INVESTED',
+        /*'ALL_INVESTED',
 
         'US_ALL',
         'US_INVESTED_IN',
@@ -61,11 +61,11 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         'AIRLINES',
         'TECH',
         'NASDAQ_100',
-        'DIVIDENDS',
+        'DIVIDENDS',*/
     ];
 
     private readonly ETF_WATCHLISTS = [
-        /* 'TEST_INDICES',*/
+        'TEST_INDICES',
         'ETF_ALL',
 
         'AU_ETF_ALL',
@@ -86,8 +86,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     componentDidMount() {
         // this.loadWatchlistData("TEST", false)
         this.STOCK_WATCHLISTS
-            // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
-            .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
+            .forEach(watchlist => this.loadWatchlistData(watchlist, false))
+            // .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
         this.ETF_WATCHLISTS
             // .forEach(watchlist => this.loadWatchlistData(watchlist, true, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, true))
