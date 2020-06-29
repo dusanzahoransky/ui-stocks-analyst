@@ -1,4 +1,4 @@
-.HideableTags{
+.VisibleTags{
     font-weight: normal;
     font-size: small;
     margin-left: 25px;
@@ -6,10 +6,10 @@
     left: 0px;
 }
 
-.HideableTag{
+.VisibleTag{
     margin-left: 15px;
 }
-.HideableTag input{
+.VisibleTag input{
     width: 10px;
     height: 10px;
 }

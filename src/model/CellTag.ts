@@ -51,4 +51,5 @@ export enum CellTag {
     profitMargin,
 
     growth,
+    value,
 }

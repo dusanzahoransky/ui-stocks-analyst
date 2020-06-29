@@ -51,13 +51,13 @@ export class StockTaggingService {
                 return [CellTag.ratios]
 
             case StockFields.trailingPE:
-                return [CellTag.ratios]
+                return [CellTag.ratios, CellTag.value]
             case StockFields.forwardPE:
-                return [CellTag.ratios]
+                return [CellTag.ratios, CellTag.value]
             case StockFields.priceToSalesTrailing12Months:
-                return [CellTag.ratios]
+                return [CellTag.ratios, CellTag.value]
             case StockFields.priceBook:
-                return [CellTag.ratios]
+                return [CellTag.ratios, CellTag.value]
             case StockFields.enterpriseValueRevenue:
                 return [CellTag.ratios]
             case StockFields.enterpriseValueEBITDA:
@@ -122,27 +122,27 @@ export class StockTaggingService {
                 return [CellTag.revenue, CellTag.Last4Years, CellTag.growth]
 
 
-            // case StockFields.grossIncomeLastQuarter:
-            //     return [CellTag.financials, CellTag.grossIncome, CellTag.LastQuarter]
-            // case StockFields.grossIncome2QuartersAgo:
-            //     return [CellTag.financials, CellTag.grossIncome, CellTag.Last2Quarters]
-            // case StockFields.grossIncome3QuartersAgo:
-            //     return [CellTag.financials, CellTag.grossIncome, CellTag.Last3Quarters]
-            // case StockFields.grossIncomeLastYear:
-            //     return [CellTag.financials, CellTag.grossIncome, CellTag.LastYear]
-            // case StockFields.grossIncome2YearsAgo:
-            //     return [CellTag.financials, CellTag.grossIncome, CellTag.Last2Years]
-            // case StockFields.grossIncome4YearsAgo:
-            //     return [CellTag.financials, CellTag.grossIncome, CellTag.Last4Years]
-            //
-            // case StockFields.grossIncomeGrowthLastQuarter:
-            //     return [CellTag.grossIncome, CellTag.LastQuarter, CellTag.growth]
-            // case StockFields.grossIncomeGrowthLast2Quarters:
-            //     return [CellTag.grossIncome, CellTag.Last2Quarters, CellTag.growth]
-            // case StockFields.grossIncomeGrowthLastYear:
-            //     return [CellTag.grossIncome, CellTag.LastYear, CellTag.growth]
-            // case StockFields.grossIncomeGrowthLast4Years:
-            //     return [CellTag.grossIncome, CellTag.Last4Years, CellTag.growth]
+            case StockFields.grossIncomeLastQuarter:
+                return [CellTag.financials, CellTag.grossIncome, CellTag.LastQuarter]
+            case StockFields.grossIncome2QuartersAgo:
+                return [CellTag.financials, CellTag.grossIncome, CellTag.Last2Quarters]
+            case StockFields.grossIncome3QuartersAgo:
+                return [CellTag.financials, CellTag.grossIncome, CellTag.Last3Quarters]
+            case StockFields.grossIncomeLastYear:
+                return [CellTag.financials, CellTag.grossIncome, CellTag.LastYear]
+            case StockFields.grossIncome2YearsAgo:
+                return [CellTag.financials, CellTag.grossIncome, CellTag.Last2Years]
+            case StockFields.grossIncome4YearsAgo:
+                return [CellTag.financials, CellTag.grossIncome, CellTag.Last4Years]
+
+            case StockFields.grossIncomeGrowthLastQuarter:
+                return [CellTag.grossIncome, CellTag.LastQuarter, CellTag.growth]
+            case StockFields.grossIncomeGrowthLast2Quarters:
+                return [CellTag.grossIncome, CellTag.Last2Quarters, CellTag.growth]
+            case StockFields.grossIncomeGrowthLastYear:
+                return [CellTag.grossIncome, CellTag.LastYear, CellTag.growth]
+            case StockFields.grossIncomeGrowthLast4Years:
+                return [CellTag.grossIncome, CellTag.Last4Years, CellTag.growth]
 
 
             case StockFields.ebitLastQuarter:
@@ -338,14 +338,19 @@ export class StockTaggingService {
                 return [CellTag.balanceSheet, CellTag.financials, CellTag.liabilities, CellTag.Last2Years]
             case StockFields.totalLiabilities4YearsAgo:
                 return [CellTag.balanceSheet, CellTag.financials, CellTag.liabilities, CellTag.Last4Years]
-            case StockFields.totalLiabilitiesGrowthLastQuarter:
-                return [CellTag.balanceSheet, CellTag.liabilities, CellTag.LastQuarter, CellTag.growth]
-            case StockFields.totalLiabilitiesGrowthLast2Quarters:
-                return [CellTag.balanceSheet, CellTag.liabilities, CellTag.Last2Quarters, CellTag.growth]
-            case StockFields.totalLiabilitiesGrowthLastYear:
-                return [CellTag.balanceSheet, CellTag.liabilities, CellTag.LastYear, CellTag.growth]
-            case StockFields.totalLiabilitiesGrowthLast4Years:
-                return [CellTag.balanceSheet, CellTag.liabilities, CellTag.Last4Years, CellTag.growth]
+
+            case StockFields.totalAssetsLastQuarter:
+                return [CellTag.balanceSheet, CellTag.financials, CellTag.liabilities, CellTag.LastQuarter]
+            case StockFields.totalAssets2QuartersAgo:
+                return [CellTag.balanceSheet, CellTag.financials, CellTag.liabilities, CellTag.Last2Quarters]
+            case StockFields.totalAssets3QuartersAgo:
+                return [CellTag.balanceSheet, CellTag.financials, CellTag.liabilities, CellTag.Last3Quarters]
+            case StockFields.totalAssetsLastYear:
+                return [CellTag.balanceSheet, CellTag.financials, CellTag.liabilities, CellTag.LastYear]
+            case StockFields.totalAssets2YearsAgo:
+                return [CellTag.balanceSheet, CellTag.financials, CellTag.liabilities, CellTag.Last2Years]
+            case StockFields.totalAssets4YearsAgo:
+                return [CellTag.balanceSheet, CellTag.financials, CellTag.liabilities, CellTag.Last4Years]
 
             case StockFields.totalShareholdersEquityLastQuarter:
                 return [CellTag.balanceSheet, CellTag.financials, CellTag.equity, CellTag.LastQuarter]
@@ -482,16 +487,16 @@ export class StockTaggingService {
                 return [CellTag.pe, CellTag.Last4Years, CellTag.growth]
 
             case StockFields.growthEstimate5y:
-                return [CellTag.analysts]
+                return [CellTag.analysts, CellTag.growth]
 
             case StockFields.roicLastYear:
-                return [CellTag.rule1, CellTag.cgRoic]
+                return [CellTag.rule1, CellTag.cgRoic, CellTag.value]
             case StockFields.roicLast2YearsAgo:
                 return [CellTag.rule1, CellTag.cgRoic]
             case StockFields.roicLast4YearsAgo:
                 return [CellTag.rule1, CellTag.cgRoic]
             case StockFields.roic1Y:
-                return [CellTag.rule1, CellTag.cgRoic]
+                return [CellTag.rule1, CellTag.cgRoic, CellTag.value]
             case StockFields.roic3Y:
                 return [CellTag.rule1, CellTag.cgRoic]
 
@@ -552,6 +557,8 @@ export class StockTaggingService {
                 return [CellTag.rule1, CellTag.calc]
             case StockFields.futurePrice10Years:
                 return [CellTag.rule1, CellTag.calc]
+            case StockFields.futureEPS10Years:
+                return [CellTag.rule1, CellTag.calc]
 
             case StockFields.stickerPrice15pcGrowth:
                 return [CellTag.rule1, CellTag.calc]
@@ -582,6 +589,8 @@ export class StockTaggingService {
             case StockFields.scoreAnalysts:
                 return [CellTag.totalScore]
             case StockFields.rule1score:
+                return [CellTag.totalScore]
+            case StockFields.valueInvestmentScore:
                 return [CellTag.totalScore]
 
             default:

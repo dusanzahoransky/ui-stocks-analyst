@@ -56,18 +56,17 @@ export enum StockFields {
     revenueGrowthLastYear,
     revenueGrowthLast4Years,
 
+    grossIncomeLastQuarter,
+    grossIncome2QuartersAgo,
+    grossIncome3QuartersAgo,
+    grossIncomeLastYear,
+    grossIncome2YearsAgo,
+    grossIncome4YearsAgo,
 
-    // grossIncomeLastQuarter,
-    // grossIncome2QuartersAgo,
-    // grossIncome3QuartersAgo,
-    // grossIncomeLastYear,
-    // grossIncome2YearsAgo,
-    // grossIncome4YearsAgo,
-    //
-    // grossIncomeGrowthLastQuarter,
-    // grossIncomeGrowthLast2Quarters,
-    // grossIncomeGrowthLastYear,
-    // grossIncomeGrowthLast4Years,
+    grossIncomeGrowthLastQuarter,
+    grossIncomeGrowthLast2Quarters,
+    grossIncomeGrowthLastYear,
+    grossIncomeGrowthLast4Years,
 
 
     ebitLastQuarter,
@@ -177,11 +176,12 @@ export enum StockFields {
     totalLiabilities2YearsAgo,
     totalLiabilities4YearsAgo,
 
-    totalLiabilitiesGrowthLastQuarter,
-    totalLiabilitiesGrowthLast2Quarters,
-    totalLiabilitiesGrowthLastYear,
-    totalLiabilitiesGrowthLast4Years,
-
+    totalAssetsLastQuarter,
+    totalAssets2QuartersAgo,
+    totalAssets3QuartersAgo,
+    totalAssetsLastYear,
+    totalAssets2YearsAgo,
+    totalAssets4YearsAgo,
 
     totalShareholdersEquityLastQuarter,
     totalShareholdersEquity2QuartersAgo,
@@ -319,7 +319,7 @@ export enum StockFields {
     historicalPE,
     rule1PE,
     currentEps,
-    // futureEPS10Years,
+    futureEPS10Years,
     futurePrice10Years,
 
     stickerPrice15pcGrowth,
@@ -344,4 +344,5 @@ export enum StockFields {
     scoreDividends,
     scoreAnalysts,
     rule1score,
+    valueInvestmentScore,
 }

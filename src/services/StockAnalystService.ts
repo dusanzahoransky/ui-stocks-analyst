@@ -49,18 +49,6 @@ export class StockAnalystService {
             .reduce((prev, curr) => prev + curr, 0);
         cellData.push({value: totalScore})
 
-        const taggedDataToScore = dataToScore.filter(data => data.tags)
-
-        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.LastQuarter)})
-        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Last2Quarters)})
-        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.LastYear)})
-        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Last4Years)})
-        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.ratios)})
-        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.stock)})
-        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.dividends)})
-        cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.analysts)})
-
-
         if (!isEtf) {
             const rule1Score = cellData.map(data => data.score)
                 .filter((score, index) => index >= StockFields.roic1Y)
@@ -70,9 +58,65 @@ export class StockAnalystService {
             cellData.push({
                 value: rule1Score
             })
+
+            const taggedDataToScore = dataToScore.filter(data => data.tags)
+
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.LastQuarter)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Last2Quarters)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.LastYear)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Last4Years)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.ratios)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.stock)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.dividends)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.analysts)})
+
+            cellData.push({value: StockAnalystService.calcValueScore(cellData)})
         }
 
         return cellData
+    }
+
+    /**
+     * Calculate value investing score
+     */
+    private static calcValueScore(data: CellData[]): number {
+        let totalScore = 0
+
+        for (let column = 0; column < data.length; column++) {
+            const value = data[column].value as number
+            if(!value){
+                continue
+            }
+            let score = undefined
+            switch (column) {
+                case StockFields.trailingPE:
+                    if(value < 0){
+                        score = -100
+                    }
+                    score = (10 - value) * 5
+                    break;
+                case StockFields.priceBook:
+                    score = (2 - value) * 3
+                    break;
+                case StockFields.priceToSalesTrailing12Months:
+                    score = (3 - value) * 2
+                    break;
+                case StockFields.roicLastYear:
+                    score = (value - 10) * 5
+                    break;
+                case StockFields.roic1Y:
+                    score = (value - 10) * 5
+                    score = Math.min(score, 50)
+                    score = Math.max(score, -50)
+                    break;
+            }
+            if(score) {
+                totalScore += score
+                data[column].score = score
+            }
+        }
+
+        return totalScore
     }
 
     private static calcTotal(data: CellData[], filterTag: CellTag): number {
@@ -304,6 +348,9 @@ export class StockAnalystService {
                 break;
             case StockFields.shortToFloat:
                 score = 10 - number
+                if (number > 20) {
+                    dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
+                }
                 break;
             case StockFields.sharesShortPrevMonthCompare:
                 if (number > 100) {
@@ -323,18 +370,18 @@ export class StockAnalystService {
             case StockFields.revenueGrowthLast4Years:
                 score = number * revenueGrowthCoefficient * last4YearCoefficient
                 break
-            // case StockFields.grossIncomeGrowthLastQuarter:
-            //     score = number * grossIncomeGrowthCoefficient * lastQuarterCoefficient
-            //     break
-            // case StockFields.grossIncomeGrowthLast2Quarters:
-            //     score = number * grossIncomeGrowthCoefficient * last2QuartersCoefficient
-            //     break
-            // case StockFields.grossIncomeGrowthLastYear:
-            //     score = number * grossIncomeGrowthCoefficient * lastYearCoefficient
-            //     break
-            // case StockFields.grossIncomeGrowthLast4Years:
-            //     score = number * grossIncomeGrowthCoefficient * last4YearCoefficient
-            //     break
+            case StockFields.grossIncomeGrowthLastQuarter:
+                score = number * grossIncomeGrowthCoefficient * lastQuarterCoefficient
+                break
+            case StockFields.grossIncomeGrowthLast2Quarters:
+                score = number * grossIncomeGrowthCoefficient * last2QuartersCoefficient
+                break
+            case StockFields.grossIncomeGrowthLastYear:
+                score = number * grossIncomeGrowthCoefficient * lastYearCoefficient
+                break
+            case StockFields.grossIncomeGrowthLast4Years:
+                score = number * grossIncomeGrowthCoefficient * last4YearCoefficient
+                break
             case StockFields.ebitGrowthLastQuarter:
                 score = number * ebitGrowthCoefficient * lastQuarterCoefficient
                 break
@@ -402,7 +449,7 @@ export class StockAnalystService {
                 score = score = number * currentRatioGrowthCoefficient * last4YearCoefficient
                 break;
 
-          case StockFields.inventoryGrowthLastQuarter:
+            case StockFields.inventoryGrowthLastQuarter:
                 score = number * lastQuarterCoefficient * inventoryGrowthCoefficient
                 break;
             case StockFields.totalShareholdersEquityGrowthLastQuarter:
@@ -438,19 +485,19 @@ export class StockAnalystService {
                 score = -number * last4YearCoefficient * totalLiabilitiesToEquityGrowthCoefficient
                 break;
             case StockFields.stockGrowthLastQuarter:
-                score = number > 10 ? -10 : 0
+                score = -number
                 score *= lastQuarterCoefficient * stockGrowthCoefficient
                 break;
             case StockFields.stockGrowthLast2Quarters:
-                score = number > 10 ? -10 : 0
-                score *= last2QuartersCoefficient * stockGrowthCoefficient
+                score = -number
+                score *= 0.5 * last2QuartersCoefficient * stockGrowthCoefficient
                 break;
             case StockFields.stockGrowthLastYear:
-                score = number > 10 ? -10 : 0
+                score = -number
                 score *= 0.5 * lastYearCoefficient * stockGrowthCoefficient
                 break;
             case StockFields.stockGrowthLast4Years:
-                score = number > 10 ? -10 : 0
+                score = -number
                 score *= 0.5 * last4YearCoefficient * stockGrowthCoefficient
                 break;
             case StockFields.stockRepurchasedGrowthLastQuarter:
@@ -623,5 +670,24 @@ export class StockAnalystService {
         }
         return enumNames
     }
+
+    getScoreLabels(isEtf: boolean): string[] {
+        const labels = []
+        labels.push('Score')
+        if (!isEtf) {
+            labels.push('1Q Score')
+            labels.push('2Q Score')
+            labels.push('1Y Score')
+            labels.push('4Y Score')
+            labels.push('Ratios Score')
+            labels.push('Stocks Score')
+            labels.push('Dividends Score')
+            labels.push('Analysts Score')
+            labels.push('Rule 1 Score')
+            labels.push('Value Investment Score')
+        }
+        return labels;
+    }
+
 
 }

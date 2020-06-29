@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import React from "react";
 import {CartesianGrid, Line, LineChart, Tooltip, YAxis} from 'recharts';
 import "./RatioChart.css"
 import {RatioChartData} from "../model/RatioChartData";

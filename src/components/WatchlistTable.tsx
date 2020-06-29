@@ -7,6 +7,7 @@ import {CellData} from "../model/CellData";
 import {EtfTableColumn} from "../model/EtfTableColumn";
 import {StockTaggingService} from "../services/StockTaggingService";
 import {CellTag} from "../model/CellTag";
+import {Watchlist} from "./Watchlist";
 
 export interface TableProps {
     headerLabels: string[]
@@ -14,7 +15,7 @@ export interface TableProps {
     data: CellData[][]
     isEtf: boolean
     sortField?: number
-    hiddenTags: CellTag[]
+    visibleTags: CellTag[]
     onStockClickHandler?: (stockSymbol: string) => void
 }
 
@@ -195,7 +196,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                 } else {
                     classes.push('greenText')
                 }
-            } else if (column >= StockFields.score && column <= StockFields.rule1score) {   //Score
+            } else if (column >= StockFields.score) {   //Score
                 if (data.value < 0) {
                     classes.push('redText')
                     classes.push('boldText')
@@ -221,14 +222,17 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         if(!cellTags){
             return ''
         }
-        if(this.isHidden(column, isEtf)){
+        if(!this.isVisible(column, isEtf)){
             cellTags = cellTags.concat(CellTag.hidden)
         }
         return cellTags.map(tag => CellTag[tag]).join(' ');
     }
 
-    private isHidden(column: number, isEtf: boolean): boolean {
+    private isVisible(column: number, isEtf: boolean): boolean {
         const colTags = isEtf ? StockTaggingService.tagEtfColumn(column) : StockTaggingService.tagStockColumn(column)
-        return this.props.hiddenTags.some(hiddenTag => colTags.includes(hiddenTag))
+
+        let canToggleVisibility = colTags.some(tag => Watchlist.VISIBILITY_TOGGLES.includes(tag));  //do not hide cols which visibility can not be toggled by a checkbox
+
+        return !canToggleVisibility || this.props.visibleTags.some(hiddenTag => colTags.includes(hiddenTag))
     }
 }

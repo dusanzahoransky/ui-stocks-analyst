@@ -54,7 +54,7 @@ export interface WatchlistState {
     priceEpsChartRemoveOutliers?: boolean
     etfsChartSymbols?: string[]
     chartLabel?: string
-    hiddenTags: CellTag[]
+    visibleTags: CellTag[]
 }
 
 export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
@@ -62,7 +62,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     private readonly stockAnalystService: StockAnalystService;
     private readonly stockTaggingService: StockTaggingService;
 
-    private readonly HIDEABLE_TAGS = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.financials, CellTag.growth, CellTag.rule1]
+    public static readonly VISIBILITY_TOGGLES = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.financials, CellTag.growth, CellTag.rule1, CellTag.value]
 
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
@@ -75,7 +75,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             // etfsChartSymbols: ['VTS', 'VUSA'],
             etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true,
-            hiddenTags: []
+            visibleTags: [CellTag.value]
         }
         this.stockAnalystService = new StockAnalystService();
         this.stockTaggingService = new StockTaggingService();
@@ -104,8 +104,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
         let checkboxesSpan
         if(this.props.isExpanded) {
-            const hidableTags = this.HIDEABLE_TAGS.map(tag => this.toHideableTagCheckbox(tag))
-            checkboxesSpan = <span className="HideableTags">Hide: {hidableTags}</span>;
+            const visibleTags = Watchlist.VISIBILITY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
+            checkboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>;
         }
 
         return <div
@@ -118,22 +118,22 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         </div>
     }
 
-    private toHideableTagCheckbox(tag: CellTag) {
+    private toVisibleTagCheckbox(tag: CellTag) {
         let tagName = CellTag[tag];
         const checkbox =
-            <span className="HideableTag">{tagName} <input
+            <span className="VisibleTag">{tagName} <input
                 name={tagName}
                 type="checkbox"
-                checked={this.state.hiddenTags.includes(tag)}
+                checked={this.state.visibleTags.includes(tag)}
                 onChange={() => {
                     this.setState((prevState) => {
                         let newHiddenTags
-                        if (prevState.hiddenTags.includes(tag)) {
-                            newHiddenTags = prevState.hiddenTags.filter(hiddenTag => hiddenTag !== tag)
+                        if (prevState.visibleTags.includes(tag)) {
+                            newHiddenTags = prevState.visibleTags.filter(hiddenTag => hiddenTag !== tag)
                         } else {
-                            newHiddenTags = prevState.hiddenTags.concat(tag)
+                            newHiddenTags = prevState.visibleTags.concat(tag)
                         }
-                        return {hiddenTags: newHiddenTags}
+                        return {visibleTags: newHiddenTags}
                     })
                 }}/>
             </span>;
@@ -257,7 +257,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 isEtf={this.props.isEtf}
                 headerLabels={headers[0]}
                 headerAverages={headers[1]}
-                hiddenTags={this.state.hiddenTags}
+                visibleTags={this.state.visibleTags}
                 onStockClickHandler={this.stockOnClickHandler}
             />
         }
@@ -307,18 +307,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const headersRow = Object.keys(averages)
         const averagesRow = Object.keys(averages).map(key => averages[key])
 
-        this.addHeader(headersRow, averagesRow, 'Score')
-        if (!isEtf) {
-            this.addHeader(headersRow, averagesRow, '1Q Score')
-            this.addHeader(headersRow, averagesRow, '2Q Score')
-            this.addHeader(headersRow, averagesRow, '1Y Score')
-            this.addHeader(headersRow, averagesRow, '4Y Score')
-            this.addHeader(headersRow, averagesRow, 'Ratios Score')
-            this.addHeader(headersRow, averagesRow, 'Stocks Score')
-            this.addHeader(headersRow, averagesRow, 'Dividends Score')
-            this.addHeader(headersRow, averagesRow, 'Analysts Score')
-            this.addHeader(headersRow, averagesRow, 'Rule 1 Score')
-        }
+        const labels = this.stockAnalystService.getScoreLabels(isEtf);
+        labels.forEach( label => this.addHeader(headersRow, averagesRow, label))
 
         return [
             headersRow,
