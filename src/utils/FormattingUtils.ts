@@ -26,6 +26,10 @@ export class FormattingUtils {
         if (typeof value === 'string') {
             return value
         }
+        return this.formatNumber(value);
+    }
+
+    static formatNumber(value: number): string{
         if (!value || isNaN(value)) {
             return value ? value.toFixed(1) : '';
         }
@@ -41,6 +45,10 @@ export class FormattingUtils {
             const mil = value / 1000000;
             return `${mil.toFixed(1)}M`;
         }
+        if (value > 1000 || value < -1000) {
+            const thousand = value / 1000;
+            return `${thousand.toFixed(1)}K`;
+        }
         return value.toLocaleString(undefined, {maximumFractionDigits: 1});
     }
 
@@ -50,6 +58,8 @@ export class FormattingUtils {
 
         fieldLabel = fieldLabel[0].toUpperCase() + fieldLabel.substr(1)
 
+        fieldLabel = fieldLabel.replace('Roic 1Y', 'ROIC growth 1Y')
+        fieldLabel = fieldLabel.replace('Roic 3Y', 'ROIC growth 3Y')
         fieldLabel = fieldLabel.replace('Average Daily Volume', 'Volume')
         fieldLabel = fieldLabel.replace('One Month', '1M')
         fieldLabel = fieldLabel.replace('Three Month', '3M')
@@ -120,6 +130,9 @@ export class FormattingUtils {
         if (value > 1000000 || value < -1000000) {
             return 1000000;
         }
+        if(value > 1000 || value < -1000) {
+            return 1000;
+        }
         return 1;
     }
 
@@ -132,6 +145,9 @@ export class FormattingUtils {
         }
         if (value > 1000000 || value < -1000000) {
             return "M";
+        }
+        if (value > 1000 || value < -1000) {
+            return "K";
         }
         return "";
     }

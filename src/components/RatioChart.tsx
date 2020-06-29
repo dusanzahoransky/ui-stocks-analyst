@@ -14,9 +14,9 @@ export class RatioChart extends React.Component<RatioChartProps> {
 
     render() {
         const {data, label} = this.props;
-        let firstValue = data.map(d => d.value).filter(value => !Number.isNaN(value))[0];
-        const scaleFactor = FormattingUtils.scaleFactor(firstValue)
-        const scaleFactorLabel = FormattingUtils.scaleFactorLabel(firstValue)
+        let lastValue = data.map(d => d.value).filter(value => !Number.isNaN(value)).pop();
+        const scaleFactor = FormattingUtils.scaleFactor(lastValue)
+        const scaleFactorLabel = FormattingUtils.scaleFactorLabel(lastValue)
         const chartLabel = `${label} ${scaleFactorLabel ? 'in ' + scaleFactorLabel : ''}`
 
         let normalisedData = data.map(d => {
@@ -36,7 +36,7 @@ export class RatioChart extends React.Component<RatioChartProps> {
                         {/*                    <Line type="monotone" dataKey="epsQuarterly" stroke="#128408" connectNulls={true}
                           label={<RatioChartLabel data={data}/>} isAnimationActive={false}/>*/}
                         {/*<XAxis dataKey="date" tickSize={1} tick={{fontSize: 8}} height={8} />*/}
-                        <YAxis tick={{fontSize: 10}} width={50} type="number" domain={[0, 'auto']} minTickGap={0} tickCount={5} scale={"linear"}
+                        <YAxis tick={{fontSize: 10}} width={40} type="number" domain={[0, 'auto']} minTickGap={0} tickCount={5} scale={"linear"}
                                tickFormatter={RatioChart.yAxisFormatter()}/>
                         <Tooltip/>
                     </LineChart>

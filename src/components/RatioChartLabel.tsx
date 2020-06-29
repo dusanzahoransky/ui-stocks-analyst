@@ -1,4 +1,5 @@
 import React from "react";
+import {FormattingUtils} from "../utils/FormattingUtils";
 
 export interface RatioChartLabelProps {
     x?: number,
@@ -11,8 +12,7 @@ export interface RatioChartLabelProps {
 export class RatioChartLabel extends React.Component<RatioChartLabelProps> {
     render() {
         const {stroke, value} = this.props;
-        const label = value ? value.toFixed(1) : ''
-        return <text fill={stroke} fontSize={10} textAnchor="middle">{label}</text>
+        return <text fill={stroke} fontSize={10} textAnchor="middle">{FormattingUtils.formatNumber(value)}</text>
     }
 }
 

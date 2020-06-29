@@ -71,7 +71,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             // ratiosData: undefined,
             //uncomment to render chart of the first stock on load
             // priceEpsData: props.result ? props.result.stocks[0].stock.chartData : undefined,
-            // ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
+            ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
             // etfsChartSymbols: ['VTS', 'VUSA'],
             etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true,
@@ -121,7 +121,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     private toVisibleTagCheckbox(tag: CellTag) {
         let tagName = CellTag[tag];
         const checkbox =
-            <span className="VisibleTag">{tagName} <input
+            <span className="VisibleTag" key={tagName}>{tagName} <input
                 name={tagName}
                 type="checkbox"
                 checked={this.state.visibleTags.includes(tag)}

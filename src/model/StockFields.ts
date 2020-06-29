@@ -222,14 +222,11 @@ export enum StockFields {
 
 
     stockLastQuarter,
-    stock2QuartersAgo,
-    stock3QuartersAgo,
     stockLastYear,
     stock2YearsAgo,
     stock4YearsAgo,
 
     stockGrowthLastQuarter,
-    stockGrowthLast2Quarters,
     stockGrowthLastYear,
     stockGrowthLast4Years,
 

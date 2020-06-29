@@ -50,16 +50,7 @@ export class StockAnalystService {
         cellData.push({value: totalScore})
 
         if (!isEtf) {
-            const rule1Score = cellData.map(data => data.score)
-                .filter((score, index) => index >= StockFields.roic1Y)
-                .filter(score => score && !Number.isNaN(score))
-                .reduce((prev, curr) => prev + curr, 0);
-
-            cellData.push({
-                value: rule1Score
-            })
-
-            const taggedDataToScore = dataToScore.filter(data => data.tags)
+             const taggedDataToScore = dataToScore.filter(data => data.tags)
 
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.LastQuarter)})
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Last2Quarters)})
@@ -69,6 +60,15 @@ export class StockAnalystService {
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.stock)})
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.dividends)})
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.analysts)})
+
+            const rule1Score = cellData.map(data => data.score)
+                .filter((score, index) => index >= StockFields.roic1Y)
+                .filter(score => score && !Number.isNaN(score))
+                .reduce((prev, curr) => prev + curr, 0);
+
+            cellData.push({
+                value: rule1Score
+            })
 
             cellData.push({value: StockAnalystService.calcValueScore(cellData)})
         }
@@ -106,8 +106,8 @@ export class StockAnalystService {
                     break;
                 case StockFields.roic1Y:
                     score = (value - 10) * 5
-                    score = Math.min(score, 50)
-                    score = Math.max(score, -50)
+                    score = Math.min(score, 100)
+                    score = Math.max(score, -100)
                     break;
             }
             if(score) {
@@ -120,8 +120,9 @@ export class StockAnalystService {
     }
 
     private static calcTotal(data: CellData[], filterTag: CellTag): number {
-        return data
-            .filter(data => data.tags.includes(filterTag))
+        let taggedData = data
+            .filter(data => data.tags.includes(filterTag));
+        return taggedData
             .map(data => data.score)
             .reduce((prev, curr) => prev + curr, 0)
     }
@@ -487,10 +488,6 @@ export class StockAnalystService {
             case StockFields.stockGrowthLastQuarter:
                 score = -number
                 score *= lastQuarterCoefficient * stockGrowthCoefficient
-                break;
-            case StockFields.stockGrowthLast2Quarters:
-                score = -number
-                score *= 0.5 * last2QuartersCoefficient * stockGrowthCoefficient
                 break;
             case StockFields.stockGrowthLastYear:
                 score = -number
