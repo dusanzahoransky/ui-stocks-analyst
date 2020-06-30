@@ -103,7 +103,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(watchlist)}/> : ''
 
         let checkboxesSpan
-        if(this.props.isExpanded) {
+        if(this.props.isExpanded && !this.props.isEtf) {
             const visibleTags = Watchlist.VISIBILITY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
             checkboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>;
         }
@@ -120,24 +120,22 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     private toVisibleTagCheckbox(tag: CellTag) {
         let tagName = CellTag[tag];
-        const checkbox =
-            <span className="VisibleTag" key={tagName}>{tagName} <input
-                name={tagName}
-                type="checkbox"
-                checked={this.state.visibleTags.includes(tag)}
-                onChange={() => {
-                    this.setState((prevState) => {
-                        let newHiddenTags
-                        if (prevState.visibleTags.includes(tag)) {
-                            newHiddenTags = prevState.visibleTags.filter(hiddenTag => hiddenTag !== tag)
-                        } else {
-                            newHiddenTags = prevState.visibleTags.concat(tag)
-                        }
-                        return {visibleTags: newHiddenTags}
-                    })
-                }}/>
+        return <span className="VisibleTag" key={tagName}>{tagName} <input
+            name={tagName}
+            type="checkbox"
+            checked={this.state.visibleTags.includes(tag)}
+            onChange={() => {
+                this.setState((prevState) => {
+                    let newHiddenTags
+                    if (prevState.visibleTags.includes(tag)) {
+                        newHiddenTags = prevState.visibleTags.filter(hiddenTag => hiddenTag !== tag)
+                    } else {
+                        newHiddenTags = prevState.visibleTags.concat(tag)
+                    }
+                    return {visibleTags: newHiddenTags}
+                })
+            }}/>
             </span>;
-        return checkbox;
     }
 
     renderEtfsChart() {

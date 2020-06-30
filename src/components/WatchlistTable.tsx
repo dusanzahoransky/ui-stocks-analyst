@@ -229,10 +229,12 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     private isVisible(column: number, isEtf: boolean): boolean {
-        const colTags = isEtf ? StockTaggingService.tagEtfColumn(column) : StockTaggingService.tagStockColumn(column)
+        if(isEtf){
+            return !StockTaggingService.tagEtfColumn(column).includes(CellTag.hidden)
+        }
 
-        let canToggleVisibility = colTags.some(tag => Watchlist.VISIBILITY_TOGGLES.includes(tag));  //do not hide cols which visibility can not be toggled by a checkbox
-
+        const colTags = StockTaggingService.tagStockColumn(column)
+        const canToggleVisibility = colTags.some(tag => Watchlist.VISIBILITY_TOGGLES.includes(tag));  //do not hide cols which visibility can not be toggled by a checkbox
         return !canToggleVisibility || this.props.visibleTags.some(hiddenTag => colTags.includes(hiddenTag))
     }
 }
