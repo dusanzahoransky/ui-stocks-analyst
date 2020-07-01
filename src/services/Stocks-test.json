@@ -1,0 +1,4877 @@
+{
+  "averages": {
+    "id": null,
+    "date": "2020-06-22",
+    "lastReportedQuarter": null,
+    "symbol": "Avg.",
+    "exchange": "NASDAQ",
+    "companyName": null,
+    "price": null,
+    "currency": null,
+    "financialCurrency": null,
+    "change": 1.43369045,
+    "enterpriseValue": 2.90420260864E11,
+    "totalCashPerShare": null,
+    "totalCashPerSharePercent": null,
+    "totalDebtEquity": 0.39747102488507197,
+    "trailingPE": 25.381165,
+    "forwardPE": 18.679867,
+    "priceToSalesTrailing12Months": null,
+    "priceBook": 5.671343,
+    "enterpriseValueRevenue": null,
+    "enterpriseValueEBITDA": null,
+    "priceEarningGrowth": 1.24,
+    "trailingPriceEarningGrowth": 11.381688340807175,
+    "week52Change": 39.718592,
+    "week52Low": 38.91,
+    "week52AboveLowPercent": 31.254416961130747,
+    "week52High": 60.64,
+    "week52BelowHighPercent": 7.137809187279149,
+    "targetLowPrice": 40.0,
+    "belowTargetLowPricePercent": -29.32862190812721,
+    "targetMedianPrice": 57.0,
+    "belowTargetMedianPricePercent": 0.7067137809187254,
+    "heldByInsiders": null,
+    "heldByInstitutions": 19.962999,
+    "buyPercentInsiderShares": null,
+    "sellPercentInsiderShares": null,
+    "shortToFloat": null,
+    "sharesShortPrevMonthCompare": 89.93327754347567,
+    "exDividendDate": null,
+    "fiveYearAvgDividendYield": null,
+    "trailingAnnualDividendYield": 0.47132620000000003,
+    "payoutRatio": 94.22,
+    "revenueLastQuarter": 310597183000,
+    "revenue2QuartersAgo": 317237065000,
+    "revenue3QuartersAgo": 293045439000,
+    "revenueLastYear": 1069985448000,
+    "revenue2YearsAgo": 1031473557000,
+    "revenue4YearsAgo": 947938300000,
+    "revenueGrowthLastQuarter": -2.0930347467437325,
+    "revenueGrowthLast2Quarters": 5.989427462134976,
+    "revenueGrowthLastYear": 3.7336770039951688,
+    "revenueGrowthLast4Years": 12.8750096920865,
+    "grossIncomeLastQuarter": 160784181000,
+    "grossIncome2QuartersAgo": 159240985000,
+    "grossIncome3QuartersAgo": 139432161000,
+    "grossIncomeLastYear": 492698501000,
+    "grossIncome2YearsAgo": 500582087000,
+    "grossIncome4YearsAgo": 474861200000,
+    "grossIncomeGrowthLastQuarter": 0.9690947339970297,
+    "grossIncomeGrowthLast2Quarters": 15.313554524913373,
+    "grossIncomeGrowthLastYear": -1.574883761272105,
+    "grossIncomeGrowthLast4Years": 3.7563188990804046,
+    "ebitLastQuarter": 128521637000,
+    "ebit2QuartersAgo": 125193687000,
+    "ebit3QuartersAgo": 107887292000,
+    "ebitLastYear": 373349671000,
+    "ebit2YearsAgo": 387648682000,
+    "ebit4YearsAgo": 377911300000,
+    "ebitGrowthLastQuarter": 2.6582410661010405,
+    "ebitGrowthLast2Quarters": 19.1258345792941,
+    "ebitGrowthLastYear": -3.688652035711036,
+    "ebitGrowthLast4Years": -1.2070634035023562,
+    "netIncomeLastQuarter": 116986720000,
+    "netIncome2QuartersAgo": 116035081000,
+    "netIncome3QuartersAgo": 101069886000,
+    "netIncomeLastYear": 345263668000,
+    "netIncome2YearsAgo": 351130884000,
+    "netIncome4YearsAgo": 331713700000,
+    "netIncomeGrowthLastQuarter": 0.8201304224538785,
+    "netIncomeGrowthLast2Quarters": 15.74834466519533,
+    "netIncomeGrowthLastYear": -1.6709484318673602,
+    "netIncomeGrowthLast4Years": 4.084838220429244,
+    "freeCashFlowLastQuarter": 10469816000,
+    "freeCashFlow2QuartersAgo": 32944878000,
+    "freeCashFlow3QuartersAgo": 43635196000,
+    "freeCashFlowLastYear": 154716594000,
+    "freeCashFlow2YearsAgo": 258372427000,
+    "freeCashFlow4YearsAgo": 211789300000,
+    "freeCashFlowGrowthLastQuarter": -68.22020102791092,
+    "freeCashFlowGrowthLast2Quarters": -76.00602962800946,
+    "freeCashFlowGrowthLastYear": -40.11876739463379,
+    "freeCashFlowGrowthLast4Years": -26.94787035983404,
+    "cashLastQuarter": 430777229000,
+    "cash2QuartersAgo": 455399336000,
+    "cash3QuartersAgo": 452430300000,
+    "cashLastYear": 455399336000,
+    "cash2YearsAgo": 577814601000,
+    "cash4YearsAgo": 541253800000,
+    "cashGrowthLastQuarter": -5.406706829278293,
+    "cashGrowthLast2Quarters": -4.785946255146925,
+    "cashGrowthLastYear": -15.862145263460507,
+    "cashGrowthLast4Years": -15.862145263460507,
+    "inventoryLastQuarter": 78277834000,
+    "inventory2QuartersAgo": 82981196000,
+    "inventory3QuartersAgo": 96685730000,
+    "inventoryLastYear": 82981196000,
+    "inventory2YearsAgo": 103230976000,
+    "inventory4YearsAgo": 48682200000,
+    "inventoryGrowthLastQuarter": -5.66798531079258,
+    "inventoryGrowthLast2Quarters": -19.038896432803476,
+    "inventoryGrowthLastYear": -19.615992006120333,
+    "inventoryGrowthLast4Years": 70.45490138079215,
+    "totalLiabilitiesLastQuarter": 666267165000,
+    "totalLiabilities2QuartersAgo": 642709606000,
+    "totalLiabilities3QuartersAgo": 546737449000,
+    "totalLiabilitiesLastYear": 642709606000,
+    "totalLiabilities2YearsAgo": 412631642000,
+    "totalLiabilities4YearsAgo": 526450900000,
+    "totalLiabilitiesGrowthLastQuarter": 3.6653503822066726,
+    "totalLiabilitiesGrowthLast2Quarters": 21.862361215355488,
+    "totalLiabilitiesGrowthLastYear": 55.75868173483409,
+    "totalLiabilitiesGrowthLast4Years": 22.083485088542922,
+    "totalShareholdersEquityLastQuarter": 1676266000000,
+    "totalShareholdersEquity2QuartersAgo": 1621410124000,
+    "totalShareholdersEquity3QuartersAgo": 1586856066000,
+    "totalShareholdersEquityLastYear": 1621410124000,
+    "totalShareholdersEquity2YearsAgo": 1676817665000,
+    "totalShareholdersEquity4YearsAgo": 1359050700000,
+    "totalShareholdersEquityGrowthLastQuarter": 3.383220271541859,
+    "totalShareholdersEquityGrowthLast2Quarters": 5.63440729853819,
+    "totalShareholdersEquityGrowthLastYear": -3.3043271284955122,
+    "totalShareholdersEquityGrowthLast4Years": 19.30460901863337,
+    "totalLiabilitiesToEquityLastQuarter": 0.39747102488507197,
+    "totalLiabilitiesToEquity2QuartersAgo": 0.39638928885829505,
+    "totalLiabilitiesToEquity3QuartersAgo": 0.34454129817719714,
+    "totalLiabilitiesToEquityLastYear": 0.39638928885829505,
+    "totalLiabilitiesToEquity2YearsAgo": 0.24608020932317648,
+    "totalLiabilitiesToEquity4YearsAgo": 0.3873666376096197,
+    "totalLiabilitiesToEquityGrowthLastQuarter": 0.27289739081815173,
+    "totalLiabilitiesToEquityGrowthLast2Quarters": 15.362375131196357,
+    "totalLiabilitiesToEquityGrowthLastYear": 61.08133601988206,
+    "totalLiabilitiesToEquityGrowthLast4Years": 2.3292277580621685,
+    "stockRepurchasedLastQuarter": null,
+    "stockRepurchased2QuartersAgo": null,
+    "stockRepurchased3QuartersAgo": null,
+    "stockRepurchasedLastYear": null,
+    "stockRepurchased2YearsAgo": null,
+    "stockRepurchased4YearsAgo": null,
+    "stockRepurchasedGrowthLastQuarter": null,
+    "stockRepurchasedGrowthLast2Quarters": null,
+    "stockRepurchasedGrowthLastYear": null,
+    "stockRepurchasedGrowthLast4Years": null,
+    "stockLastQuarter": 259303805000,
+    "stock2QuartersAgo": 259303805000,
+    "stock3QuartersAgo": 259303805000,
+    "stockLastYear": 259303805000,
+    "stock2YearsAgo": 259303805000,
+    "stock4YearsAgo": 259303800000,
+    "stockGrowthLastQuarter": null,
+    "stockGrowthLast2Quarters": null,
+    "stockGrowthLastYear": null,
+    "stockGrowthLast4Years": 1.928240156912471E-6,
+    "epsCurrentQuarterEstimate": 0.71,
+    "epsLastQuarter": 0.75,
+    "eps2QuartersAgo": 0.73,
+    "eps3QuartersAgo": 0.62,
+    "eps4QuartersAgo": 0.41,
+    "epsLastYear": 66.6,
+    "eps2YearsAgo": 67.7,
+    "eps3YearsAgo": 66.15,
+    "eps4YearsAgo": 64.45,
+    "epsGrowthLastQuarter": 2.739726027397263,
+    "epsGrowthLast2Quarters": 20.967741935483872,
+    "epsGrowthLastYear": -1.6248153618907069,
+    "epsGrowthLast4Years": 3.335919317300219,
+    "priceLastQuarter": 46.90999984741211,
+    "price2QuartersAgo": 58.459999084472656,
+    "price3QuartersAgo": 45.5099983215332,
+    "price4QuartersAgo": 39.16999816894531,
+    "priceLastYear": 58.459999084472656,
+    "price2YearsAgo": 37.13999938964844,
+    "price3YearsAgo": 39.650001525878906,
+    "price4YearsAgo": 28.75,
+    "priceGrowthLastQuarter": null,
+    "priceGrowthLast2Quarters": null,
+    "priceGrowthLastYear": null,
+    "priceGrowthLast4Years": null,
+    "peLastQuarter": 15.636666615804037,
+    "pe2QuartersAgo": 20.02054763166872,
+    "pe3QuartersAgo": 18.350805774811775,
+    "pe4QuartersAgo": 23.884145224966655,
+    "peLastYear": 0.8777777640311211,
+    "pe2YearsAgo": 0.5485967413537435,
+    "pe3YearsAgo": 0.5993953367479804,
+    "pe4YearsAgo": 0.4460822342901474,
+    "peGrowthLastQuarter": -21.896908598694935,
+    "peGrowthLast2Quarters": -14.790299632145592,
+    "peGrowthLastYear": 60.004188480061835,
+    "peGrowthLast4Years": 96.77487614541133,
+    "growthEstimate5y": 16.600001,
+    "roic1Y": -10.02913775623483,
+    "roic3Y": -6.710596474602848,
+    "revenue1Y": 3.7452417288982964,
+    "revenue3Y": 4.120814170498499,
+    "revenue5Y": 7.001469085840162,
+    "revenue9Y": 10.96312210114907,
+    "eps1Y": -2.500000000000002,
+    "eps3Y": 2.19289498601698,
+    "eps5Y": 6.829877107222426,
+    "eps9Y": 9.106192536248825,
+    "bps1Y": 2.9204431017120003,
+    "bps3Y": 10.088184254380739,
+    "bps5Y": 11.919453858292028,
+    "bps9Y": 11.55460522787559,
+    "cash1Y": -42.13959374701519,
+    "cash3Y": -11.072990512558523,
+    "cash5Y": 2.4008875355983728,
+    "cash9Y": 14.633969495740185,
+    "pe1Y": 61.4404265086864,
+    "pe3Y": 23.97086060904481,
+    "pe5Y": 13.49562481358535,
+    "pe9Y": 8.975396811143344,
+    "rule1GrowthRate": 11.55460522787559,
+    "defaultPE": 23.10921045575118,
+    "historicalPE": 0.5373449501546081,
+    "rule1PE": 0.5373449501546081,
+    "currentEps": 66.6,
+    "futureEPS10Years": 198.76928051718326,
+    "futurePrice10Years": 106.80766913177317,
+    "stickerPrice15pcGrowth": 26.401222305898834,
+    "stickerPrice10pcGrowth": 41.17898009336485,
+    "stickerPrice5pcGrowth": 65.57064365979177,
+    "belowStickerPrice15pc": -53.354730908305946,
+    "belowStickerPrice10pc": -27.24561820960274,
+    "belowStickerPrice5pc": 15.849193745215139,
+    "quarterEnds": null,
+    "yearEnds": null,
+    "chartData": []
+  },
+  "stocks": [
+    {
+      "stock": {
+        "id": "5ef0a1a7107cf8486d43f985",
+        "date": "2020-06-22",
+        "lastReportedQuarter": "2020-03-31",
+        "symbol": "TSM",
+        "exchange": "NYSE",
+        "companyName": "Taiwan Semiconductor Manufactur",
+        "price": 56.6,
+        "currency": "USD",
+        "financialCurrency": "TWD",
+        "change": 1.43369045,
+        "enterpriseValue": 2.90420260864E11,
+        "totalCashPerShare": null,
+        "totalCashPerSharePercent": null,
+        "totalDebtEquity": 0.39747102488507197,
+        "trailingPE": 25.381165,
+        "forwardPE": 18.679867,
+        "priceToSalesTrailing12Months": null,
+        "priceBook": 5.671343,
+        "enterpriseValueRevenue": null,
+        "enterpriseValueEBITDA": null,
+        "priceEarningGrowth": 1.24,
+        "trailingPriceEarningGrowth": 11.381688340807175,
+        "week52Change": 39.718592,
+        "week52Low": 38.91,
+        "week52AboveLowPercent": 31.254416961130747,
+        "week52High": 60.64,
+        "week52BelowHighPercent": 7.137809187279149,
+        "targetLowPrice": 40.0,
+        "belowTargetLowPricePercent": -29.32862190812721,
+        "targetMedianPrice": 57.0,
+        "belowTargetMedianPricePercent": 0.7067137809187254,
+        "heldByInsiders": 0.0,
+        "heldByInstitutions": 19.962999,
+        "buyPercentInsiderShares": null,
+        "sellPercentInsiderShares": null,
+        "shortToFloat": null,
+        "sharesShortPrevMonthCompare": 89.93327754347567,
+        "exDividendDate": "2020-06-18",
+        "fiveYearAvgDividendYield": null,
+        "trailingAnnualDividendYield": 0.47132620000000003,
+        "payoutRatio": 94.22,
+        "revenueLastQuarter": 310597183000,
+        "revenue2QuartersAgo": 317237065000,
+        "revenue3QuartersAgo": 293045439000,
+        "revenueLastYear": 1069985448000,
+        "revenue2YearsAgo": 1031473557000,
+        "revenue4YearsAgo": 947938300000,
+        "revenueGrowthLastQuarter": -2.0930347467437325,
+        "revenueGrowthLast2Quarters": 5.989427462134976,
+        "revenueGrowthLastYear": 3.7336770039951688,
+        "revenueGrowthLast4Years": 12.8750096920865,
+        "grossIncomeLastQuarter": 160784181000,
+        "grossIncome2QuartersAgo": 159240985000,
+        "grossIncome3QuartersAgo": 139432161000,
+        "grossIncomeLastYear": 492698501000,
+        "grossIncome2YearsAgo": 500582087000,
+        "grossIncome4YearsAgo": 474861200000,
+        "grossIncomeGrowthLastQuarter": 0.9690947339970297,
+        "grossIncomeGrowthLast2Quarters": 15.313554524913373,
+        "grossIncomeGrowthLastYear": -1.574883761272105,
+        "grossIncomeGrowthLast4Years": 3.7563188990804046,
+        "ebitLastQuarter": 128521637000,
+        "ebit2QuartersAgo": 125193687000,
+        "ebit3QuartersAgo": 107887292000,
+        "ebitLastYear": 373349671000,
+        "ebit2YearsAgo": 387648682000,
+        "ebit4YearsAgo": 377911300000,
+        "ebitGrowthLastQuarter": 2.6582410661010405,
+        "ebitGrowthLast2Quarters": 19.1258345792941,
+        "ebitGrowthLastYear": -3.688652035711036,
+        "ebitGrowthLast4Years": -1.2070634035023562,
+        "netIncomeLastQuarter": 116986720000,
+        "netIncome2QuartersAgo": 116035081000,
+        "netIncome3QuartersAgo": 101069886000,
+        "netIncomeLastYear": 345263668000,
+        "netIncome2YearsAgo": 351130884000,
+        "netIncome4YearsAgo": 331713700000,
+        "netIncomeGrowthLastQuarter": 0.8201304224538785,
+        "netIncomeGrowthLast2Quarters": 15.74834466519533,
+        "netIncomeGrowthLastYear": -1.6709484318673602,
+        "netIncomeGrowthLast4Years": 4.084838220429244,
+        "freeCashFlowLastQuarter": 10469816000,
+        "freeCashFlow2QuartersAgo": 32944878000,
+        "freeCashFlow3QuartersAgo": 43635196000,
+        "freeCashFlowLastYear": 154716594000,
+        "freeCashFlow2YearsAgo": 258372427000,
+        "freeCashFlow4YearsAgo": 211789300000,
+        "freeCashFlowGrowthLastQuarter": -68.22020102791092,
+        "freeCashFlowGrowthLast2Quarters": -76.00602962800946,
+        "freeCashFlowGrowthLastYear": -40.11876739463379,
+        "freeCashFlowGrowthLast4Years": -26.94787035983404,
+        "cashLastQuarter": 430777229000,
+        "cash2QuartersAgo": 455399336000,
+        "cash3QuartersAgo": 452430300000,
+        "cashLastYear": 455399336000,
+        "cash2YearsAgo": 577814601000,
+        "cash4YearsAgo": 541253800000,
+        "cashGrowthLastQuarter": -5.406706829278293,
+        "cashGrowthLast2Quarters": -4.785946255146925,
+        "cashGrowthLastYear": -15.862145263460507,
+        "cashGrowthLast4Years": -15.862145263460507,
+        "inventoryLastQuarter": 78277834000,
+        "inventory2QuartersAgo": 82981196000,
+        "inventory3QuartersAgo": 96685730000,
+        "inventoryLastYear": 82981196000,
+        "inventory2YearsAgo": 103230976000,
+        "inventory4YearsAgo": 48682200000,
+        "inventoryGrowthLastQuarter": -5.66798531079258,
+        "inventoryGrowthLast2Quarters": -19.038896432803476,
+        "inventoryGrowthLastYear": -19.615992006120333,
+        "inventoryGrowthLast4Years": 70.45490138079215,
+        "totalLiabilitiesLastQuarter": 666267165000,
+        "totalLiabilities2QuartersAgo": 642709606000,
+        "totalLiabilities3QuartersAgo": 546737449000,
+        "totalLiabilitiesLastYear": 642709606000,
+        "totalLiabilities2YearsAgo": 412631642000,
+        "totalLiabilities4YearsAgo": 526450900000,
+        "totalLiabilitiesGrowthLastQuarter": 3.6653503822066726,
+        "totalLiabilitiesGrowthLast2Quarters": 21.862361215355488,
+        "totalLiabilitiesGrowthLastYear": 55.75868173483409,
+        "totalLiabilitiesGrowthLast4Years": 22.083485088542922,
+        "totalShareholdersEquityLastQuarter": 1676266000000,
+        "totalShareholdersEquity2QuartersAgo": 1621410124000,
+        "totalShareholdersEquity3QuartersAgo": 1586856066000,
+        "totalShareholdersEquityLastYear": 1621410124000,
+        "totalShareholdersEquity2YearsAgo": 1676817665000,
+        "totalShareholdersEquity4YearsAgo": 1359050700000,
+        "totalShareholdersEquityGrowthLastQuarter": 3.383220271541859,
+        "totalShareholdersEquityGrowthLast2Quarters": 5.63440729853819,
+        "totalShareholdersEquityGrowthLastYear": -3.3043271284955122,
+        "totalShareholdersEquityGrowthLast4Years": 19.30460901863337,
+        "totalLiabilitiesToEquityLastQuarter": 0.39747102488507197,
+        "totalLiabilitiesToEquity2QuartersAgo": 0.39638928885829505,
+        "totalLiabilitiesToEquity3QuartersAgo": 0.34454129817719714,
+        "totalLiabilitiesToEquityLastYear": 0.39638928885829505,
+        "totalLiabilitiesToEquity2YearsAgo": 0.24608020932317648,
+        "totalLiabilitiesToEquity4YearsAgo": 0.3873666376096197,
+        "totalLiabilitiesToEquityGrowthLastQuarter": 0.27289739081815173,
+        "totalLiabilitiesToEquityGrowthLast2Quarters": 15.362375131196357,
+        "totalLiabilitiesToEquityGrowthLastYear": 61.08133601988206,
+        "totalLiabilitiesToEquityGrowthLast4Years": 2.3292277580621685,
+        "stockRepurchasedLastQuarter": null,
+        "stockRepurchased2QuartersAgo": null,
+        "stockRepurchased3QuartersAgo": null,
+        "stockRepurchasedLastYear": null,
+        "stockRepurchased2YearsAgo": null,
+        "stockRepurchased4YearsAgo": null,
+        "stockRepurchasedGrowthLastQuarter": null,
+        "stockRepurchasedGrowthLast2Quarters": null,
+        "stockRepurchasedGrowthLastYear": null,
+        "stockRepurchasedGrowthLast4Years": null,
+        "stockLastQuarter": 259303805000,
+        "stock2QuartersAgo": 259303805000,
+        "stock3QuartersAgo": 259303805000,
+        "stockLastYear": 259303805000,
+        "stock2YearsAgo": 259303805000,
+        "stock4YearsAgo": 259303800000,
+        "stockGrowthLastQuarter": 0.0,
+        "stockGrowthLast2Quarters": 0.0,
+        "stockGrowthLastYear": 0.0,
+        "stockGrowthLast4Years": 1.928240156912471E-6,
+        "epsCurrentQuarterEstimate": 0.71,
+        "epsLastQuarter": 0.75,
+        "eps2QuartersAgo": 0.73,
+        "eps3QuartersAgo": 0.62,
+        "eps4QuartersAgo": 0.41,
+        "epsLastYear": 66.6,
+        "eps2YearsAgo": 67.7,
+        "eps3YearsAgo": 66.15,
+        "eps4YearsAgo": 64.45,
+        "epsGrowthLastQuarter": 2.739726027397263,
+        "epsGrowthLast2Quarters": 20.967741935483872,
+        "epsGrowthLastYear": -1.6248153618907069,
+        "epsGrowthLast4Years": 3.335919317300219,
+        "priceLastQuarter": 46.90999984741211,
+        "price2QuartersAgo": 58.459999084472656,
+        "price3QuartersAgo": 45.5099983215332,
+        "price4QuartersAgo": 39.16999816894531,
+        "priceLastYear": 58.459999084472656,
+        "price2YearsAgo": 37.13999938964844,
+        "price3YearsAgo": 39.650001525878906,
+        "price4YearsAgo": 28.75,
+        "priceGrowthLastQuarter": null,
+        "priceGrowthLast2Quarters": null,
+        "priceGrowthLastYear": null,
+        "priceGrowthLast4Years": null,
+        "peLastQuarter": 15.636666615804037,
+        "pe2QuartersAgo": 20.02054763166872,
+        "pe3QuartersAgo": 18.350805774811775,
+        "pe4QuartersAgo": 23.884145224966655,
+        "peLastYear": 0.8777777640311211,
+        "pe2YearsAgo": 0.5485967413537435,
+        "pe3YearsAgo": 0.5993953367479804,
+        "pe4YearsAgo": 0.4460822342901474,
+        "peGrowthLastQuarter": -21.896908598694935,
+        "peGrowthLast2Quarters": -14.790299632145592,
+        "peGrowthLastYear": 60.004188480061835,
+        "peGrowthLast4Years": 96.77487614541133,
+        "growthEstimate5y": 16.600001,
+        "roic1Y": -10.02913775623483,
+        "roic3Y": -6.710596474602848,
+        "revenue1Y": 3.7452417288982964,
+        "revenue3Y": 4.120814170498499,
+        "revenue5Y": 7.001469085840162,
+        "revenue9Y": 10.96312210114907,
+        "eps1Y": -2.500000000000002,
+        "eps3Y": 2.19289498601698,
+        "eps5Y": 6.829877107222426,
+        "eps9Y": 9.106192536248825,
+        "bps1Y": 2.9204431017120003,
+        "bps3Y": 10.088184254380739,
+        "bps5Y": 11.919453858292028,
+        "bps9Y": 11.55460522787559,
+        "cash1Y": -42.13959374701519,
+        "cash3Y": -11.072990512558523,
+        "cash5Y": 2.4008875355983728,
+        "cash9Y": 14.633969495740185,
+        "pe1Y": 61.4404265086864,
+        "pe3Y": 23.97086060904481,
+        "pe5Y": 13.49562481358535,
+        "pe9Y": 8.975396811143344,
+        "rule1GrowthRate": 11.55460522787559,
+        "defaultPE": 23.10921045575118,
+        "historicalPE": 0.5373449501546081,
+        "rule1PE": 0.5373449501546081,
+        "currentEps": 66.6,
+        "futureEPS10Years": 198.76928051718326,
+        "futurePrice10Years": 106.80766913177317,
+        "stickerPrice15pcGrowth": 26.401222305898834,
+        "stickerPrice10pcGrowth": 41.17898009336485,
+        "stickerPrice5pcGrowth": 65.57064365979177,
+        "belowStickerPrice15pc": -53.354730908305946,
+        "belowStickerPrice10pc": -27.24561820960274,
+        "belowStickerPrice5pc": 15.849193745215139,
+        "quarterEnds": [
+          1585612800,
+          1577750400,
+          1569801600,
+          1561852800
+        ],
+        "yearEnds": [
+          1577750400,
+          1546214400,
+          1514678400,
+          1483142400
+        ],
+        "chartData": [
+          {
+            "date": 1276819200,
+            "price": 10.199999809265137,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1277424000,
+            "price": 10.020000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1278028800,
+            "price": 9.890000343322754,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1278633600,
+            "price": 10.149999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1279238400,
+            "price": 9.920000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1279843200,
+            "price": 10.460000038146973,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1280448000,
+            "price": 10.100000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1281052800,
+            "price": 9.960000038146973,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1281657600,
+            "price": 9.699999809265137,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1282262400,
+            "price": 9.680000305175781,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1282867200,
+            "price": 9.649999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1283472000,
+            "price": 9.770000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1284076800,
+            "price": 9.479999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1284681600,
+            "price": 9.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1285286400,
+            "price": 9.979999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1285891200,
+            "price": 10.25,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1286496000,
+            "price": 10.359999656677246,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1287100800,
+            "price": 10.34000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1287705600,
+            "price": 10.600000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1288310400,
+            "price": 10.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1288915200,
+            "price": 11.180000305175781,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1289520000,
+            "price": 11.050000190734863,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1290124800,
+            "price": 11.079999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1290729600,
+            "price": 11.0,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1291334400,
+            "price": 11.970000267028809,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1291939200,
+            "price": 12.079999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1292544000,
+            "price": 12.6899995803833,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1293148800,
+            "price": 12.3100004196167,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1293753600,
+            "price": 12.539999961853027,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1294358400,
+            "price": 13.069999694824219,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1294963200,
+            "price": 13.680000305175781,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1295568000,
+            "price": 13.270000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1296172800,
+            "price": 13.109999656677246,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1296777600,
+            "price": 13.619999885559082,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1297382400,
+            "price": 12.9399995803833,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1297987200,
+            "price": 12.8100004196167,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1298592000,
+            "price": 12.289999961853027,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1299196800,
+            "price": 12.40999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1299801600,
+            "price": 12.210000038146973,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1300406400,
+            "price": 11.75,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1301011200,
+            "price": 12.239999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1301616000,
+            "price": 12.210000038146973,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1302220800,
+            "price": 12.649999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1302825600,
+            "price": 12.210000038146973,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1303430400,
+            "price": 12.279999732971191,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1304035200,
+            "price": 13.5,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1304640000,
+            "price": 13.75,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1305244800,
+            "price": 13.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1305849600,
+            "price": 13.40999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1306454400,
+            "price": 13.260000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1307059200,
+            "price": 13.640000343322754,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1307664000,
+            "price": 13.050000190734863,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1308268800,
+            "price": 12.720000267028809,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1308873600,
+            "price": 12.399999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1309478400,
+            "price": 12.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1310083200,
+            "price": 12.619999885559082,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1310688000,
+            "price": 12.220000267028809,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1311292800,
+            "price": 12.979999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1311897600,
+            "price": 12.359999656677246,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1312502400,
+            "price": 11.5600004196167,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1313107200,
+            "price": 11.460000038146973,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1313712000,
+            "price": 10.9399995803833,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1314316800,
+            "price": 11.8100004196167,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1314921600,
+            "price": 11.65999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1315526400,
+            "price": 11.880000114440918,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1316131200,
+            "price": 12.40999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1316736000,
+            "price": 11.710000038146973,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1317340800,
+            "price": 11.430000305175781,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1317945600,
+            "price": 11.800000190734863,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1318550400,
+            "price": 12.300000190734863,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1319155200,
+            "price": 12.180000305175781,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1319760000,
+            "price": 12.739999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1320364800,
+            "price": 12.979999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1320969600,
+            "price": 12.949999809265137,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1321574400,
+            "price": 12.65999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1322179200,
+            "price": 12.069999694824219,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1322784000,
+            "price": 13.119999885559082,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1323388800,
+            "price": 13.079999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1323993600,
+            "price": 12.760000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1324598400,
+            "price": 12.920000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1325203200,
+            "price": 12.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1325808000,
+            "price": 13.149999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1326412800,
+            "price": 13.75,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1327017600,
+            "price": 13.970000267028809,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1327622400,
+            "price": 14.109999656677246,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1328227200,
+            "price": 14.050000190734863,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1328832000,
+            "price": 13.84000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1329436800,
+            "price": 14.619999885559082,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1330041600,
+            "price": 14.369999885559082,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1330646400,
+            "price": 14.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1331251200,
+            "price": 14.600000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1331856000,
+            "price": 14.789999961853027,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1332460800,
+            "price": 14.989999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1333065600,
+            "price": 15.279999732971191,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1333670400,
+            "price": 14.859999656677246,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1334275200,
+            "price": 15.100000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1334880000,
+            "price": 15.109999656677246,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1335484800,
+            "price": 16.149999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1336089600,
+            "price": 15.4399995803833,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1336694400,
+            "price": 15.390000343322754,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1337299200,
+            "price": 14.279999732971191,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1337904000,
+            "price": 13.979999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1338508800,
+            "price": 13.0600004196167,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1339113600,
+            "price": 13.460000038146973,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1339718400,
+            "price": 13.670000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1340323200,
+            "price": 13.829999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1340928000,
+            "price": 13.960000038146973,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1341532800,
+            "price": 13.5,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1342137600,
+            "price": 12.890000343322754,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1342742400,
+            "price": 12.649999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1343347200,
+            "price": 13.680000305175781,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1343952000,
+            "price": 14.180000305175781,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1344556800,
+            "price": 14.489999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1345161600,
+            "price": 14.399999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1345766400,
+            "price": 14.369999885559082,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1346371200,
+            "price": 14.699999809265137,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1346976000,
+            "price": 14.510000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1347580800,
+            "price": 15.359999656677246,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1348185600,
+            "price": 14.800000190734863,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1348790400,
+            "price": 15.819999694824219,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1349395200,
+            "price": 16.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1350000000,
+            "price": 15.119999885559082,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1350604800,
+            "price": 15.220000267028809,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1351209600,
+            "price": 15.5,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1351814400,
+            "price": 15.770000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1352419200,
+            "price": 16.360000610351562,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1353024000,
+            "price": 16.190000534057617,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1353628800,
+            "price": 16.84000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1354233600,
+            "price": 17.270000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1354838400,
+            "price": 17.030000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1355443200,
+            "price": 16.950000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1356048000,
+            "price": 16.950000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1356652800,
+            "price": 17.1299991607666,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1357257600,
+            "price": 17.959999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1357862400,
+            "price": 18.149999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1358467200,
+            "price": 18.139999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1359072000,
+            "price": 17.75,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1359676800,
+            "price": 18.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1360281600,
+            "price": 18.450000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1360886400,
+            "price": 18.530000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1361491200,
+            "price": 18.899999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1362096000,
+            "price": 18.25,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1362700800,
+            "price": 17.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1363305600,
+            "price": 17.639999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1363910400,
+            "price": 17.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1364515200,
+            "price": 17.079999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1365120000,
+            "price": 16.729999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1365724800,
+            "price": 17.309999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1366329600,
+            "price": 18.799999237060547,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1366934400,
+            "price": 18.530000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1367539200,
+            "price": 19.40999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1368144000,
+            "price": 20.170000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1368748800,
+            "price": 19.510000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1369353600,
+            "price": 18.860000610351562,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1369958400,
+            "price": 18.65999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1370563200,
+            "price": 18.690000534057617,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1371168000,
+            "price": 17.989999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1371772800,
+            "price": 17.18000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1372377600,
+            "price": 18.31999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1372982400,
+            "price": 18.209999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1373587200,
+            "price": 18.440000534057617,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1374192000,
+            "price": 16.489999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1374796800,
+            "price": 16.899999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1375401600,
+            "price": 16.799999237060547,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1376006400,
+            "price": 16.209999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1376611200,
+            "price": 15.970000267028809,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1377216000,
+            "price": 16.219999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1377820800,
+            "price": 16.559999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1378425600,
+            "price": 17.010000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1379030400,
+            "price": 17.329999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1379635200,
+            "price": 17.309999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1380240000,
+            "price": 17.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1380844800,
+            "price": 17.68000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1381449600,
+            "price": 18.09000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1382054400,
+            "price": 19.079999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1382659200,
+            "price": 18.469999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1383264000,
+            "price": 18.469999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1383868800,
+            "price": 18.010000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1384473600,
+            "price": 17.65999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1385078400,
+            "price": 17.1299991607666,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1385683200,
+            "price": 17.729999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1386288000,
+            "price": 17.6200008392334,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1386892800,
+            "price": 17.079999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1387497600,
+            "price": 16.989999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1388102400,
+            "price": 17.260000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1388707200,
+            "price": 16.950000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1389312000,
+            "price": 16.899999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1389916800,
+            "price": 17.770000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1390521600,
+            "price": 17.56999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1391126400,
+            "price": 16.920000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1391731200,
+            "price": 17.15999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1392336000,
+            "price": 17.889999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1392940800,
+            "price": 17.739999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1393545600,
+            "price": 18.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1394150400,
+            "price": 18.770000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1394755200,
+            "price": 18.899999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1395360000,
+            "price": 18.530000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1395964800,
+            "price": 19.639999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1396569600,
+            "price": 19.770000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1397174400,
+            "price": 19.889999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1397779200,
+            "price": 20.559999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1398384000,
+            "price": 19.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1398988800,
+            "price": 19.6200008392334,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1399593600,
+            "price": 20.40999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1400198400,
+            "price": 20.770000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1400803200,
+            "price": 20.65999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1401408000,
+            "price": 20.559999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1402012800,
+            "price": 21.09000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1402617600,
+            "price": 21.09000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1403222400,
+            "price": 21.149999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1403827200,
+            "price": 21.280000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1404432000,
+            "price": 22.670000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1405036800,
+            "price": 22.809999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1405641600,
+            "price": 20.479999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1406246400,
+            "price": 20.350000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1406851200,
+            "price": 20.200000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1407456000,
+            "price": 19.790000915527344,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1408060800,
+            "price": 20.450000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1408665600,
+            "price": 20.829999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1409270400,
+            "price": 20.940000534057617,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1409875200,
+            "price": 21.18000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1410480000,
+            "price": 20.34000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1411084800,
+            "price": 20.520000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1411689600,
+            "price": 20.139999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1412294400,
+            "price": 20.829999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1412899200,
+            "price": 19.440000534057617,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1413504000,
+            "price": 20.719999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1414108800,
+            "price": 21.18000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1414713600,
+            "price": 22.020000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1415318400,
+            "price": 21.81999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1415923200,
+            "price": 22.399999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1416528000,
+            "price": 23.059999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1417132800,
+            "price": 23.469999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1417737600,
+            "price": 22.739999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1418342400,
+            "price": 21.969999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1418947200,
+            "price": 22.200000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1419552000,
+            "price": 22.309999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1420156800,
+            "price": 22.280000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1420761600,
+            "price": 21.200000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1421366400,
+            "price": 22.600000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1421971200,
+            "price": 23.989999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1422576000,
+            "price": 22.709999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1423180800,
+            "price": 23.100000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1423785600,
+            "price": 24.84000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1424390400,
+            "price": 24.440000534057617,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1424995200,
+            "price": 24.530000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1425600000,
+            "price": 24.09000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1426204800,
+            "price": 23.8799991607666,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1426809600,
+            "price": 24.770000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1427414400,
+            "price": 22.940000534057617,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1428019200,
+            "price": 23.540000915527344,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1428624000,
+            "price": 23.5,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1429228800,
+            "price": 23.219999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1429833600,
+            "price": 24.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1430438400,
+            "price": 24.739999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1431043200,
+            "price": 24.549999237060547,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1431648000,
+            "price": 24.559999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1432252800,
+            "price": 24.200000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1432857600,
+            "price": 24.280000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1433462400,
+            "price": 22.860000610351562,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1434067200,
+            "price": 23.670000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1434672000,
+            "price": 23.399999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1435276800,
+            "price": 23.6299991607666,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1435881600,
+            "price": 22.940000534057617,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1436486400,
+            "price": 22.56999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1437091200,
+            "price": 23.030000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1437696000,
+            "price": 21.639999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1438300800,
+            "price": 22.110000610351562,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1438905600,
+            "price": 21.030000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1439510400,
+            "price": 20.3799991607666,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1440115200,
+            "price": 18.8799991607666,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1440720000,
+            "price": 20.0,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1441324800,
+            "price": 19.670000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1441929600,
+            "price": 19.899999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1442534400,
+            "price": 20.610000610351562,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1443139200,
+            "price": 20.049999237060547,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1443744000,
+            "price": 20.760000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1444348800,
+            "price": 21.950000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1444953600,
+            "price": 22.15999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1445558400,
+            "price": 22.469999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1446163200,
+            "price": 21.959999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1446768000,
+            "price": 22.81999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1447372800,
+            "price": 21.889999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1447977600,
+            "price": 22.829999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1448582400,
+            "price": 22.450000762939453,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1449187200,
+            "price": 23.309999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1449792000,
+            "price": 22.18000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1450396800,
+            "price": 22.93000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1451001600,
+            "price": 23.010000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1451606400,
+            "price": 22.09000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1452211200,
+            "price": 20.809999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1452816000,
+            "price": 21.100000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1453420800,
+            "price": 21.93000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1454025600,
+            "price": 22.350000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1454630400,
+            "price": 22.75,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1455235200,
+            "price": 22.239999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1455840000,
+            "price": 23.780000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1456444800,
+            "price": 23.770000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1457049600,
+            "price": 24.649999618530273,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1457654400,
+            "price": 25.350000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1458259200,
+            "price": 26.040000915527344,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1458864000,
+            "price": 25.6299991607666,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1459468800,
+            "price": 26.1200008392334,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1460073600,
+            "price": 25.280000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1460678400,
+            "price": 25.459999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1461283200,
+            "price": 25.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1461888000,
+            "price": 23.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1462492800,
+            "price": 23.40999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1463097600,
+            "price": 22.81999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1463702400,
+            "price": 23.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1464307200,
+            "price": 24.799999237060547,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1464912000,
+            "price": 25.530000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1465516800,
+            "price": 25.860000610351562,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1466121600,
+            "price": 25.850000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1466726400,
+            "price": 25.68000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1467331200,
+            "price": 26.530000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1467936000,
+            "price": 26.729999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1468540800,
+            "price": 27.010000228881836,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1469145600,
+            "price": 27.739999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1469750400,
+            "price": 27.780000686645508,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1470355200,
+            "price": 28.790000915527344,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1470960000,
+            "price": 29.239999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1471564800,
+            "price": 28.639999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1472169600,
+            "price": 28.639999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1472774400,
+            "price": 29.139999389648438,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1473379200,
+            "price": 28.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1473984000,
+            "price": 28.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1474588800,
+            "price": 30.1200008392334,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1475193600,
+            "price": 30.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1475798400,
+            "price": 31.18000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1476403200,
+            "price": 30.65999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1477008000,
+            "price": 31.079999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1477612800,
+            "price": 30.770000457763672,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1478217600,
+            "price": 30.239999771118164,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1478822400,
+            "price": 29.93000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1479427200,
+            "price": 29.469999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1480032000,
+            "price": 29.65999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1480636800,
+            "price": 28.860000610351562,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1481241600,
+            "price": 30.1200008392334,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1481846400,
+            "price": 29.479999542236328,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1482451200,
+            "price": 29.049999237060547,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1483056000,
+            "price": 28.75,
+            "epsQuarterly": null,
+            "epsAnnually": 64.45,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1483660800,
+            "price": 29.6299991607666,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1484265600,
+            "price": 29.440000534057617,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1484870400,
+            "price": 30.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1485475200,
+            "price": 31.25,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1486080000,
+            "price": 30.969999313354492,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1486684800,
+            "price": 30.709999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1487289600,
+            "price": 32.34000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1487894400,
+            "price": 31.920000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1488499200,
+            "price": 30.850000381469727,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1489104000,
+            "price": 31.059999465942383,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1489708800,
+            "price": 32.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1490313600,
+            "price": 32.810001373291016,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1490918400,
+            "price": 32.84000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1491523200,
+            "price": 32.869998931884766,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1492128000,
+            "price": 32.029998779296875,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1492732800,
+            "price": 32.08000183105469,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1493337600,
+            "price": 33.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1493942400,
+            "price": 34.41999816894531,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1494547200,
+            "price": 35.369998931884766,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1495152000,
+            "price": 35.20000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1495756800,
+            "price": 35.5099983215332,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1496361600,
+            "price": 36.18000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1496966400,
+            "price": 35.790000915527344,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1497571200,
+            "price": 35.869998931884766,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1498176000,
+            "price": 36.72999954223633,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1498780800,
+            "price": 34.959999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1499385600,
+            "price": 34.630001068115234,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1499990400,
+            "price": 36.25,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1500595200,
+            "price": 35.849998474121094,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1501200000,
+            "price": 35.86000061035156,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1501804800,
+            "price": 36.029998779296875,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1502409600,
+            "price": 36.13999938964844,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1503014400,
+            "price": 35.86000061035156,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1503619200,
+            "price": 36.849998474121094,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1504224000,
+            "price": 37.220001220703125,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1504828800,
+            "price": 37.5,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1505433600,
+            "price": 37.650001525878906,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1506038400,
+            "price": 37.77000045776367,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1506643200,
+            "price": 37.54999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1507248000,
+            "price": 38.459999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1507852800,
+            "price": 40.81999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1508457600,
+            "price": 41.119998931884766,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1509062400,
+            "price": 42.150001525878906,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1509667200,
+            "price": 42.189998626708984,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1510272000,
+            "price": 41.720001220703125,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1510876800,
+            "price": 42.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1511481600,
+            "price": 42.9900016784668,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1512086400,
+            "price": 39.70000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1512691200,
+            "price": 39.0,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1513296000,
+            "price": 39.5,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1513900800,
+            "price": 39.630001068115234,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1514505600,
+            "price": 39.650001525878906,
+            "epsQuarterly": null,
+            "epsAnnually": 66.15,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1515110400,
+            "price": 42.459999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1515715200,
+            "price": 41.189998626708984,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1516320000,
+            "price": 44.66999816894531,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1516924800,
+            "price": 45.720001220703125,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1517529600,
+            "price": 44.5099983215332,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1518134400,
+            "price": 41.470001220703125,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1518739200,
+            "price": 43.47999954223633,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1519344000,
+            "price": 43.900001525878906,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1519948800,
+            "price": 43.0099983215332,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1520553600,
+            "price": 44.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1521158400,
+            "price": 44.970001220703125,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1521763200,
+            "price": 42.58000183105469,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1522368000,
+            "price": 42.5,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1522972800,
+            "price": 42.41999816894531,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1523577600,
+            "price": 42.650001525878906,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1524182400,
+            "price": 38.95000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1524787200,
+            "price": 38.16999816894531,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1525392000,
+            "price": 38.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1525996800,
+            "price": 39.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1526601600,
+            "price": 38.41999816894531,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1527206400,
+            "price": 39.29999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1527811200,
+            "price": 39.20000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1528416000,
+            "price": 38.93000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1529020800,
+            "price": 38.689998626708984,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1529625600,
+            "price": 38.119998931884766,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1530230400,
+            "price": 36.560001373291016,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1530835200,
+            "price": 37.27000045776367,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1531440000,
+            "price": 37.77000045776367,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1532044800,
+            "price": 40.72999954223633,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1532649600,
+            "price": 41.45000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1533254400,
+            "price": 41.689998626708984,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1533859200,
+            "price": 41.029998779296875,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1534464000,
+            "price": 40.130001068115234,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1535068800,
+            "price": 41.2400016784668,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1535673600,
+            "price": 43.599998474121094,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1536278400,
+            "price": 44.880001068115234,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1536883200,
+            "price": 44.40999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1537488000,
+            "price": 44.060001373291016,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1538092800,
+            "price": 44.15999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1538697600,
+            "price": 41.630001068115234,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1539302400,
+            "price": 39.65999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1539907200,
+            "price": 38.45000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1540512000,
+            "price": 36.66999816894531,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1541116800,
+            "price": 38.779998779296875,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1541721600,
+            "price": 38.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1542326400,
+            "price": 36.869998931884766,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1542931200,
+            "price": 35.959999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1543536000,
+            "price": 37.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1544140800,
+            "price": 36.52000045776367,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1544745600,
+            "price": 36.529998779296875,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1545350400,
+            "price": 35.709999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1545955200,
+            "price": 37.13999938964844,
+            "epsQuarterly": null,
+            "epsAnnually": 67.7,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1546560000,
+            "price": 34.970001220703125,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1547164800,
+            "price": 36.61000061035156,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1547769600,
+            "price": 36.84000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1548374400,
+            "price": 38.13999938964844,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1548979200,
+            "price": 37.56999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1549584000,
+            "price": 37.790000915527344,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1550188800,
+            "price": 38.09000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1550793600,
+            "price": 39.38999938964844,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1551398400,
+            "price": 39.38999938964844,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1552003200,
+            "price": 38.20000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1552608000,
+            "price": 39.650001525878906,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1553212800,
+            "price": 40.43000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1553817600,
+            "price": 40.959999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1554422400,
+            "price": 42.22999954223633,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1555027200,
+            "price": 42.58000183105469,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1555632000,
+            "price": 45.150001525878906,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1556236800,
+            "price": 43.939998626708984,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1556841600,
+            "price": 44.709999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1557446400,
+            "price": 42.83000183105469,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1558051200,
+            "price": 40.25,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1558656000,
+            "price": 38.20000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1559260800,
+            "price": 38.349998474121094,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1559865600,
+            "price": 38.81999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1560470400,
+            "price": 37.84000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1561075200,
+            "price": 40.52000045776367,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1561680000,
+            "price": 39.16999816894531,
+            "epsQuarterly": 0.41,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1562284800,
+            "price": 39.93000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1562889600,
+            "price": 41.22999954223633,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1563494400,
+            "price": 43.83000183105469,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1564099200,
+            "price": 43.459999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1564704000,
+            "price": 41.650001525878906,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1565308800,
+            "price": 41.40999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1565913600,
+            "price": 41.540000915527344,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1566518400,
+            "price": 40.95000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1567123200,
+            "price": 42.630001068115234,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1567728000,
+            "price": 43.709999084472656,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1568332800,
+            "price": 44.7400016784668,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1568937600,
+            "price": 43.869998931884766,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1569542400,
+            "price": 45.5099983215332,
+            "epsQuarterly": 0.62,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1570147200,
+            "price": 47.41999816894531,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1570752000,
+            "price": 49.41999816894531,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1571356800,
+            "price": 49.279998779296875,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1571961600,
+            "price": 51.130001068115234,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1572566400,
+            "price": 52.099998474121094,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1573171200,
+            "price": 52.83000183105469,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1573776000,
+            "price": 53.290000915527344,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1574380800,
+            "price": 52.790000915527344,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1574985600,
+            "price": 53.09000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1575590400,
+            "price": 54.939998626708984,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1576195200,
+            "price": 58.25,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1576800000,
+            "price": 57.93000030517578,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1577404800,
+            "price": 58.459999084472656,
+            "epsQuarterly": 0.73,
+            "epsAnnually": 66.6,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1578009600,
+            "price": 58.060001373291016,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1578614400,
+            "price": 58.86000061035156,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1579219200,
+            "price": 58.58000183105469,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1579824000,
+            "price": 57.72999954223633,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1580428800,
+            "price": 53.939998626708984,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1581033600,
+            "price": 56.20000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1581638400,
+            "price": 58.189998626708984,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1582243200,
+            "price": 55.59000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1582848000,
+            "price": 53.84000015258789,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1583452800,
+            "price": 55.06999969482422,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1584057600,
+            "price": 52.22999954223633,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1584662400,
+            "price": 44.529998779296875,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1585267200,
+            "price": 46.90999984741211,
+            "epsQuarterly": 0.75,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1585872000,
+            "price": 47.060001373291016,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1586476800,
+            "price": 48.75,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1587081600,
+            "price": 53.689998626708984,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1587686400,
+            "price": 52.72999954223633,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1588291200,
+            "price": 51.099998474121094,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1588896000,
+            "price": 52.90999984741211,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1589500800,
+            "price": 49.79999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1590105600,
+            "price": 49.79999923706055,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1590710400,
+            "price": 50.33000183105469,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1591315200,
+            "price": 55.20000076293945,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1591920000,
+            "price": 56.0,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          },
+          {
+            "date": 1592352000,
+            "price": 56.599998474121094,
+            "epsQuarterly": null,
+            "epsAnnually": null,
+            "peQuarterly": null,
+            "peAnnually": null
+          }
+        ]
+      },
+      "stockRatiosTimeline": {
+        "id": "5ed8e78b52802d694f6f150d",
+        "symbol": "TSM",
+        "exchange": "NYSE",
+        "date": "2020-06-22",
+        "periods": {
+          "2010-12-31": {
+            "bookValuePerShare": 3.82,
+            "capSpending": -1.86944E11,
+            "dividends": 12.03,
+            "earningsPerShare": 31.15,
+            "freeCashFlow": 4.2531E10,
+            "freeCashFlowPerShare": 0.28,
+            "grossMargin": 49.4,
+            "netIncome": 1.61605E11,
+            "operatingCashFlow": 2.29475E11,
+            "operatingIncome": 1.59175E11,
+            "operatingMargin": 37.9,
+            "payoutRatio": 38.6,
+            "revenue": 4.19538E11,
+            "shares": 5.184E9,
+            "workingCapital": 1.38328E11,
+            "price": 12.3100004196167,
+            "pe": 0.3951846041610498
+          },
+          "2011-12-31": {
+            "bookValuePerShare": 3.84,
+            "capSpending": -2.13963E11,
+            "dividends": 14.94,
+            "earningsPerShare": 25.9,
+            "freeCashFlow": 3.3625E10,
+            "freeCashFlowPerShare": 0.1,
+            "grossMargin": 45.4,
+            "netIncome": 1.34201E11,
+            "operatingCashFlow": 2.47587E11,
+            "operatingIncome": 1.41557E11,
+            "operatingMargin": 33.1,
+            "payoutRatio": 54.0,
+            "revenue": 4.2708E11,
+            "shares": 5.185E9,
+            "workingCapital": 1.08253E11,
+            "price": 12.90999984741211,
+            "pe": 0.49845559256417415
+          },
+          "2012-12-31": {
+            "bookValuePerShare": 4.82,
+            "capSpending": -2.46137E11,
+            "dividends": 14.75,
+            "earningsPerShare": 30.75,
+            "freeCashFlow": 4.2926E10,
+            "freeCashFlowPerShare": 0.29,
+            "grossMargin": 48.1,
+            "netIncome": 1.66158E11,
+            "operatingCashFlow": 2.89063E11,
+            "operatingIncome": 1.81057E11,
+            "operatingMargin": 35.8,
+            "payoutRatio": 46.0,
+            "revenue": 5.06223E11,
+            "shares": 5.186E9,
+            "workingCapital": 1.09852E11,
+            "price": 17.1299991607666,
+            "pe": 0.5570731434395643
+          },
+          "2013-12-31": {
+            "bookValuePerShare": 5.18,
+            "capSpending": -2.90345E11,
+            "dividends": 15.18,
+            "earningsPerShare": 35.5,
+            "freeCashFlow": 5.7038E10,
+            "freeCashFlowPerShare": 0.38,
+            "grossMargin": 47.1,
+            "netIncome": 1.83978E11,
+            "operatingCashFlow": 3.47384E11,
+            "operatingIncome": 2.09997E11,
+            "operatingMargin": 35.2,
+            "payoutRatio": 42.6,
+            "revenue": 5.97003E11,
+            "shares": 5.186E9,
+            "workingCapital": 1.54513E11,
+            "price": 17.260000228881836,
+            "pe": 0.4861971895459672
+          },
+          "2014-12-31": {
+            "bookValuePerShare": 5.82,
+            "capSpending": -2.924E11,
+            "dividends": 14.98,
+            "earningsPerShare": 49.05,
+            "freeCashFlow": 1.29124E11,
+            "freeCashFlowPerShare": 0.35,
+            "grossMargin": 49.5,
+            "netIncome": 2.54301E11,
+            "operatingCashFlow": 4.21524E11,
+            "operatingIncome": 2.96819E11,
+            "operatingMargin": 38.9,
+            "payoutRatio": 34.6,
+            "revenue": 7.62835E11,
+            "shares": 5.186E9,
+            "workingCapital": 4.0178E11,
+            "price": 22.309999465942383,
+            "pe": 0.45484198707323925
+          },
+          "2015-12-31": {
+            "bookValuePerShare": 6.56,
+            "capSpending": -2.61801E11,
+            "dividends": null,
+            "earningsPerShare": 58.4,
+            "freeCashFlow": 2.68079E11,
+            "freeCashFlowPerShare": 1.76,
+            "grossMargin": 48.7,
+            "netIncome": 3.02851E11,
+            "operatingCashFlow": 5.29879E11,
+            "operatingIncome": 3.2173E11,
+            "operatingMargin": 38.1,
+            "payoutRatio": null,
+            "revenue": 8.43513E11,
+            "shares": 5.186E9,
+            "workingCapital": 5.06972E11,
+            "price": 23.010000228881836,
+            "pe": 0.39400685323427803
+          },
+          "2016-12-31": {
+            "bookValuePerShare": 7.66,
+            "capSpending": -3.33094E11,
+            "dividends": 30.38,
+            "earningsPerShare": 63.95,
+            "freeCashFlow": 2.0674E11,
+            "freeCashFlowPerShare": 1.16,
+            "grossMargin": 50.1,
+            "netIncome": 3.31714E11,
+            "operatingCashFlow": 5.39834E11,
+            "operatingIncome": 3.77911E11,
+            "operatingMargin": 39.9,
+            "payoutRatio": 51.9,
+            "revenue": 9.47909E11,
+            "shares": 5.186E9,
+            "workingCapital": 4.69443E11,
+            "price": 28.75,
+            "pe": 0.44956997654417513
+          },
+          "2017-12-31": {
+            "bookValuePerShare": 9.24,
+            "capSpending": -3.35889E11,
+            "dividends": 35.23,
+            "earningsPerShare": 66.5,
+            "freeCashFlow": 2.4943E11,
+            "freeCashFlowPerShare": 1.16,
+            "grossMargin": 50.6,
+            "netIncome": 3.44998E11,
+            "operatingCashFlow": 5.85318E11,
+            "operatingIncome": 3.86657E11,
+            "operatingMargin": 39.6,
+            "payoutRatio": 53.5,
+            "revenue": 9.77442E11,
+            "shares": 5.186E9,
+            "workingCapital": 4.70313E11,
+            "price": 39.650001525878906,
+            "pe": 0.5962406244493068
+          },
+          "2018-12-31": {
+            "bookValuePerShare": 9.93,
+            "capSpending": -3.22682E11,
+            "dividends": 41.17,
+            "earningsPerShare": 70.0,
+            "freeCashFlow": 2.51272E11,
+            "freeCashFlowPerShare": 2.03,
+            "grossMargin": 48.3,
+            "netIncome": 3.63053E11,
+            "operatingCashFlow": 5.73954E11,
+            "operatingIncome": 3.85052E11,
+            "operatingMargin": 37.3,
+            "payoutRatio": 60.5,
+            "revenue": 1.031362E12,
+            "shares": 5.186E9,
+            "workingCapital": 5.94842E11,
+            "price": 37.13999938964844,
+            "pe": 0.5305714198521205
+          },
+          "2019-12-31": {
+            "bookValuePerShare": 10.22,
+            "capSpending": -4.69752E11,
+            "dividends": 61.87,
+            "earningsPerShare": 68.25,
+            "freeCashFlow": 1.45387E11,
+            "freeCashFlowPerShare": 1.21,
+            "grossMargin": 46.0,
+            "netIncome": 3.53948E11,
+            "operatingCashFlow": 6.15138E11,
+            "operatingIncome": 3.7335E11,
+            "operatingMargin": 34.9,
+            "payoutRatio": 75.1,
+            "revenue": 1.069989E12,
+            "shares": 5.186E9,
+            "workingCapital": 2.2425E11,
+            "price": 58.459999084472656,
+            "pe": 0.8565567631424565
+          }
+        }
+      }
+    }
+  ]
+}

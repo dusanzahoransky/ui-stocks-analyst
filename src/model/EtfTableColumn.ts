@@ -1,4 +1,4 @@
-export enum IndexTableColumn {
+export enum EtfTableColumn {
     date,
     asOfDate,
     symbol,
@@ -41,5 +41,6 @@ export enum IndexTableColumn {
 
     /*fundInceptionDate,*/
 
-    chartData
+    chartData,
+    score
 }

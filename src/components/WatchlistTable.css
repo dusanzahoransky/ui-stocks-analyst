@@ -97,6 +97,9 @@ th.cg-bps {
 th.cg-cash {
     background: #f4f4ff;
 }
+th.totalScore {
+    background: #d6ffde;
+}
 
 th.label {
     top: 0;
@@ -121,7 +124,7 @@ td.companyName{
     font-size: unset;
 }
 
-td.price {
+td.currentPrice {
     position: sticky;
     left: 215px;
     background: #f0f3ff;
@@ -154,8 +157,20 @@ td.lastReport {
     color: #003795;
 }
 
+.boldText {
+    font-weight: bold;
+}
+
 .red {
     background: #ff6d68;
+}
+
+.additionalInfo {
+    background: yellow;
+    border-style: solid;
+    border-color: #ff792d;
+    border-width: 2px;
+    font-weight: bold;
 }
 
 .redText {

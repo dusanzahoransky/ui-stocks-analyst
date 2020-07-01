@@ -1,7 +1,7 @@
 import React from "react";
 import {WatchlistTable} from "./WatchlistTable";
 import {StockAnalysisResult} from "../model/StockAnalysisResult";
-import {IndicesAnalysisResult} from "../model/IndicesAnalysisResult";
+import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {StockAnalystService} from "../services/StockAnalystService";
 import {PriceEpsChart} from "./PriceEpsChart";
 import {PriceEpsDataRaw} from "../model/PriceEpsDataRaw";
@@ -9,18 +9,22 @@ import {PriceEpsData} from "../model/PriceEpsData";
 import "./Watchlist.css";
 import 'font-awesome/css/font-awesome.min.css';
 import moment from "moment";
-import {StockInfo} from "../model/StockInfo";
-import {IndicesChartData} from "../model/IndicesChartData";
-import {IndicesPriceChart} from "./IndicesPriceChart";
+import {Stock} from "../model/Stock";
+import {EtfsChartData} from "../model/EtfsChartData";
+import {EtfsPriceChart} from "./EtfsPriceChart";
 import {StockRatiosPeriods} from "../model/StockRatiosPeriods";
 import {RatioChart} from "./RatioChart";
 import {RatioChartData} from "../model/RatioChartData";
-import {ChartRatios} from "../model/ChartRatios";
+import {FinancialChartRatios} from "../model/FinancialChartRatios";
+import {StockTaggingService} from "../services/StockTaggingService";
+import {CellData} from "../model/CellData";
+import {OtherChartRatios} from "../model/OtherChartRatios";
+import {CellTag} from "../model/CellTag";
 
 
 export interface WatchlistProps {
     watchlist: string
-    result?: StockAnalysisResult | IndicesAnalysisResult,
+    result?: StockAnalysisResult | EtfsAnalysisResult,
     onRefreshYahooHandler?: (watchlist: string) => void,
     onRefreshMorningstarClickHandler?: (watchlist: string) => void,
     /**
@@ -34,7 +38,7 @@ export interface WatchlistProps {
     /**
      * an ETF index or normal stock
      */
-    isIndex: boolean
+    isEtf: boolean
     /**
      * show the watchlist - render it as expanded, showing all the stocks
      */
@@ -48,13 +52,17 @@ export interface WatchlistState {
      * Remove outliers which would otherwise deform the chart, e.g. an EP which is extremely high in a single quarter
      */
     priceEpsChartRemoveOutliers?: boolean
-    indicesChartSymbols?: string[]
+    etfsChartSymbols?: string[]
     chartLabel?: string
+    visibleTags: CellTag[]
 }
 
 export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     private readonly stockAnalystService: StockAnalystService;
+    private readonly stockTaggingService: StockTaggingService;
+
+    public static readonly VISIBILITY_TOGGLES = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.financials, CellTag.growth, CellTag.rule1, CellTag.value]
 
     constructor(props: Readonly<WatchlistProps>) {
         super(props);
@@ -62,13 +70,15 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             // priceEpsData: undefined,
             // ratiosData: undefined,
             //uncomment to render chart of the first stock on load
-            // priceEpsData: props.result ? props.result.stocks[0].stockInfo.chartData : undefined,
-            // ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
-            // indicesChartSymbols: ['VTS', 'VUSA'],
-            indicesChartSymbols: [],
-            priceEpsChartRemoveOutliers: true
+            // priceEpsData: props.result ? props.result.stocks[0].stock.chartData : undefined,
+            ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
+            // etfsChartSymbols: ['VTS', 'VUSA'],
+            etfsChartSymbols: [],
+            priceEpsChartRemoveOutliers: true,
+            visibleTags: [CellTag.value]
         }
         this.stockAnalystService = new StockAnalystService();
+        this.stockTaggingService = new StockTaggingService();
 
     }
 
@@ -76,7 +86,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const {watchlist, result} = this.props;
 
         const table = this.renderTable(result)
-        const charts = this.props.isIndex ? this.renderIndicesChart() : this.renderCompanyCharts(this.state.priceEpsData, this.state.ratiosData)
+        const charts = this.props.isEtf ? this.renderEtfsChart() : this.renderCompanyCharts(this.state.priceEpsData, this.state.ratiosData)
 
         const refreshLink = this.props.isPreset && this.props.isExpanded ?
             <span className="refresh">
@@ -92,31 +102,57 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const showLink = this.props.isPreset ?
             <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(watchlist)}/> : ''
 
+        let checkboxesSpan
+        if(this.props.isExpanded && !this.props.isEtf) {
+            const visibleTags = Watchlist.VISIBILITY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
+            checkboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>;
+        }
+
         return <div
             className="Watchlist"
             key={watchlist}>
-            <h2 className={"WatchlistName " + (this.props.isIndex ? "Index" : "Stock")}>
-                {showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}{refreshRatiosLink}</h2>
+            <h2 className={"WatchlistName " + (this.props.isEtf ? "Etf" : "Stock")}>
+                {showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}{refreshRatiosLink} {checkboxesSpan}</h2>
             {table}
             {charts}
         </div>
     }
 
-    renderIndicesChart() {
-        if (!this.props.isExpanded || this.state.indicesChartSymbols.length === 0) {
+    private toVisibleTagCheckbox(tag: CellTag) {
+        let tagName = CellTag[tag];
+        return <span className="VisibleTag" key={tagName}>{tagName} <input
+            name={tagName}
+            type="checkbox"
+            checked={this.state.visibleTags.includes(tag)}
+            onChange={() => {
+                this.setState((prevState) => {
+                    let newHiddenTags
+                    if (prevState.visibleTags.includes(tag)) {
+                        newHiddenTags = prevState.visibleTags.filter(hiddenTag => hiddenTag !== tag)
+                    } else {
+                        newHiddenTags = prevState.visibleTags.concat(tag)
+                    }
+                    return {visibleTags: newHiddenTags}
+                })
+            }}/>
+            </span>;
+    }
+
+    renderEtfsChart() {
+        if (!this.props.isExpanded || this.state.etfsChartSymbols.length === 0) {
             return ''
         }
-        const chartData = this.prepareIndicesChartData(this.props.result.stocks);
+        const chartData = this.prepareEtfsChartData(this.props.result.stocks);
         return <div className={!chartData ? 'hidden' : ''}>
-            <IndicesPriceChart
+            <EtfsPriceChart
                 data={chartData}
-                symbols={this.state.indicesChartSymbols}
-                label={`Index price chart`}/>
+                symbols={this.state.etfsChartSymbols}
+                label={`Etf price chart`}/>
         </div>
     }
 
     renderCompanyCharts(priceEpsData?: PriceEpsDataRaw[], ratiosData?: StockRatiosPeriods) {
-        if (!this.props.isExpanded || !priceEpsData) {
+        if (!this.props.isExpanded) {
             return ''
         }
         const peRatio = 15
@@ -125,31 +161,54 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             data={chartData}
             description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>;
 
-        const periods = Object.keys(ratiosData);
-        const ratiosCharts = Watchlist.getChartRatios().map(ratio => {
-            const chartData: RatioChartData[] = periods.map(period => {
-                return {
-                    date: period,
-                    value: ratiosData[period][ratio] as number
-                }
-            });
-            return <RatioChart
-                key={ratio}
-                data={chartData}
-                label={`${ChartRatios[ratio]}`}/>
-        })
+        let financialRatiosCharts
+        let otherRatiosCharts
+        if(ratiosData) {
+            const periods = Object.keys(ratiosData);
+
+            financialRatiosCharts = Watchlist.getChartFinancialRatios().map(ratio => {
+                const chartData: RatioChartData[] = periods.map(period => {
+                    return {
+                        date: period,
+                        value: ratiosData[period][ratio] as number
+                    }
+                });
+                return <RatioChart
+                    key={ratio}
+                    data={chartData}
+                    label={`${FinancialChartRatios[ratio]}`}/>
+            })
+
+            otherRatiosCharts = Watchlist.getChartOtherRatios().map(ratio => {
+                const chartData: RatioChartData[] = periods.map(period => {
+                    return {
+                        date: period,
+                        value: ratiosData[period][ratio] as number
+                    }
+                });
+                return <RatioChart
+                    key={ratio}
+                    data={chartData}
+                    label={`${OtherChartRatios[ratio]}`}/>
+            })
+        }
+
+
 
         return <div>
             <div className={!chartData ? 'hidden' : ''}>{priceEpsChart}</div>
-            <div className={!ratiosData ? 'hidden' : ''}>{ratiosCharts}</div>
+            <div className={"RatiosCharts"}>
+                <div className={!ratiosData ? 'hidden' : 'RatiosChartsColumn'}>{financialRatiosCharts}</div>
+                <div className={!ratiosData ? 'hidden' : 'RatiosChartsColumn'}>{otherRatiosCharts}</div>
+            </div>
         </div>
 
     }
 
-    private static getChartRatios(): string[] {
+    private static getChartFinancialRatios(): string[] {
         const enumNames = []
 
-        for (const enumMember in ChartRatios) {
+        for (const enumMember in FinancialChartRatios) {
             if (Number.isNaN(Number.parseInt(enumMember))) {
                 enumNames.push(enumMember)
             }
@@ -158,47 +217,67 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return enumNames
     }
 
-    getStockInfo(result: StockAnalysisResult | IndicesAnalysisResult, isIndex: boolean): StockInfo[] {
-        return this.props.isIndex ?
-            (result as IndicesAnalysisResult).stocks :
-            (result as StockAnalysisResult).stocks.map(s => s.stockInfo)
+    private static getChartOtherRatios(): string[] {
+        const enumNames = []
+
+        for (const enumMember in OtherChartRatios) {
+            if (Number.isNaN(Number.parseInt(enumMember))) {
+                enumNames.push(enumMember)
+            }
+        }
+
+        return enumNames
     }
 
-    renderTable(result?: StockAnalysisResult | IndicesAnalysisResult) {
+    getStock(result: StockAnalysisResult | EtfsAnalysisResult, isEtf: boolean): Stock[] {
+        return this.props.isEtf ?
+            (result as EtfsAnalysisResult).stocks :
+            (result as StockAnalysisResult).stocks.map(s => s.stock)
+    }
+
+    renderTable(result?: StockAnalysisResult | EtfsAnalysisResult) {
         if (!this.props.isExpanded) {
             return ''
         } else {
-            const stocksInfo: StockInfo[] = this.getStockInfo(result, this.props.isIndex)    //one more level of nesting
-            const headers = this.toHeaderData(result.averages, this.props.isIndex);
-            let data = this.toTableData(stocksInfo);
-            const scoredData = data.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isIndex))
+            const stocksInfo: Stock[] = this.getStock(result, this.props.isEtf)    //one more level of nesting
+            const headers = this.toHeaderData(result.averages, this.props.isEtf);
+            const rawTableData = this.toTableData(stocksInfo);
+            const data: CellData[][] = rawTableData
+                .map(row => row.map(cell => {
+                    return {value: cell}
+                }))
+
+            const taggedData = data.map(row => this.stockTaggingService.tagRow(row, this.props.isEtf))
+            const scoredData = taggedData.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isEtf))
+
             return <WatchlistTable
                 data={scoredData}
-                isIndex={this.props.isIndex}
+                isEtf={this.props.isEtf}
                 headerLabels={headers[0]}
                 headerAverages={headers[1]}
+                visibleTags={this.state.visibleTags}
                 onStockClickHandler={this.stockOnClickHandler}
             />
         }
     }
 
     stockOnClickHandler = (stockSymbol: string) => {
-        if (this.props.isIndex) {
+        if (this.props.isEtf) {
             let updatedSymbols;
-            if (this.state.indicesChartSymbols.includes(stockSymbol)) {
-                updatedSymbols = this.state.indicesChartSymbols.filter(s => s !== stockSymbol)
+            if (this.state.etfsChartSymbols.includes(stockSymbol)) {
+                updatedSymbols = this.state.etfsChartSymbols.filter(s => s !== stockSymbol)
             } else {
-                updatedSymbols = this.state.indicesChartSymbols.concat(stockSymbol)
+                updatedSymbols = this.state.etfsChartSymbols.concat(stockSymbol)
             }
             this.setState(state => {
                 return {
-                    indicesChartSymbols: updatedSymbols
+                    etfsChartSymbols: updatedSymbols
                 }
             })
         } else {
             let clickedStockWithRatios = this.props.result.stocks
-                .filter(stock => stock.stockInfo.symbol === stockSymbol)[0];
-            const priceEpsData = clickedStockWithRatios.stockInfo.chartData
+                .filter(stock => stock.stock.symbol === stockSymbol)[0];
+            const priceEpsData = clickedStockWithRatios.stock.chartData
             const ratiosData = clickedStockWithRatios.stockRatiosTimeline.periods
 
             //close the graph on a second click
@@ -220,16 +299,14 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         }
     }
 
-    toHeaderData(averages: StockInfo, isIndex: boolean): any[][] {
-        averages = this.stockAnalystService.filterDisplayableStats(averages, isIndex)
+    toHeaderData(averages: Stock, isEtf: boolean): any[][] {
+        averages = this.stockAnalystService.filterDisplayableStats(averages, isEtf)
 
         const headersRow = Object.keys(averages)
         const averagesRow = Object.keys(averages).map(key => averages[key])
 
-        this.addScoreHeader(headersRow, averagesRow)
-        if (!isIndex) {
-            this.addRule1Header(headersRow, averagesRow)
-        }
+        const labels = this.stockAnalystService.getScoreLabels(isEtf);
+        labels.forEach( label => this.addHeader(headersRow, averagesRow, label))
 
         return [
             headersRow,
@@ -237,20 +314,15 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         ]
     }
 
-    addScoreHeader(headersRow: string[], averagesRow: number[]) {
-        headersRow.push('Score')
+    addHeader(headersRow: string[], averagesRow: number[], label: string) {
+        headersRow.push(label)
         averagesRow.push(0)
     }
 
-    addRule1Header(headersRow: string[], averagesRow: number[]) {
-        headersRow.push('Rule 1 Score')
-        averagesRow.push(0)
-    }
-
-    toTableData(stocks: StockInfo[]): any[][] {
+    toTableData(stocks: Stock[]): any[][] {
         let rows = [];
         for (let stock of stocks) {
-            stock = this.stockAnalystService.filterDisplayableStats(stock, this.props.isIndex)
+            stock = this.stockAnalystService.filterDisplayableStats(stock, this.props.isEtf)
             const rowValues = Object.keys(stock)
                 .map(key => stock[key] ? stock[key] : '')
             rows.push(rowValues);
@@ -258,17 +330,17 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return rows;
     }
 
-    private prepareIndicesChartData(stocks: StockInfo[]): IndicesChartData[] | undefined {
+    private prepareEtfsChartData(stocks: Stock[]): EtfsChartData[] | undefined {
 
-        const chartStocks = stocks.filter(s => this.state.indicesChartSymbols.includes(s.symbol))
+        const chartStocks = stocks.filter(s => this.state.etfsChartSymbols.includes(s.symbol))
 
         const allDates = Array.from(new Set(chartStocks.flatMap(s => s.chartData.map(d => d.date))))
             .sort()
 
-        const chartData = new Array<IndicesChartData>(allDates.length)
+        const chartData = new Array<EtfsChartData>(allDates.length)
         for (let i = 0; i < allDates.length; i++) {
             const date = allDates[i]
-            const dataPoint: IndicesChartData = {
+            const dataPoint: EtfsChartData = {
                 date: moment(allDates[i] * 1000).format('YYYY-MM-DD')
             }
             for (const stock of chartStocks) {
@@ -319,13 +391,12 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return watchlist
             .replace(/[a-zA-Z]+/g, function (g) {
                 switch (g) {
-                    case 'AUD':
-                    case 'EUR':
-                    case 'USD':
-                    case 'AU':
+                    case 'EU':
                     case 'US':
+                    case 'AU':
+                    case 'GB':
                     case 'CHF':
-                    case 'GBP':
+                    case 'ETF':
                         return g;
                     default:
                         return g[0].toUpperCase().concat(g.substr(1).toLowerCase());
@@ -334,5 +405,6 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             })
             .replace(/_/g, ' ')
     }
+
 }
 
