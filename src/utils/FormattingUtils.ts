@@ -1,6 +1,6 @@
 import {StockFields} from "../model/StockFields";
 import moment from "moment";
-import {EtfTableColumn} from "../model/EtfTableColumn";
+import {EtfFields} from "../model/EtfFields";
 
 export class FormattingUtils {
 
@@ -12,7 +12,7 @@ export class FormattingUtils {
         return this.format(rowValue, value)
     }
 
-    static formatEtf(rowValue: any[], value: number | string, column: EtfTableColumn): string {
+    static formatEtf(rowValue: any[], value: number | string, column: EtfFields): string {
         return this.format(rowValue, value)
     }
 

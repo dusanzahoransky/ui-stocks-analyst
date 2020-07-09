@@ -1,30 +1,32 @@
-import React from "react";
-import {WatchlistTable} from "./WatchlistTable";
-import {StockAnalysisResult} from "../model/StockAnalysisResult";
-import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
-import {StockAnalystService} from "../services/StockAnalystService";
-import {PriceEpsChart} from "./PriceEpsChart";
-import {PriceEpsDataRaw} from "../model/PriceEpsDataRaw";
-import {PriceEpsData} from "../model/PriceEpsData";
-import "./Watchlist.css";
-import 'font-awesome/css/font-awesome.min.css';
-import moment from "moment";
-import {Stock} from "../model/Stock";
-import {EtfsChartData} from "../model/EtfsChartData";
-import {EtfsPriceChart} from "./EtfsPriceChart";
-import {StockRatiosPeriods} from "../model/StockRatiosPeriods";
-import {RatioChart} from "./RatioChart";
-import {RatioChartData} from "../model/RatioChartData";
-import {FinancialChartRatios} from "../model/FinancialChartRatios";
-import {StockTaggingService} from "../services/StockTaggingService";
-import {CellData} from "../model/CellData";
-import {OtherChartRatios} from "../model/OtherChartRatios";
-import {CellTag} from "../model/CellTag";
+import React from "react"
+import {WatchlistTable} from "./WatchlistTable"
+import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult"
+import {StockAnalystService} from "../services/StockAnalystService"
+import {PriceEpsChart} from "./PriceEpsChart"
+import {PriceEpsDataRaw} from "../model/PriceEpsDataRaw"
+import {PriceEpsData} from "../model/PriceEpsData"
+import "./Watchlist.css"
+import 'font-awesome/css/font-awesome.min.css'
+import moment from "moment"
+import {Stock} from "../model/Stock"
+import {EtfsChartData} from "../model/EtfsChartData"
+import {EtfsPriceChart} from "./EtfsPriceChart"
+import {StockRatiosPeriods} from "../model/StockRatiosPeriods"
+import {RatioChart} from "./RatioChart"
+import {RatioChartData} from "../model/RatioChartData"
+import {FinancialChartRatios} from "../model/FinancialChartRatios"
+import {StockTaggingService} from "../services/StockTaggingService"
+import {CellData} from "../model/table/CellData"
+import {OtherChartRatios} from "../model/OtherChartRatios"
+import {CellTag} from "../model/table/CellTag"
+import {StocksAnalysisResult} from "../model/StocksAnalysisResult"
+import {Etf} from "../model/Etf"
 
 
 export interface WatchlistProps {
     watchlist: string
-    result?: StockAnalysisResult | EtfsAnalysisResult,
+    etfsResult?: EtfsAnalysisResult,
+    stocksResult?: StocksAnalysisResult,
     onRefreshYahooHandler?: (watchlist: string) => void,
     onRefreshMorningstarClickHandler?: (watchlist: string) => void,
     /**
@@ -59,67 +61,153 @@ export interface WatchlistState {
 
 export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
-    private readonly stockAnalystService: StockAnalystService;
-    private readonly stockTaggingService: StockTaggingService;
+    private readonly stockAnalystService: StockAnalystService
+    private readonly stockTaggingService: StockTaggingService
 
     public static readonly VISIBILITY_TOGGLES = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.financials, CellTag.growth, CellTag.rule1, CellTag.value]
 
     constructor(props: Readonly<WatchlistProps>) {
-        super(props);
+        super(props)
         this.state = {
             // priceEpsData: undefined,
             // ratiosData: undefined,
             //uncomment to render chart of the first stock on load
             // priceEpsData: props.result ? props.result.stocks[0].stock.chartData : undefined,
-            ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
+            // ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
             // etfsChartSymbols: ['VTS', 'VUSA'],
             etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true,
             visibleTags: [CellTag.value]
         }
-        this.stockAnalystService = new StockAnalystService();
-        this.stockTaggingService = new StockTaggingService();
-
+        this.stockAnalystService = new StockAnalystService()
+        this.stockTaggingService = new StockTaggingService()
     }
 
     render() {
-        const {watchlist, result} = this.props;
+        const {watchlist, isPreset, isExpanded, isEtf, onRefreshMorningstarClickHandler} = this.props
 
-        const table = this.renderTable(result)
-        const charts = this.props.isEtf ? this.renderEtfsChart() : this.renderCompanyCharts(this.state.priceEpsData, this.state.ratiosData)
+        //ETF rendering
+        if (isEtf) {
+            return <div
+                className="Watchlist"
+                key={watchlist}>
+                <h2 className={"WatchlistName Etf"}>
+                    {this.renderShowLink()} {Watchlist.toWatchlistLabel(watchlist)}{this.renderRefreshLink()}</h2>
+                {this.renderTable()}
+                {this.renderEtfsChart()}
+            </div>
+        }
 
-        const refreshLink = this.props.isPreset && this.props.isExpanded ?
-            <span className="refresh">
-                <i className="fa fa-refresh" onClick={() => this.props.onRefreshYahooHandler(watchlist)}/> Yahoo
-            </span> : ''
-
-        const refreshRatiosLink = this.props.isPreset && this.props.isExpanded ?
+        //Stock rendering
+        const refreshRatiosLink = isPreset && isExpanded ?
             <span className="refresh">
                 <i className="fa fa-refresh refreshRatios"
-                   onClick={() => this.props.onRefreshMorningstarClickHandler(watchlist)}/> MorningStar
+                   onClick={() => onRefreshMorningstarClickHandler(watchlist)}/> MorningStar
             </span> : ''
 
-        const showLink = this.props.isPreset ?
-            <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(watchlist)}/> : ''
-
         let checkboxesSpan
-        if(this.props.isExpanded && !this.props.isEtf) {
+        if (isExpanded) {
             const visibleTags = Watchlist.VISIBILITY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
-            checkboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>;
+            checkboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>
         }
 
         return <div
             className="Watchlist"
             key={watchlist}>
-            <h2 className={"WatchlistName " + (this.props.isEtf ? "Etf" : "Stock")}>
-                {showLink} {Watchlist.toWatchlistLabel(watchlist)}{refreshLink}{refreshRatiosLink} {checkboxesSpan}</h2>
-            {table}
-            {charts}
+            <h2 className={"WatchlistName Stock"}>
+                {this.renderShowLink()} {Watchlist.toWatchlistLabel(watchlist)}{this.renderRefreshLink()}{refreshRatiosLink} {checkboxesSpan}</h2>
+            {this.renderTable()}
+            {this.renderCompanyCharts()}
         </div>
     }
 
+    renderTable() {
+        if (!this.props.isExpanded) {
+            return ''
+        } else {
+            const {data, headerData, headerLabels} = this.prepareData()
+
+            return <WatchlistTable
+                data={data}
+                isEtf={this.props.isEtf}
+                headerLabels={headerLabels}
+                headerData={headerData}
+                visibleTags={this.state.visibleTags}
+                onStockClickHandler={this.stockOnClickHandler}
+            />
+        }
+    }
+
+    private renderShowLink() {
+        return this.props.isPreset ?
+            <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(this.props.watchlist)}/> : ''
+    }
+
+    private renderRefreshLink() {
+        return this.props.isPreset && this.props.isExpanded ?
+            <span className="refresh">
+                <i className="fa fa-refresh" onClick={() => this.props.onRefreshYahooHandler(this.props.watchlist)}/> Yahoo
+            </span> : ''
+    }
+
+    private prepareData(): { data: CellData[][], headerData: CellData[], headerLabels: string[]} {
+
+        let data: CellData[][] = []
+        let headerData: CellData[] = []
+        let headerLabels: string[] = []
+
+        if (this.props.isEtf) {
+
+            const etfs = this.props.etfsResult.etfs
+            let averages = {...this.props.etfsResult.averages}
+
+            averages = this.stockAnalystService.filterDisplayableEtfStats(averages)
+
+            headerLabels = Object.keys(averages)
+            headerData = Object.keys(averages).map(key => { return {value: averages[key]}})
+
+            const labels = this.stockAnalystService.getScoreLabels(this.props.isEtf)
+            labels.forEach(label => this.addHeader(headerLabels, headerData, label))
+
+            for(const etf of etfs){
+                let etfClone = {...etf}
+                etfClone = this.stockAnalystService.filterDisplayableEtfStats(etfClone)
+                const rowData = Object.keys(etfClone).map(key => { return {value: etfClone[key]}})
+                data.push(rowData)
+            }
+        } else {
+            const stocks = this.props.stocksResult.stocks
+            let flattenStockData
+
+            for(const stock of stocks){
+                let stockClone = {...stock}
+                stockClone = this.stockAnalystService.filterDisplayableStockStats(stockClone)
+                flattenStockData = this.stockAnalystService.flattenStockData(stockClone)
+                const rowData = Object.keys(flattenStockData).map(key => { return {value: flattenStockData[key]}})
+                data.push(rowData)
+            }
+
+            headerLabels = Object.keys(flattenStockData)
+
+            const labels = this.stockAnalystService.getScoreLabels(this.props.isEtf)
+            labels.forEach(label => this.addHeader(headerLabels, headerData, label))
+
+        }
+
+        data = data.map(row => this.stockTaggingService.tagRow(row, this.props.isEtf))
+        data = data.map(row => this.stockAnalystService.scoreRow(headerData, row, this.props.isEtf))
+
+        return {data, headerData, headerLabels}
+    }
+
+
+    addHeader(headerLabels: string[], headerData: CellData[], label: string) {
+        headerLabels.push(label)
+        headerData.push({value:0})
+    }
+
     private toVisibleTagCheckbox(tag: CellTag) {
-        let tagName = CellTag[tag];
+        let tagName = CellTag[tag]
         return <span className="VisibleTag" key={tagName}>{tagName} <input
             name={tagName}
             type="checkbox"
@@ -135,14 +223,14 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                     return {visibleTags: newHiddenTags}
                 })
             }}/>
-            </span>;
+            </span>
     }
 
     renderEtfsChart() {
         if (!this.props.isExpanded || this.state.etfsChartSymbols.length === 0) {
             return ''
         }
-        const chartData = this.prepareEtfsChartData(this.props.result.stocks);
+        const chartData = this.prepareEtfsChartData(this.props.etfsResult.etfs)
         return <div className={!chartData ? 'hidden' : ''}>
             <EtfsPriceChart
                 data={chartData}
@@ -151,20 +239,21 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         </div>
     }
 
-    renderCompanyCharts(priceEpsData?: PriceEpsDataRaw[], ratiosData?: StockRatiosPeriods) {
+    renderCompanyCharts() {
         if (!this.props.isExpanded) {
             return ''
         }
+        const ratiosData = this.state.ratiosData
         const peRatio = 15
-        const chartData = this.prepareEpsChartData(priceEpsData, peRatio);
+        const chartData = this.prepareEpsChartData(this.state.priceEpsData, peRatio)
         const priceEpsChart = <PriceEpsChart
             data={chartData}
-            description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>;
+            description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
 
         let financialRatiosCharts
         let otherRatiosCharts
-        if(ratiosData) {
-            const periods = Object.keys(ratiosData);
+        if (ratiosData) {
+            const periods = Object.keys(ratiosData)
 
             financialRatiosCharts = Watchlist.getChartFinancialRatios().map(ratio => {
                 const chartData: RatioChartData[] = periods.map(period => {
@@ -172,7 +261,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                         date: period,
                         value: ratiosData[period][ratio] as number
                     }
-                });
+                })
                 return <RatioChart
                     key={ratio}
                     data={chartData}
@@ -185,14 +274,13 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                         date: period,
                         value: ratiosData[period][ratio] as number
                     }
-                });
+                })
                 return <RatioChart
                     key={ratio}
                     data={chartData}
                     label={`${OtherChartRatios[ratio]}`}/>
             })
         }
-
 
 
         return <div>
@@ -229,41 +317,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return enumNames
     }
 
-    getStock(result: StockAnalysisResult | EtfsAnalysisResult, isEtf: boolean): Stock[] {
-        return this.props.isEtf ?
-            (result as EtfsAnalysisResult).stocks :
-            (result as StockAnalysisResult).stocks.map(s => s.stock)
-    }
-
-    renderTable(result?: StockAnalysisResult | EtfsAnalysisResult) {
-        if (!this.props.isExpanded) {
-            return ''
-        } else {
-            const stocksInfo: Stock[] = this.getStock(result, this.props.isEtf)    //one more level of nesting
-            const headers = this.toHeaderData(result.averages, this.props.isEtf);
-            const rawTableData = this.toTableData(stocksInfo);
-            const data: CellData[][] = rawTableData
-                .map(row => row.map(cell => {
-                    return {value: cell}
-                }))
-
-            const taggedData = data.map(row => this.stockTaggingService.tagRow(row, this.props.isEtf))
-            const scoredData = taggedData.map(row => this.stockAnalystService.scoreRow(headers[1], row, this.props.isEtf))
-
-            return <WatchlistTable
-                data={scoredData}
-                isEtf={this.props.isEtf}
-                headerLabels={headers[0]}
-                headerAverages={headers[1]}
-                visibleTags={this.state.visibleTags}
-                onStockClickHandler={this.stockOnClickHandler}
-            />
-        }
-    }
 
     stockOnClickHandler = (stockSymbol: string) => {
         if (this.props.isEtf) {
-            let updatedSymbols;
+            let updatedSymbols
             if (this.state.etfsChartSymbols.includes(stockSymbol)) {
                 updatedSymbols = this.state.etfsChartSymbols.filter(s => s !== stockSymbol)
             } else {
@@ -275,64 +332,35 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 }
             })
         } else {
-            let clickedStockWithRatios = this.props.result.stocks
-                .filter(stock => stock.stock.symbol === stockSymbol)[0];
-            const priceEpsData = clickedStockWithRatios.stock.chartData
-            const ratiosData = clickedStockWithRatios.stockRatiosTimeline.periods
-
-            //close the graph on a second click
-            if (this.state.priceEpsData === priceEpsData) {
-                this.setState(state => {
-                    return {
-                        priceEpsData: undefined
-                    }
-                })
-            } else {
-                this.setState(state => {
-                    return {
-                        priceEpsData,
-                        ratiosData,
-                        chartLabel: stockSymbol as string
-                    }
-                })
-            }
+            //TODO
+            // let clickedStockWithRatios = this.props.result.stocks
+            //     .filter(stock => stock.stock.symbol === stockSymbol)[0]
+            // const priceEpsData = clickedStockWithRatios.stock.chartData
+            // const ratiosData = clickedStockWithRatios.stockRatiosTimeline.periods
+            //
+            // //close the graph on a second click
+            // if (this.state.priceEpsData === priceEpsData) {
+            //     this.setState(state => {
+            //         return {
+            //             priceEpsData: undefined
+            //         }
+            //     })
+            // } else {
+            //     this.setState(state => {
+            //         return {
+            //             priceEpsData,
+            //             ratiosData,
+            //             chartLabel: stockSymbol as string
+            //         }
+            //     })
+            // }
         }
     }
 
-    toHeaderData(averages: Stock, isEtf: boolean): any[][] {
-        averages = this.stockAnalystService.filterDisplayableStats(averages, isEtf)
 
-        const headersRow = Object.keys(averages)
-        const averagesRow = Object.keys(averages).map(key => averages[key])
+    private prepareEtfsChartData(etfs: Etf[]): EtfsChartData[] | undefined {
 
-        const labels = this.stockAnalystService.getScoreLabels(isEtf);
-        labels.forEach( label => this.addHeader(headersRow, averagesRow, label))
-
-        return [
-            headersRow,
-            averagesRow
-        ]
-    }
-
-    addHeader(headersRow: string[], averagesRow: number[], label: string) {
-        headersRow.push(label)
-        averagesRow.push(0)
-    }
-
-    toTableData(stocks: Stock[]): any[][] {
-        let rows = [];
-        for (let stock of stocks) {
-            stock = this.stockAnalystService.filterDisplayableStats(stock, this.props.isEtf)
-            const rowValues = Object.keys(stock)
-                .map(key => stock[key] ? stock[key] : '')
-            rows.push(rowValues);
-        }
-        return rows;
-    }
-
-    private prepareEtfsChartData(stocks: Stock[]): EtfsChartData[] | undefined {
-
-        const chartStocks = stocks.filter(s => this.state.etfsChartSymbols.includes(s.symbol))
+        const chartStocks = etfs.filter(s => this.state.etfsChartSymbols.includes(s.symbol))
 
         const allDates = Array.from(new Set(chartStocks.flatMap(s => s.chartData.map(d => d.date))))
             .sort()
@@ -344,7 +372,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 date: moment(allDates[i] * 1000).format('YYYY-MM-DD')
             }
             for (const stock of chartStocks) {
-                let chartDataAtDate = stock.chartData.filter(d => d.date === date)[0];
+                let chartDataAtDate = stock.chartData.filter(d => d.date === date)[0]
                 if (chartDataAtDate) {
                     dataPoint[stock.symbol] = chartDataAtDate.price
                 }
@@ -358,8 +386,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     private prepareEpsChartData(priceEpsData: PriceEpsDataRaw[], peRatio: number): PriceEpsData[] | undefined {
         if (!priceEpsData) return undefined
 
-        const round1Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined;
-        const round2Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined;
+        const round1Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined
+        const round2Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined
 
         //remove outliers, sometime a price jumps from 10 to 1000, e.g. RYA stock and that messes up the chart scale
         for (let i = 1; i < priceEpsData.length; i++) {
@@ -369,11 +397,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         }
 
         return priceEpsData.map(data => {
-            const price = round1Dec(data.price);
-            const epsQuarterly = round1Dec(data.epsQuarterly * peRatio * 4);
-            const epsAnnually = round1Dec(data.epsAnnually * peRatio);
-            const peQuarterly = round2Dec(data.peQuarterly);
-            const peAnnually = round2Dec(data.peAnnually);
+            const price = round1Dec(data.price)
+            const epsQuarterly = round1Dec(data.epsQuarterly * peRatio * 4)
+            const epsAnnually = round1Dec(data.epsAnnually * peRatio)
+            const peQuarterly = round2Dec(data.peQuarterly)
+            const peAnnually = round2Dec(data.peAnnually)
             const processedData: PriceEpsData = {
                 date: moment(data.date * 1000).format('YYYY-MM-DD'),
                 price,
@@ -397,9 +425,9 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                     case 'GB':
                     case 'CHF':
                     case 'ETF':
-                        return g;
+                        return g
                     default:
-                        return g[0].toUpperCase().concat(g.substr(1).toLowerCase());
+                        return g[0].toUpperCase().concat(g.substr(1).toLowerCase())
                 }
 
             })

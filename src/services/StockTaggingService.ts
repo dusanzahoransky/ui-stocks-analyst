@@ -1,7 +1,7 @@
 import {StockFields} from "../model/StockFields";
-import {EtfTableColumn} from "../model/EtfTableColumn";
-import {CellTag} from "../model/CellTag";
-import {CellData} from "../model/CellData";
+import {EtfFields} from "../model/EtfFields";
+import {CellTag} from "../model/table/CellTag";
+import {CellData} from "../model/table/CellData";
 
 export class StockTaggingService {
 
@@ -19,17 +19,18 @@ export class StockTaggingService {
     }
 
     static tagStockColumn(column: number): CellTag[] {
-        switch (column) {
-            case StockFields.quarterEnds:
-                return [CellTag.hidden]
-            case StockFields.yearEnds:
-                return [CellTag.hidden]
-            case StockFields.chartData:
-                return [CellTag.hidden]
+        //TODO
+        return []
 
+        switch (column) {
             case StockFields.companyName:
                 return [CellTag.companyName]
-            case StockFields.date:
+            case StockFields.chartLastUpdated:
+            case StockFields.financialsLastUpdated:
+            case StockFields.analysisLastUpdated:
+            case StockFields.statisticsLastUpdated:
+            case StockFields.holdersLastUpdated:
+            case StockFields.krfLastUpdated:
                 return [CellTag.date]
             case StockFields.symbol:
                 return [CellTag.symbol]
@@ -594,19 +595,19 @@ export class StockTaggingService {
 
     static tagEtfColumn(column: number): CellTag[] {
         switch (column) {
-            case EtfTableColumn.chartData:
+            case EtfFields.chartData:
                 return [CellTag.hidden]
-            case EtfTableColumn.companyName:
+            case EtfFields.companyName:
                 return [CellTag.companyName]
-            case EtfTableColumn.date:
+            case EtfFields.date:
                 return [CellTag.date]
-            case EtfTableColumn.symbol:
+            case EtfFields.symbol:
                 return [CellTag.symbol]
-            case EtfTableColumn.price:
+            case EtfFields.price:
                 return [CellTag.price]
-            case EtfTableColumn.change:
+            case EtfFields.change:
                 return [CellTag.change]
-            case EtfTableColumn.asOfDate:
+            case EtfFields.asOfDate:
                 return [CellTag.date, CellTag.lastReport]
         }
     }

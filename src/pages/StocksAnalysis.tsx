@@ -1,11 +1,12 @@
 import React from "react";
 import {StockAnalystService} from "../services/StockAnalystService";
-import {StockAnalysisResult} from "../model/StockAnalysisResult";
 import './StocksAnalysis.css';
 import {Watchlist} from "../components/Watchlist";
 import {BackendError} from "../model/BackendError";
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {StickerPriceCalculator} from "../components/StickerPriceCalculator";
+import {Stock} from "../model/Stock";
+import {StocksAnalysisResult} from "../model/StocksAnalysisResult";
 
 export interface StocksAnalysisProps {
 
@@ -23,7 +24,8 @@ interface WatchlistResult {
     isPreset: boolean,
     isEtf: boolean,
     watchlist: string,
-    analysisResult: StockAnalysisResult | EtfsAnalysisResult
+    stocksAnalysisResult: StocksAnalysisResult
+    etfsAnalysisResult: EtfsAnalysisResult
 }
 
 export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksAnalysisState> {
@@ -42,26 +44,26 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     }
 
     private readonly STOCK_WATCHLISTS = [
-        /* 'TEST',*/
-        'TO_CHECK',
-        'ALL_INVESTED',
-
-        'US_ALL',
-        'US_INVESTED_IN',
-
-        'EU_ALL',
-        'EU_INVESTED_IN',
-
-        'GB_ALL',
-        'GB_INVESTED_IN',
-
-        'AU_ALL',
-        'AU_INVESTED_IN',
-
-        'AIRLINES',
-        'TECH',
-        'NASDAQ_100',
-        'DIVIDENDS',
+        'TEST',
+        // 'TO_CHECK',
+        // 'ALL_INVESTED',
+        //
+        // 'US_ALL',
+        // 'US_INVESTED_IN',
+        //
+        // 'EU_ALL',
+        // 'EU_INVESTED_IN',
+        //
+        // 'GB_ALL',
+        // 'GB_INVESTED_IN',
+        //
+        // 'AU_ALL',
+        // 'AU_INVESTED_IN',
+        //
+        // 'AIRLINES',
+        // 'TECH',
+        // 'NASDAQ_100',
+        // 'DIVIDENDS',
     ];
 
     private readonly ETF_WATCHLISTS = [
@@ -87,10 +89,9 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     ];
 
     componentDidMount() {
-        // this.loadWatchlistData("TEST", false)
         this.STOCK_WATCHLISTS
-            // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
-            .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
+            .forEach(watchlist => this.loadWatchlistData(watchlist, false))
+            // .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
         this.ETF_WATCHLISTS
             // .forEach(watchlist => this.loadWatchlistData(watchlist, true, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, true))
@@ -109,14 +110,17 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             console.error(`Failed to load ${watchlist}: ${error.message}`)
             return
         }
-        const analysisResult = response as StockAnalysisResult | EtfsAnalysisResult;
+
+        const etfsAnalysisResult = isEtf? response as EtfsAnalysisResult : undefined
+        const stocksAnalysisResult = !isEtf? { stocks: response} as StocksAnalysisResult : undefined
 
         const watchlistResult: WatchlistResult = {
             isLoaded: true,
             isPreset: true,
             isEtf,
             watchlist,
-            analysisResult
+            stocksAnalysisResult,
+            etfsAnalysisResult,
         }
 
         this.setState((state) => {
@@ -134,7 +138,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             isPreset: true,
             isEtf,
             watchlist,
-            analysisResult: undefined
+            etfsAnalysisResult: undefined,
+            stocksAnalysisResult: undefined
         }
 
         this.setState((state) => {
@@ -197,8 +202,6 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             return <div>Loading analysis result...</div>;
         }
 
-        //TODO input to scale PE ration
-
         const allResults = this.state.etfsResults.concat(this.state.results.concat(this.state.customResults));
         const watchlists = []
 
@@ -220,7 +223,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                 watchlists.push(
                     <Watchlist
                         key={watchlistResult.watchlist}
-                        result={watchlistResult.analysisResult}
+                        etfsResult={watchlistResult.etfsAnalysisResult}
+                        stocksResult={watchlistResult.stocksAnalysisResult}
                         watchlist={watchlistResult.watchlist}
                         onRefreshYahooHandler={onRefreshClickHandler}
                         onRefreshMorningstarClickHandler={onRefreshRatiosClickHandler}

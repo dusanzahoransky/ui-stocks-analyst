@@ -1,17 +1,17 @@
-import React from "react";
-import 'font-awesome/css/font-awesome.min.css';
-import {FormattingUtils} from "../utils/FormattingUtils";
-import './WatchlistTable.css';
-import {StockFields} from "../model/StockFields";
-import {CellData} from "../model/CellData";
-import {EtfTableColumn} from "../model/EtfTableColumn";
-import {StockTaggingService} from "../services/StockTaggingService";
-import {CellTag} from "../model/CellTag";
-import {Watchlist} from "./Watchlist";
+import React from "react"
+import 'font-awesome/css/font-awesome.min.css'
+import {FormattingUtils} from "../utils/FormattingUtils"
+import './WatchlistTable.css'
+import {StockFields} from "../model/StockFields"
+import {CellData} from "../model/table/CellData"
+import {EtfFields} from "../model/EtfFields"
+import {StockTaggingService} from "../services/StockTaggingService"
+import {CellTag} from "../model/table/CellTag"
+import {Watchlist} from "./Watchlist"
 
 export interface TableProps {
     headerLabels: string[]
-    headerAverages: number[]
+    headerData: CellData[]
     data: CellData[][]
     isEtf: boolean
     sortField?: number
@@ -31,7 +31,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     private SORT_DEFAULT_ASC = true
 
     constructor(props: Readonly<TableProps>) {
-        super(props);
+        super(props)
         this.state = {
             selectedRow: undefined,
             sortAsc: this.SORT_DEFAULT_ASC,
@@ -46,40 +46,40 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                 {this.renderTable()}
             </div>
         )
-    };
+    }
 
     renderTable() {
         return (
             <table>
-                {this.renderHeader(this.props.headerLabels, this.props.headerAverages)}
-                {this.renderBody(this.state.sortedData, this.props.headerAverages)}
+                {this.renderHeader(this.props.headerLabels, this.props.headerData)}
+                {this.renderBody(this.state.sortedData, this.props.headerData)}
             </table>
 
         )
     }
 
-    renderHeader(headerLabels: string[], headerAverages: number[]) {
+    renderHeader(headerLabels: string[], headerAverages: CellData[]) {
         const labelsRow = headerLabels.map((field, column) => {
-                let cellTags = StockTaggingService.tagColumn(column, this.props.isEtf);
+                let cellTags = StockTaggingService.tagColumn(column, this.props.isEtf)
                 return <th key={column}
                            className={'label ' + this.toClasses(cellTags, column, this.props.isEtf)}
                            onClick={() => this.setSortedField(column)}>
                     <i className="fa fa-sort"/>
                     {FormattingUtils.toFieldLabel(field)}
-                </th>;
+                </th>
             }
-        );
+        )
         const averagesRow = headerAverages.map((value, column) => {
-                let cellTags = StockTaggingService.tagColumn(column, this.props.isEtf);
+                let cellTags = StockTaggingService.tagColumn(column, this.props.isEtf)
                 return <th key={column}
                            className={this.toClasses(cellTags, column, this.props.isEtf)}>
                     {
                         this.props.isEtf ?
-                            FormattingUtils.formatEtf(headerAverages, value, column) :
-                            FormattingUtils.formatStock(headerAverages, value, column)
-                    }</th>;
+                            FormattingUtils.formatEtf(headerAverages, value.value, column) :
+                            FormattingUtils.formatStock(headerAverages, value.value, column)
+                    }</th>
             }
-        );
+        )
 
         return (
             <thead>
@@ -102,8 +102,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     private static sortData(row1: CellData[], row2: CellData[], column: number, asc: boolean): number {
-        let cell1 = row1[column];
-        let cell2 = row2[column];
+        let cell1 = row1[column]
+        let cell2 = row2[column]
 
         if (!cell1) {
             return asc ? -1 : 1
@@ -117,13 +117,13 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         if (cell1.value < cell2.value) {
             return asc ? -1 : 1
         }
-        return 0;
+        return 0
     }
 
     renderBody(data: CellData[][], averages: any[]) {
         const rows = data.map((rowData, rowsEtf) =>
             this.renderRow(rowData, rowsEtf, averages)
-        );
+        )
         return (
             <tbody>{rows}</tbody>
         )
@@ -142,7 +142,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                 <span
                     className={"score"}>{data.score && typeof data.score === 'number' ? data.score.toFixed(0) : ''}</span>
             </td>
-        );
+        )
         return (
             <tr key={row} className={this.rowClass(row)}
                 onClick={() => this.setSelectedRow(row)}>{rowValues}</tr>
@@ -154,13 +154,13 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     dataCellClass(rowData: any[], data: CellData, average: any, column: number): string {
-        let classes = [];
+        let classes = []
 
         if (data.additionalInfo !== undefined) {
             classes.push('additionalInfo')
         }
 
-        let score = Number.isNaN(data.score) ? 0 : data.score;
+        let score = Number.isNaN(data.score) ? 0 : data.score
         if (score) {
             if (score < -10) {
                 classes.push('red')
@@ -176,13 +176,13 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         classes.push(this.toClasses(data.tags, column, this.props.isEtf))
 
         if (this.props.isEtf) {
-            if (column === EtfTableColumn.change) {
+            if (column === EtfFields.change) {
                 if (data.value < 0) {
                     classes.push('redText')
                 } else {
                     classes.push('greenText')
                 }
-            } else if (column === EtfTableColumn.score) {   //Score
+            } else if (column === EtfFields.score) {   //Score
                 if (data.value < 0) {
                     classes.push('redText')
                 } else {
@@ -207,7 +207,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             }
         }
 
-        return classes.join(' ');
+        return classes.join(' ')
     }
 
     private setSelectedRow(row: number) {
@@ -219,22 +219,22 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     private toClasses(cellTags: CellTag[], column: number, isEtf: boolean): string {
-        if(!cellTags){
+        if (!cellTags) {
             return ''
         }
-        if(!this.isVisible(column, isEtf)){
+        if (!this.isVisible(column, isEtf)) {
             cellTags = cellTags.concat(CellTag.hidden)
         }
-        return cellTags.map(tag => CellTag[tag]).join(' ');
+        return cellTags.map(tag => CellTag[tag]).join(' ')
     }
 
     private isVisible(column: number, isEtf: boolean): boolean {
-        if(isEtf){
+        if (isEtf) {
             return !StockTaggingService.tagEtfColumn(column).includes(CellTag.hidden)
         }
 
         const colTags = StockTaggingService.tagStockColumn(column)
-        const canToggleVisibility = colTags.some(tag => Watchlist.VISIBILITY_TOGGLES.includes(tag));  //do not hide cols which visibility can not be toggled by a checkbox
+        const canToggleVisibility = colTags.some(tag => Watchlist.VISIBILITY_TOGGLES.includes(tag))  //do not hide cols which visibility can not be toggled by a checkbox
         return !canToggleVisibility || this.props.visibleTags.some(hiddenTag => colTags.includes(hiddenTag))
     }
 }
