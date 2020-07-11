@@ -12,7 +12,7 @@ export interface EtfsPriceChartProps {
 
 export interface EtfsPriceChartState {
     /**
-     * A singe symbol latest price will be chosen and all other symbols, all prices will be multiplied by a constant number,so their latest price will match the chosen symbol latest price. Which will allow growth over the time comparison.
+     * A singe symbol latest price will be chosen and all other symbols, all prices will be multiplied by a constant number,so their latest price will match the chosen symbol latest price. Which will allow yearlyGrowth over the time comparison.
      */
     consolidatePrice?: boolean
 }

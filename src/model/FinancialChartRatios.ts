@@ -16,7 +16,7 @@ export enum FinancialChartRatios {
         operatingMargin?: number,
         capSpending?: number,
         revenue?: number,
-        shares?: number,
+        stock?: number,
         workingCapital?: number,*/
 
 }

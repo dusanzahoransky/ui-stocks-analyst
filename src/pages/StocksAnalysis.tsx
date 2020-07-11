@@ -5,7 +5,6 @@ import {Watchlist} from "../components/Watchlist";
 import {BackendError} from "../model/BackendError";
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {StickerPriceCalculator} from "../components/StickerPriceCalculator";
-import {Stock} from "../model/Stock";
 import {StocksAnalysisResult} from "../model/StocksAnalysisResult";
 
 export interface StocksAnalysisProps {

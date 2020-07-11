@@ -8,7 +8,6 @@ import {PriceEpsData} from "../model/PriceEpsData"
 import "./Watchlist.css"
 import 'font-awesome/css/font-awesome.min.css'
 import moment from "moment"
-import {Stock} from "../model/Stock"
 import {EtfsChartData} from "../model/EtfsChartData"
 import {EtfsPriceChart} from "./EtfsPriceChart"
 import {StockRatiosPeriods} from "../model/StockRatiosPeriods"
@@ -64,7 +63,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     private readonly stockAnalystService: StockAnalystService
     private readonly stockTaggingService: StockTaggingService
 
-    public static readonly VISIBILITY_TOGGLES = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.financials, CellTag.growth, CellTag.rule1, CellTag.value]
+    public static readonly VISIBILITY_TOGGLES = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.financials, CellTag.yearlyGrowth, CellTag.rule1, CellTag.value]
 
     constructor(props: Readonly<WatchlistProps>) {
         super(props)
@@ -77,7 +76,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             // etfsChartSymbols: ['VTS', 'VUSA'],
             etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true,
-            visibleTags: [CellTag.value]
+            // visibleTags: [CellTag.value]
+            visibleTags: Watchlist.VISIBILITY_TOGGLES
         }
         this.stockAnalystService = new StockAnalystService()
         this.stockTaggingService = new StockTaggingService()
@@ -150,7 +150,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             </span> : ''
     }
 
-    private prepareData(): { data: CellData[][], headerData: CellData[], headerLabels: string[]} {
+    private prepareData(): { data: CellData[][], headerData: CellData[], headerLabels: string[] } {
 
         let data: CellData[][] = []
         let headerData: CellData[] = []
@@ -164,26 +164,32 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             averages = this.stockAnalystService.filterDisplayableEtfStats(averages)
 
             headerLabels = Object.keys(averages)
-            headerData = Object.keys(averages).map(key => { return {value: averages[key]}})
+            headerData = Object.keys(averages).map(key => {
+                return {value: averages[key]}
+            })
 
             const labels = this.stockAnalystService.getScoreLabels(this.props.isEtf)
             labels.forEach(label => this.addHeader(headerLabels, headerData, label))
 
-            for(const etf of etfs){
+            for (const etf of etfs) {
                 let etfClone = {...etf}
                 etfClone = this.stockAnalystService.filterDisplayableEtfStats(etfClone)
-                const rowData = Object.keys(etfClone).map(key => { return {value: etfClone[key]}})
+                const rowData = Object.keys(etfClone).map(key => {
+                    return {value: etfClone[key]}
+                })
                 data.push(rowData)
             }
         } else {
             const stocks = this.props.stocksResult.stocks
             let flattenStockData
 
-            for(const stock of stocks){
+            for (const stock of stocks) {
                 let stockClone = {...stock}
                 stockClone = this.stockAnalystService.filterDisplayableStockStats(stockClone)
                 flattenStockData = this.stockAnalystService.flattenStockData(stockClone)
-                const rowData = Object.keys(flattenStockData).map(key => { return {value: flattenStockData[key]}})
+                const rowData = Object.keys(flattenStockData).map(key => {
+                    return {value: flattenStockData[key]}
+                })
                 data.push(rowData)
             }
 
@@ -203,7 +209,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     addHeader(headerLabels: string[], headerData: CellData[], label: string) {
         headerLabels.push(label)
-        headerData.push({value:0})
+        headerData.push({value: 0})
     }
 
     private toVisibleTagCheckbox(tag: CellTag) {

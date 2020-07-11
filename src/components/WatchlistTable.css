@@ -111,7 +111,7 @@ th.label {
 td.companyName{
     font-size: x-small;
     position: sticky;
-    left: 55px;
+    left: 53px;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
@@ -126,7 +126,7 @@ td.companyName{
 
 td.currentPrice {
     position: sticky;
-    left: 215px;
+    left: 205px;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
