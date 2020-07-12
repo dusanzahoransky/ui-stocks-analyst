@@ -31,74 +31,8 @@ th.label {
     height: 80px;
 }
 
-th.stat {
-    background: #f0f3ef;
-}
-
-th.currentPriceStat{
-    background: #f0f3ff;
-}
-
-th.stock {
-    background: #f0e8ff;
-}
-
-th.short {
-    background: #f0f3f3;
-}
-
-th.dividents {
-    background: #f4f4ff;
-}
-th.income {
-    background: #e0e3ef;
-}
-th.revenue {
-    background: #f0f3ef;
-}
-th.pe {
-    background: #f0f3ef;
-}
-th.eps {
-    background: #d0f3ff;
-}
-th.cash {
-    background: #e0e3ef;
-}
-th.inventory {
-    background: #f0f3ef;
-}
-th.liabilities {
-    background: #e0e3ef;
-}
-th.equity {
-    background: #d0f3ff;
-}
-th.liabilitiesToEquity {
-    background: #f4f4ff;
-}
-
-th.cg-roic {
-    background: #f0e8ff;
-}
-
-th.cg-revenue{
-    background: #f0f3ff;
-}
-
-th.cg-eps {
-    background: #f0e8ff;
-}
-
-th.cg-bps {
-    background: #f0f3f3;
-}
-
-th.cg-cash {
-    background: #f4f4ff;
-}
 th.totalScore {
-    background: #d6ffde;
+    background-image: linear-gradient(to top right, #f0f3ff , #d6ffde);
 }
 
 th.label {
@@ -114,6 +48,22 @@ td.companyName{
     left: 53px;
     background: #f0f3ff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+th.value{
+    background-image: linear-gradient(to top right, #f0f3ff , #e8ffde);
+}
+
+th.growth.value{
+    background-image: linear-gradient(to top right, #e8ffde , #fffad4);
+}
+
+th.growth{
+    background-image: linear-gradient(to top right, #f0f3ff , #fffad4);
+}
+
+th.rule1 {
+    background-image: linear-gradient(to top right, #f0f3ff , #dbe4f8);
 }
 
 .date{
@@ -138,15 +88,15 @@ td.lastReport {
 }
 
 .lightGreen {
-    background: #e5ffe3;
+    background-image: linear-gradient(to top right, #ffffff , #e5ffe3);
 }
 
 .lightRed {
-    background: #ffe6dc;
+    background-image: linear-gradient(to top right, #ffffff , #ffe6dc);
 }
 
 .green {
-    background: #acffb2;
+    background-image: linear-gradient(to top right, #ffffff , #7dd282);
 }
 
 .greenText {
@@ -162,7 +112,7 @@ td.lastReport {
 }
 
 .red {
-    background: #ff6d68;
+    background-image: linear-gradient(to top right, #ffffff , #ff6d68);
 }
 
 .additionalInfo {

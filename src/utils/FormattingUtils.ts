@@ -60,6 +60,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel[0].toUpperCase() + fieldLabel.substr(1)
 
         fieldLabel = fieldLabel.replace(/ P$/, ' %')
+        fieldLabel = fieldLabel.replace('Profit Margin', 'Net margin')
         fieldLabel = fieldLabel.replace('Book Value Per Share', 'BPS')
         fieldLabel = fieldLabel.replace('Free Cash Flow Per Share', 'FCPS')
         fieldLabel = fieldLabel.replace('Roic 1Y', 'ROIC 1Y')

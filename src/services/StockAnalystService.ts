@@ -73,61 +73,13 @@ export class StockAnalystService {
                 value: rule1Score
             })
 
-            cellData.push({value: StockAnalystService.calcValueScore(cellData)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.value)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.growth)})
         }
 
         return cellData
     }
 
-    /**
-     * Calculate value investing score
-     */
-    private static calcValueScore(data: CellData[]): number {
-        let totalScore = 0
-
-        for (let column = 0; column < data.length; column++) {
-            const value = data[column].value as number
-            if (!value) {
-                continue
-            }
-            let score = undefined
-            switch (column) {
-                case StockFields.trailingPE:
-                    if (value < 0) {
-                        score = -100
-                    }
-                    score = (10 - value) * 5
-                    break;
-                case StockFields.priceBook:
-                    score = (2 - value) * 3
-                    break;
-                case StockFields.priceToSalesTrailing12Months:
-                    score = (3 - value) * 2
-                    break;
-                case StockFields.roicP1:
-                    score = (value - 10) * 5
-                    score = Math.min(score, 100)
-                    score = Math.max(score, -100)
-                    break;
-                case StockFields.roicP2:
-                    score = (value - 10) * 3
-                    score = Math.min(score, 100)
-                    score = Math.max(score, -100)
-                    break;
-                case StockFields.roicP3:
-                    score = (value - 10)
-                    score = Math.min(score, 100)
-                    score = Math.max(score, -100)
-                    break;
-            }
-            if (score) {
-                totalScore += score
-                data[column].score = score
-            }
-        }
-
-        return totalScore
-    }
 
     private static calcTotal(data: CellData[], filterTag: CellTag): number {
         let taggedData = data
@@ -252,41 +204,46 @@ export class StockAnalystService {
         const string: string = dataToScore.value as string
 
         const lastQuarterCoefficient = 3
-        const last2QuartersCoefficient = 2
+        const last2QuartersCoefficient = lastQuarterCoefficient / 2
         const lastYearCoefficient = 5
-        const last2YearCoefficient = 2
-        const last3YearCoefficient = 1
+        const last2YearCoefficient = lastYearCoefficient / 3
+        const last3YearCoefficient = lastYearCoefficient / 5
 
-        const revenueGrowthCoefficient = 0.5
-        const grossIncomeGrowthCoefficient = 0.1
-        const grossMarginGrowthCoefficient = 5
-        const netIncomeGrowthCoefficient = 0.5
-        const profitMarginGrowthCoefficient = 5
-        const ebitGrowthCoefficient = 0.2
-        const operatingIncomeGrowthCoefficient = 0.2
-        const operatingMarginGrowthCoefficient = 1
-        const freeCashFlowGrowthCoefficient = 0.5
-        const operatingCashFlowGrowthCoefficient = 1
+        const revenueGrowthCoefficient = 0.2
+        const grossIncomeGrowthCoefficient = revenueGrowthCoefficient / 5
+        const netIncomeGrowthCoefficient = revenueGrowthCoefficient * 2
+        const ebitGrowthCoefficient = revenueGrowthCoefficient / 5
+        const operatingIncomeGrowthCoefficient = revenueGrowthCoefficient / 5
 
+        const grossMarginGrowthCoefficient = 0.2
+        const profitMarginGrowthCoefficient = grossMarginGrowthCoefficient * 2
+        const operatingMarginGrowthCoefficient = grossMarginGrowthCoefficient
+
+        const grossMarginCoefficient = 0.5
+        const profitMarginCoefficient = grossMarginCoefficient * 2
+        const operatingMarginCoefficient = grossMarginCoefficient
+
+        const operatingCashFlowGrowthCoefficient = 0.3
+        const freeCashFlowGrowthCoefficient = operatingCashFlowGrowthCoefficient
 
         const cashGrowthCoefficient = 0.05
         const inventoryGrowthCoefficient = 0.05
 
         const currentRatioGrowthCoefficient = 1
 
-        const totalShareholdersEquityGrowthCoefficient = 0.1
+        const totalShareholdersEquityGrowthCoefficient = 1
 
-        const totalDebtToEquityCoefficient = 10
-        const totalDebtToEquityGrowthCoefficient = 0.2
-        const nonCurrentLiabilitiesToIncomeCoefficient = 20
-        const nonCurrentLiabilitiesToIncomeGrowthCoefficient = 0.2
+        const totalDebtToEquityCoefficient = 20
+        const totalDebtToEquityGrowthCoefficient = 0.1
+        const nonCurrentLiabilitiesToIncomeCoefficient = 10
+        const nonCurrentLiabilitiesToIncomeGrowthCoefficient = 0.1
 
         const stockGrowthCoefficient = 0.5
         const stockRepurchaseGrowthCoefficient = 1
 
-        const epsGrowthCoefficient = 2
-        const bpsGrowthCoefficient = 1
-        const fcpsGrowthCoefficient = 3
+        const epsGrowthCoefficient = 0.5
+        const bpsGrowthCoefficient = 0.2
+        const fcpsGrowthCoefficient = 0.8
 
         const roicCoefficient = 15
 
@@ -359,7 +316,7 @@ export class StockAnalystService {
                 score = number * 0.1
                 break;
             case StockFields.belowTargetMedianPriceP:
-                score = number * 5
+                score = number * 1
                 break;
             case StockFields.exDividendDate:
                 const daysToExDividend = -moment().diff(string, 'days')
@@ -441,13 +398,13 @@ export class StockAnalystService {
 
 
             case StockFields.grossMargin1:
-                score = (number - 40) * lastYearCoefficient
+                score = (number - 40) * grossMarginCoefficient * lastYearCoefficient
                 break
             case StockFields.grossMargin2:
-                score = (number - 40) * last2YearCoefficient
+                score = (number - 40) * grossMarginCoefficient * last2YearCoefficient
                 break
             case StockFields.grossMargin3:
-                score = (number - 40) * last3YearCoefficient
+                score = (number - 40) * grossMarginCoefficient * last3YearCoefficient
                 break
             case StockFields.grossMarginGrowth1:
                 score = number * grossMarginGrowthCoefficient * lastYearCoefficient
@@ -489,13 +446,13 @@ export class StockAnalystService {
 
 
             case StockFields.operatingMargin1:
-                score = (number - 20) * lastYearCoefficient
+                score = (number - 20) * operatingMarginCoefficient * lastYearCoefficient
                 break
             case StockFields.operatingMargin2:
-                score = (number - 20) * last2YearCoefficient
+                score = (number - 20) * operatingMarginCoefficient * last2YearCoefficient
                 break
             case StockFields.operatingMargin3:
-                score = (number - 20) * last3YearCoefficient
+                score = (number - 20) * operatingMarginCoefficient * last3YearCoefficient
                 break
             case StockFields.operatingMarginGrowth1:
                 score = number * operatingMarginGrowthCoefficient * lastYearCoefficient
@@ -525,19 +482,19 @@ export class StockAnalystService {
                 break
 
             case StockFields.profitMarginPQ1:
-                score = (number - 15) * lastQuarterCoefficient
+                score = (number - 15) * profitMarginCoefficient * lastQuarterCoefficient
                 break
             case StockFields.profitMarginPQ2:
-                score = (number - 15) * last2QuartersCoefficient
+                score = (number - 15) * profitMarginCoefficient * last2QuartersCoefficient
                 break
             case StockFields.profitMarginP1:
-                score = (number - 15) * lastYearCoefficient
+                score = (number - 15) * profitMarginCoefficient * lastYearCoefficient
                 break
             case StockFields.profitMarginP2:
-                score = (number - 15) * last2YearCoefficient
+                score = (number - 15) * profitMarginCoefficient * last2YearCoefficient
                 break
             case StockFields.profitMarginP3:
-                score = (number - 15) * last3YearCoefficient
+                score = (number - 15) * profitMarginCoefficient * last3YearCoefficient
                 break
             case StockFields.profitMarginGrowthQ1:
                 score = number * profitMarginGrowthCoefficient * lastQuarterCoefficient
@@ -766,6 +723,16 @@ export class StockAnalystService {
                 break;
             case StockFields.freeCashFlowPerShareGrowth3:
                 score = number * last3YearCoefficient * fcpsGrowthCoefficient
+                break;
+
+            case StockFields.roicP1:
+                score = (number - 10) * lastYearCoefficient * roicCoefficient
+                break;
+            case StockFields.roicP2:
+                score = (number - 10)  * last2YearCoefficient * roicCoefficient
+                break;
+            case StockFields.roicP3:
+                score = (number - 10)  * last3YearCoefficient * roicCoefficient
                 break;
 
             case StockFields.peQ1:
