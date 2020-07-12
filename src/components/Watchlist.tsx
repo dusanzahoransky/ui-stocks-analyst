@@ -63,7 +63,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     private readonly stockAnalystService: StockAnalystService
     private readonly stockTaggingService: StockTaggingService
 
-    public static readonly VISIBILITY_TOGGLES = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.financials, CellTag.yearlyGrowth, CellTag.rule1, CellTag.value]
+    public static readonly VISIBILITY_TOGGLES = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.timelineGrowth, CellTag.rule1, CellTag.value, CellTag.growth, CellTag.financials]
+    public static readonly VISIBLE_DEFAULTS = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.timelineGrowth, CellTag.rule1, CellTag.value, CellTag.growth]
 
     constructor(props: Readonly<WatchlistProps>) {
         super(props)
@@ -76,7 +77,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             // etfsChartSymbols: ['VTS', 'VUSA'],
             etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true,
-            // visibleTags: [CellTag.value]
+            // visibleTags: []
+            // visibleTags: Watchlist.VISIBLE_DEFAULTS
             visibleTags: Watchlist.VISIBILITY_TOGGLES
         }
         this.stockAnalystService = new StockAnalystService()

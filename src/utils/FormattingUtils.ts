@@ -55,15 +55,15 @@ export class FormattingUtils {
 
     static toFieldLabel(field: string) {
         let fieldLabel = field
-            .replace(/[A-Z0-9]+/g, g  => ' '.concat(g));
+            .replace(/[A-Z0-9\[\]]+/g, g  => ' '.concat(g));
 
         fieldLabel = fieldLabel[0].toUpperCase() + fieldLabel.substr(1)
 
         fieldLabel = fieldLabel.replace(/ P$/, ' %')
         fieldLabel = fieldLabel.replace('Book Value Per Share', 'BPS')
-        fieldLabel = fieldLabel.replace('Free Cash Flow Per Share', 'FreeCashF PS')
-        fieldLabel = fieldLabel.replace('Roic 1Y', 'ROIC yearlyGrowth 1Y')
-        fieldLabel = fieldLabel.replace('Roic 3Y', 'ROIC yearlyGrowth 3Y')
+        fieldLabel = fieldLabel.replace('Free Cash Flow Per Share', 'FCPS')
+        fieldLabel = fieldLabel.replace('Roic 1Y', 'ROIC 1Y')
+        fieldLabel = fieldLabel.replace('Roic 3Y', 'ROIC 3Y')
         fieldLabel = fieldLabel.replace('Average Daily Volume', 'Volume')
         fieldLabel = fieldLabel.replace('One Month', '1M')
         fieldLabel = fieldLabel.replace('Three Month', '3M')
@@ -123,6 +123,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Price Earning Growth', 'PEG')
         fieldLabel = fieldLabel.replace('Avg Dividend Yield', 'Avg Dividend')
         fieldLabel = fieldLabel.replace('Dividend Date', 'Dividend')
+        fieldLabel = fieldLabel.replace('Cash Flow', 'CashF')
 
         return fieldLabel;
     }

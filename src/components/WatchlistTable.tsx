@@ -63,12 +63,12 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                 let cellTags = StockTaggingService.tagColumn(column, this.props.isEtf)
                 return <th key={column}
                            className={'label ' + this.toClasses(cellTags, column, this.props.isEtf)}
-                           onClick={() => this.setSortedField(column)}>
+                           onClick={() => this.setSortedField(column)}
+                           title={this.headerTitle(column, cellTags)}>
                     <i className="fa fa-sort"/>
                     {FormattingUtils.toFieldLabel(field)}
-                    {/* uncomment to see the real stock fields, vs enumerated fields in case of any mismatch
-                    {FormattingUtils.toFieldLabel(field)} || {StockFields[column]}
-                    */}
+                    {/* uncomment to see the real stock fields, vs enumerated fields in case of any mismatch */}
+                    {/*{StockFields[column]*/}
                 </th>
             }
         )
@@ -90,6 +90,13 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             <tr>{averagesRow}</tr>
             </thead>
         )
+    }
+
+    private headerTitle(column: number, cellTags: CellTag[]): string {
+        const title =
+`Field: ${StockFields[column]}
+Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
+        return title
     }
 
     setSortedField(column: number) {
