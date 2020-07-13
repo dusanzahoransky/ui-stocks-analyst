@@ -1,5 +1,5 @@
 import React from "react";
-import {CartesianGrid, Line, LineChart, Tooltip, YAxis} from 'recharts';
+import {CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
 import "./RatioChart.css"
 import {RatioChartData} from "../model/RatioChartData";
 import {FormattingUtils} from "../utils/FormattingUtils";
@@ -33,9 +33,7 @@ export class RatioChart extends React.Component<RatioChartProps> {
                         <CartesianGrid strokeDasharray="2 2" y={0} vertical={false}/>
                         <Line type="monotone" dataKey="value" stroke="#003795" legendType={"plainline"}
                               isAnimationActive={false} label={<RatioChartLabel/>}/>
-                        {/*                    <Line type="monotone" dataKey="epsQuarterly" stroke="#128408" connectNulls={true}
-                          label={<RatioChartLabel data={data}/>} isAnimationActive={false}/>*/}
-                        {/*<XAxis dataKey="date" tickSize={1} tick={{fontSize: 8}} height={8} />*/}
+                        <XAxis dataKey="date" tickSize={1} tick={{fontSize: 8}} height={8} />
                         <YAxis tick={{fontSize: 10}} width={40} type="number" domain={[0, 'auto']} minTickGap={0} tickCount={5} scale={"linear"}
                                tickFormatter={RatioChart.yAxisFormatter()}/>
                         <Tooltip/>

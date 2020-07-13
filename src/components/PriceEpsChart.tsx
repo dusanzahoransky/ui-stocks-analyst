@@ -24,13 +24,13 @@ export class PriceEpsChart extends React.Component<PriceEpsChartProps> {
                     <Line type="monotone" dataKey="price" stroke="#003795" dot={false} legendType={"plainline"}
                           isAnimationActive={false}/>
                     <Line type="monotone" dataKey="epsQuarterly" stroke="#128408" connectNulls={true}
-                          label={<PriceEpsChartLabel data={data}/>} isAnimationActive={false}/>
+                          label={<PriceEpsChartLabel data={data} stroke="#128408"/>} isAnimationActive={false}/>
                     <Line type="monotone" dataKey="epsAnnually" stroke="#128408" connectNulls={true}
-                          label={<PriceEpsChartLabel data={data}/>} isAnimationActive={false}/>
-                    {/*                   <Line type="monotone" dataKey="peQuarterly" stroke="#970008" connectNulls={true}
-                          isAnimationActive={false} label={<PEChartLabel data={data}/>}/>
-                    <Line type="monotone" dataKey="peAnnually" stroke="#970008" connectNulls={true}
-                          isAnimationActive={false} label={<PEChartLabel data={data}/>}/>*/}
+                          label={<PriceEpsChartLabel data={data} stroke="#128408"/>} isAnimationActive={false}/>
+                    <Line type="monotone" dataKey="bpsAnnually" stroke="#70bfff" connectNulls={true}
+                          label={<PriceEpsChartLabel data={data} stroke="#70bfff"/>} isAnimationActive={false}/>
+                    <Line type="monotone" dataKey="fcpsAnnually" stroke="#ffce85" connectNulls={true}
+                          label={<PriceEpsChartLabel data={data} stroke="#ffce85"/>} isAnimationActive={false}/>
                     <XAxis dataKey="date"/>
                     <YAxis/>
                     <Tooltip/>

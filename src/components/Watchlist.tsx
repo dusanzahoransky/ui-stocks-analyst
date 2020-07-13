@@ -3,14 +3,12 @@ import {WatchlistTable} from "./WatchlistTable"
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult"
 import {StockAnalystService} from "../services/StockAnalystService"
 import {PriceEpsChart} from "./PriceEpsChart"
-import {PriceEpsDataRaw} from "../model/PriceEpsDataRaw"
 import {PriceEpsData} from "../model/PriceEpsData"
 import "./Watchlist.css"
 import 'font-awesome/css/font-awesome.min.css'
 import moment from "moment"
 import {EtfsChartData} from "../model/EtfsChartData"
 import {EtfsPriceChart} from "./EtfsPriceChart"
-import {StockRatiosPeriods} from "../model/StockRatiosPeriods"
 import {RatioChart} from "./RatioChart"
 import {RatioChartData} from "../model/RatioChartData"
 import {FinancialChartRatios} from "../model/FinancialChartRatios"
@@ -20,6 +18,8 @@ import {OtherChartRatios} from "../model/OtherChartRatios"
 import {CellTag} from "../model/table/CellTag"
 import {StocksAnalysisResult} from "../model/StocksAnalysisResult"
 import {Etf} from "../model/Etf"
+import {Stock} from "../model/Stock";
+import {Timeline} from "../model/Timeline";
 
 
 export interface WatchlistProps {
@@ -47,14 +47,12 @@ export interface WatchlistProps {
 }
 
 export interface WatchlistState {
-    priceEpsData?: PriceEpsDataRaw[]
-    ratiosData?: StockRatiosPeriods
+    selectedStock?: Stock
     /**
      * Remove outliers which would otherwise deform the chart, e.g. an EP which is extremely high in a single quarter
      */
     priceEpsChartRemoveOutliers?: boolean
     etfsChartSymbols?: string[]
-    chartLabel?: string
     visibleTags: CellTag[]
 }
 
@@ -69,12 +67,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     constructor(props: Readonly<WatchlistProps>) {
         super(props)
         this.state = {
-            // priceEpsData: undefined,
-            // ratiosData: undefined,
-            //uncomment to render chart of the first stock on load
-            // priceEpsData: props.result ? props.result.stocks[0].stock.chartData : undefined,
-            // ratiosData: props.result ? props.result.stocks[0].stockRatiosTimeline.periods : undefined,
-            // etfsChartSymbols: ['VTS', 'VUSA'],
+            selectedStock: this.props.stocksResult ? this.props.stocksResult.stocks[0] : undefined,
             etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true,
             // visibleTags: []
@@ -248,57 +241,89 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderCompanyCharts() {
-        if (!this.props.isExpanded) {
+        const stock = this.state.selectedStock;
+        if (!this.props.isExpanded || !stock) {
             return ''
         }
-        const ratiosData = this.state.ratiosData
+
         const peRatio = 15
-        const chartData = this.prepareEpsChartData(this.state.priceEpsData, peRatio)
+        const pbRatio = 3
+        const pfcRatio = 20
+        const chartData = this.prepareEpsChartData(stock, peRatio, pbRatio, pfcRatio)
         const priceEpsChart = <PriceEpsChart
             data={chartData}
-            description={`Price and earnings line of ${this.state.chartLabel} with EPS scale of ${peRatio}`}/>
+            description={`Price to earnings, book value and free cash flow per share ${stock.companyName}. [Scales: PE=${peRatio} PB=${pbRatio} PFC=${pfcRatio}]`}/>
 
         let financialRatiosCharts
         let otherRatiosCharts
-        if (ratiosData) {
-            const periods = Object.keys(ratiosData)
 
-            financialRatiosCharts = Watchlist.getChartFinancialRatios().map(ratio => {
-                const chartData: RatioChartData[] = periods.map(period => {
-                    return {
-                        date: period,
-                        value: ratiosData[period][ratio] as number
-                    }
-                })
-                return <RatioChart
-                    key={ratio}
-                    data={chartData}
-                    label={`${FinancialChartRatios[ratio]}`}/>
-            })
+        const yearsToDisplay = 10
 
-            otherRatiosCharts = Watchlist.getChartOtherRatios().map(ratio => {
-                const chartData: RatioChartData[] = periods.map(period => {
-                    return {
-                        date: period,
-                        value: ratiosData[period][ratio] as number
-                    }
-                })
-                return <RatioChart
-                    key={ratio}
-                    data={chartData}
-                    label={`${OtherChartRatios[ratio]}`}/>
-            })
-        }
+        financialRatiosCharts = Watchlist.getChartFinancialRatios().map(ratio => {
+            const multiplyQuarters = FinancialChartRatios[ratio] !== FinancialChartRatios.operatingMargin
+                && FinancialChartRatios[ratio] !== FinancialChartRatios.profitMarginP
+                && FinancialChartRatios[ratio] !== FinancialChartRatios.workingCapital
+            const chartData = Watchlist.prepareRatiosData(stock, ratio, false, multiplyQuarters, yearsToDisplay)
+            return <RatioChart
+                key={ratio}
+                data={chartData}
+                label={`${FinancialChartRatios[ratio]}`}/>
+        })
+
+        otherRatiosCharts = Watchlist.getChartOtherRatios().map(ratio => {
+            const percentage = OtherChartRatios[ratio] === OtherChartRatios.totalDebtToEquity
+                || OtherChartRatios[ratio] === OtherChartRatios.nonCurrentLiabilitiesToIncome
+            const chartData = Watchlist.prepareRatiosData(stock, ratio, percentage, false, yearsToDisplay)
+            return <RatioChart
+                key={ratio}
+                data={chartData}
+                label={`${OtherChartRatios[ratio]}`}/>
+        })
 
 
         return <div>
-            <div className={!chartData ? 'hidden' : ''}>{priceEpsChart}</div>
+            <div>{priceEpsChart}</div>
             <div className={"RatiosCharts"}>
-                <div className={!ratiosData ? 'hidden' : 'RatiosChartsColumn'}>{financialRatiosCharts}</div>
-                <div className={!ratiosData ? 'hidden' : 'RatiosChartsColumn'}>{otherRatiosCharts}</div>
+                <div className={'RatiosChartsColumn'}>{financialRatiosCharts}</div>
+                <div className={'RatiosChartsColumn'}>{otherRatiosCharts}</div>
             </div>
         </div>
+    }
 
+    private static prepareRatiosData(stock: Stock, ratio: string, percentage: boolean, quartersMultiple: boolean, yearsToDisplay: number): RatioChartData[] {
+        const chartData: RatioChartData[] = []
+
+        const percentageMultiple = percentage ? 100 : 1;
+        const quarterMultiple = quartersMultiple ? 4 : 1;
+
+        const ratioTimeline = stock[ratio] as Timeline
+        if(ratioTimeline) {
+            const periods = Object.entries(ratioTimeline)
+
+            for (let i = 1; i < periods.length && i < yearsToDisplay; i++) {
+                const date = periods[i][0]
+                const value = periods[i][1] * percentageMultiple
+                chartData.push({
+                    date,
+                    value
+                })
+            }
+        }
+
+        const ratioQuartersTimeline = stock[ratio+'Q'] as Timeline
+        if(ratioQuartersTimeline) {
+            const quarterPeriods = Object.entries(ratioQuartersTimeline)
+
+            for (let i = 1; i < quarterPeriods.length && i < yearsToDisplay; i++) {
+                const date = quarterPeriods[i][0]
+                const value = quarterPeriods[i][1] * percentageMultiple * quarterMultiple
+                chartData.push({
+                    date,
+                    value
+                })
+            }
+        }
+        return chartData
     }
 
     private static getChartFinancialRatios(): string[] {
@@ -340,28 +365,26 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 }
             })
         } else {
-            //TODO
-            // let clickedStockWithRatios = this.props.result.stocks
-            //     .filter(stock => stock.stock.symbol === stockSymbol)[0]
-            // const priceEpsData = clickedStockWithRatios.stock.chartData
-            // const ratiosData = clickedStockWithRatios.stockRatiosTimeline.periods
-            //
-            // //close the graph on a second click
-            // if (this.state.priceEpsData === priceEpsData) {
-            //     this.setState(state => {
-            //         return {
-            //             priceEpsData: undefined
-            //         }
-            //     })
-            // } else {
-            //     this.setState(state => {
-            //         return {
-            //             priceEpsData,
-            //             ratiosData,
-            //             chartLabel: stockSymbol as string
-            //         }
-            //     })
-            // }
+            let selectedStock = this.props.stocksResult.stocks
+                .filter(stock => stock.symbol === stockSymbol)[0]
+            console.log(selectedStock)
+            // const ratiosData = selectedStock.stockRatiosTimeline.periods
+
+            //close the graph on a second click
+            if (this.state.selectedStock === selectedStock) {
+                this.setState(state => {
+                    return {
+                        selectedStock: undefined
+                    }
+                })
+            } else {
+                this.setState(state => {
+                    return {
+                        selectedStock,
+                        // ratiosData,
+                    }
+                })
+            }
         }
     }
 
@@ -391,32 +414,39 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         return chartData
     }
 
-    private prepareEpsChartData(priceEpsData: PriceEpsDataRaw[], peRatio: number): PriceEpsData[] | undefined {
-        if (!priceEpsData) return undefined
+    private prepareEpsChartData(stock: Stock, peRatio: number, pbRatio: number, fcpsRation: number): PriceEpsData[] | undefined {
+        if (!stock) return undefined
 
         const round1Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined
-        const round2Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined
 
         //remove outliers, sometime a price jumps from 10 to 1000, e.g. RYA stock and that messes up the chart scale
-        for (let i = 1; i < priceEpsData.length; i++) {
-            if (priceEpsData[i].price > priceEpsData[i - 1].price * 20) {
-                priceEpsData[i].price = undefined
+        const price = stock.price as Timeline;
+        const periods = Object.keys(price);
+        for (let i = 1; i < periods.length; i++) {
+            const currentPeriod = periods[i];
+            const previousPeriod = periods[i - 1];
+            if (price[currentPeriod] > price[previousPeriod] * 20) {
+                price[currentPeriod] = undefined
             }
         }
 
-        return priceEpsData.map(data => {
-            const price = round1Dec(data.price)
-            const epsQuarterly = round1Dec(data.epsQuarterly * peRatio * 4)
-            const epsAnnually = round1Dec(data.epsAnnually * peRatio)
-            const peQuarterly = round2Dec(data.peQuarterly)
-            const peAnnually = round2Dec(data.peAnnually)
+        return Object.entries(price).map(entry => {
+            const date = entry[0]
+            const price = round1Dec(entry[1])
+
+            const epsQuarterly = round1Dec(stock.epsQ[date] * peRatio * 4)
+            const epsAnnually = round1Dec(stock.eps[date] * peRatio)
+
+            const bpsAnnually = round1Dec(stock.bookValuePerShare[date] * pbRatio)
+            const fcpsAnnually = round1Dec(stock.freeCashFlowPerShare[date] * fcpsRation)
+
             const processedData: PriceEpsData = {
-                date: moment(data.date * 1000).format('YYYY-MM-DD'),
+                date,
                 price,
                 epsQuarterly,
                 epsAnnually,
-                peQuarterly,
-                peAnnually,
+                bpsAnnually,
+                fcpsAnnually
             }
             return processedData
         })
@@ -441,6 +471,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             })
             .replace(/_/g, ' ')
     }
+
 
 }
 

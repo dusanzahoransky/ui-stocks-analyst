@@ -252,7 +252,7 @@ export class StockAnalystService {
         let latestCurrentRatio = rowValues[StockFields.currentRatioQ1].value ?
             rowValues[StockFields.currentRatioQ1].value as number :
             rowValues[StockFields.currentRatio1].value as number
-        if (Number.isNaN(latestCurrentRatio) || latestCurrentRatio == 0) {
+        if (Number.isNaN(latestCurrentRatio) || latestCurrentRatio === 0) {
             latestCurrentRatio = 1
         }
 
