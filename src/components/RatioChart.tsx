@@ -29,11 +29,11 @@ export class RatioChart extends React.Component<RatioChartProps> {
             <div className={'RatioChart'}>
                 <h3 className={'RatioChartLabel'}>{chartLabel}</h3>
                 <div className={'ChartWrapper'}>
-                    <LineChart width={800} height={140} data={normalisedData} >
+                    <LineChart width={900} height={200} data={normalisedData} >
                         <CartesianGrid strokeDasharray="2 2" y={0} vertical={false}/>
                         <Line type="monotone" dataKey="value" stroke="#003795" legendType={"plainline"}
                               isAnimationActive={false} label={<RatioChartLabel/>}/>
-                        <XAxis dataKey="date" tickSize={1} tick={{fontSize: 8}} height={8} />
+                        <XAxis dataKey="date" tickSize={1} tick={{fontSize: 10}} />
                         <YAxis tick={{fontSize: 10}} width={40} type="number" domain={[0, 'auto']} minTickGap={0} tickCount={5} scale={"linear"}
                                tickFormatter={RatioChart.yAxisFormatter()}/>
                         <Tooltip/>

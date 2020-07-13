@@ -31,8 +31,8 @@ export class PriceEpsChart extends React.Component<PriceEpsChartProps> {
                           label={<PriceEpsChartLabel data={data} stroke="#70bfff"/>} isAnimationActive={false}/>
                     <Line type="monotone" dataKey="fcpsAnnually" stroke="#ffce85" connectNulls={true}
                           label={<PriceEpsChartLabel data={data} stroke="#ffce85"/>} isAnimationActive={false}/>
-                    <XAxis dataKey="date"/>
-                    <YAxis/>
+                    <XAxis dataKey="date" tick={{fontSize: 10}}/>
+                    <YAxis tick={{fontSize: 10}}/>
                     <Tooltip/>
                     <Legend/>
                 </LineChart>

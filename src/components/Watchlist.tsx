@@ -431,7 +431,9 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         }
 
         const priceEntries = Object.entries(priceTimeline);
-        const chartStart = moment(priceEntries[0], "YYYY-MM-DD")
+        //uncomment to display full chart timeline
+        // const chartStart = moment(priceEntries[0], "YYYY-MM-DD")
+        const chartStart = moment('2015-01-01', "YYYY-MM-DD")
         const chartEnd = moment(priceEntries[priceEntries.length-1], "YYYY-MM-DD")
         let currentDate = chartStart
 
