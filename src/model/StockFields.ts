@@ -261,11 +261,11 @@ export enum StockFields {
     sharesGrowth1,
     sharesGrowth2,
     sharesGrowth3,
-
-    growthEstimate5y,
     roicP1,
     roicP2,
     roicP3,
+
+    growthEstimate5y,
     roic1Y,
     roic3Y,
     revenue1Y,

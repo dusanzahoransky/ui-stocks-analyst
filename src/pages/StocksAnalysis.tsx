@@ -98,12 +98,12 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     private async loadWatchlistData(watchlist: string,
                                     isEtf: boolean,
-                                    forceRefresh: boolean = false,
-                                    forceRefreshRatios: boolean = false,
+                                    refreshDynamicData: boolean = false,
+                                    refreshFinancials: boolean = false,
                                     mockData: boolean = false) {
         const response = isEtf ?
-            await this.stockAnalystService.loadEtfsAnalysis(watchlist, forceRefresh, mockData)
-            : await this.stockAnalystService.loadAnalysis(watchlist, forceRefresh, forceRefreshRatios, mockData)
+            await this.stockAnalystService.loadEtfsAnalysis(watchlist, refreshDynamicData, mockData)
+            : await this.stockAnalystService.loadAnalysis(watchlist, refreshDynamicData, refreshFinancials, mockData)
         const error = response as BackendError;
         if (error.error) {
             console.error(`Failed to load ${watchlist}: ${error.message}`)
@@ -209,7 +209,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                 const onRefreshClickHandler = (watchlist) => {
                     this.loadWatchlistData(watchlist, watchlistResult.isEtf, true, false, false);
                 }
-                const onRefreshRatiosClickHandler = (watchlist) => {
+                const onRefreshFinancialsHandler = (watchlist) => {
                     this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, true, false);
                 }
                 const onShowClickHandler = (watchlist) => {
@@ -225,8 +225,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                         etfsResult={watchlistResult.etfsAnalysisResult}
                         stocksResult={watchlistResult.stocksAnalysisResult}
                         watchlist={watchlistResult.watchlist}
-                        onRefreshYahooHandler={onRefreshClickHandler}
-                        onRefreshMorningstarClickHandler={onRefreshRatiosClickHandler}
+                        onRefreshDynamicDataHandler={onRefreshClickHandler}
+                        onRefreshFinancialsHandler={onRefreshFinancialsHandler}
                         onShowClickHandler={onShowClickHandler}
                         isPreset={watchlistResult.isPreset}
                         isEtf={watchlistResult.isEtf}

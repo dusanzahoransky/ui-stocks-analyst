@@ -689,9 +689,9 @@ export class StockTaggingService {
             case StockFields.rule1score:
                 return [CellTag.totalScore]
             case StockFields.valueInvestmentScore:
-                return [CellTag.totalScore]
+                return [CellTag.totalScore, CellTag.value]
             case StockFields.growthInvestmentScore:
-                return [CellTag.totalScore]
+                return [CellTag.totalScore, CellTag.growth]
 
             default:
                 throw Error('Undefined field ' + column)

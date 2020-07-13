@@ -32,7 +32,31 @@ th.label {
 }
 
 th.totalScore {
-    background-image: linear-gradient(to top right, #f0f3ff , #d6ffde);
+    background-image: linear-gradient(to top right, #f0f3ff , #dfe1ff);
+}
+
+th.totalScore.growth {
+    background-image: linear-gradient(to top right,  #dfe1ff, #fffad4);
+}
+
+th.totalScore.value {
+    background-image: linear-gradient(to top right, #dfe1ff, #e8ffde);
+}
+
+th.value{
+    background-image: linear-gradient(to top right, #f0f3ff , #e8ffde);
+}
+
+th.growth.value{
+    background-image: linear-gradient(to top right, #e8ffde , #fffad4);
+}
+
+th.growth{
+    background-image: linear-gradient(to top right, #f0f3ff , #fffad4);
+}
+
+th.rule1 {
+    background-image: linear-gradient(to top right, #f0f3ff , #e0fffb);
 }
 
 th.label {
@@ -50,21 +74,6 @@ td.companyName{
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
-th.value{
-    background-image: linear-gradient(to top right, #f0f3ff , #e8ffde);
-}
-
-th.growth.value{
-    background-image: linear-gradient(to top right, #e8ffde , #fffad4);
-}
-
-th.growth{
-    background-image: linear-gradient(to top right, #f0f3ff , #fffad4);
-}
-
-th.rule1 {
-    background-image: linear-gradient(to top right, #f0f3ff , #dbe4f8);
-}
 
 .date{
     font-size: x-small;

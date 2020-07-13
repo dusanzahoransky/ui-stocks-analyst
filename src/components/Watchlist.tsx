@@ -26,8 +26,8 @@ export interface WatchlistProps {
     watchlist: string
     etfsResult?: EtfsAnalysisResult,
     stocksResult?: StocksAnalysisResult,
-    onRefreshYahooHandler?: (watchlist: string) => void,
-    onRefreshMorningstarClickHandler?: (watchlist: string) => void,
+    onRefreshDynamicDataHandler?: (watchlist: string) => void,
+    onRefreshFinancialsHandler?: (watchlist: string) => void,
     /**
      * On show/hide click
      */
@@ -79,7 +79,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     render() {
-        const {watchlist, isPreset, isExpanded, isEtf, onRefreshMorningstarClickHandler} = this.props
+        const {watchlist, isPreset, isExpanded, isEtf, onRefreshFinancialsHandler} = this.props
 
         //ETF rendering
         if (isEtf) {
@@ -87,17 +87,17 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 className="Watchlist"
                 key={watchlist}>
                 <h2 className={"WatchlistName Etf"}>
-                    {this.renderShowLink()} {Watchlist.toWatchlistLabel(watchlist)}{this.renderRefreshLink()}</h2>
+                    {this.renderShowLink()} {Watchlist.toWatchlistLabel(watchlist)}{this.renderRefreshDynamicDataLink()}</h2>
                 {this.renderTable()}
                 {this.renderEtfsChart()}
             </div>
         }
 
         //Stock rendering
-        const refreshRatiosLink = isPreset && isExpanded ?
+        const refreshFinancialsLink = isPreset && isExpanded ?
             <span className="refresh">
-                <i className="fa fa-refresh refreshRatios"
-                   onClick={() => onRefreshMorningstarClickHandler(watchlist)}/> MorningStar
+                <i className="fa fa-refresh refreshFinancials"
+                   onClick={() => onRefreshFinancialsHandler(watchlist)}/> All Data
             </span> : ''
 
         let checkboxesSpan
@@ -110,7 +110,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             className="Watchlist"
             key={watchlist}>
             <h2 className={"WatchlistName Stock"}>
-                {this.renderShowLink()} {Watchlist.toWatchlistLabel(watchlist)}{this.renderRefreshLink()}{refreshRatiosLink} {checkboxesSpan}</h2>
+                {this.renderShowLink()} {Watchlist.toWatchlistLabel(watchlist)}{this.renderRefreshDynamicDataLink()}{refreshFinancialsLink} {checkboxesSpan}</h2>
             {this.renderTable()}
             {this.renderCompanyCharts()}
         </div>
@@ -138,10 +138,10 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(this.props.watchlist)}/> : ''
     }
 
-    private renderRefreshLink() {
+    private renderRefreshDynamicDataLink() {
         return this.props.isPreset && this.props.isExpanded ?
             <span className="refresh">
-                <i className="fa fa-refresh" onClick={() => this.props.onRefreshYahooHandler(this.props.watchlist)}/> Yahoo
+                <i className="fa fa-refresh" onClick={() => this.props.onRefreshDynamicDataHandler(this.props.watchlist)}/> Dynamic Data Only
             </span> : ''
     }
 
@@ -420,19 +420,26 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const round1Dec = (value?: number) => value ? Math.round(value * 10) / 10 : undefined
 
         //remove outliers, sometime a price jumps from 10 to 1000, e.g. RYA stock and that messes up the chart scale
-        const price = stock.price as Timeline;
-        const periods = Object.keys(price);
+        const priceTimeline = stock.price as Timeline;
+        const periods = Object.keys(priceTimeline);
         for (let i = 1; i < periods.length; i++) {
             const currentPeriod = periods[i];
             const previousPeriod = periods[i - 1];
-            if (price[currentPeriod] > price[previousPeriod] * 20) {
-                price[currentPeriod] = undefined
+            if (priceTimeline[currentPeriod] > priceTimeline[previousPeriod] * 20) {
+                priceTimeline[currentPeriod] = undefined
             }
         }
 
-        return Object.entries(price).map(entry => {
-            const date = entry[0]
-            const price = round1Dec(entry[1])
+        const priceEntries = Object.entries(priceTimeline);
+        const chartStart = moment(priceEntries[0], "YYYY-MM-DD")
+        const chartEnd = moment(priceEntries[priceEntries.length-1], "YYYY-MM-DD")
+        let currentDate = chartStart
+
+        const chartData: PriceEpsData[] = []
+        while (currentDate.isBefore(chartEnd)){
+            const date = currentDate.format("YYYY-MM-DD")
+
+            const price = round1Dec(priceTimeline[date])
 
             const epsQuarterly = round1Dec(stock.epsQ[date] * peRatio * 4)
             const epsAnnually = round1Dec(stock.eps[date] * peRatio)
@@ -440,16 +447,19 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             const bpsAnnually = round1Dec(stock.bookValuePerShare[date] * pbRatio)
             const fcpsAnnually = round1Dec(stock.freeCashFlowPerShare[date] * fcpsRation)
 
-            const processedData: PriceEpsData = {
+            chartData.push( {
                 date,
                 price,
                 epsQuarterly,
                 epsAnnually,
                 bpsAnnually,
                 fcpsAnnually
-            }
-            return processedData
-        })
+            })
+
+            currentDate = currentDate.add(1, "day")
+
+        }
+        return chartData
     }
 
 

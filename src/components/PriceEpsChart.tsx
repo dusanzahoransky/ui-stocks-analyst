@@ -22,7 +22,7 @@ export class PriceEpsChart extends React.Component<PriceEpsChartProps> {
                 {chartDescription}
                 <LineChart width={1800} height={400} data={data}>
                     <Line type="monotone" dataKey="price" stroke="#003795" dot={false} legendType={"plainline"}
-                          isAnimationActive={false}/>
+                          isAnimationActive={false} connectNulls={true}/>
                     <Line type="monotone" dataKey="epsQuarterly" stroke="#128408" connectNulls={true}
                           label={<PriceEpsChartLabel data={data} stroke="#128408"/>} isAnimationActive={false}/>
                     <Line type="monotone" dataKey="epsAnnually" stroke="#128408" connectNulls={true}

@@ -16,11 +16,11 @@ import {Timeline} from "../model/Timeline";
 
 export class StockAnalystService {
 
-    async loadAnalysis(watchlist: string, forceRefresh: boolean, forceRefreshRatios: boolean, mockData: boolean): Promise<Stock[] | BackendError> {
+    async loadAnalysis(watchlist: string, refreshDynamicData: boolean, refreshFinancials: boolean, mockData: boolean): Promise<Stock[] | BackendError> {
         if (watchlist === 'TEST') {
             return Promise.resolve(resultTest)
         } else {
-            return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&refreshDynamicData=${forceRefresh}&refreshFinancials=${forceRefreshRatios}&mockData=${mockData}`)
+            return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&refreshDynamicData=${refreshDynamicData}&refreshFinancials=${refreshFinancials}&mockData=${mockData}`)
                 .then(r => r.json() as unknown as Stock[]);
         }
     }
@@ -233,19 +233,19 @@ export class StockAnalystService {
 
         const totalShareholdersEquityGrowthCoefficient = 1
 
-        const totalDebtToEquityCoefficient = 20
+        const totalDebtToEquityCoefficient = 15
         const totalDebtToEquityGrowthCoefficient = 0.1
-        const nonCurrentLiabilitiesToIncomeCoefficient = 10
+        const nonCurrentLiabilitiesToIncomeCoefficient = 7
         const nonCurrentLiabilitiesToIncomeGrowthCoefficient = 0.1
 
-        const stockGrowthCoefficient = 0.5
-        const stockRepurchaseGrowthCoefficient = 1
+        const stockGrowthCoefficient = 0.3
+        const stockRepurchaseGrowthCoefficient = 0.5
 
         const epsGrowthCoefficient = 0.5
         const bpsGrowthCoefficient = 0.2
         const fcpsGrowthCoefficient = 0.8
 
-        const roicCoefficient = 15
+        const roicCoefficient = 10
 
         let score
 
@@ -316,7 +316,7 @@ export class StockAnalystService {
                 score = number * 0.1
                 break;
             case StockFields.belowTargetMedianPriceP:
-                score = number * 1
+                score = number
                 break;
             case StockFields.exDividendDate:
                 const daysToExDividend = -moment().diff(string, 'days')
@@ -598,10 +598,12 @@ export class StockAnalystService {
 
 
             case StockFields.totalDebtToEquityQ1:
-                score = (0.5 - number) * lastQuarterCoefficient * totalDebtToEquityCoefficient
+                score = this.ratioBetterThan(number, 0.5, 3) * lastQuarterCoefficient * totalDebtToEquityCoefficient
+                score = this.absLessThan(score, 200)
                 break;
             case StockFields.totalDebtToEquity1:
-                score = (0.5 - number) * lastYearCoefficient * totalDebtToEquityCoefficient
+                score = this.ratioBetterThan(number, 0.5, 3) * lastYearCoefficient * totalDebtToEquityCoefficient
+                score = this.absLessThan(score, 200)
                 break;
 
             case StockFields.totalDebtToEquityGrowthQ1:
@@ -623,19 +625,24 @@ export class StockAnalystService {
 
 
             case StockFields.nonCurrentLiabilitiesToIncomeQ1:
-                score = (4 - number) * lastQuarterCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.ratioBetterThan(number, 4, 6) * lastQuarterCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.absLessThan(score, 100)
                 break;
             case StockFields.nonCurrentLiabilitiesToIncomeQ2:
-                score = (4 - number) * last2QuartersCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.ratioBetterThan(number, 4, 6) * last2QuartersCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.absLessThan(score, 100)
                 break;
             case StockFields.nonCurrentLiabilitiesToIncome1:
-                score = (4 - number) * lastYearCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.ratioBetterThan(number, 4, 6) * lastYearCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.absLessThan(score, 100)
                 break;
             case StockFields.nonCurrentLiabilitiesToIncome2:
-                score = (4 - number) * last2YearCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.ratioBetterThan(number, 4, 6) * last2YearCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.absLessThan(score, 100)
                 break;
             case StockFields.nonCurrentLiabilitiesToIncome3:
-                score = (4 - number) * last3YearCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.ratioBetterThan(number, 4, 6) * last3YearCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
+                score = this.absLessThan(score, 100)
                 break;
 
             case StockFields.nonCurrentLiabilitiesToIncomeGrowthQ1:
@@ -810,8 +817,7 @@ export class StockAnalystService {
 
     static rule1Score(number?: number, weight?: number) {
         let minusExpectedGrowth = number - 10;
-        minusExpectedGrowth = Math.max(-50, minusExpectedGrowth)
-        minusExpectedGrowth = Math.min(50, minusExpectedGrowth)
+        minusExpectedGrowth = this.absLessThan(minusExpectedGrowth, 50)
         return minusExpectedGrowth * weight;
     }
 
