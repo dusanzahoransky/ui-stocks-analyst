@@ -239,7 +239,7 @@ export class StockAnalystService {
         const nonCurrentLiabilitiesToIncomeGrowthCoefficient = 0.1
 
         const stockGrowthCoefficient = 0.3
-        const stockRepurchaseGrowthCoefficient = 0.5
+        const stockRepurchaseGrowthCoefficient = 0.1
 
         const epsGrowthCoefficient = 0.5
         const bpsGrowthCoefficient = 0.2
@@ -672,19 +672,19 @@ export class StockAnalystService {
                 break;
             case StockFields.stockRepurchasedGrowthQ1:
                 score = number * lastQuarterCoefficient * stockRepurchaseGrowthCoefficient
-                if (number > 50) {
+                if (number > 100) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
             case StockFields.stockRepurchasedGrowthQ2:
                 score = number * last2QuartersCoefficient * stockRepurchaseGrowthCoefficient
-                if (number > 50) {
+                if (number > 100) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
             case StockFields.stockRepurchasedGrowth1:
                 score = number * lastYearCoefficient * stockRepurchaseGrowthCoefficient
-                if (number > 50) {
+                if (number > 100) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
@@ -811,6 +811,8 @@ export class StockAnalystService {
                 break;
         }
 
+        score = this.absLessThan(score, 100)
+        
         dataToScore.score = score
         return dataToScore
     }
@@ -1325,8 +1327,8 @@ export class StockAnalystService {
     private static absLessThan(value: number, absValueThreshold: number) {
         if (value > absValueThreshold) {
             return absValueThreshold
-        } else if (value < absValueThreshold) {
-            return absValueThreshold
+        } else if (value < -absValueThreshold) {
+            return -absValueThreshold
         } else {
             return value
         }

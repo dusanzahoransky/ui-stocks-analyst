@@ -92,7 +92,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         )
     }
 
-    private headerTitle(column: number, cellTags: CellTag[]): string {
+    private headerTitle(column: number, cellTags: CellTag[] = []): string {
         const title =
 `Field: ${StockFields[column]}
 Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
