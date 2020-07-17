@@ -16,6 +16,8 @@ import {Timeline} from "../model/Timeline";
 
 export class StockAnalystService {
 
+    static i = 0;
+
     async loadAnalysis(watchlist: string, refreshDynamicData: boolean, refreshFinancials: boolean, mockData: boolean): Promise<Stock[] | BackendError> {
         if (watchlist === 'TEST') {
             return Promise.resolve(resultTest)

@@ -106,12 +106,16 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             : await this.stockAnalystService.loadAnalysis(watchlist, refreshDynamicData, refreshFinancials, mockData)
         const error = response as BackendError;
         if (error.error) {
-            console.error(`Failed to load ${watchlist}: ${error.message}`)
+            this.setState(
+                {
+                    error: `Failed to load ${watchlist}: ${error.message}`
+                }
+            )
             return
         }
 
-        const etfsAnalysisResult = isEtf? response as EtfsAnalysisResult : undefined
-        const stocksAnalysisResult = !isEtf? { stocks: response} as StocksAnalysisResult : undefined
+        const etfsAnalysisResult = isEtf ? response as EtfsAnalysisResult : undefined
+        const stocksAnalysisResult = !isEtf ? {stocks: response} as StocksAnalysisResult : undefined
 
         const watchlistResult: WatchlistResult = {
             isLoaded: true,
@@ -124,9 +128,9 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         this.setState((state) => {
             if (isEtf) {
-                return {etfsResults: this.mergeResult(state.etfsResults, watchlistResult, isEtf)}
+                return {etfsResults: this.mergeResult(state.etfsResults, watchlistResult, isEtf), error: undefined}
             } else {
-                return {results: this.mergeResult(state.results, watchlistResult, isEtf)}
+                return {results: this.mergeResult(state.results, watchlistResult, isEtf), error: undefined}
             }
         })
     }
@@ -193,14 +197,10 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     }
 
     render = () => {
-        if (this.state.error) {
-            return <div>Error</div>;
-        }
 
-        if (!this.state.results) {
-            return <div>Loading analysis result...</div>;
-        }
-
+        const errorDiv = this.state.error ? <div className="error">
+            <i className="fa fa-warning"/>{this.state.error}<i className="fa fa-close error-close"/>
+        </div> : ''
         const allResults = this.state.etfsResults.concat(this.state.results.concat(this.state.customResults));
         const watchlists = []
 
@@ -236,7 +236,13 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             });
 
         return (
-            <div className='StocksAnalysis'>
+            <div className='StocksAnalysis' onClick={event => {
+                if (event.target['className'].includes('error-close')) {
+                    this.setState({error: undefined})
+                }
+            }
+            }>
+                {errorDiv}
                 <div className='StickerPrice'><StickerPriceCalculator/></div>
                 <div className={'Watchlists'}>{watchlists}</div>
             </div>

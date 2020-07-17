@@ -36,8 +36,16 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             selectedRow: undefined,
             sortAsc: this.SORT_DEFAULT_ASC,
             sortedBy: undefined,
-            sortedData: props.data
+            sortedData: this.props.data
         }
+    }
+
+    componentWillReceiveProps(nextProps: Readonly<TableProps>, nextContext: any) {
+        this.setState(
+            {
+                sortedData: nextProps.data
+            }
+        )
     }
 
     render = () => {
