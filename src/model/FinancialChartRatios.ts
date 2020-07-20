@@ -1,22 +1,12 @@
 export enum FinancialChartRatios {
     revenue = "Revenue",
+    grossIncome = "Gross Income",
+    grossMargin = "Gross Margin",
     operatingIncome = "Operating Income",
     operatingMargin = "Operating Margin",
     netIncome = "Net Income",
+    profitMarginP = "Net Margin",
     workingCapital = "Working Capital",
+    operatingCashFlow = "Operating cash flow",
     freeCashFlow = "Free cash flow",
-
-    /*
-        freeCashFlowPerShare = "Free cash flow per share",
-    freeCashFlow?: number,
-        grossMargin?: number,
-        netIncome?: number,
-        operatingCashFlow?: number,
-        operatingIncome?: number,
-        operatingMargin?: number,
-        capSpending?: number,
-        revenue?: number,
-        shares?: number,
-        workingCapital?: number,*/
-
 }

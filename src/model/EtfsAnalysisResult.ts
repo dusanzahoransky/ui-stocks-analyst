@@ -1,7 +1,6 @@
-import {StockWithRatios} from "./StockWithRatios";
-import {Stock} from "./Stock";
+import {Etf} from "./Etf";
 
 export interface EtfsAnalysisResult {
-    averages: Stock;
-    stocks: Stock[];
+    averages: Etf;
+    etfs: Etf[];
 }

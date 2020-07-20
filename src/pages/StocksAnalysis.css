@@ -1,6 +1,7 @@
 .StocksAnalysis {
     text-align: right;
-    width: 16000px;
+    width: 17800px;
+    height: 100%;
 }
 .Watchlist {
     text-align: left;
@@ -9,9 +10,32 @@
 .StickerPrice {
     font-size: small;
     z-index: 10;
-    position: fixed;
+    position: absolute;
+    text-align: left;
     right: 10px;
     top: 0px;
     background: #ffffff;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+.error{
+    color: #D8000C;
+    background-color: #FFBABA;
+    width: 500px;
+    margin-left: -150px;
+    left: 50%;
+    top: 0%;
+    position: absolute;
+    z-index: 100;
+    text-align: center;
+}
+
+.fa-warning{
+    position: absolute;
+    top: 3px;
+    left: 8px;
+}
+.fa-close{
+    position: absolute;
+    top: 3px;
+    right: 8px;
 }

@@ -22,17 +22,17 @@ export class PriceEpsChart extends React.Component<PriceEpsChartProps> {
                 {chartDescription}
                 <LineChart width={1800} height={400} data={data}>
                     <Line type="monotone" dataKey="price" stroke="#003795" dot={false} legendType={"plainline"}
-                          isAnimationActive={false}/>
+                          isAnimationActive={false} connectNulls={true}/>
                     <Line type="monotone" dataKey="epsQuarterly" stroke="#128408" connectNulls={true}
-                          label={<PriceEpsChartLabel data={data}/>} isAnimationActive={false}/>
+                          label={<PriceEpsChartLabel data={data} stroke="#128408"/>} isAnimationActive={false}/>
                     <Line type="monotone" dataKey="epsAnnually" stroke="#128408" connectNulls={true}
-                          label={<PriceEpsChartLabel data={data}/>} isAnimationActive={false}/>
-                    {/*                   <Line type="monotone" dataKey="peQuarterly" stroke="#970008" connectNulls={true}
-                          isAnimationActive={false} label={<PEChartLabel data={data}/>}/>
-                    <Line type="monotone" dataKey="peAnnually" stroke="#970008" connectNulls={true}
-                          isAnimationActive={false} label={<PEChartLabel data={data}/>}/>*/}
-                    <XAxis dataKey="date"/>
-                    <YAxis/>
+                          label={<PriceEpsChartLabel data={data} stroke="#128408"/>} isAnimationActive={false}/>
+                    <Line type="monotone" dataKey="bpsAnnually" stroke="#70bfff" connectNulls={true}
+                          label={<PriceEpsChartLabel data={data} stroke="#70bfff"/>} isAnimationActive={false}/>
+                    <Line type="monotone" dataKey="fcpsAnnually" stroke="#ffce85" connectNulls={true}
+                          label={<PriceEpsChartLabel data={data} stroke="#ffce85"/>} isAnimationActive={false}/>
+                    <XAxis dataKey="date" tick={{fontSize: 10}}/>
+                    <YAxis tick={{fontSize: 10}}/>
                     <Tooltip/>
                     <Legend/>
                 </LineChart>

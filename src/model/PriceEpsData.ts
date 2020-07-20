@@ -1,8 +1,10 @@
+import {Moment} from "moment";
+
 export interface PriceEpsData {
     date: string;
-    price: number,
+    price?: number,
     epsQuarterly?: number,
-    peQuarterly?: number,
     epsAnnually?: number,
-    peAnnually?: number
+    bpsAnnually?: number
+    fcpsAnnually?: number
 }

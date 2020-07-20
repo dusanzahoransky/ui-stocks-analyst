@@ -1,9 +1,7 @@
 export enum OtherChartRatios {
-    earningsPerShare = "EPS",
-    bookValuePerShare = "BPS",
-    price = "Price",
-    pe = "PE",
+    roicP = "Return of investment",
+    totalShareholdersEquity = "Shareholder equity",
     shares = "Shares",
-    dividends = "Dividends",
-    payoutRatio = "Payout ratio",
+    totalDebtToEquity = "Debt to equity",
+    nonCurrentLiabilitiesToIncome = "Non current liabilities to income",
 }

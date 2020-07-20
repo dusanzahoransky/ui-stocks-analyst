@@ -1,4 +1,4 @@
-export enum EtfTableColumn {
+export enum EtfFields {
     date,
     asOfDate,
     symbol,
@@ -17,11 +17,6 @@ export enum EtfTableColumn {
     priceToCashflow,
     priceToSales,
 
-    fiftyTwoWeekLow,
-    fiftyTwoWeekHigh,
-    fiftyTwoAboveLowPercent,
-    fiftyTwoBelowHighPercent,
-
     oneMonth,
     threeMonth,
     oneYear,
@@ -29,17 +24,8 @@ export enum EtfTableColumn {
     fiveYear,
     tenYear,
 
-   /* lastBearMkt,
-    lastBullMkt,
-
-
-    annualHoldingsTurnover,
-    annualReportExpenseRatio,*/
-
     averageDailyVolume3Month,
     averageDailyVolume10Day,
-
-    /*fundInceptionDate,*/
 
     chartData,
     score

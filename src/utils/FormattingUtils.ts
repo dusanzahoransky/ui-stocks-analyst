@@ -1,6 +1,6 @@
 import {StockFields} from "../model/StockFields";
 import moment from "moment";
-import {EtfTableColumn} from "../model/EtfTableColumn";
+import {EtfFields} from "../model/EtfFields";
 
 export class FormattingUtils {
 
@@ -12,7 +12,7 @@ export class FormattingUtils {
         return this.format(rowValue, value)
     }
 
-    static formatEtf(rowValue: any[], value: number | string, column: EtfTableColumn): string {
+    static formatEtf(rowValue: any[], value: number | string, column: EtfFields): string {
         return this.format(rowValue, value)
     }
 
@@ -26,26 +26,27 @@ export class FormattingUtils {
         if (typeof value === 'string') {
             return value
         }
-        return this.formatNumber(value);
+        return this.formatNumber(value, 1000000);
     }
 
-    static formatNumber(value: number): string{
+    static formatNumber(value: number, minThresholdToFormat: number = 1000): string{
         if (!value || isNaN(value)) {
             return value ? value.toFixed(1) : '';
         }
-        if (value > 1000000000000 || value < -1000000000000) {
+        const absValue = Math.abs(value);
+        if (absValue > 1000000000000 && absValue > minThresholdToFormat) {
             const bil = value / 1000000000000;
             return `${bil.toFixed(1)}T`;
         }
-        if (value > 1000000000 || value < -1000000000) {
+        if (absValue > 1000000000 && absValue > minThresholdToFormat) {
             const bil = value / 1000000000;
             return `${bil.toFixed(1)}B`;
         }
-        if (value > 1000000 || value < -1000000) {
+        if (absValue > 1000000 && absValue > minThresholdToFormat) {
             const mil = value / 1000000;
             return `${mil.toFixed(1)}M`;
         }
-        if (value > 1000 || value < -1000) {
+        if (absValue > 1000 && absValue > minThresholdToFormat) {
             const thousand = value / 1000;
             return `${thousand.toFixed(1)}K`;
         }
@@ -54,12 +55,16 @@ export class FormattingUtils {
 
     static toFieldLabel(field: string) {
         let fieldLabel = field
-            .replace(/[A-Z0-9]+/g, g  => ' '.concat(g));
+            .replace(/[A-Z0-9\[\]]+/g, g  => ' '.concat(g));
 
         fieldLabel = fieldLabel[0].toUpperCase() + fieldLabel.substr(1)
 
-        fieldLabel = fieldLabel.replace('Roic 1Y', 'ROIC growth 1Y')
-        fieldLabel = fieldLabel.replace('Roic 3Y', 'ROIC growth 3Y')
+        fieldLabel = fieldLabel.replace(/ P$/, ' %')
+        fieldLabel = fieldLabel.replace('Profit Margin', 'Net margin')
+        fieldLabel = fieldLabel.replace('Book Value Per Share', 'BPS')
+        fieldLabel = fieldLabel.replace('Free Cash Flow Per Share', 'FCPS')
+        fieldLabel = fieldLabel.replace('Roic 1Y', 'ROIC 1Y')
+        fieldLabel = fieldLabel.replace('Roic 3Y', 'ROIC 3Y')
         fieldLabel = fieldLabel.replace('Average Daily Volume', 'Volume')
         fieldLabel = fieldLabel.replace('One Month', '1M')
         fieldLabel = fieldLabel.replace('Three Month', '3M')
@@ -70,6 +75,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Held By', '')
         fieldLabel = fieldLabel.replace('Total', '')
         fieldLabel = fieldLabel.replace('Last Reported Quarter', 'Last Q')
+        fieldLabel = fieldLabel.replace('Last Updated', 'at')
         fieldLabel = fieldLabel.replace('Cash Per Share', 'Cash/Share')
         fieldLabel = fieldLabel.replace('Trailing', 'T.')
         fieldLabel = fieldLabel.replace('Five', '5')
@@ -90,6 +96,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('3Quarters Ago', '3Q')
         fieldLabel = fieldLabel.replace('Quarters', 'Q')
         fieldLabel = fieldLabel.replace('Quarter', 'Q')
+        fieldLabel = fieldLabel.replace('Week 52', '52 ')
         fieldLabel = fieldLabel.replace('Week52', '52')
         fieldLabel = fieldLabel.replace('Fifty Two', '52')
         fieldLabel = fieldLabel.replace('Growth', 'Growth')
@@ -110,12 +117,14 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Price To Book', 'PB')
         fieldLabel = fieldLabel.replace('Price To Earnings', 'PE')
         fieldLabel = fieldLabel.replace('Price To Sales', 'PS')
-        fieldLabel = fieldLabel.replace('Price To Cashflow', 'PS')
+        fieldLabel = fieldLabel.replace('Price To Free Cash Flow', 'PFreeCash')
+        fieldLabel = fieldLabel.replace('Price To Cashflow', 'PCash')
         fieldLabel = fieldLabel.replace('Price To Sales T. 12Months', 'PS')
         fieldLabel = fieldLabel.replace('Sticker Price', 'S.Price')
         fieldLabel = fieldLabel.replace('Price Earning Growth', 'PEG')
         fieldLabel = fieldLabel.replace('Avg Dividend Yield', 'Avg Dividend')
         fieldLabel = fieldLabel.replace('Dividend Date', 'Dividend')
+        fieldLabel = fieldLabel.replace('Cash Flow', 'CashF')
 
         return fieldLabel;
     }
