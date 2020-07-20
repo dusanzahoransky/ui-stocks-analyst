@@ -221,8 +221,8 @@ export class StockAnalystService {
         const profitMarginGrowthCoefficient = grossMarginGrowthCoefficient * 2
         const operatingMarginGrowthCoefficient = grossMarginGrowthCoefficient
 
-        const grossMarginCoefficient = 0.5
-        const profitMarginCoefficient = grossMarginCoefficient * 2
+        const grossMarginCoefficient = 1
+        const profitMarginCoefficient = grossMarginCoefficient
         const operatingMarginCoefficient = grossMarginCoefficient
 
         const operatingCashFlowGrowthCoefficient = 0.3
@@ -322,7 +322,7 @@ export class StockAnalystService {
                 break;
             case StockFields.exDividendDate:
                 const daysToExDividend = -moment().diff(string, 'days')
-                const fiveYearAvgDividendYield = rowValues[StockFields.fiveYearAvgDividendYield] as number
+                const fiveYearAvgDividendYield = rowValues[StockFields.fiveYearAvgDividendYield].value as number
                 score = daysToExDividend > 0 && daysToExDividend < 30 ? fiveYearAvgDividendYield : 0
                 break;
             case StockFields.fiveYearAvgDividendYield:
@@ -333,7 +333,7 @@ export class StockAnalystService {
                 break;
             case StockFields.payoutRatioP:
                 score = 60 - number
-                const trailingAnnualDividendYield = rowValues[StockFields.trailingAnnualDividendYield] as number
+                const trailingAnnualDividendYield = rowValues[StockFields.trailingAnnualDividendYield].value as number
                 score *= trailingAnnualDividendYield / 3
                 score = Math.max(score, 0)
                 break;
