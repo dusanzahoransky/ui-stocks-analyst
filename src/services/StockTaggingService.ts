@@ -179,6 +179,29 @@ export class StockTaggingService {
                 return [CellTag.Y3, CellTag.timelineGrowth]
 
 
+            case StockFields.interestExpenseToOperativeIncomePQ1:
+                return [CellTag.Q1, CellTag.financials]
+            case StockFields.interestExpenseToOperativeIncomePQ2:
+                return [CellTag.Q2, CellTag.financials]
+            case StockFields.interestExpenseToOperativeIncomeP1:
+                return [CellTag.Y1, CellTag.financials]
+            case StockFields.interestExpenseToOperativeIncomeP2:
+                return [CellTag.Y2, CellTag.financials]
+            case StockFields.interestExpenseToOperativeIncomeP3:
+                return [CellTag.Y3, CellTag.financials]
+
+            case StockFields.interestExpenseToOperativeIncomeGrowthQ1:
+                return [CellTag.Q1, CellTag.timelineGrowth]
+            case StockFields.interestExpenseToOperativeIncomeGrowthQ2:
+                return [CellTag.Q2, CellTag.timelineGrowth]
+            case StockFields.interestExpenseToOperativeIncomeGrowth1:
+                return [CellTag.Y1, CellTag.timelineGrowth]
+            case StockFields.interestExpenseToOperativeIncomeGrowth2:
+                return [CellTag.Y2, CellTag.timelineGrowth]
+            case StockFields.interestExpenseToOperativeIncomeGrowth3:
+                return [CellTag.Y3, CellTag.timelineGrowth]
+
+
             case StockFields.netIncomeQ1:
                 return [CellTag.Q1, CellTag.financials]
             case StockFields.netIncomeQ2:

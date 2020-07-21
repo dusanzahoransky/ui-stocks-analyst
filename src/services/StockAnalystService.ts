@@ -221,9 +221,9 @@ export class StockAnalystService {
         const profitMarginGrowthCoefficient = grossMarginGrowthCoefficient * 2
         const operatingMarginGrowthCoefficient = grossMarginGrowthCoefficient
 
-        const grossMarginCoefficient = 1
-        const profitMarginCoefficient = grossMarginCoefficient
-        const operatingMarginCoefficient = grossMarginCoefficient
+        const grossMarginCoefficient = 0.8
+        const profitMarginCoefficient = grossMarginCoefficient * 2
+        const operatingMarginCoefficient = grossMarginCoefficient * 1.5
 
         const operatingCashFlowGrowthCoefficient = 0.3
         const freeCashFlowGrowthCoefficient = operatingCashFlowGrowthCoefficient
@@ -304,7 +304,7 @@ export class StockAnalystService {
                 break;
             case StockFields.enterpriseValueEBITDA:
                 score = this.ratioBetterThan(number, 20, 20)
-                score *= 3
+                score *= 0
                 break;
             case StockFields.priceEarningGrowth:
                 score = this.ratioBetterThan(number, 5, 10)
@@ -416,23 +416,6 @@ export class StockAnalystService {
                 break
             case StockFields.grossMarginGrowth3:
                 score = number * grossMarginGrowthCoefficient * last3YearCoefficient
-                break
-
-            case StockFields.ebitGrowthQ1:
-                score = number * ebitGrowthCoefficient * lastQuarterCoefficient
-                break
-            case StockFields.ebitGrowthQ2:
-                score = number * ebitGrowthCoefficient * last2QuartersCoefficient
-                break
-            case StockFields.ebitGrowth1:
-                score = number * ebitGrowthCoefficient * lastYearCoefficient
-                break
-            case StockFields.ebitGrowth2:
-                score = number * ebitGrowthCoefficient * last2YearCoefficient
-                break
-
-            case StockFields.ebitGrowth3:
-                score = number * ebitGrowthCoefficient * last3YearCoefficient
                 break
 
             case StockFields.operatingIncomeGrowth1:
@@ -1064,6 +1047,14 @@ export class StockAnalystService {
             case "ebitGrowth":
                 return FieldDisplayType.Year
             case "ebitGrowthQ":
+                return FieldDisplayType.Quarter
+            case "interestExpenseToOperativeIncomeP":
+                return FieldDisplayType.Year
+            case "interestExpenseToOperativeIncomePQ":
+                return FieldDisplayType.Quarter
+            case "interestExpenseToOperativeIncomeGrowth":
+                return FieldDisplayType.Year
+            case "interestExpenseToOperativeIncomeGrowthQ":
                 return FieldDisplayType.Quarter
             case "netIncome":
                 return FieldDisplayType.Year
