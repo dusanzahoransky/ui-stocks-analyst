@@ -76,7 +76,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                     <i className="fa fa-sort"/>
                     {FormattingUtils.toFieldLabel(field)}
                     {/* uncomment to see the real stock fields, vs enumerated fields in case of any mismatch */}
-                    {/*{StockFields[column]*/}
+                    {/*{StockFields[column]}*/}
                 </th>
             }
         )

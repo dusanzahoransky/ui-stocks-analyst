@@ -213,16 +213,15 @@ export class StockAnalystService {
 
         const revenueGrowthCoefficient = 0.2
         const grossIncomeGrowthCoefficient = revenueGrowthCoefficient / 5
-        const netIncomeGrowthCoefficient = revenueGrowthCoefficient * 2
-        const ebitGrowthCoefficient = revenueGrowthCoefficient / 5
+        const netIncomeGrowthCoefficient = revenueGrowthCoefficient * 5
         const operatingIncomeGrowthCoefficient = revenueGrowthCoefficient / 5
 
         const grossMarginGrowthCoefficient = 0.2
-        const profitMarginGrowthCoefficient = grossMarginGrowthCoefficient * 2
-        const operatingMarginGrowthCoefficient = grossMarginGrowthCoefficient
+        const profitMarginGrowthCoefficient = grossMarginGrowthCoefficient * 5
+        const operatingMarginGrowthCoefficient = grossMarginGrowthCoefficient * 1.5
 
         const grossMarginCoefficient = 0.8
-        const profitMarginCoefficient = grossMarginCoefficient * 2
+        const profitMarginCoefficient = grossMarginCoefficient * 5
         const operatingMarginCoefficient = grossMarginCoefficient * 1.5
 
         const operatingCashFlowGrowthCoefficient = 0.3
