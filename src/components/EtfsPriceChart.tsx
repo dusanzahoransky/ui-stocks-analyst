@@ -27,7 +27,7 @@ export class EtfsPriceChart extends React.Component<EtfsPriceChartProps, EtfsPri
     }
 
     render() {
-        const {data, label, description} = this.props;
+        let {data, label, description} = this.props;
         const chartLabel = label ? <h3>{label}</h3> : ''
         const chartDescription = description ? <p>{description}</p> : ''
         const lines = this.props.symbols.map((s, index) => {
@@ -63,16 +63,14 @@ export class EtfsPriceChart extends React.Component<EtfsPriceChartProps, EtfsPri
      * Consolidate price to the latest price point of all rendered etfs, in order to see from what initial value would they achieve the same end result - the current price
      */
     private consolidatePrice(data: EtfsChartData[]) {
-        let symbols = this.props.symbols;
+        const symbols = this.props.symbols;
         if (symbols.length < 2) {
             return data
         }
 
-        const latestPrices = symbols.map((symbol) => {
-            return data.map(data => data[symbol])
-                .filter(price => !!price)
-                .slice(-1)[0]
-        }) as number[]
+        const latestDateWithAllPrices = data.filter(data => symbols.every(symbol => data[symbol])).slice(-1)[0]
+
+        const latestPrices = symbols.map(symbol => latestDateWithAllPrices[symbol]) as number[]
         const multipliers = latestPrices.map((price, index) => {
             return latestPrices[0] / price
         })

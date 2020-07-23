@@ -2,19 +2,21 @@
     text-align: right;
     width: 17800px;
     height: 100%;
+    position: relative;
 }
 .Watchlist {
     text-align: left;
     margin-bottom: 2px;
+    clear: both;
 }
 .StickerPrice {
     font-size: small;
-    z-index: 10;
-    position: absolute;
-    text-align: left;
-    right: 10px;
-    top: 0px;
+    position: sticky;
     background: #ffffff;
+    text-align: left;
+    float: left;
+    top:0;
+    left:0;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 .error{
@@ -24,7 +26,7 @@
     margin-left: -150px;
     left: 50%;
     top: 0%;
-    position: absolute;
+    position: sticky;
     z-index: 100;
     text-align: center;
 }

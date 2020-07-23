@@ -150,7 +150,10 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
     renderRow(rowData: CellData[], row, averages: any[]) {
         const rowValues = rowData.map((data, column) =>
             <td key={column}
-                onClick={() => this.props.onStockClickHandler(rowData[StockFields.symbol].value as string)}
+                onClick={() => {
+                    const symbol = this.props.isEtf? rowData[EtfFields.symbol]: rowData[StockFields.symbol]
+                    this.props.onStockClickHandler(symbol.value as string)
+                }}
                 className={this.dataCellClass(rowData, data, averages[column], column)}>
                 <span>{
                     this.props.isEtf ?

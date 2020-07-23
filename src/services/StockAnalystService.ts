@@ -230,7 +230,7 @@ export class StockAnalystService {
         const cashGrowthCoefficient = 0.05
         const inventoryGrowthCoefficient = 0.05
 
-        const currentRatioGrowthCoefficient = 1
+        const currentRatioGrowthCoefficient = 0.2
 
         const totalShareholdersEquityGrowthCoefficient = 1
 
