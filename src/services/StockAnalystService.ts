@@ -230,13 +230,12 @@ export class StockAnalystService {
         const cashGrowthCoefficient = 0.05
         const inventoryGrowthCoefficient = 0.05
 
-        const currentRatioGrowthCoefficient = 0.2
-
         const totalShareholdersEquityGrowthCoefficient = 1
 
-        const totalDebtToEquityCoefficient = 15
+        const totalDebtToEquityCoefficient = 5
         const totalDebtToEquityGrowthCoefficient = 0.1
-        const nonCurrentLiabilitiesToIncomeCoefficient = 7
+        const currentRatioGrowthCoefficient = 0.2
+        const nonCurrentLiabilitiesToIncomeCoefficient = 15
         const nonCurrentLiabilitiesToIncomeGrowthCoefficient = 0.1
 
         const stockGrowthCoefficient = 0.3
@@ -582,11 +581,11 @@ export class StockAnalystService {
 
 
             case StockFields.totalDebtToEquityQ1:
-                score = this.ratioBetterThan(number, 0.5, 3) * lastQuarterCoefficient * totalDebtToEquityCoefficient
+                score = this.ratioBetterThan(number, 0.8, 10) * lastQuarterCoefficient * totalDebtToEquityCoefficient
                 score = this.absLessThan(score, 200)
                 break;
             case StockFields.totalDebtToEquity1:
-                score = this.ratioBetterThan(number, 0.5, 3) * lastYearCoefficient * totalDebtToEquityCoefficient
+                score = this.ratioBetterThan(number, 0.8, 10) * lastYearCoefficient * totalDebtToEquityCoefficient
                 score = this.absLessThan(score, 200)
                 break;
 
