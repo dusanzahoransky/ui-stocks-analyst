@@ -27,3 +27,9 @@ Convenient charts of some fundamental stats and ratios
 For indices, it provides basic ratios such as PE, PB, PS, etc. and their performance over different periods. Also, renders a chart for comparison of their historical performance.
 
 ![Example screenshot 5](./Selection_055.png)
+
+## Run
+
+```
+npm start
+```
