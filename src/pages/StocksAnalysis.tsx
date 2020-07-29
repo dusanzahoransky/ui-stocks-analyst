@@ -52,6 +52,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
         'EU_ALL',
         'EU_INVESTED_IN',
+        'EU_AIRLINES',
 
         'GB_ALL',
         'GB_INVESTED_IN',
