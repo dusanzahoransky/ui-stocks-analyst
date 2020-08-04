@@ -15,9 +15,6 @@ The UI provides a convenient view to compare fundamental stock stats for pre-sel
  
 These stats and ratios are normally displayed for the last and one previous financial quarter as well as for the last year, 2 and 3 financial years before. 
  
-![Example screenshot 1](./Selection_183.png)
-![Example screenshot 2](./Selection_184.png)
- 
 It also renders price and EPS timeline at scale of PE 15, BPS at PB scale 3 and free cash flow per share at scale 20.
 ![Example screenshot 3](./Selection_185.png)
 
