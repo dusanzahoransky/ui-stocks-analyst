@@ -54,6 +54,7 @@ export interface WatchlistState {
     priceEpsChartRemoveOutliers?: boolean
     etfsChartSymbols?: string[]
     visibleTags: CellTag[]
+    hiddenTags: CellTag[]
 }
 
 export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
@@ -61,18 +62,22 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     private readonly stockAnalystService: StockAnalystService
     private readonly stockTaggingService: StockTaggingService
 
-    public static readonly VISIBILITY_TOGGLES = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.timelineGrowth, CellTag.rule1, CellTag.value, CellTag.growth, CellTag.financials]
-    public static readonly VISIBLE_DEFAULTS = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.dividends, CellTag.timelineGrowth, CellTag.rule1, CellTag.value, CellTag.growth]
+    public static readonly DISPLAY_TOGGLES = [CellTag.lastUpdated, CellTag.stock, CellTag.dividends, CellTag.ratios, CellTag.ratiosGrowth, CellTag.financials, CellTag.financialsGrowth, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.intrinsicValueInvesting]
+    public static readonly DISPLAY_DEFAULTS = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.financialsGrowth]
+
+    public static readonly HIDE_TOGGLES = [CellTag.Q1, CellTag.Q2, CellTag.Y1, CellTag.Y2, CellTag.Y3]
+    public static readonly HIDE_DEFAULTS = [CellTag.Q2, CellTag.Y2, CellTag.Y3]
 
     constructor(props: Readonly<WatchlistProps>) {
         super(props)
         this.state = {
-            selectedStock: this.props.stocksResult ? this.props.stocksResult.stocks[0] : undefined,
+            selectedStock: undefined,
             etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true,
             // visibleTags: []
-            // visibleTags: Watchlist.VISIBLE_DEFAULTS
-            visibleTags: Watchlist.VISIBILITY_TOGGLES
+            // visibleTags: Watchlist.DISPLAY_TOGGLES
+            visibleTags: Watchlist.DISPLAY_DEFAULTS,
+            hiddenTags: Watchlist.HIDE_DEFAULTS
         }
         this.stockAnalystService = new StockAnalystService()
         this.stockTaggingService = new StockTaggingService()
@@ -87,7 +92,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 className="Watchlist"
                 key={watchlist}>
                 <h2 className={"WatchlistName Etf"}>
-                    {this.renderShowLink()} {Watchlist.toWatchlistLabel(watchlist)}{this.renderRefreshDynamicDataLink()}</h2>
+                    {this.renderShowLink()} {Watchlist.toWatchlistLabel(watchlist)}{this.renderRefreshDynamicDataLink()}
+                </h2>
                 {this.renderTable()}
                 {this.renderEtfsChart()}
             </div>
@@ -100,17 +106,27 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                    onClick={() => onRefreshFinancialsHandler(watchlist)}/> All Data
             </span> : ''
 
-        let checkboxesSpan
+        let toDisplayCheckboxesSpan
+        let toHideCheckboxesSpan
         if (isExpanded) {
-            const visibleTags = Watchlist.VISIBILITY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
-            checkboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>
+            const visibleTags = Watchlist.DISPLAY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
+            toDisplayCheckboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>
+
+            const hiddenTags = Watchlist.HIDE_TOGGLES.map(tag => this.toHiddenTagCheckbox(tag))
+            toHideCheckboxesSpan = <span className="HiddenTags">Hide: {hiddenTags}</span>
         }
 
         return <div
             className="Watchlist"
             key={watchlist}>
             <h2 className={"WatchlistName Stock"}>
-                {this.renderShowLink()} {Watchlist.toWatchlistLabel(watchlist)}{this.renderRefreshDynamicDataLink()}{refreshFinancialsLink} {checkboxesSpan}</h2>
+                {this.renderShowLink()}
+                {Watchlist.toWatchlistLabel(watchlist)}
+                {this.renderRefreshDynamicDataLink()}
+                {refreshFinancialsLink}
+            </h2>
+            {toDisplayCheckboxesSpan}
+            {toHideCheckboxesSpan}
             {this.renderTable()}
             {this.renderCompanyCharts()}
         </div>
@@ -128,6 +144,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 headerLabels={headerLabels}
                 headerData={headerData}
                 visibleTags={this.state.visibleTags}
+                hiddenTags={this.state.hiddenTags}
                 onStockClickHandler={this.stockOnClickHandler}
             />
         }
@@ -139,9 +156,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     private renderRefreshDynamicDataLink() {
+        const label = this.props.isEtf ? 'Refresh data' : 'Dynamic Data'
         return this.props.isPreset && this.props.isExpanded ?
             <span className="refresh">
-                <i className="fa fa-refresh" onClick={() => this.props.onRefreshDynamicDataHandler(this.props.watchlist)}/> Dynamic Data Only
+                <i className="fa fa-refresh"
+                   onClick={() => this.props.onRefreshDynamicDataHandler(this.props.watchlist)}/> {label}
             </span> : ''
     }
 
@@ -215,13 +234,33 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             checked={this.state.visibleTags.includes(tag)}
             onChange={() => {
                 this.setState((prevState) => {
-                    let newHiddenTags
+                    let newVisibleTags
                     if (prevState.visibleTags.includes(tag)) {
-                        newHiddenTags = prevState.visibleTags.filter(hiddenTag => hiddenTag !== tag)
+                        newVisibleTags = prevState.visibleTags.filter(hiddenTag => hiddenTag !== tag)
                     } else {
-                        newHiddenTags = prevState.visibleTags.concat(tag)
+                        newVisibleTags = prevState.visibleTags.concat(tag)
                     }
-                    return {visibleTags: newHiddenTags}
+                    return {visibleTags: newVisibleTags}
+                })
+            }}/>
+            </span>
+    }
+
+    private toHiddenTagCheckbox(tag: CellTag) {
+        let tagName = CellTag[tag]
+        return <span className="HiddenTag" key={tagName}>{tagName} <input
+            name={tagName}
+            type="checkbox"
+            checked={this.state.hiddenTags.includes(tag)}
+            onChange={() => {
+                this.setState((prevState) => {
+                    let newHiddenTags
+                    if (prevState.hiddenTags.includes(tag)) {
+                        newHiddenTags = prevState.hiddenTags.filter(hiddenTag => hiddenTag !== tag)
+                    } else {
+                        newHiddenTags = prevState.hiddenTags.concat(tag)
+                    }
+                    return {hiddenTags: newHiddenTags}
                 })
             }}/>
             </span>
@@ -297,7 +336,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         const quarterMultiple = quartersMultiple ? 4 : 1;
 
         const ratioTimeline = stock[ratio] as Timeline
-        if(ratioTimeline) {
+        if (ratioTimeline) {
             const periods = Object.entries(ratioTimeline)
 
             for (let i = 1; i < periods.length && i < yearsToDisplay; i++) {
@@ -310,8 +349,8 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             }
         }
 
-        const ratioQuartersTimeline = stock[ratio+'Q'] as Timeline
-        if(ratioQuartersTimeline) {
+        const ratioQuartersTimeline = stock[ratio + 'Q'] as Timeline
+        if (ratioQuartersTimeline) {
             const quarterPeriods = Object.entries(ratioQuartersTimeline)
 
             for (let i = 1; i < quarterPeriods.length && i < yearsToDisplay; i++) {
@@ -434,11 +473,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         //uncomment to display full chart timeline
         // const chartStart = moment(priceEntries[0], "YYYY-MM-DD")
         const chartStart = moment('2015-01-01', "YYYY-MM-DD")
-        const chartEnd = moment(priceEntries[priceEntries.length-1], "YYYY-MM-DD")
+        const chartEnd = moment(priceEntries[priceEntries.length - 1], "YYYY-MM-DD")
         let currentDate = chartStart
 
         const chartData: PriceEpsData[] = []
-        while (currentDate.isBefore(chartEnd)){
+        while (currentDate.isBefore(chartEnd)) {
             const date = currentDate.format("YYYY-MM-DD")
 
             const price = round1Dec(priceTimeline[date])
@@ -449,7 +488,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             const bpsAnnually = round1Dec(stock.bookValuePerShare[date] * pbRatio)
             const fcpsAnnually = round1Dec(stock.freeCashFlowPerShare[date] * fcpsRation)
 
-            chartData.push( {
+            chartData.push({
                 date,
                 price,
                 epsQuarterly,

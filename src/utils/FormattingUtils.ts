@@ -1,22 +1,28 @@
 import {StockFields} from "../model/StockFields";
 import moment from "moment";
 import {EtfFields} from "../model/EtfFields";
+import {CellData} from "../model/table/CellData";
+import {CellTag} from "../model/table/CellTag";
 
 export class FormattingUtils {
 
-    static formatStock(rowValue: any[], value: number | string, column: StockFields): string {
-        if (typeof value === 'string' && column === StockFields.exDividendDate) {
-            let diff = moment().diff(value, 'days');
-            return diff < 0 ? `in ${-diff} days` : value;
+    static formatStock(data: CellData, column: StockFields): string {
+        if (typeof data === 'string' && column === StockFields.exDividendDate) {
+            let diff = moment().diff(data, 'days');
+            return diff < 0 ? `in ${-diff} days` : data;
         }
-        return this.format(rowValue, value)
+        const formattedValue = this.format(data.value);
+        if(this.isGrowth(data.tags) && formattedValue){
+            return formattedValue.concat('%')
+        }
+        return formattedValue
     }
 
-    static formatEtf(rowValue: any[], value: number | string, column: EtfFields): string {
-        return this.format(rowValue, value)
+    static formatEtf(data: CellData, column: EtfFields): string {
+        return this.format(data.value)
     }
 
-    static format(rowValue: any[], value: number | string): string {
+    static format(value: number | string): string {
         if (!value) {
             return ''
         }
@@ -161,4 +167,7 @@ export class FormattingUtils {
         return "";
     }
 
+    public static isGrowth(tags: CellTag[]) {
+        return tags && (tags.includes(CellTag.ratiosGrowth) || tags.includes(CellTag.financialsGrowth));
+    }
 }

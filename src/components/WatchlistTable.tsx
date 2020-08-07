@@ -16,6 +16,7 @@ export interface TableProps {
     isEtf: boolean
     sortField?: number
     visibleTags: CellTag[]
+    hiddenTags: CellTag[]
     onStockClickHandler?: (stockSymbol: string) => void
 }
 
@@ -77,6 +78,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                     {FormattingUtils.toFieldLabel(field)}
                     {/* uncomment to see the real stock fields, vs enumerated fields in case of any mismatch */}
                     {/*{StockFields[column]}*/}
+                    {/* uncomment to see the tags */}
+                    {/*{' ['+cellTags.map(t => CellTag[t]).join(' ')+']'}*/}
                 </th>
             }
         )
@@ -86,8 +89,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                            className={this.toClasses(cellTags, column, this.props.isEtf)}>
                     {
                         this.props.isEtf ?
-                            FormattingUtils.formatEtf(headerAverages, value.value, column) :
-                            FormattingUtils.formatStock(headerAverages, value.value, column)
+                            FormattingUtils.formatEtf(value, column) :
+                            FormattingUtils.formatStock(value, column)
                     }</th>
             }
         )
@@ -157,8 +160,8 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
                 className={this.dataCellClass(rowData, data, averages[column], column)}>
                 <span>{
                     this.props.isEtf ?
-                        FormattingUtils.formatEtf(rowData, data.value, column)
-                        : FormattingUtils.formatStock(rowData, data.value, column)
+                        FormattingUtils.formatEtf(data, column)
+                        : FormattingUtils.formatStock(data, column)
                 }</span>
                 <span
                     className={"score"}>{data.score && typeof data.score === 'number' ? data.score.toFixed(0) : ''}</span>
@@ -184,13 +187,13 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         let score = Number.isNaN(data.score) ? 0 : data.score
         if (score) {
             if (score < -10) {
-                classes.push('red')
+                FormattingUtils.isGrowth(data.tags) ? classes.push('redText') : classes.push('red')
             } else if (score < 0) {
-                classes.push('lightRed')
+                FormattingUtils.isGrowth(data.tags) ? classes.push('lightRedText') : classes.push('lightRed')
             } else if (score > 10) {
-                classes.push('green')
-            } else if (score > 0) {
-                classes.push('lightGreen')
+                FormattingUtils.isGrowth(data.tags) ? classes.push('greenText') : classes.push('green')
+              } else if (score > 0) {
+                FormattingUtils.isGrowth(data.tags) ? classes.push('lightGreenText') : classes.push('lightGreen')
             }
         }
 
@@ -255,7 +258,11 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         }
 
         const colTags = StockTaggingService.tagStockColumn(column)
-        const canToggleVisibility = colTags.some(tag => Watchlist.VISIBILITY_TOGGLES.includes(tag))  //do not hide cols which visibility can not be toggled by a checkbox
-        return !canToggleVisibility || this.props.visibleTags.some(hiddenTag => colTags.includes(hiddenTag))
+        const canToggleVisibility = colTags.some(tag => Watchlist.DISPLAY_TOGGLES.includes(tag))  //do not hide cols which visibility can not be toggled by a checkbox
+
+        const isHidden = colTags.some(colTag => this.props.hiddenTags.includes(colTag))
+        const isDisplayed = colTags.some(colTag => this.props.visibleTags.includes(colTag))
+
+        return !canToggleVisibility || (!isHidden && isDisplayed)
     }
 }

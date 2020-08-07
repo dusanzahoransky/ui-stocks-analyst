@@ -75,8 +75,8 @@ export class StockAnalystService {
                 value: rule1Score
             })
 
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.value)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.growth)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.valueInvesting)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.growthInvesting)})
         }
 
         return cellData

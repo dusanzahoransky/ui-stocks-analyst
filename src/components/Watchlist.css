@@ -1,15 +1,25 @@
-.VisibleTags{
+.VisibleTags,.HiddenTags{
     font-weight: normal;
     font-size: small;
-    margin-left: 25px;
     position: sticky;
-    left: 0px;
 }
 
-.VisibleTag{
+.VisibleTags{
+    left: 20px;
+}
+.HiddenTags{
+    padding-left: 25px;
+    margin-left: 25px;
+    left: 1220px;
+    border-left: black;
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+
+.VisibleTag,.HiddenTag{
     margin-left: 15px;
 }
-.VisibleTag input{
+.VisibleTag,.HiddenTag input{
     width: 10px;
     height: 10px;
 }
@@ -34,6 +44,9 @@
 
 }
 
+.fa-caret-down{
+    font-size: smaller;
+}
 
 .Watchlist {
     border-color: #f0f3ff;
@@ -41,13 +54,9 @@
     margin-top: 8px;
 }
 
-.WatchlistName.Etf {
-    background-color: #f5f7ff;
-}
-
 .WatchlistName{
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     font-size: larger;
     font-weight: normal;
 }

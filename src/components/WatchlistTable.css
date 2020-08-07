@@ -3,6 +3,7 @@ table, td, th {
     border-radius: 2px;
     padding: 0;
     font-size: small;
+    margin-top: 10px;
 }
 
 th, td {
@@ -99,17 +100,28 @@ td.lastReport {
 .lightGreen {
     background-image: linear-gradient(to top right, #ffffff , #e5ffe3);
 }
-
+.lightGreenText {
+    color: #0c8800;
+}
 .lightRed {
     background-image: linear-gradient(to top right, #ffffff , #ffe6dc);
 }
-
-.green {
-    background-image: linear-gradient(to top right, #ffffff , #7dd282);
+.lightRedText {
+    color: #b80007;
 }
-
+.red {
+    background-image: linear-gradient(to top right, #ffffff , #fda09d);
+}
+.redText {
+    color: #b80007;
+    font-weight: bold;
+}
+.green {
+    background-image: linear-gradient(to top right, #ffffff , #8cd990);
+}
 .greenText {
-    color: #128408;
+    color: #0c8800;
+    font-weight: bold;
 }
 
 .blueText {
@@ -120,9 +132,6 @@ td.lastReport {
     font-weight: bold;
 }
 
-.red {
-    background-image: linear-gradient(to top right, #ffffff , #ff6d68);
-}
 
 .additionalInfo {
     background: yellow;
@@ -130,10 +139,6 @@ td.lastReport {
     border-color: #ff792d;
     border-width: 2px;
     font-weight: bold;
-}
-
-.redText {
-    color: #970008;
 }
 
 .fa-sort {
@@ -147,5 +152,6 @@ td.lastReport {
     vertical-align: top;
     font-size: 9px;
     margin-left: 3px;
+    color: #518def;
     /*box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }

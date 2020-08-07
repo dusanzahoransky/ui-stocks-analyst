@@ -67,7 +67,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     ];
 
     private readonly ETF_WATCHLISTS = [
-        'TEST_INDICES',
+        // 'TEST_INDICES',
         'ETF_ALL',
 
         'AU_ETF_ALL',
