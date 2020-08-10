@@ -75,6 +75,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
                            onClick={() => this.setSortedField(column)}
                            title={this.headerTitle(column, cellTags)}>
                     <i className="fa fa-sort"/>
+                    {FormattingUtils.isGrowth(cellTags) ? <i className="fa fa-line-chart"/> : ''}
                     {FormattingUtils.toFieldLabel(field)}
                     {/* uncomment to see the real stock fields, vs enumerated fields in case of any mismatch */}
                     {/*{StockFields[column]}*/}
@@ -105,7 +106,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
 
     private headerTitle(column: number, cellTags: CellTag[] = []): string {
         const title =
-`Field: ${StockFields[column]}
+            `Field: ${StockFields[column]}
 Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         return title
     }
@@ -154,7 +155,7 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         const rowValues = rowData.map((data, column) =>
             <td key={column}
                 onClick={() => {
-                    const symbol = this.props.isEtf? rowData[EtfFields.symbol]: rowData[StockFields.symbol]
+                    const symbol = this.props.isEtf ? rowData[EtfFields.symbol] : rowData[StockFields.symbol]
                     this.props.onStockClickHandler(symbol.value as string)
                 }}
                 className={this.dataCellClass(rowData, data, averages[column], column)}>
@@ -187,13 +188,13 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         let score = Number.isNaN(data.score) ? 0 : data.score
         if (score) {
             if (score < -10) {
-                FormattingUtils.isGrowth(data.tags) ? classes.push('redText') : classes.push('red')
+                FormattingUtils.isPercentage(data.tags, column) ? classes.push('redText') : classes.push('red')
             } else if (score < 0) {
-                FormattingUtils.isGrowth(data.tags) ? classes.push('lightRedText') : classes.push('lightRed')
+                FormattingUtils.isPercentage(data.tags, column) ? classes.push('lightRedText') : classes.push('lightRed')
             } else if (score > 10) {
-                FormattingUtils.isGrowth(data.tags) ? classes.push('greenText') : classes.push('green')
-              } else if (score > 0) {
-                FormattingUtils.isGrowth(data.tags) ? classes.push('lightGreenText') : classes.push('lightGreen')
+                FormattingUtils.isPercentage(data.tags, column) ? classes.push('greenText') : classes.push('green')
+            } else if (score > 0) {
+                FormattingUtils.isPercentage(data.tags, column) ? classes.push('lightGreenText') : classes.push('lightGreen')
             }
         }
 

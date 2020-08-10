@@ -39,7 +39,7 @@
     border-width: 1px;
     border-color: #f0f3ff;
     border-radius: 3px;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 2px -1px #dfe1ff;
     position: relative;
 
 }
@@ -50,7 +50,7 @@
 
 .Watchlist {
     border-color: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 2px -1px #dfe1ff;
     margin-top: 8px;
 }
 

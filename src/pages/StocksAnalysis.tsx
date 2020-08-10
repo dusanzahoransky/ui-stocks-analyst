@@ -45,25 +45,25 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     private readonly STOCK_WATCHLISTS = [
         // 'TEST',
         'TO_CHECK',
-        'ALL_INVESTED',
-
-        'US_ALL',
-        'US_INVESTED_IN',
-
-        'EU_ALL',
-        'EU_INVESTED_IN',
-        'EU_AIRLINES',
-
-        'GB_ALL',
-        'GB_INVESTED_IN',
-
-        'AU_ALL',
-        'AU_INVESTED_IN',
-
-        'AIRLINES',
-        'TECH',
-        'NASDAQ_100',
-        'DIVIDENDS',
+        // 'ALL_INVESTED',
+        //
+        // 'US_ALL',
+        // 'US_INVESTED_IN',
+        //
+        // 'EU_ALL',
+        // 'EU_INVESTED_IN',
+        // 'EU_AIRLINES',
+        //
+        // 'GB_ALL',
+        // 'GB_INVESTED_IN',
+        //
+        // 'AU_ALL',
+        // 'AU_INVESTED_IN',
+        //
+        // 'AIRLINES',
+        // 'TECH',
+        // 'NASDAQ_100',
+        // 'DIVIDENDS',
     ];
 
     private readonly ETF_WATCHLISTS = [
@@ -90,8 +90,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     componentDidMount() {
         this.STOCK_WATCHLISTS
-            // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
-            .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
+            .forEach(watchlist => this.loadWatchlistData(watchlist, false))
+            // .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
         this.ETF_WATCHLISTS
             // .forEach(watchlist => this.loadWatchlistData(watchlist, true, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, true))
@@ -202,39 +202,9 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         const errorDiv = this.state.error ? <div className="error">
             <i className="fa fa-warning"/>{this.state.error}<i className="fa fa-close error-close"/>
         </div> : ''
-        const allResults = this.state.etfsResults.concat(this.state.results.concat(this.state.customResults));
-        const watchlists = []
 
-        allResults
-            .forEach((watchlistResult) => {
-                const onRefreshClickHandler = (watchlist) => {
-                    this.loadWatchlistData(watchlist, watchlistResult.isEtf, true, false, false);
-                }
-                const onRefreshFinancialsHandler = (watchlist) => {
-                    this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, true, false);
-                }
-                const onShowClickHandler = (watchlist) => {
-                    if (this.containWatchlistData(watchlist, watchlistResult.isEtf)) {
-                        this.unloadWatchlistData(watchlist, watchlistResult.isEtf)
-                    } else {
-                        this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, false);
-                    }
-                }
-                watchlists.push(
-                    <Watchlist
-                        key={watchlistResult.watchlist}
-                        etfsResult={watchlistResult.etfsAnalysisResult}
-                        stocksResult={watchlistResult.stocksAnalysisResult}
-                        watchlist={watchlistResult.watchlist}
-                        onRefreshDynamicDataHandler={onRefreshClickHandler}
-                        onRefreshFinancialsHandler={onRefreshFinancialsHandler}
-                        onShowClickHandler={onShowClickHandler}
-                        isPreset={watchlistResult.isPreset}
-                        isEtf={watchlistResult.isEtf}
-                        isExpanded={watchlistResult.isLoaded}
-                    />
-                )
-            });
+        const etfWatchlists = this.state.etfsResults.map(watchlistResult => this.renderResult(watchlistResult))
+        const stockWatchlists = this.state.results.map(watchlistResult => this.renderResult(watchlistResult))
 
         return (
             <div className='StocksAnalysis' onClick={event => {
@@ -245,10 +215,41 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             }>
                 {errorDiv}
                 <div className='StickerPrice'><StickerPriceCalculator/></div>
-                <div className={'Watchlists'}>{watchlists}</div>
+                <div className={'EtfWatchlists'}>{etfWatchlists}</div>
+                <div className={'StockWatchlists'}>{stockWatchlists}</div>
             </div>
         )
     };
 
 
+    private renderResult(watchlistResult: WatchlistResult) {
+        const onRefreshClickHandler = (watchlist) => {
+            this.loadWatchlistData(watchlist, watchlistResult.isEtf, true, false, false);
+        }
+        const onRefreshFinancialsHandler = (watchlist) => {
+            this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, true, false);
+        }
+        const onShowClickHandler = (watchlist) => {
+            if (this.containWatchlistData(watchlist, watchlistResult.isEtf)) {
+                this.unloadWatchlistData(watchlist, watchlistResult.isEtf)
+            } else {
+                this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, false);
+            }
+        }
+
+        return (
+           <Watchlist
+                    key={watchlistResult.watchlist}
+                    etfsResult={watchlistResult.etfsAnalysisResult}
+                    stocksResult={watchlistResult.stocksAnalysisResult}
+                    watchlist={watchlistResult.watchlist}
+                    onRefreshDynamicDataHandler={onRefreshClickHandler}
+                    onRefreshFinancialsHandler={onRefreshFinancialsHandler}
+                    onShowClickHandler={onShowClickHandler}
+                    isPreset={watchlistResult.isPreset}
+                    isEtf={watchlistResult.isEtf}
+                    isExpanded={watchlistResult.isLoaded}
+                />
+        )
+    }
 }

@@ -12,7 +12,7 @@ export class FormattingUtils {
             return diff < 0 ? `in ${-diff} days` : data;
         }
         const formattedValue = this.format(data.value);
-        if(this.isGrowth(data.tags) && formattedValue){
+        if(formattedValue && this.isPercentage(data.tags, column)){
             return formattedValue.concat('%')
         }
         return formattedValue
@@ -131,6 +131,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Avg Dividend Yield', 'Avg Dividend')
         fieldLabel = fieldLabel.replace('Dividend Date', 'Dividend')
         fieldLabel = fieldLabel.replace('Cash Flow', 'CashF')
+        fieldLabel = fieldLabel.replace('Interest Expense To Operative Income', 'Interest To Op Income')
 
         return fieldLabel;
     }
@@ -167,7 +168,40 @@ export class FormattingUtils {
         return "";
     }
 
-    public static isGrowth(tags: CellTag[]) {
+    static isPercentage(tags: CellTag[], column: StockFields) {
+        const isGrowth = this.isGrowth(tags);
+        let isPercentage = false
+        switch (column){
+            case StockFields.grossMargin1:
+            case StockFields.grossMargin2:
+            case StockFields.grossMargin3:
+            case StockFields.profitMarginP1:
+            case StockFields.profitMarginP2:
+            case StockFields.profitMarginP3:
+            case StockFields.profitMarginPQ1:
+            case StockFields.profitMarginPQ2:
+            case StockFields.operatingMargin1:
+            case StockFields.operatingMargin2:
+            case StockFields.operatingMargin3:
+            case StockFields.totalCashPerShareP:
+            case StockFields.week52ChangeP:
+            case StockFields.week52AboveLowP:
+            case StockFields.week52BelowHighP:
+            case StockFields.belowTargetLowPriceP:
+            case StockFields.belowTargetMedianPriceP:
+            case StockFields.heldByInsidersP:
+            case StockFields.heldByInstitutionsP:
+            case StockFields.shortToFloatP:
+            case StockFields.sharesShortPrevMonthCompareP:
+            case StockFields.payoutRatioP:
+            case StockFields.belowStickerPrice15P:
+            case StockFields.belowStickerPrice5P:
+                isPercentage = true
+        }
+        return isGrowth || isPercentage
+    }
+
+    static isGrowth(tags: CellTag[]) {
         return tags && (tags.includes(CellTag.ratiosGrowth) || tags.includes(CellTag.financialsGrowth));
     }
 }

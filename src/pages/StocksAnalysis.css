@@ -4,10 +4,16 @@
     height: 100%;
     position: relative;
 }
+.EtfWatchlists, .StockWatchlists {
+    clear: both;
+}
+.StockWatchlists{
+    border: #dfe1ff;
+    border-top-style: solid;
+}
 .Watchlist {
     text-align: left;
     margin-bottom: 2px;
-    clear: both;
 }
 .StickerPrice {
     font-size: small;
@@ -17,7 +23,8 @@
     float: left;
     top:0;
     left:0;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    margin-bottom: 10px;
+    box-shadow: 0 2px 2px -1px #dfe1ff;
 }
 .error{
     color: #D8000C;

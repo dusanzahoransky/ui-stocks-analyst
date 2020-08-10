@@ -8,7 +8,7 @@ table, td, th {
 
 th, td {
     width: 55px;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 2px -1px #9398ff;
 }
 
 table {
@@ -24,7 +24,7 @@ th {
     position: sticky;
     top: 82px;
     background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 2px -1px #dfe1ff;
     font-weight: normal;
 }
 
@@ -36,27 +36,27 @@ th.totalScore {
     background-image: linear-gradient(to top right, #f0f3ff , #dfe1ff);
 }
 
-th.totalScore.growth {
+th.totalScore.growthInvesting {
     background-image: linear-gradient(to top right,  #dfe1ff, #fffad4);
 }
 
-th.totalScore.value {
+th.totalScore.valueInvesting {
     background-image: linear-gradient(to top right, #dfe1ff, #e8ffde);
 }
 
-th.value{
+th.valueInvesting{
     background-image: linear-gradient(to top right, #f0f3ff , #e8ffde);
 }
 
-th.growth.value{
+th.growthInvesting.valueInvesting{
     background-image: linear-gradient(to top right, #e8ffde , #fffad4);
 }
 
-th.growth{
+th.growthInvesting{
     background-image: linear-gradient(to top right, #f0f3ff , #fffad4);
 }
 
-th.rule1 {
+th.intrinsicValueInvesting {
     background-image: linear-gradient(to top right, #f0f3ff , #e0fffb);
 }
 
@@ -72,7 +72,6 @@ td.companyName{
     position: sticky;
     left: 53px;
     background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -88,13 +87,11 @@ td.currentPrice {
     position: sticky;
     left: 205px;
     background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 td.lastReport {
     position: sticky;
     left: 0px;
     background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 .lightGreen {
@@ -143,9 +140,18 @@ td.lastReport {
 
 .fa-sort {
     position: absolute;
-    top: 5px;
-    left: 5px;
+    bottom: 2px;
+    right: 2px;
     color: black;
+    font-size: smaller;
+}
+
+.fa-line-chart {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    color: black;
+    font-size: smaller;
 }
 
 .score {
