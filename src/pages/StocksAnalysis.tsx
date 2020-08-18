@@ -45,25 +45,26 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     private readonly STOCK_WATCHLISTS = [
         // 'TEST',
         'TO_CHECK',
-        // 'ALL_INVESTED',
-        //
-        // 'US_ALL',
-        // 'US_INVESTED_IN',
-        //
-        // 'EU_ALL',
-        // 'EU_INVESTED_IN',
-        // 'EU_AIRLINES',
-        //
-        // 'GB_ALL',
-        // 'GB_INVESTED_IN',
-        //
-        // 'AU_ALL',
-        // 'AU_INVESTED_IN',
-        //
-        // 'AIRLINES',
-        // 'TECH',
-        // 'NASDAQ_100',
-        // 'DIVIDENDS',
+        'ALL_INVESTED',
+
+        'US_ALL',
+        'US_WATCHLIST',
+        'US_INVESTED_IN',
+
+        'EU_ALL',
+        'EU_INVESTED_IN',
+        'EU_AIRLINES',
+
+        'GB_ALL',
+        'GB_INVESTED_IN',
+
+        'AU_ALL',
+        'AU_INVESTED_IN',
+
+        'AIRLINES',
+        'TECH',
+        'NASDAQ_100',
+        'DIVIDENDS',
     ];
 
     private readonly ETF_WATCHLISTS = [
@@ -90,8 +91,8 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     componentDidMount() {
         this.STOCK_WATCHLISTS
-            .forEach(watchlist => this.loadWatchlistData(watchlist, false))
-            // .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
+            // .forEach(watchlist => this.loadWatchlistData(watchlist, false))
+            .forEach(watchlist => this.createEmptyWatchlist(watchlist, false))
         this.ETF_WATCHLISTS
             // .forEach(watchlist => this.loadWatchlistData(watchlist, true, false))
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, true))

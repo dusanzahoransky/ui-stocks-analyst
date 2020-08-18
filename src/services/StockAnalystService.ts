@@ -57,6 +57,8 @@ export class StockAnalystService {
         if (!isEtf) {
             const taggedDataToScore = dataToScore.filter(data => data.tags)
 
+            cellData.push({value: StockAnalystService.calcNext5YYield(rowValues)})
+            cellData.push({value: StockAnalystService.calcNext10YYield(rowValues)})
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Q1)})
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Q2)})
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Y1)})
@@ -869,6 +871,8 @@ export class StockAnalystService {
     getScoreLabels(isEtf: boolean): string[] {
         const labels = []
         labels.push('Score')
+        labels.push('Next 5Y Yield')
+        labels.push('Next 10Y Yield')
         if (!isEtf) {
             labels.push('1Q Score')
             labels.push('2Q Score')
@@ -878,7 +882,7 @@ export class StockAnalystService {
             labels.push('Stocks Score')
             labels.push('Dividends Score')
             labels.push('Analysts Score')
-            labels.push('Rule 1 Score')
+            labels.push('Intrinsic value Score')
             labels.push('Value Investment Score')
             labels.push('Growth Investment Score')
         }
@@ -1323,5 +1327,25 @@ export class StockAnalystService {
         } else {
             return value
         }
+    }
+
+    private static calcNext5YYield(data: CellData[]) : number | undefined{
+        const pe = data[StockFields.trailingPE].value as number;
+        if(!pe){
+            return undefined
+        }
+        const pv = 100 / pe
+        const growthEstimate = data[StockFields.growthEstimate5y].value as number / 100
+        return pv * Math.pow(1+growthEstimate, 5);
+    }
+
+    private static calcNext10YYield(data: CellData[]) : number | undefined{
+        const pe = data[StockFields.trailingPE].value as number;
+        if(!pe){
+            return undefined
+        }
+        const pv = 100 / pe
+        const growthEstimate = data[StockFields.growthEstimate5y].value as number / 100
+        return pv * Math.pow(1+growthEstimate, 10);
     }
 }
