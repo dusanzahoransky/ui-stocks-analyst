@@ -1,4 +1,4 @@
-.StocksAnalysis {
+.Watchlists {
     text-align: right;
     width: 17800px;
     height: 100%;
@@ -15,8 +15,7 @@
     text-align: left;
     margin-bottom: 2px;
 }
-.StickerPrice {
-    font-size: small;
+.TopPanel {
     position: sticky;
     background: #ffffff;
     text-align: left;
@@ -25,19 +24,25 @@
     left:0;
     margin-bottom: 10px;
     box-shadow: 0 2px 2px -1px #dfe1ff;
-}
-.error{
-    color: #D8000C;
-    background-color: #FFBABA;
-    width: 500px;
-    margin-left: -150px;
-    left: 50%;
-    top: 0%;
-    position: sticky;
+    width: 100%;
     z-index: 100;
+}
+.ErrorDiv{
+    color: #D8000C;
+    width: 50%;
+    left: 25%;
     text-align: center;
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
 }
 
+.ErrorMessage{
+    max-width: 90%;
+}
+.Calculators{
+    float: left;
+}
 .fa-warning{
     position: absolute;
     top: 3px;

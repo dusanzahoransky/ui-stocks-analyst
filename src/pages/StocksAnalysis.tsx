@@ -4,7 +4,7 @@ import './StocksAnalysis.css';
 import {Watchlist} from "../components/Watchlist";
 import {BackendError} from "../model/BackendError";
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
-import {StickerPriceCalculator} from "../components/StickerPriceCalculator";
+import {IntrinsicValueCalculator} from "../components/IntrinsicValueCalculator";
 import {StocksAnalysisResult} from "../model/StocksAnalysisResult";
 
 export interface StocksAnalysisProps {
@@ -200,28 +200,35 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     render = () => {
 
-        const errorDiv = this.state.error ? <div className="error">
-            <i className="fa fa-warning"/>{this.state.error}<i className="fa fa-close error-close"/>
-        </div> : ''
-
+        const errorDiv = this.state.error ? this.renderErrorDiv() : ''
         const etfWatchlists = this.state.etfsResults.map(watchlistResult => this.renderResult(watchlistResult))
         const stockWatchlists = this.state.results.map(watchlistResult => this.renderResult(watchlistResult))
 
         return (
-            <div className='StocksAnalysis' onClick={event => {
-                if (event.target['className'].includes('error-close')) {
-                    this.setState({error: undefined})
-                }
-            }
-            }>
-                {errorDiv}
-                <div className='StickerPrice'><StickerPriceCalculator/></div>
-                <div className={'EtfWatchlists'}>{etfWatchlists}</div>
-                <div className={'StockWatchlists'}>{stockWatchlists}</div>
+            <div className='StocksAnalysis'>
+                <div className='TopPanel'>
+                    {errorDiv}
+                    <div className='Calculators'>
+                        <IntrinsicValueCalculator/>
+                    </div>
+                </div>
+                <div className='Watchlists'>
+                    <div className={'EtfWatchlists'}>{etfWatchlists}</div>
+                    <div className={'StockWatchlists'}>{stockWatchlists}</div>
+                </div>
             </div>
         )
     };
 
+    private renderErrorDiv() {
+        return <div className="ErrorDiv">
+            <i className="fa fa-warning"/><div className='ErrorMessage'>{this.state.error}</div><i className="fa fa-close error-close" onClick={event => this.clearErrors(event)}/>
+        </div>;
+    }
+
+    private clearErrors(event) {
+        this.setState({error: undefined})
+    }
 
     private renderResult(watchlistResult: WatchlistResult) {
         const onRefreshClickHandler = (watchlist) => {

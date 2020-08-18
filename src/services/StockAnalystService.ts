@@ -1336,7 +1336,11 @@ export class StockAnalystService {
         }
         const pv = 100 / pe
         const growthEstimate = data[StockFields.growthEstimate5y].value as number / 100
-        return pv * Math.pow(1+growthEstimate, 5);
+        return this.futureValue(pv, growthEstimate, 5);
+    }
+
+    static futureValue(presentValue: number, growth: number, years: number) {
+        return presentValue * Math.pow(1 + growth, years);
     }
 
     private static calcNext10YYield(data: CellData[]) : number | undefined{
@@ -1346,6 +1350,6 @@ export class StockAnalystService {
         }
         const pv = 100 / pe
         const growthEstimate = data[StockFields.growthEstimate5y].value as number / 100
-        return pv * Math.pow(1+growthEstimate, 10);
+        return this.futureValue(pv, growthEstimate, 10);
     }
 }
