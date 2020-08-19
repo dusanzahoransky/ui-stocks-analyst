@@ -871,9 +871,9 @@ export class StockAnalystService {
     getScoreLabels(isEtf: boolean): string[] {
         const labels = []
         labels.push('Score')
-        labels.push('Next 5Y Yield')
-        labels.push('Next 10Y Yield')
         if (!isEtf) {
+            labels.push('Next 5Y Yield')
+            labels.push('Next 10Y Yield')
             labels.push('1Q Score')
             labels.push('2Q Score')
             labels.push('1Y Score')

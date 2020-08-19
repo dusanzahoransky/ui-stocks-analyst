@@ -408,8 +408,6 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
         } else {
             let selectedStock = this.props.stocksResult.stocks
                 .filter(stock => stock.symbol === stockSymbol)[0]
-            console.log(selectedStock)
-            // const ratiosData = selectedStock.stockRatiosTimeline.periods
 
             //close the graph on a second click
             if (this.state.selectedStock === selectedStock) {
@@ -422,7 +420,6 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 this.setState(state => {
                     return {
                         selectedStock,
-                        // ratiosData,
                     }
                 })
             }

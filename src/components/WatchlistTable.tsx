@@ -127,10 +127,10 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         let cell1 = row1[column]
         let cell2 = row2[column]
 
-        if (!cell1) {
+        if (!cell1.value) {
             return asc ? -1 : 1
         }
-        if (!cell2) {
+        if (!cell2.value) {
             return asc ? 1 : -1
         }
         if (cell1.value > cell2.value) {

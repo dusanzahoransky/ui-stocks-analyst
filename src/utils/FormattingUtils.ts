@@ -196,6 +196,11 @@ export class FormattingUtils {
             case StockFields.payoutRatioP:
             case StockFields.belowStickerPrice15P:
             case StockFields.belowStickerPrice5P:
+            case StockFields.interestExpenseToOperativeIncomeP1:
+            case StockFields.interestExpenseToOperativeIncomeP2:
+            case StockFields.interestExpenseToOperativeIncomeP3:
+            case StockFields.interestExpenseToOperativeIncomePQ1:
+            case StockFields.interestExpenseToOperativeIncomePQ2:
                 isPercentage = true
         }
         return isGrowth || isPercentage
