@@ -9,6 +9,7 @@ table, td, th {
 th, td {
     min-width: 55px;
     box-shadow: 0 2px 2px -1px #9398ff;
+    background-color: white;
 }
 
 table {
@@ -22,12 +23,13 @@ tr.selected{
 
 th {
     position: sticky;
-    top: 82px;
+    top: 28px;
     border-color: #3d46ff;
     border-top-style: solid;
     border-width: 1px;
     box-shadow: 0 2px 2px -1px #bccfff;
     font-weight: normal;
+    z-index: 10;
 }
 
 th.label {
@@ -60,10 +62,6 @@ th.growthInvesting{
 
 th.intrinsicValueInvesting {
     background-image: linear-gradient(to top right, #ffffff , #e0fffb);
-}
-
-th.label {
-    top: 0;
 }
 
 .companyName{

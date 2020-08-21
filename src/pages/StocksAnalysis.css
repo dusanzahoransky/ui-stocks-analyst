@@ -36,6 +36,7 @@
 .Calculators{
     float: right;
     color: #3d46ff;
+    background-color: white;
 }
 .fa-warning{
     position: absolute;
