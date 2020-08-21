@@ -2,19 +2,21 @@ export enum CellTag {
     hidden,
     companyName,
     date,
+    lastUpdated,
     symbol,
     price,
     change,
     lastReport,
     dividends,
     ratios,
+    ratiosGrowth,
     currentPrice,
     analysts,
     stock,
     short,
     financials,
 
-    rule1,
+    intrinsicValueInvesting,
     cgEps,
     cgBps,
     cgRevenue,
@@ -34,7 +36,7 @@ export enum CellTag {
     Y4,
 
 
-    timelineGrowth,
-    value,
-    growth,
+    financialsGrowth,
+    valueInvesting,
+    growthInvesting,
 }

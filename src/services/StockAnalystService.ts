@@ -14,6 +14,7 @@ import {StockDisplayableFields} from "../model/StockDisplayableFields";
 import {FieldDisplayType} from "../model/FieldDisplayType";
 import {Timeline} from "../model/Timeline";
 
+
 export class StockAnalystService {
 
     static i = 0;
@@ -22,8 +23,7 @@ export class StockAnalystService {
         if (watchlist === 'TEST') {
             return Promise.resolve(resultTest)
         } else {
-            return fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&refreshDynamicData=${refreshDynamicData}&refreshFinancials=${refreshFinancials}&mockData=${mockData}`)
-                .then(r => r.json() as unknown as Stock[]);
+            return StockAnalystService.fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&refreshDynamicData=${refreshDynamicData}&refreshFinancials=${refreshFinancials}&mockData=${mockData}`);
         }
     }
 
@@ -31,8 +31,16 @@ export class StockAnalystService {
         if (watchlist === 'TEST_INDICES') {
             return Promise.resolve(etfsTest)
         } else {
-            return fetch(`http://localhost:3000/stocks/etfWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`)
-                .then(r => r.json() as unknown as EtfsAnalysisResult);
+            return StockAnalystService.fetch(`http://localhost:3000/stocks/etfWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`);
+        }
+    }
+
+    private static async fetch(path: string) {
+        const response = await fetch(path);
+        if (response.status >= 200 && response.status <= 300) {
+            return response.json()
+        } else {
+            return { ...response, error: 'unknown', message: `Failed call ${path}`} as BackendError
         }
     }
 
@@ -57,6 +65,8 @@ export class StockAnalystService {
         if (!isEtf) {
             const taggedDataToScore = dataToScore.filter(data => data.tags)
 
+            cellData.push({value: StockAnalystService.calcNext5YYield(rowValues)})
+            cellData.push({value: StockAnalystService.calcNext10YYield(rowValues)})
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Q1)})
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Q2)})
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Y1)})
@@ -75,8 +85,8 @@ export class StockAnalystService {
                 value: rule1Score
             })
 
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.value)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.growth)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.valueInvesting)})
+            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.growthInvesting)})
         }
 
         return cellData
@@ -719,10 +729,10 @@ export class StockAnalystService {
                 score = (number - 10) * lastYearCoefficient * roicCoefficient
                 break;
             case StockFields.roicP2:
-                score = (number - 10)  * last2YearCoefficient * roicCoefficient
+                score = (number - 10) * last2YearCoefficient * roicCoefficient
                 break;
             case StockFields.roicP3:
-                score = (number - 10)  * last3YearCoefficient * roicCoefficient
+                score = (number - 10) * last3YearCoefficient * roicCoefficient
                 break;
 
             case StockFields.peQ1:
@@ -795,7 +805,7 @@ export class StockAnalystService {
         }
 
         score = this.absLessThan(score, 100)
-        
+
         dataToScore.score = score
         return dataToScore
     }
@@ -870,6 +880,8 @@ export class StockAnalystService {
         const labels = []
         labels.push('Score')
         if (!isEtf) {
+            labels.push('Next 5Y Yield')
+            labels.push('Next 10Y Yield')
             labels.push('1Q Score')
             labels.push('2Q Score')
             labels.push('1Y Score')
@@ -878,7 +890,7 @@ export class StockAnalystService {
             labels.push('Stocks Score')
             labels.push('Dividends Score')
             labels.push('Analysts Score')
-            labels.push('Rule 1 Score')
+            labels.push('Intrinsic value Score')
             labels.push('Value Investment Score')
             labels.push('Growth Investment Score')
         }
@@ -907,8 +919,8 @@ export class StockAnalystService {
                     //get the latest quartersToDisplay quarterly values
                     const quarters = stock[field] as Timeline
                     const quartersLatestFirst = Object.values(quarters).reverse();
-                    for(let i = 0; i < quartersToDisplay; i++){
-                        const fieldName = `${field.substr(0, field.length-1)} Q${i + 1}`
+                    for (let i = 0; i < quartersToDisplay; i++) {
+                        const fieldName = `${field.substr(0, field.length - 1)} Q${i + 1}`
                         flatten[fieldName] = quartersLatestFirst[i]
                     }
                     break
@@ -917,7 +929,7 @@ export class StockAnalystService {
                     const years = stock[field] as Timeline
                     const yearsLatestFirst = Object.values(years)
                         .reverse();
-                    for(let i = 0; i < yearsToDisplay; i++){
+                    for (let i = 0; i < yearsToDisplay; i++) {
                         const fieldName = `${field} Y${i + 1}`
                         flatten[fieldName] = yearsLatestFirst[i]
                     }
@@ -1323,5 +1335,29 @@ export class StockAnalystService {
         } else {
             return value
         }
+    }
+
+    private static calcNext5YYield(data: CellData[]): number | undefined {
+        const pe = data[StockFields.trailingPE].value as number;
+        if (!pe) {
+            return undefined
+        }
+        const pv = 100 / pe
+        const growthEstimate = data[StockFields.growthEstimate5y].value as number / 100
+        return this.futureValue(pv, growthEstimate, 5);
+    }
+
+    static futureValue(presentValue: number, growth: number, years: number) {
+        return presentValue * Math.pow(1 + growth, years);
+    }
+
+    private static calcNext10YYield(data: CellData[]): number | undefined {
+        const pe = data[StockFields.trailingPE].value as number;
+        if (!pe) {
+            return undefined
+        }
+        const pv = 100 / pe
+        const growthEstimate = data[StockFields.growthEstimate5y].value as number / 100
+        return this.futureValue(pv, growthEstimate, 10);
     }
 }

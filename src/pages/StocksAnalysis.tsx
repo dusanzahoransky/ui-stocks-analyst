@@ -4,7 +4,7 @@ import './StocksAnalysis.css';
 import {Watchlist} from "../components/Watchlist";
 import {BackendError} from "../model/BackendError";
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
-import {StickerPriceCalculator} from "../components/StickerPriceCalculator";
+import {IntrinsicValueCalculator} from "../components/IntrinsicValueCalculator";
 import {StocksAnalysisResult} from "../model/StocksAnalysisResult";
 
 export interface StocksAnalysisProps {
@@ -48,10 +48,12 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         'ALL_INVESTED',
 
         'US_ALL',
+        'US_WATCHLIST',
         'US_INVESTED_IN',
 
         'EU_ALL',
         'EU_INVESTED_IN',
+        'EU_AIRLINES',
 
         'GB_ALL',
         'GB_INVESTED_IN',
@@ -66,7 +68,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
     ];
 
     private readonly ETF_WATCHLISTS = [
-        'TEST_INDICES',
+        // 'TEST_INDICES',
         'ETF_ALL',
 
         'AU_ETF_ALL',
@@ -105,10 +107,10 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             await this.stockAnalystService.loadEtfsAnalysis(watchlist, refreshDynamicData, mockData)
             : await this.stockAnalystService.loadAnalysis(watchlist, refreshDynamicData, refreshFinancials, mockData)
         const error = response as BackendError;
-        if (error.error) {
+        if (error.error || error.message || error.status) {
             this.setState(
                 {
-                    error: `Failed to load ${watchlist}: ${error.message}`
+                    error: `Failed to load ${watchlist} [${error.message}]`
                 }
             )
             return
@@ -198,56 +200,70 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     render = () => {
 
-        const errorDiv = this.state.error ? <div className="error">
-            <i className="fa fa-warning"/>{this.state.error}<i className="fa fa-close error-close"/>
-        </div> : ''
-        const allResults = this.state.etfsResults.concat(this.state.results.concat(this.state.customResults));
-        const watchlists = []
-
-        allResults
-            .forEach((watchlistResult) => {
-                const onRefreshClickHandler = (watchlist) => {
-                    this.loadWatchlistData(watchlist, watchlistResult.isEtf, true, false, false);
-                }
-                const onRefreshFinancialsHandler = (watchlist) => {
-                    this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, true, false);
-                }
-                const onShowClickHandler = (watchlist) => {
-                    if (this.containWatchlistData(watchlist, watchlistResult.isEtf)) {
-                        this.unloadWatchlistData(watchlist, watchlistResult.isEtf)
-                    } else {
-                        this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, false);
-                    }
-                }
-                watchlists.push(
-                    <Watchlist
-                        key={watchlistResult.watchlist}
-                        etfsResult={watchlistResult.etfsAnalysisResult}
-                        stocksResult={watchlistResult.stocksAnalysisResult}
-                        watchlist={watchlistResult.watchlist}
-                        onRefreshDynamicDataHandler={onRefreshClickHandler}
-                        onRefreshFinancialsHandler={onRefreshFinancialsHandler}
-                        onShowClickHandler={onShowClickHandler}
-                        isPreset={watchlistResult.isPreset}
-                        isEtf={watchlistResult.isEtf}
-                        isExpanded={watchlistResult.isLoaded}
-                    />
-                )
-            });
+        const errorDiv = this.state.error ? this.renderErrorDiv() : ''
+        const etfWatchlists = this.state.etfsResults.map(watchlistResult => this.renderResult(watchlistResult))
+        const stockWatchlists = this.state.results.map(watchlistResult => this.renderResult(watchlistResult))
 
         return (
-            <div className='StocksAnalysis' onClick={event => {
-                if (event.target['className'].includes('error-close')) {
-                    this.setState({error: undefined})
-                }
-            }
-            }>
-                {errorDiv}
-                <div className='StickerPrice'><StickerPriceCalculator/></div>
-                <div className={'Watchlists'}>{watchlists}</div>
+            <div className='StocksAnalysis'>
+                <div className='TopPanel'>
+                    {errorDiv}
+                    <div className='Calculators'>
+                        <IntrinsicValueCalculator/>
+                    </div>
+                </div>
+                <div className='Watchlists'>
+                    <div className={'EtfWatchlists'}>
+                        <h2 className='WatchlistsTypeLabel'>ETF Watchlists:</h2>
+                        {etfWatchlists}
+                    </div>
+                    <div className={'StockWatchlists'}>
+                        <h2 className='WatchlistsTypeLabel'>Stock Watchlists:</h2>
+                        {stockWatchlists}
+                    </div>
+                </div>
             </div>
         )
     };
 
+    private renderErrorDiv() {
+        return <div className="ErrorDiv">
+            <i className="fa fa-warning"/><div className='ErrorMessage'>{this.state.error}</div><i className="fa fa-close error-close" onClick={event => this.clearErrors(event)}/>
+        </div>;
+    }
 
+    private clearErrors(event) {
+        this.setState({error: undefined})
+    }
+
+    private renderResult(watchlistResult: WatchlistResult) {
+        const onRefreshClickHandler = (watchlist) => {
+            this.loadWatchlistData(watchlist, watchlistResult.isEtf, true, false, false);
+        }
+        const onRefreshFinancialsHandler = (watchlist) => {
+            this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, true, false);
+        }
+        const onShowClickHandler = (watchlist) => {
+            if (this.containWatchlistData(watchlist, watchlistResult.isEtf)) {
+                this.unloadWatchlistData(watchlist, watchlistResult.isEtf)
+            } else {
+                this.loadWatchlistData(watchlist, watchlistResult.isEtf, false, false);
+            }
+        }
+
+        return (
+           <Watchlist
+                    key={watchlistResult.watchlist}
+                    etfsResult={watchlistResult.etfsAnalysisResult}
+                    stocksResult={watchlistResult.stocksAnalysisResult}
+                    watchlist={watchlistResult.watchlist}
+                    onRefreshDynamicDataHandler={onRefreshClickHandler}
+                    onRefreshFinancialsHandler={onRefreshFinancialsHandler}
+                    onShowClickHandler={onShowClickHandler}
+                    isPreset={watchlistResult.isPreset}
+                    isEtf={watchlistResult.isEtf}
+                    isExpanded={watchlistResult.isLoaded}
+                />
+        )
+    }
 }

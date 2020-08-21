@@ -302,6 +302,8 @@ export enum StockFields {
     price,
 
     score,
+    yieldNext5Years,
+    yieldNext10Years,
     score1Q,
     score2Q,
     score1Y,

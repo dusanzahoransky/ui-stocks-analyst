@@ -1,43 +1,50 @@
-.StocksAnalysis {
-    text-align: right;
-    width: 17800px;
-    height: 100%;
-    position: relative;
+.WatchlistsTypeLabel{
+    margin: 10px;
+}
+.EtfWatchlists, .StockWatchlists {
+    margin: 0.5%;
+    clear: both;
+    text-align: left;
 }
 .Watchlist {
     text-align: left;
-    margin-bottom: 2px;
-    clear: both;
 }
-.StickerPrice {
-    font-size: small;
+.TopPanel {
     position: sticky;
     background: #ffffff;
-    text-align: left;
-    float: left;
+    height: 100%;
     top:0;
     left:0;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-}
-.error{
-    color: #D8000C;
-    background-color: #FFBABA;
-    width: 500px;
-    margin-left: -150px;
-    left: 50%;
-    top: 0%;
-    position: sticky;
     z-index: 100;
+}
+.ErrorDiv{
+    color: #D8000C;
+    width: 80%;
+    left: 10%;
     text-align: center;
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
 }
 
+.ErrorMessage{
+    max-width: 90%;
+    font-size: smaller;
+    margin: 5px;
+}
+.Calculators{
+    float: right;
+    color: #3d46ff;
+    background-color: white;
+}
 .fa-warning{
     position: absolute;
-    top: 3px;
-    left: 8px;
+    top: 5px;
+    left: 5px;
 }
 .fa-close{
     position: absolute;
-    top: 3px;
-    right: 8px;
+    top: 5px;
+    right: 5px;
 }

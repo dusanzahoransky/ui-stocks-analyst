@@ -1,0 +1,15 @@
+.IntrinsicValueCalculator{
+    margin: 5px;
+    font-size: smaller;
+    color: black;
+}
+.IntrinsicValueCalculator input {
+    width: 30px;
+    margin-right: 10px;
+    margin-left: 3px;
+    font-size: smaller;
+    border-color: #3d46ff;
+    border-width: 1px;
+    border-radius: 4px;
+
+}

@@ -28,7 +28,7 @@ export class StockTaggingService {
             case StockFields.statisticsLastUpdated:
             case StockFields.holdersLastUpdated:
             case StockFields.krfLastUpdated:
-                return [CellTag.date]
+                return [CellTag.date,  CellTag.lastUpdated]
             case StockFields.symbol:
                 return [CellTag.symbol]
             case StockFields.currentPrice:
@@ -47,17 +47,17 @@ export class StockTaggingService {
                 return [CellTag.ratios]
 
             case StockFields.trailingPE:
-                return [CellTag.ratios, CellTag.value]
+                return [CellTag.ratios, CellTag.valueInvesting]
             case StockFields.forwardPE:
-                return [CellTag.ratios, CellTag.value]
+                return [CellTag.ratios, CellTag.valueInvesting]
             case StockFields.priceToSalesTrailing12Months:
-                return [CellTag.ratios, CellTag.value]
+                return [CellTag.ratios, CellTag.valueInvesting]
             case StockFields.priceBook:
-                return [CellTag.ratios, CellTag.value]
+                return [CellTag.ratios, CellTag.valueInvesting]
             case StockFields.currentPriceToFreeCashFlow:
-                return [CellTag.ratios, CellTag.value]
+                return [CellTag.ratios, CellTag.valueInvesting]
             case StockFields.priceToFreeCashFlow:
-                return [CellTag.ratios, CellTag.value]
+                return [CellTag.ratios, CellTag.valueInvesting]
             case StockFields.enterpriseValueRevenue:
                 return [CellTag.ratios]
             case StockFields.enterpriseValueEBITDA:
@@ -122,15 +122,15 @@ export class StockTaggingService {
                 return [CellTag.Y3, CellTag.financials]
 
             case StockFields.revenueGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth, CellTag.growth, CellTag.value]
+                return [CellTag.Q1, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
             case StockFields.revenueGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth, CellTag.growth, CellTag.value]
+                return [CellTag.Q2, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
             case StockFields.revenueGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth, CellTag.growth, CellTag.value]
+                return [CellTag.Y1, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
             case StockFields.revenueGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth, CellTag.growth, CellTag.value]
+                return [CellTag.Y2, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
             case StockFields.revenueGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth, CellTag.growth, CellTag.value]
+                return [CellTag.Y3, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
 
 
             case StockFields.grossIncomeQ1:
@@ -145,15 +145,15 @@ export class StockTaggingService {
                 return [CellTag.Y3, CellTag.financials]
 
             case StockFields.grossIncomeGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth]
+                return [CellTag.Q1, CellTag.financialsGrowth]
             case StockFields.grossIncomeGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth]
+                return [CellTag.Q2, CellTag.financialsGrowth]
             case StockFields.grossIncomeGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.Y1, CellTag.financialsGrowth]
             case StockFields.grossIncomeGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.Y2, CellTag.financialsGrowth]
             case StockFields.grossIncomeGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.Y3, CellTag.financialsGrowth]
 
 
             case StockFields.interestExpenseToOperativeIncomePQ1:
@@ -168,15 +168,15 @@ export class StockTaggingService {
                 return [CellTag.Y3, CellTag.financials]
 
             case StockFields.interestExpenseToOperativeIncomeGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth]
+                return [CellTag.Q1, CellTag.financialsGrowth]
             case StockFields.interestExpenseToOperativeIncomeGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth]
+                return [CellTag.Q2, CellTag.financialsGrowth]
             case StockFields.interestExpenseToOperativeIncomeGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.Y1, CellTag.financialsGrowth]
             case StockFields.interestExpenseToOperativeIncomeGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.Y2, CellTag.financialsGrowth]
             case StockFields.interestExpenseToOperativeIncomeGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.Y3, CellTag.financialsGrowth]
 
 
             case StockFields.netIncomeQ1:
@@ -191,38 +191,38 @@ export class StockTaggingService {
                 return [CellTag.Y3, CellTag.financials]
 
             case StockFields.netIncomeGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Q1, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.netIncomeGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Q2, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.netIncomeGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.netIncomeGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.netIncomeGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
 
             case StockFields.profitMarginPQ1:
-                return [CellTag.financials, CellTag.Q1, CellTag.value]
+                return [CellTag.financials, CellTag.Q1, CellTag.valueInvesting]
             case StockFields.profitMarginPQ2:
-                return [CellTag.financials, CellTag.Q2, CellTag.value]
+                return [CellTag.financials, CellTag.Q2, CellTag.valueInvesting]
             case StockFields.profitMarginP1:
-                return [CellTag.financials, CellTag.Y1, CellTag.value]
+                return [CellTag.financials, CellTag.Y1, CellTag.valueInvesting]
             case StockFields.profitMarginP2:
-                return [CellTag.financials, CellTag.Y2, CellTag.value]
+                return [CellTag.financials, CellTag.Y2, CellTag.valueInvesting]
             case StockFields.profitMarginP3:
-                return [CellTag.financials, CellTag.Y3, CellTag.value]
+                return [CellTag.financials, CellTag.Y3, CellTag.valueInvesting]
 
             case StockFields.profitMarginGrowthQ1:
-                return [CellTag.financials, CellTag.Q1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.financials, CellTag.Q1, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.profitMarginGrowthQ2:
-                return [CellTag.financials, CellTag.Q2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.financials, CellTag.Q2, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.profitMarginGrowth1:
-                return [CellTag.financials, CellTag.Y1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.financials, CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.profitMarginGrowth2:
-                return [CellTag.financials, CellTag.Y2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.financials, CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.profitMarginGrowth3:
-                return [CellTag.financials, CellTag.Y3, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.financials, CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
 
             case StockFields.freeCashFlowQ1:
@@ -237,15 +237,15 @@ export class StockTaggingService {
                 return [CellTag.Y3, CellTag.financials]
 
             case StockFields.freeCashFlowGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Q1, CellTag.financialsGrowth, CellTag.growthInvesting]
             case StockFields.freeCashFlowGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Q2, CellTag.financialsGrowth, CellTag.growthInvesting]
             case StockFields.freeCashFlowGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Y1, CellTag.financialsGrowth, CellTag.growthInvesting]
             case StockFields.freeCashFlowGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Y2, CellTag.financialsGrowth, CellTag.growthInvesting]
             case StockFields.freeCashFlowGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Y3, CellTag.financialsGrowth, CellTag.growthInvesting]
 
             case StockFields.cashQ1:
                 return [CellTag.Q1, CellTag.financials]
@@ -258,15 +258,15 @@ export class StockTaggingService {
             case StockFields.cash3:
                 return [CellTag.Y3, CellTag.financials]
             case StockFields.cashGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth]
+                return [CellTag.Q1, CellTag.financialsGrowth]
             case StockFields.cashGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth]
+                return [CellTag.Q2, CellTag.financialsGrowth]
             case StockFields.cashGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.Y1, CellTag.financialsGrowth]
             case StockFields.cashGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.Y2, CellTag.financialsGrowth]
             case StockFields.cashGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.Y3, CellTag.financialsGrowth]
 
             case StockFields.inventoryQ1:
                 return [CellTag.Q1, CellTag.financials]
@@ -279,15 +279,15 @@ export class StockTaggingService {
             case StockFields.inventory3:
                 return [CellTag.Y3, CellTag.financials]
             case StockFields.inventoryGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth]
+                return [CellTag.Q1, CellTag.financialsGrowth]
             case StockFields.inventoryGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth]
+                return [CellTag.Q2, CellTag.financialsGrowth]
             case StockFields.inventoryGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.Y1, CellTag.financialsGrowth]
             case StockFields.inventoryGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.Y2, CellTag.financialsGrowth]
             case StockFields.inventoryGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.Y3, CellTag.financialsGrowth]
 
 
             case StockFields.currentRatioQ1:
@@ -302,15 +302,15 @@ export class StockTaggingService {
                 return [CellTag.ratios, CellTag.Y3]
 
             case StockFields.currentRatioGrowthQ1:
-                return [CellTag.ratios, CellTag.Q1, CellTag.timelineGrowth]
+                return [CellTag.ratios, CellTag.Q1, CellTag.ratiosGrowth]
             case StockFields.currentRatioGrowthQ2:
-                return [CellTag.ratios, CellTag.Q2, CellTag.timelineGrowth]
+                return [CellTag.ratios, CellTag.Q2, CellTag.ratiosGrowth]
             case StockFields.currentRatioGrowth1:
-                return [CellTag.ratios, CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.ratios, CellTag.Y1, CellTag.ratiosGrowth]
             case StockFields.currentRatioGrowth2:
-                return [CellTag.ratios, CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.ratios, CellTag.Y2, CellTag.ratiosGrowth]
             case StockFields.currentRatioGrowth3:
-                return [CellTag.ratios, CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.ratios, CellTag.Y3, CellTag.ratiosGrowth]
 
             case StockFields.totalLiabilitiesQ1:
                 return [CellTag.Q1, CellTag.financials]
@@ -328,15 +328,15 @@ export class StockTaggingService {
             case StockFields.totalAssets3:
                 return [CellTag.Y3, CellTag.financials]
             case StockFields.totalAssetsGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth]
+                return [CellTag.Q1, CellTag.financialsGrowth]
             case StockFields.totalAssetsGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth]
+                return [CellTag.Q2, CellTag.financialsGrowth]
             case StockFields.totalAssetsGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.Y1, CellTag.financialsGrowth]
             case StockFields.totalAssetsGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.Y2, CellTag.financialsGrowth]
             case StockFields.totalAssetsGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.Y3, CellTag.financialsGrowth]
 
 
             case StockFields.totalShareholdersEquityQ1:
@@ -351,15 +351,15 @@ export class StockTaggingService {
                 return [CellTag.Y3, CellTag.financials]
 
             case StockFields.totalShareholdersEquityGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Q1, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.totalShareholdersEquityGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Q2, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.totalShareholdersEquityGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.totalShareholdersEquityGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.totalShareholdersEquityGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
             case StockFields.totalDebtToEquityQ1:
                 return [CellTag.ratios, CellTag.Q1]
@@ -372,15 +372,15 @@ export class StockTaggingService {
             case StockFields.totalDebtToEquity3:
                 return [CellTag.ratios, CellTag.Y3]
             case StockFields.totalDebtToEquityGrowthQ1:
-                return [CellTag.ratios, CellTag.Q1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Q1, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.totalDebtToEquityGrowthQ2:
-                return [CellTag.ratios, CellTag.Q2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Q2, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.totalDebtToEquityGrowth1:
-                return [CellTag.ratios, CellTag.Y1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Y1, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.totalDebtToEquityGrowth2:
-                return [CellTag.ratios, CellTag.Y2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Y2, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.totalDebtToEquityGrowth3:
-                return [CellTag.ratios, CellTag.Y3, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Y3, CellTag.ratiosGrowth, CellTag.valueInvesting]
 
             case StockFields.nonCurrentLiabilitiesToIncomeQ1:
                 return [CellTag.ratios, CellTag.Q1]
@@ -393,15 +393,15 @@ export class StockTaggingService {
             case StockFields.nonCurrentLiabilitiesToIncome3:
                 return [CellTag.ratios, CellTag.Y3]
             case StockFields.nonCurrentLiabilitiesToIncomeGrowthQ1:
-                return [CellTag.ratios, CellTag.Q1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Q1, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.nonCurrentLiabilitiesToIncomeGrowthQ2:
-                return [CellTag.ratios, CellTag.Q2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Q2, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.nonCurrentLiabilitiesToIncomeGrowth1:
-                return [CellTag.ratios, CellTag.Y1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Y1, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.nonCurrentLiabilitiesToIncomeGrowth2:
-                return [CellTag.ratios, CellTag.Y2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Y2, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.nonCurrentLiabilitiesToIncomeGrowth3:
-                return [CellTag.ratios, CellTag.Y3, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.ratios, CellTag.Y3, CellTag.ratiosGrowth, CellTag.valueInvesting]
 
             case StockFields.stockRepurchasedQ1:
                 return [CellTag.stock, CellTag.Q1]
@@ -414,15 +414,15 @@ export class StockTaggingService {
             case StockFields.stockRepurchased3:
                 return [CellTag.stock, CellTag.Y3]
             case StockFields.stockRepurchasedGrowthQ1:
-                return [CellTag.stock, CellTag.Q1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.stock, CellTag.Q1, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.stockRepurchasedGrowthQ2:
-                return [CellTag.stock, CellTag.Q2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.stock, CellTag.Q2, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.stockRepurchasedGrowth1:
-                return [CellTag.stock, CellTag.Y1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.stock, CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.stockRepurchasedGrowth2:
-                return [CellTag.stock, CellTag.Y2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.stock, CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.stockRepurchasedGrowth3:
-                return [CellTag.stock, CellTag.Y3, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.stock, CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
             case StockFields.shares1:
                 return [CellTag.stock, CellTag.Y1]
@@ -431,11 +431,11 @@ export class StockTaggingService {
             case StockFields.shares3:
                 return [CellTag.stock, CellTag.Y3]
             case StockFields.sharesGrowth1:
-                return [CellTag.stock, CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.stock, CellTag.Y1, CellTag.financialsGrowth]
             case StockFields.sharesGrowth2:
-                return [CellTag.stock, CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.stock, CellTag.Y2, CellTag.financialsGrowth]
             case StockFields.sharesGrowth3:
-                return [CellTag.stock, CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.stock, CellTag.Y3, CellTag.financialsGrowth]
 
             case StockFields.epsQ1:
                 return [CellTag.Q1, CellTag.ratios]
@@ -448,15 +448,15 @@ export class StockTaggingService {
             case StockFields.eps3:
                 return [CellTag.Y3, CellTag.ratios]
             case StockFields.epsGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Q1, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.epsGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Q2, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.epsGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y1, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.epsGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y2, CellTag.ratiosGrowth, CellTag.valueInvesting]
             case StockFields.epsGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y3, CellTag.ratiosGrowth, CellTag.valueInvesting]
 
             case StockFields.peQ1:
                 return [CellTag.ratios, CellTag.Q1, CellTag.hidden]
@@ -469,15 +469,15 @@ export class StockTaggingService {
             case StockFields.pe3:
                 return [CellTag.ratios, CellTag.Y3, CellTag.hidden]
             case StockFields.peGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth, CellTag.hidden]
+                return [CellTag.Q1, CellTag.ratiosGrowth, CellTag.hidden]
             case StockFields.peGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth, CellTag.hidden]
+                return [CellTag.Q2, CellTag.ratiosGrowth, CellTag.hidden]
             case StockFields.peGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth, CellTag.hidden]
+                return [CellTag.Y1, CellTag.ratiosGrowth, CellTag.hidden]
             case StockFields.peGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth, CellTag.hidden]
+                return [CellTag.Y2, CellTag.ratiosGrowth, CellTag.hidden]
             case StockFields.peGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth, CellTag.hidden]
+                return [CellTag.Y3, CellTag.ratiosGrowth, CellTag.hidden]
 
             case StockFields.bookValuePerShare1:
                 return [CellTag.Y1, CellTag.ratios]
@@ -486,11 +486,11 @@ export class StockTaggingService {
             case StockFields.bookValuePerShare3:
                 return [CellTag.Y3, CellTag.ratios]
             case StockFields.bookValuePerShareGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Y1, CellTag.ratiosGrowth, CellTag.growthInvesting]
             case StockFields.bookValuePerShareGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Y2, CellTag.ratiosGrowth, CellTag.growthInvesting]
             case StockFields.bookValuePerShareGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Y3, CellTag.ratiosGrowth, CellTag.growthInvesting]
 
 
             case StockFields.freeCashFlowPerShare1:
@@ -500,24 +500,24 @@ export class StockTaggingService {
             case StockFields.freeCashFlowPerShare3:
                 return [CellTag.Y3, CellTag.ratios]
             case StockFields.freeCashFlowPerShareGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.Y1, CellTag.ratiosGrowth]
             case StockFields.freeCashFlowPerShareGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.Y2, CellTag.ratiosGrowth]
             case StockFields.freeCashFlowPerShareGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.Y3, CellTag.ratiosGrowth]
 
             case StockFields.grossMargin1:
-                return [CellTag.Y1, CellTag.financials, CellTag.value]
+                return [CellTag.Y1, CellTag.financials, CellTag.valueInvesting]
             case StockFields.grossMargin2:
-                return [CellTag.Y2, CellTag.financials, CellTag.value]
+                return [CellTag.Y2, CellTag.financials, CellTag.valueInvesting]
             case StockFields.grossMargin3:
-                return [CellTag.Y3, CellTag.financials, CellTag.value]
+                return [CellTag.Y3, CellTag.financials, CellTag.valueInvesting]
             case StockFields.grossMarginGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.grossMarginGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
             case StockFields.grossMarginGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth, CellTag.value]
+                return [CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
             case StockFields.operatingCashFlow1:
                 return [CellTag.Y1, CellTag.financials]
@@ -526,11 +526,11 @@ export class StockTaggingService {
             case StockFields.operatingCashFlow3:
                 return [CellTag.Y3, CellTag.financials]
             case StockFields.operatingCashFlowGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Y1, CellTag.financialsGrowth, CellTag.growthInvesting]
             case StockFields.operatingCashFlowGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Y2, CellTag.financialsGrowth, CellTag.growthInvesting]
             case StockFields.operatingCashFlowGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth, CellTag.growth]
+                return [CellTag.Y3, CellTag.financialsGrowth, CellTag.growthInvesting]
 
             case StockFields.operatingIncome1:
                 return [CellTag.Y1, CellTag.financials]
@@ -539,11 +539,11 @@ export class StockTaggingService {
             case StockFields.operatingIncome3:
                 return [CellTag.Y3, CellTag.financials]
             case StockFields.operatingIncomeGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.Y1, CellTag.financialsGrowth]
             case StockFields.operatingIncomeGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.Y2, CellTag.financialsGrowth]
             case StockFields.operatingIncomeGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.Y3, CellTag.financialsGrowth]
 
             case StockFields.operatingMargin1:
                 return [CellTag.Y1, CellTag.financials]
@@ -552,11 +552,11 @@ export class StockTaggingService {
             case StockFields.operatingMargin3:
                 return [CellTag.Y3, CellTag.financials]
             case StockFields.operatingMarginGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.Y1, CellTag.financialsGrowth]
             case StockFields.operatingMarginGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.Y2, CellTag.financialsGrowth]
             case StockFields.operatingMarginGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.Y3, CellTag.financialsGrowth]
 
             case StockFields.workingCapitalQ1:
                 return [CellTag.Q1, CellTag.financials]
@@ -569,105 +569,109 @@ export class StockTaggingService {
             case StockFields.workingCapital3:
                 return [CellTag.Y3, CellTag.financials]
             case StockFields.workingCapitalGrowthQ1:
-                return [CellTag.Q1, CellTag.timelineGrowth]
+                return [CellTag.Q1, CellTag.financialsGrowth]
             case StockFields.workingCapitalGrowthQ2:
-                return [CellTag.Q2, CellTag.timelineGrowth]
+                return [CellTag.Q2, CellTag.financialsGrowth]
             case StockFields.workingCapitalGrowth1:
-                return [CellTag.Y1, CellTag.timelineGrowth]
+                return [CellTag.Y1, CellTag.financialsGrowth]
             case StockFields.workingCapitalGrowth2:
-                return [CellTag.Y2, CellTag.timelineGrowth]
+                return [CellTag.Y2, CellTag.financialsGrowth]
             case StockFields.workingCapitalGrowth3:
-                return [CellTag.Y3, CellTag.timelineGrowth]
+                return [CellTag.Y3, CellTag.financialsGrowth]
 
 
             case StockFields.growthEstimate5y:
-                return [CellTag.rule1, CellTag.analysts, CellTag.timelineGrowth]
+                return [CellTag.intrinsicValueInvesting, CellTag.analysts, CellTag.financialsGrowth]
 
             case StockFields.roicP1:
-                return [CellTag.rule1, CellTag.cgRoic, CellTag.value]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
             case StockFields.roicP2:
-                return [CellTag.rule1, CellTag.cgRoic, CellTag.value]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
             case StockFields.roicP3:
-                return [CellTag.rule1, CellTag.cgRoic, CellTag.value]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
 
             case StockFields.roic1Y:
-                return [CellTag.rule1, CellTag.cgRoic, CellTag.value]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
             case StockFields.roic3Y:
-                return [CellTag.rule1, CellTag.cgRoic, CellTag.value]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
 
             case StockFields.revenue1Y:
-                return [CellTag.rule1, CellTag.cgRevenue]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRevenue]
             case StockFields.revenue3Y:
-                return [CellTag.rule1, CellTag.cgRevenue]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRevenue]
             case StockFields.revenue5Y:
-                return [CellTag.rule1, CellTag.cgRevenue]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRevenue]
             case StockFields.revenue9Y:
-                return [CellTag.rule1, CellTag.cgRevenue]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRevenue]
 
             case StockFields.eps1Y:
-                return [CellTag.rule1, CellTag.cgEps]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgEps]
             case StockFields.eps3Y:
-                return [CellTag.rule1, CellTag.cgEps]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgEps]
             case StockFields.eps5Y:
-                return [CellTag.rule1, CellTag.cgEps]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgEps]
             case StockFields.eps9Y:
-                return [CellTag.rule1, CellTag.cgEps]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgEps]
 
             case StockFields.bps1Y:
-                return [CellTag.rule1, CellTag.cgBps]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgBps]
             case StockFields.bps3Y:
-                return [CellTag.rule1, CellTag.cgBps]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgBps]
             case StockFields.bps5Y:
-                return [CellTag.rule1, CellTag.cgBps]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgBps]
             case StockFields.bps9Y:
-                return [CellTag.rule1, CellTag.cgBps]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgBps]
 
             case StockFields.cash1Y:
-                return [CellTag.rule1, CellTag.cgCash]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgCash]
             case StockFields.cash3Y:
-                return [CellTag.rule1, CellTag.cgCash]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgCash]
             case StockFields.cash5Y:
-                return [CellTag.rule1, CellTag.cgCash]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgCash]
             case StockFields.cash9Y:
-                return [CellTag.rule1, CellTag.cgCash]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgCash]
 
             case StockFields.pe1Y:
-                return [CellTag.rule1, CellTag.cgPe]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgPe]
             case StockFields.pe3Y:
-                return [CellTag.rule1, CellTag.cgPe]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgPe]
             case StockFields.pe5Y:
-                return [CellTag.rule1, CellTag.cgPe]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgPe]
             case StockFields.pe9Y:
-                return [CellTag.rule1, CellTag.cgPe]
+                return [CellTag.intrinsicValueInvesting, CellTag.cgPe]
 
             case StockFields.rule1GrowthRate:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
             case StockFields.defaultPE:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
             case StockFields.historicalPE:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
             case StockFields.rule1PE:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
             case StockFields.currentEps:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
             case StockFields.futurePrice10Years:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
             case StockFields.futureEPS10Years:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
 
             case StockFields.stickerPrice15pcGrowth:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
             case StockFields.stickerPrice5pcGrowth:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
 
             case StockFields.belowStickerPrice15P:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
             case StockFields.belowStickerPrice5P:
-                return [CellTag.rule1, CellTag.calc]
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
 
             case StockFields.price:
                 return [CellTag.price, CellTag.hidden]
 
+            case StockFields.yieldNext5Years:
+                return [CellTag.analysts, CellTag.growthInvesting, CellTag.totalScore]
+            case StockFields.yieldNext10Years:
+                return [CellTag.analysts, CellTag.growthInvesting, CellTag.totalScore]
             case StockFields.score:
                 return [CellTag.totalScore]
             case StockFields.score1Q:
@@ -689,9 +693,9 @@ export class StockTaggingService {
             case StockFields.rule1score:
                 return [CellTag.totalScore]
             case StockFields.valueInvestmentScore:
-                return [CellTag.totalScore, CellTag.value]
+                return [CellTag.totalScore, CellTag.valueInvesting]
             case StockFields.growthInvestmentScore:
-                return [CellTag.totalScore, CellTag.growth]
+                return [CellTag.totalScore, CellTag.growthInvesting]
 
             default:
                 throw Error('Undefined field ' + column)

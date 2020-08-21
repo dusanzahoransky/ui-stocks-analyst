@@ -1,22 +1,28 @@
 import {StockFields} from "../model/StockFields";
 import moment from "moment";
 import {EtfFields} from "../model/EtfFields";
+import {CellData} from "../model/table/CellData";
+import {CellTag} from "../model/table/CellTag";
 
 export class FormattingUtils {
 
-    static formatStock(rowValue: any[], value: number | string, column: StockFields): string {
-        if (typeof value === 'string' && column === StockFields.exDividendDate) {
-            let diff = moment().diff(value, 'days');
-            return diff < 0 ? `in ${-diff} days` : value;
+    static formatStock(data: CellData, column: StockFields): string {
+        if (typeof data === 'string' && column === StockFields.exDividendDate) {
+            let diff = moment().diff(data, 'days');
+            return diff < 0 ? `in ${-diff} days` : data;
         }
-        return this.format(rowValue, value)
+        const formattedValue = this.format(data.value);
+        if(formattedValue && this.isPercentage(data.tags, column)){
+            return formattedValue.concat('%')
+        }
+        return formattedValue
     }
 
-    static formatEtf(rowValue: any[], value: number | string, column: EtfFields): string {
-        return this.format(rowValue, value)
+    static formatEtf(data: CellData, column: EtfFields): string {
+        return this.format(data.value)
     }
 
-    static format(rowValue: any[], value: number | string): string {
+    static format(value: number | string): string {
         if (!value) {
             return ''
         }
@@ -54,8 +60,7 @@ export class FormattingUtils {
     }
 
     static toFieldLabel(field: string) {
-        let fieldLabel = field
-            .replace(/[A-Z0-9\[\]]+/g, g  => ' '.concat(g));
+        let fieldLabel = field.replace(/[A-Z0-9]+/g, g  => ' '.concat(g));
 
         fieldLabel = fieldLabel[0].toUpperCase() + fieldLabel.substr(1)
 
@@ -125,6 +130,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Avg Dividend Yield', 'Avg Dividend')
         fieldLabel = fieldLabel.replace('Dividend Date', 'Dividend')
         fieldLabel = fieldLabel.replace('Cash Flow', 'CashF')
+        fieldLabel = fieldLabel.replace('Interest Expense To Operative Income', 'Interest To Op Income')
 
         return fieldLabel;
     }
@@ -161,4 +167,45 @@ export class FormattingUtils {
         return "";
     }
 
+    static isPercentage(tags: CellTag[], column: StockFields) {
+        const isGrowth = this.isGrowth(tags);
+        let isPercentage = false
+        switch (column){
+            case StockFields.grossMargin1:
+            case StockFields.grossMargin2:
+            case StockFields.grossMargin3:
+            case StockFields.profitMarginP1:
+            case StockFields.profitMarginP2:
+            case StockFields.profitMarginP3:
+            case StockFields.profitMarginPQ1:
+            case StockFields.profitMarginPQ2:
+            case StockFields.operatingMargin1:
+            case StockFields.operatingMargin2:
+            case StockFields.operatingMargin3:
+            case StockFields.totalCashPerShareP:
+            case StockFields.week52ChangeP:
+            case StockFields.week52AboveLowP:
+            case StockFields.week52BelowHighP:
+            case StockFields.belowTargetLowPriceP:
+            case StockFields.belowTargetMedianPriceP:
+            case StockFields.heldByInsidersP:
+            case StockFields.heldByInstitutionsP:
+            case StockFields.shortToFloatP:
+            case StockFields.sharesShortPrevMonthCompareP:
+            case StockFields.payoutRatioP:
+            case StockFields.belowStickerPrice15P:
+            case StockFields.belowStickerPrice5P:
+            case StockFields.interestExpenseToOperativeIncomeP1:
+            case StockFields.interestExpenseToOperativeIncomeP2:
+            case StockFields.interestExpenseToOperativeIncomeP3:
+            case StockFields.interestExpenseToOperativeIncomePQ1:
+            case StockFields.interestExpenseToOperativeIncomePQ2:
+                isPercentage = true
+        }
+        return isGrowth || isPercentage
+    }
+
+    static isGrowth(tags: CellTag[]) {
+        return tags && (tags.includes(CellTag.ratiosGrowth) || tags.includes(CellTag.financialsGrowth));
+    }
 }

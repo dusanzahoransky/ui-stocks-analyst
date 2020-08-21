@@ -3,11 +3,13 @@ table, td, th {
     border-radius: 2px;
     padding: 0;
     font-size: small;
+    margin-top: 10px;
 }
 
 th, td {
-    width: 55px;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    min-width: 55px;
+    box-shadow: 0 2px 2px -1px #9398ff;
+    background-color: white;
 }
 
 table {
@@ -21,10 +23,13 @@ tr.selected{
 
 th {
     position: sticky;
-    top: 82px;
-    background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    top: 28px;
+    border-color: #3d46ff;
+    border-top-style: solid;
+    border-width: 1px;
+    box-shadow: 0 2px 2px -1px #bccfff;
     font-weight: normal;
+    z-index: 10;
 }
 
 th.label {
@@ -32,52 +37,46 @@ th.label {
 }
 
 th.totalScore {
-    background-image: linear-gradient(to top right, #f0f3ff , #dfe1ff);
+    background-image: linear-gradient(to top right, #dfe6ff, #ffffff);
 }
 
-th.totalScore.growth {
-    background-image: linear-gradient(to top right,  #dfe1ff, #fffad4);
+th.totalScore.growthInvesting {
+    background-image: linear-gradient(to top right,  #dfe6ff, #fffad4);
 }
 
-th.totalScore.value {
-    background-image: linear-gradient(to top right, #dfe1ff, #e8ffde);
+th.totalScore.valueInvesting {
+    background-image: linear-gradient(to top right, #dfe6ff, #e8ffde);
 }
 
-th.value{
-    background-image: linear-gradient(to top right, #f0f3ff , #e8ffde);
+th.valueInvesting{
+    background-image: linear-gradient(to top right, #ffffff , #e8ffde);
 }
 
-th.growth.value{
+th.growthInvesting.valueInvesting{
     background-image: linear-gradient(to top right, #e8ffde , #fffad4);
 }
 
-th.growth{
-    background-image: linear-gradient(to top right, #f0f3ff , #fffad4);
+th.growthInvesting{
+    background-image: linear-gradient(to top right, #ffffff , #fffad4);
 }
 
-th.rule1 {
-    background-image: linear-gradient(to top right, #f0f3ff , #e0fffb);
-}
-
-th.label {
-    top: 0;
+th.intrinsicValueInvesting {
+    background-image: linear-gradient(to top right, #ffffff , #e0fffb);
 }
 
 .companyName{
-    width: 160px;
+    min-width: 160px;
 }
 td.companyName{
     font-size: x-small;
     position: sticky;
     left: 53px;
     background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 
 .date{
     font-size: x-small;
-    width: 55px;
 }
 .date.label{
     font-size: unset;
@@ -87,42 +86,48 @@ td.currentPrice {
     position: sticky;
     left: 205px;
     background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 td.lastReport {
     position: sticky;
     left: 0px;
     background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
 .lightGreen {
     background-image: linear-gradient(to top right, #ffffff , #e5ffe3);
 }
-
+.lightGreenText {
+    color: #0c8800;
+}
 .lightRed {
     background-image: linear-gradient(to top right, #ffffff , #ffe6dc);
 }
-
-.green {
-    background-image: linear-gradient(to top right, #ffffff , #7dd282);
+.lightRedText {
+    color: #b80007;
 }
-
+.red {
+    background-image: linear-gradient(to top right, #ffffff , #fda09d);
+}
+.redText {
+    color: #b80007;
+    font-weight: bold;
+}
+.green {
+    background-image: linear-gradient(to top right, #ffffff , #8cd990);
+}
 .greenText {
-    color: #128408;
+    color: #0c8800;
+    font-weight: bold;
 }
 
 .blueText {
-    color: #003795;
+    color: #3d46ff;
 }
 
 .boldText {
     font-weight: bold;
 }
 
-.red {
-    background-image: linear-gradient(to top right, #ffffff , #ff6d68);
-}
 
 .additionalInfo {
     background: yellow;
@@ -132,20 +137,26 @@ td.lastReport {
     font-weight: bold;
 }
 
-.redText {
-    color: #970008;
-}
-
 .fa-sort {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    color: black;
+    bottom: 2px;
+    right: 2px;
+    color: #3d46ff;
+    font-size: smaller;
+}
+
+.fa-line-chart {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    color: #3d46ff;
+    font-size: smaller;
 }
 
 .score {
     vertical-align: top;
     font-size: 9px;
     margin-left: 3px;
+    color: #3d46ff;
     /*box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
