@@ -19,8 +19,8 @@
 }
 .ErrorDiv{
     color: #D8000C;
-    width: 80%;
-    left: 10%;
+    max-width: 60%;
+    left: 20%;
     text-align: center;
     position: relative;
     border-style: solid;
@@ -29,7 +29,6 @@
 }
 
 .ErrorMessage{
-    max-width: 90%;
     font-size: smaller;
     margin: 5px;
 }

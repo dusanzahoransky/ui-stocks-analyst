@@ -70,7 +70,13 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     constructor(props: Readonly<WatchlistProps>) {
         super(props)
-        this.state = {
+        this.state = this.initialState()
+        this.stockAnalystService = new StockAnalystService()
+        this.stockTaggingService = new StockTaggingService()
+    }
+
+    private initialState() {
+        return {
             selectedStock: undefined,
             etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true,
@@ -78,78 +84,103 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             // visibleTags: Watchlist.DISPLAY_TOGGLES
             visibleTags: Watchlist.DISPLAY_DEFAULTS,
             hiddenTags: Watchlist.HIDE_DEFAULTS
+        };
+    }
+
+    componentDidUpdate(prevProps: Readonly<WatchlistProps>, prevState: Readonly<WatchlistState>, snapshot?: any) {
+        if (this.props.isExpanded !== prevProps.isExpanded) {
+            this.setState(this.initialState())  //reset to initial state if the symbols changed
         }
-        this.stockAnalystService = new StockAnalystService()
-        this.stockTaggingService = new StockTaggingService()
     }
 
     render() {
-        const {watchlist, isPreset, isExpanded, isEtf, onRefreshFinancialsHandler} = this.props
+        const {watchlist, isExpanded, isEtf} = this.props
 
         //ETF rendering
         if (isEtf) {
-            return <div
-                className="Watchlist"
-                key={watchlist}>
+            if (isExpanded) {
+                return <div className="Watchlist" key={watchlist}>
+                    <h3 className={"WatchlistName Etf"}>
+                        {this.renderShowLink()}
+                        {Watchlist.toWatchlistLabel(watchlist)}
+                        {this.renderConfigIcon()}
+                        {this.renderRefreshDynamicDataIcon()}
+                    </h3>
+                    {this.renderTable()}
+                    {this.renderEtfsChart()}
+                </div>
+            }
+            return <div className="Watchlist" key={watchlist}>
                 <h3 className={"WatchlistName Etf"}>
                     {this.renderShowLink()}
                     {Watchlist.toWatchlistLabel(watchlist)}
-                    {this.renderRefreshDynamicDataLink()}
+                    {this.renderConfigIcon()}
                 </h3>
-                {this.renderTable()}
-                {this.renderEtfsChart()}
             </div>
         }
 
         //Stock rendering
-        const refreshFinancialsLink = isPreset && isExpanded ?
+        if (isExpanded) {
+            const visibleTags = Watchlist.DISPLAY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
+            const toDisplayCheckboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>
+
+            const hiddenTags = Watchlist.HIDE_TOGGLES.map(tag => this.toHiddenTagCheckbox(tag))
+            const toHideCheckboxesSpan = <span className="HiddenTags">Hide: {hiddenTags}</span>
+
+            return <div
+                className="Watchlist"
+                key={watchlist}>
+                <h2 className={"WatchlistName Stock"}>
+                    {this.renderShowLink()}
+                    {Watchlist.toWatchlistLabel(watchlist)}
+                    {this.renderConfigIcon()}
+                    {this.renderRefreshDynamicDataIcon()}
+                    {this.renderRefreshAllDataIcon()}
+                </h2>
+                {toDisplayCheckboxesSpan}
+                {toHideCheckboxesSpan}
+                {this.renderTable()}
+                {this.renderCompanyCharts()}
+            </div>
+        } else {
+            return <div
+                className="Watchlist"
+                key={watchlist}>
+                <h2 className={"WatchlistName Stock"}>
+                    {this.renderShowLink()}
+                    {Watchlist.toWatchlistLabel(watchlist)}
+                    {this.renderConfigIcon()}
+                </h2>
+            </div>
+        }
+    }
+
+    private renderRefreshAllDataIcon() {
+        const {isPreset, onRefreshFinancialsHandler, watchlist} = this.props
+        return isPreset ?
             <span className="refresh">
                 <i className="fa fa-refresh refreshFinancials"
                    onClick={() => onRefreshFinancialsHandler(watchlist)}/> All Data
-            </span> : ''
+            </span> : '';
+    }
 
-        let toDisplayCheckboxesSpan
-        let toHideCheckboxesSpan
-        if (isExpanded) {
-            const visibleTags = Watchlist.DISPLAY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
-            toDisplayCheckboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>
-
-            const hiddenTags = Watchlist.HIDE_TOGGLES.map(tag => this.toHiddenTagCheckbox(tag))
-            toHideCheckboxesSpan = <span className="HiddenTags">Hide: {hiddenTags}</span>
-        }
-
-        return <div
-            className="Watchlist"
-            key={watchlist}>
-            <h2 className={"WatchlistName Stock"}>
-                {this.renderShowLink()}
-                {Watchlist.toWatchlistLabel(watchlist)}
-                {this.renderRefreshDynamicDataLink()}
-                {refreshFinancialsLink}
-            </h2>
-            {toDisplayCheckboxesSpan}
-            {toHideCheckboxesSpan}
-            {this.renderTable()}
-            {this.renderCompanyCharts()}
-        </div>
+    private renderConfigIcon() {
+        return <i className="fa fa-cog"
+                  onClick={() => this.props.onRefreshFinancialsHandler(this.props.watchlist)}/>;
     }
 
     renderTable() {
-        if (!this.props.isExpanded) {
-            return ''
-        } else {
-            const {data, headerData, headerLabels} = this.prepareData()
+        const {data, headerData, headerLabels} = this.prepareData()
 
-            return <WatchlistTable
-                data={data}
-                isEtf={this.props.isEtf}
-                headerLabels={headerLabels}
-                headerData={headerData}
-                visibleTags={this.state.visibleTags}
-                hiddenTags={this.state.hiddenTags}
-                onStockClickHandler={this.stockOnClickHandler}
-            />
-        }
+        return <WatchlistTable
+            data={data}
+            isEtf={this.props.isEtf}
+            headerLabels={headerLabels}
+            headerData={headerData}
+            visibleTags={this.state.visibleTags}
+            hiddenTags={this.state.hiddenTags}
+            onStockClickHandler={this.stockOnClickHandler}
+        />
     }
 
     private renderShowLink() {
@@ -157,9 +188,9 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             <i className="fa fa-caret-down" onClick={() => this.props.onShowClickHandler(this.props.watchlist)}/> : ''
     }
 
-    private renderRefreshDynamicDataLink() {
+    private renderRefreshDynamicDataIcon() {
         const label = this.props.isEtf ? 'Refresh data' : 'Dynamic Data'
-        return this.props.isPreset && this.props.isExpanded ?
+        return this.props.isPreset ?
             <span className="refresh">
                 <i className="fa fa-refresh"
                    onClick={() => this.props.onRefreshDynamicDataHandler(this.props.watchlist)}/> {label}
@@ -269,7 +300,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     }
 
     renderEtfsChart() {
-        if (!this.props.isExpanded || this.state.etfsChartSymbols.length === 0) {
+        if (this.state.etfsChartSymbols.length === 0) {
             return ''
         }
         const chartData = this.prepareEtfsChartData(this.props.etfsResult.etfs)
@@ -283,7 +314,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
     renderCompanyCharts() {
         const stock = this.state.selectedStock;
-        if (!this.props.isExpanded || !stock) {
+        if (!stock) {
             return ''
         }
 

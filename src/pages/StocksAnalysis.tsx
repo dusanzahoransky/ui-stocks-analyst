@@ -98,6 +98,11 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             .forEach(watchlist => this.createEmptyWatchlist(watchlist, true))
     }
 
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+        console.log(errorInfo.componentStack)
+        this.setState({error: error.message})
+    }
+
     private async loadWatchlistData(watchlist: string,
                                     isEtf: boolean,
                                     refreshDynamicData: boolean = false,
@@ -228,7 +233,9 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     private renderErrorDiv() {
         return <div className="ErrorDiv">
-            <i className="fa fa-warning"/><div className='ErrorMessage'>{this.state.error}</div><i className="fa fa-close error-close" onClick={event => this.clearErrors(event)}/>
+            <i className="fa fa-warning"/>
+            <div className='ErrorMessage'>{this.state.error}</div>
+            <i className="fa fa-close error-close" onClick={event => this.clearErrors(event)}/>
         </div>;
     }
 
@@ -252,18 +259,18 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         }
 
         return (
-           <Watchlist
-                    key={watchlistResult.watchlist}
-                    etfsResult={watchlistResult.etfsAnalysisResult}
-                    stocksResult={watchlistResult.stocksAnalysisResult}
-                    watchlist={watchlistResult.watchlist}
-                    onRefreshDynamicDataHandler={onRefreshClickHandler}
-                    onRefreshFinancialsHandler={onRefreshFinancialsHandler}
-                    onShowClickHandler={onShowClickHandler}
-                    isPreset={watchlistResult.isPreset}
-                    isEtf={watchlistResult.isEtf}
-                    isExpanded={watchlistResult.isLoaded}
-                />
+            <Watchlist
+                key={watchlistResult.watchlist}
+                etfsResult={watchlistResult.etfsAnalysisResult}
+                stocksResult={watchlistResult.stocksAnalysisResult}
+                watchlist={watchlistResult.watchlist}
+                onRefreshDynamicDataHandler={onRefreshClickHandler}
+                onRefreshFinancialsHandler={onRefreshFinancialsHandler}
+                onShowClickHandler={onShowClickHandler}
+                isPreset={watchlistResult.isPreset}
+                isEtf={watchlistResult.isEtf}
+                isExpanded={watchlistResult.isLoaded}
+            />
         )
     }
 }

@@ -141,7 +141,6 @@ td.lastReport {
     position: absolute;
     bottom: 2px;
     right: 2px;
-    color: #3d46ff;
     font-size: smaller;
 }
 
@@ -149,7 +148,6 @@ td.lastReport {
     position: absolute;
     bottom: 4px;
     left: 4px;
-    color: #3d46ff;
     font-size: smaller;
 }
 
