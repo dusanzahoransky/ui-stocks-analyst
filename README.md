@@ -19,7 +19,7 @@ These stats and ratios are displayed for the last and one previous financial qua
 
 It also renders price and EPS timeline at scale of PE 15, BPS at PB scale 3 and free cash flow per share at scale 20.
 ![Example screenshot 3](./Selection_185.png)
-
+ 
 Convenient charts of some fundamental stats and ratios  
 ![Example screenshot 4](./Selection_186.png)
 
