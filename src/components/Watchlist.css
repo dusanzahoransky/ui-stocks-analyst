@@ -10,10 +10,10 @@
 .HiddenTags{
     padding-left: 25px;
     margin-left: 25px;
-    left: 1220px;
     border-left: black;
     border-left-width: 1px;
     border-left-style: solid;
+    left: 1200px;
 }
 
 .VisibleTag,.HiddenTag{
@@ -32,33 +32,16 @@
     display: flex;
     width: 1800px;
 }
-.RatioChart {
-    width: 900px;
-    height: 210px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #f0f3ff;
-    border-radius: 3px;
-    box-shadow: 0 2px 2px -1px #dfe1ff;
-    position: relative;
-
-}
 
 .fa-caret-down{
     font-size: smaller;
 }
 
-.Watchlist {
-    border-color: #f0f3ff;
-    box-shadow: 0 2px 2px -1px #dfe1ff;
-    margin-top: 8px;
-}
-
 .WatchlistName{
     margin-top: 5px;
     margin-bottom: 10px;
-    font-size: larger;
     font-weight: normal;
+    font-size: medium;
 }
 
 .PriceEpsChart{
@@ -71,13 +54,14 @@
 }
 .fa-refresh {
     margin-left: 15px;
-    color: darkred;
+    color: #3d46ff;
 }
 .fa-refresh.refreshFinancials {
     margin-left: 15px;
-    color: darkred;
+    color: #3d46ff;
 }
 .fa-caret-down {
     margin-left: 5px;
     margin-right: 5px;
+    color: #3d46ff;
 }

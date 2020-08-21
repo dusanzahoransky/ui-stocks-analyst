@@ -7,7 +7,7 @@ table, td, th {
 }
 
 th, td {
-    width: 55px;
+    min-width: 55px;
     box-shadow: 0 2px 2px -1px #9398ff;
 }
 
@@ -23,8 +23,10 @@ tr.selected{
 th {
     position: sticky;
     top: 82px;
-    background: #f0f3ff;
-    box-shadow: 0 2px 2px -1px #dfe1ff;
+    border-color: #3d46ff;
+    border-top-style: solid;
+    border-width: 1px;
+    box-shadow: 0 2px 2px -1px #bccfff;
     font-weight: normal;
 }
 
@@ -33,19 +35,19 @@ th.label {
 }
 
 th.totalScore {
-    background-image: linear-gradient(to top right, #f0f3ff , #dfe1ff);
+    background-image: linear-gradient(to top right, #dfe6ff, #ffffff);
 }
 
 th.totalScore.growthInvesting {
-    background-image: linear-gradient(to top right,  #dfe1ff, #fffad4);
+    background-image: linear-gradient(to top right,  #dfe6ff, #fffad4);
 }
 
 th.totalScore.valueInvesting {
-    background-image: linear-gradient(to top right, #dfe1ff, #e8ffde);
+    background-image: linear-gradient(to top right, #dfe6ff, #e8ffde);
 }
 
 th.valueInvesting{
-    background-image: linear-gradient(to top right, #f0f3ff , #e8ffde);
+    background-image: linear-gradient(to top right, #ffffff , #e8ffde);
 }
 
 th.growthInvesting.valueInvesting{
@@ -53,11 +55,11 @@ th.growthInvesting.valueInvesting{
 }
 
 th.growthInvesting{
-    background-image: linear-gradient(to top right, #f0f3ff , #fffad4);
+    background-image: linear-gradient(to top right, #ffffff , #fffad4);
 }
 
 th.intrinsicValueInvesting {
-    background-image: linear-gradient(to top right, #f0f3ff , #e0fffb);
+    background-image: linear-gradient(to top right, #ffffff , #e0fffb);
 }
 
 th.label {
@@ -65,7 +67,7 @@ th.label {
 }
 
 .companyName{
-    width: 160px;
+    min-width: 160px;
 }
 td.companyName{
     font-size: x-small;
@@ -77,7 +79,6 @@ td.companyName{
 
 .date{
     font-size: x-small;
-    width: 55px;
 }
 .date.label{
     font-size: unset;
@@ -122,7 +123,7 @@ td.lastReport {
 }
 
 .blueText {
-    color: #003795;
+    color: #3d46ff;
 }
 
 .boldText {
@@ -142,7 +143,7 @@ td.lastReport {
     position: absolute;
     bottom: 2px;
     right: 2px;
-    color: black;
+    color: #3d46ff;
     font-size: smaller;
 }
 
@@ -150,7 +151,7 @@ td.lastReport {
     position: absolute;
     bottom: 4px;
     left: 4px;
-    color: black;
+    color: #3d46ff;
     font-size: smaller;
 }
 
@@ -158,6 +159,6 @@ td.lastReport {
     vertical-align: top;
     font-size: 9px;
     margin-left: 3px;
-    color: #518def;
+    color: #3d46ff;
     /*box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }

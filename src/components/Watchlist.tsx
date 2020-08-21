@@ -91,11 +91,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             return <div
                 className="Watchlist"
                 key={watchlist}>
-                <h2 className={"WatchlistName Etf"}>
+                <h3 className={"WatchlistName Etf"}>
                     {this.renderShowLink()}
                     {Watchlist.toWatchlistLabel(watchlist)}
                     {this.renderRefreshDynamicDataLink()}
-                </h2>
+                </h3>
                 {this.renderTable()}
                 {this.renderEtfsChart()}
             </div>

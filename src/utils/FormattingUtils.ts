@@ -60,8 +60,7 @@ export class FormattingUtils {
     }
 
     static toFieldLabel(field: string) {
-        let fieldLabel = field
-            .replace(/[A-Z0-9\[\]]+/g, g  => ' '.concat(g));
+        let fieldLabel = field.replace(/[A-Z0-9]+/g, g  => ' '.concat(g));
 
         fieldLabel = fieldLabel[0].toUpperCase() + fieldLabel.substr(1)
 

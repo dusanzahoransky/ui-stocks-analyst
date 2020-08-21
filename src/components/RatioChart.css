@@ -12,3 +12,15 @@
     font-size: medium;
     font-weight: normal;
 }
+
+.RatioChart {
+    width: 905px;
+    height: 210px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #3d46ff;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px -1px #bccfff;
+    position: relative;
+    margin: 5px;
+}

@@ -669,9 +669,9 @@ export class StockTaggingService {
                 return [CellTag.price, CellTag.hidden]
 
             case StockFields.yieldNext5Years:
-                return [CellTag.analysts, CellTag.growthInvesting]
+                return [CellTag.analysts, CellTag.growthInvesting, CellTag.totalScore]
             case StockFields.yieldNext10Years:
-                return [CellTag.analysts, CellTag.growthInvesting]
+                return [CellTag.analysts, CellTag.growthInvesting, CellTag.totalScore]
             case StockFields.score:
                 return [CellTag.totalScore]
             case StockFields.score1Q:

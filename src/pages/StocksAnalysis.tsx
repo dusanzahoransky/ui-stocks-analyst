@@ -107,10 +107,10 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             await this.stockAnalystService.loadEtfsAnalysis(watchlist, refreshDynamicData, mockData)
             : await this.stockAnalystService.loadAnalysis(watchlist, refreshDynamicData, refreshFinancials, mockData)
         const error = response as BackendError;
-        if (error.error) {
+        if (error.error || error.message || error.status) {
             this.setState(
                 {
-                    error: `Failed to load ${watchlist}: ${error.message}`
+                    error: `Failed to load ${watchlist} [${error.message}]`
                 }
             )
             return
@@ -213,8 +213,14 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
                     </div>
                 </div>
                 <div className='Watchlists'>
-                    <div className={'EtfWatchlists'}>{etfWatchlists}</div>
-                    <div className={'StockWatchlists'}>{stockWatchlists}</div>
+                    <div className={'EtfWatchlists'}>
+                        <h2 className='WatchlistsTypeLabel'>ETF Watchlists:</h2>
+                        {etfWatchlists}
+                    </div>
+                    <div className={'StockWatchlists'}>
+                        <h2 className='WatchlistsTypeLabel'>Stock Watchlists:</h2>
+                        {stockWatchlists}
+                    </div>
                 </div>
             </div>
         )
