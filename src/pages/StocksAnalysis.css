@@ -1,12 +1,10 @@
 .WatchlistsTypeLabel{
     margin: 10px;
+    font-size: larger;
 }
 .EtfWatchlists, .StockWatchlists {
     margin: 0.5%;
     clear: both;
-    text-align: left;
-}
-.Watchlist {
     text-align: left;
 }
 .TopPanel {

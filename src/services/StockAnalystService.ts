@@ -13,6 +13,7 @@ import {Etf} from "../model/Etf";
 import {StockDisplayableFields} from "../model/StockDisplayableFields";
 import {FieldDisplayType} from "../model/FieldDisplayType";
 import {Timeline} from "../model/Timeline";
+import HttpClient from "./HttpClient";
 
 
 export class StockAnalystService {
@@ -23,7 +24,7 @@ export class StockAnalystService {
         if (watchlist === 'TEST') {
             return Promise.resolve(resultTest)
         } else {
-            return StockAnalystService.fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&refreshDynamicData=${refreshDynamicData}&refreshFinancials=${refreshFinancials}&mockData=${mockData}`);
+            return HttpClient.fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&refreshDynamicData=${refreshDynamicData}&refreshFinancials=${refreshFinancials}&mockData=${mockData}`);
         }
     }
 
@@ -31,18 +32,10 @@ export class StockAnalystService {
         if (watchlist === 'TEST_INDICES') {
             return Promise.resolve(etfsTest)
         } else {
-            return StockAnalystService.fetch(`http://localhost:3000/stocks/etfWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`);
+            return HttpClient.fetch(`http://localhost:3000/stocks/etfWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`);
         }
     }
 
-    private static async fetch(path: string) {
-        const response = await fetch(path);
-        if (response.status >= 200 && response.status <= 300) {
-            return response.json()
-        } else {
-            return { ...response, error: 'unknown', message: `Failed call ${path}`} as BackendError
-        }
-    }
 
     scoreRow(averages: CellData[], rowValues: CellData[], isEtf: boolean): CellData[] {
         const cellData: CellData[] = []

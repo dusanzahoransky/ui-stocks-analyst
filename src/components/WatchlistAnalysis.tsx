@@ -4,7 +4,7 @@ import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult"
 import {StockAnalystService} from "../services/StockAnalystService"
 import {PriceEpsChart} from "./PriceEpsChart"
 import {PriceEpsData} from "../model/PriceEpsData"
-import "./Watchlist.css"
+import "./WatchlistAnalysis.css"
 import 'font-awesome/css/font-awesome.min.css'
 import moment from "moment"
 import {EtfsChartData} from "../model/EtfsChartData"
@@ -22,12 +22,12 @@ import {Stock} from "../model/Stock";
 import {Timeline} from "../model/Timeline";
 
 
-export interface WatchlistProps {
+export interface WatchlistAnalysisProps {
     watchlist: string
     etfsResult?: EtfsAnalysisResult,
     stocksResult?: StocksAnalysisResult,
     onRefreshDynamicDataHandler?: (watchlist: string) => void,
-    onRefreshFinancialsHandler?: (watchlist: string) => void,
+    onRefreshFinancialsHandler?: (watchlist: string) => void
     /**
      * On show/hide click
      */
@@ -46,7 +46,7 @@ export interface WatchlistProps {
     isExpanded: boolean
 }
 
-export interface WatchlistState {
+export interface WatchlistAnalysisState {
     selectedStock?: Stock
     /**
      * Remove outliers which would otherwise deform the chart, e.g. an EP which is extremely high in a single quarter
@@ -57,7 +57,7 @@ export interface WatchlistState {
     hiddenTags: CellTag[]
 }
 
-export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
+export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, WatchlistAnalysisState> {
 
     private readonly stockAnalystService: StockAnalystService
     private readonly stockTaggingService: StockTaggingService
@@ -68,7 +68,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
     public static readonly HIDE_TOGGLES = [CellTag.Q1, CellTag.Q2, CellTag.Y1, CellTag.Y2, CellTag.Y3]
     public static readonly HIDE_DEFAULTS = [CellTag.Q2, CellTag.Y2, CellTag.Y3]
 
-    constructor(props: Readonly<WatchlistProps>) {
+    constructor(props: Readonly<WatchlistAnalysisProps>) {
         super(props)
         this.state = this.initialState()
         this.stockAnalystService = new StockAnalystService()
@@ -81,13 +81,13 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             etfsChartSymbols: [],
             priceEpsChartRemoveOutliers: true,
             // visibleTags: []
-            // visibleTags: Watchlist.DISPLAY_TOGGLES
-            visibleTags: Watchlist.DISPLAY_DEFAULTS,
-            hiddenTags: Watchlist.HIDE_DEFAULTS
+            // visibleTags: WatchlistConfig.DISPLAY_TOGGLES
+            visibleTags: WatchlistAnalysis.DISPLAY_DEFAULTS,
+            hiddenTags: WatchlistAnalysis.HIDE_DEFAULTS
         };
     }
 
-    componentDidUpdate(prevProps: Readonly<WatchlistProps>, prevState: Readonly<WatchlistState>, snapshot?: any) {
+    componentDidUpdate(prevProps: Readonly<WatchlistAnalysisProps>, prevState: Readonly<WatchlistAnalysisState>, snapshot?: any) {
         if (this.props.isExpanded !== prevProps.isExpanded) {
             this.setState(this.initialState())  //reset to initial state if the symbols changed
         }
@@ -102,8 +102,7 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 return <div className="Watchlist" key={watchlist}>
                     <h3 className={"WatchlistName Etf"}>
                         {this.renderShowLink()}
-                        {Watchlist.toWatchlistLabel(watchlist)}
-                        {this.renderConfigIcon()}
+                        {WatchlistAnalysis.toWatchlistLabel(watchlist)}
                         {this.renderRefreshDynamicDataIcon()}
                     </h3>
                     {this.renderTable()}
@@ -113,27 +112,25 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             return <div className="Watchlist" key={watchlist}>
                 <h3 className={"WatchlistName Etf"}>
                     {this.renderShowLink()}
-                    {Watchlist.toWatchlistLabel(watchlist)}
-                    {this.renderConfigIcon()}
+                    {WatchlistAnalysis.toWatchlistLabel(watchlist)}
                 </h3>
             </div>
         }
 
         //Stock rendering
         if (isExpanded) {
-            const visibleTags = Watchlist.DISPLAY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
+            const visibleTags = WatchlistAnalysis.DISPLAY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
             const toDisplayCheckboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>
 
-            const hiddenTags = Watchlist.HIDE_TOGGLES.map(tag => this.toHiddenTagCheckbox(tag))
+            const hiddenTags = WatchlistAnalysis.HIDE_TOGGLES.map(tag => this.toHiddenTagCheckbox(tag))
             const toHideCheckboxesSpan = <span className="HiddenTags">Hide: {hiddenTags}</span>
 
             return <div
-                className="Watchlist"
+                className="WatchlistAnalysis"
                 key={watchlist}>
                 <h2 className={"WatchlistName Stock"}>
                     {this.renderShowLink()}
-                    {Watchlist.toWatchlistLabel(watchlist)}
-                    {this.renderConfigIcon()}
+                    {WatchlistAnalysis.toWatchlistLabel(watchlist)}
                     {this.renderRefreshDynamicDataIcon()}
                     {this.renderRefreshAllDataIcon()}
                 </h2>
@@ -144,12 +141,11 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
             </div>
         } else {
             return <div
-                className="Watchlist"
+                className="WatchlistAnalysis"
                 key={watchlist}>
                 <h2 className={"WatchlistName Stock"}>
                     {this.renderShowLink()}
-                    {Watchlist.toWatchlistLabel(watchlist)}
-                    {this.renderConfigIcon()}
+                    {WatchlistAnalysis.toWatchlistLabel(watchlist)}
                 </h2>
             </div>
         }
@@ -162,11 +158,6 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
                 <i className="fa fa-refresh refreshFinancials"
                    onClick={() => onRefreshFinancialsHandler(watchlist)}/> All Data
             </span> : '';
-    }
-
-    private renderConfigIcon() {
-        return <i className="fa fa-cog"
-                  onClick={() => this.props.onRefreshFinancialsHandler(this.props.watchlist)}/>;
     }
 
     renderTable() {
@@ -331,21 +322,21 @@ export class Watchlist extends React.Component<WatchlistProps, WatchlistState> {
 
         const yearsToDisplay = 10
 
-        financialRatiosCharts = Watchlist.getChartFinancialRatios().map(ratio => {
+        financialRatiosCharts = WatchlistAnalysis.getChartFinancialRatios().map(ratio => {
             const multiplyQuarters = FinancialChartRatios[ratio] !== FinancialChartRatios.operatingMargin
                 && FinancialChartRatios[ratio] !== FinancialChartRatios.profitMarginP
                 && FinancialChartRatios[ratio] !== FinancialChartRatios.workingCapital
-            const chartData = Watchlist.prepareRatiosData(stock, ratio, false, multiplyQuarters, yearsToDisplay)
+            const chartData = WatchlistAnalysis.prepareRatiosData(stock, ratio, false, multiplyQuarters, yearsToDisplay)
             return <RatioChart
                 key={ratio}
                 data={chartData}
                 label={`${FinancialChartRatios[ratio]}`}/>
         })
 
-        otherRatiosCharts = Watchlist.getChartOtherRatios().map(ratio => {
+        otherRatiosCharts = WatchlistAnalysis.getChartOtherRatios().map(ratio => {
             const percentage = OtherChartRatios[ratio] === OtherChartRatios.totalDebtToEquity
                 || OtherChartRatios[ratio] === OtherChartRatios.nonCurrentLiabilitiesToIncome
-            const chartData = Watchlist.prepareRatiosData(stock, ratio, percentage, false, yearsToDisplay)
+            const chartData = WatchlistAnalysis.prepareRatiosData(stock, ratio, percentage, false, yearsToDisplay)
             return <RatioChart
                 key={ratio}
                 data={chartData}

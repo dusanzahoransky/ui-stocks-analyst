@@ -6,3 +6,12 @@
 .hidden {
   display: none;
 }
+
+.navbar{
+  border-color: black;
+  border-width: 1px;
+  border-bottom-style: solid;
+  border-top-style: solid;
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}

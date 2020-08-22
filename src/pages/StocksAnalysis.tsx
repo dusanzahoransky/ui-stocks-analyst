@@ -1,15 +1,12 @@
 import React from "react";
 import {StockAnalystService} from "../services/StockAnalystService";
 import './StocksAnalysis.css';
-import {Watchlist} from "../components/Watchlist";
+import {WatchlistAnalysis} from "../components/WatchlistAnalysis";
 import {BackendError} from "../model/BackendError";
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {IntrinsicValueCalculator} from "../components/IntrinsicValueCalculator";
 import {StocksAnalysisResult} from "../model/StocksAnalysisResult";
-
-export interface StocksAnalysisProps {
-
-}
+import {Alert} from "../components/Alert";
 
 export interface StocksAnalysisState {
     error?: string
@@ -27,11 +24,11 @@ interface WatchlistResult {
     etfsAnalysisResult: EtfsAnalysisResult
 }
 
-export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksAnalysisState> {
+export class StocksAnalysis extends React.Component<{}, StocksAnalysisState> {
 
     private readonly stockAnalystService: StockAnalystService;
 
-    constructor(props: Readonly<StocksAnalysisProps>) {
+    constructor(props) {
         super(props);
         this.state = {
             error: undefined,
@@ -112,7 +109,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
             await this.stockAnalystService.loadEtfsAnalysis(watchlist, refreshDynamicData, mockData)
             : await this.stockAnalystService.loadAnalysis(watchlist, refreshDynamicData, refreshFinancials, mockData)
         const error = response as BackendError;
-        if (error.error || error.message || error.status) {
+        if (error.error) {
             this.setState(
                 {
                     error: `Failed to load ${watchlist} [${error.message}]`
@@ -205,43 +202,33 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
 
     render = () => {
 
-        const errorDiv = this.state.error ? this.renderErrorDiv() : ''
+        const alert = this.state.error ?
+            <Alert message={this.state.error} onCloseHandler={event => this.setState({error: undefined})}/> :
+            ''
         const etfWatchlists = this.state.etfsResults.map(watchlistResult => this.renderResult(watchlistResult))
         const stockWatchlists = this.state.results.map(watchlistResult => this.renderResult(watchlistResult))
 
         return (
             <div className='StocksAnalysis'>
                 <div className='TopPanel'>
-                    {errorDiv}
+                    {alert}
                     <div className='Calculators'>
                         <IntrinsicValueCalculator/>
                     </div>
                 </div>
                 <div className='Watchlists'>
                     <div className={'EtfWatchlists'}>
-                        <h2 className='WatchlistsTypeLabel'>ETF Watchlists:</h2>
+                        <h2 className='WatchlistsTypeLabel'>ETF Watchlists</h2>
                         {etfWatchlists}
                     </div>
                     <div className={'StockWatchlists'}>
-                        <h2 className='WatchlistsTypeLabel'>Stock Watchlists:</h2>
+                        <h2 className='WatchlistsTypeLabel'>Stock Watchlists</h2>
                         {stockWatchlists}
                     </div>
                 </div>
             </div>
         )
     };
-
-    private renderErrorDiv() {
-        return <div className="ErrorDiv">
-            <i className="fa fa-warning"/>
-            <div className='ErrorMessage'>{this.state.error}</div>
-            <i className="fa fa-close error-close" onClick={event => this.clearErrors(event)}/>
-        </div>;
-    }
-
-    private clearErrors(event) {
-        this.setState({error: undefined})
-    }
 
     private renderResult(watchlistResult: WatchlistResult) {
         const onRefreshClickHandler = (watchlist) => {
@@ -259,7 +246,7 @@ export class StocksAnalysis extends React.Component<StocksAnalysisProps, StocksA
         }
 
         return (
-            <Watchlist
+            <WatchlistAnalysis
                 key={watchlistResult.watchlist}
                 etfsResult={watchlistResult.etfsAnalysisResult}
                 stocksResult={watchlistResult.stocksAnalysisResult}

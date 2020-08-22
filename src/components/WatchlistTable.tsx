@@ -7,7 +7,7 @@ import {CellData} from "../model/table/CellData"
 import {EtfFields} from "../model/EtfFields"
 import {StockTaggingService} from "../services/StockTaggingService"
 import {CellTag} from "../model/table/CellTag"
-import {Watchlist} from "./Watchlist"
+import {WatchlistAnalysis} from "./WatchlistAnalysis";
 
 export interface TableProps {
     headerLabels: string[]
@@ -259,7 +259,7 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         }
 
         const colTags = StockTaggingService.tagStockColumn(column)
-        const canToggleVisibility = colTags.some(tag => Watchlist.DISPLAY_TOGGLES.includes(tag))  //do not hide cols which visibility can not be toggled by a checkbox
+        const canToggleVisibility = colTags.some(tag => WatchlistAnalysis.DISPLAY_TOGGLES.includes(tag))  //do not hide cols which visibility can not be toggled by a checkbox
 
         const isHidden = colTags.some(colTag => this.props.hiddenTags.includes(colTag))
         const isDisplayed = colTags.some(colTag => this.props.visibleTags.includes(colTag))
