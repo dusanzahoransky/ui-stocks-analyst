@@ -1,9 +1,9 @@
 .WatchlistsTypeLabel{
-    margin: 10px;
     font-size: larger;
 }
 .EtfWatchlists, .StockWatchlists {
-    margin: 0.5%;
+    padding: 5px;
+    margin-left: 10px;
     clear: both;
     text-align: left;
 }
@@ -28,7 +28,7 @@
 
 .ErrorMessage{
     font-size: smaller;
-    margin: 5px;
+    padding: 5px;
 }
 .Calculators{
     float: right;

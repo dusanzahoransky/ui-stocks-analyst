@@ -18,9 +18,7 @@ import HttpClient from "./HttpClient";
 
 export class StockAnalystService {
 
-    static i = 0;
-
-    async loadAnalysis(watchlist: string, refreshDynamicData: boolean, refreshFinancials: boolean, mockData: boolean): Promise<Stock[] | BackendError> {
+    async loadAnalysis(watchlist: string, refreshDynamicData: boolean, refreshFinancials: boolean, mockData: boolean): Promise<Stock[]> {
         if (watchlist === 'TEST') {
             return Promise.resolve(resultTest)
         } else {
@@ -28,7 +26,7 @@ export class StockAnalystService {
         }
     }
 
-    async loadEtfsAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<EtfsAnalysisResult | BackendError> {
+    async loadEtfsAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<EtfsAnalysisResult> {
         if (watchlist === 'TEST_INDICES') {
             return Promise.resolve(etfsTest)
         } else {

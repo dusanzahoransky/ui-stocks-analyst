@@ -2,7 +2,6 @@ import React from "react";
 import {StockAnalystService} from "../services/StockAnalystService";
 import './StocksAnalysis.css';
 import {WatchlistAnalysis} from "../components/WatchlistAnalysis";
-import {BackendError} from "../model/BackendError";
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {IntrinsicValueCalculator} from "../components/IntrinsicValueCalculator";
 import {StocksAnalysisResult} from "../model/StocksAnalysisResult";
@@ -105,38 +104,39 @@ export class StocksAnalysis extends React.Component<{}, StocksAnalysisState> {
                                     refreshDynamicData: boolean = false,
                                     refreshFinancials: boolean = false,
                                     mockData: boolean = false) {
-        const response = isEtf ?
-            await this.stockAnalystService.loadEtfsAnalysis(watchlist, refreshDynamicData, mockData)
-            : await this.stockAnalystService.loadAnalysis(watchlist, refreshDynamicData, refreshFinancials, mockData)
-        const error = response as BackendError;
-        if (error.error) {
+
+        try {
+            const response = isEtf ?
+                await this.stockAnalystService.loadEtfsAnalysis(watchlist, refreshDynamicData, mockData)
+                : await this.stockAnalystService.loadAnalysis(watchlist, refreshDynamicData, refreshFinancials, mockData)
+
+            const etfsAnalysisResult = isEtf ? response as EtfsAnalysisResult : undefined
+            const stocksAnalysisResult = !isEtf ? {stocks: response} as StocksAnalysisResult : undefined
+
+            const watchlistResult: WatchlistResult = {
+                isLoaded: true,
+                isPreset: true,
+                isEtf,
+                watchlist,
+                stocksAnalysisResult,
+                etfsAnalysisResult,
+            }
+
+            this.setState((state) => {
+                if (isEtf) {
+                    return {etfsResults: this.mergeResult(state.etfsResults, watchlistResult, isEtf), error: undefined}
+                } else {
+                    return {results: this.mergeResult(state.results, watchlistResult, isEtf), error: undefined}
+                }
+            })
+        } catch (e) {
             this.setState(
                 {
-                    error: `Failed to load ${watchlist} [${error.message}]`
+                    error: `Failed to load ${watchlist} ${e.message}`
                 }
             )
             return
         }
-
-        const etfsAnalysisResult = isEtf ? response as EtfsAnalysisResult : undefined
-        const stocksAnalysisResult = !isEtf ? {stocks: response} as StocksAnalysisResult : undefined
-
-        const watchlistResult: WatchlistResult = {
-            isLoaded: true,
-            isPreset: true,
-            isEtf,
-            watchlist,
-            stocksAnalysisResult,
-            etfsAnalysisResult,
-        }
-
-        this.setState((state) => {
-            if (isEtf) {
-                return {etfsResults: this.mergeResult(state.etfsResults, watchlistResult, isEtf), error: undefined}
-            } else {
-                return {results: this.mergeResult(state.results, watchlistResult, isEtf), error: undefined}
-            }
-        })
     }
 
     private createEmptyWatchlist(watchlist: string, isEtf: boolean) {

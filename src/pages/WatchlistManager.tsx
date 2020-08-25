@@ -1,16 +1,13 @@
 import React from "react";
 import './WatchlistManager.css';
-import Watchlist from "../model/watchlist/Watchlist";
 import {WatchlistService} from "../services/WatchlistService";
-import {BackendError} from "../model/BackendError";
 import {Alert} from "../components/Alert";
 import {WatchlistConfig} from "../components/WatchlistConfig";
 
 export interface WatchlistManagerState {
     error?: string
-    watchlists?: Watchlist[]
+    watchlists?: string[]
 }
-
 
 export class WatchlistManager extends React.Component<{}, WatchlistManagerState> {
 
@@ -26,34 +23,30 @@ export class WatchlistManager extends React.Component<{}, WatchlistManagerState>
     }
 
     async componentDidMount() {
-        const response = await this.watchlistService.allWatchlists()
-        if ((response as BackendError).error) {
-            this.setState(
-                {
-                    error: `Failed to load watchlists [${(response as BackendError).message}]`
-                }
-            )
-        } else {
-            this.setState(
-                {
-                    watchlists: response as Watchlist[]
-                }
-            )
+        try {
+            const watchlists = await this.watchlistService.allWatchlistNames()
+            this.setState({watchlists})
+        } catch (e) {
+            this.setState({error: `Failed to load watchlists: ${e.message}`})
         }
     }
 
     render() {
-
         if (this.state.error) {
-            return <Alert message={this.state.error} onCloseHandler={event => this.setState({error: undefined})} />
+            return <Alert message={this.state.error} onCloseHandler={event => this.setState({error: undefined})}/>
         }
-
-        return this.renderWatchlists();
+        const watchlists = this.renderWatchlists();
+        return <div className='WatchlistManager'>
+            <h2 className='WatchlistsLabel'>Watchlists</h2>
+            <div>
+            {watchlists}
+            </div>
+        </div>
     }
 
     private renderWatchlists() {
         return <div>
-            {this.state.watchlists.map( watchlist => <WatchlistConfig watchlist={watchlist}/>)}
+            {this.state.watchlists.map(watchlist => <WatchlistConfig key={watchlist} watchlistName={watchlist}/>)}
         </div>;
     }
 

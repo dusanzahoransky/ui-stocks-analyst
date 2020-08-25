@@ -1,0 +1,9 @@
+.WatchlistManager{
+    padding: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+    text-align: left;
+}
+.WatchlistsLabel{
+    font-size: larger;
+}
