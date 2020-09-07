@@ -15,4 +15,8 @@ export class WatchlistService {
     async watchlist(watchlistName: string) {
         return HttpClient.fetch(`http://localhost:3000/watchlists/${watchlistName}`);
     }
+
+    async addTickerToWatchlist(watchlistName: string, ticker:string) {
+        return HttpClient.fetch(`http://localhost:3000/watchlists/${watchlistName}`);
+    }
 }

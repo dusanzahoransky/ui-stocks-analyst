@@ -6,6 +6,25 @@ import {CellTag} from "../model/table/CellTag";
 
 export class FormattingUtils {
 
+    static toWatchlistLabel(watchlist: string) {
+        return watchlist
+            .replace(/[a-zA-Z]+/g, function (g) {
+                switch (g) {
+                    case 'EU':
+                    case 'US':
+                    case 'AU':
+                    case 'GB':
+                    case 'CHF':
+                    case 'ETF':
+                        return g
+                    default:
+                        return g[0].toUpperCase().concat(g.substr(1).toLowerCase())
+                }
+
+            })
+            .replace(/_/g, ' ')
+    }
+
     static formatStock(data: CellData, column: StockFields): string {
         if (typeof data === 'string' && column === StockFields.exDividendDate) {
             let diff = moment().diff(data, 'days');

@@ -2,7 +2,6 @@ import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {CellData} from "../model/table/CellData";
 import {StockFields} from "../model/StockFields";
 import moment from "moment";
-import {BackendError} from "../model/BackendError";
 import {Stock} from "../model/Stock";
 import resultTest from "./Stocks-test.json"
 import etfsTest from "./Etfs-test.json"

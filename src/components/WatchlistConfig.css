@@ -1,7 +1,16 @@
 .WatchlistConfig {
     text-align: left;
 }
-
+.TickerContainer{
+    padding-left: 25px;
+    padding-bottom: 5px;
+}
 .Ticker{
-    padding: 15px;
+
+}
+
+.AddTicker{
+    border-color: #f0f5ff;
+    margin-left: 5px;
+    width: 100px;
 }

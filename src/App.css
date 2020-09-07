@@ -15,3 +15,9 @@
   padding-bottom: 0 !important;
   padding-top: 0 !important;
 }
+
+input {
+  font-size: smaller;
+  border-color: #3d46ff;
+  border-radius: 4px;
+}

@@ -20,6 +20,7 @@ import {StocksAnalysisResult} from "../model/StocksAnalysisResult"
 import {Etf} from "../model/Etf"
 import {Stock} from "../model/Stock";
 import {Timeline} from "../model/Timeline";
+import {FormattingUtils} from "../utils/FormattingUtils";
 
 
 export interface WatchlistAnalysisProps {
@@ -102,7 +103,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
                 return <div className="Watchlist" key={watchlist}>
                     <h3 className={"WatchlistName Etf"}>
                         {this.renderShowLink()}
-                        {WatchlistAnalysis.toWatchlistLabel(watchlist)}
+                        {FormattingUtils.toWatchlistLabel(watchlist)}
                         {this.renderRefreshDynamicDataIcon()}
                     </h3>
                     {this.renderTable()}
@@ -112,7 +113,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
             return <div className="Watchlist" key={watchlist}>
                 <h3 className={"WatchlistName Etf"}>
                     {this.renderShowLink()}
-                    {WatchlistAnalysis.toWatchlistLabel(watchlist)}
+                    {FormattingUtils.toWatchlistLabel(watchlist)}
                 </h3>
             </div>
         }
@@ -130,7 +131,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
                 key={watchlist}>
                 <h2 className={"WatchlistName Stock"}>
                     {this.renderShowLink()}
-                    {WatchlistAnalysis.toWatchlistLabel(watchlist)}
+                    {FormattingUtils.toWatchlistLabel(watchlist)}
                     {this.renderRefreshDynamicDataIcon()}
                     {this.renderRefreshAllDataIcon()}
                 </h2>
@@ -145,7 +146,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
                 key={watchlist}>
                 <h2 className={"WatchlistName Stock"}>
                     {this.renderShowLink()}
-                    {WatchlistAnalysis.toWatchlistLabel(watchlist)}
+                    {FormattingUtils.toWatchlistLabel(watchlist)}
                 </h2>
             </div>
         }
@@ -422,10 +423,8 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
             } else {
                 updatedSymbols = this.state.etfsChartSymbols.concat(stockSymbol)
             }
-            this.setState(state => {
-                return {
-                    etfsChartSymbols: updatedSymbols
-                }
+            this.setState({
+                etfsChartSymbols: updatedSymbols
             })
         } else {
             let selectedStock = this.props.stocksResult.stocks
@@ -433,16 +432,12 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
 
             //close the graph on a second click
             if (this.state.selectedStock === selectedStock) {
-                this.setState(state => {
-                    return {
-                        selectedStock: undefined
-                    }
+                this.setState({
+                    selectedStock: undefined
                 })
             } else {
-                this.setState(state => {
-                    return {
-                        selectedStock,
-                    }
+                this.setState({
+                    selectedStock,
                 })
             }
         }
@@ -522,26 +517,6 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
 
         }
         return chartData
-    }
-
-
-    private static toWatchlistLabel(watchlist: string) {
-        return watchlist
-            .replace(/[a-zA-Z]+/g, function (g) {
-                switch (g) {
-                    case 'EU':
-                    case 'US':
-                    case 'AU':
-                    case 'GB':
-                    case 'CHF':
-                    case 'ETF':
-                        return g
-                    default:
-                        return g[0].toUpperCase().concat(g.substr(1).toLowerCase())
-                }
-
-            })
-            .replace(/_/g, ' ')
     }
 
 

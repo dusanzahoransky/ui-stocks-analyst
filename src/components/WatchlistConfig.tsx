@@ -1,8 +1,9 @@
-import React from "react";
+import React, {FocusEvent, KeyboardEvent} from "react";
 import './WatchlistConfig.css'
 import {WatchlistService} from "../services/WatchlistService";
 import Watchlist from "../model/watchlist/Watchlist";
 import {Alert} from "./Alert";
+import {FormattingUtils} from "../utils/FormattingUtils";
 
 export interface WatchlistConfigProps {
     watchlistName: string
@@ -30,9 +31,9 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
         }
         this.watchlistService = new WatchlistService()
         //uncomment below to have expanded TEST_ETF watchlist for testing
-        if(this.props.watchlistName === 'TEST_ETF') {
+        if (this.props.watchlistName === 'TEST_ETF') {
             this.watchlistService.watchlist(this.props.watchlistName).then(watchlist => {
-                this.setState( {
+                this.setState({
                     isExpanded: true,
                     watchlist
                 })
@@ -41,24 +42,57 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
     }
 
     render() {
+        const {error} = this.state
+        const {watchlistName} = this.props
         if (this.state.error) {
-            return <Alert message={this.state.error} onCloseHandler={() => this.setState({error: undefined})}/>
+            return <Alert message={error} onCloseHandler={() => this.setState({error: undefined})}/>
         }
-        let watchlistTickers
-        if(this.state.isExpanded && this.state.watchlist){
-            watchlistTickers = this.state.watchlist.tickers.map(ticker => this.renderTicker(ticker))
-        }
-        return <div className='WatchlistConfig' key={this.props.watchlistName}>
+        return <div className='WatchlistConfig' key={watchlistName}>
             <h2 className={"WatchlistName Stock"}>
                 {this.renderShowLink()}
-                {this.props.watchlistName}
+                {FormattingUtils.toWatchlistLabel(watchlistName)}
             </h2>
-            {watchlistTickers}
+            {this.renderTickerContainer()}
         </div>
     }
 
-    private renderTicker(ticker: string) {
-        return <span className='Ticker' key={ticker}>{ticker}<br/></span>;
+    private renderTickerContainer() {
+        const {isExpanded, watchlist} = this.state
+        if (!isExpanded || !watchlist) {
+            return <></>
+        }
+        const watchlistTickers = watchlist.tickers.map(ticker => WatchlistConfig.renderTicker(ticker))
+        const addTicker = <div>
+            <i className="fa fa-plus"/>
+            <input className='AddTicker'
+                   name='AddTicker'
+                   onBlur={e => this.onAddTickerBlur(e)}
+                   onKeyPress={e => this.onAddTickerKeyPress(e)}
+            />
+        </div>
+        return <div className='TickerContainer'>
+            {watchlistTickers}
+            {addTicker}
+        </div>;
+    }
+
+    private onAddTickerKeyPress(e: KeyboardEvent<HTMLInputElement>) {
+        if(e.key === 'Enter'){
+            // @ts-ignore
+            this.saveTicker(e.target.value)
+        }
+    }
+
+    private onAddTickerBlur(e: FocusEvent<HTMLInputElement>) {
+        this.saveTicker(e.target.value)
+    }
+
+    private saveTicker(value: string) {
+        console.log(value)
+    }
+
+    private static renderTicker(ticker: string) {
+        return <div className='Ticker' key={ticker}>{ticker}</div>;
     }
 
     private renderShowLink() {
@@ -66,12 +100,9 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
     }
 
     private async onExpand() {
-        if(this.state.isExpanded){
-            this.setState( state => {
-                return {
-                    isExpanded: !state.isExpanded
-                }
-            })
+        const {isExpanded} = this.state
+        if (isExpanded) {
+            this.setState({isExpanded: !isExpanded})
             return
         }
 
@@ -82,12 +113,12 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
         } catch (e) {
             error = `Failed to load watchlist: ${e.message}`
         }
-        this.setState( state => {
-            return {
-                isExpanded: !state.isExpanded,
+        this.setState({
+                isExpanded: !isExpanded,
                 watchlist,
                 error
             }
-        })
+        )
     }
+
 }

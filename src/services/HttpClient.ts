@@ -2,8 +2,12 @@ import {BackendError} from "../model/BackendError";
 
 export default class HttpClient{
 
-    static async fetch(path: string) {
-        const response = await fetch(path);
+    static async fetch(path: string, method: string = 'GET', data? : any) {
+        const response = await fetch(path, {
+                method,
+                body: data ? JSON.stringify(data) : undefined
+            }
+        );
         if (response.status >= 200 && response.status <= 300) {
             return response.json()
         } else {
