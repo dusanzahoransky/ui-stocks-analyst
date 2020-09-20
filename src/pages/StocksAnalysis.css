@@ -1,3 +1,9 @@
+.StocksAnalysis {
+    text-align: right;
+    width: 17800px;
+    height: 100%;
+    position: relative;
+}
 .WatchlistsTypeLabel{
     font-size: larger;
 }
@@ -16,9 +22,8 @@
     z-index: 100;
 }
 .ErrorDiv{
-    color: #D8000C;
-    max-width: 60%;
-    left: 20%;
+    color: #b80007;
+    max-width: 800px;
     text-align: center;
     position: relative;
     border-style: solid;
@@ -31,17 +36,23 @@
     padding: 5px;
 }
 .Calculators{
-    float: right;
-    color: #3d46ff;
+    color: #3677fa;
     background-color: white;
+    text-align: left;
+    float: left;
+    top:5px;
+    left:16px;
+    position: sticky;
 }
-.fa-warning{
+.fa.fa-warning{
     position: absolute;
     top: 5px;
     left: 5px;
+    color: #b80007;
 }
-.fa-close{
+.fa.fa-close{
     position: absolute;
     top: 5px;
     right: 5px;
+    color: #b80007;
 }

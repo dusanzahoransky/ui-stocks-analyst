@@ -30,7 +30,7 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
             watchlist: undefined
         }
         this.watchlistService = new WatchlistService()
-        //uncomment below to have expanded TEST_ETF watchlist for testing
+        // uncomment below to have expanded TEST_ETF watchlist for testing
         if (this.props.watchlistName === 'TEST_ETF') {
             this.watchlistService.watchlist(this.props.watchlistName).then(watchlist => {
                 this.setState({
@@ -51,9 +51,30 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
             <h2 className={"WatchlistName Stock"}>
                 {this.renderShowLink()}
                 {FormattingUtils.toWatchlistLabel(watchlistName)}
+                {this.removeWatchlistLink()}
             </h2>
             {this.renderTickerContainer()}
         </div>
+    }
+
+    private removeWatchlistLink() {
+        if (!this.state.isExpanded) {
+            return undefined
+        }
+        return <i className="fa fa-minus RemoveWatchlistIcon" onClick={() =>  this.onRemoveWatchlistClick()}/>;
+    }
+
+    private async onRemoveWatchlistClick() {
+        const watchlistName = this.state.watchlist.name;
+        if (window.confirm(`Delete watchlist ${watchlistName}`)){
+            try {
+                await this.watchlistService.removeWatchlist(watchlistName)
+            } catch (e) {
+                this.setState({
+                    error: `Failed to delete watchlist ${watchlistName}: ${e.message}`
+                })
+            }
+        }
     }
 
     private renderTickerContainer() {
@@ -61,11 +82,13 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
         if (!isExpanded || !watchlist) {
             return <></>
         }
-        const watchlistTickers = watchlist.tickers.map(ticker => WatchlistConfig.renderTicker(ticker))
+        const watchlistTickers = watchlist.tickers.map(ticker => this.renderTicker(ticker))
         const addTicker = <div>
-            <i className="fa fa-plus"/>
+            <i className="fa fa-plus AddTickerIcon"/>
             <input className='AddTicker'
-                   name='AddTicker'
+                   placeholder='XYZ:NASDAQ'
+                   pattern="[A-Z]+:[A-Z]+"
+                   title='Format: [SYMBOL]:[EXCHANGE], where exchange is one of: ASX, NASDAQ, NYSE, FTSE, DAX, ENX, SIX, PA, MCE'
                    onBlur={e => this.onAddTickerBlur(e)}
                    onKeyPress={e => this.onAddTickerKeyPress(e)}
             />
@@ -77,7 +100,7 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
     }
 
     private onAddTickerKeyPress(e: KeyboardEvent<HTMLInputElement>) {
-        if(e.key === 'Enter'){
+        if (e.key === 'Enter') {
             // @ts-ignore
             this.saveTicker(e.target.value)
         }
@@ -87,12 +110,27 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
         this.saveTicker(e.target.value)
     }
 
-    private saveTicker(value: string) {
-        console.log(value)
+    private async saveTicker(ticker: string) {
+        if (!ticker.match(/[A-Z]+:[A-Z]+/)) {
+            return
+        }
+        try {
+            const watchlist = await this.watchlistService.addTickersToWatchlist(this.props.watchlistName, [ticker]);
+            this.setState({
+                watchlist
+            })
+        } catch (e) {
+            this.setState({
+                error: `Failed to add ticker ${ticker} watchlist: ${e.message}`
+            })
+        }
     }
 
-    private static renderTicker(ticker: string) {
-        return <div className='Ticker' key={ticker}>{ticker}</div>;
+    private renderTicker(ticker: string) {
+        return <div className='Ticker' key={ticker}>
+            <i className="fa fa-minus RemoveTickerIcon" onClick={() => this.onRemoveTickerClick(ticker)}/>
+            {ticker}
+        </div>;
     }
 
     private renderShowLink() {
@@ -106,19 +144,31 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
             return
         }
 
-        let watchlist
-        let error
         try {
-            watchlist = await this.watchlistService.watchlist(this.props.watchlistName)
-        } catch (e) {
-            error = `Failed to load watchlist: ${e.message}`
-        }
-        this.setState({
-                isExpanded: !isExpanded,
+            const watchlist = await this.watchlistService.watchlist(this.props.watchlistName)
+            console.log(watchlist)
+            this.setState({
                 watchlist,
-                error
-            }
-        )
+                isExpanded: true
+            })
+        } catch (e) {
+            this.setState({
+                error: `Failed to load watchlist ${this.props.watchlistName}: ${e.message}`
+            })
+        }
+    }
+
+    private async onRemoveTickerClick(ticker: string) {
+        try {
+            const watchlist = await this.watchlistService.removeTickersFromWatchlist(this.props.watchlistName, [ticker]);
+            this.setState({
+                watchlist
+            })
+        } catch (e) {
+            this.setState({
+                error: `Failed to remove ticker ${ticker} from watchlist: ${e.message}`
+            })
+        }
     }
 
 }

@@ -16,8 +16,12 @@
   padding-top: 0 !important;
 }
 
+.nav-link{
+  color: #3677fa !important;
+}
+
 input {
   font-size: smaller;
-  border-color: #3d46ff;
+  border-color: #3677fa;
   border-radius: 4px;
 }

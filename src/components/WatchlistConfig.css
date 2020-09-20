@@ -12,5 +12,15 @@
 .AddTicker{
     border-color: #f0f5ff;
     margin-left: 5px;
-    width: 100px;
+    width: 120px;
+}
+
+.RemoveTickerIcon{
+    margin-right: 5px;
+    color: #b80007;
+}
+
+.RemoveWatchlistIcon{
+    margin-left: 5px;
+    color: #b80007;
 }

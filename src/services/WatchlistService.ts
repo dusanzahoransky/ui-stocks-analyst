@@ -16,7 +16,15 @@ export class WatchlistService {
         return HttpClient.fetch(`http://localhost:3000/watchlists/${watchlistName}`);
     }
 
-    async addTickerToWatchlist(watchlistName: string, ticker:string) {
-        return HttpClient.fetch(`http://localhost:3000/watchlists/${watchlistName}`);
+    async addTickersToWatchlist(watchlistName: string, tickers:string[]) {
+        return HttpClient.fetch(`http://localhost:3000/watchlists/${watchlistName}/add`, 'PUT', tickers);
+    }
+
+    async removeTickersFromWatchlist(watchlistName: string, tickers:string[]) {
+        return HttpClient.fetch(`http://localhost:3000/watchlists/${watchlistName}/remove`,'PUT', tickers);
+    }
+
+    async removeWatchlist(watchlistName: string) {
+        return HttpClient.fetch(`http://localhost:3000/watchlists/${watchlistName}`,'DELETE');
     }
 }

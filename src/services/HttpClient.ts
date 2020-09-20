@@ -5,7 +5,8 @@ export default class HttpClient{
     static async fetch(path: string, method: string = 'GET', data? : any) {
         const response = await fetch(path, {
                 method,
-                body: data ? JSON.stringify(data) : undefined
+                body: data ? JSON.stringify(data) : undefined,
+                headers: { 'content-Type': 'application/json'},
             }
         );
         if (response.status >= 200 && response.status <= 300) {
@@ -24,7 +25,7 @@ export default class HttpClient{
                     console.log(`Failed to parse error response body ${e.message}: ${e.stackTrace}`)
                 }
             }
-            throw new BackendError(status, errorCode, `Failed call ${path}: ${errorMessage}`)
+            throw new BackendError(status, errorCode, `Failed call ${method} ${path} ${errorMessage? ':'+errorMessage: ''}`)
         }
     }
 }
