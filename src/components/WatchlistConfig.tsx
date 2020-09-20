@@ -31,14 +31,14 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
         }
         this.watchlistService = new WatchlistService()
         // uncomment below to have expanded TEST_ETF watchlist for testing
-        if (this.props.watchlistName === 'TEST_ETF') {
-            this.watchlistService.watchlist(this.props.watchlistName).then(watchlist => {
-                this.setState({
-                    isExpanded: true,
-                    watchlist
-                })
-            })
-        }
+        // if (this.props.watchlistName === 'TEST_ETF') {
+        //     this.watchlistService.watchlist(this.props.watchlistName).then(watchlist => {
+        //         this.setState({
+        //             isExpanded: true,
+        //             watchlist
+        //         })
+        //     })
+        // }
     }
 
     render() {
