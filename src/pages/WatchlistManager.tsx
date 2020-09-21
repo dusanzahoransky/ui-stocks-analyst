@@ -33,7 +33,7 @@ export class WatchlistManager extends React.Component<{}, WatchlistManagerState>
 
     render() {
         if (this.state.error) {
-            return <Alert message={this.state.error} onCloseHandler={event => this.setState({error: undefined})}/>
+            return <Alert message={this.state.error} onCloseHandler={() => this.setState({error: undefined})}/>
         }
         const watchlists = this.renderWatchlists();
         return <div className='WatchlistManager'>
