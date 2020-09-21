@@ -208,13 +208,13 @@ export class StockAnalystService {
         const lastQuarterCoefficient = 3
         const last2QuartersCoefficient = lastQuarterCoefficient / 2
         const lastYearCoefficient = 5
-        const last2YearCoefficient = lastYearCoefficient / 3
+        const last2YearCoefficient = lastYearCoefficient / 2
         const last3YearCoefficient = lastYearCoefficient / 5
 
         const revenueGrowthCoefficient = 0.2
         const grossIncomeGrowthCoefficient = revenueGrowthCoefficient / 5
         const netIncomeGrowthCoefficient = revenueGrowthCoefficient * 5
-        const operatingIncomeGrowthCoefficient = revenueGrowthCoefficient / 5
+        const ebitGrowthCoefficient = revenueGrowthCoefficient * 3
 
         const grossMarginGrowthCoefficient = 0.2
         const profitMarginGrowthCoefficient = grossMarginGrowthCoefficient * 5
@@ -224,7 +224,7 @@ export class StockAnalystService {
         const profitMarginCoefficient = grossMarginCoefficient * 5
         const operatingMarginCoefficient = grossMarginCoefficient * 1.5
 
-        const operatingCashFlowGrowthCoefficient = 0.3
+        const operatingCashFlowGrowthCoefficient = 1
         const freeCashFlowGrowthCoefficient = operatingCashFlowGrowthCoefficient
 
         const cashGrowthCoefficient = 0.05
@@ -416,15 +416,15 @@ export class StockAnalystService {
                 score = number * grossMarginGrowthCoefficient * last3YearCoefficient
                 break
 
-            case StockFields.operatingIncomeGrowth1:
-                score = number * operatingIncomeGrowthCoefficient * lastYearCoefficient
+            case StockFields.ebitGrowth1:
+                score = number * ebitGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.operatingIncomeGrowth2:
-                score = number * operatingIncomeGrowthCoefficient * last2YearCoefficient
+            case StockFields.ebitGrowth2:
+                score = number * ebitGrowthCoefficient * last2YearCoefficient
                 break
 
-            case StockFields.operatingIncomeGrowth3:
-                score = number * operatingIncomeGrowthCoefficient * last3YearCoefficient
+            case StockFields.ebitGrowth3:
+                score = number * ebitGrowthCoefficient * last3YearCoefficient
                 break
 
 
@@ -1219,10 +1219,6 @@ export class StockAnalystService {
             case "operatingCashFlow":
                 return FieldDisplayType.Year
             case "operatingCashFlowGrowth":
-                return FieldDisplayType.Year
-            case "operatingIncome":
-                return FieldDisplayType.Year
-            case "operatingIncomeGrowth":
                 return FieldDisplayType.Year
             case "operatingMargin":
                 return FieldDisplayType.Year

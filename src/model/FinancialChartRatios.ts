@@ -6,7 +6,5 @@ export enum FinancialChartRatios {
     workingCapital = "Working Capital",
     grossIncome = "Gross Income",
     grossMargin = "Gross Margin",
-    operatingIncome = "Operating Income",
-    operatingMargin = "Operating Margin",
     profitMarginP = "Net Margin",
 }

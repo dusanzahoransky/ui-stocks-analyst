@@ -68,6 +68,13 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         };
     }
 
+    componentDidMount() {
+        //uncomment to preload data
+        if(this.props.watchlist.name == 'TO_CHECK'){
+            return this.loadWatchlistData(this.props.watchlist)
+        }
+    }
+
     componentDidUpdate(prevProps: Readonly<WatchlistAnalysisProps>, prevState: Readonly<WatchlistAnalysisState>, snapshot?: any) {
         if (!this.state.isExpanded) {
             this.setState(WatchlistAnalysis.resetState())
@@ -350,8 +357,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         const yearsToDisplay = 10
 
         financialRatiosCharts = WatchlistAnalysis.getChartFinancialRatios().map(ratio => {
-            const multiplyQuarters = FinancialChartRatios[ratio] !== FinancialChartRatios.operatingMargin
-                && FinancialChartRatios[ratio] !== FinancialChartRatios.profitMarginP
+            const multiplyQuarters = FinancialChartRatios[ratio] !== FinancialChartRatios.profitMarginP
                 && FinancialChartRatios[ratio] !== FinancialChartRatios.workingCapital
             const chartData = WatchlistAnalysis.prepareRatiosData(selectedStock, ratio, false, multiplyQuarters, yearsToDisplay)
             return <RatioChart

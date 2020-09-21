@@ -8,6 +8,7 @@ table, td, th {
 
 th, td {
     min-width: 55px;
+    max-width: 100px;
     box-shadow: 0 2px 3px -1px #95bfff;
 }
 
