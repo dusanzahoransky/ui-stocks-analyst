@@ -76,7 +76,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     }
 
     componentDidUpdate(prevProps: Readonly<WatchlistAnalysisProps>, prevState: Readonly<WatchlistAnalysisState>, snapshot?: any) {
-        if (!this.state.isExpanded) {
+        if (!this.state.isExpanded && prevState.isExpanded) {
             this.setState(WatchlistAnalysis.resetState())
         }
     }

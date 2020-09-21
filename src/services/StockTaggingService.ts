@@ -361,6 +361,28 @@ export class StockTaggingService {
             case StockFields.totalShareholdersEquityGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
+            case StockFields.retainedEarningsQ1:
+                return [CellTag.Q1, CellTag.financials]
+            case StockFields.retainedEarningsQ2:
+                return [CellTag.Q2, CellTag.financials]
+            case StockFields.retainedEarnings1:
+                return [CellTag.Y1, CellTag.financials]
+            case StockFields.retainedEarnings2:
+                return [CellTag.Y2, CellTag.financials]
+            case StockFields.retainedEarnings3:
+                return [CellTag.Y3, CellTag.financials]
+
+            case StockFields.retainedEarningsGrowthQ1:
+                return [CellTag.Q1, CellTag.financialsGrowth, CellTag.growthInvesting]
+            case StockFields.retainedEarningsGrowthQ2:
+                return [CellTag.Q2, CellTag.financialsGrowth, CellTag.growthInvesting]
+            case StockFields.retainedEarningsGrowth1:
+                return [CellTag.Y1, CellTag.financialsGrowth, CellTag.growthInvesting]
+            case StockFields.retainedEarningsGrowth2:
+                return [CellTag.Y2, CellTag.financialsGrowth, CellTag.growthInvesting]
+            case StockFields.retainedEarningsGrowth3:
+                return [CellTag.Y3, CellTag.financialsGrowth, CellTag.growthInvesting]
+
             case StockFields.totalDebtToEquityQ1:
                 return [CellTag.ratios, CellTag.Q1]
             case StockFields.totalDebtToEquityQ2:

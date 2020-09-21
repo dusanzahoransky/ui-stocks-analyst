@@ -231,6 +231,7 @@ export class StockAnalystService {
         const inventoryGrowthCoefficient = 0.05
 
         const totalShareholdersEquityGrowthCoefficient = 1
+        const retainedEarningsGrowthCoefficient = 1
 
         const totalDebtToEquityCoefficient = 5
         const totalDebtToEquityGrowthCoefficient = 0.1
@@ -577,6 +578,23 @@ export class StockAnalystService {
 
             case StockFields.totalShareholdersEquityGrowth3:
                 score = number * last3YearCoefficient * totalShareholdersEquityGrowthCoefficient
+                break;
+
+            case StockFields.retainedEarningsGrowthQ1:
+                score = number * lastQuarterCoefficient * retainedEarningsGrowthCoefficient
+                break;
+            case StockFields.retainedEarningsGrowthQ2:
+                score = number * last2QuartersCoefficient * retainedEarningsGrowthCoefficient
+                break;
+            case StockFields.retainedEarningsGrowth1:
+                score = number * lastYearCoefficient * retainedEarningsGrowthCoefficient
+                break;
+            case StockFields.retainedEarningsGrowth2:
+                score = number * last2YearCoefficient * retainedEarningsGrowthCoefficient
+                break;
+
+            case StockFields.retainedEarningsGrowth3:
+                score = number * last3YearCoefficient * retainedEarningsGrowthCoefficient
                 break;
 
 
@@ -1175,6 +1193,14 @@ export class StockAnalystService {
             case "totalShareholdersEquityGrowth":
                 return FieldDisplayType.Year
             case "totalShareholdersEquityGrowthQ":
+                return FieldDisplayType.Quarter
+            case "retainedEarnings":
+                return FieldDisplayType.Year
+            case "retainedEarningsQ":
+                return FieldDisplayType.Quarter
+            case "retainedEarningsGrowth":
+                return FieldDisplayType.Year
+            case "retainedEarningsGrowthQ":
                 return FieldDisplayType.Quarter
             case "stockRepurchased":
                 return FieldDisplayType.Year
