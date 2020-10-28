@@ -188,13 +188,13 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         let score = Number.isNaN(data.score) ? 0 : data.score
         if (score) {
             if (score < -10) {
-                FormattingUtils.isPercentage(data.tags, column) ? classes.push('redText') : classes.push('red')
+                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('redText') : classes.push('red')
             } else if (score < 0) {
-                FormattingUtils.isPercentage(data.tags, column) ? classes.push('lightRedText') : classes.push('lightRed')
+                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('lightRedText') : classes.push('lightRed')
             } else if (score > 10) {
-                FormattingUtils.isPercentage(data.tags, column) ? classes.push('greenText') : classes.push('green')
+                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('greenText') : classes.push('green')
             } else if (score > 0) {
-                FormattingUtils.isPercentage(data.tags, column) ? classes.push('lightGreenText') : classes.push('lightGreen')
+                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('lightGreenText') : classes.push('lightGreen')
             }
         }
 

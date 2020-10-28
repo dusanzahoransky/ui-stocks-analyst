@@ -31,7 +31,7 @@ export class FormattingUtils {
             return diff < 0 ? `in ${-diff} days` : data;
         }
         const formattedValue = this.format(data.value);
-        if(formattedValue && this.isPercentage(data.tags, column)){
+        if(formattedValue && this.isPercentage(data.tags, column, false)){
             return formattedValue.concat('%')
         }
         return formattedValue
@@ -186,7 +186,10 @@ export class FormattingUtils {
         return "";
     }
 
-    static isPercentage(tags: CellTag[], column: StockFields) {
+    static isPercentage(tags: CellTag[], column: StockFields, isEtf: boolean) {
+        if(isEtf){
+            return false
+        }
         const isGrowth = this.isGrowth(tags);
         let isPercentage = false
         switch (column){

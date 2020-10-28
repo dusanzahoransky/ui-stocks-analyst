@@ -70,7 +70,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
 
     componentDidMount() {
         //uncomment to preload data
-        if(this.props.watchlist.name == 'TO_CHECK'){
+        if(this.props.watchlist.name === 'TO_CHECK'){
             return this.loadWatchlistData(this.props.watchlist)
         }
     }

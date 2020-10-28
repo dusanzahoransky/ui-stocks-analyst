@@ -115,32 +115,32 @@ export class StockAnalystService {
             }
             case EtfFields.ytdReturn: {
                 score = number - avg
-                score *= 1
+                score *= 0.05
                 break;
             }
             case EtfFields.threeYearAverageReturn: {
                 score = number - avg
-                score *= 5
+                score *= 0.5
                 break;
             }
             case EtfFields.fiveYearAverageReturn: {
                 score = number - avg
-                score *= 5
+                score *= 1
                 break;
             }
             case EtfFields.priceToEarnings: {
                 score = avg - number
-                score *= 10
+                score *= 5
                 break;
             }
             case EtfFields.priceToBook: {
                 score = avg - number
-                score *= 5
+                score *= 10
                 break;
             }
             case EtfFields.priceToCashflow: {
                 score = avg - number
-                score *= 3
+                score *= 5
                 break;
             }
             case EtfFields.priceToSales: {
@@ -150,32 +150,32 @@ export class StockAnalystService {
             }
             case EtfFields.oneMonth: {
                 score = number - avg
-                score *= 1
+                score *= 0.05
                 break;
             }
             case EtfFields.threeMonth: {
                 score = number - avg
-                score *= 1
+                score *= 0.1
                 break;
             }
             case EtfFields.oneYear: {
                 score = number - avg
-                score *= 5
+                score *= 0.2
                 break;
             }
             case EtfFields.threeYear: {
                 score = number - avg
-                score *= 10
+                score *= 0.5
                 break;
             }
             case EtfFields.fiveYear: {
                 score = number - avg
-                score *= 10
+                score *= 1
                 break;
             }
             case EtfFields.tenYear: {
                 score = number - avg
-                score *= 10
+                score *= 5
                 break;
             }
 
@@ -275,11 +275,11 @@ export class StockAnalystService {
                 break
             case StockFields.trailingPE:
                 score = this.ratioBetterThan(number, 20, 100);
-                score *= 10
+                score *= 5
                 break;
             case StockFields.forwardPE:
                 score = this.ratioBetterThan(number, 20, 100);
-                score *= 8
+                score *= 15
                 break;
             case StockFields.priceToSalesTrailing12Months:
                 score = this.ratioBetterThan(number, 10, 100);
@@ -307,7 +307,7 @@ export class StockAnalystService {
                 break;
             case StockFields.priceEarningGrowth:
                 score = this.ratioBetterThan(number, 5, 10)
-                score *= 10
+                score *= 25
                 break;
             case StockFields.trailingPriceEarningGrowth:
                 score = this.ratioBetterThan(number, 5, 10)
