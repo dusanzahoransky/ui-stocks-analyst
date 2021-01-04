@@ -2,7 +2,7 @@ import React from "react"
 import 'font-awesome/css/font-awesome.min.css'
 import {FormattingUtils} from "../utils/FormattingUtils"
 import './WatchlistTable.css'
-import {StockFields} from "../model/StockFields"
+import {StockFlattenFields} from "../model/StockFlattenFields"
 import {CellData} from "../model/table/CellData"
 import {EtfFields} from "../model/EtfFields"
 import {StockTaggingService} from "../services/StockTaggingService"
@@ -105,10 +105,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     private headerTitle(column: number, cellTags: CellTag[] = []): string {
-        const title =
-            `Field: ${StockFields[column]}
+        return `Field: ${StockFlattenFields[column]}
 Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
-        return title
     }
 
     setSortedField(column: number) {
@@ -155,7 +153,7 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         const rowValues = rowData.map((data, column) =>
             <td key={column}
                 onClick={() => {
-                    const symbol = this.props.isEtf ? rowData[EtfFields.symbol] : rowData[StockFields.symbol]
+                    const symbol = this.props.isEtf ? rowData[EtfFields.symbol] : rowData[StockFlattenFields.symbol]
                     this.props.onStockClickHandler(symbol.value as string)
                 }}
                 className={this.dataCellClass(rowData, data, averages[column], column)}>
@@ -215,13 +213,7 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
                 }
             }
         } else {
-            if (column === StockFields.change) {
-                if (data.value < 0) {
-                    classes.push('redText')
-                } else {
-                    classes.push('greenText')
-                }
-            } else if (column >= StockFields.score) {   //Score
+            if (column >= StockFlattenFields.score) {   //Score
                 if (data.value < 0) {
                     classes.push('redText')
                     classes.push('boldText')

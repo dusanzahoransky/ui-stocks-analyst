@@ -1,7 +1,7 @@
 /**
  * Stock field after timelines are flattened
  */
-export enum StockFields {
+export enum StockFlattenFields {
     symbol,
     chartLastUpdated,
     financialsLastUpdated,
@@ -11,8 +11,9 @@ export enum StockFields {
     krfLastUpdated,
     lastReportedQuarter,
     companyName,
-    change,
+
     currentPrice,
+    marketCap,
     enterpriseValue,
     totalCashPerShareP,
     trailingPE,
@@ -24,12 +25,8 @@ export enum StockFields {
     enterpriseValueRevenue,
     enterpriseValueEBITDA,
     priceEarningGrowth,
-    trailingPriceEarningGrowth,
-    week52ChangeP,
-    week52AboveLowP,
-    week52BelowHighP,
-    targetLowPrice,
-    belowTargetLowPriceP,
+
+
     targetMedianPrice,
     belowTargetMedianPriceP,
     heldByInsidersP,

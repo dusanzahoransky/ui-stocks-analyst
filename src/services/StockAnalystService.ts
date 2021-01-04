@@ -1,6 +1,6 @@
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {CellData} from "../model/table/CellData";
-import {StockFields} from "../model/StockFields";
+import {StockFlattenFields} from "../model/StockFlattenFields";
 import moment from "moment";
 import {Stock} from "../model/Stock";
 import resultTest from "./Stocks-test.json"
@@ -45,7 +45,7 @@ export class StockAnalystService {
         })
 
         const dataToScore = cellData
-            .filter((data, index) => index < StockFields.roic1Y)
+            .filter((data, index) => index < StockFlattenFields.roic1Y)
             .filter(data => data.score && !Number.isNaN(data.score));
 
         const totalScore = dataToScore.map(data => data.score)
@@ -67,7 +67,7 @@ export class StockAnalystService {
             cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.analysts)})
 
             const rule1Score = cellData.map(data => data.score)
-                .filter((score, index) => index >= StockFields.roic1Y)
+                .filter((score, index) => index >= StockFlattenFields.roic1Y)
                 .filter(score => score && !Number.isNaN(score))
                 .reduce((prev, curr) => prev + curr, 0);
 
@@ -250,564 +250,551 @@ export class StockAnalystService {
 
         let score
 
-        let latestCurrentRatio = rowValues[StockFields.currentRatioQ1].value ?
-            rowValues[StockFields.currentRatioQ1].value as number :
-            rowValues[StockFields.currentRatio1].value as number
+        let latestCurrentRatio = rowValues[StockFlattenFields.currentRatioQ1].value ?
+            rowValues[StockFlattenFields.currentRatioQ1].value as number :
+            rowValues[StockFlattenFields.currentRatio1].value as number
         if (Number.isNaN(latestCurrentRatio) || latestCurrentRatio === 0) {
             latestCurrentRatio = 1
         }
 
         switch (colEtf) {
-            case StockFields.change: {
-                if (number > 5 || number < -5) {
-                    dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
-                }
-                break
-            }
-            case StockFields.enterpriseValue: {
+            case StockFlattenFields.enterpriseValue: {
                 if (number < 300000000) { //300 mil - MicroCap company
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break
             }
-            case StockFields.totalCashPerShareP:
+            case StockFlattenFields.totalCashPerShareP:
                 score = number * 0.1
                 break
-            case StockFields.trailingPE:
+            case StockFlattenFields.trailingPE:
                 score = this.ratioBetterThan(number, 20, 100);
                 score *= 5
                 break;
-            case StockFields.forwardPE:
+            case StockFlattenFields.forwardPE:
                 score = this.ratioBetterThan(number, 20, 100);
                 score *= 15
                 break;
-            case StockFields.priceToSalesTrailing12Months:
+            case StockFlattenFields.priceToSalesTrailing12Months:
                 score = this.ratioBetterThan(number, 10, 100);
                 score *= 5
                 break;
-            case StockFields.currentPriceToFreeCashFlow:
+            case StockFlattenFields.currentPriceToFreeCashFlow:
                 score = this.ratioBetterThan(number, 15, 100);
                 score *= 10
                 break;
-            case StockFields.priceToFreeCashFlow:
+            case StockFlattenFields.priceToFreeCashFlow:
                 score = this.ratioBetterThan(number, 15, 100);
                 score *= 5
                 break;
-            case StockFields.priceBook:
+            case StockFlattenFields.priceBook:
                 score = this.ratioBetterThan(number, 2, 20)
                 score *= 5
                 break;
-            case StockFields.enterpriseValueRevenue:
+            case StockFlattenFields.enterpriseValueRevenue:
                 score = this.ratioBetterThan(number, 5, 10)
                 score *= 1
                 break;
-            case StockFields.enterpriseValueEBITDA:
+            case StockFlattenFields.enterpriseValueEBITDA:
                 score = this.ratioBetterThan(number, 20, 20)
                 score *= 0
                 break;
-            case StockFields.priceEarningGrowth:
+            case StockFlattenFields.priceEarningGrowth:
                 score = this.ratioBetterThan(number, 5, 10)
                 score *= 25
                 break;
-            case StockFields.trailingPriceEarningGrowth:
-                score = this.ratioBetterThan(number, 5, 10)
-                score *= 2
-                break;
-            case StockFields.belowTargetLowPriceP:
-                score = number * 0.1
-                break;
-            case StockFields.belowTargetMedianPriceP:
+            case StockFlattenFields.belowTargetMedianPriceP:
                 score = number
                 break;
-            case StockFields.exDividendDate:
+            case StockFlattenFields.exDividendDate:
                 const daysToExDividend = -moment().diff(string, 'days')
-                const fiveYearAvgDividendYield = rowValues[StockFields.fiveYearAvgDividendYield].value as number
+                const fiveYearAvgDividendYield = rowValues[StockFlattenFields.fiveYearAvgDividendYield].value as number
                 score = daysToExDividend > 0 && daysToExDividend < 30 ? fiveYearAvgDividendYield : 0
                 break;
-            case StockFields.fiveYearAvgDividendYield:
+            case StockFlattenFields.fiveYearAvgDividendYield:
                 score = number * 5
                 break;
-            case StockFields.trailingAnnualDividendYield:
+            case StockFlattenFields.trailingAnnualDividendYield:
                 score = number * 10
                 break;
-            case StockFields.payoutRatioP:
+            case StockFlattenFields.payoutRatioP:
                 score = 60 - number
-                const trailingAnnualDividendYield = rowValues[StockFields.trailingAnnualDividendYield].value as number
+                const trailingAnnualDividendYield = rowValues[StockFlattenFields.trailingAnnualDividendYield].value as number
                 score *= trailingAnnualDividendYield / 3
                 score = Math.max(score, 0)
                 break;
-            case StockFields.heldByInsidersP:
+            case StockFlattenFields.heldByInsidersP:
                 score = number * 0.5
                 break;
-            case StockFields.heldByInstitutionsP:
+            case StockFlattenFields.heldByInstitutionsP:
                 score = -number * 0.05
                 break;
-            case StockFields.buyPercentInsiderShares:
-                const sellPercentInsiderShares = rowValues[StockFields.sellPercentInsiderShares].value as number
+            case StockFlattenFields.buyPercentInsiderShares:
+                const sellPercentInsiderShares = rowValues[StockFlattenFields.sellPercentInsiderShares].value as number
                 score = (number - sellPercentInsiderShares) * 50
                 break;
-            case StockFields.sellPercentInsiderShares:
+            case StockFlattenFields.sellPercentInsiderShares:
                 if (number > 2) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
-            case StockFields.shortToFloatP:
+            case StockFlattenFields.shortToFloatP:
                 score = 10 - number
                 if (number > 20) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
-            case StockFields.sharesShortPrevMonthCompareP:
+            case StockFlattenFields.sharesShortPrevMonthCompareP:
                 if (number > 100) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
 
-            case StockFields.revenueGrowthQ1:
+            case StockFlattenFields.revenueGrowthQ1:
                 score = number * revenueGrowthCoefficient * lastQuarterCoefficient
                 break
-            case StockFields.revenueGrowthQ2:
+            case StockFlattenFields.revenueGrowthQ2:
                 score = number * revenueGrowthCoefficient * last2QuartersCoefficient
                 break
-            case StockFields.revenueGrowth1:
+            case StockFlattenFields.revenueGrowth1:
                 score = number * revenueGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.revenueGrowth2:
+            case StockFlattenFields.revenueGrowth2:
                 score = number * revenueGrowthCoefficient * last2YearCoefficient
                 break
 
-            case StockFields.revenueGrowth3:
+            case StockFlattenFields.revenueGrowth3:
                 score = number * revenueGrowthCoefficient * last3YearCoefficient
                 break
 
-            case StockFields.grossIncomeGrowthQ1:
+            case StockFlattenFields.grossIncomeGrowthQ1:
                 score = number * grossIncomeGrowthCoefficient * lastQuarterCoefficient
                 break
-            case StockFields.grossIncomeGrowthQ2:
+            case StockFlattenFields.grossIncomeGrowthQ2:
                 score = number * grossIncomeGrowthCoefficient * last2QuartersCoefficient
                 break
-            case StockFields.grossIncomeGrowth1:
+            case StockFlattenFields.grossIncomeGrowth1:
                 score = number * grossIncomeGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.grossIncomeGrowth2:
+            case StockFlattenFields.grossIncomeGrowth2:
                 score = number * grossIncomeGrowthCoefficient * last2YearCoefficient
                 break
 
-            case StockFields.grossIncomeGrowth3:
+            case StockFlattenFields.grossIncomeGrowth3:
                 score = number * grossIncomeGrowthCoefficient * last3YearCoefficient
                 break
 
 
-            case StockFields.grossMargin1:
+            case StockFlattenFields.grossMargin1:
                 score = (number - 40) * grossMarginCoefficient * lastYearCoefficient
                 break
-            case StockFields.grossMargin2:
+            case StockFlattenFields.grossMargin2:
                 score = (number - 40) * grossMarginCoefficient * last2YearCoefficient
                 break
-            case StockFields.grossMargin3:
+            case StockFlattenFields.grossMargin3:
                 score = (number - 40) * grossMarginCoefficient * last3YearCoefficient
                 break
-            case StockFields.grossMarginGrowth1:
+            case StockFlattenFields.grossMarginGrowth1:
                 score = number * grossMarginGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.grossMarginGrowth2:
+            case StockFlattenFields.grossMarginGrowth2:
                 score = number * grossMarginGrowthCoefficient * last2YearCoefficient
                 break
-            case StockFields.grossMarginGrowth3:
+            case StockFlattenFields.grossMarginGrowth3:
                 score = number * grossMarginGrowthCoefficient * last3YearCoefficient
                 break
 
-            case StockFields.ebitGrowth1:
+            case StockFlattenFields.ebitGrowth1:
                 score = number * ebitGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.ebitGrowth2:
+            case StockFlattenFields.ebitGrowth2:
                 score = number * ebitGrowthCoefficient * last2YearCoefficient
                 break
 
-            case StockFields.ebitGrowth3:
+            case StockFlattenFields.ebitGrowth3:
                 score = number * ebitGrowthCoefficient * last3YearCoefficient
                 break
 
 
-            case StockFields.operatingMargin1:
+            case StockFlattenFields.operatingMargin1:
                 score = (number - 20) * operatingMarginCoefficient * lastYearCoefficient
                 break
-            case StockFields.operatingMargin2:
+            case StockFlattenFields.operatingMargin2:
                 score = (number - 20) * operatingMarginCoefficient * last2YearCoefficient
                 break
-            case StockFields.operatingMargin3:
+            case StockFlattenFields.operatingMargin3:
                 score = (number - 20) * operatingMarginCoefficient * last3YearCoefficient
                 break
-            case StockFields.operatingMarginGrowth1:
+            case StockFlattenFields.operatingMarginGrowth1:
                 score = number * operatingMarginGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.operatingMarginGrowth2:
+            case StockFlattenFields.operatingMarginGrowth2:
                 score = number * operatingMarginGrowthCoefficient * last2YearCoefficient
                 break
-            case StockFields.operatingMarginGrowth3:
+            case StockFlattenFields.operatingMarginGrowth3:
                 score = number * operatingMarginGrowthCoefficient * last3YearCoefficient
                 break
 
-            case StockFields.netIncomeGrowthQ1:
+            case StockFlattenFields.netIncomeGrowthQ1:
                 score = number * netIncomeGrowthCoefficient * lastQuarterCoefficient
                 break
-            case StockFields.netIncomeGrowthQ2:
+            case StockFlattenFields.netIncomeGrowthQ2:
                 score = number * netIncomeGrowthCoefficient * last2QuartersCoefficient
                 break
-            case StockFields.netIncomeGrowth1:
+            case StockFlattenFields.netIncomeGrowth1:
                 score = number * netIncomeGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.netIncomeGrowth2:
+            case StockFlattenFields.netIncomeGrowth2:
                 score = number * netIncomeGrowthCoefficient * last2YearCoefficient
                 break
 
-            case StockFields.netIncomeGrowth3:
+            case StockFlattenFields.netIncomeGrowth3:
                 score = number * netIncomeGrowthCoefficient * last3YearCoefficient
                 break
 
-            case StockFields.profitMarginPQ1:
+            case StockFlattenFields.profitMarginPQ1:
                 score = (number - 15) * profitMarginCoefficient * lastQuarterCoefficient
                 break
-            case StockFields.profitMarginPQ2:
+            case StockFlattenFields.profitMarginPQ2:
                 score = (number - 15) * profitMarginCoefficient * last2QuartersCoefficient
                 break
-            case StockFields.profitMarginP1:
+            case StockFlattenFields.profitMarginP1:
                 score = (number - 15) * profitMarginCoefficient * lastYearCoefficient
                 break
-            case StockFields.profitMarginP2:
+            case StockFlattenFields.profitMarginP2:
                 score = (number - 15) * profitMarginCoefficient * last2YearCoefficient
                 break
-            case StockFields.profitMarginP3:
+            case StockFlattenFields.profitMarginP3:
                 score = (number - 15) * profitMarginCoefficient * last3YearCoefficient
                 break
-            case StockFields.profitMarginGrowthQ1:
+            case StockFlattenFields.profitMarginGrowthQ1:
                 score = number * profitMarginGrowthCoefficient * lastQuarterCoefficient
                 break
-            case StockFields.profitMarginGrowthQ2:
+            case StockFlattenFields.profitMarginGrowthQ2:
                 score = number * profitMarginGrowthCoefficient * last2QuartersCoefficient
                 break
-            case StockFields.profitMarginGrowth1:
+            case StockFlattenFields.profitMarginGrowth1:
                 score = number * profitMarginGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.profitMarginGrowth2:
+            case StockFlattenFields.profitMarginGrowth2:
                 score = number * profitMarginGrowthCoefficient * last2YearCoefficient
                 break
-            case StockFields.profitMarginGrowth3:
+            case StockFlattenFields.profitMarginGrowth3:
                 score = number * profitMarginGrowthCoefficient * last3YearCoefficient
                 break
 
-            case StockFields.freeCashFlowGrowthQ1:
+            case StockFlattenFields.freeCashFlowGrowthQ1:
                 score = number * freeCashFlowGrowthCoefficient * lastQuarterCoefficient
                 break
-            case StockFields.freeCashFlowGrowthQ2:
+            case StockFlattenFields.freeCashFlowGrowthQ2:
                 score = number * freeCashFlowGrowthCoefficient * last2QuartersCoefficient
                 break
-            case StockFields.freeCashFlowGrowth1:
+            case StockFlattenFields.freeCashFlowGrowth1:
                 score = number * freeCashFlowGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.freeCashFlowGrowth2:
+            case StockFlattenFields.freeCashFlowGrowth2:
                 score = number * freeCashFlowGrowthCoefficient * last2YearCoefficient
                 break
 
-            case StockFields.freeCashFlowGrowth3:
+            case StockFlattenFields.freeCashFlowGrowth3:
                 score = number * freeCashFlowGrowthCoefficient * last3YearCoefficient
                 break
 
-            case StockFields.operatingCashFlowGrowth1:
+            case StockFlattenFields.operatingCashFlowGrowth1:
                 score = number * operatingCashFlowGrowthCoefficient * lastYearCoefficient
                 break
-            case StockFields.operatingCashFlowGrowth2:
+            case StockFlattenFields.operatingCashFlowGrowth2:
                 score = number * operatingCashFlowGrowthCoefficient * last2YearCoefficient
                 break
 
-            case StockFields.operatingCashFlowGrowth3:
+            case StockFlattenFields.operatingCashFlowGrowth3:
                 score = number * freeCashFlowGrowthCoefficient * last3YearCoefficient
                 break
 
 
-            case StockFields.cashGrowthQ1:
+            case StockFlattenFields.cashGrowthQ1:
                 score = number * cashGrowthCoefficient * lastQuarterCoefficient
                 break;
 
 
-            case StockFields.currentRatioQ1:
+            case StockFlattenFields.currentRatioQ1:
                 score = (number - 2) * 100
                 if (number < 2) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
-            case StockFields.currentRatio1:
+            case StockFlattenFields.currentRatio1:
                 score = (number - 2) * 50
                 if (number < 2) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
-            case StockFields.currentRatioGrowthQ1:
+            case StockFlattenFields.currentRatioGrowthQ1:
                 score = score = number * currentRatioGrowthCoefficient * lastQuarterCoefficient * (1 / latestCurrentRatio)
                 break;
-            case StockFields.currentRatioGrowthQ2:
+            case StockFlattenFields.currentRatioGrowthQ2:
                 score = score = number * currentRatioGrowthCoefficient * last2QuartersCoefficient * (1 / latestCurrentRatio)
                 break;
-            case StockFields.currentRatioGrowth1:
+            case StockFlattenFields.currentRatioGrowth1:
                 score = score = number * currentRatioGrowthCoefficient * lastYearCoefficient * (1 / latestCurrentRatio)
                 break;
-            case StockFields.currentRatioGrowth2:
+            case StockFlattenFields.currentRatioGrowth2:
                 score = score = number * currentRatioGrowthCoefficient * last2YearCoefficient * (1 / latestCurrentRatio)
                 break;
 
-            case StockFields.currentRatioGrowth3:
+            case StockFlattenFields.currentRatioGrowth3:
                 score = score = number * currentRatioGrowthCoefficient * last3YearCoefficient * (1 / latestCurrentRatio)
                 break;
 
 
-            case StockFields.inventoryGrowthQ1:
+            case StockFlattenFields.inventoryGrowthQ1:
                 score = number * lastQuarterCoefficient * inventoryGrowthCoefficient
                 break;
-            case StockFields.totalShareholdersEquityGrowthQ1:
+            case StockFlattenFields.totalShareholdersEquityGrowthQ1:
                 score = number * lastQuarterCoefficient * totalShareholdersEquityGrowthCoefficient
                 break;
-            case StockFields.totalShareholdersEquityGrowthQ2:
+            case StockFlattenFields.totalShareholdersEquityGrowthQ2:
                 score = number * last2QuartersCoefficient * totalShareholdersEquityGrowthCoefficient
                 break;
-            case StockFields.totalShareholdersEquityGrowth1:
+            case StockFlattenFields.totalShareholdersEquityGrowth1:
                 score = number * lastYearCoefficient * totalShareholdersEquityGrowthCoefficient
                 break;
-            case StockFields.totalShareholdersEquityGrowth2:
+            case StockFlattenFields.totalShareholdersEquityGrowth2:
                 score = number * last2YearCoefficient * totalShareholdersEquityGrowthCoefficient
                 break;
 
-            case StockFields.totalShareholdersEquityGrowth3:
+            case StockFlattenFields.totalShareholdersEquityGrowth3:
                 score = number * last3YearCoefficient * totalShareholdersEquityGrowthCoefficient
                 break;
 
-            case StockFields.retainedEarningsGrowthQ1:
+            case StockFlattenFields.retainedEarningsGrowthQ1:
                 score = number * lastQuarterCoefficient * retainedEarningsGrowthCoefficient
                 break;
-            case StockFields.retainedEarningsGrowthQ2:
+            case StockFlattenFields.retainedEarningsGrowthQ2:
                 score = number * last2QuartersCoefficient * retainedEarningsGrowthCoefficient
                 break;
-            case StockFields.retainedEarningsGrowth1:
+            case StockFlattenFields.retainedEarningsGrowth1:
                 score = number * lastYearCoefficient * retainedEarningsGrowthCoefficient
                 break;
-            case StockFields.retainedEarningsGrowth2:
+            case StockFlattenFields.retainedEarningsGrowth2:
                 score = number * last2YearCoefficient * retainedEarningsGrowthCoefficient
                 break;
 
-            case StockFields.retainedEarningsGrowth3:
+            case StockFlattenFields.retainedEarningsGrowth3:
                 score = number * last3YearCoefficient * retainedEarningsGrowthCoefficient
                 break;
 
 
-            case StockFields.totalDebtToEquityQ1:
+            case StockFlattenFields.totalDebtToEquityQ1:
                 score = this.ratioBetterThan(number, 0.8, 10) * lastQuarterCoefficient * totalDebtToEquityCoefficient
                 score = this.absLessThan(score, 200)
                 break;
-            case StockFields.totalDebtToEquity1:
+            case StockFlattenFields.totalDebtToEquity1:
                 score = this.ratioBetterThan(number, 0.8, 10) * lastYearCoefficient * totalDebtToEquityCoefficient
                 score = this.absLessThan(score, 200)
                 break;
 
-            case StockFields.totalDebtToEquityGrowthQ1:
+            case StockFlattenFields.totalDebtToEquityGrowthQ1:
                 score = -number * lastQuarterCoefficient * totalDebtToEquityGrowthCoefficient
                 break;
-            case StockFields.totalDebtToEquityGrowthQ2:
+            case StockFlattenFields.totalDebtToEquityGrowthQ2:
                 score = -number * last2QuartersCoefficient * totalDebtToEquityGrowthCoefficient
                 break;
-            case StockFields.totalDebtToEquityGrowth1:
+            case StockFlattenFields.totalDebtToEquityGrowth1:
                 score = -number * lastYearCoefficient * totalDebtToEquityGrowthCoefficient
                 break;
-            case StockFields.totalDebtToEquityGrowth2:
+            case StockFlattenFields.totalDebtToEquityGrowth2:
                 score = -number * last2YearCoefficient * totalDebtToEquityGrowthCoefficient
                 break;
 
-            case StockFields.totalDebtToEquityGrowth3:
+            case StockFlattenFields.totalDebtToEquityGrowth3:
                 score = -number * last3YearCoefficient * totalDebtToEquityGrowthCoefficient
                 break;
 
 
-            case StockFields.nonCurrentLiabilitiesToIncomeQ1:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeQ1:
                 score = this.ratioBetterThan(number, 4, 6) * lastQuarterCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
                 score = this.absLessThan(score, 100)
                 break;
-            case StockFields.nonCurrentLiabilitiesToIncomeQ2:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeQ2:
                 score = this.ratioBetterThan(number, 4, 6) * last2QuartersCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
                 score = this.absLessThan(score, 100)
                 break;
-            case StockFields.nonCurrentLiabilitiesToIncome1:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncome1:
                 score = this.ratioBetterThan(number, 4, 6) * lastYearCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
                 score = this.absLessThan(score, 100)
                 break;
-            case StockFields.nonCurrentLiabilitiesToIncome2:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncome2:
                 score = this.ratioBetterThan(number, 4, 6) * last2YearCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
                 score = this.absLessThan(score, 100)
                 break;
-            case StockFields.nonCurrentLiabilitiesToIncome3:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncome3:
                 score = this.ratioBetterThan(number, 4, 6) * last3YearCoefficient * nonCurrentLiabilitiesToIncomeCoefficient
                 score = this.absLessThan(score, 100)
                 break;
 
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowthQ1:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowthQ1:
                 score = -number * lastQuarterCoefficient * nonCurrentLiabilitiesToIncomeGrowthCoefficient
                 break;
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowthQ2:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowthQ2:
                 score = -number * last2QuartersCoefficient * nonCurrentLiabilitiesToIncomeGrowthCoefficient
                 break;
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowth1:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowth1:
                 score = -number * lastYearCoefficient * nonCurrentLiabilitiesToIncomeGrowthCoefficient
                 break;
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowth2:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowth2:
                 score = -number * last2YearCoefficient * nonCurrentLiabilitiesToIncomeGrowthCoefficient
                 break;
 
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowth3:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowth3:
                 score = -number * last3YearCoefficient * nonCurrentLiabilitiesToIncomeGrowthCoefficient
                 break;
 
-            case StockFields.sharesGrowth1:
+            case StockFlattenFields.sharesGrowth1:
                 score = -number
                 score *= lastYearCoefficient * stockGrowthCoefficient
                 break;
-            case StockFields.sharesGrowth2:
+            case StockFlattenFields.sharesGrowth2:
                 score = -number
                 score *= 0.5 * last3YearCoefficient * stockGrowthCoefficient
                 break;
-            case StockFields.stockRepurchasedGrowthQ1:
+            case StockFlattenFields.stockRepurchasedGrowthQ1:
                 score = number * lastQuarterCoefficient * stockRepurchaseGrowthCoefficient
                 if (number > 100) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
-            case StockFields.stockRepurchasedGrowthQ2:
+            case StockFlattenFields.stockRepurchasedGrowthQ2:
                 score = number * last2QuartersCoefficient * stockRepurchaseGrowthCoefficient
                 if (number > 100) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
-            case StockFields.stockRepurchasedGrowth1:
+            case StockFlattenFields.stockRepurchasedGrowth1:
                 score = number * lastYearCoefficient * stockRepurchaseGrowthCoefficient
                 if (number > 100) {
                     dataToScore.additionalInfo = ScoreAdditionalInfo.ManualCheckRequired
                 }
                 break;
-            case StockFields.stockRepurchasedGrowth2:
+            case StockFlattenFields.stockRepurchasedGrowth2:
                 score = number * last2YearCoefficient * stockRepurchaseGrowthCoefficient
                 break;
 
-            case StockFields.stockRepurchasedGrowth3:
+            case StockFlattenFields.stockRepurchasedGrowth3:
                 score = number * last3YearCoefficient * stockRepurchaseGrowthCoefficient
                 break;
 
-            case StockFields.epsGrowthQ1:
+            case StockFlattenFields.epsGrowthQ1:
                 score = number * lastQuarterCoefficient * epsGrowthCoefficient
                 break;
-            case StockFields.epsGrowthQ2:
+            case StockFlattenFields.epsGrowthQ2:
                 score = number * last2QuartersCoefficient * epsGrowthCoefficient
                 break;
-            case StockFields.epsGrowth1:
+            case StockFlattenFields.epsGrowth1:
                 score = number * lastYearCoefficient * epsGrowthCoefficient
                 break;
-            case StockFields.epsGrowth2:
+            case StockFlattenFields.epsGrowth2:
                 score = number * last2YearCoefficient * epsGrowthCoefficient
                 break;
-            case StockFields.epsGrowth3:
+            case StockFlattenFields.epsGrowth3:
                 score = number * last3YearCoefficient * epsGrowthCoefficient
                 break;
 
-            case StockFields.bookValuePerShareGrowth1:
+            case StockFlattenFields.bookValuePerShareGrowth1:
                 score = number * lastYearCoefficient * bpsGrowthCoefficient
                 break;
-            case StockFields.bookValuePerShareGrowth2:
+            case StockFlattenFields.bookValuePerShareGrowth2:
                 score = number * last2YearCoefficient * bpsGrowthCoefficient
                 break;
-            case StockFields.bookValuePerShareGrowth3:
+            case StockFlattenFields.bookValuePerShareGrowth3:
                 score = number * last3YearCoefficient * bpsGrowthCoefficient
                 break;
 
-            case StockFields.freeCashFlowPerShareGrowth1:
+            case StockFlattenFields.freeCashFlowPerShareGrowth1:
                 score = number * lastYearCoefficient * fcpsGrowthCoefficient
                 break;
-            case StockFields.freeCashFlowPerShareGrowth2:
+            case StockFlattenFields.freeCashFlowPerShareGrowth2:
                 score = number * last2YearCoefficient * fcpsGrowthCoefficient
                 break;
-            case StockFields.freeCashFlowPerShareGrowth3:
+            case StockFlattenFields.freeCashFlowPerShareGrowth3:
                 score = number * last3YearCoefficient * fcpsGrowthCoefficient
                 break;
 
-            case StockFields.roicP1:
+            case StockFlattenFields.roicP1:
                 score = (number - 10) * lastYearCoefficient * roicCoefficient
                 break;
-            case StockFields.roicP2:
+            case StockFlattenFields.roicP2:
                 score = (number - 10) * last2YearCoefficient * roicCoefficient
                 break;
-            case StockFields.roicP3:
+            case StockFlattenFields.roicP3:
                 score = (number - 10) * last3YearCoefficient * roicCoefficient
                 break;
 
-            case StockFields.peQ1:
+            case StockFlattenFields.peQ1:
                 score = this.ratioBetterThan(number, 20, 100);
                 score *= 10
                 break;
-            case StockFields.growthEstimate5y:
+            case StockFlattenFields.growthEstimate5y:
                 score = this.signPow(number, 2)
                 break;
-            case StockFields.roic1Y:
+            case StockFlattenFields.roic1Y:
                 score = StockAnalystService.rule1Score(number, 10)
                 break;
-            case StockFields.roic3Y:
+            case StockFlattenFields.roic3Y:
                 score = StockAnalystService.rule1Score(number, 8)
                 break;
-            case StockFields.revenue1Y:
+            case StockFlattenFields.revenue1Y:
                 score = StockAnalystService.rule1Score(number, 3)
                 break;
-            case StockFields.revenue3Y:
+            case StockFlattenFields.revenue3Y:
                 score = StockAnalystService.rule1Score(number, 2)
                 break;
-            case StockFields.revenue5Y:
+            case StockFlattenFields.revenue5Y:
                 score = StockAnalystService.rule1Score(number, 1)
                 break;
-            case StockFields.revenue9Y:
+            case StockFlattenFields.revenue9Y:
                 score = StockAnalystService.rule1Score(number, 0.5)
                 break;
-            case StockFields.eps1Y:
+            case StockFlattenFields.eps1Y:
                 score = StockAnalystService.rule1Score(number, 3)
                 break;
-            case StockFields.eps3Y:
+            case StockFlattenFields.eps3Y:
                 score = StockAnalystService.rule1Score(number, 2)
                 break;
-            case StockFields.eps5Y:
+            case StockFlattenFields.eps5Y:
                 score = StockAnalystService.rule1Score(number, 1)
                 break;
-            case StockFields.eps9Y:
+            case StockFlattenFields.eps9Y:
                 score = StockAnalystService.rule1Score(number, 0.5)
                 break;
-            case StockFields.bps1Y:
+            case StockFlattenFields.bps1Y:
                 score = StockAnalystService.rule1Score(number, 1)
                 break;
-            case StockFields.bps3Y:
+            case StockFlattenFields.bps3Y:
                 score = StockAnalystService.rule1Score(number, 0.7)
                 break;
-            case StockFields.bps5Y:
+            case StockFlattenFields.bps5Y:
                 score = StockAnalystService.rule1Score(number, 0.5)
                 break;
-            case StockFields.bps9Y:
+            case StockFlattenFields.bps9Y:
                 score = StockAnalystService.rule1Score(number, 0.25)
                 break;
-            case StockFields.cash1Y:
+            case StockFlattenFields.cash1Y:
                 score = StockAnalystService.rule1Score(number, 1)
                 break;
-            case StockFields.cash3Y:
+            case StockFlattenFields.cash3Y:
                 score = StockAnalystService.rule1Score(number, 0.7)
                 break;
-            case StockFields.cash5Y:
+            case StockFlattenFields.cash5Y:
                 score = StockAnalystService.rule1Score(number, 0.5)
                 break;
-            case StockFields.cash9Y:
+            case StockFlattenFields.cash9Y:
                 score = StockAnalystService.rule1Score(number, 0.25)
                 break;
-            case StockFields.belowStickerPrice15P:
+            case StockFlattenFields.belowStickerPrice15P:
                 score = number * 10
                 break;
-            case StockFields.belowStickerPrice5P:
+            case StockFlattenFields.belowStickerPrice5P:
                 score = number
                 break;
         }
@@ -982,6 +969,8 @@ export class StockAnalystService {
                 return FieldDisplayType.SingleValue
             case "currentPrice":
                 return FieldDisplayType.SingleValue
+            case "marketCap":
+                return FieldDisplayType.LatestOnly
             case "enterpriseValue":
                 return FieldDisplayType.LatestOnly
             case "totalCashPerShareP":
@@ -1003,8 +992,6 @@ export class StockAnalystService {
             case "enterpriseValueEBITDA":
                 return FieldDisplayType.LatestOnly
             case "priceEarningGrowth":
-                return FieldDisplayType.LatestOnly
-            case "trailingPriceEarningGrowth":
                 return FieldDisplayType.LatestOnly
             case "week52ChangeP":
                 return FieldDisplayType.LatestOnly
@@ -1350,12 +1337,12 @@ export class StockAnalystService {
     }
 
     private static calcNext5YYield(data: CellData[]): number | undefined {
-        const pe = data[StockFields.trailingPE].value as number;
+        const pe = data[StockFlattenFields.trailingPE].value as number;
         if (!pe) {
             return undefined
         }
         const pv = 100 / pe
-        const growthEstimate = data[StockFields.growthEstimate5y].value as number / 100
+        const growthEstimate = data[StockFlattenFields.growthEstimate5y].value as number / 100
         return this.futureValue(pv, growthEstimate, 5);
     }
 
@@ -1364,12 +1351,12 @@ export class StockAnalystService {
     }
 
     private static calcNext10YYield(data: CellData[]): number | undefined {
-        const pe = data[StockFields.trailingPE].value as number;
+        const pe = data[StockFlattenFields.trailingPE].value as number;
         if (!pe) {
             return undefined
         }
         const pv = 100 / pe
-        const growthEstimate = data[StockFields.growthEstimate5y].value as number / 100
+        const growthEstimate = data[StockFlattenFields.growthEstimate5y].value as number / 100
         return this.futureValue(pv, growthEstimate, 10);
     }
 }

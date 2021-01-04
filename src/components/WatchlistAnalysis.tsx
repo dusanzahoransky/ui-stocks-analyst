@@ -46,10 +46,10 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     private readonly stockTaggingService: StockTaggingService
 
     public static readonly DISPLAY_TOGGLES = [CellTag.lastUpdated, CellTag.stock, CellTag.dividends, CellTag.ratios, CellTag.ratiosGrowth, CellTag.financials, CellTag.financialsGrowth, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.intrinsicValueInvesting]
-    public static readonly DISPLAY_DEFAULTS = [CellTag.price, CellTag.ratios, CellTag.stock, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.financialsGrowth]
+    public static readonly DISPLAY_DEFAULTS = [CellTag.price, CellTag.ratios, , CellTag.ratiosGrowth, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.financialsGrowth]
 
     public static readonly HIDE_TOGGLES = [CellTag.Q1, CellTag.Q2, CellTag.Y1, CellTag.Y2, CellTag.Y3]
-    public static readonly HIDE_DEFAULTS = [CellTag.Q2, CellTag.Y2, CellTag.Y3]
+    public static readonly HIDE_DEFAULTS = [CellTag.Q2, CellTag.Y3]
 
     constructor(props: Readonly<WatchlistAnalysisProps>) {
         super(props)
