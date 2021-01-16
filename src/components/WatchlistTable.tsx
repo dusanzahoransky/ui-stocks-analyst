@@ -2,12 +2,12 @@ import React from "react"
 import 'font-awesome/css/font-awesome.min.css'
 import {FormattingUtils} from "../utils/FormattingUtils"
 import './WatchlistTable.css'
-import {StockFields} from "../model/StockFields"
+import {StockFlattenFields} from "../model/StockFlattenFields"
 import {CellData} from "../model/table/CellData"
 import {EtfFields} from "../model/EtfFields"
 import {StockTaggingService} from "../services/StockTaggingService"
 import {CellTag} from "../model/table/CellTag"
-import {Watchlist} from "./Watchlist"
+import {WatchlistAnalysis} from "./WatchlistAnalysis";
 
 export interface TableProps {
     headerLabels: string[]
@@ -105,10 +105,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
     }
 
     private headerTitle(column: number, cellTags: CellTag[] = []): string {
-        const title =
-            `Field: ${StockFields[column]}
+        return `Field: ${StockFlattenFields[column]}
 Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
-        return title
     }
 
     setSortedField(column: number) {
@@ -155,7 +153,7 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         const rowValues = rowData.map((data, column) =>
             <td key={column}
                 onClick={() => {
-                    const symbol = this.props.isEtf ? rowData[EtfFields.symbol] : rowData[StockFields.symbol]
+                    const symbol = this.props.isEtf ? rowData[EtfFields.symbol] : rowData[StockFlattenFields.symbol]
                     this.props.onStockClickHandler(symbol.value as string)
                 }}
                 className={this.dataCellClass(rowData, data, averages[column], column)}>
@@ -188,13 +186,13 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         let score = Number.isNaN(data.score) ? 0 : data.score
         if (score) {
             if (score < -10) {
-                FormattingUtils.isPercentage(data.tags, column) ? classes.push('redText') : classes.push('red')
+                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('redText') : classes.push('red')
             } else if (score < 0) {
-                FormattingUtils.isPercentage(data.tags, column) ? classes.push('lightRedText') : classes.push('lightRed')
+                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('lightRedText') : classes.push('lightRed')
             } else if (score > 10) {
-                FormattingUtils.isPercentage(data.tags, column) ? classes.push('greenText') : classes.push('green')
+                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('greenText') : classes.push('green')
             } else if (score > 0) {
-                FormattingUtils.isPercentage(data.tags, column) ? classes.push('lightGreenText') : classes.push('lightGreen')
+                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('lightGreenText') : classes.push('lightGreen')
             }
         }
 
@@ -215,13 +213,7 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
                 }
             }
         } else {
-            if (column === StockFields.change) {
-                if (data.value < 0) {
-                    classes.push('redText')
-                } else {
-                    classes.push('greenText')
-                }
-            } else if (column >= StockFields.score) {   //Score
+            if (column >= StockFlattenFields.score) {   //Score
                 if (data.value < 0) {
                     classes.push('redText')
                     classes.push('boldText')
@@ -259,7 +251,7 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         }
 
         const colTags = StockTaggingService.tagStockColumn(column)
-        const canToggleVisibility = colTags.some(tag => Watchlist.DISPLAY_TOGGLES.includes(tag))  //do not hide cols which visibility can not be toggled by a checkbox
+        const canToggleVisibility = colTags.some(tag => WatchlistAnalysis.DISPLAY_TOGGLES.includes(tag))  //do not hide cols which visibility can not be toggled by a checkbox
 
         const isHidden = colTags.some(colTag => this.props.hiddenTags.includes(colTag))
         const isDisplayed = colTags.some(colTag => this.props.visibleTags.includes(colTag))

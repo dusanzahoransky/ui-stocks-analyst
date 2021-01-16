@@ -1,4 +1,4 @@
-import {StockFields} from "../model/StockFields";
+import {StockFlattenFields} from "../model/StockFlattenFields";
 import {EtfFields} from "../model/EtfFields";
 import {CellTag} from "../model/table/CellTag";
 import {CellData} from "../model/table/CellData";
@@ -20,681 +20,697 @@ export class StockTaggingService {
 
     static tagStockColumn(column: number): CellTag[] {
         switch (column) {
-            case StockFields.companyName:
+            case StockFlattenFields.companyName:
                 return [CellTag.companyName]
-            case StockFields.chartLastUpdated:
-            case StockFields.financialsLastUpdated:
-            case StockFields.analysisLastUpdated:
-            case StockFields.statisticsLastUpdated:
-            case StockFields.holdersLastUpdated:
-            case StockFields.krfLastUpdated:
+            case StockFlattenFields.chartLastUpdated:
+            case StockFlattenFields.financialsLastUpdated:
+            case StockFlattenFields.analysisLastUpdated:
+            case StockFlattenFields.statisticsLastUpdated:
+            case StockFlattenFields.holdersLastUpdated:
+            case StockFlattenFields.krfLastUpdated:
                 return [CellTag.date,  CellTag.lastUpdated]
-            case StockFields.symbol:
+            case StockFlattenFields.symbol:
                 return [CellTag.symbol]
-            case StockFields.currentPrice:
+            case StockFlattenFields.currentPrice:
                 return [CellTag.currentPrice]
-            case StockFields.change:
-                return [CellTag.price]
-
-            case StockFields.lastReportedQuarter:
+            case StockFlattenFields.marketCap:
+                return [CellTag.ratios]
+            case StockFlattenFields.lastReportedQuarter:
                 return [CellTag.date, CellTag.lastReport]
-            case StockFields.exDividendDate:
+            case StockFlattenFields.exDividendDate:
                 return [CellTag.date, CellTag.dividends]
 
-            case StockFields.enterpriseValue:
+            case StockFlattenFields.enterpriseValue:
                 return [CellTag.ratios]
-            case StockFields.totalCashPerShareP:
-                return [CellTag.ratios]
-
-            case StockFields.trailingPE:
-                return [CellTag.ratios, CellTag.valueInvesting]
-            case StockFields.forwardPE:
-                return [CellTag.ratios, CellTag.valueInvesting]
-            case StockFields.priceToSalesTrailing12Months:
-                return [CellTag.ratios, CellTag.valueInvesting]
-            case StockFields.priceBook:
-                return [CellTag.ratios, CellTag.valueInvesting]
-            case StockFields.currentPriceToFreeCashFlow:
-                return [CellTag.ratios, CellTag.valueInvesting]
-            case StockFields.priceToFreeCashFlow:
-                return [CellTag.ratios, CellTag.valueInvesting]
-            case StockFields.enterpriseValueRevenue:
-                return [CellTag.ratios]
-            case StockFields.enterpriseValueEBITDA:
-                return [CellTag.ratios]
-            case StockFields.priceEarningGrowth:
-                return [CellTag.ratios]
-            case StockFields.trailingPriceEarningGrowth:
+            case StockFlattenFields.totalCashPerShareP:
                 return [CellTag.ratios]
 
-            case StockFields.week52ChangeP:
-                return [CellTag.price]
-            case StockFields.week52AboveLowP:
-                return [CellTag.price]
-            case StockFields.week52BelowHighP:
-                return [CellTag.price]
+            case StockFlattenFields.trailingPE:
+                return [CellTag.ratios, CellTag.valueInvesting]
+            case StockFlattenFields.forwardPE:
+                return [CellTag.ratios, CellTag.valueInvesting]
+            case StockFlattenFields.priceToSalesTrailing12Months:
+                return [CellTag.ratios, CellTag.valueInvesting]
+            case StockFlattenFields.priceBook:
+                return [CellTag.ratios, CellTag.valueInvesting]
+            case StockFlattenFields.currentPriceToFreeCashFlow:
+                return [CellTag.ratios, CellTag.valueInvesting]
+            case StockFlattenFields.priceToFreeCashFlow:
+                return [CellTag.ratios, CellTag.valueInvesting]
+            case StockFlattenFields.enterpriseValueRevenue:
+                return [CellTag.ratios]
+            case StockFlattenFields.enterpriseValueEBITDA:
+                return [CellTag.ratios]
+            case StockFlattenFields.priceEarningGrowth:
+                return [CellTag.ratios]
 
-            case StockFields.targetLowPrice:
-                return [CellTag.analysts, CellTag.price]
-            case StockFields.targetMedianPrice:
-                return [CellTag.analysts, CellTag.price]
-            case StockFields.belowTargetLowPriceP:
-                return [CellTag.analysts, CellTag.price]
-            case StockFields.belowTargetMedianPriceP:
-                return [CellTag.analysts, CellTag.price]
+            case StockFlattenFields.targetMedianPrice:
+                return [CellTag.analysts, CellTag.stock]
+            case StockFlattenFields.belowTargetMedianPriceP:
+                return [CellTag.analysts, CellTag.stock]
 
-            case StockFields.heldByInsidersP:
+            case StockFlattenFields.heldByInsidersP:
                 return [CellTag.stock]
-            case StockFields.heldByInstitutionsP:
+            case StockFlattenFields.heldByInstitutionsP:
                 return [CellTag.stock]
-            case StockFields.buyPercentInsiderShares:
+            case StockFlattenFields.buyPercentInsiderShares:
                 return [CellTag.stock]
-            case StockFields.sellPercentInsiderShares:
+            case StockFlattenFields.sellPercentInsiderShares:
                 return [CellTag.stock]
-            case StockFields.shortToFloatP:
+            case StockFlattenFields.shortToFloatP:
                 return [CellTag.short, CellTag.stock]
-            case StockFields.sharesShortPrevMonthCompareP:
+            case StockFlattenFields.sharesShortPrevMonthCompareP:
                 return [CellTag.short, CellTag.stock]
 
-            case StockFields.fiveYearAvgDividendYield:
+            case StockFlattenFields.fiveYearAvgDividendYield:
                 return [CellTag.dividends]
-            case StockFields.trailingAnnualDividendYield:
+            case StockFlattenFields.trailingAnnualDividendYield:
                 return [CellTag.dividends]
-            case StockFields.payoutRatioP:
+            case StockFlattenFields.payoutRatioP:
                 return [CellTag.dividends]
-            case StockFields.dividendsGrowth1:
+            case StockFlattenFields.dividendsGrowth1:
                 return [CellTag.dividends]
-            case StockFields.dividendsGrowth2:
+            case StockFlattenFields.dividendsGrowth2:
                 return [CellTag.dividends]
-            case StockFields.dividendsGrowth3:
+            case StockFlattenFields.dividendsGrowth3:
                 return [CellTag.dividends]
 
 
-            case StockFields.revenueQ1:
+            case StockFlattenFields.revenueQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.revenueQ2:
+            case StockFlattenFields.revenueQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.revenue1:
+            case StockFlattenFields.revenue1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.revenue2:
+            case StockFlattenFields.revenue2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.revenue3:
+            case StockFlattenFields.revenue3:
                 return [CellTag.Y3, CellTag.financials]
 
-            case StockFields.revenueGrowthQ1:
+            case StockFlattenFields.revenueGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
-            case StockFields.revenueGrowthQ2:
+            case StockFlattenFields.revenueGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
-            case StockFields.revenueGrowth1:
+            case StockFlattenFields.revenueGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
-            case StockFields.revenueGrowth2:
+            case StockFlattenFields.revenueGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
-            case StockFields.revenueGrowth3:
+            case StockFlattenFields.revenueGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth, CellTag.growthInvesting, CellTag.valueInvesting]
 
 
-            case StockFields.grossIncomeQ1:
+            case StockFlattenFields.grossIncomeQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.grossIncomeQ2:
+            case StockFlattenFields.grossIncomeQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.grossIncome1:
+            case StockFlattenFields.grossIncome1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.grossIncome2:
+            case StockFlattenFields.grossIncome2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.grossIncome3:
+            case StockFlattenFields.grossIncome3:
                 return [CellTag.Y3, CellTag.financials]
 
-            case StockFields.grossIncomeGrowthQ1:
+            case StockFlattenFields.grossIncomeGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth]
-            case StockFields.grossIncomeGrowthQ2:
+            case StockFlattenFields.grossIncomeGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth]
-            case StockFields.grossIncomeGrowth1:
+            case StockFlattenFields.grossIncomeGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth]
-            case StockFields.grossIncomeGrowth2:
+            case StockFlattenFields.grossIncomeGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth]
-            case StockFields.grossIncomeGrowth3:
+            case StockFlattenFields.grossIncomeGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth]
 
 
-            case StockFields.interestExpenseToOperativeIncomePQ1:
+            case StockFlattenFields.interestExpenseToOperativeIncomePQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.interestExpenseToOperativeIncomePQ2:
+            case StockFlattenFields.interestExpenseToOperativeIncomePQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.interestExpenseToOperativeIncomeP1:
+            case StockFlattenFields.interestExpenseToOperativeIncomeP1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.interestExpenseToOperativeIncomeP2:
+            case StockFlattenFields.interestExpenseToOperativeIncomeP2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.interestExpenseToOperativeIncomeP3:
+            case StockFlattenFields.interestExpenseToOperativeIncomeP3:
                 return [CellTag.Y3, CellTag.financials]
 
-            case StockFields.interestExpenseToOperativeIncomeGrowthQ1:
+            case StockFlattenFields.interestExpenseToOperativeIncomeGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth]
-            case StockFields.interestExpenseToOperativeIncomeGrowthQ2:
+            case StockFlattenFields.interestExpenseToOperativeIncomeGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth]
-            case StockFields.interestExpenseToOperativeIncomeGrowth1:
+            case StockFlattenFields.interestExpenseToOperativeIncomeGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth]
-            case StockFields.interestExpenseToOperativeIncomeGrowth2:
+            case StockFlattenFields.interestExpenseToOperativeIncomeGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth]
-            case StockFields.interestExpenseToOperativeIncomeGrowth3:
+            case StockFlattenFields.interestExpenseToOperativeIncomeGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth]
 
 
-            case StockFields.netIncomeQ1:
+            case StockFlattenFields.netIncomeQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.netIncomeQ2:
+            case StockFlattenFields.netIncomeQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.netIncome1:
+            case StockFlattenFields.netIncome1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.netIncome2:
+            case StockFlattenFields.netIncome2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.netIncome3:
+            case StockFlattenFields.netIncome3:
                 return [CellTag.Y3, CellTag.financials]
 
-            case StockFields.netIncomeGrowthQ1:
+            case StockFlattenFields.netIncomeGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.netIncomeGrowthQ2:
+            case StockFlattenFields.netIncomeGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.netIncomeGrowth1:
+            case StockFlattenFields.netIncomeGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.netIncomeGrowth2:
+            case StockFlattenFields.netIncomeGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.netIncomeGrowth3:
+            case StockFlattenFields.netIncomeGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
 
-            case StockFields.profitMarginPQ1:
+            case StockFlattenFields.profitMarginPQ1:
                 return [CellTag.financials, CellTag.Q1, CellTag.valueInvesting]
-            case StockFields.profitMarginPQ2:
+            case StockFlattenFields.profitMarginPQ2:
                 return [CellTag.financials, CellTag.Q2, CellTag.valueInvesting]
-            case StockFields.profitMarginP1:
+            case StockFlattenFields.profitMarginP1:
                 return [CellTag.financials, CellTag.Y1, CellTag.valueInvesting]
-            case StockFields.profitMarginP2:
+            case StockFlattenFields.profitMarginP2:
                 return [CellTag.financials, CellTag.Y2, CellTag.valueInvesting]
-            case StockFields.profitMarginP3:
+            case StockFlattenFields.profitMarginP3:
                 return [CellTag.financials, CellTag.Y3, CellTag.valueInvesting]
 
-            case StockFields.profitMarginGrowthQ1:
+            case StockFlattenFields.profitMarginGrowthQ1:
                 return [CellTag.financials, CellTag.Q1, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.profitMarginGrowthQ2:
+            case StockFlattenFields.profitMarginGrowthQ2:
                 return [CellTag.financials, CellTag.Q2, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.profitMarginGrowth1:
+            case StockFlattenFields.profitMarginGrowth1:
                 return [CellTag.financials, CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.profitMarginGrowth2:
+            case StockFlattenFields.profitMarginGrowth2:
                 return [CellTag.financials, CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.profitMarginGrowth3:
+            case StockFlattenFields.profitMarginGrowth3:
                 return [CellTag.financials, CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
 
-            case StockFields.freeCashFlowQ1:
+            case StockFlattenFields.freeCashFlowQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.freeCashFlowQ2:
+            case StockFlattenFields.freeCashFlowQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.freeCashFlow1:
+            case StockFlattenFields.freeCashFlow1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.freeCashFlow2:
+            case StockFlattenFields.freeCashFlow2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.freeCashFlow3:
+            case StockFlattenFields.freeCashFlow3:
                 return [CellTag.Y3, CellTag.financials]
 
-            case StockFields.freeCashFlowGrowthQ1:
+            case StockFlattenFields.freeCashFlowGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth, CellTag.growthInvesting]
-            case StockFields.freeCashFlowGrowthQ2:
+            case StockFlattenFields.freeCashFlowGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth, CellTag.growthInvesting]
-            case StockFields.freeCashFlowGrowth1:
+            case StockFlattenFields.freeCashFlowGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth, CellTag.growthInvesting]
-            case StockFields.freeCashFlowGrowth2:
+            case StockFlattenFields.freeCashFlowGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth, CellTag.growthInvesting]
-            case StockFields.freeCashFlowGrowth3:
+            case StockFlattenFields.freeCashFlowGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth, CellTag.growthInvesting]
 
-            case StockFields.cashQ1:
+            case StockFlattenFields.cashQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.cashQ2:
+            case StockFlattenFields.cashQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.cash1:
+            case StockFlattenFields.cash1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.cash2:
+            case StockFlattenFields.cash2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.cash3:
+            case StockFlattenFields.cash3:
                 return [CellTag.Y3, CellTag.financials]
-            case StockFields.cashGrowthQ1:
+            case StockFlattenFields.cashGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth]
-            case StockFields.cashGrowthQ2:
+            case StockFlattenFields.cashGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth]
-            case StockFields.cashGrowth1:
+            case StockFlattenFields.cashGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth]
-            case StockFields.cashGrowth2:
+            case StockFlattenFields.cashGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth]
-            case StockFields.cashGrowth3:
+            case StockFlattenFields.cashGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth]
 
-            case StockFields.inventoryQ1:
+            case StockFlattenFields.inventoryQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.inventoryQ2:
+            case StockFlattenFields.inventoryQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.inventory1:
+            case StockFlattenFields.inventory1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.inventory2:
+            case StockFlattenFields.inventory2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.inventory3:
+            case StockFlattenFields.inventory3:
                 return [CellTag.Y3, CellTag.financials]
-            case StockFields.inventoryGrowthQ1:
+            case StockFlattenFields.inventoryGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth]
-            case StockFields.inventoryGrowthQ2:
+            case StockFlattenFields.inventoryGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth]
-            case StockFields.inventoryGrowth1:
+            case StockFlattenFields.inventoryGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth]
-            case StockFields.inventoryGrowth2:
+            case StockFlattenFields.inventoryGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth]
-            case StockFields.inventoryGrowth3:
+            case StockFlattenFields.inventoryGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth]
 
 
-            case StockFields.currentRatioQ1:
+            case StockFlattenFields.currentRatioQ1:
                 return [CellTag.ratios, CellTag.Q1]
-            case StockFields.currentRatioQ2:
+            case StockFlattenFields.currentRatioQ2:
                 return [CellTag.ratios, CellTag.Q2]
-            case StockFields.currentRatio1:
+            case StockFlattenFields.currentRatio1:
                 return [CellTag.ratios, CellTag.Y1]
-            case StockFields.currentRatio2:
+            case StockFlattenFields.currentRatio2:
                 return [CellTag.ratios, CellTag.Y2]
-            case StockFields.currentRatio3:
+            case StockFlattenFields.currentRatio3:
                 return [CellTag.ratios, CellTag.Y3]
 
-            case StockFields.currentRatioGrowthQ1:
+            case StockFlattenFields.currentRatioGrowthQ1:
                 return [CellTag.ratios, CellTag.Q1, CellTag.ratiosGrowth]
-            case StockFields.currentRatioGrowthQ2:
+            case StockFlattenFields.currentRatioGrowthQ2:
                 return [CellTag.ratios, CellTag.Q2, CellTag.ratiosGrowth]
-            case StockFields.currentRatioGrowth1:
+            case StockFlattenFields.currentRatioGrowth1:
                 return [CellTag.ratios, CellTag.Y1, CellTag.ratiosGrowth]
-            case StockFields.currentRatioGrowth2:
+            case StockFlattenFields.currentRatioGrowth2:
                 return [CellTag.ratios, CellTag.Y2, CellTag.ratiosGrowth]
-            case StockFields.currentRatioGrowth3:
+            case StockFlattenFields.currentRatioGrowth3:
                 return [CellTag.ratios, CellTag.Y3, CellTag.ratiosGrowth]
 
-            case StockFields.totalLiabilitiesQ1:
+            case StockFlattenFields.totalLiabilitiesQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.totalLiabilitiesQ2:
+            case StockFlattenFields.totalLiabilitiesQ2:
                 return [CellTag.Q2, CellTag.financials]
 
-            case StockFields.totalAssetsQ1:
+            case StockFlattenFields.totalAssetsQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.totalAssetsQ2:
+            case StockFlattenFields.totalAssetsQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.totalAssets1:
+            case StockFlattenFields.totalAssets1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.totalAssets2:
+            case StockFlattenFields.totalAssets2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.totalAssets3:
+            case StockFlattenFields.totalAssets3:
                 return [CellTag.Y3, CellTag.financials]
-            case StockFields.totalAssetsGrowthQ1:
+            case StockFlattenFields.totalAssetsGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth]
-            case StockFields.totalAssetsGrowthQ2:
+            case StockFlattenFields.totalAssetsGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth]
-            case StockFields.totalAssetsGrowth1:
+            case StockFlattenFields.totalAssetsGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth]
-            case StockFields.totalAssetsGrowth2:
+            case StockFlattenFields.totalAssetsGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth]
-            case StockFields.totalAssetsGrowth3:
+            case StockFlattenFields.totalAssetsGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth]
 
 
-            case StockFields.totalShareholdersEquityQ1:
+            case StockFlattenFields.totalShareholdersEquityQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.totalShareholdersEquityQ2:
+            case StockFlattenFields.totalShareholdersEquityQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.totalShareholdersEquity1:
+            case StockFlattenFields.totalShareholdersEquity1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.totalShareholdersEquity2:
+            case StockFlattenFields.totalShareholdersEquity2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.totalShareholdersEquity3:
+            case StockFlattenFields.totalShareholdersEquity3:
                 return [CellTag.Y3, CellTag.financials]
 
-            case StockFields.totalShareholdersEquityGrowthQ1:
+            case StockFlattenFields.totalShareholdersEquityGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.totalShareholdersEquityGrowthQ2:
+            case StockFlattenFields.totalShareholdersEquityGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.totalShareholdersEquityGrowth1:
+            case StockFlattenFields.totalShareholdersEquityGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.totalShareholdersEquityGrowth2:
+            case StockFlattenFields.totalShareholdersEquityGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.totalShareholdersEquityGrowth3:
+            case StockFlattenFields.totalShareholdersEquityGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
-            case StockFields.totalDebtToEquityQ1:
+            case StockFlattenFields.retainedEarningsQ1:
+                return [CellTag.Q1, CellTag.financials]
+            case StockFlattenFields.retainedEarningsQ2:
+                return [CellTag.Q2, CellTag.financials]
+            case StockFlattenFields.retainedEarnings1:
+                return [CellTag.Y1, CellTag.financials]
+            case StockFlattenFields.retainedEarnings2:
+                return [CellTag.Y2, CellTag.financials]
+            case StockFlattenFields.retainedEarnings3:
+                return [CellTag.Y3, CellTag.financials]
+
+            case StockFlattenFields.retainedEarningsGrowthQ1:
+                return [CellTag.Q1, CellTag.financialsGrowth, CellTag.growthInvesting]
+            case StockFlattenFields.retainedEarningsGrowthQ2:
+                return [CellTag.Q2, CellTag.financialsGrowth, CellTag.growthInvesting]
+            case StockFlattenFields.retainedEarningsGrowth1:
+                return [CellTag.Y1, CellTag.financialsGrowth, CellTag.growthInvesting]
+            case StockFlattenFields.retainedEarningsGrowth2:
+                return [CellTag.Y2, CellTag.financialsGrowth, CellTag.growthInvesting]
+            case StockFlattenFields.retainedEarningsGrowth3:
+                return [CellTag.Y3, CellTag.financialsGrowth, CellTag.growthInvesting]
+
+            case StockFlattenFields.totalDebtToEquityQ1:
                 return [CellTag.ratios, CellTag.Q1]
-            case StockFields.totalDebtToEquityQ2:
+            case StockFlattenFields.totalDebtToEquityQ2:
                 return [CellTag.ratios, CellTag.Q2]
-            case StockFields.totalDebtToEquity1:
+            case StockFlattenFields.totalDebtToEquity1:
                 return [CellTag.ratios, CellTag.Y1]
-            case StockFields.totalDebtToEquity2:
+            case StockFlattenFields.totalDebtToEquity2:
                 return [CellTag.ratios, CellTag.Y2]
-            case StockFields.totalDebtToEquity3:
+            case StockFlattenFields.totalDebtToEquity3:
                 return [CellTag.ratios, CellTag.Y3]
-            case StockFields.totalDebtToEquityGrowthQ1:
+            case StockFlattenFields.totalDebtToEquityGrowthQ1:
                 return [CellTag.ratios, CellTag.Q1, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.totalDebtToEquityGrowthQ2:
+            case StockFlattenFields.totalDebtToEquityGrowthQ2:
                 return [CellTag.ratios, CellTag.Q2, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.totalDebtToEquityGrowth1:
+            case StockFlattenFields.totalDebtToEquityGrowth1:
                 return [CellTag.ratios, CellTag.Y1, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.totalDebtToEquityGrowth2:
+            case StockFlattenFields.totalDebtToEquityGrowth2:
                 return [CellTag.ratios, CellTag.Y2, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.totalDebtToEquityGrowth3:
+            case StockFlattenFields.totalDebtToEquityGrowth3:
                 return [CellTag.ratios, CellTag.Y3, CellTag.ratiosGrowth, CellTag.valueInvesting]
 
-            case StockFields.nonCurrentLiabilitiesToIncomeQ1:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeQ1:
                 return [CellTag.ratios, CellTag.Q1]
-            case StockFields.nonCurrentLiabilitiesToIncomeQ2:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeQ2:
                 return [CellTag.ratios, CellTag.Q2]
-            case StockFields.nonCurrentLiabilitiesToIncome1:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncome1:
                 return [CellTag.ratios, CellTag.Y1]
-            case StockFields.nonCurrentLiabilitiesToIncome2:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncome2:
                 return [CellTag.ratios, CellTag.Y2]
-            case StockFields.nonCurrentLiabilitiesToIncome3:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncome3:
                 return [CellTag.ratios, CellTag.Y3]
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowthQ1:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowthQ1:
                 return [CellTag.ratios, CellTag.Q1, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowthQ2:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowthQ2:
                 return [CellTag.ratios, CellTag.Q2, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowth1:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowth1:
                 return [CellTag.ratios, CellTag.Y1, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowth2:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowth2:
                 return [CellTag.ratios, CellTag.Y2, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.nonCurrentLiabilitiesToIncomeGrowth3:
+            case StockFlattenFields.nonCurrentLiabilitiesToIncomeGrowth3:
                 return [CellTag.ratios, CellTag.Y3, CellTag.ratiosGrowth, CellTag.valueInvesting]
 
-            case StockFields.stockRepurchasedQ1:
+            case StockFlattenFields.stockRepurchasedQ1:
                 return [CellTag.stock, CellTag.Q1]
-            case StockFields.stockRepurchasedQ2:
+            case StockFlattenFields.stockRepurchasedQ2:
                 return [CellTag.stock, CellTag.Q2]
-            case StockFields.stockRepurchased1:
+            case StockFlattenFields.stockRepurchased1:
                 return [CellTag.stock, CellTag.Y1]
-            case StockFields.stockRepurchased2:
+            case StockFlattenFields.stockRepurchased2:
                 return [CellTag.stock, CellTag.Y2]
-            case StockFields.stockRepurchased3:
+            case StockFlattenFields.stockRepurchased3:
                 return [CellTag.stock, CellTag.Y3]
-            case StockFields.stockRepurchasedGrowthQ1:
+            case StockFlattenFields.stockRepurchasedGrowthQ1:
                 return [CellTag.stock, CellTag.Q1, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.stockRepurchasedGrowthQ2:
+            case StockFlattenFields.stockRepurchasedGrowthQ2:
                 return [CellTag.stock, CellTag.Q2, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.stockRepurchasedGrowth1:
+            case StockFlattenFields.stockRepurchasedGrowth1:
                 return [CellTag.stock, CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.stockRepurchasedGrowth2:
+            case StockFlattenFields.stockRepurchasedGrowth2:
                 return [CellTag.stock, CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.stockRepurchasedGrowth3:
+            case StockFlattenFields.stockRepurchasedGrowth3:
                 return [CellTag.stock, CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
-            case StockFields.shares1:
+            case StockFlattenFields.shares1:
                 return [CellTag.stock, CellTag.Y1]
-            case StockFields.shares2:
+            case StockFlattenFields.shares2:
                 return [CellTag.stock, CellTag.Y2]
-            case StockFields.shares3:
+            case StockFlattenFields.shares3:
                 return [CellTag.stock, CellTag.Y3]
-            case StockFields.sharesGrowth1:
+            case StockFlattenFields.sharesGrowth1:
                 return [CellTag.stock, CellTag.Y1, CellTag.financialsGrowth]
-            case StockFields.sharesGrowth2:
+            case StockFlattenFields.sharesGrowth2:
                 return [CellTag.stock, CellTag.Y2, CellTag.financialsGrowth]
-            case StockFields.sharesGrowth3:
+            case StockFlattenFields.sharesGrowth3:
                 return [CellTag.stock, CellTag.Y3, CellTag.financialsGrowth]
 
-            case StockFields.epsQ1:
+            case StockFlattenFields.epsQ1:
                 return [CellTag.Q1, CellTag.ratios]
-            case StockFields.epsQ2:
+            case StockFlattenFields.epsQ2:
                 return [CellTag.Q2, CellTag.ratios]
-            case StockFields.eps1:
+            case StockFlattenFields.eps1:
                 return [CellTag.Y1, CellTag.ratios]
-            case StockFields.eps2:
+            case StockFlattenFields.eps2:
                 return [CellTag.Y2, CellTag.ratios]
-            case StockFields.eps3:
+            case StockFlattenFields.eps3:
                 return [CellTag.Y3, CellTag.ratios]
-            case StockFields.epsGrowthQ1:
+            case StockFlattenFields.epsGrowthQ1:
                 return [CellTag.Q1, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.epsGrowthQ2:
+            case StockFlattenFields.epsGrowthQ2:
                 return [CellTag.Q2, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.epsGrowth1:
+            case StockFlattenFields.epsGrowth1:
                 return [CellTag.Y1, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.epsGrowth2:
+            case StockFlattenFields.epsGrowth2:
                 return [CellTag.Y2, CellTag.ratiosGrowth, CellTag.valueInvesting]
-            case StockFields.epsGrowth3:
+            case StockFlattenFields.epsGrowth3:
                 return [CellTag.Y3, CellTag.ratiosGrowth, CellTag.valueInvesting]
 
-            case StockFields.peQ1:
+            case StockFlattenFields.peQ1:
                 return [CellTag.ratios, CellTag.Q1, CellTag.hidden]
-            case StockFields.peQ2:
+            case StockFlattenFields.peQ2:
                 return [CellTag.ratios, CellTag.Q2, CellTag.hidden]
-            case StockFields.pe1:
+            case StockFlattenFields.pe1:
                 return [CellTag.ratios, CellTag.Y1, CellTag.hidden]
-            case StockFields.pe2:
+            case StockFlattenFields.pe2:
                 return [CellTag.ratios, CellTag.Y2, CellTag.hidden]
-            case StockFields.pe3:
+            case StockFlattenFields.pe3:
                 return [CellTag.ratios, CellTag.Y3, CellTag.hidden]
-            case StockFields.peGrowthQ1:
+            case StockFlattenFields.peGrowthQ1:
                 return [CellTag.Q1, CellTag.ratiosGrowth, CellTag.hidden]
-            case StockFields.peGrowthQ2:
+            case StockFlattenFields.peGrowthQ2:
                 return [CellTag.Q2, CellTag.ratiosGrowth, CellTag.hidden]
-            case StockFields.peGrowth1:
+            case StockFlattenFields.peGrowth1:
                 return [CellTag.Y1, CellTag.ratiosGrowth, CellTag.hidden]
-            case StockFields.peGrowth2:
+            case StockFlattenFields.peGrowth2:
                 return [CellTag.Y2, CellTag.ratiosGrowth, CellTag.hidden]
-            case StockFields.peGrowth3:
+            case StockFlattenFields.peGrowth3:
                 return [CellTag.Y3, CellTag.ratiosGrowth, CellTag.hidden]
 
-            case StockFields.bookValuePerShare1:
+            case StockFlattenFields.bookValuePerShare1:
                 return [CellTag.Y1, CellTag.ratios]
-            case StockFields.bookValuePerShare2:
+            case StockFlattenFields.bookValuePerShare2:
                 return [CellTag.Y2, CellTag.ratios]
-            case StockFields.bookValuePerShare3:
+            case StockFlattenFields.bookValuePerShare3:
                 return [CellTag.Y3, CellTag.ratios]
-            case StockFields.bookValuePerShareGrowth1:
+            case StockFlattenFields.bookValuePerShareGrowth1:
                 return [CellTag.Y1, CellTag.ratiosGrowth, CellTag.growthInvesting]
-            case StockFields.bookValuePerShareGrowth2:
+            case StockFlattenFields.bookValuePerShareGrowth2:
                 return [CellTag.Y2, CellTag.ratiosGrowth, CellTag.growthInvesting]
-            case StockFields.bookValuePerShareGrowth3:
+            case StockFlattenFields.bookValuePerShareGrowth3:
                 return [CellTag.Y3, CellTag.ratiosGrowth, CellTag.growthInvesting]
 
 
-            case StockFields.freeCashFlowPerShare1:
+            case StockFlattenFields.freeCashFlowPerShare1:
                 return [CellTag.Y1, CellTag.ratios]
-            case StockFields.freeCashFlowPerShare2:
+            case StockFlattenFields.freeCashFlowPerShare2:
                 return [CellTag.Y2, CellTag.ratios]
-            case StockFields.freeCashFlowPerShare3:
+            case StockFlattenFields.freeCashFlowPerShare3:
                 return [CellTag.Y3, CellTag.ratios]
-            case StockFields.freeCashFlowPerShareGrowth1:
+            case StockFlattenFields.freeCashFlowPerShareGrowth1:
                 return [CellTag.Y1, CellTag.ratiosGrowth]
-            case StockFields.freeCashFlowPerShareGrowth2:
+            case StockFlattenFields.freeCashFlowPerShareGrowth2:
                 return [CellTag.Y2, CellTag.ratiosGrowth]
-            case StockFields.freeCashFlowPerShareGrowth3:
+            case StockFlattenFields.freeCashFlowPerShareGrowth3:
                 return [CellTag.Y3, CellTag.ratiosGrowth]
 
-            case StockFields.grossMargin1:
+            case StockFlattenFields.grossMargin1:
                 return [CellTag.Y1, CellTag.financials, CellTag.valueInvesting]
-            case StockFields.grossMargin2:
+            case StockFlattenFields.grossMargin2:
                 return [CellTag.Y2, CellTag.financials, CellTag.valueInvesting]
-            case StockFields.grossMargin3:
+            case StockFlattenFields.grossMargin3:
                 return [CellTag.Y3, CellTag.financials, CellTag.valueInvesting]
-            case StockFields.grossMarginGrowth1:
+            case StockFlattenFields.grossMarginGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.grossMarginGrowth2:
+            case StockFlattenFields.grossMarginGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth, CellTag.valueInvesting]
-            case StockFields.grossMarginGrowth3:
+            case StockFlattenFields.grossMarginGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth, CellTag.valueInvesting]
 
-            case StockFields.operatingCashFlow1:
+            case StockFlattenFields.operatingCashFlow1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.operatingCashFlow2:
+            case StockFlattenFields.operatingCashFlow2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.operatingCashFlow3:
+            case StockFlattenFields.operatingCashFlow3:
                 return [CellTag.Y3, CellTag.financials]
-            case StockFields.operatingCashFlowGrowth1:
+            case StockFlattenFields.operatingCashFlowGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth, CellTag.growthInvesting]
-            case StockFields.operatingCashFlowGrowth2:
+            case StockFlattenFields.operatingCashFlowGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth, CellTag.growthInvesting]
-            case StockFields.operatingCashFlowGrowth3:
+            case StockFlattenFields.operatingCashFlowGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth, CellTag.growthInvesting]
 
-            case StockFields.operatingIncome1:
-                return [CellTag.Y1, CellTag.financials]
-            case StockFields.operatingIncome2:
-                return [CellTag.Y2, CellTag.financials]
-            case StockFields.operatingIncome3:
-                return [CellTag.Y3, CellTag.financials]
-            case StockFields.operatingIncomeGrowth1:
-                return [CellTag.Y1, CellTag.financialsGrowth]
-            case StockFields.operatingIncomeGrowth2:
-                return [CellTag.Y2, CellTag.financialsGrowth]
-            case StockFields.operatingIncomeGrowth3:
-                return [CellTag.Y3, CellTag.financialsGrowth]
-
-            case StockFields.operatingMargin1:
-                return [CellTag.Y1, CellTag.financials]
-            case StockFields.operatingMargin2:
-                return [CellTag.Y2, CellTag.financials]
-            case StockFields.operatingMargin3:
-                return [CellTag.Y3, CellTag.financials]
-            case StockFields.operatingMarginGrowth1:
-                return [CellTag.Y1, CellTag.financialsGrowth]
-            case StockFields.operatingMarginGrowth2:
-                return [CellTag.Y2, CellTag.financialsGrowth]
-            case StockFields.operatingMarginGrowth3:
-                return [CellTag.Y3, CellTag.financialsGrowth]
-
-            case StockFields.workingCapitalQ1:
+            case StockFlattenFields.ebitQ1:
                 return [CellTag.Q1, CellTag.financials]
-            case StockFields.workingCapitalQ2:
+            case StockFlattenFields.ebitQ2:
                 return [CellTag.Q2, CellTag.financials]
-            case StockFields.workingCapital1:
+            case StockFlattenFields.ebit1:
                 return [CellTag.Y1, CellTag.financials]
-            case StockFields.workingCapital2:
+            case StockFlattenFields.ebit2:
                 return [CellTag.Y2, CellTag.financials]
-            case StockFields.workingCapital3:
+            case StockFlattenFields.ebit3:
                 return [CellTag.Y3, CellTag.financials]
-            case StockFields.workingCapitalGrowthQ1:
+            case StockFlattenFields.ebitGrowthQ1:
                 return [CellTag.Q1, CellTag.financialsGrowth]
-            case StockFields.workingCapitalGrowthQ2:
+            case StockFlattenFields.ebitGrowthQ2:
                 return [CellTag.Q2, CellTag.financialsGrowth]
-            case StockFields.workingCapitalGrowth1:
+            case StockFlattenFields.ebitGrowth1:
                 return [CellTag.Y1, CellTag.financialsGrowth]
-            case StockFields.workingCapitalGrowth2:
+            case StockFlattenFields.ebitGrowth2:
                 return [CellTag.Y2, CellTag.financialsGrowth]
-            case StockFields.workingCapitalGrowth3:
+            case StockFlattenFields.ebitGrowth3:
+                return [CellTag.Y3, CellTag.financialsGrowth]
+
+            case StockFlattenFields.operatingMargin1:
+                return [CellTag.Y1, CellTag.financials]
+            case StockFlattenFields.operatingMargin2:
+                return [CellTag.Y2, CellTag.financials]
+            case StockFlattenFields.operatingMargin3:
+                return [CellTag.Y3, CellTag.financials]
+            case StockFlattenFields.operatingMarginGrowth1:
+                return [CellTag.Y1, CellTag.financialsGrowth]
+            case StockFlattenFields.operatingMarginGrowth2:
+                return [CellTag.Y2, CellTag.financialsGrowth]
+            case StockFlattenFields.operatingMarginGrowth3:
+                return [CellTag.Y3, CellTag.financialsGrowth]
+
+            case StockFlattenFields.workingCapitalQ1:
+                return [CellTag.Q1, CellTag.financials]
+            case StockFlattenFields.workingCapitalQ2:
+                return [CellTag.Q2, CellTag.financials]
+            case StockFlattenFields.workingCapital1:
+                return [CellTag.Y1, CellTag.financials]
+            case StockFlattenFields.workingCapital2:
+                return [CellTag.Y2, CellTag.financials]
+            case StockFlattenFields.workingCapital3:
+                return [CellTag.Y3, CellTag.financials]
+            case StockFlattenFields.workingCapitalGrowthQ1:
+                return [CellTag.Q1, CellTag.financialsGrowth]
+            case StockFlattenFields.workingCapitalGrowthQ2:
+                return [CellTag.Q2, CellTag.financialsGrowth]
+            case StockFlattenFields.workingCapitalGrowth1:
+                return [CellTag.Y1, CellTag.financialsGrowth]
+            case StockFlattenFields.workingCapitalGrowth2:
+                return [CellTag.Y2, CellTag.financialsGrowth]
+            case StockFlattenFields.workingCapitalGrowth3:
                 return [CellTag.Y3, CellTag.financialsGrowth]
 
 
-            case StockFields.growthEstimate5y:
+            case StockFlattenFields.growthEstimate5y:
                 return [CellTag.intrinsicValueInvesting, CellTag.analysts, CellTag.financialsGrowth]
 
-            case StockFields.roicP1:
+            case StockFlattenFields.roicP1:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
-            case StockFields.roicP2:
+            case StockFlattenFields.roicP2:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
-            case StockFields.roicP3:
-                return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
-
-            case StockFields.roic1Y:
-                return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
-            case StockFields.roic3Y:
+            case StockFlattenFields.roicP3:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
 
-            case StockFields.revenue1Y:
+            case StockFlattenFields.roic1Y:
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
+            case StockFlattenFields.roic3Y:
+                return [CellTag.intrinsicValueInvesting, CellTag.cgRoic, CellTag.valueInvesting]
+
+            case StockFlattenFields.revenue1Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgRevenue]
-            case StockFields.revenue3Y:
+            case StockFlattenFields.revenue3Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgRevenue]
-            case StockFields.revenue5Y:
+            case StockFlattenFields.revenue5Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgRevenue]
-            case StockFields.revenue9Y:
+            case StockFlattenFields.revenue9Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgRevenue]
 
-            case StockFields.eps1Y:
+            case StockFlattenFields.eps1Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgEps]
-            case StockFields.eps3Y:
+            case StockFlattenFields.eps3Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgEps]
-            case StockFields.eps5Y:
+            case StockFlattenFields.eps5Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgEps]
-            case StockFields.eps9Y:
+            case StockFlattenFields.eps9Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgEps]
 
-            case StockFields.bps1Y:
+            case StockFlattenFields.bps1Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgBps]
-            case StockFields.bps3Y:
+            case StockFlattenFields.bps3Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgBps]
-            case StockFields.bps5Y:
+            case StockFlattenFields.bps5Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgBps]
-            case StockFields.bps9Y:
+            case StockFlattenFields.bps9Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgBps]
 
-            case StockFields.cash1Y:
+            case StockFlattenFields.cash1Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgCash]
-            case StockFields.cash3Y:
+            case StockFlattenFields.cash3Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgCash]
-            case StockFields.cash5Y:
+            case StockFlattenFields.cash5Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgCash]
-            case StockFields.cash9Y:
+            case StockFlattenFields.cash9Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgCash]
 
-            case StockFields.pe1Y:
+            case StockFlattenFields.pe1Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgPe]
-            case StockFields.pe3Y:
+            case StockFlattenFields.pe3Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgPe]
-            case StockFields.pe5Y:
+            case StockFlattenFields.pe5Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgPe]
-            case StockFields.pe9Y:
+            case StockFlattenFields.pe9Y:
                 return [CellTag.intrinsicValueInvesting, CellTag.cgPe]
 
-            case StockFields.rule1GrowthRate:
+            case StockFlattenFields.rule1GrowthRate:
                 return [CellTag.intrinsicValueInvesting, CellTag.calc]
-            case StockFields.defaultPE:
+            case StockFlattenFields.defaultPE:
                 return [CellTag.intrinsicValueInvesting, CellTag.calc]
-            case StockFields.historicalPE:
+            case StockFlattenFields.historicalPE:
                 return [CellTag.intrinsicValueInvesting, CellTag.calc]
-            case StockFields.rule1PE:
+            case StockFlattenFields.rule1PE:
                 return [CellTag.intrinsicValueInvesting, CellTag.calc]
-            case StockFields.currentEps:
+            case StockFlattenFields.currentEps:
                 return [CellTag.intrinsicValueInvesting, CellTag.calc]
-            case StockFields.futurePrice10Years:
+            case StockFlattenFields.futurePrice10Years:
                 return [CellTag.intrinsicValueInvesting, CellTag.calc]
-            case StockFields.futureEPS10Years:
-                return [CellTag.intrinsicValueInvesting, CellTag.calc]
-
-            case StockFields.stickerPrice15pcGrowth:
-                return [CellTag.intrinsicValueInvesting, CellTag.calc]
-            case StockFields.stickerPrice5pcGrowth:
+            case StockFlattenFields.futureEPS10Years:
                 return [CellTag.intrinsicValueInvesting, CellTag.calc]
 
-            case StockFields.belowStickerPrice15P:
+            case StockFlattenFields.stickerPrice15pcGrowth:
                 return [CellTag.intrinsicValueInvesting, CellTag.calc]
-            case StockFields.belowStickerPrice5P:
+            case StockFlattenFields.stickerPrice5pcGrowth:
                 return [CellTag.intrinsicValueInvesting, CellTag.calc]
 
-            case StockFields.price:
+            case StockFlattenFields.belowStickerPrice15P:
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
+            case StockFlattenFields.belowStickerPrice5P:
+                return [CellTag.intrinsicValueInvesting, CellTag.calc]
+
+            case StockFlattenFields.price:
                 return [CellTag.price, CellTag.hidden]
 
-            case StockFields.yieldNext5Years:
+            case StockFlattenFields.yieldNext5Years:
                 return [CellTag.analysts, CellTag.growthInvesting, CellTag.totalScore]
-            case StockFields.yieldNext10Years:
+            case StockFlattenFields.yieldNext10Years:
                 return [CellTag.analysts, CellTag.growthInvesting, CellTag.totalScore]
-            case StockFields.score:
+            case StockFlattenFields.score:
                 return [CellTag.totalScore]
-            case StockFields.score1Q:
+            case StockFlattenFields.score1Q:
                 return [CellTag.totalScore]
-            case StockFields.score2Q:
+            case StockFlattenFields.score2Q:
                 return [CellTag.totalScore]
-            case StockFields.score1Y:
+            case StockFlattenFields.score1Y:
                 return [CellTag.totalScore]
-            case StockFields.score4Y:
+            case StockFlattenFields.score4Y:
                 return [CellTag.totalScore]
-            case StockFields.scoreRatios:
+            case StockFlattenFields.scoreRatios:
                 return [CellTag.totalScore]
-            case StockFields.scoreStock:
+            case StockFlattenFields.scoreStock:
                 return [CellTag.totalScore]
-            case StockFields.scoreDividends:
+            case StockFlattenFields.scoreDividends:
                 return [CellTag.totalScore]
-            case StockFields.scoreAnalysts:
+            case StockFlattenFields.scoreAnalysts:
                 return [CellTag.totalScore]
-            case StockFields.rule1score:
+            case StockFlattenFields.rule1score:
                 return [CellTag.totalScore]
-            case StockFields.valueInvestmentScore:
+            case StockFlattenFields.valueInvestmentScore:
                 return [CellTag.totalScore, CellTag.valueInvesting]
-            case StockFields.growthInvestmentScore:
+            case StockFlattenFields.growthInvestmentScore:
                 return [CellTag.totalScore, CellTag.growthInvesting]
 
             default:

@@ -1,12 +1,16 @@
+.StocksAnalysis {
+    text-align: right;
+    width: 17800px;
+    height: 100%;
+    position: relative;
+}
 .WatchlistsTypeLabel{
-    margin: 10px;
+    font-size: larger;
 }
 .EtfWatchlists, .StockWatchlists {
-    margin: 0.5%;
+    padding: 5px;
+    margin-left: 10px;
     clear: both;
-    text-align: left;
-}
-.Watchlist {
     text-align: left;
 }
 .TopPanel {
@@ -18,9 +22,8 @@
     z-index: 100;
 }
 .ErrorDiv{
-    color: #D8000C;
-    width: 80%;
-    left: 10%;
+    color: #b80007;
+    max-width: 800px;
     text-align: center;
     position: relative;
     border-style: solid;
@@ -29,22 +32,27 @@
 }
 
 .ErrorMessage{
-    max-width: 90%;
     font-size: smaller;
-    margin: 5px;
+    padding: 5px;
 }
 .Calculators{
-    float: right;
-    color: #3d46ff;
+    color: #3677fa;
     background-color: white;
+    text-align: left;
+    float: left;
+    top:5px;
+    left:16px;
+    position: sticky;
 }
-.fa-warning{
+.fa.fa-warning{
     position: absolute;
     top: 5px;
     left: 5px;
+    color: #b80007;
 }
-.fa-close{
+.fa.fa-close{
     position: absolute;
     top: 5px;
     right: 5px;
+    color: #b80007;
 }

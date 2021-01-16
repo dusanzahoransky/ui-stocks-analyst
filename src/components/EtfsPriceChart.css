@@ -1,9 +1,9 @@
-.PriceEpsChart{
-    width: 1800px;
-    text-align: center;
+.EtfsPriceChart{
+    width: 1890px;
+    text-align: left;
     border-style: solid;
     border-width: 1px;
-    border-color: #3d46ff;
+    border-color: #3677fa;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);

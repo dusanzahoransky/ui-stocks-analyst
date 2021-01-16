@@ -8,7 +8,11 @@ table, td, th {
 
 th, td {
     min-width: 55px;
-    box-shadow: 0 2px 2px -1px #9398ff;
+    max-width: 100px;
+    box-shadow: 0 2px 3px -1px #95bfff;
+}
+
+th{
     background-color: white;
 }
 
@@ -18,18 +22,19 @@ table {
 
 tr.selected{
     box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(to top, #FFFFFF, #e0e3ef);
+    background: linear-gradient(to top, #FFFFFF, #f0f5ff);
 }
 
 th {
     position: sticky;
     top: 28px;
-    border-color: #3d46ff;
+    border-color: #3677fa;
     border-top-style: solid;
     border-width: 1px;
-    box-shadow: 0 2px 2px -1px #bccfff;
     font-weight: normal;
     z-index: 10;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 th.label {
@@ -71,7 +76,7 @@ td.companyName{
     font-size: x-small;
     position: sticky;
     left: 53px;
-    background: #f0f3ff;
+    background: #f0f5ff;
 }
 
 
@@ -85,12 +90,12 @@ td.companyName{
 td.currentPrice {
     position: sticky;
     left: 205px;
-    background: #f0f3ff;
+    background: #f0f5ff;
 }
 td.lastReport {
     position: sticky;
     left: 0px;
-    background: #f0f3ff;
+    background: #f0f5ff;
 }
 
 .lightGreen {
@@ -121,7 +126,7 @@ td.lastReport {
 }
 
 .blueText {
-    color: #3d46ff;
+    color: #3677fa;
 }
 
 .boldText {
@@ -141,7 +146,6 @@ td.lastReport {
     position: absolute;
     bottom: 2px;
     right: 2px;
-    color: #3d46ff;
     font-size: smaller;
 }
 
@@ -149,7 +153,6 @@ td.lastReport {
     position: absolute;
     bottom: 4px;
     left: 4px;
-    color: #3d46ff;
     font-size: smaller;
 }
 
@@ -157,6 +160,6 @@ td.lastReport {
     vertical-align: top;
     font-size: 9px;
     margin-left: 3px;
-    color: #3d46ff;
+    color: #3677fa;
     /*box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }

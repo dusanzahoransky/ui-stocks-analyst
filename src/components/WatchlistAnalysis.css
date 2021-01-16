@@ -33,6 +33,14 @@
     width: 1800px;
 }
 
+.fa{
+    color: #3677fa;
+}
+
+.fa-cog{
+    margin-left: 7px;
+}
+
 .fa-caret-down{
     font-size: smaller;
 }
@@ -54,14 +62,11 @@
 }
 .fa-refresh {
     margin-left: 15px;
-    color: #3d46ff;
 }
 .fa-refresh.refreshFinancials {
     margin-left: 15px;
-    color: #3d46ff;
 }
 .fa-caret-down {
     margin-left: 5px;
     margin-right: 5px;
-    color: #3d46ff;
 }

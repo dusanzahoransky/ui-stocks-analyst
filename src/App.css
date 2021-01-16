@@ -6,3 +6,22 @@
 .hidden {
   display: none;
 }
+
+.navbar{
+  border-color: black;
+  border-width: 1px;
+  border-bottom-style: solid;
+  border-top-style: solid;
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+.nav-link{
+  color: #3677fa !important;
+}
+
+input {
+  font-size: smaller;
+  border-color: #3677fa;
+  border-radius: 4px;
+}

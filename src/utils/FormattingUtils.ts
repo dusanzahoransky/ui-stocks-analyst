@@ -1,4 +1,4 @@
-import {StockFields} from "../model/StockFields";
+import {StockFlattenFields} from "../model/StockFlattenFields";
 import moment from "moment";
 import {EtfFields} from "../model/EtfFields";
 import {CellData} from "../model/table/CellData";
@@ -6,13 +6,32 @@ import {CellTag} from "../model/table/CellTag";
 
 export class FormattingUtils {
 
-    static formatStock(data: CellData, column: StockFields): string {
-        if (typeof data === 'string' && column === StockFields.exDividendDate) {
+    static toWatchlistLabel(watchlist: string) {
+        return watchlist
+            .replace(/[a-zA-Z]+/g, function (g) {
+                switch (g) {
+                    case 'EU':
+                    case 'US':
+                    case 'AU':
+                    case 'GB':
+                    case 'CHF':
+                    case 'ETF':
+                        return g
+                    default:
+                        return g[0].toUpperCase().concat(g.substr(1).toLowerCase())
+                }
+
+            })
+            .replace(/_/g, ' ')
+    }
+
+    static formatStock(data: CellData, column: StockFlattenFields): string {
+        if (typeof data === 'string' && column === StockFlattenFields.exDividendDate) {
             let diff = moment().diff(data, 'days');
             return diff < 0 ? `in ${-diff} days` : data;
         }
         const formattedValue = this.format(data.value);
-        if(formattedValue && this.isPercentage(data.tags, column)){
+        if(formattedValue && this.isPercentage(data.tags, column, false)){
             return formattedValue.concat('%')
         }
         return formattedValue
@@ -65,9 +84,13 @@ export class FormattingUtils {
         fieldLabel = fieldLabel[0].toUpperCase() + fieldLabel.substr(1)
 
         fieldLabel = fieldLabel.replace(/ P$/, ' %')
+        fieldLabel = fieldLabel.replace('Enterprise Value EBITDA', 'EV / EBITDA')
+        fieldLabel = fieldLabel.replace('Trailing 12Months', 'ttm')
+        fieldLabel = fieldLabel.replace('Trailing PE', 'PE ttm')
+        fieldLabel = fieldLabel.replace('Forward PE', 'PE fwd')
         fieldLabel = fieldLabel.replace('Profit Margin', 'Net margin')
         fieldLabel = fieldLabel.replace('Book Value Per Share', 'BPS')
-        fieldLabel = fieldLabel.replace('Free Cash Flow Per Share', 'FCPS')
+        fieldLabel = fieldLabel.replace('Free Cash Flow Per Share', 'FCFPS')
         fieldLabel = fieldLabel.replace('Roic 1Y', 'ROIC 1Y')
         fieldLabel = fieldLabel.replace('Roic 3Y', 'ROIC 3Y')
         fieldLabel = fieldLabel.replace('Average Daily Volume', 'Volume')
@@ -82,10 +105,9 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Last Reported Quarter', 'Last Q')
         fieldLabel = fieldLabel.replace('Last Updated', 'at')
         fieldLabel = fieldLabel.replace('Cash Per Share', 'Cash/Share')
-        fieldLabel = fieldLabel.replace('Trailing', 'T.')
         fieldLabel = fieldLabel.replace('Five', '5')
         fieldLabel = fieldLabel.replace('Forward', 'Fwd')
-        fieldLabel = fieldLabel.replace('Debt Equity', 'Debth/Eq')
+        fieldLabel = fieldLabel.replace('Debt Equity', 'Debt/Eq')
         fieldLabel = fieldLabel.replace('Percent', '%')
         fieldLabel = fieldLabel.replace('Enterprise Value', 'EV')
         fieldLabel = fieldLabel.replace('Last Year', '1Y')
@@ -122,15 +144,18 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Price To Book', 'PB')
         fieldLabel = fieldLabel.replace('Price To Earnings', 'PE')
         fieldLabel = fieldLabel.replace('Price To Sales', 'PS')
-        fieldLabel = fieldLabel.replace('Price To Free Cash Flow', 'PFreeCash')
-        fieldLabel = fieldLabel.replace('Price To Cashflow', 'PCash')
+        fieldLabel = fieldLabel.replace('Current Price To Free Cash Flow', 'PCF LQ')
+        fieldLabel = fieldLabel.replace('Price To Free Cash Flow', 'PFCF')
+        fieldLabel = fieldLabel.replace('Price To Cashflow', 'PCF')
+        fieldLabel = fieldLabel.replace('Free Cash Flow', 'FCF')
         fieldLabel = fieldLabel.replace('Price To Sales T. 12Months', 'PS')
-        fieldLabel = fieldLabel.replace('Sticker Price', 'S.Price')
+        fieldLabel = fieldLabel.replace('Sticker Price', 'Intristic value')
         fieldLabel = fieldLabel.replace('Price Earning Growth', 'PEG')
         fieldLabel = fieldLabel.replace('Avg Dividend Yield', 'Avg Dividend')
         fieldLabel = fieldLabel.replace('Dividend Date', 'Dividend')
-        fieldLabel = fieldLabel.replace('Cash Flow', 'CashF')
-        fieldLabel = fieldLabel.replace('Interest Expense To Operative Income', 'Interest To Op Income')
+        fieldLabel = fieldLabel.replace('Operating Cash Flow', 'OCF')
+        fieldLabel = fieldLabel.replace('Cash Flow', 'CF')
+        fieldLabel = fieldLabel.replace('Interest Expense To Operative Income P', 'Interest To Op Income')
 
         return fieldLabel;
     }
@@ -167,39 +192,38 @@ export class FormattingUtils {
         return "";
     }
 
-    static isPercentage(tags: CellTag[], column: StockFields) {
+    static isPercentage(tags: CellTag[], column: StockFlattenFields, isEtf: boolean) {
+        if(isEtf){
+            return false
+        }
         const isGrowth = this.isGrowth(tags);
         let isPercentage = false
         switch (column){
-            case StockFields.grossMargin1:
-            case StockFields.grossMargin2:
-            case StockFields.grossMargin3:
-            case StockFields.profitMarginP1:
-            case StockFields.profitMarginP2:
-            case StockFields.profitMarginP3:
-            case StockFields.profitMarginPQ1:
-            case StockFields.profitMarginPQ2:
-            case StockFields.operatingMargin1:
-            case StockFields.operatingMargin2:
-            case StockFields.operatingMargin3:
-            case StockFields.totalCashPerShareP:
-            case StockFields.week52ChangeP:
-            case StockFields.week52AboveLowP:
-            case StockFields.week52BelowHighP:
-            case StockFields.belowTargetLowPriceP:
-            case StockFields.belowTargetMedianPriceP:
-            case StockFields.heldByInsidersP:
-            case StockFields.heldByInstitutionsP:
-            case StockFields.shortToFloatP:
-            case StockFields.sharesShortPrevMonthCompareP:
-            case StockFields.payoutRatioP:
-            case StockFields.belowStickerPrice15P:
-            case StockFields.belowStickerPrice5P:
-            case StockFields.interestExpenseToOperativeIncomeP1:
-            case StockFields.interestExpenseToOperativeIncomeP2:
-            case StockFields.interestExpenseToOperativeIncomeP3:
-            case StockFields.interestExpenseToOperativeIncomePQ1:
-            case StockFields.interestExpenseToOperativeIncomePQ2:
+            case StockFlattenFields.grossMargin1:
+            case StockFlattenFields.grossMargin2:
+            case StockFlattenFields.grossMargin3:
+            case StockFlattenFields.profitMarginP1:
+            case StockFlattenFields.profitMarginP2:
+            case StockFlattenFields.profitMarginP3:
+            case StockFlattenFields.profitMarginPQ1:
+            case StockFlattenFields.profitMarginPQ2:
+            case StockFlattenFields.operatingMargin1:
+            case StockFlattenFields.operatingMargin2:
+            case StockFlattenFields.operatingMargin3:
+            case StockFlattenFields.totalCashPerShareP:
+            case StockFlattenFields.belowTargetMedianPriceP:
+            case StockFlattenFields.heldByInsidersP:
+            case StockFlattenFields.heldByInstitutionsP:
+            case StockFlattenFields.shortToFloatP:
+            case StockFlattenFields.sharesShortPrevMonthCompareP:
+            case StockFlattenFields.payoutRatioP:
+            case StockFlattenFields.belowStickerPrice15P:
+            case StockFlattenFields.belowStickerPrice5P:
+            case StockFlattenFields.interestExpenseToOperativeIncomeP1:
+            case StockFlattenFields.interestExpenseToOperativeIncomeP2:
+            case StockFlattenFields.interestExpenseToOperativeIncomeP3:
+            case StockFlattenFields.interestExpenseToOperativeIncomePQ1:
+            case StockFlattenFields.interestExpenseToOperativeIncomePQ2:
                 isPercentage = true
         }
         return isGrowth || isPercentage
