@@ -3,6 +3,7 @@ import moment from "moment";
 import {EtfFields} from "../model/EtfFields";
 import {CellData} from "../model/table/CellData";
 import {CellTag} from "../model/table/CellTag";
+import {FundamentalsCell} from "../model/table/FundamentalsCell";
 
 export class FormattingUtils {
 
@@ -41,6 +42,14 @@ export class FormattingUtils {
         return this.format(data.value)
     }
 
+    static formatCellValue(cell: FundamentalsCell): string {
+        return this.formatValue(cell.value, cell.isPercentage)
+    }
+
+    static formatValue(value: any, isPercentage: boolean = false): string {
+        const formattedValue = this.format(value);
+        return formattedValue && isPercentage ? `${formattedValue}%` : formattedValue
+    }
     static format(value: number | string): string {
         if (!value) {
             return ''
@@ -107,7 +116,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Cash Per Share', 'Cash/Share')
         fieldLabel = fieldLabel.replace('Five', '5')
         fieldLabel = fieldLabel.replace('Forward', 'Fwd')
-        fieldLabel = fieldLabel.replace('Debt Equity', 'Debt/Eq')
+        fieldLabel = fieldLabel.replace('Debt Equity', 'Debt/EQ')
         fieldLabel = fieldLabel.replace('Percent', '%')
         fieldLabel = fieldLabel.replace('Enterprise Value', 'EV')
         fieldLabel = fieldLabel.replace('Last Year', '1Y')
@@ -128,9 +137,9 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Fifty Two', '52')
         fieldLabel = fieldLabel.replace('Growth', 'Growth')
         fieldLabel = fieldLabel.replace('Shares Short Prev Month Compare', 'Short to prev month')
-        fieldLabel = fieldLabel.replace('Shareholders Equity', 'Share eq')
-        fieldLabel = fieldLabel.replace('Liabilities', 'Liab')
-        fieldLabel = fieldLabel.replace('Equity', 'eq')
+        fieldLabel = fieldLabel.replace('Shareholders Equity', 'Share EQ')
+        fieldLabel = fieldLabel.replace('Liabilities', 'Debt')
+        fieldLabel = fieldLabel.replace('Equity', 'EQ')
         fieldLabel = fieldLabel.replace('Repurchased', 'rep')
         fieldLabel = fieldLabel.replace('Eps', 'EPS')
         fieldLabel = fieldLabel.replace('Pe', 'PE')

@@ -1,5 +1,4 @@
 import React from "react"
-import {WatchlistTable} from "./WatchlistTable"
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult"
 import {StockAnalystService} from "../services/StockAnalystService"
 import {PriceEpsChart} from "./PriceEpsChart"
@@ -23,6 +22,9 @@ import {Timeline} from "../model/Timeline";
 import {FormattingUtils} from "../utils/FormattingUtils";
 import Watchlist from "../model/watchlist/Watchlist";
 import {Alert} from "./Alert";
+import {FundamentalsTable} from "./stockTable/FundamentalsTable";
+import {FundamentalsCell} from "../model/table/FundamentalsCell";
+import {Ratios} from "../model/stock/Ratios";
 
 
 export interface WatchlistAnalysisProps {
@@ -46,7 +48,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     private readonly stockTaggingService: StockTaggingService
 
     public static readonly DISPLAY_TOGGLES = [CellTag.lastUpdated, CellTag.stock, CellTag.dividends, CellTag.ratios, CellTag.ratiosGrowth, CellTag.financials, CellTag.financialsGrowth, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.intrinsicValueInvesting]
-    public static readonly DISPLAY_DEFAULTS = [CellTag.price, CellTag.ratios, , CellTag.ratiosGrowth, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.financialsGrowth]
+    public static readonly DISPLAY_DEFAULTS = [CellTag.price, CellTag.ratios, CellTag.ratiosGrowth, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.financialsGrowth]
 
     public static readonly HIDE_TOGGLES = [CellTag.Q1, CellTag.Q2, CellTag.Y1, CellTag.Y2, CellTag.Y3]
     public static readonly HIDE_DEFAULTS = [CellTag.Q2, CellTag.Y3]
@@ -70,7 +72,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
 
     componentDidMount() {
         //uncomment to preload data
-        if(this.props.watchlist.name === 'TO_CHECK'){
+        if (this.props.watchlist.name === 'TO_CHECK') {
             return this.loadWatchlistData(this.props.watchlist)
         }
     }
@@ -147,7 +149,8 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     private renderRefreshAllDataIcon() {
         const {watchlist} = this.props
         return <span className="refresh">
-                <i className="fa fa-refresh refreshFinancials" onClick={() => this.onRefreshFinancialsHandler(watchlist)}/>
+                <i className="fa fa-refresh refreshFinancials"
+                   onClick={() => this.onRefreshFinancialsHandler(watchlist)}/>
                 All Data
             </span>;
     }
@@ -168,12 +171,12 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
             const etfsResult = watchlist.etf ? response as EtfsAnalysisResult : undefined
             const stocksResult = !watchlist.etf ? {stocks: response} as StocksAnalysisResult : undefined
 
-            if(watchlist.etf){
+            if (watchlist.etf) {
                 this.setState({
                     isExpanded: true,
                     etfsResult
                 })
-            } else{
+            } else {
                 this.setState({
                     isExpanded: true,
                     stocksResult
@@ -185,21 +188,18 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     }
 
     renderTable() {
-        const {data, headerData, headerLabels} = this.prepareData()
-
-        return <WatchlistTable
+        const {data, headerData, headerLabels} = this.fundamentalsRatiosData()
+        return <FundamentalsTable
+            title='Ratios'
             data={data}
-            isEtf={this.props.watchlist.etf}
             headerLabels={headerLabels}
             headerData={headerData}
-            visibleTags={this.state.visibleTags}
-            hiddenTags={this.state.hiddenTags}
             onStockClickHandler={this.stockOnClickHandler}
         />
     }
 
     private renderShowLink() {
-          return <i className="fa fa-caret-down" onClick={() => this.onShowClickHandler(this.props.watchlist)}/>
+        return <i className="fa fa-caret-down" onClick={() => this.onShowClickHandler(this.props.watchlist)}/>
     }
 
     private onShowClickHandler(watchlist) {
@@ -223,61 +223,22 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         return this.loadWatchlistData(watchlist, true, false, false);
     }
 
-    private prepareData(): { data: CellData[][], headerData: CellData[], headerLabels: string[] } {
-        let data: CellData[][] = []
-        let headerData: CellData[] = []
-        let headerLabels: string[] = []
+    private fundamentalsRatiosData(): { data: FundamentalsCell[][], headerData: FundamentalsCell[], headerLabels: string[] } {
+        const stocks = this.state.stocksResult.stocks
 
-        if (this.props.watchlist.etf) {
+        const data: FundamentalsCell[][] = []
+        const ratios = new Ratios()
 
-            const etfs = this.state.etfsResult.etfs
-            let averages = {...this.state.etfsResult.averages}
-
-            averages = this.stockAnalystService.filterDisplayableEtfStats(averages)
-
-            headerLabels = Object.keys(averages)
-            headerData = Object.keys(averages).map(key => {
-                return {value: averages[key]}
-            })
-
-            const labels = this.stockAnalystService.getScoreLabels(this.props.watchlist.etf)
-            labels.forEach(label => this.addHeader(headerLabels, headerData, label))
-
-            for (const etf of etfs) {
-                let etfClone = {...etf}
-                etfClone = this.stockAnalystService.filterDisplayableEtfStats(etfClone)
-                const rowData = Object.keys(etfClone).map(key => {
-                    return {value: etfClone[key]}
-                })
-                data.push(rowData)
-            }
-        } else {
-            const stocks = this.state.stocksResult.stocks
-            let flattenStockData
-
-            for (const stock of stocks) {
-                let stockClone = {...stock}
-                stockClone = this.stockAnalystService.filterDisplayableStockStats(stockClone)
-                flattenStockData = this.stockAnalystService.flattenStockData(stockClone)
-                const rowData = Object.keys(flattenStockData).map(key => {
-                    return {value: flattenStockData[key]}
-                })
-                data.push(rowData)
-            }
-
-            headerLabels = Object.keys(flattenStockData)
-
-            const labels = this.stockAnalystService.getScoreLabels(this.props.watchlist.etf)
-            labels.forEach(label => this.addHeader(headerLabels, headerData, label))
-
+        for (const stock of stocks) {
+            const ratiosFields = ratios.fromStock(stock)
+            data.push(Object.values(ratiosFields))
         }
 
-        data = data.map(row => this.stockTaggingService.tagRow(row, this.props.watchlist.etf))
-        data = data.map(row => this.stockAnalystService.scoreRow(headerData, row, this.props.watchlist.etf))
+        const headerLabels: string[] = ratios.labels()
+        const headerData: FundamentalsCell[] = ratios.headerData()
 
         return {data, headerData, headerLabels}
     }
-
 
     addHeader(headerLabels: string[], headerData: CellData[], label: string) {
         headerLabels.push(label)

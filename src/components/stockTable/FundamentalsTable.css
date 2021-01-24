@@ -1,19 +1,12 @@
 table, td, th {
     text-align: center;
-    border-radius: 2px;
-    padding: 0;
     font-size: small;
-    margin-top: 10px;
 }
 
 th, td {
-    min-width: 55px;
-    max-width: 100px;
-    box-shadow: 0 2px 3px -1px #95bfff;
-}
-
-th{
-    background-color: white;
+    min-width: 60px;
+    max-width: 70px;
+    box-shadow: 0 1px 3px -1px #95bfff;
 }
 
 table {
@@ -36,74 +29,19 @@ th {
     padding-left: 2px;
     padding-right: 2px;
 }
-
-th.label {
-    height: 80px;
-}
-
-th.totalScore {
-    background-image: linear-gradient(to top right, #dfe6ff, #ffffff);
-}
-
-th.totalScore.growthInvesting {
-    background-image: linear-gradient(to top right,  #dfe6ff, #fffad4);
-}
-
-th.totalScore.valueInvesting {
-    background-image: linear-gradient(to top right, #dfe6ff, #e8ffde);
-}
-
-th.valueInvesting{
-    background-image: linear-gradient(to top right, #ffffff , #e8ffde);
-}
-
-th.growthInvesting.valueInvesting{
-    background-image: linear-gradient(to top right, #e8ffde , #fffad4);
-}
-
-th.growthInvesting{
-    background-image: linear-gradient(to top right, #ffffff , #fffad4);
-}
-
-th.intrinsicValueInvesting {
-    background-image: linear-gradient(to top right, #ffffff , #e0fffb);
-}
-
 .companyName{
     min-width: 160px;
 }
-td.companyName{
-    font-size: x-small;
-    position: sticky;
-    left: 53px;
-    background: #f0f5ff;
-}
-
 td.symbol{
     position: sticky;
-    left: 0px;
     background: #f0f5ff;
 }
-
-
 .date{
     font-size: x-small;
 }
 .date.label{
     font-size: unset;
 }
-
-td.currentPrice {
-    position: sticky;
-    left: 205px;
-    background: #f0f5ff;
-}
-td.lastReport {
-    position: sticky;
-    left: 0px;
-    background: #f0f5ff;
-}
-
 .lightGreen {
     background-image: linear-gradient(to top right, #ffffff , #e5ffe3);
 }
@@ -130,41 +68,34 @@ td.lastReport {
     color: #0c8800;
     font-weight: bold;
 }
+.growth {
+    background-color: #f0f5ff;
+    /*background-image: linear-gradient(to top right, #ffffff , #f0f5ff);*/
+}
 .blueText {
     color: #3677fa;
 }
-
 .boldText {
     font-weight: bold;
 }
 
 
 .additionalInfo {
-    background: yellow;
     border-style: solid;
     border-color: #ff792d;
-    border-width: 2px;
+    background-image: linear-gradient(to top right, #ffffff , yellow);
+    border-width: 1px;
     font-weight: bold;
 }
-
-.fa-sort {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    font-size: smaller;
-}
-
 .fa-line-chart {
     position: absolute;
     bottom: 4px;
     left: 4px;
     font-size: smaller;
 }
-
 .score {
     vertical-align: top;
     font-size: 9px;
     margin-left: 3px;
     color: #3677fa;
-    /*box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
