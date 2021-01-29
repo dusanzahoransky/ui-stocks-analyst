@@ -7,7 +7,6 @@ import resultTest from "./Stocks-test.json"
 import etfsTest from "./Etfs-test.json"
 import {EtfFields} from "../model/EtfFields";
 import {ScoreAdditionalInfo} from "../model/table/ScoreAdditionalInfo";
-import {CellTag} from "../model/table/CellTag";
 import {Etf} from "../model/Etf";
 import {StockDisplayableFields} from "../model/StockDisplayableFields";
 import {FieldDisplayType} from "../model/FieldDisplayType";
@@ -53,18 +52,8 @@ export class StockAnalystService {
         cellData.push({value: totalScore})
 
         if (!isEtf) {
-            const taggedDataToScore = dataToScore.filter(data => data.tags)
-
             cellData.push({value: StockAnalystService.calcNext5YYield(rowValues)})
             cellData.push({value: StockAnalystService.calcNext10YYield(rowValues)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Q1)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Q2)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Y1)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.Y3)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.ratios)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.stock)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.dividends)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.analysts)})
 
             const rule1Score = cellData.map(data => data.score)
                 .filter((score, index) => index >= StockFlattenFields.roic1Y)
@@ -74,21 +63,9 @@ export class StockAnalystService {
             cellData.push({
                 value: rule1Score
             })
-
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.valueInvesting)})
-            cellData.push({value: StockAnalystService.calcTotal(taggedDataToScore, CellTag.growthInvesting)})
         }
 
         return cellData
-    }
-
-
-    private static calcTotal(data: CellData[], filterTag: CellTag): number {
-        let taggedData = data
-            .filter(data => data.tags.includes(filterTag));
-        return taggedData
-            .map(data => data.score)
-            .reduce((prev, curr) => prev + curr, 0)
     }
 
     private static scoreEtfData(dataToScore: CellData, colEtf: number, averages: CellData[]): CellData {

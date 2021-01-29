@@ -2,7 +2,6 @@ import {StockFlattenFields} from "../model/StockFlattenFields";
 import moment from "moment";
 import {EtfFields} from "../model/EtfFields";
 import {CellData} from "../model/table/CellData";
-import {CellTag} from "../model/table/CellTag";
 import {FundamentalsCell} from "../model/table/FundamentalsCell";
 
 export class FormattingUtils {
@@ -32,7 +31,7 @@ export class FormattingUtils {
             return diff < 0 ? `in ${-diff} days` : data;
         }
         const formattedValue = this.format(data.value);
-        if(formattedValue && this.isPercentage(data.tags, column, false)){
+        if(formattedValue && this.isPercentage(column, false)){
             return formattedValue.concat('%')
         }
         return formattedValue
@@ -201,11 +200,10 @@ export class FormattingUtils {
         return "";
     }
 
-    static isPercentage(tags: CellTag[], column: StockFlattenFields, isEtf: boolean) {
+    static isPercentage(column: StockFlattenFields, isEtf: boolean) {
         if(isEtf){
             return false
         }
-        const isGrowth = this.isGrowth(tags);
         let isPercentage = false
         switch (column){
             case StockFlattenFields.grossMargin1:
@@ -235,10 +233,6 @@ export class FormattingUtils {
             case StockFlattenFields.interestExpenseToOperativeIncomePQ2:
                 isPercentage = true
         }
-        return isGrowth || isPercentage
-    }
-
-    static isGrowth(tags: CellTag[]) {
-        return tags && (tags.includes(CellTag.ratiosGrowth) || tags.includes(CellTag.financialsGrowth));
+        return isPercentage
     }
 }

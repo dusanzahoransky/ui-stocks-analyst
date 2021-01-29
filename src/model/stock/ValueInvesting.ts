@@ -3,7 +3,7 @@ import {FundamentalsCell} from "../table/FundamentalsCell";
 import {StockFields} from "./StockFields";
 import {StockData} from "./StockData";
 
-export interface RatiosFields extends StockFields {
+export interface ValueInvestingFields extends StockFields {
     symbol: FundamentalsCell
     marketCap: FundamentalsCell
     enterpriseValue: FundamentalsCell
@@ -68,10 +68,39 @@ export interface RatiosFields extends StockFields {
     nonCurrentLiabilitiesToIncomeGrowth2: FundamentalsCell
     nonCurrentLiabilitiesToIncomeGrowth3: FundamentalsCell
 
+    profitMarginQ1: FundamentalsCell
+    profitMargin1: FundamentalsCell
+    profitMarginGrowthQ1: FundamentalsCell
+    profitMarginGrowthQ2: FundamentalsCell
+    profitMarginGrowth1: FundamentalsCell
+    profitMarginGrowth2: FundamentalsCell
+    profitMarginGrowth3: FundamentalsCell
+
+    interestExpenseToOperativeIncomeQ1: FundamentalsCell
+    interestExpenseToOperativeIncome1: FundamentalsCell
+    interestExpenseToOperativeIncomeGrowthQ1: FundamentalsCell
+    interestExpenseToOperativeIncomeGrowthQ2: FundamentalsCell
+    interestExpenseToOperativeIncomeGrowth1: FundamentalsCell
+    interestExpenseToOperativeIncomeGrowth2: FundamentalsCell
+    interestExpenseToOperativeIncomeGrowth3: FundamentalsCell
+
+    retainedEarningsQ1: FundamentalsCell
+    retainedEarnings1: FundamentalsCell
+    retainedEarningsGrowthQ1: FundamentalsCell
+    retainedEarningsGrowthQ2: FundamentalsCell
+    retainedEarningsGrowth1: FundamentalsCell
+    retainedEarningsGrowth2: FundamentalsCell
+    retainedEarningsGrowth3: FundamentalsCell
+
+    shares1: FundamentalsCell
+    sharesGrowth1: FundamentalsCell
+    sharesGrowth2: FundamentalsCell
+    sharesGrowth3: FundamentalsCell
+
     score: FundamentalsCell
 }
 
-export class Ratios extends StockData {
+export class ValueInvesting extends StockData {
 
     headerData(): FundamentalsCell[] {
         return [];
@@ -143,11 +172,40 @@ export class Ratios extends StockData {
             'nonCurrentLiabilitiesToIncome Y2g',
             'nonCurrentLiabilitiesToIncome Y3g',
 
+            'profitMargin Q1',
+            'profitMargin Y1',
+            'profitMargin Q1g',
+            'profitMargin Q2g',
+            'profitMargin Y1g',
+            'profitMargin Y2g',
+            'profitMargin Y3g',
+
+            'interestExpenseToOperativeIncome Q1',
+            'interestExpenseToOperativeIncome Y1',
+            'interestExpenseToOperativeIncome Q1g',
+            'interestExpenseToOperativeIncome Q2g',
+            'interestExpenseToOperativeIncome Y1g',
+            'interestExpenseToOperativeIncome Y2g',
+            'interestExpenseToOperativeIncome Y3g',
+
+            'retainedEarnings Q1',
+            'retainedEarnings Y1',
+            'retainedEarnings Q1g',
+            'retainedEarnings Q2g',
+            'retainedEarnings Y1g',
+            'retainedEarnings Y2g',
+            'retainedEarnings Y3g',
+
+            'shares Y1',
+            'shares Y1g',
+            'shares Y2g',
+            'shares Y3g',
+
             'Score'
         ]
     }
 
-    fromStock(stock: Stock): RatiosFields {
+    fromStock(stock: Stock): ValueInvestingFields {
         const ratiosFields = {
             symbol: StockData.toCell(stock.symbol, false, false, `Price: ${StockData.toTitle(StockData.lastEntry(stock.price))}`),
             marketCap: StockData.toCell(StockData.last(stock.marketCap)),
@@ -205,13 +263,43 @@ export class Ratios extends StockData {
             totalDebtToEquityGrowth2: StockData.toCell(StockData.last(stock.totalDebtToEquityGrowth, 1), true, true),
             totalDebtToEquityGrowth3: StockData.toCell(StockData.last(stock.totalDebtToEquityGrowth, 2), true, true),
 
-            nonCurrentLiabilitiesToIncomeQ1: StockData.toCell(StockData.last(stock.nonCurrentLiabilitiesToIncomeQ), false, false, StockData.toTitle(stock.nonCurrentLiabilitiesToIncomeQ)),
-            nonCurrentLiabilitiesToIncome1: StockData.toCell(StockData.last(stock.nonCurrentLiabilitiesToIncome), false, false, StockData.toTitle(stock.nonCurrentLiabilitiesToIncome)),
+            nonCurrentLiabilitiesToIncomeQ1: StockData.toCell(StockData.last(stock.nonCurrentLiabilitiesToIncomeQ), false, false, StockData.toRatioTitleMinusNumerator(stock.totalLiabilitiesQ, stock.currentLiabilitiesQ, stock.netIncomeQ, stock.nonCurrentLiabilitiesToIncomeQ)),
+            nonCurrentLiabilitiesToIncome1: StockData.toCell(StockData.last(stock.nonCurrentLiabilitiesToIncome), false, false, StockData.toRatioTitleMinusNumerator(stock.totalLiabilities, stock.currentLiabilities, stock.netIncome, stock.nonCurrentLiabilitiesToIncome)),
             nonCurrentLiabilitiesToIncomeGrowthQ1: StockData.toCell(StockData.last(stock.nonCurrentLiabilitiesToIncomeGrowthQ), true, true),
             nonCurrentLiabilitiesToIncomeGrowthQ2: StockData.toCell(StockData.last(stock.nonCurrentLiabilitiesToIncomeGrowthQ, 1), true, true),
             nonCurrentLiabilitiesToIncomeGrowth1: StockData.toCell(StockData.last(stock.nonCurrentLiabilitiesToIncomeGrowth), true, true),
             nonCurrentLiabilitiesToIncomeGrowth2: StockData.toCell(StockData.last(stock.nonCurrentLiabilitiesToIncomeGrowth, 1), true, true),
             nonCurrentLiabilitiesToIncomeGrowth3: StockData.toCell(StockData.last(stock.nonCurrentLiabilitiesToIncomeGrowth, 2), true, true),
+
+            profitMarginQ1: StockData.toCell(StockData.last(stock.profitMarginPQ), false, false, StockData.toTitle(stock.profitMarginPQ)),
+            profitMargin1: StockData.toCell(StockData.last(stock.profitMarginP), false, false, StockData.toTitle(stock.profitMarginP)),
+            profitMarginGrowthQ1: StockData.toCell(StockData.last(stock.profitMarginGrowthQ), true, true),
+            profitMarginGrowthQ2: StockData.toCell(StockData.last(stock.profitMarginGrowthQ, 1), true, true),
+            profitMarginGrowth1: StockData.toCell(StockData.last(stock.profitMarginGrowth), true, true),
+            profitMarginGrowth2: StockData.toCell(StockData.last(stock.profitMarginGrowth, 1), true, true),
+            profitMarginGrowth3: StockData.toCell(StockData.last(stock.profitMarginGrowth, 2), true, true),
+
+            interestExpenseToOperativeIncomeQ1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomePQ), true, false, StockData.toTitle(stock.interestExpenseQ)),
+            interestExpenseToOperativeIncome1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeP), true, false, StockData.toTitle(stock.interestExpense)),
+            interestExpenseToOperativeIncomeGrowthQ1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeGrowthQ), true, true),
+            interestExpenseToOperativeIncomeGrowthQ2: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeGrowthQ, 1), true, true),
+            interestExpenseToOperativeIncomeGrowth1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeGrowth), true, true),
+            interestExpenseToOperativeIncomeGrowth2: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeGrowth, 1), true, true),
+            interestExpenseToOperativeIncomeGrowth3: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeGrowth, 2), true, true),
+
+            retainedEarningsQ1: StockData.toCell(StockData.last(stock.retainedEarningsQ), false, false, StockData.toTitle(stock.retainedEarningsQ)),
+            retainedEarnings1: StockData.toCell(StockData.last(stock.retainedEarnings), false, false, StockData.toTitle(stock.retainedEarnings)),
+            retainedEarningsGrowthQ1: StockData.toCell(StockData.last(stock.retainedEarningsGrowthQ), true, true),
+            retainedEarningsGrowthQ2: StockData.toCell(StockData.last(stock.retainedEarningsGrowthQ, 1), true, true),
+            retainedEarningsGrowth1: StockData.toCell(StockData.last(stock.retainedEarningsGrowth), true, true),
+            retainedEarningsGrowth2: StockData.toCell(StockData.last(stock.retainedEarningsGrowth, 1), true, true),
+            retainedEarningsGrowth3: StockData.toCell(StockData.last(stock.retainedEarningsGrowth, 2), true, true),
+
+            shares1: StockData.toCell(StockData.last(stock.shares), false, false, StockData.toTitle(stock.shares)),
+            sharesGrowth1: StockData.toCell(StockData.last(stock.sharesGrowth), true, true),
+            sharesGrowth2: StockData.toCell(StockData.last(stock.sharesGrowth, 1), true, true),
+            sharesGrowth3: StockData.toCell(StockData.last(stock.sharesGrowth, 2), true, true),
+
             score: StockData.toCell(0),
         }
 
@@ -272,11 +360,11 @@ export class Ratios extends StockData {
 
         ratiosFields.totalDebtToEquityQ1.score = StockData.ratioBetterThan(ratiosFields.totalDebtToEquityQ1.value, 0.8, 10) * 20
         ratiosFields.totalDebtToEquity1.score = StockData.ratioBetterThan(ratiosFields.totalDebtToEquity1.value, 0.8, 10) * 50
-        ratiosFields.totalDebtToEquityGrowthQ1.score = -StockData.last(stock.totalDebtToEquityQ, 0) * ratiosFields.totalDebtToEquityGrowthQ1.value * 2
-        ratiosFields.totalDebtToEquityGrowthQ2.score = -StockData.last(stock.totalDebtToEquityQ, 1) * ratiosFields.totalDebtToEquityGrowthQ2.value
-        ratiosFields.totalDebtToEquityGrowth1.score = -StockData.last(stock.totalDebtToEquity, 0) * ratiosFields.totalDebtToEquityGrowth1.value * 3
-        ratiosFields.totalDebtToEquityGrowth2.score = -StockData.last(stock.totalDebtToEquity, 1) * ratiosFields.totalDebtToEquityGrowth2.value * 2
-        ratiosFields.totalDebtToEquityGrowth3.score = -StockData.last(stock.totalDebtToEquity, 2) * ratiosFields.totalDebtToEquityGrowth3.value
+        ratiosFields.totalDebtToEquityGrowthQ1.score = -StockData.squareRoot(StockData.last(stock.totalDebtToEquityQ, 0)) * ratiosFields.totalDebtToEquityGrowthQ1.value * 0.5
+        ratiosFields.totalDebtToEquityGrowthQ2.score = -StockData.squareRoot(StockData.last(stock.totalDebtToEquityQ, 1)) * ratiosFields.totalDebtToEquityGrowthQ2.value * 0.25
+        ratiosFields.totalDebtToEquityGrowth1.score = -StockData.squareRoot(StockData.last(stock.totalDebtToEquity, 0)) * ratiosFields.totalDebtToEquityGrowth1.value * 0.75
+        ratiosFields.totalDebtToEquityGrowth2.score = -StockData.squareRoot(StockData.last(stock.totalDebtToEquity, 1)) * ratiosFields.totalDebtToEquityGrowth2.value * 0.5
+        ratiosFields.totalDebtToEquityGrowth3.score = -StockData.squareRoot(StockData.last(stock.totalDebtToEquity, 2)) * ratiosFields.totalDebtToEquityGrowth3.value * 0.25
 
         ratiosFields.nonCurrentLiabilitiesToIncomeQ1.score = StockData.ratioBetterThan(ratiosFields.nonCurrentLiabilitiesToIncomeQ1.value, 4, 6) * 2
         ratiosFields.nonCurrentLiabilitiesToIncome1.score = StockData.ratioBetterThan(ratiosFields.nonCurrentLiabilitiesToIncome1.value, 4, 6) * 5
@@ -285,6 +373,45 @@ export class Ratios extends StockData {
         ratiosFields.nonCurrentLiabilitiesToIncomeGrowth1.score = -StockData.last(stock.nonCurrentLiabilitiesToIncome, 0) * ratiosFields.nonCurrentLiabilitiesToIncomeGrowth1.value * 0.15
         ratiosFields.nonCurrentLiabilitiesToIncomeGrowth2.score = -StockData.last(stock.nonCurrentLiabilitiesToIncome, 1) * ratiosFields.nonCurrentLiabilitiesToIncomeGrowth2.value * 0.1
         ratiosFields.nonCurrentLiabilitiesToIncomeGrowth3.score = -StockData.last(stock.nonCurrentLiabilitiesToIncome, 3) * ratiosFields.nonCurrentLiabilitiesToIncomeGrowth3.value * 0.05
+
+        ratiosFields.profitMarginQ1.score = ratiosFields.profitMarginQ1.value / 2
+        ratiosFields.profitMargin1.score = ratiosFields.profitMargin1.value / 2
+        ratiosFields.profitMarginGrowthQ1.score = StockData.last(stock.profitMarginPQ, 0) * ratiosFields.profitMarginGrowthQ1.value * 0.02
+        ratiosFields.profitMarginGrowthQ2.score = StockData.last(stock.profitMarginPQ, 1) * ratiosFields.profitMarginGrowthQ2.value * 0.01
+        ratiosFields.profitMarginGrowth1.score = StockData.last(stock.profitMarginP, 0) * ratiosFields.profitMarginGrowth1.value * 0.03
+        ratiosFields.profitMarginGrowth2.score = StockData.last(stock.profitMarginP, 1) * ratiosFields.profitMarginGrowth2.value * 0.02
+        ratiosFields.profitMarginGrowth3.score = StockData.last(stock.profitMarginP, 2) * ratiosFields.profitMarginGrowth3.value * 0.01
+
+        //TODO interestExpenseToOperativeIncome
+        const interestExpenseQ = StockData.last(stock.interestExpenseQ, 0)
+        const interestExpenseToOperativeIncomeQ = ratiosFields.interestExpenseToOperativeIncomeQ1.value
+        if(interestExpenseQ > 0) {
+            if(interestExpenseToOperativeIncomeQ < 0){    //operating income is in minus
+                ratiosFields.interestExpenseToOperativeIncomeQ1.score = - 100
+            } else {
+                ratiosFields.interestExpenseToOperativeIncomeQ1.score = 5 - interestExpenseToOperativeIncomeQ
+            }
+        }
+        const interestExpense = StockData.last(stock.interestExpense, 0)
+        const interestExpenseToOperativeIncome = ratiosFields.interestExpenseToOperativeIncome1.value
+        if(interestExpense > 0) {
+            if(interestExpenseToOperativeIncome < 0){    //operating income is in minus
+                ratiosFields.interestExpenseToOperativeIncome1.score = - 100
+            } else {
+                ratiosFields.interestExpenseToOperativeIncome1.score = 5 - interestExpenseToOperativeIncome
+            }
+        }
+
+
+        ratiosFields.retainedEarningsGrowthQ1.score = ratiosFields.retainedEarningsGrowthQ1.value * 0.2
+        ratiosFields.retainedEarningsGrowthQ2.score = ratiosFields.retainedEarningsGrowthQ2.value * 0.1
+        ratiosFields.retainedEarningsGrowth1.score = ratiosFields.retainedEarningsGrowth1.value * 0.3
+        ratiosFields.retainedEarningsGrowth2.score = ratiosFields.retainedEarningsGrowth2.value * 0.2
+        ratiosFields.retainedEarningsGrowth3.score = ratiosFields.retainedEarningsGrowth3.value * 0.1
+
+        ratiosFields.sharesGrowth1.score = - ratiosFields.sharesGrowth1.value * 10
+        ratiosFields.sharesGrowth2.score = - ratiosFields.sharesGrowth2.value * 10
+        ratiosFields.sharesGrowth3.score = - ratiosFields.sharesGrowth3.value * 10
 
         StockData.removeInfinity(ratiosFields)
         StockData.capScoreValues(ratiosFields)

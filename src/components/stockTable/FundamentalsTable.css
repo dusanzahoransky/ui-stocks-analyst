@@ -34,6 +34,7 @@ th {
 }
 td.symbol{
     position: sticky;
+    left:5px;
     background: #f0f5ff;
 }
 .date{

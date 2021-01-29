@@ -11,10 +11,8 @@ import {EtfsPriceChart} from "./EtfsPriceChart"
 import {RatioChart} from "./RatioChart"
 import {RatioChartData} from "../model/RatioChartData"
 import {FinancialChartRatios} from "../model/FinancialChartRatios"
-import {StockTaggingService} from "../services/StockTaggingService"
 import {CellData} from "../model/table/CellData"
 import {OtherChartRatios} from "../model/OtherChartRatios"
-import {CellTag} from "../model/table/CellTag"
 import {StocksAnalysisResult} from "../model/StocksAnalysisResult"
 import {Etf} from "../model/Etf"
 import {Stock} from "../model/Stock";
@@ -24,7 +22,10 @@ import Watchlist from "../model/watchlist/Watchlist";
 import {Alert} from "./Alert";
 import {FundamentalsTable} from "./stockTable/FundamentalsTable";
 import {FundamentalsCell} from "../model/table/FundamentalsCell";
-import {Ratios} from "../model/stock/Ratios";
+import {WatchlistTable} from "./WatchlistTable";
+import {Fundamentals} from "../model/stock/Fundamentals";
+import {ValueInvesting} from "../model/stock/ValueInvesting";
+import {StockData} from "../model/stock/StockData";
 
 
 export interface WatchlistAnalysisProps {
@@ -36,36 +37,36 @@ export interface WatchlistAnalysisState {
     stocksResult?: StocksAnalysisResult,
     selectedStock?: Stock
     etfsChartSymbols?: string[]
-    visibleTags: CellTag[]
-    hiddenTags: CellTag[]
+    visibleTables: Fundamentals[]
     isExpanded: boolean,
     error?: string
+}
+
+export interface TableData {
+    title: string
+    data: FundamentalsCell[][],
+    headerData: FundamentalsCell[],
+    headerLabels: string[]
 }
 
 export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, WatchlistAnalysisState> {
 
     private readonly stockAnalystService: StockAnalystService
-    private readonly stockTaggingService: StockTaggingService
 
-    public static readonly DISPLAY_TOGGLES = [CellTag.lastUpdated, CellTag.stock, CellTag.dividends, CellTag.ratios, CellTag.ratiosGrowth, CellTag.financials, CellTag.financialsGrowth, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.intrinsicValueInvesting]
-    public static readonly DISPLAY_DEFAULTS = [CellTag.price, CellTag.ratios, CellTag.ratiosGrowth, CellTag.valueInvesting, CellTag.growthInvesting, CellTag.financialsGrowth]
-
-    public static readonly HIDE_TOGGLES = [CellTag.Q1, CellTag.Q2, CellTag.Y1, CellTag.Y2, CellTag.Y3]
-    public static readonly HIDE_DEFAULTS = [CellTag.Q2, CellTag.Y3]
+    public static readonly DISPLAY_CHECKBOXES = [Fundamentals.LastUpdated, Fundamentals.Stock, Fundamentals.Dividends, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.OtherFinancials, Fundamentals.IntrinsicValue]
+    public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.IntrinsicValue]
 
     constructor(props: Readonly<WatchlistAnalysisProps>) {
         super(props)
         this.state = WatchlistAnalysis.resetState()
         this.stockAnalystService = new StockAnalystService()
-        this.stockTaggingService = new StockTaggingService()
     }
 
     private static resetState() {
         return {
             selectedStock: undefined,
             etfsChartSymbols: [],
-            visibleTags: WatchlistAnalysis.DISPLAY_DEFAULTS,
-            hiddenTags: WatchlistAnalysis.HIDE_DEFAULTS,
+            visibleTables: WatchlistAnalysis.DISPLAY_DEFAULT_TABLES,
             isExpanded: false
         };
     }
@@ -114,11 +115,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
 
         //Stock rendering
         if (isExpanded) {
-            const visibleTags = WatchlistAnalysis.DISPLAY_TOGGLES.map(tag => this.toVisibleTagCheckbox(tag))
-            const toDisplayCheckboxesSpan = <span className="VisibleTags">Display: {visibleTags}</span>
-
-            const hiddenTags = WatchlistAnalysis.HIDE_TOGGLES.map(tag => this.toHiddenTagCheckbox(tag))
-            const toHideCheckboxesSpan = <span className="HiddenTags">Hide: {hiddenTags}</span>
+            const visibleTags = WatchlistAnalysis.DISPLAY_CHECKBOXES.map(tag => this.toVisibleTagCheckbox(tag))
 
             return <div
                 className="WatchlistAnalysis"
@@ -129,8 +126,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
                     {this.renderRefreshDynamicDataIcon()}
                     {this.renderRefreshAllDataIcon()}
                 </h2>
-                {toDisplayCheckboxesSpan}
-                {toHideCheckboxesSpan}
+                <span className="VisibleTags">Display: {visibleTags}</span>
                 {this.renderTable()}
                 {this.renderCompanyCharts()}
             </div>
@@ -188,14 +184,90 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     }
 
     renderTable() {
-        const {data, headerData, headerLabels} = this.fundamentalsRatiosData()
+        const tablesToDisplay = []
+        if (this.props.watchlist.etf) {
+            const {data, headerData, headerLabels} = this.prepareData()
+            tablesToDisplay.push(<WatchlistTable
+                data={data}
+                isEtf={this.props.watchlist.etf}
+                headerLabels={headerLabels}
+                headerData={headerData}
+                visibleTables={this.state.visibleTables}
+                onStockClickHandler={this.stockOnClickHandler}
+            />)
+        }
+        if (this.state.visibleTables.includes(Fundamentals.ValueInvesting)) {
+            tablesToDisplay.push(this.toTable(this.toTableData(new ValueInvesting())))
+        }
+        // if (this.state.visibleTables.includes(Fundamentals.ValueInvesting)) {
+        //     tablesToDisplay.push(this.toTable(this.toTableData(new ValueInvesting())))
+        // }
+        return tablesToDisplay
+    }
+
+
+    private toTable(tableData: TableData) {
+        const {title, data, headerData, headerLabels} = tableData
         return <FundamentalsTable
-            title='Ratios'
+            title={title}
             data={data}
             headerLabels={headerLabels}
             headerData={headerData}
             onStockClickHandler={this.stockOnClickHandler}
-        />
+        />;
+    }
+
+    private prepareData(): { data: CellData[][], headerData: CellData[], headerLabels: string[] } {
+        let data: CellData[][] = []
+        let headerData: CellData[] = []
+        let headerLabels: string[] = []
+
+        if (this.props.watchlist.etf) {
+
+            const etfs = this.state.etfsResult.etfs
+            let averages = {...this.state.etfsResult.averages}
+
+            averages = this.stockAnalystService.filterDisplayableEtfStats(averages)
+
+            headerLabels = Object.keys(averages)
+            headerData = Object.keys(averages).map(key => {
+                return {value: averages[key]}
+            })
+
+            const labels = this.stockAnalystService.getScoreLabels(this.props.watchlist.etf)
+            labels.forEach(label => this.addHeader(headerLabels, headerData, label))
+
+            for (const etf of etfs) {
+                let etfClone = {...etf}
+                etfClone = this.stockAnalystService.filterDisplayableEtfStats(etfClone)
+                const rowData = Object.keys(etfClone).map(key => {
+                    return {value: etfClone[key]}
+                })
+                data.push(rowData)
+            }
+        } else {
+            const stocks = this.state.stocksResult.stocks
+            let flattenStockData
+
+            for (const stock of stocks) {
+                let stockClone = {...stock}
+                stockClone = this.stockAnalystService.filterDisplayableStockStats(stockClone)
+                flattenStockData = this.stockAnalystService.flattenStockData(stockClone)
+                const rowData = Object.keys(flattenStockData).map(key => {
+                    return {value: flattenStockData[key]}
+                })
+                data.push(rowData)
+            }
+
+            headerLabels = Object.keys(flattenStockData)
+
+            const labels = this.stockAnalystService.getScoreLabels(this.props.watchlist.etf)
+            labels.forEach(label => this.addHeader(headerLabels, headerData, label))
+
+        }
+        data = data.map(row => this.stockAnalystService.scoreRow(headerData, row, this.props.watchlist.etf))
+
+        return {data, headerData, headerLabels}
     }
 
     private renderShowLink() {
@@ -223,21 +295,21 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         return this.loadWatchlistData(watchlist, true, false, false);
     }
 
-    private fundamentalsRatiosData(): { data: FundamentalsCell[][], headerData: FundamentalsCell[], headerLabels: string[] } {
+    private toTableData(stockData: StockData): TableData {
         const stocks = this.state.stocksResult.stocks
 
         const data: FundamentalsCell[][] = []
-        const ratios = new Ratios()
 
         for (const stock of stocks) {
-            const ratiosFields = ratios.fromStock(stock)
+            const ratiosFields = stockData.fromStock(stock)
             data.push(Object.values(ratiosFields))
         }
 
-        const headerLabels: string[] = ratios.labels()
-        const headerData: FundamentalsCell[] = ratios.headerData()
+        const headerLabels: string[] = stockData.labels()
+        const headerData: FundamentalsCell[] = stockData.headerData()
+        const title = stockData.constructor.name
 
-        return {data, headerData, headerLabels}
+        return {title, data, headerData, headerLabels}
     }
 
     addHeader(headerLabels: string[], headerData: CellData[], label: string) {
@@ -245,41 +317,21 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         headerData.push({value: 0})
     }
 
-    private toVisibleTagCheckbox(tag: CellTag) {
-        let tagName = CellTag[tag]
+    private toVisibleTagCheckbox(tag: Fundamentals) {
+        let tagName = Fundamentals[tag]
         return <span className="VisibleTag" key={tagName}>{tagName} <input
             name={tagName}
             type="checkbox"
-            checked={this.state.visibleTags.includes(tag)}
+            checked={this.state.visibleTables.includes(tag)}
             onChange={() => {
                 this.setState((prevState) => {
                     let newVisibleTags
-                    if (prevState.visibleTags.includes(tag)) {
-                        newVisibleTags = prevState.visibleTags.filter(hiddenTag => hiddenTag !== tag)
+                    if (prevState.visibleTables.includes(tag)) {
+                        newVisibleTags = prevState.visibleTables.filter(hiddenTag => hiddenTag !== tag)
                     } else {
-                        newVisibleTags = prevState.visibleTags.concat(tag)
+                        newVisibleTags = prevState.visibleTables.concat(tag)
                     }
-                    return {visibleTags: newVisibleTags}
-                })
-            }}/>
-            </span>
-    }
-
-    private toHiddenTagCheckbox(tag: CellTag) {
-        let tagName = CellTag[tag]
-        return <span className="HiddenTag" key={tagName}>{tagName} <input
-            name={tagName}
-            type="checkbox"
-            checked={this.state.hiddenTags.includes(tag)}
-            onChange={() => {
-                this.setState((prevState) => {
-                    let newHiddenTags
-                    if (prevState.hiddenTags.includes(tag)) {
-                        newHiddenTags = prevState.hiddenTags.filter(hiddenTag => hiddenTag !== tag)
-                    } else {
-                        newHiddenTags = prevState.hiddenTags.concat(tag)
-                    }
-                    return {hiddenTags: newHiddenTags}
+                    return {visibleTables: newVisibleTags}
                 })
             }}/>
             </span>

@@ -5,9 +5,7 @@ import './WatchlistTable.css'
 import {StockFlattenFields} from "../model/StockFlattenFields"
 import {CellData} from "../model/table/CellData"
 import {EtfFields} from "../model/EtfFields"
-import {StockTaggingService} from "../services/StockTaggingService"
-import {CellTag} from "../model/table/CellTag"
-import {WatchlistAnalysis} from "./WatchlistAnalysis";
+import {Fundamentals} from "../model/stock/Fundamentals";
 
 export interface TableProps {
     headerLabels: string[]
@@ -15,8 +13,7 @@ export interface TableProps {
     data: CellData[][]
     isEtf: boolean
     sortField?: number
-    visibleTags: CellTag[]
-    hiddenTags: CellTag[]
+    visibleTables: Fundamentals[]
     onStockClickHandler?: (stockSymbol: string) => void
 }
 
@@ -69,13 +66,11 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
 
     renderHeader(headerLabels: string[], headerAverages: CellData[]) {
         const labelsRow = headerLabels.map((field, column) => {
-                let cellTags = StockTaggingService.tagColumn(column, this.props.isEtf)
                 return <th key={column}
-                           className={'label ' + this.toClasses(cellTags, column, this.props.isEtf)}
+                           className={'label'}
                            onClick={() => this.setSortedField(column)}
-                           title={this.headerTitle(column, cellTags)}>
+                           title={this.headerTitle(column)}>
                     <i className="fa fa-sort"/>
-                    {FormattingUtils.isGrowth(cellTags) ? <i className="fa fa-line-chart"/> : ''}
                     {FormattingUtils.toFieldLabel(field)}
                     {/* uncomment to see the real stock fields, vs enumerated fields in case of any mismatch */}
                     {/*{StockFields[column]}*/}
@@ -85,9 +80,7 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
             }
         )
         const averagesRow = headerAverages.map((value, column) => {
-                let cellTags = StockTaggingService.tagColumn(column, this.props.isEtf)
-                return <th key={column}
-                           className={this.toClasses(cellTags, column, this.props.isEtf)}>
+                return <th key={column}>
                     {
                         this.props.isEtf ?
                             FormattingUtils.formatEtf(value, column) :
@@ -104,9 +97,8 @@ export class WatchlistTable extends React.Component<TableProps, TableState> {
         )
     }
 
-    private headerTitle(column: number, cellTags: CellTag[] = []): string {
-        return `Field: ${StockFlattenFields[column]}
-Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
+    private headerTitle(column: number): string {
+        return `Field: ${StockFlattenFields[column]}`
     }
 
     setSortedField(column: number) {
@@ -186,17 +178,15 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
         let score = Number.isNaN(data.score) ? 0 : data.score
         if (score) {
             if (score < -10) {
-                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('redText') : classes.push('red')
+                FormattingUtils.isPercentage(column, this.props.isEtf) ? classes.push('redText') : classes.push('red')
             } else if (score < 0) {
-                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('lightRedText') : classes.push('lightRed')
+                FormattingUtils.isPercentage(column, this.props.isEtf) ? classes.push('lightRedText') : classes.push('lightRed')
             } else if (score > 10) {
-                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('greenText') : classes.push('green')
+                FormattingUtils.isPercentage(column, this.props.isEtf) ? classes.push('greenText') : classes.push('green')
             } else if (score > 0) {
-                FormattingUtils.isPercentage(data.tags, column, this.props.isEtf) ? classes.push('lightGreenText') : classes.push('lightGreen')
+                FormattingUtils.isPercentage(column, this.props.isEtf) ? classes.push('lightGreenText') : classes.push('lightGreen')
             }
         }
-
-        classes.push(this.toClasses(data.tags, column, this.props.isEtf))
 
         if (this.props.isEtf) {
             if (column === EtfFields.change) {
@@ -233,29 +223,5 @@ Tags: ${cellTags.map(tag => CellTag[tag]).join(", ")}`
                 selectedRow: state.selectedRow === row ? undefined : row
             }
         })
-    }
-
-    private toClasses(cellTags: CellTag[], column: number, isEtf: boolean): string {
-        if (!cellTags) {
-            return ''
-        }
-        if (!this.isVisible(column, isEtf)) {
-            cellTags = cellTags.concat(CellTag.hidden)
-        }
-        return cellTags.map(tag => CellTag[tag]).join(' ')
-    }
-
-    private isVisible(column: number, isEtf: boolean): boolean {
-        if (isEtf) {
-            return !StockTaggingService.tagEtfColumn(column).includes(CellTag.hidden)
-        }
-
-        const colTags = StockTaggingService.tagStockColumn(column)
-        const canToggleVisibility = colTags.some(tag => WatchlistAnalysis.DISPLAY_TOGGLES.includes(tag))  //do not hide cols which visibility can not be toggled by a checkbox
-
-        const isHidden = colTags.some(colTag => this.props.hiddenTags.includes(colTag))
-        const isDisplayed = colTags.some(colTag => this.props.visibleTags.includes(colTag))
-
-        return !canToggleVisibility || (!isHidden && isDisplayed)
     }
 }

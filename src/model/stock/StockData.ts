@@ -55,22 +55,43 @@ export abstract class StockData {
         return score
     }
 
+    static squareRoot(number: number): number{
+        return number * number
+    }
+
     static toCell(value?: number, isPercentage: boolean = false, isGrowth: boolean = false, title: string = ''): FundamentalsCell {
         const classes = isGrowth ? ['growth'] : [];
         return {value, score: 0, isPercentage, isGrowth, title, classes}
     }
 
     static toTitle(timelineField: any, isPercentage: boolean = false): string {
-        return Object.keys(timelineField).map(key => `${key}: ${FormattingUtils.formatValue(timelineField[key], isPercentage)}`).join('\r\n')
+        if(!timelineField){
+            return ''
+        }
+        return Object.keys(timelineField)
+            .map(key => `${key}: ${FormattingUtils.formatValue(timelineField[key], isPercentage)}`)
+            .join('\r\n')
     }
 
     static toRatioTitle(numerator: any, denominator: any, result: any): string {
         return Object.keys(numerator)
             .map(key => {
-                const numeratorValue = FormattingUtils.formatValue(numerator[key])
-                const denominatorValue = FormattingUtils.formatValue(denominator[key])
-                const resultValue = FormattingUtils.formatValue(result[key])
+                const numeratorValue = numerator ? FormattingUtils.formatValue(numerator[key]) : null
+                const denominatorValue = denominator ? FormattingUtils.formatValue(denominator[key]) : null
+                const resultValue = result ? FormattingUtils.formatValue(result[key]) : null
                 return `${key}: ${numeratorValue} / ${denominatorValue} = ${resultValue}`
+            })
+            .join('\r\n')
+    }
+
+    static toRatioTitleMinusNumerator(numerator: any, minusNumerator: any, denominator: any, result: any): string {
+        return Object.keys(numerator)
+            .map(key => {
+                const numeratorValue = numerator ? FormattingUtils.formatValue(numerator[key]) : null
+                const minusNumeratorValue = minusNumerator ? FormattingUtils.formatValue(minusNumerator[key]) : null
+                const denominatorValue = denominator ? FormattingUtils.formatValue(denominator[key]) : denominator
+                const resultValue = result ? FormattingUtils.formatValue(result[key]) : null
+                return `${key}: ${numeratorValue} - ${minusNumeratorValue} / ${denominatorValue} = ${resultValue}`
             })
             .join('\r\n')
     }
