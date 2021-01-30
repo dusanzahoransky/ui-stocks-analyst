@@ -2,6 +2,7 @@ import {Stock} from "../Stock";
 import {FundamentalsCell} from "../table/FundamentalsCell";
 import {FormattingUtils} from "../../utils/FormattingUtils";
 import {StockFields} from "./StockFields";
+import moment from "moment";
 
 export abstract class StockData {
 
@@ -39,7 +40,7 @@ export abstract class StockData {
         }
     }
 
-    static ratioBetterThan(number: number, positiveLimit: number, maxThreshold: number = 50) {
+    static ratioBetterThan(number: number, positiveLimit: number, maxThreshold: number = 50, capAt: number = 1000) {
         let score: number
         if (number > 0) {
 
@@ -52,7 +53,7 @@ export abstract class StockData {
         } else {
             score = -maxThreshold * 3 + ((1 / number) * 100)
         }
-        return score
+        return this.absLessThan(score, capAt)
     }
 
     static squareRoot(number: number): number{
@@ -96,12 +97,49 @@ export abstract class StockData {
             .join('\r\n')
     }
 
-    static last(timelineField: any | undefined, indexBeforeLast: number = 0): number {
+    static last(timelineField: any | undefined, indexBeforeLast: number = 0): number | undefined {
         if (!timelineField) {
             return undefined
         }
         const values: number[] = Object.values(timelineField)
         return values[values.length - (indexBeforeLast + 1)]
+    }
+
+    static signOf(timelineField: any | undefined, indexBeforeLast: number = 0): number {
+        const value = this.last(timelineField, indexBeforeLast);
+        if(value < 0){
+            return -1
+        }
+        return 1
+    }
+
+    static lastYears(timelineField: any | undefined, yearsBeforeLast: number = 0): number | undefined {
+        if (!timelineField) {
+            return undefined
+        }
+        const reversedKeys = Object.keys(timelineField).reverse()
+        const yearToGet = moment().add(-yearsBeforeLast, 'year').format('YYYY')
+
+        const keyToGet = reversedKeys.filter(date => date.startsWith(yearToGet))[0];
+        return keyToGet ? timelineField[keyToGet] : undefined
+    }
+
+    static avg(timelineField: any | undefined, nLatestValues: number = 5): number {
+        if (!timelineField) {
+            return undefined
+        }
+        const values: number[] = Object.values(timelineField)
+        const latestValues = values.reverse().slice(0, nLatestValues);
+
+        let sum = 0
+        let count = nLatestValues
+        for(const value of latestValues){
+            sum += value
+            if(!value || value === 0){
+                count--
+            }
+        }
+        return sum / count
     }
 
     static lastEntry(timelineField: any | undefined, indexBeforeLast: number = 0): { [date: string]: any } {
@@ -127,7 +165,7 @@ export abstract class StockData {
         Object.values(ratiosFields).filter(f => !f.value).forEach(f => f.score = 0)
     }
 
-    static capScoreValues(ratiosFields: StockFields) {
+    static capScoreValues(ratiosFields: StockFields, maxValue = 100, warningThreshold = 1000) {
         const values = Object.values(ratiosFields);
         for (const value of values) {
             if (value.score > 1000 || value.score < -1000) {

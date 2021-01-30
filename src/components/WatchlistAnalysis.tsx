@@ -26,6 +26,7 @@ import {WatchlistTable} from "./WatchlistTable";
 import {Fundamentals} from "../model/stock/Fundamentals";
 import {ValueInvesting} from "../model/stock/ValueInvesting";
 import {StockData} from "../model/stock/StockData";
+import {GrowthInvesting} from "../model/stock/GrowthInvesting";
 
 
 export interface WatchlistAnalysisProps {
@@ -54,7 +55,9 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     private readonly stockAnalystService: StockAnalystService
 
     public static readonly DISPLAY_CHECKBOXES = [Fundamentals.LastUpdated, Fundamentals.Stock, Fundamentals.Dividends, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.OtherFinancials, Fundamentals.IntrinsicValue]
-    public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.IntrinsicValue]
+    // public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.IntrinsicValue]
+    // public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.GrowthInvesting, Fundamentals.IntrinsicValue]
+    public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.ValueInvesting, Fundamentals.IntrinsicValue]
 
     constructor(props: Readonly<WatchlistAnalysisProps>) {
         super(props)
@@ -199,9 +202,9 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         if (this.state.visibleTables.includes(Fundamentals.ValueInvesting)) {
             tablesToDisplay.push(this.toTable(this.toTableData(new ValueInvesting())))
         }
-        // if (this.state.visibleTables.includes(Fundamentals.ValueInvesting)) {
-        //     tablesToDisplay.push(this.toTable(this.toTableData(new ValueInvesting())))
-        // }
+        if (this.state.visibleTables.includes(Fundamentals.GrowthInvesting)) {
+            tablesToDisplay.push(this.toTable(this.toTableData(new GrowthInvesting())))
+        }
         return tablesToDisplay
     }
 
