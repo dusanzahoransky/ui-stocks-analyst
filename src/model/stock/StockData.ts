@@ -56,7 +56,7 @@ export abstract class StockData {
         return this.absLessThan(score, capAt)
     }
 
-    static squareRoot(number: number): number{
+    static squareRoot(number: number): number {
         return number * number
     }
 
@@ -66,7 +66,7 @@ export abstract class StockData {
     }
 
     static toTitle(timelineField: any, isPercentage: boolean = false): string {
-        if(!timelineField){
+        if (!timelineField) {
             return ''
         }
         return Object.keys(timelineField)
@@ -97,17 +97,38 @@ export abstract class StockData {
             .join('\r\n')
     }
 
-    static last(timelineField: any | undefined, indexBeforeLast: number = 0): number | undefined {
+    static last(timelineField: any | undefined, indexBeforeLast: number = 0, defaultValue = undefined): number | undefined {
         if (!timelineField) {
-            return undefined
+            return defaultValue
         }
         const values: number[] = Object.values(timelineField)
-        return values[values.length - (indexBeforeLast + 1)]
+        const number = values[values.length - (indexBeforeLast + 1)];
+        if (!number) {
+            return defaultValue
+        }
+        return number
+    }
+
+    static lastDefined(timelineField: any | undefined, indexBeforeLast: number = 0, defaultValue = undefined): number | undefined {
+        if (!timelineField) {
+            return defaultValue
+        }
+        const values: number[] = Object.values(timelineField)
+        let number
+        do {
+            number = values[values.length - (indexBeforeLast + 1)];
+            indexBeforeLast++
+        } while (!number && indexBeforeLast < values.length)
+
+        if (!number) {
+            return defaultValue
+        }
+        return number
     }
 
     static signOf(timelineField: any | undefined, indexBeforeLast: number = 0): number {
         const value = this.last(timelineField, indexBeforeLast);
-        if(value < 0){
+        if (value < 0) {
             return -1
         }
         return 1
@@ -133,9 +154,9 @@ export abstract class StockData {
 
         let sum = 0
         let count = nLatestValues
-        for(const value of latestValues){
+        for (const value of latestValues) {
             sum += value
-            if(!value || value === 0){
+            if (!value || value === 0) {
                 count--
             }
         }
@@ -165,14 +186,36 @@ export abstract class StockData {
         Object.values(ratiosFields).filter(f => !f.value).forEach(f => f.score = 0)
     }
 
+    static weightedAverage(value1: number, value2: number, value3: number, value4: number): number {
+        let count = 0
+        let sum = 0
+        if (value1) {
+            sum += value1 * 2
+            count += 2
+        }
+        if (value2) {
+            sum += value2 * 1.5
+            count += 1.5
+        }
+        if (value3) {
+            sum += value3 * 1
+            count += 1
+        }
+        if (value4) {
+            sum += value4 * 0.5
+            count += 0.5
+        }
+        return sum / count
+    }
+
     static capScoreValues(ratiosFields: StockFields, maxValue = 100, warningThreshold = 1000) {
         const values = Object.values(ratiosFields);
         for (const value of values) {
-            if (value.score > 1000 || value.score < -1000) {
+            if (value.score > warningThreshold || value.score < -warningThreshold) {
                 value.classes.push(this.CLASS_ADDITIONAL_INFO)
             }
-            if (value.score > 100 || value.score < -100) {
-                value.score = this.absLessThan(value.score, 100)
+            if (value.score > maxValue || value.score < -maxValue) {
+                value.score = this.absLessThan(value.score, maxValue)
             }
         }
     }

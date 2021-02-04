@@ -13,6 +13,12 @@ import {FieldDisplayType} from "../model/FieldDisplayType";
 import {Timeline} from "../model/Timeline";
 import HttpClient from "./HttpClient";
 
+export interface IntrinsicValueResult {
+    intrinsicValue: number,
+    futureValue: number,
+    discountValue: number,
+    cashTakenOut: number
+}
 
 export class StockAnalystService {
 
@@ -52,8 +58,8 @@ export class StockAnalystService {
         cellData.push({value: totalScore})
 
         if (!isEtf) {
-            cellData.push({value: StockAnalystService.calcNext5YYield(rowValues)})
-            cellData.push({value: StockAnalystService.calcNext10YYield(rowValues)})
+            cellData.push({value: StockAnalystService.calcFutureYield(rowValues[StockFlattenFields.trailingPE].value as number, rowValues[StockFlattenFields.growthEstimate5y].value as number, 5)})
+            cellData.push({value: StockAnalystService.calcFutureYield(rowValues[StockFlattenFields.trailingPE].value as number, rowValues[StockFlattenFields.growthEstimate5y].value as number, 10)})
 
             const rule1Score = cellData.map(data => data.score)
                 .filter((score, index) => index >= StockFlattenFields.roic1Y)
@@ -1313,27 +1319,28 @@ export class StockAnalystService {
         }
     }
 
-    private static calcNext5YYield(data: CellData[]): number | undefined {
-        const pe = data[StockFlattenFields.trailingPE].value as number;
-        if (!pe) {
+    public static calcFutureYield(currentYield: number, growthEstimate: number, years: number): number | undefined {
+        if (!currentYield) {
             return undefined
         }
-        const pv = 100 / pe
-        const growthEstimate = data[StockFlattenFields.growthEstimate5y].value as number / 100
-        return this.futureValue(pv, growthEstimate, 5);
+        const pv = 100 / currentYield
+        const growthEstimateP = growthEstimate / 100
+        return this.futureValue(pv, growthEstimateP, years);
+    }
+
+    public static calcIntrinsicValue(dividendsValue: number, pv: number, growthEstimate: number, discountRate: number, years: number): IntrinsicValueResult {
+        growthEstimate = growthEstimate / 100
+        discountRate = discountRate / 100
+        const futureValue = this.futureValue(pv, growthEstimate, years)
+        const discountValue = this.futureValue(1, discountRate, years)
+        const cashTakenOut =  dividendsValue * (1 - ( 1 / this.futureValue(1, discountRate, years))) / discountRate
+        const intrinsicValue = cashTakenOut + futureValue / discountValue
+        return {intrinsicValue, futureValue, discountValue, cashTakenOut}
+
     }
 
     static futureValue(presentValue: number, growth: number, years: number) {
         return presentValue * Math.pow(1 + growth, years);
     }
 
-    private static calcNext10YYield(data: CellData[]): number | undefined {
-        const pe = data[StockFlattenFields.trailingPE].value as number;
-        if (!pe) {
-            return undefined
-        }
-        const pv = 100 / pe
-        const growthEstimate = data[StockFlattenFields.growthEstimate5y].value as number / 100
-        return this.futureValue(pv, growthEstimate, 10);
-    }
 }

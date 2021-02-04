@@ -294,8 +294,8 @@ export class ValueInvesting extends StockData {
             profitMarginGrowth2: StockData.toCell(StockData.last(stock.profitMarginGrowth, 1), true, true),
             profitMarginGrowth3: StockData.toCell(StockData.last(stock.profitMarginGrowth, 2), true, true),
 
-            interestExpenseToOperativeIncomeQ1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomePQ), true, false, StockData.toTitle(stock.interestExpenseQ)),
-            interestExpenseToOperativeIncome1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeP), true, false, StockData.toTitle(stock.interestExpense)),
+            interestExpenseToOperativeIncomeQ1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomePQ), true, false, StockData.toRatioTitle(stock.interestExpenseQ, stock.operatingIncomeQ, stock.interestExpenseToOperativeIncomePQ)),
+            interestExpenseToOperativeIncome1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeP), true, false, StockData.toRatioTitle(stock.interestExpense, stock.operatingIncome,stock.interestExpenseToOperativeIncomeP)),
             interestExpenseToOperativeIncomeGrowthQ1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeGrowthQ), true, true),
             interestExpenseToOperativeIncomeGrowthQ2: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeGrowthQ, 1), true, true),
             interestExpenseToOperativeIncomeGrowth1: StockData.toCell(StockData.last(stock.interestExpenseToOperativeIncomeGrowth), true, true),

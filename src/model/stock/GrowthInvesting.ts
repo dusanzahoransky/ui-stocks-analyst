@@ -178,36 +178,36 @@ export class GrowthInvesting extends StockData {
         ratiosFields.priceToFreeCashFlow.score = StockData.ratioBetterThan(ratiosFields.priceToFreeCashFlow.value, 25, 10)
         ratiosFields.enterpriseValueRevenue.score = 5 * StockData.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 10, 50)
         ratiosFields.enterpriseValueEBITDA.score = StockData.ratioBetterThan(ratiosFields.enterpriseValueEBITDA.value, 20, 10)
-        ratiosFields.growthEstimate5y.score = ratiosFields.growthEstimate5y.value * 2
+        ratiosFields.growthEstimate5y.score = ratiosFields.growthEstimate5y.value * 5
 
-        ratiosFields.revenueGrowthQ1.score = ratiosFields.revenueGrowthQ1.value / StockData.last(stock.priceToSalesTrailing12Months) * 9
-        ratiosFields.revenueGrowthQ2.score = ratiosFields.revenueGrowthQ2.value / StockData.last(stock.priceToSalesTrailing12Months) * 6
-        ratiosFields.revenueGrowth1.score = ratiosFields.revenueGrowth1.value / StockData.last(stock.priceToSalesTrailing12Months) * 9
-        ratiosFields.revenueGrowth2.score = ratiosFields.revenueGrowth2.value / StockData.last(stock.priceToSalesTrailing12Months) * 6
-        ratiosFields.revenueGrowth3.score = ratiosFields.revenueGrowth3.value / StockData.last(stock.priceToSalesTrailing12Months) * 3
+        ratiosFields.revenueGrowthQ1.score = ratiosFields.revenueGrowthQ1.value / StockData.last(stock.priceToSalesTrailing12Months, 0, 5) * 15
+        ratiosFields.revenueGrowthQ2.score = ratiosFields.revenueGrowthQ2.value / StockData.last(stock.priceToSalesTrailing12Months0, 0, 5) * 10
+        ratiosFields.revenueGrowth1.score = ratiosFields.revenueGrowth1.value / StockData.last(stock.priceToSalesTrailing12Months, 0, 5) * 15
+        ratiosFields.revenueGrowth2.score = ratiosFields.revenueGrowth2.value / StockData.last(stock.priceToSalesTrailing12Months, 0, 5) * 10
+        ratiosFields.revenueGrowth3.score = ratiosFields.revenueGrowth3.value / StockData.last(stock.priceToSalesTrailing12Months, 0, 5) * 5
 
         ratiosFields.grossMarginY1.score = ratiosFields.grossMarginY1.value * 1
         ratiosFields.grossMarginGrowth1.score = StockData.last(stock.grossMargin, 0) * ratiosFields.grossMarginGrowth1.value * 0.3
         ratiosFields.grossMarginGrowth2.score = StockData.last(stock.grossMargin, 1) * ratiosFields.grossMarginGrowth2.value * 0.2
         ratiosFields.grossMarginGrowth3.score = StockData.last(stock.grossMargin, 2) * ratiosFields.grossMarginGrowth3.value * 0.1
 
-        ratiosFields.netIncomeGrowthQ1.score = ratiosFields.netIncomeGrowthQ1.value * 2
-        ratiosFields.netIncomeGrowthQ2.score = ratiosFields.netIncomeGrowthQ2.value * 1
-        ratiosFields.netIncomeGrowth1.score = ratiosFields.netIncomeGrowth1.value * 3
-        ratiosFields.netIncomeGrowth2.score = ratiosFields.netIncomeGrowth2.value * 2
-        ratiosFields.netIncomeGrowth3.score = ratiosFields.netIncomeGrowth3.value * 1
+        ratiosFields.netIncomeGrowthQ1.score = ratiosFields.netIncomeGrowthQ1.value * 1
+        ratiosFields.netIncomeGrowthQ2.score = ratiosFields.netIncomeGrowthQ2.value * 0.5
+        ratiosFields.netIncomeGrowth1.score = ratiosFields.netIncomeGrowth1.value * 1
+        ratiosFields.netIncomeGrowth2.score = ratiosFields.netIncomeGrowth2.value * 0.5
+        ratiosFields.netIncomeGrowth3.score = ratiosFields.netIncomeGrowth3.value * 0.25
 
-        ratiosFields.operatingCashFlowGrowthQ1.score = ratiosFields.operatingCashFlowGrowthQ1.value * 2
-        ratiosFields.operatingCashFlowGrowthQ2.score = ratiosFields.operatingCashFlowGrowthQ2.value * 1
-        ratiosFields.operatingCashFlowGrowth1.score = ratiosFields.operatingCashFlowGrowth1.value * 3
+        ratiosFields.operatingCashFlowGrowthQ1.score = ratiosFields.operatingCashFlowGrowthQ1.value * 4
+        ratiosFields.operatingCashFlowGrowthQ2.score = ratiosFields.operatingCashFlowGrowthQ2.value * 2
+        ratiosFields.operatingCashFlowGrowth1.score = ratiosFields.operatingCashFlowGrowth1.value * 4
         ratiosFields.operatingCashFlowGrowth2.score = ratiosFields.operatingCashFlowGrowth2.value * 2
         ratiosFields.operatingCashFlowGrowth3.score = ratiosFields.operatingCashFlowGrowth3.value * 1
 
-        ratiosFields.capitalExpendituresGrowthQ1.score = - ratiosFields.capitalExpendituresGrowthQ1.value * 2
-        ratiosFields.capitalExpendituresGrowthQ2.score = - ratiosFields.capitalExpendituresGrowthQ2.value * 1
-        ratiosFields.capitalExpendituresGrowth1.score = - ratiosFields.capitalExpendituresGrowth1.value * 3
-        ratiosFields.capitalExpendituresGrowth2.score = - ratiosFields.capitalExpendituresGrowth2.value * 2
-        ratiosFields.capitalExpendituresGrowth3.score = - ratiosFields.capitalExpendituresGrowth3.value * 1
+        ratiosFields.capitalExpendituresGrowthQ1.score = -ratiosFields.capitalExpendituresGrowthQ1.value * 2
+        ratiosFields.capitalExpendituresGrowthQ2.score = -ratiosFields.capitalExpendituresGrowthQ2.value * 1
+        ratiosFields.capitalExpendituresGrowth1.score = -ratiosFields.capitalExpendituresGrowth1.value * 2
+        ratiosFields.capitalExpendituresGrowth2.score = -ratiosFields.capitalExpendituresGrowth2.value * 1
+        ratiosFields.capitalExpendituresGrowth3.score = -ratiosFields.capitalExpendituresGrowth3.value * 0.5
 
         StockData.removeInfinity(ratiosFields)
         StockData.capScoreValues(ratiosFields, 200)
