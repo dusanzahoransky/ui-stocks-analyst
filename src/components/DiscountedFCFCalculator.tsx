@@ -11,8 +11,8 @@ export interface DiscountedFCFCalculatorProps {
     years?: number
     growth1?: number
     growth2?: number
-    growth3?: number
-    finalMultiple?: number
+    finalMultiple1?: number
+    finalMultiple2?: number
 }
 
 export interface DiscountedFCFCalculatorState {
@@ -21,11 +21,10 @@ export interface DiscountedFCFCalculatorState {
     years?: string
     growth1?: string
     growth2?: string
-    growth3?: string
-    finalMultiple: string
+    finalMultiple1: string
+    finalMultiple2: string
     intrinsicValue1?: number
     intrinsicValue2?: number
-    intrinsicValue3?: number
 }
 
 export class DiscountedFCFCalculator extends React.Component<DiscountedFCFCalculatorProps, DiscountedFCFCalculatorState> {
@@ -35,8 +34,8 @@ export class DiscountedFCFCalculator extends React.Component<DiscountedFCFCalcul
         this.state = {
             growth1: props.growth1 ? props.growth1.toString() : '',
             growth2: props.growth2 ? props.growth2.toString() : '',
-            growth3: props.growth3 ? props.growth3.toString() : '',
-            finalMultiple: props.finalMultiple ? props.finalMultiple.toString() : '10',
+            finalMultiple1: props.finalMultiple1 ? props.finalMultiple1.toString() : '10',
+            finalMultiple2: props.finalMultiple2 ? props.finalMultiple2.toString() : '15',
             discount: props.discount ? props.discount.toString() : '10',
             years: props.years ? props.years.toString() : '10',
             currentValue: props.currentValue ? props.currentValue.toString() : ''
@@ -62,20 +61,16 @@ export class DiscountedFCFCalculator extends React.Component<DiscountedFCFCalcul
 
         const growth1 = Number.parseFloat(updatedState.growth1)
         const growth2 = Number.parseFloat(updatedState.growth2)
-        const growth3 = Number.parseFloat(updatedState.growth3)
-        const finalMultiple = Number.parseFloat(updatedState.finalMultiple)
+        const finalMultiple1 = Number.parseFloat(updatedState.finalMultiple1)
+        const finalMultiple2 = Number.parseFloat(updatedState.finalMultiple2)
 
         if(growth1) {
             const intrinsicValueResult = StockAnalystService.calcIntrinsicValue(0, currentValue, growth1, discount, years);
-            updatedState.intrinsicValue1 = intrinsicValueResult.intrinsicValue * finalMultiple
+            updatedState.intrinsicValue1 = intrinsicValueResult.intrinsicValue * finalMultiple1
         }
         if(growth2) {
             const intrinsicValueResult = StockAnalystService.calcIntrinsicValue(0, currentValue, growth2, discount, years);
-            updatedState.intrinsicValue2 = intrinsicValueResult.intrinsicValue * finalMultiple
-        }
-        if(growth3) {
-            const intrinsicValueResult = StockAnalystService.calcIntrinsicValue(0, currentValue, growth3, discount, years);
-            updatedState.intrinsicValue3 = intrinsicValueResult.intrinsicValue * finalMultiple
+            updatedState.intrinsicValue2 = intrinsicValueResult.intrinsicValue * finalMultiple2
         }
         return {...updatedState}
     }
@@ -85,7 +80,7 @@ export class DiscountedFCFCalculator extends React.Component<DiscountedFCFCalcul
         return (
             <div className='DiscountedFCFCalculator'>
                 <label>
-                    Current Value
+                    CV
                     <input value={this.state.currentValue} type="text" name="currentValue" onChange={this.handleChange}/>
                 </label>
                 <label>
@@ -107,31 +102,28 @@ export class DiscountedFCFCalculator extends React.Component<DiscountedFCFCalcul
                            onChange={this.handleChange}/>
                 </label>
                 <label>
-                    Growth 3
-                    <input value={this.state.growth3} type="text" name="growth3"
+                    Multip. 1
+                    <input value={this.state.finalMultiple1} type="text" name="finalMultiple1"
                            onChange={this.handleChange}/>
                 </label>
                 <label>
-                    Multiple
-                    <input value={this.state.finalMultiple} type="text" name="finalMultiple"
+                    Multip. 2
+                    <input value={this.state.finalMultiple2} type="text" name="finalMultiple2"
                            onChange={this.handleChange}/>
                 </label>
 
-                <label>Intr. Value 1
-                    <input value={this.formatNumber(this.state.intrinsicValue1)} type="text" name="intrinsicValue1"
+                <label>Intr.V 1
+                    <input value={DiscountedFCFCalculator.formatNumber(this.state.intrinsicValue1)} type="text" name="intrinsicValue1"
                            readOnly={true} className="IntrinsicValue"/>
                 </label>
-                <label>Intr. Value 2
-                    <input value={this.formatNumber(this.state.intrinsicValue2)} type="text" name="intrinsicValue2"
-                           readOnly={true} className="IntrinsicValue"/></label>
-                <label>Intr. Value 3
-                    <input value={this.formatNumber(this.state.intrinsicValue3)} type="text" name="intrinsicValue3"
+                <label>Intr.V 2
+                    <input value={DiscountedFCFCalculator.formatNumber(this.state.intrinsicValue2)} type="text" name="intrinsicValue2"
                            readOnly={true} className="IntrinsicValue"/></label>
             </div>
         )
     };
 
-    private formatNumber(value: any): string {
+    private static formatNumber(value: any): string {
         return !value || Number.isNaN(value) ? '' : value.toFixed(1);
     }
 }

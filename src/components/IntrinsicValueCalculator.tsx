@@ -23,7 +23,6 @@ export interface IntrinsicValueCalculatorState {
     futureYield3?: number
     futureYield5?: number
     futureYield10?: number
-    futureYield20?: number
 }
 
 export class IntrinsicValueCalculator extends React.Component<IntrinsicValueCalculatorProps, IntrinsicValueCalculatorState> {
@@ -64,7 +63,6 @@ export class IntrinsicValueCalculator extends React.Component<IntrinsicValueCalc
             updatedState.futureYield3 = StockAnalystService.futureValue(presentValue, growthPct, 3)
             updatedState.futureYield5 = StockAnalystService.futureValue(presentValue, growthPct, 5)
             updatedState.futureYield10 = StockAnalystService.futureValue(presentValue, growthPct, 10)
-            updatedState.futureYield20 = StockAnalystService.futureValue(presentValue, growthPct, 20)
         }
         return {...updatedState}
     }
@@ -112,9 +110,6 @@ export class IntrinsicValueCalculator extends React.Component<IntrinsicValueCalc
                 </label>
                 <label>Yield 10Y
                     <input value={this.formatNumber(this.state.futureYield10)} type="text" name="futureYield10"
-                           readOnly={true}/></label>
-                <label>Yield 20Y
-                    <input value={this.formatNumber(this.state.futureYield20)} type="text" name="futureYield20"
                            readOnly={true}/></label>
             </div>
         )

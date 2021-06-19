@@ -1,0 +1,16 @@
+.navbar{
+  background-color: #f0f5ff;
+  border: 1px #3677fa;
+  border-bottom-style: solid;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: #3677fa;
+}
+
+.navbar-brand, .navbar-nav{
+  font-size: larger;
+}

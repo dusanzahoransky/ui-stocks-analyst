@@ -1,12 +1,22 @@
 table, td, th {
+    border-radius: 0.5em;
     text-align: center;
     font-size: small;
 }
 
 th, td {
-    min-width: 60px;
-    max-width: 70px;
+    min-width: 80px;
+    max-width: 120px;
     box-shadow: 0 1px 3px -1px #95bfff;
+    padding: 0;
+}
+
+.FundamentalsTable {
+    margin-top: 2em;
+}
+
+.TableName{
+    margin-bottom: 0.5em;
 }
 
 table {
@@ -19,18 +29,21 @@ tr.selected{
 }
 
 th {
+    background-color: white;
     position: sticky;
     top: 28px;
-    border-color: #3677fa;
-    border-top-style: solid;
     border-width: 1px;
     font-weight: normal;
     z-index: 10;
     padding-left: 2px;
     padding-right: 2px;
+    background: linear-gradient(to top, #FFFFFF, #f0f5ff);
 }
 .companyName{
     min-width: 160px;
+}
+th.label {
+    height: 80px;
 }
 td.symbol{
     position: sticky;

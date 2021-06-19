@@ -129,9 +129,11 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
                     {this.renderRefreshDynamicDataIcon()}
                     {this.renderRefreshAllDataIcon()}
                 </h2>
-                <span className="VisibleTags">Display: {visibleTags}</span>
-                {this.renderTable()}
-                {this.renderCompanyCharts()}
+                <div className="WatchlistAnalysisContent">
+                    <span className="VisibleTags">Display: {visibleTags}</span>
+                    {this.renderTable()}
+                    {this.renderCompanyCharts()}
+                </div>
             </div>
         } else {
             return <div

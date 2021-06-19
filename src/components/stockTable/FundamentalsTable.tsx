@@ -42,8 +42,8 @@ export class FundamentalsTable extends React.Component<FundamentalsTableProps, F
 
     render = () => {
         return (
-            <div className='Table'>
-                {this.props.title}
+            <div className='FundamentalsTable'>
+                <div className='TableName'>{this.props.title}</div>
                 {this.renderTable()}
             </div>
         )

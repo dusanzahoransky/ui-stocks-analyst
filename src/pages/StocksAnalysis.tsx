@@ -10,6 +10,7 @@ import {DiscountedFCFCalculator} from "../components/DiscountedFCFCalculator";
 
 export interface StocksAnalysisState {
     error?: string
+    calculatorsDisplayed?: boolean
     watchlists?: Watchlist[]
 }
 
@@ -22,6 +23,7 @@ export class StocksAnalysis extends React.Component<{}, StocksAnalysisState> {
         super(props);
         this.state = {
             error: undefined,
+            calculatorsDisplayed: false,
             watchlists: []
         }
         this.stockAnalystService = new StockAnalystService();
@@ -52,14 +54,17 @@ export class StocksAnalysis extends React.Component<{}, StocksAnalysisState> {
             .filter(watchlist => !watchlist.etf)
             .map(watchlist => StocksAnalysis.renderResult(watchlist))
 
-        return <div className='StocksAnalysis'>
-            <div className='TopPanel'>
-                {alert}
-                <div className='Calculators'>
-                    <IntrinsicValueCalculator/>
-                    <DiscountedFCFCalculator/>
-                </div>
+        const calculators = this.state.calculatorsDisplayed ?
+            <div className='Calculators'>
+                <IntrinsicValueCalculator/>
+                <DiscountedFCFCalculator/>
+                <i className="fa fa-calculator" onClick={() => this.calculatorsToggleClick()}/>
+            </div> :
+            <div className='Calculators'>
+                <i className="fa fa-calculator" onClick={() => this.calculatorsToggleClick()}/>
             </div>
+
+        return <div className='StocksAnalysis'>
             <div className='Watchlists'>
                 <div className={'EtfWatchlists'}>
                     <h2 className='WatchlistsTypeLabel'>ETF Watchlists</h2>
@@ -70,6 +75,10 @@ export class StocksAnalysis extends React.Component<{}, StocksAnalysisState> {
                     {stockWatchlists}
                 </div>
             </div>
+            <div className={`BottomPanel ${this.state.calculatorsDisplayed ? 'BottomPanelExpanded': '' }`}>
+                {alert}
+                {calculators}
+            </div>
         </div>
     }
 
@@ -78,5 +87,15 @@ export class StocksAnalysis extends React.Component<{}, StocksAnalysisState> {
             key={watchlist.name}
             watchlist={watchlist}
         />
+    }
+
+    private calculatorsToggleClick() {
+        this.setState(
+            (prevState) => {
+                return {
+                    calculatorsDisplayed: !prevState.calculatorsDisplayed
+                }
+            }
+        )
     }
 }

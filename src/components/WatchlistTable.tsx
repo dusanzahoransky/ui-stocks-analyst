@@ -1,7 +1,7 @@
 import React from "react"
 import 'font-awesome/css/font-awesome.min.css'
 import {FormattingUtils} from "../utils/FormattingUtils"
-import './WatchlistTable.css'
+// import './WatchlistTable.css'
 import {StockFlattenFields} from "../model/StockFlattenFields"
 import {CellData} from "../model/table/CellData"
 import {EtfFields} from "../model/EtfFields"
