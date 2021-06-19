@@ -118,7 +118,7 @@ export class GrowthInvesting extends StockData {
 
     fromStock(stock: Stock): GrowthInvestingFields {
         const ratiosFields = {
-            symbol: StockData.toCell(stock.symbol, false, false, `Price: ${StockData.toTitle(StockData.lastEntry(stock.price))}`),
+            symbol: StockData.toCell(stock.symbol, false, false, `${stock.companyName}, price ${StockData.toTitle(StockData.lastEntry(stock.price))}`),
             marketCap: StockData.toCell(StockData.last(stock.marketCap)),
             enterpriseValue: StockData.toCell(StockData.last(stock.enterpriseValue), false),
             forwardPE: StockData.toCell(StockData.last(stock.forwardPE), false),
@@ -177,7 +177,7 @@ export class GrowthInvesting extends StockData {
         ratiosFields.currentPriceToFreeCashFlow.score = 2 * StockData.ratioBetterThan(ratiosFields.currentPriceToFreeCashFlow.value, 25, 10)
         ratiosFields.priceToFreeCashFlow.score = StockData.ratioBetterThan(ratiosFields.priceToFreeCashFlow.value, 25, 10)
         ratiosFields.enterpriseValueRevenue.score = 5 * StockData.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 10, 50)
-        ratiosFields.enterpriseValueEBITDA.score = StockData.ratioBetterThan(ratiosFields.enterpriseValueEBITDA.value, 20, 10)
+        ratiosFields.enterpriseValueEBITDA.score = 2 * StockData.ratioBetterThan(ratiosFields.enterpriseValueEBITDA.value, 20, 10)
         ratiosFields.growthEstimate5y.score = ratiosFields.growthEstimate5y.value * 5
 
         ratiosFields.revenueGrowthQ1.score = ratiosFields.revenueGrowthQ1.value / StockData.last(stock.priceToSalesTrailing12Months, 0, 5) * 15

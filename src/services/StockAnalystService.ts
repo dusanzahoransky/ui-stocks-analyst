@@ -20,6 +20,12 @@ export interface IntrinsicValueResult {
     cashTakenOut: number
 }
 
+export interface IntrinsicValueDiscountedFCFResult {
+    intrinsicValue: number,
+    finalFutureValue: number,
+    finalDiscountValue: number
+}
+
 export class StockAnalystService {
 
     async loadAnalysis(watchlist: string, refreshDynamicData: boolean, refreshFinancials: boolean, mockData: boolean): Promise<Stock[]> {
@@ -1336,7 +1342,23 @@ export class StockAnalystService {
         const cashTakenOut =  dividendsValue * (1 - ( 1 / this.futureValue(1, discountRate, years))) / discountRate
         const intrinsicValue = cashTakenOut + futureValue / discountValue
         return {intrinsicValue, futureValue, discountValue, cashTakenOut}
+    }
 
+    public static calcIntrinsicValueDiscountedCashFlow(pv: number, growthEstimate: number, discountRate: number, years: number): IntrinsicValueDiscountedFCFResult {
+        growthEstimate = growthEstimate / 100
+        discountRate = discountRate / 100
+
+        let intrinsicValue = 0
+        let futureValue = 0
+        let discountValue = 0
+        for(let i=0; i<years; i++) {
+            futureValue = this.futureValue(pv, growthEstimate, i)
+            discountValue = this.futureValue(1, discountRate, i)
+            const discountedCashFlow = futureValue / discountValue
+            intrinsicValue += discountedCashFlow
+        }
+
+        return {intrinsicValue, finalFutureValue: futureValue, finalDiscountValue: discountValue}
     }
 
     static futureValue(presentValue: number, growth: number, years: number) {

@@ -62,8 +62,7 @@ export class FundamentalsTable extends React.Component<FundamentalsTableProps, F
     renderHeader(data: FundamentalsCell[][], headerLabels: string[], headerAverages: FundamentalsCell[]) {
         const labelsRow = headerLabels.map((field, column) => {
                 return <th key={column}
-                           onClick={() => this.setSortedField(column)}
-                           title={FundamentalsTable.headerTitle(column)}>
+                           onClick={() => this.setSortedField(column)}>
                     {data[0][column].isGrowth? <i className="fa fa-line-chart"/>:undefined}
                     {FormattingUtils.toFieldLabel(field)}
                 </th>
@@ -82,10 +81,6 @@ export class FundamentalsTable extends React.Component<FundamentalsTableProps, F
             <tr>{averagesRow}</tr>
             </thead>
         )
-    }
-
-    private static headerTitle(column: number): string {
-        return `Field: ${StockFlattenFields[column]}`
     }
 
     setSortedField(column: number) {

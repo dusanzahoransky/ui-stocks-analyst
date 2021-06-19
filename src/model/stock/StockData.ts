@@ -3,6 +3,7 @@ import {FundamentalsCell} from "../table/FundamentalsCell";
 import {FormattingUtils} from "../../utils/FormattingUtils";
 import {StockFields} from "./StockFields";
 import moment from "moment";
+import {TimelineEntries} from "./TimelineEntries";
 
 export abstract class StockData {
 
@@ -65,13 +66,17 @@ export abstract class StockData {
         return {value, score: 0, isPercentage, isGrowth, title, classes}
     }
 
-    static toTitle(timelineField: any, isPercentage: boolean = false): string {
-        if (!timelineField) {
+    static toTitle(value: TimelineEntries | string | number, isPercentage: boolean = false): string {
+        if (!value) {
             return ''
         }
-        return Object.keys(timelineField)
-            .map(key => `${key}: ${FormattingUtils.formatValue(timelineField[key], isPercentage)}`)
-            .join('\r\n')
+        if(typeof value === 'string' || typeof value === 'number'){
+            return FormattingUtils.formatValue(value, isPercentage)
+        } else {
+            return Object.keys(value)
+                .map(key => `${key}: ${FormattingUtils.formatValue(value[key], isPercentage)}`)
+                .join('\r\n')
+        }
     }
 
     static toRatioTitle(numerator: any, denominator: any, result: any): string {
@@ -163,7 +168,7 @@ export abstract class StockData {
         return sum / count
     }
 
-    static lastEntry(timelineField: any | undefined, indexBeforeLast: number = 0): { [date: string]: any } {
+    static lastEntry(timelineField: any | undefined, indexBeforeLast: number = 0): TimelineEntries {
         if (!timelineField) {
             return undefined
         }

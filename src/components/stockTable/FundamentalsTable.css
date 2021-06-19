@@ -37,6 +37,11 @@ td.symbol{
     left:5px;
     background: #f0f5ff;
 }
+td.price{
+    position: sticky;
+    left:75px;
+    background: #f0f5ff;
+}
 .date{
     font-size: x-small;
 }

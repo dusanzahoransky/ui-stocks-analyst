@@ -6,6 +6,7 @@ import {Alert} from "../components/Alert";
 import Watchlist from "../model/watchlist/Watchlist";
 import {WatchlistService} from "../services/WatchlistService";
 import {WatchlistAnalysis} from "../components/WatchlistAnalysis";
+import {DiscountedFCFCalculator} from "../components/DiscountedFCFCalculator";
 
 export interface StocksAnalysisState {
     error?: string
@@ -56,6 +57,7 @@ export class StocksAnalysis extends React.Component<{}, StocksAnalysisState> {
                 {alert}
                 <div className='Calculators'>
                     <IntrinsicValueCalculator/>
+                    <DiscountedFCFCalculator/>
                 </div>
             </div>
             <div className='Watchlists'>

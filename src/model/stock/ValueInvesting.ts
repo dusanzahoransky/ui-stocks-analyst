@@ -15,6 +15,7 @@ export interface ValueInvestingFields extends StockFields {
     priceToFreeCashFlow: FundamentalsCell
     enterpriseValueRevenue: FundamentalsCell
     enterpriseValueEBITDA: FundamentalsCell
+    acquirersMultiple: FundamentalsCell
     priceEarningGrowth: FundamentalsCell
 
     roicQ1: FundamentalsCell
@@ -123,6 +124,7 @@ export class ValueInvesting extends StockData {
             'priceToFreeCashFlow',
             'enterpriseValueRevenue',
             'enterpriseValueEBITDA',
+            'acquirersMultiple',
             'priceEarningGrowth',
 
             'ROIC Q1',
@@ -216,7 +218,7 @@ export class ValueInvesting extends StockData {
 
     fromStock(stock: Stock): ValueInvestingFields {
         const ratiosFields = {
-            symbol: StockData.toCell(stock.symbol, false, false, `Price: ${StockData.toTitle(StockData.lastEntry(stock.price))}`),
+            symbol: StockData.toCell(stock.symbol, false, false, `${stock.companyName}, price ${StockData.toTitle(StockData.lastEntry(stock.price))}`),
             marketCap: StockData.toCell(StockData.last(stock.marketCap)),
             enterpriseValue: StockData.toCell(StockData.last(stock.enterpriseValue), false),
             totalCashPerShareP: StockData.toCell(StockData.last(stock.totalCashPerShareP), true),
@@ -228,6 +230,7 @@ export class ValueInvesting extends StockData {
             priceToFreeCashFlow: StockData.toCell(StockData.last(stock.priceToFreeCashFlow), false),
             enterpriseValueRevenue: StockData.toCell(StockData.last(stock.enterpriseValueRevenue), false),
             enterpriseValueEBITDA: StockData.toCell(StockData.last(stock.enterpriseValueEBITDA), false),
+            acquirersMultiple: StockData.toCell(StockData.last(stock.acquirersMultiple), false, false, ValueInvesting.toAcquirersMTitle(stock)),
             priceEarningGrowth: StockData.toCell(StockData.last(stock.priceEarningGrowth), false),
 
             roicQ1: StockData.toCell(StockData.last(stock.roicPQ), false, false, StockData.toTitle(stock.roicPQ)),
@@ -327,8 +330,15 @@ export class ValueInvesting extends StockData {
         ratiosFields.priceBook.score = 2 * StockData.ratioBetterThan(ratiosFields.priceBook.value, 2, 50)
         ratiosFields.currentPriceToFreeCashFlow.score = 5 * StockData.ratioBetterThan(ratiosFields.currentPriceToFreeCashFlow.value, 15, 50)
         ratiosFields.priceToFreeCashFlow.score = 3 * StockData.ratioBetterThan(ratiosFields.priceToFreeCashFlow.value, 15, 50)
-        ratiosFields.enterpriseValueRevenue.score = StockData.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 5, 10)
-        ratiosFields.enterpriseValueEBITDA.score = StockData.ratioBetterThan(ratiosFields.enterpriseValueEBITDA.value, 15, 20)
+        if(ValueInvesting.last(stock.enterpriseValue) < 0){
+            ratiosFields.enterpriseValueRevenue.score = 20
+            ratiosFields.enterpriseValueEBITDA.score = 20
+            ratiosFields.acquirersMultiple.score = 20
+        } else {
+            ratiosFields.enterpriseValueRevenue.score = StockData.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 5, 10)
+            ratiosFields.enterpriseValueEBITDA.score = 2 * StockData.ratioBetterThan(ratiosFields.enterpriseValueEBITDA.value, 15, 20)
+            ratiosFields.acquirersMultiple.score = 5 * StockData.ratioBetterThan(ratiosFields.acquirersMultiple.value, 13, 20)
+        }
         ratiosFields.priceEarningGrowth.score = 25 * StockData.ratioBetterThan(ratiosFields.priceEarningGrowth.value, 5, 10)
 
         ratiosFields.roicQ1.score = 2 * ratiosFields.roicQ1.value
@@ -459,5 +469,11 @@ export class ValueInvesting extends StockData {
         ratiosFields.symbol.classes.push('symbol')
 
         return ratiosFields
+    }
+
+    private static toAcquirersMTitle(stock: Stock) {
+        return `last Y op. income ${StockData.toTitle(ValueInvesting.lastEntry(stock.operatingIncome))}
+last Q op. income ${StockData.toTitle(ValueInvesting.lastEntry(stock.operatingIncomeQ))}
+past data: ${StockData.toTitle(stock.acquirersMultiple)}`;
     }
 }

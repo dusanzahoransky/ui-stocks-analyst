@@ -2,7 +2,11 @@ import {Stock} from "../Stock";
 import {FundamentalsCell} from "../table/FundamentalsCell";
 import {StockFields} from "./StockFields";
 import {StockData} from "./StockData";
-import {IntrinsicValueResult, StockAnalystService} from "../../services/StockAnalystService";
+import {
+    IntrinsicValueDiscountedFCFResult,
+    IntrinsicValueResult,
+    StockAnalystService
+} from "../../services/StockAnalystService";
 import {FormattingUtils} from "../../utils/FormattingUtils";
 
 export interface IntrinsicValueFields extends StockFields {
@@ -122,7 +126,7 @@ export class IntrinsicValue extends StockData {
 
     fromStock(stock: Stock): IntrinsicValueFields {
         const ratiosFields = {
-            symbol: StockData.toCell(stock.symbol),
+            symbol: StockData.toCell(stock.symbol, false, false, `${stock.companyName}, price ${StockData.toTitle(StockData.lastEntry(stock.price))}`),
             price: StockData.toCell(StockData.last(stock.price)),
             marketCap: StockData.toCell(StockData.last(stock.marketCap)),
 
@@ -241,31 +245,33 @@ export class IntrinsicValue extends StockData {
 
         const currentFCFPS = IntrinsicValue.last(stock.freeCashFlowPerShare);
 
-        intrinsicValueResult = StockAnalystService.calcIntrinsicValue(0, currentFCFPS, weightedFCFGrowth, 10, 10)
-        ratiosFields.intrinsicValueFromFCFGrowthDiscount10.value = intrinsicValueResult.intrinsicValue
-        ratiosFields.intrinsicValueFromFCFGrowthDiscount10.title = IntrinsicValue.formatIntrinsicValueCalc(0, currentFCFPS, weightedFCFGrowth, intrinsicValueResult)
+        let intrinsicValueFCFDiscResult = StockAnalystService.calcIntrinsicValueDiscountedCashFlow(currentFCFPS, weightedFCFGrowth, 10, 10)
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount10.value = intrinsicValueFCFDiscResult.intrinsicValue
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount10.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(currentFCFPS, weightedFCFGrowth, intrinsicValueFCFDiscResult)
 
 
-        intrinsicValueResult = StockAnalystService.calcIntrinsicValue(0, currentFCFPS, weightedFCFGrowth, 5, 10)
-        ratiosFields.intrinsicValueFromFCFGrowthDiscount5.value = intrinsicValueResult.intrinsicValue
-        ratiosFields.intrinsicValueFromFCFGrowthDiscount5.title = IntrinsicValue.formatIntrinsicValueCalc(0,currentFCFPS, weightedFCFGrowth, intrinsicValueResult)
+        intrinsicValueFCFDiscResult = StockAnalystService.calcIntrinsicValueDiscountedCashFlow(currentFCFPS, weightedFCFGrowth, 5, 10)
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount5.value = intrinsicValueFCFDiscResult.intrinsicValue
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount5.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(currentFCFPS, weightedFCFGrowth, intrinsicValueFCFDiscResult)
 
 
         const currentEPS = IntrinsicValue.last(stock.eps);
         const weightedEPSGrowth = IntrinsicValue.weightedAverage(ratiosFields.eps1Y.value, ratiosFields.eps3Y.value, ratiosFields.eps5Y.value, ratiosFields.eps9Y.value);
-        intrinsicValueResult = StockAnalystService.calcIntrinsicValue(0, currentEPS, weightedEPSGrowth, 10, 10)
-        ratiosFields.intrinsicValueFromEGrowthDiscount10.value = intrinsicValueResult.intrinsicValue
-        ratiosFields.intrinsicValueFromEGrowthDiscount10.title = IntrinsicValue.formatIntrinsicValueCalc(0,currentEPS, weightedEPSGrowth, intrinsicValueResult)
+        intrinsicValueFCFDiscResult = StockAnalystService.calcIntrinsicValueDiscountedCashFlow(currentEPS, weightedEPSGrowth, 10, 10)
+        ratiosFields.intrinsicValueFromEGrowthDiscount10.value = intrinsicValueFCFDiscResult.intrinsicValue
+        ratiosFields.intrinsicValueFromEGrowthDiscount10.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(currentEPS, weightedEPSGrowth, intrinsicValueFCFDiscResult)
 
-        intrinsicValueResult = StockAnalystService.calcIntrinsicValue(0, currentEPS, weightedEPSGrowth, 5, 10)
-        ratiosFields.intrinsicValueFromEGrowthDiscount5.value = intrinsicValueResult.intrinsicValue
-        ratiosFields.intrinsicValueFromEGrowthDiscount5.title = IntrinsicValue.formatIntrinsicValueCalc(0,currentEPS, weightedEPSGrowth, intrinsicValueResult)
+        intrinsicValueFCFDiscResult = StockAnalystService.calcIntrinsicValueDiscountedCashFlow(currentEPS, weightedEPSGrowth, 5, 10)
+        ratiosFields.intrinsicValueFromEGrowthDiscount5.value = intrinsicValueFCFDiscResult.intrinsicValue
+        ratiosFields.intrinsicValueFromEGrowthDiscount5.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(currentEPS, weightedEPSGrowth, intrinsicValueFCFDiscResult)
 
         StockData.removeInfinity(ratiosFields)
         StockData.capScoreValues(ratiosFields, 100)
         StockData.buildClasses(ratiosFields)
         StockData.calcTotalScore(ratiosFields)
+
         ratiosFields.symbol.classes.push('symbol')
+        ratiosFields.price.classes.push('price')
 
         return ratiosFields
     }
@@ -275,7 +281,14 @@ export class IntrinsicValue extends StockData {
 Growth ${FormattingUtils.formatValue(growth)} 
 futureValue=${FormattingUtils.formatValue(intrinsicValueResult.futureValue)}
 discountValue=${FormattingUtils.formatValue(intrinsicValueResult.discountValue)} 
-cashTakenOut=${FormattingUtils.formatValue(intrinsicValueResult.cashTakenOut)}`;
+cashTakenOut=${FormattingUtils.formatValue(intrinsicValueResult.cashTakenOut)}`
         return avg5Ydividend ? `dividends ${FormattingUtils.formatValue(avg5Ydividend)}`.concat(formattedCalc) : formattedCalc
+    }
+
+    private static formatIntrinsicValueFCFDiscCalc(currentValue: number, growth: number, intrinsicValueResult: IntrinsicValueDiscountedFCFResult) : string{
+        return `CV ${FormattingUtils.formatValue(currentValue)}
+Growth ${FormattingUtils.formatValue(growth)} 
+finalFutureValue=${FormattingUtils.formatValue(intrinsicValueResult.finalFutureValue)}
+finalDiscountValue=${FormattingUtils.formatValue(intrinsicValueResult.finalDiscountValue)}`
     }
 }
