@@ -92,7 +92,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel[0].toUpperCase() + fieldLabel.substr(1)
 
         fieldLabel = fieldLabel.replace(/ P$/, ' %')
-        fieldLabel = fieldLabel.replace('Enterprise Value EBITDA', 'EV / EBITDA')
+        fieldLabel = fieldLabel.replace('Enterprise Value EBITDA', 'EV / EBIT')
         fieldLabel = fieldLabel.replace('Trailing 12Months', 'ttm')
         fieldLabel = fieldLabel.replace('Trailing PE', 'PE ttm')
         fieldLabel = fieldLabel.replace('Forward PE', 'PE fwd')
