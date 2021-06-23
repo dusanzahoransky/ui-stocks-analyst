@@ -22,7 +22,7 @@ export enum StockDisplayableFields {
     priceToFreeCashFlow,
     priceBook,
     enterpriseValueRevenue,
-    enterpriseValueEBITDA,
+    enterpriseValueEBIT,
     priceEarningGrowth,
 
     targetMedianPrice,

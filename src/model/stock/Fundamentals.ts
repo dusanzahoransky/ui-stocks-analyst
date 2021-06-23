@@ -4,7 +4,7 @@ export enum Fundamentals {
     Dividends,
     ValueInvesting,
     GrowthInvesting,
-    OtherFinancials,
+    Financials,
     IntrinsicValue,
 
 

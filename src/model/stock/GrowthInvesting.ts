@@ -11,7 +11,7 @@ export interface GrowthInvestingFields extends StockFields {
     currentPriceToFreeCashFlow: FundamentalsCell
     priceToFreeCashFlow: FundamentalsCell
     enterpriseValueRevenue: FundamentalsCell
-    enterpriseValueEBITDA: FundamentalsCell
+    enterpriseValueEBIT: FundamentalsCell
     priceEarningGrowth: FundamentalsCell
 
     growthEstimate5y: FundamentalsCell
@@ -70,7 +70,7 @@ export class GrowthInvesting extends StockData {
             'currentPriceToFreeCashFlow',
             'priceToFreeCashFlow',
             'enterpriseValueRevenue',
-            'enterpriseValueEBITDA',
+            'enterpriseValueEBIT',
             'priceEarningGrowth',
 
             'growthEstimate5y',
@@ -126,7 +126,7 @@ export class GrowthInvesting extends StockData {
             currentPriceToFreeCashFlow: StockData.toCell(StockData.last(stock.currentPriceToFreeCashFlow), false),
             priceToFreeCashFlow: StockData.toCell(StockData.last(stock.priceToFreeCashFlow), false),
             enterpriseValueRevenue: StockData.toCell(StockData.last(stock.enterpriseValueRevenue), false),
-            enterpriseValueEBITDA: StockData.toCell(StockData.last(stock.enterpriseValueEBITDA), false),
+            enterpriseValueEBIT: StockData.toCell(StockData.last(stock.enterpriseValueEBIT), false),
             priceEarningGrowth: StockData.toCell(StockData.last(stock.priceEarningGrowth), false),
             growthEstimate5y: StockData.toCell(StockData.last(stock.growthEstimate5y), true),
 
@@ -177,7 +177,7 @@ export class GrowthInvesting extends StockData {
         ratiosFields.currentPriceToFreeCashFlow.score = 2 * StockData.ratioBetterThan(ratiosFields.currentPriceToFreeCashFlow.value, 25, 10)
         ratiosFields.priceToFreeCashFlow.score = StockData.ratioBetterThan(ratiosFields.priceToFreeCashFlow.value, 25, 10)
         ratiosFields.enterpriseValueRevenue.score = 5 * StockData.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 10, 50)
-        ratiosFields.enterpriseValueEBITDA.score = 2 * StockData.ratioBetterThan(ratiosFields.enterpriseValueEBITDA.value, 20, 10)
+        ratiosFields.enterpriseValueEBIT.score = 2 * StockData.ratioBetterThan(ratiosFields.enterpriseValueEBIT.value, 20, 10)
         ratiosFields.growthEstimate5y.score = ratiosFields.growthEstimate5y.value * 5
 
         ratiosFields.revenueGrowthQ1.score = ratiosFields.revenueGrowthQ1.value / StockData.last(stock.priceToSalesTrailing12Months, 0, 5) * 15

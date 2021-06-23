@@ -14,7 +14,7 @@ export interface ValueInvestingFields extends StockFields {
     currentPriceToFreeCashFlow: FundamentalsCell
     priceToFreeCashFlow: FundamentalsCell
     enterpriseValueRevenue: FundamentalsCell
-    enterpriseValueEBITDA: FundamentalsCell
+    enterpriseValueEBIT: FundamentalsCell
     acquirersMultiple: FundamentalsCell
     priceEarningGrowth: FundamentalsCell
 
@@ -123,7 +123,7 @@ export class ValueInvesting extends StockData {
             'currentQ PriceToFreeCashFlow',
             'priceToFreeCashFlow',
             'enterpriseValueRevenue',
-            'enterpriseValueEBITDA',
+            'enterpriseValueEBIT',
             'acquirersMultiple',
             'priceEarningGrowth',
 
@@ -222,16 +222,16 @@ export class ValueInvesting extends StockData {
             marketCap: StockData.toCell(StockData.last(stock.marketCap)),
             enterpriseValue: StockData.toCell(StockData.last(stock.enterpriseValue), false),
             totalCashPerShareP: StockData.toCell(StockData.last(stock.totalCashPerShareP), true),
-            trailingPE: StockData.toCell(StockData.last(stock.trailingPE), false),
-            forwardPE: StockData.toCell(StockData.last(stock.forwardPE), false),
-            priceToSalesTrailing12Months: StockData.toCell(StockData.last(stock.priceToSalesTrailing12Months), false),
-            priceBook: StockData.toCell(StockData.last(stock.priceBook), false),
-            currentPriceToFreeCashFlow: StockData.toCell(StockData.last(stock.currentPriceToFreeCashFlow), false),
-            priceToFreeCashFlow: StockData.toCell(StockData.last(stock.priceToFreeCashFlow), false),
-            enterpriseValueRevenue: StockData.toCell(StockData.last(stock.enterpriseValueRevenue), false),
-            enterpriseValueEBITDA: StockData.toCell(StockData.last(stock.enterpriseValueEBITDA), false),
+            trailingPE: StockData.toCell(StockData.last(stock.trailingPE), false, false, StockData.toTitle(stock.trailingPE)),
+            forwardPE: StockData.toCell(StockData.last(stock.forwardPE), false, false, StockData.toTitle(stock.forwardPE)),
+            priceToSalesTrailing12Months: StockData.toCell(StockData.last(stock.priceToSalesTrailing12Months), false, false, StockData.toTitle(stock.priceToSalesTrailing12Months)),
+            priceBook: StockData.toCell(StockData.last(stock.priceBook), false, false, StockData.toTitle(stock.priceBook)),
+            currentPriceToFreeCashFlow: StockData.toCell(StockData.last(stock.currentPriceToFreeCashFlow), false, false, StockData.toTitle(stock.currentPriceToFreeCashFlow)),
+            priceToFreeCashFlow: StockData.toCell(StockData.last(stock.priceToFreeCashFlow), false, false, StockData.toTitle(stock.priceToFreeCashFlow)),
+            enterpriseValueRevenue: StockData.toCell(StockData.last(stock.enterpriseValueRevenue), false, false, StockData.toTitle(stock.enterpriseValueRevenue)),
+            enterpriseValueEBIT: StockData.toCell(StockData.last(stock.enterpriseValueEBIT), false, false, StockData.toTitle(stock.enterpriseValueEBIT)),
             acquirersMultiple: StockData.toCell(StockData.last(stock.acquirersMultiple), false, false, ValueInvesting.toAcquirersMTitle(stock)),
-            priceEarningGrowth: StockData.toCell(StockData.last(stock.priceEarningGrowth), false),
+            priceEarningGrowth: StockData.toCell(StockData.last(stock.priceEarningGrowth), false, false, StockData.toTitle(stock.priceEarningGrowth)),
 
             roicQ1: StockData.toCell(StockData.last(stock.roicPQ), false, false, StockData.toTitle(stock.roicPQ)),
             roicY1: StockData.toCell(StockData.last(stock.roicP), false, false, StockData.toTitle(stock.roicP)),
@@ -267,8 +267,8 @@ export class ValueInvesting extends StockData {
             equityGrowth2: StockData.toCell(StockData.last(stock.totalShareholdersEquityGrowth, 1), true, true),
             equityGrowth3: StockData.toCell(StockData.last(stock.totalShareholdersEquityGrowth, 2), true, true),
 
-            totalDebtToEquityQ1: StockData.toCell(StockData.last(stock.totalDebtToEquityQ), false, false, StockData.toRatioTitle(stock.totalLiabilitiesQ, stock.totalShareholdersEquityQ, stock.totalDebtToEquityQ)),
-            totalDebtToEquity1: StockData.toCell(StockData.last(stock.totalDebtToEquity), false, false, StockData.toRatioTitle(stock.totalLiabilities, stock.totalShareholdersEquity, stock.totalDebtToEquity)),
+            totalDebtToEquityQ1: StockData.toCell(StockData.last(stock.totalDebtToEquityQ), false, false, StockData.toRatioTitle(stock.totalDebtQ, stock.totalShareholdersEquityQ, stock.totalDebtToEquityQ)),
+            totalDebtToEquity1: StockData.toCell(StockData.last(stock.totalDebtToEquity), false, false, StockData.toRatioTitle(stock.totalDebt, stock.totalShareholdersEquity, stock.totalDebtToEquity)),
             totalDebtToEquityGrowthQ1: StockData.toCell(StockData.last(stock.totalDebtToEquityGrowthQ), true, true),
             totalDebtToEquityGrowthQ2: StockData.toCell(StockData.last(stock.totalDebtToEquityGrowthQ, 1), true, true),
             totalDebtToEquityGrowth1: StockData.toCell(StockData.last(stock.totalDebtToEquityGrowth), true, true),
@@ -332,11 +332,11 @@ export class ValueInvesting extends StockData {
         ratiosFields.priceToFreeCashFlow.score = 3 * StockData.ratioBetterThan(ratiosFields.priceToFreeCashFlow.value, 15, 50)
         if(ValueInvesting.last(stock.enterpriseValue) < 0){
             ratiosFields.enterpriseValueRevenue.score = 20
-            ratiosFields.enterpriseValueEBITDA.score = 20
+            ratiosFields.enterpriseValueEBIT.score = 20
             ratiosFields.acquirersMultiple.score = 20
         } else {
             ratiosFields.enterpriseValueRevenue.score = StockData.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 5, 10)
-            ratiosFields.enterpriseValueEBITDA.score = 2 * StockData.ratioBetterThan(ratiosFields.enterpriseValueEBITDA.value, 15, 20)
+            ratiosFields.enterpriseValueEBIT.score = 2 * StockData.ratioBetterThan(ratiosFields.enterpriseValueEBIT.value, 15, 20)
             ratiosFields.acquirersMultiple.score = 5 * StockData.ratioBetterThan(ratiosFields.acquirersMultiple.value, 13, 20)
         }
         ratiosFields.priceEarningGrowth.score = 25 * StockData.ratioBetterThan(ratiosFields.priceEarningGrowth.value, 5, 10)
@@ -473,7 +473,7 @@ export class ValueInvesting extends StockData {
 
     private static toAcquirersMTitle(stock: Stock) {
         return `last Y op. income ${StockData.toTitle(ValueInvesting.lastEntry(stock.operatingIncome))}
-last Q op. income ${StockData.toTitle(ValueInvesting.lastEntry(stock.operatingIncomeQ))}
+(last Q op. income) ${StockData.toTitle(ValueInvesting.lastEntry(stock.operatingIncomeQ))}
 past data: ${StockData.toTitle(stock.acquirersMultiple)}`;
     }
 }

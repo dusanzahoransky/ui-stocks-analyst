@@ -27,7 +27,7 @@ import {Fundamentals} from "../model/stock/Fundamentals";
 import {ValueInvesting} from "../model/stock/ValueInvesting";
 import {StockData} from "../model/stock/StockData";
 import {GrowthInvesting} from "../model/stock/GrowthInvesting";
-import {IntrinsicValue, IntrinsicValueFields} from "../model/stock/IntrinsicValue";
+import {IntrinsicValue} from "../model/stock/IntrinsicValue";
 
 
 export interface WatchlistAnalysisProps {
@@ -55,7 +55,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
 
     private readonly stockAnalystService: StockAnalystService
 
-    public static readonly DISPLAY_CHECKBOXES = [Fundamentals.LastUpdated, Fundamentals.Stock, Fundamentals.Dividends, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.OtherFinancials, Fundamentals.IntrinsicValue]
+    public static readonly DISPLAY_CHECKBOXES = [Fundamentals.LastUpdated, Fundamentals.Stock, Fundamentals.Dividends, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.Financials, Fundamentals.IntrinsicValue]
     public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.IntrinsicValue]
     // public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.IntrinsicValue]
 
@@ -242,8 +242,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
                 return {value: averages[key]}
             })
 
-            const labels = this.stockAnalystService.getScoreLabels(this.props.watchlist.etf)
-            labels.forEach(label => this.addHeader(headerLabels, headerData, label))
+           this.addHeader(headerLabels, headerData, 'Score')
 
             for (const etf of etfs) {
                 let etfClone = {...etf}
@@ -253,25 +252,6 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
                 })
                 data.push(rowData)
             }
-        } else {
-            const stocks = this.state.stocksResult.stocks
-            let flattenStockData
-
-            for (const stock of stocks) {
-                let stockClone = {...stock}
-                stockClone = this.stockAnalystService.filterDisplayableStockStats(stockClone)
-                flattenStockData = this.stockAnalystService.flattenStockData(stockClone)
-                const rowData = Object.keys(flattenStockData).map(key => {
-                    return {value: flattenStockData[key]}
-                })
-                data.push(rowData)
-            }
-
-            headerLabels = Object.keys(flattenStockData)
-
-            const labels = this.stockAnalystService.getScoreLabels(this.props.watchlist.etf)
-            labels.forEach(label => this.addHeader(headerLabels, headerData, label))
-
         }
         data = data.map(row => this.stockAnalystService.scoreRow(headerData, row, this.props.watchlist.etf))
 
@@ -495,7 +475,6 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
             }
         }
     }
-
 
     private prepareEtfsChartData(etfs: Etf[]): EtfsChartData[] | undefined {
 

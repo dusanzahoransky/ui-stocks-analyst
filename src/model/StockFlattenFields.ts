@@ -23,7 +23,7 @@ export enum StockFlattenFields {
     priceToFreeCashFlow,
     priceBook,
     enterpriseValueRevenue,
-    enterpriseValueEBITDA,
+    enterpriseValueEBIT,
     priceEarningGrowth,
 
 
