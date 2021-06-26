@@ -184,11 +184,11 @@ export class EtfGeneral extends StockData {
         fields.tenYear.score *= 5
 
         fields.annualHoldingsTurnover.score = fields.annualHoldingsTurnover.value - avg.annualHoldingsTurnover
-        fields.annualHoldingsTurnover.score *= 2
+        fields.annualHoldingsTurnover.score *= 0
         fields.annualReportExpenseRatio.score = fields.annualReportExpenseRatio.value - avg.annualReportExpenseRatio
-        fields.annualReportExpenseRatio.score *= 2
+        fields.annualReportExpenseRatio.score *= 0
         fields.averageDailyVolume3Month.score = fields.averageDailyVolume3Month.value - avg.averageDailyVolume3Month
-        fields.averageDailyVolume3Month.score *= 2
+        fields.averageDailyVolume3Month.score *= 0
 
         StockData.removeInfinity(fields)
         StockData.capScoreValues(fields)
