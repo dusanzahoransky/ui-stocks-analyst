@@ -1,6 +1,5 @@
 import {StockFlattenFields} from "../model/StockFlattenFields";
 import moment from "moment";
-import {EtfFields} from "../model/EtfFields";
 import {CellData} from "../model/table/CellData";
 import {FundamentalsCell} from "../model/table/FundamentalsCell";
 
@@ -23,18 +22,6 @@ export class FormattingUtils {
 
             })
             .replace(/_/g, ' ')
-    }
-
-    static formatStock(data: CellData, column: StockFlattenFields): string {
-        if (typeof data === 'string' && column === StockFlattenFields.exDividendDate) {
-            let diff = moment().diff(data, 'days');
-            return diff < 0 ? `in ${-diff} days` : data;
-        }
-        const formattedValue = this.format(data.value);
-        if(formattedValue && this.isPercentage(column, false)){
-            return formattedValue.concat('%')
-        }
-        return formattedValue
     }
 
     static formatCellValue(cell: FundamentalsCell): string {

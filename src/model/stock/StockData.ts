@@ -5,6 +5,7 @@ import {StockFields} from "./StockFields";
 import moment from "moment";
 import {TimelineEntries} from "./TimelineEntries";
 import {Cell} from "../table/Cell";
+import {StockAnalystService} from "../../services/StockAnalystService";
 
 export abstract class StockData {
 
@@ -16,15 +17,6 @@ export abstract class StockData {
 
     abstract fromStock(stock: Stock, stockAverages?: Stock): StockFields
 
-    static absLessThan(value: number, absValueThreshold: number) {
-        if (value > absValueThreshold) {
-            return absValueThreshold
-        } else if (value < -absValueThreshold) {
-            return -absValueThreshold
-        } else {
-            return value
-        }
-    }
 
     static buildClasses(ratiosFields: StockFields) {
         const fields = Object.values(ratiosFields) as FundamentalsCell[];
@@ -40,22 +32,6 @@ export abstract class StockData {
                 field.isPercentage ? field.classes.push('lightGreenText') : field.classes.push('lightGreen')
             }
         }
-    }
-
-    static ratioBetterThan(number: number, positiveLimit: number, maxThreshold: number = 50, capAt: number = 1000) {
-        let score: number
-        if (number > 0) {
-
-            if (number <= positiveLimit + maxThreshold) {
-                score = positiveLimit - number
-            } else {
-                score = -maxThreshold * 2
-            }
-
-        } else {
-            score = -maxThreshold * 3 + ((1 / number) * 100)
-        }
-        return this.absLessThan(score, capAt)
     }
 
     static squareRoot(number: number): number {
@@ -228,7 +204,7 @@ export abstract class StockData {
                 value.classes.push(this.CLASS_ADDITIONAL_INFO)
             }
             if (value.score > maxValue || value.score < -maxValue) {
-                value.score = this.absLessThan(value.score, maxValue)
+                value.score = StockAnalystService.absLessThan(value.score, maxValue)
             }
         }
     }

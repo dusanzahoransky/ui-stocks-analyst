@@ -2,6 +2,7 @@ import {Stock} from "../Stock";
 import {FundamentalsCell} from "../table/FundamentalsCell";
 import {StockFields} from "./StockFields";
 import {StockData} from "./StockData";
+import {StockAnalystService} from "../../services/StockAnalystService";
 
 export interface ValueInvestingFields extends StockFields {
     marketCap: FundamentalsCell
@@ -324,22 +325,22 @@ export class ValueInvesting extends StockData {
 
         ratiosFields.enterpriseValue.score = StockData.percentBelow(ratiosFields.enterpriseValue.value, ratiosFields.marketCap.value)
         ratiosFields.totalCashPerShareP.score = ratiosFields.totalCashPerShareP.value > 10 ? 0.1 * ratiosFields.totalCashPerShareP.value : 0
-        ratiosFields.trailingPE.score = 3 * StockData.ratioBetterThan(ratiosFields.trailingPE.value, 20, 50)
-        ratiosFields.forwardPE.score = 10 * StockData.ratioBetterThan(ratiosFields.forwardPE.value, 20, 50)
-        ratiosFields.priceToSalesTrailing12Months.score = 3 * StockData.ratioBetterThan(ratiosFields.priceToSalesTrailing12Months.value, 6, 50)
-        ratiosFields.priceBook.score = 2 * StockData.ratioBetterThan(ratiosFields.priceBook.value, 2, 50)
-        ratiosFields.currentPriceToFreeCashFlow.score = 5 * StockData.ratioBetterThan(ratiosFields.currentPriceToFreeCashFlow.value, 15, 50)
-        ratiosFields.priceToFreeCashFlow.score = 3 * StockData.ratioBetterThan(ratiosFields.priceToFreeCashFlow.value, 15, 50)
+        ratiosFields.trailingPE.score = 3 * StockAnalystService.ratioBetterThan(ratiosFields.trailingPE.value, 20, 50)
+        ratiosFields.forwardPE.score = 10 * StockAnalystService.ratioBetterThan(ratiosFields.forwardPE.value, 20, 50)
+        ratiosFields.priceToSalesTrailing12Months.score = 3 * StockAnalystService.ratioBetterThan(ratiosFields.priceToSalesTrailing12Months.value, 6, 50)
+        ratiosFields.priceBook.score = 2 * StockAnalystService.ratioBetterThan(ratiosFields.priceBook.value, 2, 50)
+        ratiosFields.currentPriceToFreeCashFlow.score = 5 * StockAnalystService.ratioBetterThan(ratiosFields.currentPriceToFreeCashFlow.value, 15, 50)
+        ratiosFields.priceToFreeCashFlow.score = 3 * StockAnalystService.ratioBetterThan(ratiosFields.priceToFreeCashFlow.value, 15, 50)
         if(ValueInvesting.last(stock.enterpriseValue) < 0){
             ratiosFields.enterpriseValueRevenue.score = 20
             ratiosFields.enterpriseValueEBIT.score = 20
             ratiosFields.acquirersMultiple.score = 20
         } else {
-            ratiosFields.enterpriseValueRevenue.score = StockData.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 5, 10)
-            ratiosFields.enterpriseValueEBIT.score = 2 * StockData.ratioBetterThan(ratiosFields.enterpriseValueEBIT.value, 15, 20)
-            ratiosFields.acquirersMultiple.score = 5 * StockData.ratioBetterThan(ratiosFields.acquirersMultiple.value, 13, 20)
+            ratiosFields.enterpriseValueRevenue.score = StockAnalystService.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 5, 10)
+            ratiosFields.enterpriseValueEBIT.score = 2 * StockAnalystService.ratioBetterThan(ratiosFields.enterpriseValueEBIT.value, 15, 20)
+            ratiosFields.acquirersMultiple.score = 5 * StockAnalystService.ratioBetterThan(ratiosFields.acquirersMultiple.value, 13, 20)
         }
-        ratiosFields.priceEarningGrowth.score = 25 * StockData.ratioBetterThan(ratiosFields.priceEarningGrowth.value, 5, 10)
+        ratiosFields.priceEarningGrowth.score = 25 * StockAnalystService.ratioBetterThan(ratiosFields.priceEarningGrowth.value, 5, 10)
 
         ratiosFields.roicQ1.score = 2 * ratiosFields.roicQ1.value
         if(ratiosFields.roicQ1.value < 0){
@@ -401,8 +402,8 @@ export class ValueInvesting extends StockData {
         ratiosFields.equityGrowth2.score = ratiosFields.equityGrowth2.value
         ratiosFields.equityGrowth3.score = ratiosFields.equityGrowth3.value * 0.5
 
-        ratiosFields.totalDebtToEquityQ1.score = StockData.ratioBetterThan(ratiosFields.totalDebtToEquityQ1.value, 0.8, 10) * 20
-        ratiosFields.totalDebtToEquity1.score = StockData.ratioBetterThan(ratiosFields.totalDebtToEquity1.value, 0.8, 10) * 50
+        ratiosFields.totalDebtToEquityQ1.score = StockAnalystService.ratioBetterThan(ratiosFields.totalDebtToEquityQ1.value, 0.8, 10) * 20
+        ratiosFields.totalDebtToEquity1.score = StockAnalystService.ratioBetterThan(ratiosFields.totalDebtToEquity1.value, 0.8, 10) * 50
         ratiosFields.totalDebtToEquityGrowthQ1.score = -StockData.squareRoot(StockData.last(stock.totalDebtToEquityQ, 0)) * ratiosFields.totalDebtToEquityGrowthQ1.value * 0.5
         ratiosFields.totalDebtToEquityGrowthQ2.score = -StockData.squareRoot(StockData.last(stock.totalDebtToEquityQ, 1)) * ratiosFields.totalDebtToEquityGrowthQ2.value * 0.25
         ratiosFields.totalDebtToEquityGrowth1.score = -StockData.squareRoot(StockData.last(stock.totalDebtToEquity, 0)) * ratiosFields.totalDebtToEquityGrowth1.value * 0.75
@@ -415,8 +416,8 @@ export class ValueInvesting extends StockData {
         ratiosFields.freeCashFlowPerShareGrowth2.score = ratiosFields.freeCashFlowPerShareGrowth2.value / avgPriceToFCF5Y * 20
         ratiosFields.freeCashFlowPerShareGrowth3.score = ratiosFields.freeCashFlowPerShareGrowth3.value / avgPriceToFCF5Y * 10
 
-        ratiosFields.nonCurrentLiabilitiesToIncomeQ1.score = StockData.ratioBetterThan(ratiosFields.nonCurrentLiabilitiesToIncomeQ1.value, 4, 6, 5) * 2
-        ratiosFields.nonCurrentLiabilitiesToIncome1.score = StockData.ratioBetterThan(ratiosFields.nonCurrentLiabilitiesToIncome1.value, 4, 6, 5) * 5
+        ratiosFields.nonCurrentLiabilitiesToIncomeQ1.score = StockAnalystService.ratioBetterThan(ratiosFields.nonCurrentLiabilitiesToIncomeQ1.value, 4, 6, 5) * 2
+        ratiosFields.nonCurrentLiabilitiesToIncome1.score = StockAnalystService.ratioBetterThan(ratiosFields.nonCurrentLiabilitiesToIncome1.value, 4, 6, 5) * 5
         ratiosFields.nonCurrentLiabilitiesToIncomeGrowthQ1.score = StockData.last(stock.nonCurrentLiabilitiesToIncomeQ, 0) < 0 ? -20 : -StockData.last(stock.nonCurrentLiabilitiesToIncomeQ, 0) * ratiosFields.nonCurrentLiabilitiesToIncomeGrowthQ1.value * 0.1
         ratiosFields.nonCurrentLiabilitiesToIncomeGrowthQ2.score = StockData.last(stock.nonCurrentLiabilitiesToIncomeQ, 1) < 0 ? -20 : -StockData.last(stock.nonCurrentLiabilitiesToIncomeQ, 1) * ratiosFields.nonCurrentLiabilitiesToIncomeGrowthQ2.value * 0.05
         ratiosFields.nonCurrentLiabilitiesToIncomeGrowth1.score = StockData.last(stock.nonCurrentLiabilitiesToIncome, 0) < 0 ? -20 : -StockData.last(stock.nonCurrentLiabilitiesToIncome, 0) * ratiosFields.nonCurrentLiabilitiesToIncomeGrowth1.value * 0.15

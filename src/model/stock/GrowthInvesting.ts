@@ -2,6 +2,7 @@ import {Stock} from "../Stock";
 import {FundamentalsCell} from "../table/FundamentalsCell";
 import {StockFields} from "./StockFields";
 import {StockData} from "./StockData";
+import {StockAnalystService} from "../../services/StockAnalystService";
 
 export interface GrowthInvestingFields extends StockFields {
     marketCap: FundamentalsCell
@@ -172,12 +173,12 @@ export class GrowthInvesting extends StockData {
 
 
         ratiosFields.enterpriseValue.score = StockData.percentBelow(ratiosFields.enterpriseValue.value, ratiosFields.marketCap.value)
-        ratiosFields.forwardPE.score = 3 * StockData.ratioBetterThan(ratiosFields.forwardPE.value, 30, 10)
-        ratiosFields.priceToSalesTrailing12Months.score = 10 * StockData.ratioBetterThan(ratiosFields.priceToSalesTrailing12Months.value, 6, 50)
-        ratiosFields.currentPriceToFreeCashFlow.score = 2 * StockData.ratioBetterThan(ratiosFields.currentPriceToFreeCashFlow.value, 25, 10)
-        ratiosFields.priceToFreeCashFlow.score = StockData.ratioBetterThan(ratiosFields.priceToFreeCashFlow.value, 25, 10)
-        ratiosFields.enterpriseValueRevenue.score = 5 * StockData.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 10, 50)
-        ratiosFields.enterpriseValueEBIT.score = 2 * StockData.ratioBetterThan(ratiosFields.enterpriseValueEBIT.value, 20, 10)
+        ratiosFields.forwardPE.score = 3 * StockAnalystService.ratioBetterThan(ratiosFields.forwardPE.value, 30, 10)
+        ratiosFields.priceToSalesTrailing12Months.score = 10 * StockAnalystService.ratioBetterThan(ratiosFields.priceToSalesTrailing12Months.value, 6, 50)
+        ratiosFields.currentPriceToFreeCashFlow.score = 2 * StockAnalystService.ratioBetterThan(ratiosFields.currentPriceToFreeCashFlow.value, 25, 10)
+        ratiosFields.priceToFreeCashFlow.score = StockAnalystService.ratioBetterThan(ratiosFields.priceToFreeCashFlow.value, 25, 10)
+        ratiosFields.enterpriseValueRevenue.score = 5 * StockAnalystService.ratioBetterThan(ratiosFields.enterpriseValueRevenue.value, 10, 50)
+        ratiosFields.enterpriseValueEBIT.score = 2 * StockAnalystService.ratioBetterThan(ratiosFields.enterpriseValueEBIT.value, 20, 10)
         ratiosFields.growthEstimate5y.score = ratiosFields.growthEstimate5y.value * 5
 
         ratiosFields.revenueGrowthQ1.score = ratiosFields.revenueGrowthQ1.value / StockData.last(stock.priceToSalesTrailing12Months, 0, 5) * 15
