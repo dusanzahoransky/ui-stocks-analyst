@@ -106,8 +106,8 @@ export interface ValueInvestingFields extends StockFields {
 
 export class ValueInvesting extends StockData {
 
-    headerData(): FundamentalsCell[] {
-        return [];
+    headerData(stock: Stock): undefined {
+        return undefined
     }
 
     labels(): string[] {

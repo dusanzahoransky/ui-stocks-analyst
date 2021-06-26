@@ -22,12 +22,12 @@ import Watchlist from "../model/watchlist/Watchlist";
 import {Alert} from "./Alert";
 import {FundamentalsTable} from "./stockTable/FundamentalsTable";
 import {FundamentalsCell} from "../model/table/FundamentalsCell";
-import {WatchlistTable} from "./WatchlistTable";
 import {Fundamentals} from "../model/stock/Fundamentals";
 import {ValueInvesting} from "../model/stock/ValueInvesting";
 import {StockData} from "../model/stock/StockData";
 import {GrowthInvesting} from "../model/stock/GrowthInvesting";
 import {IntrinsicValue} from "../model/stock/IntrinsicValue";
+import {EtfGeneral} from "../model/stock/EtfGeneral";
 
 
 export interface WatchlistAnalysisProps {
@@ -76,7 +76,10 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
 
     componentDidMount() {
         //uncomment to preload data
-        if (this.props.watchlist.name === 'TO_CHECK') {
+        // if (this.props.watchlist.name === 'TO_CHECK') {
+        //     return this.loadWatchlistData(this.props.watchlist)
+        // }
+        if (this.props.watchlist.name === 'AU_ETF_AU') {
             return this.loadWatchlistData(this.props.watchlist)
         }
     }
@@ -191,24 +194,17 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     renderTable() {
         const tablesToDisplay = []
         if (this.props.watchlist.etf) {
-            const {data, headerData, headerLabels} = this.prepareData()
-            tablesToDisplay.push(<WatchlistTable
-                data={data}
-                isEtf={this.props.watchlist.etf}
-                headerLabels={headerLabels}
-                headerData={headerData}
-                visibleTables={this.state.visibleTables}
-                onStockClickHandler={this.stockOnClickHandler}
-            />)
-        }
-        if (this.state.visibleTables.includes(Fundamentals.ValueInvesting)) {
-            tablesToDisplay.push(this.toTable(this.toTableData(new ValueInvesting())))
-        }
-        if (this.state.visibleTables.includes(Fundamentals.GrowthInvesting)) {
-            tablesToDisplay.push(this.toTable(this.toTableData(new GrowthInvesting())))
-        }
-        if (this.state.visibleTables.includes(Fundamentals.IntrinsicValue)) {
-            tablesToDisplay.push(this.toTable(this.toTableData(new IntrinsicValue())))
+            tablesToDisplay.push(this.toTable(WatchlistAnalysis.toEtfTableData(new EtfGeneral(), this.state.etfsResult.etfs, this.state.etfsResult.averages)))
+        } else {
+            if (this.state.visibleTables.includes(Fundamentals.ValueInvesting)) {
+                tablesToDisplay.push(this.toTable(WatchlistAnalysis.toStockTableData(new ValueInvesting(), this.state.stocksResult.stocks)))
+            }
+            if (this.state.visibleTables.includes(Fundamentals.GrowthInvesting)) {
+                tablesToDisplay.push(this.toTable(WatchlistAnalysis.toStockTableData(new GrowthInvesting(), this.state.stocksResult.stocks)))
+            }
+            if (this.state.visibleTables.includes(Fundamentals.IntrinsicValue)) {
+                tablesToDisplay.push(this.toTable(WatchlistAnalysis.toStockTableData(new IntrinsicValue(), this.state.stocksResult.stocks)))
+            }
         }
         return tablesToDisplay
     }
@@ -225,39 +221,6 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         />;
     }
 
-    private prepareData(): { data: CellData[][], headerData: CellData[], headerLabels: string[] } {
-        let data: CellData[][] = []
-        let headerData: CellData[] = []
-        let headerLabels: string[] = []
-
-        if (this.props.watchlist.etf) {
-
-            const etfs = this.state.etfsResult.etfs
-            let averages = {...this.state.etfsResult.averages}
-
-            averages = this.stockAnalystService.filterDisplayableEtfStats(averages)
-
-            headerLabels = Object.keys(averages)
-            headerData = Object.keys(averages).map(key => {
-                return {value: averages[key]}
-            })
-
-           this.addHeader(headerLabels, headerData, 'Score')
-
-            for (const etf of etfs) {
-                let etfClone = {...etf}
-                etfClone = this.stockAnalystService.filterDisplayableEtfStats(etfClone)
-                const rowData = Object.keys(etfClone).map(key => {
-                    return {value: etfClone[key]}
-                })
-                data.push(rowData)
-            }
-        }
-        data = data.map(row => this.stockAnalystService.scoreRow(headerData, row, this.props.watchlist.etf))
-
-        return {data, headerData, headerLabels}
-    }
-
     private renderShowLink() {
         return <i className="fa fa-caret-down" onClick={() => this.onShowClickHandler(this.props.watchlist)}/>
     }
@@ -271,7 +234,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     }
 
     private renderRefreshDynamicDataIcon() {
-        const label = this.props.watchlist.etf ? 'Refresh data' : 'Dynamic Data'
+        const label = 'Dynamic Data'
         return <span className="refresh">
                 <i className="fa fa-refresh"
                    onClick={() => this.onRefreshDynamicDataHandler(this.props.watchlist)}/> {label}
@@ -283,9 +246,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         return this.loadWatchlistData(watchlist, true, false, false);
     }
 
-    private toTableData(stockData: StockData): TableData {
-        const stocks = this.state.stocksResult.stocks
-
+    private static toStockTableData(stockData: StockData, stocks: Stock[]): TableData {
         const data: FundamentalsCell[][] = []
 
         for (const stock of stocks) {
@@ -294,8 +255,25 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         }
 
         const headerLabels: string[] = stockData.labels()
-        const headerData: FundamentalsCell[] = stockData.headerData()
+        const headerDataObject = stockData.headerData(null);
+        const headerData = headerDataObject ? Object.values(headerDataObject) : []
         const title = stockData.constructor.name
+
+        return {title, data, headerData, headerLabels}
+    }
+
+    private static toEtfTableData(etfData: StockData, etfs: Etf[], averages: Etf): TableData {
+        const data: FundamentalsCell[][] = []
+
+        for (const etf of etfs) {
+            const ratiosFields = etfData.fromStock(etf, averages)
+            data.push(Object.values(ratiosFields))
+        }
+
+        const headerLabels = etfData.labels()
+        const headerDataObject = etfData.headerData(averages);
+        const headerData = headerDataObject ? Object.values(headerDataObject) : []
+        const title = etfData.constructor.name
 
         return {title, data, headerData, headerLabels}
     }

@@ -4,16 +4,17 @@ import {FormattingUtils} from "../../utils/FormattingUtils";
 import {StockFields} from "./StockFields";
 import moment from "moment";
 import {TimelineEntries} from "./TimelineEntries";
+import {Cell} from "../table/Cell";
 
 export abstract class StockData {
 
     public static readonly CLASS_ADDITIONAL_INFO = 'additionalInfo';
 
-    abstract headerData(): FundamentalsCell[]
+    abstract headerData(stock: Stock): StockFields | undefined
 
     abstract labels(): string[]
 
-    abstract fromStock(stock: Stock): StockFields
+    abstract fromStock(stock: Stock, stockAverages?: Stock): StockFields
 
     static absLessThan(value: number, absValueThreshold: number) {
         if (value > absValueThreshold) {
@@ -62,6 +63,11 @@ export abstract class StockData {
     }
 
     static toCell(value?: number, isPercentage: boolean = false, isGrowth: boolean = false, title: string = ''): FundamentalsCell {
+        const classes = isGrowth ? ['growth'] : [];
+        return {value, score: 0, isPercentage, isGrowth, title, classes}
+    }
+
+    static toGenericCell(value?: any, isPercentage: boolean = false, isGrowth: boolean = false, title: string = ''): Cell<any> {
         const classes = isGrowth ? ['growth'] : [];
         return {value, score: 0, isPercentage, isGrowth, title, classes}
     }
@@ -182,7 +188,9 @@ export abstract class StockData {
     }
 
     static calcTotalScore(ratiosFields: StockFields) {
-        const score = Object.values(ratiosFields).map(f => f.score).reduce((prev, curr) => prev + curr)
+        const score = Object.values(ratiosFields)
+            .map(f => f.score)
+            .reduce((prev, curr) => prev + curr)
         ratiosFields.score.value = score
         ratiosFields.score.classes.push(score > 0 ? 'greenText' : 'redText')
     }

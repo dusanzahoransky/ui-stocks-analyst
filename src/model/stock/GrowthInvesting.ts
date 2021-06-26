@@ -56,8 +56,8 @@ export interface GrowthInvestingFields extends StockFields {
 
 export class GrowthInvesting extends StockData {
 
-    headerData(): FundamentalsCell[] {
-        return [];
+    headerData(stock: Stock): undefined {
+        return undefined
     }
 
     labels(): string[] {

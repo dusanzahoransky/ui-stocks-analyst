@@ -37,10 +37,6 @@ export class FormattingUtils {
         return formattedValue
     }
 
-    static formatEtf(data: CellData, column: EtfFields): string {
-        return this.format(data.value)
-    }
-
     static formatCellValue(cell: FundamentalsCell): string {
         return this.formatValue(cell.value, cell.isPercentage)
     }

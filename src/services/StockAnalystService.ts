@@ -7,9 +7,6 @@ import resultTest from "./Stocks-test.json"
 import etfsTest from "./Etfs-test.json"
 import {EtfFields} from "../model/EtfFields";
 import {ScoreAdditionalInfo} from "../model/table/ScoreAdditionalInfo";
-import {Etf} from "../model/Etf";
-import {FieldDisplayType} from "../model/FieldDisplayType";
-import {Timeline} from "../model/Timeline";
 import HttpClient from "./HttpClient";
 
 export interface IntrinsicValueResult {
@@ -35,11 +32,11 @@ export class StockAnalystService {
         }
     }
 
-    async loadEtfsAnalysis(watchlist: string, forceRefresh: boolean, mockData: boolean): Promise<EtfsAnalysisResult> {
+    async loadEtfsAnalysis(watchlist: string, refreshDynamicData: boolean, mockData: boolean): Promise<EtfsAnalysisResult> {
         if (watchlist === 'TEST_INDICES') {
             return Promise.resolve(etfsTest)
         } else {
-            return HttpClient.fetch(`http://localhost:3000/stocks/etfWatchlist?watchlist=${watchlist}&forceRefresh=${forceRefresh}&mockData=${mockData}`);
+            return HttpClient.fetch(`http://localhost:3000/stocks/etfWatchlist?watchlist=${watchlist}&refreshDynamicData=${refreshDynamicData}&mockData=${mockData}`);
         }
     }
 
@@ -826,27 +823,6 @@ export class StockAnalystService {
     private static signPow(number: number, exponent: number) {
         let absPow = Math.pow(Math.abs(number), exponent);
         return absPow * Math.sign(number);
-    }
-
-    filterDisplayableEtfStats(etf: Etf): Etf {
-        const colNames = []
-        for (const enumMember in EtfFields) {
-            if (Number.isNaN(Number.parseInt(enumMember))) {
-                colNames.push(enumMember)
-            }
-        }
-        for (const statName of Object.keys(etf)) {
-            if (!colNames.find(colName => colName === statName)) {
-                delete etf[statName]
-            }
-        }
-        return etf
-    }
-
-    getScoreLabels(isEtf: boolean): string[] {
-        const labels = []
-        labels.push('Score')
-        return labels;
     }
 
     private static absLessThan(value: number, absValueThreshold: number) {

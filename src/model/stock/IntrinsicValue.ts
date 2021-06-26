@@ -63,8 +63,8 @@ export interface IntrinsicValueFields extends StockFields {
 
 export class IntrinsicValue extends StockData {
 
-    headerData(): FundamentalsCell[] {
-        return [];
+    headerData(stock: Stock): undefined {
+        return undefined
     }
 
     labels(): string[] {

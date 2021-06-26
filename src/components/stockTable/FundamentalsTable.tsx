@@ -2,7 +2,6 @@ import React from "react"
 import 'font-awesome/css/font-awesome.min.css'
 import {FormattingUtils} from "../../utils/FormattingUtils"
 import './FundamentalsTable.css'
-import {StockFlattenFields} from "../../model/StockFlattenFields"
 import {FundamentalsCell} from "../../model/table/FundamentalsCell";
 
 export interface FundamentalsTableProps {
@@ -70,7 +69,7 @@ export class FundamentalsTable extends React.Component<FundamentalsTableProps, F
         )
         const averagesRow = headerAverages.map((value, column) => {
                 return <th key={column}>
-                    {value.value}
+                    {FormattingUtils.formatCellValue(value)}
                 </th>
             }
         )
@@ -137,7 +136,7 @@ export class FundamentalsTable extends React.Component<FundamentalsTableProps, F
                     FormattingUtils.formatCellValue(data)
                 }</span>
                 <span
-                    className={"score"}>{data.score ? data.score.toFixed(0) : ''}</span>
+                    className={"score"}>{data.score && typeof data.score === 'number' ? data.score.toFixed(0) : ''}</span>
             </td>
         )
         return (

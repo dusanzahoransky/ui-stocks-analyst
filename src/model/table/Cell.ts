@@ -1,7 +1,5 @@
-import {Cell} from "./Cell";
-
-export interface FundamentalsCell extends Cell<number> {
-    value?: number
+export interface Cell<T> {
+    value?: T
     title?: string
     score?: number
     isPercentage?: boolean
