@@ -28,6 +28,8 @@ import {StockData} from "../model/stock/StockData";
 import {GrowthInvesting} from "../model/stock/GrowthInvesting";
 import {IntrinsicValue} from "../model/stock/IntrinsicValue";
 import {EtfGeneral} from "../model/stock/EtfGeneral";
+import {BasicInfo} from "../model/stock/BasicInfo";
+import {Financials} from "../model/stock/Financials";
 
 
 export interface WatchlistAnalysisProps {
@@ -55,9 +57,9 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
 
     private readonly stockAnalystService: StockAnalystService
 
-    public static readonly DISPLAY_CHECKBOXES = [Fundamentals.LastUpdated, Fundamentals.Stock, Fundamentals.Dividends, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.Financials, Fundamentals.IntrinsicValue]
-    public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.IntrinsicValue]
-    // public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.IntrinsicValue]
+    public static readonly DISPLAY_CHECKBOXES = [Fundamentals.BasicInfo, Fundamentals.Financials, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting,  Fundamentals.IntrinsicValue]
+    public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.BasicInfo, Fundamentals.Financials, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.IntrinsicValue]
+    // public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.Financials]
 
     constructor(props: Readonly<WatchlistAnalysisProps>) {
         super(props)
@@ -79,9 +81,9 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         // if (this.props.watchlist.name === 'TO_CHECK') {
         //     return this.loadWatchlistData(this.props.watchlist)
         // }
-        if (this.props.watchlist.name === 'AU_ETF_AU') {
-            return this.loadWatchlistData(this.props.watchlist)
-        }
+        // if (this.props.watchlist.name === 'AU_ETF_AU') {
+        //     return this.loadWatchlistData(this.props.watchlist)
+        // }
     }
 
     componentDidUpdate(prevProps: Readonly<WatchlistAnalysisProps>, prevState: Readonly<WatchlistAnalysisState>, snapshot?: any) {
@@ -196,6 +198,12 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         if (this.props.watchlist.etf) {
             tablesToDisplay.push(this.toTable(WatchlistAnalysis.toEtfTableData(new EtfGeneral(), this.state.etfsResult.etfs, this.state.etfsResult.averages)))
         } else {
+            if (this.state.visibleTables.includes(Fundamentals.BasicInfo)) {
+                tablesToDisplay.push(this.toTable(WatchlistAnalysis.toStockTableData(new BasicInfo(), this.state.stocksResult.stocks)))
+            }
+            if (this.state.visibleTables.includes(Fundamentals.Financials)) {
+                tablesToDisplay.push(this.toTable(WatchlistAnalysis.toStockTableData(new Financials(), this.state.stocksResult.stocks)))
+            }
             if (this.state.visibleTables.includes(Fundamentals.ValueInvesting)) {
                 tablesToDisplay.push(this.toTable(WatchlistAnalysis.toStockTableData(new ValueInvesting(), this.state.stocksResult.stocks)))
             }

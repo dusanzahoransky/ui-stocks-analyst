@@ -1,6 +1,3 @@
-import {StockFlattenFields} from "../model/StockFlattenFields";
-import moment from "moment";
-import {CellData} from "../model/table/CellData";
 import {FundamentalsCell} from "../model/table/FundamentalsCell";
 
 export class FormattingUtils {
@@ -181,41 +178,5 @@ export class FormattingUtils {
             return "K";
         }
         return "";
-    }
-
-    static isPercentage(column: StockFlattenFields, isEtf: boolean) {
-        if(isEtf){
-            return false
-        }
-        let isPercentage = false
-        switch (column){
-            case StockFlattenFields.grossMargin1:
-            case StockFlattenFields.grossMargin2:
-            case StockFlattenFields.grossMargin3:
-            case StockFlattenFields.profitMarginP1:
-            case StockFlattenFields.profitMarginP2:
-            case StockFlattenFields.profitMarginP3:
-            case StockFlattenFields.profitMarginPQ1:
-            case StockFlattenFields.profitMarginPQ2:
-            case StockFlattenFields.operatingMargin1:
-            case StockFlattenFields.operatingMargin2:
-            case StockFlattenFields.operatingMargin3:
-            case StockFlattenFields.totalCashPerShareP:
-            case StockFlattenFields.belowTargetMedianPriceP:
-            case StockFlattenFields.heldByInsidersP:
-            case StockFlattenFields.heldByInstitutionsP:
-            case StockFlattenFields.shortToFloatP:
-            case StockFlattenFields.sharesShortPrevMonthCompareP:
-            case StockFlattenFields.payoutRatioP:
-            case StockFlattenFields.belowStickerPrice15P:
-            case StockFlattenFields.belowStickerPrice5P:
-            case StockFlattenFields.interestExpenseToOperativeIncomeP1:
-            case StockFlattenFields.interestExpenseToOperativeIncomeP2:
-            case StockFlattenFields.interestExpenseToOperativeIncomeP3:
-            case StockFlattenFields.interestExpenseToOperativeIncomePQ1:
-            case StockFlattenFields.interestExpenseToOperativeIncomePQ2:
-                isPercentage = true
-        }
-        return isPercentage
     }
 }

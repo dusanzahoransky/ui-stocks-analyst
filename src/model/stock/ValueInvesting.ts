@@ -315,9 +315,9 @@ export class ValueInvesting extends StockData {
             retainedEarningsGrowth3: StockData.toCell(StockData.last(stock.retainedEarningsGrowth, 2), true, true),
 
             shares: StockData.toCell(StockData.last(stock.currentShares), false, false, StockData.toTitle(stock.currentShares)),
-            sharesGrowth1: StockData.toCell(StockData.lastYears(stock.sharesGrowth), true, true),
-            sharesGrowth2: StockData.toCell(StockData.lastYears(stock.sharesGrowth, 1), true, true),
-            sharesGrowth3: StockData.toCell(StockData.lastYears(stock.sharesGrowth, 2), true, true),
+            sharesGrowth1: StockData.toCell(StockData.last(stock.sharesGrowth), true, true),
+            sharesGrowth2: StockData.toCell(StockData.last(stock.sharesGrowth, 1), true, true),
+            sharesGrowth3: StockData.toCell(StockData.last(stock.sharesGrowth, 2), true, true),
 
             score: StockData.toCell(0),
         }

@@ -1,11 +1,7 @@
 export enum Fundamentals {
-    LastUpdated,
-    Stock,
-    Dividends,
+    BasicInfo,
+    Financials,
     ValueInvesting,
     GrowthInvesting,
-    Financials,
     IntrinsicValue,
-
-
 }

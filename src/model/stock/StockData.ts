@@ -121,11 +121,12 @@ export abstract class StockData {
         return 1
     }
 
-    static lastYears(timelineField: any | undefined, yearsBeforeLast: number = 0): number | undefined {
+    static lastYears(timelineField: any | undefined, lastReportedYear: string, yearsBeforeLast: number = 0): number | undefined {
         if (!timelineField) {
             return undefined
         }
         const reversedKeys = Object.keys(timelineField).reverse()
+        //FIXME use lastReportedYear
         const yearToGet = moment().add(-yearsBeforeLast, 'year').format('YYYY')
 
         const keyToGet = reversedKeys.filter(date => date.startsWith(yearToGet))[0];
@@ -179,20 +180,20 @@ export abstract class StockData {
         let count = 0
         let sum = 0
         if (value1) {
-            sum += value1 * 2
-            count += 2
+            sum += value1 * 0.5
+            count += 0.5
         }
         if (value2) {
-            sum += value2 * 1.5
-            count += 1.5
-        }
-        if (value3) {
-            sum += value3 * 1
+            sum += value2 * 1
             count += 1
         }
+        if (value3) {
+            sum += value3 * 1.5
+            count += 1.5
+        }
         if (value4) {
-            sum += value4 * 0.5
-            count += 0.5
+            sum += value4 * 2
+            count += 2
         }
         return sum / count
     }
