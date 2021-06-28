@@ -204,15 +204,15 @@ export class GrowthInvesting extends StockData {
         if(GrowthInvesting.last(stock.netIncome, 2) < 0) ratiosFields.netIncomeGrowth3.score *= -1
 
         ratiosFields.operatingCashFlowGrowthQ1.score = ratiosFields.operatingCashFlowGrowthQ1.value * 4
-        if(GrowthInvesting.last(stock.operatingCashFlowGrowthQ) < 0) ratiosFields.operatingCashFlowGrowthQ1.score *= -1
+        if(GrowthInvesting.last(stock.operatingCashFlowQ) < 0) ratiosFields.operatingCashFlowGrowthQ1.score *= -1
         ratiosFields.operatingCashFlowGrowthQ2.score = ratiosFields.operatingCashFlowGrowthQ2.value * 2
-        if(GrowthInvesting.last(stock.operatingCashFlowGrowthQ, 1) < 0) ratiosFields.operatingCashFlowGrowthQ2.score *= -1
+        if(GrowthInvesting.last(stock.operatingCashFlowQ, 1) < 0) ratiosFields.operatingCashFlowGrowthQ2.score *= -1
         ratiosFields.operatingCashFlowGrowth1.score = ratiosFields.operatingCashFlowGrowth1.value * 4
-        if(GrowthInvesting.last(stock.operatingCashFlowGrowth) < 0) ratiosFields.operatingCashFlowGrowth1.score *= -1
+        if(GrowthInvesting.last(stock.operatingCashFlow) < 0) ratiosFields.operatingCashFlowGrowth1.score *= -1
         ratiosFields.operatingCashFlowGrowth2.score = ratiosFields.operatingCashFlowGrowth2.value * 2
-        if(GrowthInvesting.last(stock.operatingCashFlowGrowth, 1) < 0) ratiosFields.operatingCashFlowGrowth2.score *= -1
+        if(GrowthInvesting.last(stock.operatingCashFlow, 1) < 0) ratiosFields.operatingCashFlowGrowth2.score *= -1
         ratiosFields.operatingCashFlowGrowth3.score = ratiosFields.operatingCashFlowGrowth3.value * 1
-        if(GrowthInvesting.last(stock.operatingCashFlowGrowth, 2) < 0) ratiosFields.operatingCashFlowGrowth3.score *= -1
+        if(GrowthInvesting.last(stock.operatingCashFlow, 2) < 0) ratiosFields.operatingCashFlowGrowth3.score *= -1
 
         ratiosFields.capitalExpendituresGrowthQ1.score = -ratiosFields.capitalExpendituresGrowthQ1.value * 2
         ratiosFields.capitalExpendituresGrowthQ2.score = -ratiosFields.capitalExpendituresGrowthQ2.value * 1

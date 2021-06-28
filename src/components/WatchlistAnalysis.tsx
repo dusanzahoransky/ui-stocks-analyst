@@ -58,8 +58,8 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
     private readonly stockAnalystService: StockAnalystService
 
     public static readonly DISPLAY_CHECKBOXES = [Fundamentals.BasicInfo, Fundamentals.Financials, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting,  Fundamentals.IntrinsicValue]
-    public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.BasicInfo, Fundamentals.Financials, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.IntrinsicValue]
-    // public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.Financials]
+    // public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.BasicInfo, Fundamentals.Financials, Fundamentals.ValueInvesting, Fundamentals.GrowthInvesting, Fundamentals.IntrinsicValue]
+    public static readonly DISPLAY_DEFAULT_TABLES = [Fundamentals.ValueInvesting]
 
     constructor(props: Readonly<WatchlistAnalysisProps>) {
         super(props)

@@ -117,7 +117,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Growth', 'Growth')
         fieldLabel = fieldLabel.replace('Shares Short Prev Month Compare', 'Short to prev month')
         fieldLabel = fieldLabel.replace('Shareholders Equity', 'Share EQ')
-        fieldLabel = fieldLabel.replace('Liabilities', 'Debt')
+        fieldLabel = fieldLabel.replace('Liabilities', 'Liab')
         fieldLabel = fieldLabel.replace('Equity', 'EQ')
         fieldLabel = fieldLabel.replace('Repurchased', 'rep')
         fieldLabel = fieldLabel.replace('Eps', 'EPS')

@@ -268,8 +268,8 @@ export class ValueInvesting extends StockData {
             equityGrowth2: StockData.toCell(StockData.last(stock.totalShareholdersEquityGrowth, 1), true, true),
             equityGrowth3: StockData.toCell(StockData.last(stock.totalShareholdersEquityGrowth, 2), true, true),
 
-            totalDebtToEquityQ1: StockData.toCell(StockData.last(stock.totalDebtToEquityQ), false, false, StockData.toRatioTitle(stock.totalDebtQ, stock.totalShareholdersEquityQ, stock.totalDebtToEquityQ)),
-            totalDebtToEquity1: StockData.toCell(StockData.last(stock.totalDebtToEquity), false, false, StockData.toRatioTitle(stock.totalDebt, stock.totalShareholdersEquity, stock.totalDebtToEquity)),
+            totalDebtToEquityQ1: StockData.toCell(StockData.last(stock.totalDebtToEquityQ), false, false, StockData.toRatioTitle(stock.totalLiabilitiesQ, stock.totalShareholdersEquityQ, stock.totalDebtToEquityQ)),
+            totalDebtToEquity1: StockData.toCell(StockData.last(stock.totalDebtToEquity), false, false, StockData.toRatioTitle(stock.totalLiabilities, stock.totalShareholdersEquity, stock.totalDebtToEquity)),
             totalDebtToEquityGrowthQ1: StockData.toCell(StockData.last(stock.totalDebtToEquityGrowthQ), true, true),
             totalDebtToEquityGrowthQ2: StockData.toCell(StockData.last(stock.totalDebtToEquityGrowthQ, 1), true, true),
             totalDebtToEquityGrowth1: StockData.toCell(StockData.last(stock.totalDebtToEquityGrowth), true, true),
@@ -397,10 +397,15 @@ export class ValueInvesting extends StockData {
         }
 
         ratiosFields.equityGrowthQ1.score = ratiosFields.equityGrowthQ1.value
+        if(ValueInvesting.last(stock.totalShareholdersEquityQ) < 0) ratiosFields.equityGrowthQ1.score *= -1
         ratiosFields.equityGrowthQ2.score = ratiosFields.equityGrowthQ2.value
+        if(ValueInvesting.last(stock.totalShareholdersEquityQ, 1) < 0) ratiosFields.equityGrowthQ2.score *= -1
         ratiosFields.equityGrowth1.score = ratiosFields.equityGrowth1.value * 1.5
+        if(ValueInvesting.last(stock.totalShareholdersEquity, 0) < 0) ratiosFields.equityGrowth1.score *= -1
         ratiosFields.equityGrowth2.score = ratiosFields.equityGrowth2.value
+        if(ValueInvesting.last(stock.totalShareholdersEquity, 1) < 0) ratiosFields.equityGrowth2.score *= -1
         ratiosFields.equityGrowth3.score = ratiosFields.equityGrowth3.value * 0.5
+        if(ValueInvesting.last(stock.totalShareholdersEquity, 2) < 0) ratiosFields.equityGrowth3.score *= -1
 
         ratiosFields.totalDebtToEquityQ1.score = StockAnalystService.ratioBetterThan(ratiosFields.totalDebtToEquityQ1.value, 0.8, 10) * 20
         ratiosFields.totalDebtToEquity1.score = StockAnalystService.ratioBetterThan(ratiosFields.totalDebtToEquity1.value, 0.8, 10) * 50
@@ -454,10 +459,15 @@ export class ValueInvesting extends StockData {
 
 
         ratiosFields.retainedEarningsGrowthQ1.score = ratiosFields.retainedEarningsGrowthQ1.value * 0.2
+        if(ValueInvesting.last(stock.retainedEarningsQ) < 0) ratiosFields.retainedEarningsGrowthQ1.score *= -1
         ratiosFields.retainedEarningsGrowthQ2.score = ratiosFields.retainedEarningsGrowthQ2.value * 0.1
+        if(ValueInvesting.last(stock.retainedEarningsQ, 1) < 0) ratiosFields.retainedEarningsGrowthQ2.score *= -1
         ratiosFields.retainedEarningsGrowth1.score = ratiosFields.retainedEarningsGrowth1.value * 0.3
+        if(ValueInvesting.last(stock.retainedEarnings, 0) < 0) ratiosFields.retainedEarningsGrowth1.score *= -1
         ratiosFields.retainedEarningsGrowth2.score = ratiosFields.retainedEarningsGrowth2.value * 0.2
+        if(ValueInvesting.last(stock.retainedEarnings, 1) < 0) ratiosFields.retainedEarningsGrowth2.score *= -1
         ratiosFields.retainedEarningsGrowth3.score = ratiosFields.retainedEarningsGrowth3.value * 0.1
+        if(ValueInvesting.last(stock.retainedEarnings, 2) < 0) ratiosFields.retainedEarningsGrowth3.score *= -1
 
         ratiosFields.sharesGrowth1.score = - ratiosFields.sharesGrowth1.value * 6
         ratiosFields.sharesGrowth2.score = - ratiosFields.sharesGrowth2.value * 4
