@@ -10,13 +10,13 @@ export default class HttpClient{
             }
         );
         if (response.status >= 200 && response.status <= 300) {
-            return response.json()
+            return response.body ? response.json() : undefined
         } else {
             const status = response.status
             let errorCode
             let errorMessage
 
-            if(response.bodyUsed){
+            if(response.body) {
                 try {
                     const errorResponseBody = await response.json()
                     errorCode = errorResponseBody.error
@@ -25,6 +25,7 @@ export default class HttpClient{
                     console.log(`Failed to parse error response body ${e.message}: ${e.stackTrace}`)
                 }
             }
+
             throw new BackendError(status, errorCode, `Failed call ${method} ${path} ${errorMessage? ':'+errorMessage: ''}`)
         }
     }

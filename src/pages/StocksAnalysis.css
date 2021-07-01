@@ -1,6 +1,5 @@
 .StocksAnalysis {
-    text-align: right;
-    width: 17800px;
+    width: 15000px;
     height: 100%;
     position: relative;
 }
@@ -13,13 +12,23 @@
     clear: both;
     text-align: left;
 }
-.TopPanel {
+.BottomPanel{
     position: sticky;
     background: #ffffff;
     height: 100%;
-    top:0;
-    left:0;
+    bottom:30px;
     z-index: 100;
+}
+.BottomPanelExpanded{
+    bottom:100px;
+}
+.Calculators{
+    color: #3677fa;
+    background-color: #f0f5ff;
+    text-align: right;
+    float: right;
+    right:10px;
+    position: sticky;
 }
 .ErrorDiv{
     color: #b80007;
@@ -35,15 +44,7 @@
     font-size: smaller;
     padding: 5px;
 }
-.Calculators{
-    color: #3677fa;
-    background-color: white;
-    text-align: left;
-    float: left;
-    top:5px;
-    left:16px;
-    position: sticky;
-}
+
 .fa.fa-warning{
     position: absolute;
     top: 5px;

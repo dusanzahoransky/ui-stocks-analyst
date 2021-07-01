@@ -1,8 +1,4 @@
-import {StockFlattenFields} from "../model/StockFlattenFields";
-import moment from "moment";
-import {EtfFields} from "../model/EtfFields";
-import {CellData} from "../model/table/CellData";
-import {CellTag} from "../model/table/CellTag";
+import {FundamentalsCell} from "../model/table/FundamentalsCell";
 
 export class FormattingUtils {
 
@@ -25,22 +21,14 @@ export class FormattingUtils {
             .replace(/_/g, ' ')
     }
 
-    static formatStock(data: CellData, column: StockFlattenFields): string {
-        if (typeof data === 'string' && column === StockFlattenFields.exDividendDate) {
-            let diff = moment().diff(data, 'days');
-            return diff < 0 ? `in ${-diff} days` : data;
-        }
-        const formattedValue = this.format(data.value);
-        if(formattedValue && this.isPercentage(data.tags, column, false)){
-            return formattedValue.concat('%')
-        }
-        return formattedValue
+    static formatCellValue(cell: FundamentalsCell): string {
+        return this.formatValue(cell.value, cell.isPercentage)
     }
 
-    static formatEtf(data: CellData, column: EtfFields): string {
-        return this.format(data.value)
+    static formatValue(value: any, isPercentage: boolean = false): string {
+        const formattedValue = this.format(value);
+        return formattedValue && isPercentage ? `${formattedValue}%` : formattedValue
     }
-
     static format(value: number | string): string {
         if (!value) {
             return ''
@@ -84,7 +72,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel[0].toUpperCase() + fieldLabel.substr(1)
 
         fieldLabel = fieldLabel.replace(/ P$/, ' %')
-        fieldLabel = fieldLabel.replace('Enterprise Value EBITDA', 'EV / EBITDA')
+        fieldLabel = fieldLabel.replace('Enterprise Value EBITDA', 'EV / EBIT')
         fieldLabel = fieldLabel.replace('Trailing 12Months', 'ttm')
         fieldLabel = fieldLabel.replace('Trailing PE', 'PE ttm')
         fieldLabel = fieldLabel.replace('Forward PE', 'PE fwd')
@@ -107,7 +95,7 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Cash Per Share', 'Cash/Share')
         fieldLabel = fieldLabel.replace('Five', '5')
         fieldLabel = fieldLabel.replace('Forward', 'Fwd')
-        fieldLabel = fieldLabel.replace('Debt Equity', 'Debt/Eq')
+        fieldLabel = fieldLabel.replace('Debt Equity', 'Debt/EQ')
         fieldLabel = fieldLabel.replace('Percent', '%')
         fieldLabel = fieldLabel.replace('Enterprise Value', 'EV')
         fieldLabel = fieldLabel.replace('Last Year', '1Y')
@@ -128,9 +116,9 @@ export class FormattingUtils {
         fieldLabel = fieldLabel.replace('Fifty Two', '52')
         fieldLabel = fieldLabel.replace('Growth', 'Growth')
         fieldLabel = fieldLabel.replace('Shares Short Prev Month Compare', 'Short to prev month')
-        fieldLabel = fieldLabel.replace('Shareholders Equity', 'Share eq')
+        fieldLabel = fieldLabel.replace('Shareholders Equity', 'Share EQ')
         fieldLabel = fieldLabel.replace('Liabilities', 'Liab')
-        fieldLabel = fieldLabel.replace('Equity', 'eq')
+        fieldLabel = fieldLabel.replace('Equity', 'EQ')
         fieldLabel = fieldLabel.replace('Repurchased', 'rep')
         fieldLabel = fieldLabel.replace('Eps', 'EPS')
         fieldLabel = fieldLabel.replace('Pe', 'PE')
@@ -190,46 +178,5 @@ export class FormattingUtils {
             return "K";
         }
         return "";
-    }
-
-    static isPercentage(tags: CellTag[], column: StockFlattenFields, isEtf: boolean) {
-        if(isEtf){
-            return false
-        }
-        const isGrowth = this.isGrowth(tags);
-        let isPercentage = false
-        switch (column){
-            case StockFlattenFields.grossMargin1:
-            case StockFlattenFields.grossMargin2:
-            case StockFlattenFields.grossMargin3:
-            case StockFlattenFields.profitMarginP1:
-            case StockFlattenFields.profitMarginP2:
-            case StockFlattenFields.profitMarginP3:
-            case StockFlattenFields.profitMarginPQ1:
-            case StockFlattenFields.profitMarginPQ2:
-            case StockFlattenFields.operatingMargin1:
-            case StockFlattenFields.operatingMargin2:
-            case StockFlattenFields.operatingMargin3:
-            case StockFlattenFields.totalCashPerShareP:
-            case StockFlattenFields.belowTargetMedianPriceP:
-            case StockFlattenFields.heldByInsidersP:
-            case StockFlattenFields.heldByInstitutionsP:
-            case StockFlattenFields.shortToFloatP:
-            case StockFlattenFields.sharesShortPrevMonthCompareP:
-            case StockFlattenFields.payoutRatioP:
-            case StockFlattenFields.belowStickerPrice15P:
-            case StockFlattenFields.belowStickerPrice5P:
-            case StockFlattenFields.interestExpenseToOperativeIncomeP1:
-            case StockFlattenFields.interestExpenseToOperativeIncomeP2:
-            case StockFlattenFields.interestExpenseToOperativeIncomeP3:
-            case StockFlattenFields.interestExpenseToOperativeIncomePQ1:
-            case StockFlattenFields.interestExpenseToOperativeIncomePQ2:
-                isPercentage = true
-        }
-        return isGrowth || isPercentage
-    }
-
-    static isGrowth(tags: CellTag[]) {
-        return tags && (tags.includes(CellTag.ratiosGrowth) || tags.includes(CellTag.financialsGrowth));
     }
 }

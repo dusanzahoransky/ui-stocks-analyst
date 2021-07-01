@@ -87,8 +87,8 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
             <i className="fa fa-plus AddTickerIcon"/>
             <input className='AddTicker'
                    placeholder='XYZ:NASDAQ'
-                   pattern="[A-Z]+:[A-Z]+"
-                   title='Format: [SYMBOL]:[EXCHANGE], where exchange is one of: ASX, NASDAQ, NYSE, FTSE, DAX, ENX, SIX, PA, MCE'
+                   pattern="[0-9A-Z-]+:[A-Z]+"
+                   title='Format: [SYMBOL]:[EXCHANGE], where exchange is one of: ASX, NASDAQ, NYSE, FTSE, DAX, ENX, SIX, PA, MCE, T'
                    onBlur={e => this.onAddTickerBlur(e)}
                    onKeyPress={e => this.onAddTickerKeyPress(e)}
             />
@@ -111,7 +111,7 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
     }
 
     private async saveTicker(ticker: string) {
-        if (!ticker.match(/[A-Z]+:[A-Z]+/)) {
+        if (!ticker.match(/[0-9A-Z-]+:[A-Z]+/)) {
             return
         }
         try {

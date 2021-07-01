@@ -63,33 +63,6 @@
       "2020-07-31": 2.08
     },
     "trailingPriceEarningGrowth": {},
-    "week52ChangeP": {
-      "2020-07-31": 48.25
-    },
-    "week52Low": {
-      "2020-07-31": 130.78
-    },
-    "week52AboveLowP": {
-      "2020-07-31": 35.264
-    },
-    "week52High": {
-      "2020-07-31": 216.38
-    },
-    "week52BelowHighP": {
-      "2020-07-31": 7.108
-    },
-    "targetLowPrice": {
-      "2020-07-31": 169.49
-    },
-    "belowTargetLowPriceP": {
-      "2020-07-31": -16.102
-    },
-    "targetMedianPrice": {
-      "2020-07-31": 230.0
-    },
-    "belowTargetMedianPriceP": {
-      "2020-07-31": 13.85
-    },
     "heldByInsidersP": {
       "2020-07-31": 1.425
     },
