@@ -2,7 +2,6 @@ import {Stock} from "../Stock";
 import {FundamentalsCell} from "../table/FundamentalsCell";
 import {StockFields} from "./StockFields";
 import {StockData} from "./StockData";
-import {Cell} from "../table/Cell";
 
 export interface EtfGeneralFields extends StockFields {
     symbol: FundamentalsCell,

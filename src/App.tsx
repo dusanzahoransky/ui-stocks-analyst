@@ -3,7 +3,6 @@ import './App.css';
 import {StocksAnalysis} from "./pages/StocksAnalysis";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {WatchlistManager} from "./pages/WatchlistManager";
-import {Nav, Navbar} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Menu} from "./components/Menu";
 
