@@ -4,3 +4,14 @@
     margin-top: 10px;
     text-align: left;
 }
+
+.AddWatchlist.Container > * {
+    margin: 5px;
+}
+.AddWatchlist.WatchlistType {
+    margin-left: 0;
+    margin-right: 0;
+}
+.AddWatchlist.WatchlistName {
+    margin-left: 15px;
+}

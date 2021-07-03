@@ -1,7 +1,5 @@
 import {EtfsAnalysisResult} from "../model/EtfsAnalysisResult";
 import {Stock} from "../model/Stock";
-import resultTest from "./Stocks-test.json"
-import etfsTest from "./Etfs-test.json"
 import HttpClient from "./HttpClient";
 
 export interface IntrinsicValueResult {
@@ -20,19 +18,11 @@ export interface IntrinsicValueDiscountedFCFResult {
 export class StockAnalystService {
 
     async loadAnalysis(watchlist: string, refreshDynamicData: boolean, refreshFinancials: boolean, mockData: boolean): Promise<Stock[]> {
-        if (watchlist === 'TEST') {
-            return Promise.resolve(resultTest)
-        } else {
-            return HttpClient.fetch(`http://localhost:3000/stocks/watchlist?watchlist=${watchlist}&refreshDynamicData=${refreshDynamicData}&refreshFinancials=${refreshFinancials}&mockData=${mockData}`);
-        }
+        return HttpClient.fetch(`http://localhost:3000/stock/watchlist/${watchlist}?refreshDynamicData=${refreshDynamicData}&refreshFinancials=${refreshFinancials}&mockData=${mockData}`);
     }
 
     async loadEtfsAnalysis(watchlist: string, refreshDynamicData: boolean, mockData: boolean): Promise<EtfsAnalysisResult> {
-        if (watchlist === 'TEST_INDICES') {
-            return Promise.resolve(etfsTest)
-        } else {
-            return HttpClient.fetch(`http://localhost:3000/stocks/etfWatchlist?watchlist=${watchlist}&refreshDynamicData=${refreshDynamicData}&mockData=${mockData}`);
-        }
+        return HttpClient.fetch(`http://localhost:3000/stock/etfWatchlist/${watchlist}?refreshDynamicData=${refreshDynamicData}&mockData=${mockData}`);
     }
 
 

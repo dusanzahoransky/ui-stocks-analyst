@@ -7,6 +7,7 @@ import {FormattingUtils} from "../utils/FormattingUtils";
 
 export interface WatchlistConfigProps {
     watchlistName: string
+    onRemoveWatchlistClickHandler: () => void
 }
 
 export interface WatchlistConfigState {
@@ -30,15 +31,6 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
             watchlist: undefined
         }
         this.watchlistService = new WatchlistService()
-        // uncomment below to have expanded TEST_ETF watchlist for testing
-        // if (this.props.watchlistName === 'TEST_ETF') {
-        //     this.watchlistService.watchlist(this.props.watchlistName).then(watchlist => {
-        //         this.setState({
-        //             isExpanded: true,
-        //             watchlist
-        //         })
-        //     })
-        // }
     }
 
     render() {
@@ -65,16 +57,7 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
     }
 
     private async onRemoveWatchlistClick() {
-        const watchlistName = this.state.watchlist.name;
-        if (window.confirm(`Delete watchlist ${watchlistName}`)){
-            try {
-                await this.watchlistService.removeWatchlist(watchlistName)
-            } catch (e) {
-                this.setState({
-                    error: `Failed to delete watchlist ${watchlistName}: ${e.message}`
-                })
-            }
-        }
+        this.props.onRemoveWatchlistClickHandler()
     }
 
     private renderTickerContainer() {
@@ -88,7 +71,7 @@ export class WatchlistConfig extends React.Component<WatchlistConfigProps, Watch
             <input className='AddTicker'
                    placeholder='XYZ:NASDAQ'
                    pattern="[0-9A-Z-]+:[A-Z]+"
-                   title='Format: [SYMBOL]:[EXCHANGE], where exchange is one of: ASX, NASDAQ, NYSE, FTSE, DAX, ENX, SIX, PA, MCE, T'
+                   title='Format: [SYMBOL]:[EXCHANGE], where exchange is one of: ASX, NASDAQ, NYSE, FTSE, DAX, ENX, SIX, PA, MCE, PNK, MCX, TSE, T, JSE'
                    onBlur={e => this.onAddTickerBlur(e)}
                    onKeyPress={e => this.onAddTickerKeyPress(e)}
             />
