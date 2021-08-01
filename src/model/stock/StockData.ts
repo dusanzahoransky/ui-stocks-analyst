@@ -167,6 +167,7 @@ export abstract class StockData {
     static calcTotalScore(ratiosFields: StockFields) {
         const score = Object.values(ratiosFields)
             .map(f => f.score)
+            .filter(n => !Number.isNaN(n))
             .reduce((prev, curr) => prev + curr)
         ratiosFields.score.value = score
         ratiosFields.score.classes.push(score > 0 ? 'greenText' : 'redText')

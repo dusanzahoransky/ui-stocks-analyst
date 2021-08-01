@@ -314,7 +314,7 @@ export class ValueInvesting extends StockData {
             retainedEarningsGrowth2: StockData.toCell(StockData.last(stock.retainedEarningsGrowth, 1), true, true),
             retainedEarningsGrowth3: StockData.toCell(StockData.last(stock.retainedEarningsGrowth, 2), true, true),
 
-            shares: StockData.toCell(StockData.last(stock.currentShares), false, false, StockData.toTitle(stock.currentShares)),
+            shares: StockData.toCell(StockData.last(stock.currentShares), false, false, StockData.toTitle(stock.shares)),
             sharesGrowth1: StockData.toCell(StockData.last(stock.sharesGrowth), true, true),
             sharesGrowth2: StockData.toCell(StockData.last(stock.sharesGrowth, 1), true, true),
             sharesGrowth3: StockData.toCell(StockData.last(stock.sharesGrowth, 2), true, true),
@@ -323,7 +323,9 @@ export class ValueInvesting extends StockData {
         }
 
 
-        ratiosFields.enterpriseValue.score = StockData.percentBelow(ratiosFields.enterpriseValue.value, ratiosFields.marketCap.value)
+        if(ratiosFields.enterpriseValue.value > 0) {
+            ratiosFields.enterpriseValue.score = StockData.percentBelow(ratiosFields.enterpriseValue.value, ratiosFields.marketCap.value)
+        }
         ratiosFields.totalCashPerShareP.score = ratiosFields.totalCashPerShareP.value > 10 ? 0.1 * ratiosFields.totalCashPerShareP.value : 0
         ratiosFields.trailingPE.score = 3 * StockAnalystService.ratioBetterThan(ratiosFields.trailingPE.value, 20, 50)
         ratiosFields.forwardPE.score = 10 * StockAnalystService.ratioBetterThan(ratiosFields.forwardPE.value, 20, 50)
@@ -374,11 +376,17 @@ export class ValueInvesting extends StockData {
             ratiosFields.roeQ1.classes.push(StockData.CLASS_ADDITIONAL_INFO)
             ratiosFields.roeY1.classes.push(StockData.CLASS_ADDITIONAL_INFO)
         }
-        ratiosFields.roeQ1.score = ratiosFields.roeQ1.value / StockData.last(stock.totalDebtToEquityQ, 0)
+        ratiosFields.roeQ1.score = ratiosFields.roeQ1.value
+        if(StockData.last(stock.totalDebtToEquityQ, 0) != 0) {
+            ratiosFields.roeQ1.score /= StockData.last(stock.totalDebtToEquityQ, 0)
+        }
         if(ratiosFields.roeQ1.value < 0){
             ratiosFields.roeQ1.score *= 2
         }
-        ratiosFields.roeY1.score = 2 * ratiosFields.roeY1.value / StockData.last(stock.totalDebtToEquity, 0)
+        ratiosFields.roeY1.score = 2 * ratiosFields.roeY1.value
+        if(StockData.last(stock.totalDebtToEquity, 0) != 0) {
+            ratiosFields.roeQ1.score /= StockData.last(stock.totalDebtToEquity, 0)
+        }
         if(ratiosFields.roeY1.value < 0){
             ratiosFields.roeY1.score *= 2
         }

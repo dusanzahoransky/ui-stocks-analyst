@@ -9,7 +9,7 @@ export default class HttpClient{
                 headers: { 'content-Type': 'application/json'},
             }
         );
-        if (response.status == 204) {
+        if (response.status === 204) {
             return undefined
         } else if (response.status >= 200 && response.status <= 300) {
             return response.body ? response.json() : undefined

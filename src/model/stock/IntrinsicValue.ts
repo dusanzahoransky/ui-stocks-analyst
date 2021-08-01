@@ -12,6 +12,7 @@ import {FormattingUtils} from "../../utils/FormattingUtils";
 export interface IntrinsicValueFields extends StockFields {
     symbol: FundamentalsCell,
     price: FundamentalsCell,
+    currentPriceLocal: FundamentalsCell,
     marketCap: FundamentalsCell,
 
     growthEstimate5y: FundamentalsCell,
@@ -71,6 +72,7 @@ export class IntrinsicValue extends StockData {
         return [
             'symbol',
             'price',
+            'currentPriceLocal',
             'marketCap',
 
             'roic1Y',
@@ -128,6 +130,7 @@ export class IntrinsicValue extends StockData {
         const ratiosFields = {
             symbol: StockData.toCell(stock.symbol, false, false, `${stock.companyName}, price ${StockData.toTitle(StockData.lastEntry(stock.price))}`),
             price: StockData.toCell(StockData.last(stock.price)),
+            currentPriceLocal: StockData.toCell(StockData.last(stock.currentPriceLocal), false, false, IntrinsicValue.toTitle(stock.financialCurrency)),
             marketCap: StockData.toCell(StockData.last(stock.marketCap)),
 
             roic1Y: StockData.toCell(StockData.last(stock.roic1Y), true),

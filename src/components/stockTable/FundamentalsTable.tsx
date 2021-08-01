@@ -136,7 +136,7 @@ export class FundamentalsTable extends React.Component<FundamentalsTableProps, F
                     FormattingUtils.formatCellValue(data)
                 }</span>
                 <span
-                    className={"score"}>{data.score && typeof data.score === 'number' ? data.score.toFixed(0) : ''}</span>
+                    className={"score"}>{data.score? data.score.toFixed(0) : ''}</span>
             </td>
         )
         return (
