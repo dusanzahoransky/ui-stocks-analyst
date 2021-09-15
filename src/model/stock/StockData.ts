@@ -177,7 +177,7 @@ export abstract class StockData {
         Object.values(ratiosFields).filter(f => !f.value).forEach(f => f.score = 0)
     }
 
-    static weightedAverage(value1: number, value2: number, value3: number, value4: number): number {
+    static weightedAverage(value1: number, value2: number, value3: number): number {
         let count = 0
         let sum = 0
         if (value1) {
@@ -191,10 +191,6 @@ export abstract class StockData {
         if (value3) {
             sum += value3 * 1.5
             count += 1.5
-        }
-        if (value4) {
-            sum += value4 * 2
-            count += 2
         }
         return sum / count
     }

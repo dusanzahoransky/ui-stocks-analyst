@@ -377,14 +377,14 @@ export class ValueInvesting extends StockData {
             ratiosFields.roeY1.classes.push(StockData.CLASS_ADDITIONAL_INFO)
         }
         ratiosFields.roeQ1.score = ratiosFields.roeQ1.value
-        if(StockData.last(stock.totalDebtToEquityQ, 0) != 0) {
+        if(StockData.last(stock.totalDebtToEquityQ, 0) !== 0) {
             ratiosFields.roeQ1.score /= StockData.last(stock.totalDebtToEquityQ, 0)
         }
         if(ratiosFields.roeQ1.value < 0){
             ratiosFields.roeQ1.score *= 2
         }
         ratiosFields.roeY1.score = 2 * ratiosFields.roeY1.value
-        if(StockData.last(stock.totalDebtToEquity, 0) != 0) {
+        if(StockData.last(stock.totalDebtToEquity, 0) !== 0) {
             ratiosFields.roeQ1.score /= StockData.last(stock.totalDebtToEquity, 0)
         }
         if(ratiosFields.roeY1.value < 0){

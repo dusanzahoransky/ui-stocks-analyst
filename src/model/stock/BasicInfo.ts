@@ -32,8 +32,6 @@ export interface BasicInfoFields extends StockFields {
     exDividendDate: FundamentalsCell,
     fiveYearAvgDividendYield: FundamentalsCell,
     payoutRatioP: FundamentalsCell,
-    dividends: FundamentalsCell,
-    dividendsGrowth: FundamentalsCell,
 
     currentShares: FundamentalsCell,
     sharesY1: FundamentalsCell,
@@ -88,8 +86,6 @@ export class BasicInfo extends StockData {
             'exDividendDate',
             'fiveYearAvgDividendYield',
             'payoutRatioP',
-            'dividends',
-            'dividendsGrowth',
 
             'currentShares',
             'shares Y1',
@@ -141,8 +137,6 @@ export class BasicInfo extends StockData {
             exDividendDate: StockData.toCell(BasicInfo.last(stock.exDividendDate)),
             fiveYearAvgDividendYield: StockData.toCell(BasicInfo.last(stock.fiveYearAvgDividendYield), true),
             payoutRatioP: StockData.toCell(BasicInfo.last(stock.payoutRatioP), true),
-            dividends: StockData.toCell(BasicInfo.last(stock.dividends)),
-            dividendsGrowth: StockData.toCell(BasicInfo.last(stock.dividendsGrowth)),
 
             currentShares: StockData.toCell(BasicInfo.last(stock.currentShares)),
             sharesY1: StockData.toCell(BasicInfo.last(stock.shares), false, false, BasicInfo.toTitle(stock.shares)),

@@ -62,7 +62,7 @@ export class FundamentalsTable extends React.Component<FundamentalsTableProps, F
         const labelsRow = headerLabels.map((field, column) => {
                 return <th key={column}
                            onClick={() => this.setSortedField(column)}>
-                    {data[0][column].isGrowth? <i className="fa fa-line-chart"/>:undefined}
+                    {data[0][column] && data[0][column].isGrowth? <i className="fa fa-line-chart"/>:undefined}
                     {FormattingUtils.toFieldLabel(field)}
                 </th>
             }
