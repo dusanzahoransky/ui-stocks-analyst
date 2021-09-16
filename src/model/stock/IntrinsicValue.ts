@@ -36,6 +36,22 @@ export interface IntrinsicValueFields extends StockFields {
     eps3Y: FundamentalsCell,
     eps5Y: FundamentalsCell,
 
+    futureEarningsYield: FundamentalsCell,
+    futureFCFYieldCurrent: FundamentalsCell,
+    futureFCFYieldAvg5Years: FundamentalsCell,
+
+    intrinsicValueFromBVGrowthDiscount5: FundamentalsCell,
+    intrinsicValueFromBVGrowthDiscount10: FundamentalsCell,
+
+    intrinsicValueFromEGrowthDiscount5: FundamentalsCell,
+    intrinsicValueFromEGrowthDiscount10: FundamentalsCell,
+
+    intrinsicValueFromFCFGrowthDiscount5Current: FundamentalsCell,
+    intrinsicValueFromFCFGrowthDiscount10Current: FundamentalsCell,
+
+    intrinsicValueFromFCFGrowthDiscount5Avg5Years: FundamentalsCell,
+    intrinsicValueFromFCFGrowthDiscount10Avg5Years: FundamentalsCell,
+
     rule1GrowthRate: FundamentalsCell,
     rule1PE: FundamentalsCell,
     currentEps: FundamentalsCell,
@@ -45,17 +61,6 @@ export interface IntrinsicValueFields extends StockFields {
     stickerPrice5pcGrowth: FundamentalsCell,
     belowStickerPrice15P: FundamentalsCell,
     belowStickerPrice5P: FundamentalsCell,
-
-    futureEarningsYield: FundamentalsCell,
-    futureFCFYield: FundamentalsCell,
-
-    intrinsicValueFromBVGrowthDiscount5: FundamentalsCell,
-    intrinsicValueFromFCFGrowthDiscount5: FundamentalsCell,
-    intrinsicValueFromEGrowthDiscount5: FundamentalsCell,
-
-    intrinsicValueFromBVGrowthDiscount10: FundamentalsCell,
-    intrinsicValueFromFCFGrowthDiscount10: FundamentalsCell,
-    intrinsicValueFromEGrowthDiscount10: FundamentalsCell,
 }
 
 export class IntrinsicValue extends StockData {
@@ -93,7 +98,8 @@ export class IntrinsicValue extends StockData {
             'growthEstimate5y',
 
             'futureEarningsYield10Years',
-            'futureFCF Yield10Years',
+            'futureFCF Yield10Years Current',
+            'futureFCF Yield10Years Avg5Years',
 
             'intrinsicValue BV 10Years 5%',
             'intrinsicValue BV 10Years 10%',
@@ -101,8 +107,11 @@ export class IntrinsicValue extends StockData {
             'intrinsicValue Earnings 10Years 5%',
             'intrinsicValue Earnings 10Years 10%',
 
-            'intrinsicValue FCF 10Years 5%',
-            'intrinsicValue FCF 10Years 10%',
+            'intrinsicValue curr FCF 10Years 5%',
+            'intrinsicValue curr FCF 10Years 10%',
+
+            'intrinsicValue avg5Years FCF 10Years 5%',
+            'intrinsicValue avg5Years FCF 10Years 10%',
 
             'rule1GrowthRate',
             'rule1PE',
@@ -147,7 +156,8 @@ export class IntrinsicValue extends StockData {
             growthEstimate5y: StockData.toCell(StockData.last(stock.growthEstimate5y), true),
 
             futureEarningsYield: StockData.toCell(0, true),
-            futureFCFYield: StockData.toCell(0, true),
+            futureFCFYieldCurrent: StockData.toCell(0, true),
+            futureFCFYieldAvg5Years: StockData.toCell(0, true),
 
             intrinsicValueFromBVGrowthDiscount5: StockData.toCell(0),
             intrinsicValueFromBVGrowthDiscount10: StockData.toCell(0),
@@ -155,8 +165,11 @@ export class IntrinsicValue extends StockData {
             intrinsicValueFromEGrowthDiscount5: StockData.toCell(0),
             intrinsicValueFromEGrowthDiscount10: StockData.toCell(0),
 
-            intrinsicValueFromFCFGrowthDiscount5: StockData.toCell(0),
-            intrinsicValueFromFCFGrowthDiscount10: StockData.toCell(0),
+            intrinsicValueFromFCFGrowthDiscount5Current: StockData.toCell(0),
+            intrinsicValueFromFCFGrowthDiscount10Current: StockData.toCell(0),
+
+            intrinsicValueFromFCFGrowthDiscount5Avg5Years: StockData.toCell(0),
+            intrinsicValueFromFCFGrowthDiscount10Avg5Years: StockData.toCell(0),
 
             rule1GrowthRate: StockData.toCell(StockData.last(stock.rule1GrowthRate), true),
             rule1PE: StockData.toCell(StockData.last(stock.rule1PE)),
@@ -211,11 +224,14 @@ export class IntrinsicValue extends StockData {
         ratiosFields.futureEarningsYield.value = StockAnalystService.calcFutureYield(currentPE, weightedPeGrowth, 10)
         ratiosFields.futureEarningsYield.title = `pe ${FormattingUtils.formatValue(currentPE)} growth ${FormattingUtils.formatValue(weightedPeGrowth)}`
 
-
-        let currentFCF = IntrinsicValue.lastDefined(stock.priceToFreeCashFlow)
+        const currentFCF = IntrinsicValue.lastDefined(stock.priceToFreeCashFlow)
         const weightedFCFGrowth = IntrinsicValue.weightedAverage(ratiosFields.cash1Y.value, ratiosFields.cash3Y.value, ratiosFields.cash5Y.value);
-        ratiosFields.futureFCFYield.value = StockAnalystService.calcFutureYield(currentFCF, weightedFCFGrowth, 10)
-        ratiosFields.futureFCFYield.title = `fcf ${FormattingUtils.formatValue(currentFCF)} growth ${FormattingUtils.formatValue(weightedFCFGrowth)}`
+        ratiosFields.futureFCFYieldCurrent.value = StockAnalystService.calcFutureYield(currentFCF, weightedFCFGrowth, 10)
+        ratiosFields.futureFCFYieldCurrent.title = `fcf ${FormattingUtils.formatValue(currentFCF)} growth ${FormattingUtils.formatValue(weightedFCFGrowth)}`
+
+        const avg5YearFCF = StockData.avg(stock.priceToFreeCashFlow);
+        ratiosFields.futureFCFYieldAvg5Years.value = StockAnalystService.calcFutureYield(avg5YearFCF, weightedFCFGrowth, 10)
+        ratiosFields.futureFCFYieldAvg5Years.title = `fcf ${FormattingUtils.formatValue(avg5YearFCF)} growth ${FormattingUtils.formatValue(weightedFCFGrowth)}`
 
         const avg5Ydividend = IntrinsicValue.last(stock.fiveYearAvgDividendYield)
         const weightedBVGrowth = IntrinsicValue.weightedAverage(ratiosFields.bps1Y.value, ratiosFields.bps3Y.value, ratiosFields.bps5Y.value);
@@ -232,12 +248,22 @@ export class IntrinsicValue extends StockData {
         const currentFCFPS = IntrinsicValue.last(stock.freeCashFlowPerShare);
 
         let intrinsicValueFCFDiscResult = StockAnalystService.calcIntrinsicValueDiscountedCashFlow(currentFCFPS, weightedFCFGrowth, 10, 10)
-        ratiosFields.intrinsicValueFromFCFGrowthDiscount10.value = intrinsicValueFCFDiscResult.intrinsicValue
-        ratiosFields.intrinsicValueFromFCFGrowthDiscount10.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(currentFCFPS, weightedFCFGrowth, intrinsicValueFCFDiscResult)
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount10Current.value = intrinsicValueFCFDiscResult.intrinsicValue
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount10Current.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(currentFCFPS, weightedFCFGrowth, intrinsicValueFCFDiscResult)
 
         intrinsicValueFCFDiscResult = StockAnalystService.calcIntrinsicValueDiscountedCashFlow(currentFCFPS, weightedFCFGrowth, 5, 10)
-        ratiosFields.intrinsicValueFromFCFGrowthDiscount5.value = intrinsicValueFCFDiscResult.intrinsicValue
-        ratiosFields.intrinsicValueFromFCFGrowthDiscount5.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(currentFCFPS, weightedFCFGrowth, intrinsicValueFCFDiscResult)
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount5Current.value = intrinsicValueFCFDiscResult.intrinsicValue
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount5Current.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(currentFCFPS, weightedFCFGrowth, intrinsicValueFCFDiscResult)
+
+        const avg5YearFCFPS = StockData.avg(stock.freeCashFlowPerShare);
+
+        let intrinsicValueAvg5YearFCFDiscResult = StockAnalystService.calcIntrinsicValueDiscountedCashFlow(avg5YearFCFPS, weightedFCFGrowth, 10, 10)
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount10Avg5Years.value = intrinsicValueAvg5YearFCFDiscResult.intrinsicValue
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount10Avg5Years.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(avg5YearFCFPS, weightedFCFGrowth, intrinsicValueAvg5YearFCFDiscResult)
+
+        intrinsicValueAvg5YearFCFDiscResult = StockAnalystService.calcIntrinsicValueDiscountedCashFlow(avg5YearFCFPS, weightedFCFGrowth, 5, 10)
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount5Avg5Years.value = intrinsicValueAvg5YearFCFDiscResult.intrinsicValue
+        ratiosFields.intrinsicValueFromFCFGrowthDiscount5Avg5Years.title = IntrinsicValue.formatIntrinsicValueFCFDiscCalc(avg5YearFCFPS, weightedFCFGrowth, intrinsicValueAvg5YearFCFDiscResult)
 
         const currentEPS = IntrinsicValue.last(stock.eps);
         const weightedEPSGrowth = IntrinsicValue.weightedAverage(ratiosFields.eps1Y.value, ratiosFields.eps3Y.value, ratiosFields.eps5Y.value);
