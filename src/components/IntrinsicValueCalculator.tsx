@@ -6,23 +6,25 @@ import {StockAnalystService} from "../services/StockAnalystService";
 
 
 export interface IntrinsicValueCalculatorProps {
-    growth?: number
-    pe?: number
-    eps?: number
+    currentValue?: number
+    discount?: number
+    years?: number
+    growth1?: number
+    growth2?: number
+    finalMultiple1?: number
+    finalMultiple2?: number
 }
 
 export interface IntrinsicValueCalculatorState {
-    growth?: string
-    pe?: string
-    eps?: string
-    futureEps10Y?: number
-    futurePrice10Y?: number
-    stickerPrice15pc?: number
-    stickerPrice10pc?: number
-    stickerPrice5pc?: number
-    futureYield3?: number
-    futureYield5?: number
-    futureYield10?: number
+    currentValue?: string
+    discount?: string
+    years?: string
+    growth1?: string
+    growth2?: string
+    finalMultiple1: string
+    finalMultiple2: string
+    intrinsicValue1?: number
+    intrinsicValue2?: number
 }
 
 export class IntrinsicValueCalculator extends React.Component<IntrinsicValueCalculatorProps, IntrinsicValueCalculatorState> {
@@ -30,9 +32,13 @@ export class IntrinsicValueCalculator extends React.Component<IntrinsicValueCalc
     constructor(props: Readonly<IntrinsicValueCalculatorProps>) {
         super(props);
         this.state = {
-            growth: props.growth ? props.growth.toString() : '',
-            pe: props.pe ? props.pe.toString() : '',
-            eps: props.eps ? props.eps.toString() : ''
+            growth1: props.growth1 ? props.growth1.toString() : '',
+            growth2: props.growth2 ? props.growth2.toString() : '',
+            finalMultiple1: props.finalMultiple1 ? props.finalMultiple1.toString() : '10',
+            finalMultiple2: props.finalMultiple2 ? props.finalMultiple2.toString() : '15',
+            discount: props.discount ? props.discount.toString() : '10',
+            years: props.years ? props.years.toString() : '10',
+            currentValue: props.currentValue ? props.currentValue.toString() : ''
         }
         this.recalculateValues(this.state)
         this.handleChange = this.handleChange.bind(this);
@@ -45,24 +51,26 @@ export class IntrinsicValueCalculator extends React.Component<IntrinsicValueCalc
     }
 
     recalculateValues(updatedState: IntrinsicValueCalculatorState): IntrinsicValueCalculatorState {
-        const growth = Number.parseFloat(updatedState.growth)
-        const pe = Number.parseInt(updatedState.pe)
-        const eps = Number.parseFloat(updatedState.eps)
-        const growthPct = growth / 100
+        const currentValue = Number.parseFloat(updatedState.currentValue)
+        const discount = Number.parseFloat(updatedState.discount)
+        const years = Number.parseInt(updatedState.years)
 
-        if(growthPct && pe && eps) {
-            updatedState.futureEps10Y = eps * Math.pow(growthPct + 1, 10)
-            updatedState.futurePrice10Y = pe * updatedState.futureEps10Y
-            updatedState.stickerPrice15pc = updatedState.futurePrice10Y / Math.pow(1.15, 10)
-            updatedState.stickerPrice10pc = updatedState.futurePrice10Y / Math.pow(1.10, 10)
-            updatedState.stickerPrice5pc = updatedState.futurePrice10Y / Math.pow(1.05, 10)
+        if(!currentValue || !discount || !years){
+            return updatedState
         }
 
-        if(growthPct && pe){
-            const presentValue = 100 / pe
-            updatedState.futureYield3 = StockAnalystService.futureValue(presentValue, growthPct, 3)
-            updatedState.futureYield5 = StockAnalystService.futureValue(presentValue, growthPct, 5)
-            updatedState.futureYield10 = StockAnalystService.futureValue(presentValue, growthPct, 10)
+        const growth1 = Number.parseFloat(updatedState.growth1)
+        const growth2 = Number.parseFloat(updatedState.growth2)
+        const finalMultiple1 = Number.parseFloat(updatedState.finalMultiple1)
+        const finalMultiple2 = Number.parseFloat(updatedState.finalMultiple2)
+
+        if(!Number.isNaN(growth1)) {
+            const intrinsicValueResult = StockAnalystService.calcIntrinsicValue(0, currentValue, growth1, discount, years);
+            updatedState.intrinsicValue1 = intrinsicValueResult.intrinsicValue * finalMultiple1
+        }
+        if(!Number.isNaN(growth2)) {
+            const intrinsicValueResult = StockAnalystService.calcIntrinsicValue(0, currentValue, growth2, discount, years);
+            updatedState.intrinsicValue2 = intrinsicValueResult.intrinsicValue * finalMultiple2
         }
         return {...updatedState}
     }
@@ -72,50 +80,50 @@ export class IntrinsicValueCalculator extends React.Component<IntrinsicValueCalc
         return (
             <div className='IntrinsicValueCalculator'>
                 <label>
-                    Growth
-                    <input value={this.state.growth} type="text" name="growth"
+                    CV
+                    <input value={this.state.currentValue} type="text" name="currentValue" onChange={this.handleChange}/>
+                </label>
+                <label>
+                    Discount
+                    <input value={this.state.discount} type="text" name="discount" onChange={this.handleChange}/>
+                </label>
+                <label>
+                    Years
+                    <input value={this.state.years} type="text" name="years" onChange={this.handleChange}/>
+                </label>
+                <label>
+                    Growth 1
+                    <input value={this.state.growth1} type="text" name="growth1"
                            onChange={this.handleChange}/>
                 </label>
                 <label>
-                    PE
-                    <input value={this.state.pe} type="text" name="pe" onChange={this.handleChange}/>
+                    Growth 2
+                    <input value={this.state.growth2} type="text" name="growth2"
+                           onChange={this.handleChange}/>
                 </label>
                 <label>
-                    EPS
-                    <input value={this.state.eps} type="text" name="eps" onChange={this.handleChange}/>
+                    Multip. 1
+                    <input value={this.state.finalMultiple1} type="text" name="finalMultiple1"
+                           onChange={this.handleChange}/>
                 </label>
-                <label>Fut EPS
-                    <input value={this.formatNumber(this.state.futureEps10Y)} type="text" name="futureEps10Y"
-                           readOnly={true}/>
-                </label>
-                <label>Fut price
-                    <input value={this.formatNumber(this.state.futurePrice10Y)} type="text" name="futurePrice10Y"
-                           readOnly={true}/></label>
-                <label>Price 15%
-                    <input value={this.formatNumber(this.state.stickerPrice15pc)} type="text" name="stickerPrice15pc"
-                           readOnly={true}/></label>
-                <label>Price 10%
-                    <input value={this.formatNumber(this.state.stickerPrice10pc)} type="text" name="stickerPrice10pc"
-                           readOnly={true}/></label>
-                <label>Price 5%
-                    <input value={this.formatNumber(this.state.stickerPrice5pc)} type="text" name="stickerPrice5pc"
-                           readOnly={true}/></label>
                 <label>
-                    Yield 3Y
-                    <input value={this.formatNumber(this.state.futureYield3)} type="text" name="futureYield3" readOnly={true}/>
+                    Multip. 2
+                    <input value={this.state.finalMultiple2} type="text" name="finalMultiple2"
+                           onChange={this.handleChange}/>
                 </label>
-                <label>Yield 5Y
-                    <input value={this.formatNumber(this.state.futureYield5)} type="text" name="futureYield5"
-                           readOnly={true}/>
+
+                <label>Intr.V 1
+                    <input value={IntrinsicValueCalculator.formatNumber(this.state.intrinsicValue1)} type="text" name="intrinsicValue1"
+                           readOnly={true} className="IntrinsicValue"/>
                 </label>
-                <label>Yield 10Y
-                    <input value={this.formatNumber(this.state.futureYield10)} type="text" name="futureYield10"
-                           readOnly={true}/></label>
+                <label>Intr.V 2
+                    <input value={IntrinsicValueCalculator.formatNumber(this.state.intrinsicValue2)} type="text" name="intrinsicValue2"
+                           readOnly={true} className="IntrinsicValue"/></label>
             </div>
         )
     };
 
-    private formatNumber(value: any): string {
+    private static formatNumber(value: any): string {
         return !value || Number.isNaN(value) ? '' : value.toFixed(1);
     }
 }

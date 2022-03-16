@@ -63,6 +63,12 @@ export class FormattingUtils {
             const thousand = value / 1000;
             return `${thousand.toFixed(1)}K`;
         }
+        if (absValue < 1) {
+            return value.toLocaleString(undefined, {maximumFractionDigits: 2});
+        }
+        if (absValue < 0.1) {
+            return value.toLocaleString(undefined, {maximumFractionDigits: 3});
+        }
         return value.toLocaleString(undefined, {maximumFractionDigits: 1});
     }
 

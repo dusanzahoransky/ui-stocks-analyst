@@ -1,15 +1,15 @@
-.DiscountedFCFCalculator{
+.DCFCalculator{
     margin: 5px;
     font-size: smaller;
     color: black;
 }
-.DiscountedFCFCalculator input {
+.DCFCalculator input {
     width: 30px;
     margin-right: 10px;
     margin-left: 3px;
     font-size: smaller;
 }
-.DiscountedFCFCalculator input.IntrinsicValue{
+.DCFCalculator input.IntrinsicValue{
     width: 40px;
     margin-right: 10px;
     margin-left: 3px;

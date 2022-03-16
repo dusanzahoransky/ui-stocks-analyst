@@ -1,12 +1,13 @@
 import React from "react";
 import {StockAnalystService} from "../services/StockAnalystService";
 import './StocksAnalysis.css';
-import {IntrinsicValueCalculator} from "../components/IntrinsicValueCalculator";
+import {FuturePriceCalculator} from "../components/FuturePriceCalculator";
 import {Alert} from "../components/Alert";
 import Watchlist from "../model/watchlist/Watchlist";
 import {WatchlistService} from "../services/WatchlistService";
 import {WatchlistAnalysis} from "../components/WatchlistAnalysis";
-import {DiscountedFCFCalculator} from "../components/DiscountedFCFCalculator";
+import {IntrinsicValueCalculator} from "../components/IntrinsicValueCalculator";
+import {DCFCalculator} from "../components/DCFCalculator";
 
 export interface StocksAnalysisState {
     error?: string
@@ -56,8 +57,9 @@ export class StocksAnalysis extends React.Component<{}, StocksAnalysisState> {
 
         const calculators = this.state.calculatorsDisplayed ?
             <div className='Calculators'>
+                {/*<FuturePriceCalculator/>*/}
                 <IntrinsicValueCalculator/>
-                <DiscountedFCFCalculator/>
+                <DCFCalculator/>
                 <i className="fa fa-calculator" onClick={() => this.calculatorsToggleClick()}/>
             </div> :
             <div className='Calculators'>
