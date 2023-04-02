@@ -1,5 +1,6 @@
 export enum OtherChartRatios {
-    roicP = "Return of investment",
+    roicP = "Return on Investment",
+    rotcP = "Return on Total Capital",
     totalShareholdersEquity = "Shareholder equity",
     shares = "Shares",
     totalDebtToEquity = "Debt to equity",

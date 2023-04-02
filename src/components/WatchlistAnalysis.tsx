@@ -341,12 +341,14 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         let financialRatiosCharts
         let otherRatiosCharts
 
-        const yearsToDisplay = 10
+        const numberOfEntries = 20
 
         financialRatiosCharts = WatchlistAnalysis.getChartFinancialRatios().map(ratio => {
-            const multiplyQuarters = FinancialChartRatios[ratio] !== FinancialChartRatios.profitMarginP
+            const multiplyQuarters =
+                FinancialChartRatios[ratio] !== FinancialChartRatios.profitMarginP
                 && FinancialChartRatios[ratio] !== FinancialChartRatios.workingCapital
-            const chartData = WatchlistAnalysis.prepareRatiosData(selectedStock, ratio, false, multiplyQuarters, yearsToDisplay)
+                && FinancialChartRatios[ratio] !== FinancialChartRatios.grossMargin
+            const chartData = WatchlistAnalysis.prepareRatiosData(selectedStock, ratio, false, multiplyQuarters, numberOfEntries)
             return <RatioChart
                 key={ratio}
                 data={chartData}
@@ -356,7 +358,7 @@ export class WatchlistAnalysis extends React.Component<WatchlistAnalysisProps, W
         otherRatiosCharts = WatchlistAnalysis.getChartOtherRatios().map(ratio => {
             const percentage = OtherChartRatios[ratio] === OtherChartRatios.totalDebtToEquity
                 || OtherChartRatios[ratio] === OtherChartRatios.nonCurrentLiabilitiesToIncome
-            const chartData = WatchlistAnalysis.prepareRatiosData(selectedStock, ratio, percentage, false, yearsToDisplay)
+            const chartData = WatchlistAnalysis.prepareRatiosData(selectedStock, ratio, percentage, false, numberOfEntries)
             return <RatioChart
                 key={ratio}
                 data={chartData}

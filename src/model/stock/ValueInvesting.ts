@@ -152,6 +152,14 @@ export class ValueInvesting extends StockData {
             'ROE Y2g',
             'ROE Y3g',
 
+            'ROTC Q1',
+            'ROTC Y1',
+            'ROTC Q1g',
+            'ROTC Q2g',
+            'ROTC Y1g',
+            'ROTC Y2g',
+            'ROTC Y3g',
+
             'currentRatio Q1',
 
             'equity Q1',
@@ -257,6 +265,14 @@ export class ValueInvesting extends StockData {
             roeGrowth1: StockData.toCell(StockData.last(stock.roeGrowth), true, true),
             roeGrowth2: StockData.toCell(StockData.last(stock.roeGrowth, 1), true, true),
             roeGrowth3: StockData.toCell(StockData.last(stock.roeGrowth, 2), true, true),
+
+            rotcQ1: StockData.toCell(StockData.last(stock.rotcPQ), false, false, StockData.toTitle(stock.rotcPQ)),
+            rotcY1: StockData.toCell(StockData.last(stock.rotcP), false, false, StockData.toTitle(stock.rotcP)),
+            rotcGrowthQ1: StockData.toCell(StockData.last(stock.rotcGrowthQ), true, true),
+            rotcGrowthQ2: StockData.toCell(StockData.last(stock.rotcGrowthQ, 1), true, true),
+            rotcGrowth1: StockData.toCell(StockData.last(stock.rotcGrowth), true, true),
+            rotcGrowth2: StockData.toCell(StockData.last(stock.rotcGrowth, 1), true, true),
+            rotcGrowth3: StockData.toCell(StockData.last(stock.rotcGrowth, 2), true, true),
 
             currentRatioQ1: StockData.toCell(StockData.last(stock.currentRatioQ), false),
 
@@ -395,6 +411,20 @@ export class ValueInvesting extends StockData {
         ratiosFields.roeGrowth1.score = StockData.last(stock.roeP, 0) * ratiosFields.roeGrowth1.value / StockData.last(stock.totalDebtToEquity, 0) / 100 * 3
         ratiosFields.roeGrowth2.score = StockData.last(stock.roeP, 1) * ratiosFields.roeGrowth2.value / StockData.last(stock.totalDebtToEquity, 1) / 100 * 2
         ratiosFields.roeGrowth3.score = StockData.last(stock.roeP, 2) * ratiosFields.roeGrowth3.value / StockData.last(stock.totalDebtToEquity, 2) / 100
+
+        ratiosFields.rotcQ1.score = ratiosFields.rotcQ1.value * 2
+        if(ratiosFields.rotcQ1.value < 0){
+            ratiosFields.rotcQ1.score *= 2
+        }
+        ratiosFields.rotcY1.score = ratiosFields.rotcY1.value * 2
+        if(ratiosFields.rotcY1.value < 0){
+            ratiosFields.rotcY1.score *= 2
+        }
+        ratiosFields.rotcGrowthQ1.score = StockData.last(stock.rotcPQ, 0) * ratiosFields.rotcGrowthQ1.value / StockData.last(stock.totalDebtToEquityQ, 0) / 100 * 4
+        ratiosFields.rotcGrowthQ2.score = StockData.last(stock.rotcPQ, 1) * ratiosFields.rotcGrowthQ2.value / StockData.last(stock.totalDebtToEquityQ, 1) / 100 * 2
+        ratiosFields.rotcGrowth1.score = StockData.last(stock.rotcP, 0) * ratiosFields.rotcGrowth1.value / StockData.last(stock.totalDebtToEquity, 0) / 100 * 6
+        ratiosFields.rotcGrowth2.score = StockData.last(stock.rotcP, 1) * ratiosFields.rotcGrowth2.value / StockData.last(stock.totalDebtToEquity, 1) / 100 * 4
+        ratiosFields.rotcGrowth3.score = StockData.last(stock.rotcP, 2) * ratiosFields.rotcGrowth3.value / StockData.last(stock.totalDebtToEquity, 2) / 100 * 2
 
 
         if (ratiosFields.currentRatioQ1.value < 2) {
